@@ -7,9 +7,11 @@ GNU General Public License v3.0
 #include "ShaderGen.h"
 
 filesystem::path startupPath;
+filesystem::path templatePath;
+filesystem::path toolsPath;
 filesystem::path tempPath;
 filesystem::path reportPath;
-filesystem::path listPath(_outputPath);
+filesystem::path listPath;
 vector<string>   shaderList;
 
 std::string exec(const char* cmd, ofstream& log)
@@ -57,7 +59,7 @@ filesystem::path glsl(const filesystem::path& shaderPath, const string& stage, c
     saveSource(input, source);
 
     stringstream cmd;
-    cmd << "\"" << _glslPath << "\" "
+    cmd << "\"" << toolsPath.string() << _glslExe << "\" "
         << "-V --quiet -S " << stage << " -o " << output.string() << " " << input.string() << "";
     auto        cmds      = cmd.str();
     auto        cmdstring = cmds.c_str();
@@ -72,10 +74,10 @@ filesystem::path glsl(const filesystem::path& shaderPath, const string& stage, c
 pair<string, string> spirv(const filesystem::path& input, ofstream& log)
 {
     stringstream cmd1, cmd2;
-    cmd1 << "\"" << _spirvPath << "\" "
+    cmd1 << "\"" << toolsPath.string() << _spirvExe << "\" "
          << " --hlsl --shader-model 50 " << input.string() << "";
     const auto& code = exec(cmd1.str().c_str(), log);
-    cmd2 << "\"" << _spirvPath << "\" " << input.string() << " --reflect";
+    cmd2 << "\"" << toolsPath.string() << _spirvExe << "\" " << input.string() << " --reflect";
     const auto& metadata = exec(cmd2.str().c_str(), log);
     return make_pair(code, metadata);
 }
@@ -311,7 +313,7 @@ void populateShaderTemplate(ShaderDef def, ofstream& log)
 {
     const auto& info = def.info;
 
-    fstream           infile(startupPath / filesystem::path("Shader.template"));
+    fstream           infile(templatePath / filesystem::path("Shader.template"));
     std::stringstream buffer;
     buffer << infile.rdbuf();
     auto bufferString = buffer.str();
@@ -405,7 +407,7 @@ void populateTextureTemplate(TextureDef def, ofstream& log)
 {
     const auto& info = def.info;
 
-    fstream           infile(startupPath / filesystem::path("Texture.template"));
+    fstream           infile(templatePath / filesystem::path("Texture.template"));
     std::stringstream buffer;
     buffer << infile.rdbuf();
     auto bufferString = buffer.str();
@@ -441,7 +443,7 @@ void populatePresetTemplate(
 {
     const auto& info = getShaderInfo(input, "PresetDef");
 
-    fstream           infile(startupPath / filesystem::path("Preset.template"));
+    fstream           infile(templatePath / filesystem::path("Preset.template"));
     std::stringstream buffer;
     buffer << infile.rdbuf();
     auto bufferString = buffer.str();
@@ -970,6 +972,12 @@ void processFile(const filesystem::path& input, ofstream& reportStream)
     if(input.string()[0] == '-') // exclusions (folders)
         return;
 
+    if(!filesystem::exists(input))
+    {
+        cout << "Cannot find file " << input << endl;
+        return;
+    }
+
     auto inputString = input.string();
     std::replace(inputString.begin(), inputString.end(), '\\', '!');
     std::filesystem::path logPath(tempPath / "logs" / (inputString + ".log"));
@@ -1023,7 +1031,7 @@ void processListTemplate()
     listPath /= filesystem::path(string(_libName) + ".h");
     if(!filesystem::exists(listPath))
     {
-        fstream           infile(startupPath / filesystem::path("List.template"));
+        fstream           infile(templatePath / filesystem::path("List.template"));
         std::stringstream buffer;
         buffer << infile.rdbuf();
         auto bufferString = buffer.str();
@@ -1040,11 +1048,21 @@ void processListTemplate()
 int main(int argc, char* argv[])
 {
     startupPath = filesystem::current_path();
-    filesystem::current_path(_inputPath);
-
     filesystem::create_directory(_tempPath);
-    tempPath = filesystem::path(_tempPath);
+    templatePath = (startupPath / filesystem::path(_templatePath)).lexically_normal();
+    tempPath = (startupPath / filesystem::path(_tempPath)).lexically_normal();
+    toolsPath = (startupPath / filesystem::path(_toolsPath)).lexically_normal();
+    listPath = (startupPath / filesystem::path(_outputPath)).lexically_normal();
+    outputPath = (startupPath / filesystem::path(_outputPath)).lexically_normal();
 
+    if(!filesystem::exists(_fxcPath))
+    {
+        cout << "Cannot find fxc.exe! Make sure you have the necessary Window 10 SDK version installed" << endl;
+        cout << _fxcPath << endl;
+        return -1;
+    }
+
+    filesystem::current_path(_inputPath);
     reportPath = tempPath / (std::format("{:%Y%m%d_%H%M%S}", std::chrono::system_clock::now()) + ".log");
     ofstream reportStream(reportPath);
     reportStream << "Starting at " << (std::format("{:%Y-%m-%d %H:%M:%S}", std::chrono::system_clock::now())) << endl;
@@ -1061,7 +1079,7 @@ int main(int argc, char* argv[])
                 _force = true;
                 continue;
             }
-            if(input == ".")
+            if(input == "*")
             {
                 for(auto& p : filesystem::recursive_directory_iterator("."))
                 {
@@ -1075,7 +1093,7 @@ int main(int argc, char* argv[])
                             excludePath = excludePath.parent_path();
                         } while(!isExcluded && !excludePath.empty());
 
-                        if(!isExcluded)
+                        if(_force || !isExcluded)
                         {
                             processFile(p.path().lexically_normal(), reportStream);
                         }

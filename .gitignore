@@ -361,4 +361,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-temp/
+Scripts/slang-shaders
+Scripts/temp

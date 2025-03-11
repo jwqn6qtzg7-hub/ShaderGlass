@@ -24,15 +24,19 @@
 using json = nlohmann::json;
 using namespace std;
 
-const char* _libName    = "RetroArch";
-const char* _inputPath  = "..\\..\\slang-shaders";
-const char* _outputPath = "..\\ShaderGlass\\ShaderGlass\\Shaders\\";
-const char* _glslPath   = "..\\ShaderGlass\\Tools\\glslangValidator.exe";
-const char* _spirvPath  = "..\\ShaderGlass\\Tools\\spirv-cross.exe";
-const char* _tempPath   = "..\\ShaderGlass\\temp";
-const char* _fxcPath    = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.22621.0\\x64\\fxc.exe";
-const char* _raUrl      = "https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/";
+// paths relative to starting in Scripts directory
+const char* _libName      = "RetroArch";
+const char* _inputPath    = "slang-shaders";
+const char* _templatePath = "..\\ShaderGen\\";
+const char* _toolsPath    = "..\\Tools\\";
+const char* _outputPath   = "..\\ShaderGlass\\Shaders\\";
+const char* _glslExe      = "glslangValidator.exe";
+const char* _spirvExe     = "spirv-cross.exe";
+const char* _tempPath     = "temp";
+const char* _fxcPath      = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\fxc.exe";
+const char* _raUrl        = "https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/";
 bool _force = false;
+filesystem::path outputPath;
 
 static inline void ltrim(std::string& s)
 {
@@ -180,7 +184,7 @@ ShaderInfo getShaderInfo(const filesystem::path& slangInput, const string& suffi
     info.shaderName = shaderName.str();
     info.sourcePath = slangInput;
     info.relativePath = filesystem::path(string(_libName) + "\\" + info.category + "\\" + info.className + suffix + ".h").lexically_normal();
-    info.outputPath   = filesystem::path(string(_outputPath) + info.relativePath.string()).lexically_normal();
+    info.outputPath   = filesystem::path(outputPath / info.relativePath.string()).lexically_normal();
     filesystem::create_directories(info.outputPath.parent_path());
 
     replace(info.category, "\\", "/");

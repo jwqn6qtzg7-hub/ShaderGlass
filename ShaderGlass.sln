@@ -9,11 +9,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShaderGen", "ShaderGen\Shad
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B5AD96E-AB36-49F5-8BBD-29308CFBA704}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\DownloadShaders.bat = Scripts\DownloadShaders.bat
+		Scripts\DeleteBuiltShaders.bat = Scripts\DeleteBuiltShaders.bat
 		FAQ.md = FAQ.md
 		Tools\glslangValidator.exe = Tools\glslangValidator.exe
 		LICENSE = LICENSE
 		README.md = README.md
+		Scripts\README.md = Scripts\README.md
 		Tools\spirv-cross.exe = Tools\spirv-cross.exe
+		Scripts\RebuildShader.bat = Scripts\RebuildShader.bat
+		Scripts\RebuildAllShaders.bat = Scripts\RebuildAllShaders.bat
 	EndProjectSection
 EndProject
 Global
