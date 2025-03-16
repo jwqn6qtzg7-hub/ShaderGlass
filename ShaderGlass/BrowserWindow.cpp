@@ -149,7 +149,7 @@ HTREEITEM BrowserWindow::AddItemToTree(HWND hwndTV, LPTSTR lpszItem, LPARAM lPar
 
     // Assume the item is not a parent item, so give it a
     // document image.
-    if(nLevel == 1)
+    if(nLevel == 1 && lParam != WM_SHADER(0))
     {
         tvi.iImage         = g_nClosed;
         tvi.iSelectedImage = g_nClosed;
