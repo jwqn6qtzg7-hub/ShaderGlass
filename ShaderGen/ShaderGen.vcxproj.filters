@@ -26,9 +26,6 @@
     <None Include="List.template" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>

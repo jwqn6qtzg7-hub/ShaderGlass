@@ -2,8 +2,11 @@
 
 #include "resource.h"
 #include "ShaderWindow.h"
+#include "ShaderGC.h"
 
-ShaderWindow::ShaderWindow(CaptureManager& captureManager) : m_captureManager(captureManager), m_captureOptions(captureManager.m_options), m_title(), m_windowClass(), m_toggledNone(false) { }
+ShaderWindow::ShaderWindow(CaptureManager& captureManager) :
+    m_captureManager(captureManager), m_captureOptions(captureManager.m_options), m_title(), m_windowClass(), m_toggledNone(false)
+{ }
 
 bool ShaderWindow::LoadProfile(const std::wstring& fileName)
 {
@@ -43,7 +46,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                     return true;
             }
             else if(key == "CaptureWindow")
-            { 
+            {
                 wchar_t wideName[MAX_WINDOW_TITLE];
                 MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, wideName, MAX_WINDOW_TITLE);
                 windowName = std::wstring(wideName);
@@ -62,7 +65,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
             }
             else if(key == "DPIScaling")
             {
-                if (value == "1")
+                if(value == "1")
                 {
                     m_captureOptions.dpiScale = m_dpiScale;
                     CheckMenuItem(m_pixelSizeMenu, IDM_PIXELSIZE_DPI, MF_CHECKED | MF_BYCOMMAND);
@@ -117,7 +120,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
             }
             else if(key == "OutputScale")
             {
-                if (value == "Free")
+                if(value == "Free")
                 {
                     CheckMenuRadioItem(m_outputScaleMenu, WM_OUTPUT_SCALE(0), WM_OUTPUT_SCALE(static_cast<UINT>(outputScales.size() - 1)), 0, MF_BYCOMMAND);
                     CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_CHECKED | MF_BYCOMMAND);
@@ -309,6 +312,27 @@ void ShaderWindow::LoadProfile()
     }
 }
 
+void ShaderWindow::ImportShader()
+{
+    OPENFILENAMEW ofn;
+    wchar_t       szFileName[MAX_PATH] = L"";
+    ZeroMemory(&ofn, sizeof(ofn));
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner   = NULL;
+    ofn.lpstrFilter =
+        (LPCWSTR)L"Slang Profiles or Shaders (*.slangp;*.slang)\0*.slangp;*.slang\0Slang Profiles (*.slangp)\0*.slangp\0Slang Shaders (*.slang)\0*.slang\0All Files (*.*)\0*.*\0";
+    ofn.lpstrFile   = (LPWSTR)szFileName;
+    ofn.nMaxFile    = MAX_PATH;
+    ofn.Flags       = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
+    ofn.lpstrDefExt = (LPCWSTR)L"slangp";
+
+    if(GetOpenFileName(&ofn))
+    {
+        std::wstring ws(ofn.lpstrFile);
+        ImportShader(ws);
+    }
+}
+
 void ShaderWindow::SetFreeScale()
 {
     CheckMenuRadioItem(m_outputScaleMenu, WM_OUTPUT_SCALE(0), WM_OUTPUT_SCALE(static_cast<UINT>(outputScales.size() - 1)), 0, MF_BYCOMMAND);
@@ -447,6 +471,95 @@ void ShaderWindow::SaveProfile()
     {
         std::wstring ws(ofn.lpstrFile);
         SaveProfile(ws);
+    }
+}
+
+DWORD WINAPI CompileThreadFuncProxy(LPVOID lpParam)
+{
+    ((ShaderWindow*)lpParam)->CompileThreadFunc();
+    return 0;
+}
+
+// shader compiler needs to reuse thread
+void ShaderWindow::CompileThreadFunc()
+{
+    while(true)
+    {
+        WaitForSingleObject(m_compileEvent, INFINITE);
+        ResetEvent(m_compileEvent);
+
+        if(m_importPath.empty())
+            continue;
+
+        std::string errorMsg;
+        try
+        {
+            std::ofstream log;
+            bool          warn;
+            auto          preset = ShaderGC::CompilePreset(m_importPath, log, warn);
+            if(preset == nullptr)
+                throw std::runtime_error("Internal error");
+            auto          id     = m_captureManager.AddPreset(preset);
+            m_numPresets         = m_captureManager.Presets().size();
+            SendMessage(m_browserWindow, WM_COMMAND, WM_USER + 1, id);
+            SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(id), 0);
+        }
+        catch(std::exception& ex)
+        {
+            errorMsg = std::string(ex.what());
+        }
+        EnableWindow(m_mainWindow, true);
+        ShowWindow(m_compileWindow, SW_HIDE);
+        m_importPath = std::filesystem::path();
+
+        if(errorMsg.size())
+        {
+            MessageBox(m_mainWindow, convertCharArrayToLPCWSTR(errorMsg.c_str()), L"ShaderGlass", MB_OK);
+        }
+    }
+}
+
+bool ShaderWindow::ImportShader(const std::wstring& fileName)
+{
+    try
+    {
+        m_importPath = fileName;
+
+        RECT rc, rcDlg, rcOwner;
+        GetWindowRect(m_mainWindow, &rcOwner);
+        GetWindowRect(m_compileWindow, &rcDlg);
+        CopyRect(&rc, &rcOwner);
+        OffsetRect(&rcDlg, -rcDlg.left, -rcDlg.top);
+        OffsetRect(&rc, -rc.left, -rc.top);
+        OffsetRect(&rc, -rcDlg.right, -rcDlg.bottom);
+        SetWindowPos(m_compileWindow,
+                     HWND_TOP,
+                     rcOwner.left + (rc.right / 2),
+                     rcOwner.top + max(0, (rc.bottom / 2)),
+                     0,
+                     0, // Ignores size arguments.
+                     SWP_NOSIZE);
+
+        ShowWindow(m_compileWindow, SW_SHOW);
+        EnableWindow(m_mainWindow, false);
+        if(!m_compileEvent)
+        {
+            m_compileEvent = CreateEvent(NULL, TRUE, FALSE, TEXT("CompileEvent"));
+        }
+        if(!m_compileThread)
+        {
+            m_compileThread = CreateThread(NULL, 0, CompileThreadFuncProxy, this, 0, NULL);
+        }
+        if(m_compileEvent)
+        {
+            SetEvent(m_compileEvent);
+        }
+        return true;
+    }
+    catch(std::exception& ex)
+    {
+        MessageBox(m_mainWindow, convertCharArrayToLPCWSTR(ex.what()), L"ShaderGlass", MB_OK);
+        return false;
     }
 }
 
@@ -784,7 +897,13 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
 
                 RECT windowRect;
                 GetWindowRect(hWnd, &windowRect);
-                SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, clientRect.right - clientRect.left, clientRect.bottom - clientRect.top, SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
+                SetWindowPos(hWnd,
+                             HWND_TOPMOST,
+                             0,
+                             0,
+                             clientRect.right - clientRect.left,
+                             clientRect.bottom - clientRect.top,
+                             SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
             }
         }
     }
@@ -855,8 +974,8 @@ void ShaderWindow::UpdateTitle()
 
         wchar_t     title[200];
         const char* scaleString = m_captureOptions.freeScale ? "free" : outputScale.mnemonic;
-        const auto fps = (int)roundf(m_captureManager.FPS());
-        _snwprintf_s(title, 200, _T("ShaderGlass (%s%S, %Spx, %S%%, ~%S, %dfps)"), windowName, shader->Name, pixelSize.mnemonic, scaleString, aspectRatio.mnemonic, fps);
+        const auto  fps         = (int)roundf(m_captureManager.FPS());
+        _snwprintf_s(title, 200, _T("ShaderGlass (%s%S, %Spx, %S%%, ~%S, %dfps)"), windowName, shader->Name.c_str(), pixelSize.mnemonic, scaleString, aspectRatio.mnemonic, fps);
         SetWindowTextW(m_mainWindow, title);
     }
     else
@@ -904,12 +1023,12 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                 OffsetRect(&rc, -rcDlg.right, -rcDlg.bottom);
 
                 if(!SetWindowPos(m_browserWindow,
-                             HWND_TOP,
-                             rcOwner.right - (rcDlg.right - rcDlg.left),
-                             rcOwner.top + max(0, (rc.bottom / 2)),
-                             0,
-                             0, // Ignores size arguments.
-                             SWP_NOSIZE))
+                                 HWND_TOP,
+                                 rcOwner.right - (rcDlg.right - rcDlg.left),
+                                 rcOwner.top + max(0, (rc.bottom / 2)),
+                                 0,
+                                 0, // Ignores size arguments.
+                                 SWP_NOSIZE))
                 {
                     int x = 4;
                     x++;
@@ -1004,7 +1123,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             m_captureManager.UpdatePixelSize();
             break;
         case IDM_OUTPUT_FREESCALE:
-            if (!m_captureOptions.freeScale)
+            if(!m_captureOptions.freeScale)
             {
                 CheckMenuRadioItem(m_outputScaleMenu, WM_OUTPUT_SCALE(0), WM_OUTPUT_SCALE(static_cast<UINT>(outputScales.size() - 1)), 0, MF_BYCOMMAND);
                 CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_CHECKED | MF_BYCOMMAND);
@@ -1129,6 +1248,9 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         case IDM_PROCESSING_LOADPROFILE:
             LoadProfile();
             break;
+        case ID_SHADER_IMPORT:
+            ImportShader();
+            break;
         case IDM_PROCESSING_SAVEPROFILEAS:
             SaveProfile();
             break;
@@ -1145,7 +1267,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     m_toggledNone     = true;
                     m_toggledPresetNo = m_captureOptions.presetNo;
                     m_captureManager.RememberLastPreset();
-                    SendMessage(hWnd, WM_COMMAND, WM_SHADER(m_numPresets - 1), 0);
+                    SendMessage(hWnd, WM_COMMAND, WM_SHADER(0), 1);
                     CheckMenuItem(m_shaderMenu, ID_QUICK_TOGGLE, MF_UNCHECKED | MF_BYCOMMAND);
                 }
             }
@@ -1155,7 +1277,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                 {
                     m_toggledNone = false;
                     m_captureManager.SetLastPreset(m_toggledPresetNo);
-                    SendMessage(hWnd, WM_COMMAND, WM_SHADER(m_toggledPresetNo), 0);
+                    SendMessage(hWnd, WM_COMMAND, WM_SHADER(m_toggledPresetNo), 1);
                     CheckMenuItem(m_shaderMenu, ID_QUICK_TOGGLE, MF_CHECKED | MF_BYCOMMAND);
                 }
             }
@@ -1181,11 +1303,11 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             {
                 if(wmId >= WM_SHADER(0) && wmId < WM_SHADER(MAX_SHADERS))
                 {
-                    PostMessage(m_browserWindow, WM_COMMAND, WM_USER, wmId);
+                    PostMessage(m_browserWindow, WM_COMMAND, WM_USER, wmId + (lParam << 16));
                     m_captureOptions.presetNo = wmId - WM_SHADER(0);
                     m_captureManager.UpdateShaderPreset();
                     UpdateWindowState();
-                    if(wmId != WM_SHADER(m_numPresets - 1) && m_toggledNone)
+                    if(wmId != WM_SHADER(0) && m_toggledNone)
                     {
                         m_toggledNone = false;
                         CheckMenuItem(m_shaderMenu, ID_QUICK_TOGGLE, MF_CHECKED | MF_BYCOMMAND);
@@ -1339,13 +1461,13 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         break;
     }
     case WM_KEYDOWN:
-        if (wParam == VK_TAB)
+        if(wParam == VK_TAB)
         {
             SendMessage(hWnd, WM_COMMAND, ID_QUICK_TOGGLE, 1);
         }
         break;
     case WM_KEYUP:
-        if (wParam == VK_TAB)
+        if(wParam == VK_TAB)
         {
             SendMessage(hWnd, WM_COMMAND, ID_QUICK_TOGGLE, 2);
         }
@@ -1702,7 +1824,7 @@ void ShaderWindow::SaveRecentProfiles()
         }
         RegCloseKey(hkey);
     }
-    
+
     LoadRecentProfiles(); // rebuild menu
 }
 
@@ -1719,7 +1841,7 @@ void ShaderWindow::AddRecentProfile(const std::wstring& path)
             return;
 
         // remove from the middle
-        m_recentProfiles.erase(existingPos);        
+        m_recentProfiles.erase(existingPos);
     }
     // add to front
     m_recentProfiles.insert(m_recentProfiles.begin(), path);
@@ -1754,7 +1876,7 @@ void ShaderWindow::UnregisterHotkeys()
     UnregisterHotKey(m_mainWindow, HK_PAUSE);
 }
 
-void ShaderWindow::Start(_In_ LPWSTR lpCmdLine, HWND paramsWindow, HWND browserWindow)
+void ShaderWindow::Start(_In_ LPWSTR lpCmdLine, HWND paramsWindow, HWND browserWindow, HWND compileWindow)
 {
     bool autoStart  = true;
     bool fullScreen = false;
@@ -1782,6 +1904,7 @@ void ShaderWindow::Start(_In_ LPWSTR lpCmdLine, HWND paramsWindow, HWND browserW
 
     m_paramsWindow  = paramsWindow;
     m_browserWindow = browserWindow;
+    m_compileWindow = compileWindow;
     m_inputDialog.reset(new InputDialog(m_instance, m_mainWindow));
 
     if(autoStart)

@@ -19,7 +19,7 @@ CaptureManager::CaptureManager() : m_options(), m_lastPreset(-1) { }
 bool CaptureManager::Initialize()
 {
     m_presetList.push_back(make_unique<PassthroughPresetDef>());
-    m_presetList.insert(m_presetList.begin(), RetroArchPresetList.begin(), RetroArchPresetList.end());
+    m_presetList.insert(m_presetList.end(), RetroArchPresetList.begin(), RetroArchPresetList.end());
     return false;
 }
 
@@ -66,7 +66,7 @@ bool CaptureManager::StartSession()
 #ifdef _DEBUG
     m_d3dDevice->QueryInterface(__uuidof(ID3D11Debug), reinterpret_cast<void**>(m_debug.put()));
 #endif
-     
+
     winrt::Windows::Graphics::Capture::GraphicsCaptureItem captureItem {nullptr};
     if(!m_options.imageFile.size())
     {
@@ -143,6 +143,31 @@ void CaptureManager::Debug()
 {
     if(m_debug)
         m_debug->ReportLiveDeviceObjects(D3D11_RLDO_DETAIL | D3D11_RLDO_IGNORE_INTERNAL);
+}
+
+int CaptureManager::AddPreset(PresetDef* preset)
+{
+    preset->MakeDynamic();
+    int existing = 0, i = 0;
+    for(const auto& p : m_presetList)
+    {
+        if(p->Name == preset->Name && p->Category == preset->Category)
+        {
+            existing = i;
+            break;
+        }
+        i++;
+    }
+    if(existing)
+    {
+        m_presetList[existing].reset(preset);
+        return existing;
+    }
+    else
+    {
+        m_presetList.push_back(std::unique_ptr<PresetDef>(preset));
+        return m_presetList.size() - 1;
+    }
 }
 
 bool CaptureManager::IsActive()
@@ -328,7 +353,7 @@ int CaptureManager::FindByName(const char* presetName)
     int p = 0;
     while(p < m_presetList.size())
     {
-        if(strcmp(m_presetList[p]->Name, presetName) == 0)
+        if(m_presetList[p]->Name == presetName)
         {
             return p;
         }
