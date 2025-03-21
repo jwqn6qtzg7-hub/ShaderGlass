@@ -4,9 +4,39 @@
 
 static HRESULT hr;
 
+const static std::unordered_map<std::string, DXGI_FORMAT> sFormats = {{"R8_UNORM", DXGI_FORMAT_R8_UNORM},
+                                                                      {"R8_UINT", DXGI_FORMAT_R8_UINT},
+                                                                      {"R8_SINT", DXGI_FORMAT_R8_UINT},
+                                                                      {"R8G8_UNORM", DXGI_FORMAT_R8G8_UNORM},
+                                                                      {"R8G8_UINT", DXGI_FORMAT_R8G8_UINT},
+                                                                      {"R8G8_SINT", DXGI_FORMAT_R8G8_SINT},
+                                                                      {"R8G8B8A8_UNORM", DXGI_FORMAT_R8G8B8A8_UNORM},
+                                                                      {"R8G8B8A8_UINT", DXGI_FORMAT_R8G8B8A8_UINT},
+                                                                      {"R8G8B8A8_SINT", DXGI_FORMAT_R8G8B8A8_SINT},
+                                                                      {"R8G8B8A8_SRGB", DXGI_FORMAT_R8G8B8A8_UNORM_SRGB},
+                                                                      {"A2B10G10R10_UNORM_PACK32", DXGI_FORMAT_R10G10B10A2_UNORM},
+                                                                      {"A2B10G10R10_UINT_PACK32", DXGI_FORMAT_R10G10B10A2_UINT},
+                                                                      {"R16_UINT", DXGI_FORMAT_R16_UINT},
+                                                                      {"R16_SINT", DXGI_FORMAT_R16_SINT},
+                                                                      {"R16_SFLOAT", DXGI_FORMAT_R16_FLOAT},
+                                                                      {"R16G16_UINT", DXGI_FORMAT_R16G16_UINT},
+                                                                      {"R16G16_SINT", DXGI_FORMAT_R16G16_SINT},
+                                                                      {"R16G16_SFLOAT", DXGI_FORMAT_R16G16_FLOAT},
+                                                                      {"R16G16B16A16_UINT", DXGI_FORMAT_R16G16B16A16_UINT},
+                                                                      {"R16G16B16A16_SINT", DXGI_FORMAT_R16G16B16A16_SINT},
+                                                                      {"R16G16B16A16_SFLOAT", DXGI_FORMAT_R16G16B16A16_FLOAT},
+                                                                      {"R32_UINT", DXGI_FORMAT_R32_UINT},
+                                                                      {"R32_SINT", DXGI_FORMAT_R32_SINT},
+                                                                      {"R32_SFLOAT", DXGI_FORMAT_R32_FLOAT},
+                                                                      {"R32G32_UINT", DXGI_FORMAT_R32G32_UINT},
+                                                                      {"R32G32_SINT", DXGI_FORMAT_R32G32_SINT},
+                                                                      {"R32G32_SFLOAT", DXGI_FORMAT_R32G32_FLOAT},
+                                                                      {"R32G32B32A32_UINT", DXGI_FORMAT_R32G32B32A32_UINT},
+                                                                      {"R32G32B32A32_SINT", DXGI_FORMAT_R32G32B32A32_SINT},
+                                                                      {"R32G32B32A32_SFLOAT", DXGI_FORMAT_R32G32B32A32_FLOAT}};
+
 Shader::Shader(ShaderDef& shaderDef) :
-    m_shaderDef(shaderDef), m_vertexShader {}, m_pixelShader {}, m_alias {}, m_scaleAbsoluteX {}, m_scaleAbsoluteY {}, m_scaleViewportX {},
-    m_scaleViewportY {}
+    m_shaderDef(shaderDef), m_vertexShader {}, m_pixelShader {}, m_alias {}, m_scaleAbsoluteX {}, m_scaleAbsoluteY {}, m_scaleViewportX {}, m_scaleViewportY {}
 {
     m_pushBuffer = std::make_unique<int[]>(BufferSize(PUSH_BUFFER));
     m_uboBuffer  = std::make_unique<int[]>(BufferSize(UBO_BUFFER));
@@ -16,8 +46,20 @@ Shader::Shader(ShaderDef& shaderDef) :
     }
 
     m_filterLinear = IsTrue("filter_linear");
-    m_formatSRGB   = IsTrue("srgb_framebuffer") || (shaderDef.Format != NULL && (strcmp(shaderDef.Format, "R8G8B8A8_SRGB") == 0));
-    m_formatFloat  = IsTrue("float_framebuffer") || (shaderDef.Format != NULL && (strcmp(shaderDef.Format, "R32G32B32A32_SFLOAT") == 0 || strcmp(shaderDef.Format, "R16G16B16A16_SFLOAT") == 0));
+    if(IsTrue("srgb_framebuffer"))
+        m_format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
+    if(IsTrue("float_framebuffer"))
+        m_format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+    if(shaderDef.Format != NULL && strlen(shaderDef.Format) > 0)
+    {
+        auto format = sFormats.find(shaderDef.Format);
+        if(format != sFormats.end())
+            m_format = format->second;
+#ifdef _DEBUG
+        else
+            throw std::runtime_error("Unknown format " + std::string(shaderDef.Format));
+#endif
+    }
 
     std::string value;
 

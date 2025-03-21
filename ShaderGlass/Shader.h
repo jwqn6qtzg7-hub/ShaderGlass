@@ -38,8 +38,7 @@ public:
     bool                               m_scaleViewportY {false};
     bool                               m_scaleAbsoluteX {false};
     bool                               m_scaleAbsoluteY {false};
-    bool                               m_formatSRGB {false};
-    bool                               m_formatFloat {false};
+    DXGI_FORMAT                        m_format {DXGI_FORMAT_B8G8R8A8_UNORM};
     bool                               m_filterLinear {false};
     bool                               m_clamp {false};
     int                                m_frameCountMod {0};

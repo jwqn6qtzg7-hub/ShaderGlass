@@ -89,6 +89,8 @@ vector<string> ShaderGC::LoadSource(const filesystem::path& input, bool followIn
     vector<string> lines;
 
     fstream infile(input);
+    if(!infile.good())
+        throw std::runtime_error("Unable to find " + input.string());
     string  line;
     while(getline(infile, line))
     {
@@ -153,26 +155,8 @@ void ShaderGC::ProcessSourceShader(SourceShaderDef& def, ostream& log, bool& war
         }
         else if(trimLine.starts_with("#pragma format"))
         {
-            if(trimLine.ends_with("R8G8B8A8_UNORM"))
-            {
-                def.format = "R8G8B8A8_UNORM";
-            }
-            else if(trimLine.ends_with("R8G8B8A8_SRGB"))
-            {
-                def.format = "R8G8B8A8_SRGB";
-            }
-            else if(trimLine.ends_with("R32G32B32A32_SFLOAT"))
-            {
-                def.format = "R32G32B32A32_SFLOAT";
-            }
-            else if(trimLine.ends_with("R16G16B16A16_SFLOAT"))
-            {
-                def.format = "R16G16B16A16_SFLOAT";
-            }
-            else
-            {
-                throw std::runtime_error("Sorry, unsupported format " + trimLine.substr(15));
-            }
+            auto format = trimLine.substr(15);
+            def.format = trim(format);
         }
         else if(trimLine.starts_with("//"))
         {

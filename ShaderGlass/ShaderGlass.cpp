@@ -631,12 +631,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture)
             {
                 const auto& pass = m_shaderPasses[p - 1];
 
-                if(pass.m_shader.m_formatFloat)
-                    desc2.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
-                else if(pass.m_shader.m_formatSRGB)
-                    desc2.Format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
-                else
-                    desc2.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+                desc2.Format = pass.m_shader.m_format;
 
                 // use shader output size
                 desc2.Width  = pass.m_destWidth;
