@@ -140,23 +140,27 @@ void ShaderGC::ProcessSourceShader(SourceShaderDef& def, ostream& log, bool& war
             }
             if(!dupe)
                 def.params.push_back(param);
+            continue;
         }
         else if(line.starts_with("#pragma stage vertex"))
         {
             isFragment = false;
             isVertex   = true;
             inComment  = false;
+            continue;
         }
         else if(line.starts_with("#pragma stage fragment"))
         {
             isFragment = true;
             isVertex   = false;
             inComment  = false;
+            continue;
         }
         else if(trimLine.starts_with("#pragma format"))
         {
             auto format = trimLine.substr(15);
-            def.format = trim(format);
+            def.format  = trim(format);
+            continue;
         }
         else if(trimLine.starts_with("//"))
         {
@@ -181,14 +185,6 @@ void ShaderGC::ProcessSourceShader(SourceShaderDef& def, ostream& log, bool& war
                 def.comments.push_back(trimLine.substr(2));
                 inComment = true;
             }
-            else
-            {
-                // comment within line
-                if(isFragment)
-                    fragmentSource << line << endl;
-                if(isVertex)
-                    vertexSource << line << endl;
-            }
         }
         else if(inComment && trimLine.ends_with("*/"))
         {
@@ -203,13 +199,10 @@ void ShaderGC::ProcessSourceShader(SourceShaderDef& def, ostream& log, bool& war
         {
             def.comments.push_back(trimLine);
         }
-        else
-        {
-            if(isFragment)
-                fragmentSource << line << endl;
-            if(isVertex)
-                vertexSource << line << endl;
-        }
+        if(isFragment)
+            fragmentSource << line << endl;
+        if(isVertex)
+            vertexSource << line << endl;
     }
 
     def.fragmentSource = fragmentSource.str();
