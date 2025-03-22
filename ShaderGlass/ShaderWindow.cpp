@@ -788,24 +788,81 @@ ATOM ShaderWindow::MyRegisterClass(HINSTANCE hInstance)
     return RegisterClassExW(&wcex);
 }
 
+bool ShaderWindow::GetStartingPositionState()
+{
+    return GetRegistryOption(L"Remember Position", false);
+}
+
+void ShaderWindow::SaveStartingPositionState(bool state)
+{
+    SaveRegistryOption(L"Remember Position", state);
+    if(!state)
+        ForgetStartingPosition();
+}
+
+void ShaderWindow::GetStartingPosition(int& x, int& y, int& w, int& h)
+{
+    if(GetStartingPositionState())
+    {
+        x = GetRegistryInt(L"X", 0);
+        y = GetRegistryInt(L"Y", 0);
+        w = GetRegistryInt(L"W", 0);
+        h = GetRegistryInt(L"H", 0);
+    }
+    if(w <= 0 || h <= 0)
+    {
+        // defaults
+        x = CW_USEDEFAULT;
+        y = CW_USEDEFAULT;
+        w = 960;
+        h = 600;
+
+        RECT rect;
+        rect.left   = 0;
+        rect.top    = 0;
+        rect.right  = w;
+        rect.bottom = h;
+        AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
+        w = rect.right - rect.left;
+        h = rect.bottom - rect.top;
+    }
+}
+
+void ShaderWindow::SaveStartingPosition()
+{
+    if(GetStartingPositionState())
+    {
+        RECT rc;
+        GetWindowRect(m_mainWindow, &rc);
+        SaveRegistryInt(L"X", rc.left);
+        SaveRegistryInt(L"Y", rc.top);
+        SaveRegistryInt(L"W", rc.right - rc.left);
+        SaveRegistryInt(L"H", rc.bottom - rc.top);
+    }    
+}
+
+void ShaderWindow::ForgetStartingPosition()
+{
+    SaveRegistryInt(L"X", 0);
+    SaveRegistryInt(L"Y", 0);
+    SaveRegistryInt(L"W", 0);
+    SaveRegistryInt(L"H", 0);
+}
+
 BOOL ShaderWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     m_instance = hInstance;
 
-    RECT rect;
-    rect.left   = 0;
-    rect.top    = 0;
-    rect.right  = 960;
-    rect.bottom = 600;
-    AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
+    int x, y, w, h;
+    GetStartingPosition(x, y, w, h);
 
     HWND hWnd = CreateWindowW(m_windowClass,
                               m_title,
                               WS_OVERLAPPEDWINDOW | WS_EX_WINDOWEDGE,
-                              CW_USEDEFAULT,
-                              CW_USEDEFAULT,
-                              rect.right - rect.left,
-                              rect.bottom - rect.top,
+                              x,
+                              y,
+                              w,
+                              h,
                               nullptr,
                               nullptr,
                               hInstance,
@@ -1114,6 +1171,18 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                 RegisterHotkeys();
                 CheckMenuItem(m_programMenu, ID_PROCESSING_GLOBALHOTKEYS, MF_CHECKED);
                 SaveHotkeyState(true);
+            }
+            break;
+        case ID_PROCESSING_REMEMBERPOSITION:
+            if(GetMenuState(m_programMenu, ID_PROCESSING_REMEMBERPOSITION, MF_BYCOMMAND) & MF_CHECKED)
+            {
+                SaveStartingPositionState(false);
+                CheckMenuItem(m_programMenu, ID_PROCESSING_REMEMBERPOSITION, MF_UNCHECKED);
+            }
+            else
+            {
+                SaveStartingPositionState(true);
+                CheckMenuItem(m_programMenu, ID_PROCESSING_REMEMBERPOSITION, MF_CHECKED);
             }
             break;
         case ID_PRESENTATION_USEFLIPMODE:
@@ -1617,6 +1686,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         break;
     case WM_DESTROY:
         m_captureManager.Exit();
+        SaveStartingPosition();
         PostQuitMessage(0);
         break;
     default:
@@ -1800,6 +1870,10 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
         CheckMenuItem(m_advancedMenu, ID_ADVANCED_ALLOWTEARING, MF_BYCOMMAND | MF_CHECKED);
         m_captureOptions.allowTearing = true;
     }
+    if(GetStartingPositionState())
+    {
+        CheckMenuItem(m_programMenu, ID_PROCESSING_REMEMBERPOSITION, MF_BYCOMMAND | MF_CHECKED);
+    }
     if(CanSetCaptureRate())
     {
         if(GetMaxCaptureRateState())
@@ -1853,7 +1927,36 @@ bool ShaderWindow::GetRegistryOption(const wchar_t* name, bool default)
         DWORD value = (default ? 1 : 0);
         DWORD size  = sizeof(DWORD);
         RegGetValue(hKey, NULL, name, RRF_RT_REG_DWORD, NULL, &value, &size);
+        RegCloseKey(hKey);
         return value == 1;
+    }
+
+    return default;
+}
+
+void ShaderWindow::SaveRegistryInt(const wchar_t* name, int value)
+{
+    HKEY  hkey;
+    DWORD dwDisposition;
+    if(RegCreateKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass"), 0, NULL, 0, KEY_WRITE | KEY_SET_VALUE, NULL, &hkey, &dwDisposition) == ERROR_SUCCESS)
+    {
+        DWORD size  = sizeof(DWORD);
+        DWORD dvalue = value;
+        RegSetValueEx(hkey, name, 0, REG_DWORD, (PBYTE)&dvalue, size);
+        RegCloseKey(hkey);
+    }
+}
+
+int ShaderWindow::GetRegistryInt(const wchar_t* name, int default)
+{
+    HKEY hKey;
+    if(RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass"), 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
+    {
+        DWORD dvalue = default;
+        DWORD size  = sizeof(DWORD);
+        RegGetValue(hKey, NULL, name, RRF_RT_REG_DWORD, NULL, &dvalue, &size);
+        RegCloseKey(hKey);
+        return (int)dvalue;
     }
 
     return default;
@@ -1918,6 +2021,7 @@ void ShaderWindow::LoadRecentProfiles()
                     m_recentProfiles.push_back(path);
             }
         }
+        RegCloseKey(hKey);
     }
 
     // update menu

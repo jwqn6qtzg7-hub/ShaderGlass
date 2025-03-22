@@ -99,6 +99,13 @@ private:
     bool GetMaxCaptureRateState();
     bool GetRegistryOption(const wchar_t* name, bool default);
     void SaveRegistryOption(const wchar_t* name, bool value);
+    int  GetRegistryInt(const wchar_t* name, int default);
+    void SaveRegistryInt(const wchar_t* name, int value);
+    void GetStartingPosition(int& x, int& y, int& w, int& h);
+    void SaveStartingPosition();
+    void ForgetStartingPosition();
+    bool GetStartingPositionState();
+    void SaveStartingPositionState(bool state);
     void SaveRecentProfiles();
     void LoadRecentProfiles();
     void AddRecentProfile(const std::wstring& path);
