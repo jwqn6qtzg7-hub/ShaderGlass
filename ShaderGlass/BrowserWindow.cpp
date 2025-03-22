@@ -4,10 +4,14 @@
 #include "BrowserWindow.h"
 
 constexpr int WINDOW_WIDTH  = 400;
-constexpr int WINDOW_HEIGHT = 600;
+constexpr int WINDOW_HEIGHT = 680;
 constexpr int CX_BITMAP     = 24;
 constexpr int CY_BITMAP     = 24;
 constexpr int NUM_BITMAPS   = 3;
+constexpr int BUTTON_WIDTH  = 140;
+constexpr int PANEL_HEIGHT  = 40;
+constexpr int MAX_NAME      = 20;
+constexpr int MAX_VALUE     = 200;
 
 BrowserWindow::BrowserWindow(CaptureManager& captureManager) :
     m_captureManager(captureManager), m_captureOptions(captureManager.m_options), m_title(), m_windowClass(), m_font(0), m_dpiScale(1.0f)
@@ -100,7 +104,9 @@ void BrowserWindow::Resize()
 {
     RECT rcClient;
     GetClientRect(m_mainWindow, &rcClient);
-    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom, 0);
+    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (PANEL_HEIGHT * m_dpiScale), 0);
+    SetWindowPos(m_addFavButton, NULL, 0, rcClient.bottom - (PANEL_HEIGHT * m_dpiScale), BUTTON_WIDTH * m_dpiScale, PANEL_HEIGHT * m_dpiScale, 0);
+    SetWindowPos(m_delFavButton, NULL, BUTTON_WIDTH * m_dpiScale, rcClient.bottom - (PANEL_HEIGHT * m_dpiScale), BUTTON_WIDTH * m_dpiScale, PANEL_HEIGHT * m_dpiScale, 0);
 }
 
 BOOL BrowserWindow::CreateImageList(HWND hwndTV)
@@ -216,7 +222,7 @@ void BrowserWindow::Build()
                                    0,
                                    0,
                                    rcClient.right,
-                                   rcClient.bottom,
+                                   rcClient.bottom - (PANEL_HEIGHT * m_dpiScale),
                                    m_mainWindow,
                                    NULL,
                                    m_instance,
@@ -263,7 +269,13 @@ void BrowserWindow::Build()
         menu.insert(std::make_pair(sp->Name, WM_SHADER(i++)));
     }
 
-    AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Favorites"), -1, 1);
+    m_personalItems = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Personal Favorites"), -1, 1);
+
+    LoadPersonal();
+
+    m_imported = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Imported"), -1, 1);
+
+    AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Community Favorites"), -1, 1);
 
     for(int fp = 0; fp < sizeof(favoritePresets) / sizeof(const char*); fp++)
     {
@@ -273,8 +285,6 @@ void BrowserWindow::Build()
             m_favorites[WM_SHADER(p)] = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(favoritePresets[fp]), WM_SHADER(p), 2);
         }
     }
-
-    m_imported = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Imported"), -1, 1);
 
     auto raItem = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("RetroArch Library"), -1, 1);
 
@@ -339,7 +349,131 @@ void BrowserWindow::Build()
         }
     }
 
+    /// build other controls
+    m_addFavButton = CreateWindow(L"BUTTON",
+                                  L"Add Favorite",
+                                  WS_TABSTOP | WS_VISIBLE | WS_CHILD,
+                                  0,
+                                  rcClient.bottom - (PANEL_HEIGHT * m_dpiScale),
+                                  BUTTON_WIDTH * m_dpiScale,
+                                  PANEL_HEIGHT * m_dpiScale,
+                                  m_mainWindow,
+                                  NULL,
+                                  (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
+                                  NULL);
+    SendMessage(m_addFavButton, WM_SETFONT, (LPARAM)m_font, true);
+
+    m_delFavButton = CreateWindow(L"BUTTON",
+                                  L"Remove Favorite",
+                                  WS_TABSTOP | WS_VISIBLE | WS_CHILD,
+                                  BUTTON_WIDTH * m_dpiScale,
+                                  rcClient.bottom - (PANEL_HEIGHT * m_dpiScale),
+                                  BUTTON_WIDTH * m_dpiScale,
+                                  PANEL_HEIGHT * m_dpiScale,
+                                  m_mainWindow,
+                                  NULL,
+                                  (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
+                                  NULL);
+    SendMessage(m_delFavButton, WM_SETFONT, (LPARAM)m_font, true);
+
     Resize();
+}
+
+void BrowserWindow::LoadPersonal()
+{
+    HKEY  hkey;
+    DWORD dwDisposition;
+    if(RegCreateKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass\\Personal"), 0, NULL, 0, KEY_READ | KEY_QUERY_VALUE, NULL, &hkey, &dwDisposition) == ERROR_SUCCESS)
+    {
+        DWORD   index = 0;
+        auto    done  = false;
+        wchar_t name[MAX_NAME];
+        wchar_t value[MAX_VALUE];
+        do
+        {
+            DWORD nameSize  = MAX_NAME;
+            DWORD type      = REG_SZ;
+            DWORD valueSize = MAX_VALUE * sizeof(wchar_t);
+            auto  result    = RegEnumValue(hkey, index++, name, &nameSize, NULL, &type, (BYTE*)value, &valueSize);
+            if(result == ERROR_SUCCESS)
+            {
+                try
+                {
+                    auto valueString = std::wstring(value);
+                    auto separator   = valueString.find(':');
+                    if(separator == std::wstring::npos)
+                        continue;
+                    auto categoryWName = valueString.substr(0, separator);
+                    auto profileWName  = valueString.substr(separator + 1);
+                    if(categoryWName.size() == 0 || profileWName.size() == 0 || categoryWName.size() >= MAX_VALUE || profileWName.size() >= MAX_VALUE)
+                        continue;
+
+                    char   categoryName[MAX_VALUE + 1];
+                    char   profileName[MAX_VALUE + 1];
+                    size_t categoryLen;
+                    size_t profileLen;
+                    wcstombs_s(&categoryLen, categoryName, categoryWName.data(), MAX_VALUE);
+                    wcstombs_s(&profileLen, profileName, profileWName.data(), MAX_VALUE);
+                    categoryName[categoryLen] = 0;
+                    profileName[profileLen]   = 0;
+                    for(int p = 0; p < m_captureManager.Presets().size(); p++)
+                    {
+                        const auto& preset = m_captureManager.Presets().at(p);
+                        if(_strnicmp(preset->Category.c_str(), categoryName, MAX_VALUE) == 0 && _strnicmp(preset->Name.c_str(), profileName, MAX_VALUE) == 0)
+                        {
+                            auto id = WM_SHADER(p);
+                            if(m_personal.find(id) == m_personal.end())
+                            {
+                                m_personal[id] = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(profileName), id, 2);
+                            }
+                            continue;
+                        }
+                    }
+                }
+                catch(...)
+                { }
+            }
+            else //if(result == ERROR_NO_MORE_ITEMS)
+            {
+                done = true;
+            }
+        } while(!done);
+        RegCloseKey(hkey);
+    }
+    TreeView_SortChildren(m_treeControl, m_personalItems, false);
+    TreeView_Expand(m_treeControl, m_personalItems, TVE_EXPAND);
+}
+
+void BrowserWindow::SavePersonal()
+{
+    HKEY  hkey;
+    DWORD dwDisposition;
+    if(RegCreateKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass"), 0, NULL, 0, KEY_WRITE | KEY_SET_VALUE, NULL, &hkey, &dwDisposition) == ERROR_SUCCESS)
+    {
+        RegDeleteKey(hkey, L"Personal");
+    }
+
+    if(RegCreateKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass\\Personal"), 0, NULL, 0, KEY_WRITE | KEY_SET_VALUE, NULL, &hkey, &dwDisposition) == ERROR_SUCCESS)
+    {
+        int index = 0;
+        try
+        {
+            for(const auto& p : m_personal)
+            {
+                // update value
+                const auto& profile = m_captureManager.Presets().at(p.first - WM_SHADER(0));
+
+                wchar_t value[MAX_VALUE];
+                _snwprintf_s(value, MAX_VALUE, L"%S:%S", profile->Category.c_str(), profile->Name.c_str());
+                wchar_t name[MAX_NAME];
+                _snwprintf_s(name, MAX_NAME, L"%d", index++);
+                RegSetValueEx(hkey, name, 0, REG_SZ, (PBYTE)value, wcslen(value) * sizeof(wchar_t));
+            }
+        }
+        catch(...)
+        { }
+        RegCloseKey(hkey);
+    }
 }
 
 LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -406,6 +540,17 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                     return 0;
                 }
             }
+            auto personal = m_personal.find(lParam);
+            if(personal != m_personal.end())
+            {
+                // check if already selected
+                auto selected = TreeView_GetSelection(m_treeControl);
+                if(selected == personal->second)
+                {
+                    // selected from personal - do nothing
+                    return 0;
+                }
+            }
             auto item = m_items.find(lParam);
             if(item != m_items.end())
             {
@@ -415,7 +560,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             return 0;
         }
         case WM_USER + 1: {
-            int            id = WM_SHADER(lParam);
+            int id = WM_SHADER(lParam);
 
             if(m_items.contains(id)) // in-place update
                 return 0;
@@ -430,6 +575,58 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             is.item.iSelectedImage = g_nDocument;
             is.item.lParam         = id;
             m_items[id]            = TreeView_InsertItem(m_treeControl, &is);
+            return 0;
+        }
+        case BN_CLICKED: {
+            if(lParam == (UINT)m_addFavButton)
+            {
+                auto selected = TreeView_GetSelection(m_treeControl);
+                if(selected == nullptr)
+                    return 0;
+                TVITEM tvi;
+                tvi.mask  = TVIF_PARAM;
+                tvi.hItem = selected;
+                TreeView_GetItem(m_treeControl, &tvi);
+                const auto id = tvi.lParam;
+                if(m_personal.find(id) == m_personal.end())
+                {
+                    const auto& preset = m_captureManager.Presets().at(id - WM_SHADER(0));
+                    if(preset->Category == "Imported")
+                        return 0;
+
+                    TVINSERTSTRUCT is;
+                    is.hParent             = m_personalItems;
+                    is.hInsertAfter        = TVI_LAST;
+                    is.item.mask           = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_PARAM;
+                    is.item.pszText        = convertCharArrayToLPCWSTR(preset->Name.c_str());
+                    is.item.cchTextMax     = sizeof(is.item.pszText) / sizeof(is.item.pszText[0]);
+                    is.item.iImage         = g_nDocument;
+                    is.item.iSelectedImage = g_nDocument;
+                    is.item.lParam         = id;
+                    m_personal[id]         = TreeView_InsertItem(m_treeControl, &is);
+                    TreeView_SortChildren(m_treeControl, m_personalItems, false);
+                    TreeView_Expand(m_treeControl, m_personalItems, TVE_EXPAND);
+                    SavePersonal();
+                }
+            }
+            else if(lParam == (UINT)m_delFavButton)
+            {
+                auto selected = TreeView_GetSelection(m_treeControl);
+                if(selected == nullptr)
+                    return 0;
+                TVITEM tvi;
+                tvi.mask  = TVIF_PARAM;
+                tvi.hItem = selected;
+                TreeView_GetItem(m_treeControl, &tvi);
+                const auto id           = tvi.lParam;
+                const auto personalItem = m_personal.find(id);
+                if(personalItem != m_personal.end())
+                {
+                    TreeView_DeleteItem(m_treeControl, personalItem->second);
+                    m_personal.erase(personalItem->first);
+                    SavePersonal();
+                }
+            }
             return 0;
         }
         }

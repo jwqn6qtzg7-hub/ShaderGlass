@@ -22,6 +22,8 @@ private:
     HWND                      m_treeControl;
     HWND                      m_shaderWindow;
     HWND                      m_paramsWindow;
+    HWND                      m_addFavButton;
+    HWND                      m_delFavButton;
     HFONT                     m_font;
     CaptureManager&           m_captureManager;
     CaptureOptions&           m_captureOptions;
@@ -32,9 +34,13 @@ private:
     std::map<UINT, HTREEITEM> m_items;
     std::map<UINT, HTREEITEM> m_favorites;
     HTREEITEM                 m_imported;
+    HTREEITEM                 m_personalItems;
+    std::map<UINT, HTREEITEM> m_personal;
 
     void Resize();
     void Build();
+    void SavePersonal();
+    void LoadPersonal();
 
     static LRESULT CALLBACK WndProcProxy(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
     ATOM                    MyRegisterClass(HINSTANCE hInstance);
