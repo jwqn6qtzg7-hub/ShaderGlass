@@ -735,6 +735,8 @@ void ShaderWindow::BuildShaderMenu()
 {
     // now deferred to BrowserWindow
     m_numPresets = m_captureManager.Presets().size();
+    if(m_numPresets >= MAX_SHADERS)
+        throw std::runtime_error("Too many shaders!");
 }
 
 LRESULT CALLBACK ShaderWindow::WndProcProxy(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

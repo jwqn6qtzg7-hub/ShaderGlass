@@ -16,6 +16,23 @@
 #include "RetroArch\anti-aliasing\shaders\smaa\AntiAliasingShadersSmaaSmaaPass1ShaderDef.h"
 #include "RetroArch\anti-aliasing\shaders\smaa\AntiAliasingShadersSmaaSmaaPass2ShaderDef.h"
 #include "RetroArch\sharpen\shaders\SharpenShadersFastSharpenShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgColortools_and_ntsc_passShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgFxaaShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgShift_and_bleedShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgIn_glow_xShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgIn_glow_yShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgHalo_pre_gammaShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgHaloShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgAvglum_passShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgReflection_blur_preShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgReflection_blurShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgBloom_pass_1ShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgBloom_pass_2ShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgBloom_pass_3ShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgBloom_pass_4ShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgAmbi_temporal_passShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgHelper_passShaderDef.h"
+#include "RetroArch\bezel\koko-aio\shaders-ng\BezelKokoAioShadersNgFinal_passShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\extras\BezelMega_BezelShadersGuestExtrasHsmDrezNoneShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\base\BezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\base\BezelMega_BezelShadersBaseTextAdvGlassShaderDef.h"
@@ -130,12 +147,15 @@
 #include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDef.h"
-#include "RetroArch\bezel\uborder\shaders\support_shaders\BezelUborderShadersSupport_shadersFeedbackShaderDef.h"
-#include "RetroArch\bezel\uborder\shaders\support_shaders\BezelUborderShadersSupport_shadersAmbientLightShaderDef.h"
+#include "RetroArch\bezel\uborder\shaders\BezelUborderShadersUborderBezelReflectionsShaderDef.h"
+#include "RetroArch\bezel\uborder\shaders\support_shaders\koko-ambi-standalone\BezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDef.h"
+#include "RetroArch\bezel\uborder\shaders\support_shaders\koko-ambi-standalone\BezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDef.h"
+#include "RetroArch\bezel\uborder\shaders\support_shaders\koko-ambi-standalone\BezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\support_shaders\BezelUborderShadersSupport_shadersOriginalShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\content_shaders\BezelUborderShadersContent_shadersCrtNobodyShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\BezelUborderShadersUborderShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\content_bezel_shaders\BezelUborderShadersContent_bezel_shadersCrtNobodyBezelReflectionsShaderDef.h"
+#include "RetroArch\bezel\uborder\shaders\content_koko_ambi\BezelUborderShadersContent_koko_ambiCrtNobodyShaderDef.h"
 #include "RetroArch\blurs\shaders\kawase\BlursShadersKawaseLinearizeShaderDef.h"
 #include "RetroArch\blurs\shaders\dual_filter\BlursShadersDual_filterDownsampleShaderDef.h"
 #include "RetroArch\blurs\shaders\dual_filter\BlursShadersDual_filterUpsampleShaderDef.h"
@@ -809,6 +829,24 @@
 #include "RetroArch\reshade\shaders\magicbloom\ReshadeShadersMagicbloomMagicbloom_get_adaptShaderDef.h"
 #include "RetroArch\reshade\shaders\magicbloom\ReshadeShadersMagicbloomMagicbloom_blendShaderDef.h"
 #include "RetroArch\reshade\shaders\NormalsDisplacement\ReshadeShadersNormalsDisplacementNormalsDisplacementShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedStockShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedAfterglow0ShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedPreShadersAfterglowShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\ntsc\SlangShadersCrtShadersGuestAdvancedNtscNtscPass1ShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\ntsc\SlangShadersCrtShadersGuestAdvancedNtscNtscPass2ShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\ntsc\SlangShadersCrtShadersGuestAdvancedNtscNtscPass3ShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedCustomFastSharpenShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedAvgLumNtscShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedLinearizeNtscShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedCrtGuestAdvancedNtscPass1ShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\hd\SlangShadersCrtShadersGuestHdGaussian_horizontalShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedGaussian_verticalShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\hd\SlangShadersCrtShadersGuestHdBloom_horizontalShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedBloom_verticalShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedCrtGuestAdvancedNtscPass2ShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedDeconvergenceNtscShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedGaussian_horizontalShaderDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\SlangShadersCrtShadersGuestAdvancedBloom_horizontalShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersIntegerScalingScanlinesShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersOsscShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersSlotmaskShaderDef.h"
@@ -856,6 +894,18 @@
 
 #include "RetroArch\anti-aliasing\shaders\smaa\AntiAliasingShadersSmaaAreaTexTextureDef.h"
 #include "RetroArch\anti-aliasing\shaders\smaa\AntiAliasingShadersSmaaSearchTexTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\BezelKokoAioTexturesMonitor_body_curvedTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\BezelKokoAioTexturesMonitor_body_straightTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\BezelKokoAioTexturesBackground_underTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\BezelKokoAioTexturesBackground_overTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\BezelKokoAioTexturesBoothillTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\BezelKokoAioTexturesSide_shadeHelperTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGbaTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGbcTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGbmTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGbpTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGamegearTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysPspE1000TextureDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\lut\BezelMega_BezelShadersGuestLutTrinitronLutTextureDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\lut\BezelMega_BezelShadersGuestLutInvTrinitronLutTextureDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\lut\BezelMega_BezelShadersGuestLutNecLutTextureDef.h"
@@ -877,6 +927,7 @@
 #include "RetroArch\bezel\Mega_Bezel\shaders\textures\BezelMega_BezelShadersTexturesBaked_Frame_Carbonfiber_BackgroundTextureDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\textures\BezelMega_BezelShadersTexturesBaked_Frame_Carbonfiber_Background_VertTextureDef.h"
 #include "RetroArch\bezel\uborder\textures\borders\BezelUborderTexturesBordersDefaultTextureDef.h"
+#include "RetroArch\bezel\uborder\textures\borders\BezelUborderTexturesBordersDefault_layer2TextureDef.h"
 #include "RetroArch\border\textures\BorderTexturesTex11TextureDef.h"
 #include "RetroArch\border\gameboy-player\BorderGameboyPlayerGameboyPlayerTextureDef.h"
 #include "RetroArch\crt\shaders\crt-royale\CrtShadersCrtRoyaleTileableLinearApertureGrille15Wide8And5d5SpacingResizeTo64TextureDef.h"
@@ -1072,6 +1123,10 @@
 #include "RetroArch\reshade\shaders\LUT\handheld\ReshadeShadersLUTHandheldVBA2TextureDef.h"
 #include "RetroArch\reshade\shaders\magicbloom\ReshadeShadersMagicbloomMagicBloom_DirtTextureDef.h"
 #include "RetroArch\reshade\shaders\NormalsDisplacement\ReshadeShadersNormalsDisplacementCurveNormalsTextureDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\lut\SlangShadersCrtShadersGuestAdvancedLutTrinitronLutTextureDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\lut\SlangShadersCrtShadersGuestAdvancedLutInvTrinitronLutTextureDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\lut\SlangShadersCrtShadersGuestAdvancedLutNecLutTextureDef.h"
+#include "slang-shaders\crt\shaders\guest\advanced\lut\SlangShadersCrtShadersGuestAdvancedLutNtscLutTextureDef.h"
 #include "RetroArch\stereoscopic-3d\shaders\fubax_vr\Stereoscopic3dShadersFubax_vrNoseTextureDef.h"
 // %TEXTURE_INCLUDE%
 
@@ -1085,6 +1140,61 @@
 #include "RetroArch\anti-aliasing\AntiAliasingSmaaLinearPresetDef.h"
 #include "RetroArch\anti-aliasing\AntiAliasingSmaaSharpenPresetDef.h"
 #include "RetroArch\anti-aliasing\AntiAliasingSmaaPresetDef.h"
+#include "RetroArch\bezel\koko-aio\BezelKokoAioKokoAioNgPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgBasePresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorAmbilightImmersivePresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorBalancedPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFor_1440pMin_HiNitsPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFor_HigherNitsPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFXAA_sharpAperturegrillePresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFXAA_sharpCore_SlotMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFXAA_sharpScreen_SlotMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorNew_aperturegrille_gmPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorNew_slotmask_gmPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorNew_slotmask_rgbPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskAperturegrilleOvermaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskAperturegrillePresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskCore_SlotMaskOvermaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskCore_SlotMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskChameleonPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_TallerPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_BrighterPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_MaxMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskShadowMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_Hmask_OverlappedOldpainlessPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\TV\BezelKokoAioPresetsNgTVTvNTSC_GenericAA_sharpSelectivePresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\TV\BezelKokoAioPresetsNgTVTvNTSC_MegadriveAA_sharpSelectivePresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VectorGFX\BezelKokoAioPresetsNgVectorGFXVector_neon_4_mame2003plus_defaultsPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VectorGFX\BezelKokoAioPresetsNgVectorGFXVector_std_4_mame2003plus_defaultsPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanAmberPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanGreenPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanShadowMaskPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanXBRPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgDots_11PresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgDots_43PresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyAdvanceOverlayNightPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyAdvanceOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyColorOverlayIPSPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyColorOverlayTallerIPSPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyColorOverlayTallerPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyColorOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyColorPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyMonoOverlayTallerPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyMonoOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyMonoPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyPocketOverlayTallerPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyPocketOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyPocketPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameGearOverlayNightPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameGearOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGenericHandheldRGBPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigY_flipPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightSmallY_flipPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightSmallPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPPresetDef.h"
 #include "RetroArch\bezel\Mega_Bezel\Presets\Base_CRT_Presets\BezelMega_BezelPresetsBase_CRT_PresetsMBZ__0__SMOOTHADVGLASS__EASYMODEPresetDef.h"
 #include "RetroArch\bezel\Mega_Bezel\Presets\Base_CRT_Presets\BezelMega_BezelPresetsBase_CRT_PresetsMBZ__0__SMOOTHADVGLASS__GDVMINIPresetDef.h"
 #include "RetroArch\bezel\Mega_Bezel\Presets\Base_CRT_Presets\BezelMega_BezelPresetsBase_CRT_PresetsMBZ__0__SMOOTHADVGLASS__GDVNTSCPresetDef.h"
@@ -1201,8 +1311,10 @@
 #include "RetroArch\bezel\Mega_Bezel\Presets\BezelMega_BezelPresetsMegaBezel_STDGLASSPresetDef.h"
 #include "RetroArch\bezel\Mega_Bezel\Presets\BezelMega_BezelPresetsMegaBezel_STDNOREFLECTPresetDef.h"
 #include "RetroArch\bezel\Mega_Bezel\Presets\BezelMega_BezelPresetsMegaBezel_STDPresetDef.h"
-#include "RetroArch\bezel\uborder\BezelUborderAmbientLightCrtPresetDef.h"
+#include "RetroArch\bezel\uborder\BezelUborderAppendUborderBezelReflectionsPresetDef.h"
+#include "RetroArch\bezel\uborder\BezelUborderKokoAmbiCrtPresetDef.h"
 #include "RetroArch\bezel\uborder\BezelUborderUborderBezelReflectionsPresetDef.h"
+#include "RetroArch\bezel\uborder\BezelUborderUborderKokoAmbiPresetDef.h"
 #include "RetroArch\stock\StockBilinearPresetDef.h"
 #include "RetroArch\blurs\BlursDual_filter_2_passPresetDef.h"
 #include "RetroArch\blurs\BlursDual_filter_4_passPresetDef.h"
@@ -1765,6 +1877,7 @@
 #include "RetroArch\presets\fsr\PresetsFsrFsrCrtroyalePresetDef.h"
 #include "RetroArch\presets\fsr\PresetsFsrFsrLv2AaChromacityGlassPresetDef.h"
 #include "RetroArch\presets\fsr\PresetsFsrFsrSmaaColorimetryConvergencePresetDef.h"
+#include "RetroArch\presets\PresetsGameboyAdvanceDotMatrixSepiaPresetDef.h"
 #include "RetroArch\presets\gizmo-crt\PresetsGizmoCrtGizmoCrtCurvatorPresetDef.h"
 #include "RetroArch\presets\gizmo-crt\PresetsGizmoCrtGizmoCrtMegadriveCurvatorPresetDef.h"
 #include "RetroArch\presets\gizmo-crt\PresetsGizmoCrtGizmoCrtMegadrivePresetDef.h"
@@ -1920,6 +2033,276 @@
 #include "RetroArch\reshade\ReshadeLutPresetDef.h"
 #include "RetroArch\reshade\ReshadeMagicbloomPresetDef.h"
 #include "RetroArch\reshade\ReshadeNormalsDisplacementPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS1080pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS2160pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS240pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS360pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS480pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS720pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS1080pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS2160pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS240pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS360pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS480pPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS720pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCArcadeCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCArcadeDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCDOSHighResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCDOSHighResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCDOSLowResCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCDOSLowResDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCDreamcastCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCDreamcastDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCGBACleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCGBADirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMasterSystemCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMasterSystemDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveRF100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCN64PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCNESComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPCEComposite100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPCERGB100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPCEPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPlayStationCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPlayStationDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPlayStationRGB100240pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPlayStationRGB100480iPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPS2CleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPS2DirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSaturnPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSGBCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSGBDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSNESCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSNESDirtyPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSNESRF100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCVHS1080pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCVHS2160pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCVHS240pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCVHS360pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCVHS480pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCVHS720pPresetDef.h"
 #include "RetroArch\scanlines\ScanlinesIntegerScalingScanlinesPresetDef.h"
 #include "RetroArch\scanlines\ScanlinesOsscPresetDef.h"
 #include "RetroArch\scanlines\ScanlinesOssc_slotPresetDef.h"
@@ -1964,6 +2347,61 @@ new AntiAliasingReverseAaPresetDef(),
 new AntiAliasingSmaaLinearPresetDef(),
 new AntiAliasingSmaaSharpenPresetDef(),
 new AntiAliasingSmaaPresetDef(),
+new BezelKokoAioKokoAioNgPresetDef(),
+new BezelKokoAioPresetsNgBasePresetDef(),
+new BezelKokoAioPresetsNgMonitorAmbilightImmersivePresetDef(),
+new BezelKokoAioPresetsNgMonitorBalancedPresetDef(),
+new BezelKokoAioPresetsNgMonitorFor_1440pMin_HiNitsPresetDef(),
+new BezelKokoAioPresetsNgMonitorFor_HigherNitsPresetDef(),
+new BezelKokoAioPresetsNgMonitorFXAA_sharpAperturegrillePresetDef(),
+new BezelKokoAioPresetsNgMonitorFXAA_sharpCore_SlotMaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorFXAA_sharpScreen_SlotMaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorNew_aperturegrille_gmPresetDef(),
+new BezelKokoAioPresetsNgMonitorNew_slotmask_gmPresetDef(),
+new BezelKokoAioPresetsNgMonitorNew_slotmask_rgbPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskAperturegrilleOvermaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskAperturegrillePresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskCore_SlotMaskOvermaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskCore_SlotMaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskChameleonPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_TallerPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_BrighterPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_MaxMaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskShadowMaskPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_Hmask_OverlappedOldpainlessPresetDef(),
+new BezelKokoAioPresetsNgTVTvNTSC_GenericAA_sharpSelectivePresetDef(),
+new BezelKokoAioPresetsNgTVTvNTSC_MegadriveAA_sharpSelectivePresetDef(),
+new BezelKokoAioPresetsNgVectorGFXVector_neon_4_mame2003plus_defaultsPresetDef(),
+new BezelKokoAioPresetsNgVectorGFXVector_std_4_mame2003plus_defaultsPresetDef(),
+new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanAmberPresetDef(),
+new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanGreenPresetDef(),
+new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanShadowMaskPresetDef(),
+new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanXBRPresetDef(),
+new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanPresetDef(),
+new BezelKokoAioPresets_HandheldsNgDots_11PresetDef(),
+new BezelKokoAioPresets_HandheldsNgDots_43PresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyAdvanceOverlayNightPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyAdvanceOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyColorOverlayIPSPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyColorOverlayTallerIPSPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyColorOverlayTallerPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyColorOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyColorPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyMonoOverlayTallerPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyMonoOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyMonoPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyPocketOverlayTallerPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyPocketOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameboyPocketPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameGearOverlayNightPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameGearOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGenericHandheldRGBPresetDef(),
+new BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigY_flipPresetDef(),
+new BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigPresetDef(),
+new BezelKokoAioPresets_HandheldsNgPSPOverlayNightSmallY_flipPresetDef(),
+new BezelKokoAioPresets_HandheldsNgPSPOverlayNightSmallPresetDef(),
+new BezelKokoAioPresets_HandheldsNgPSPPresetDef(),
 new BezelMega_BezelPresetsBase_CRT_PresetsMBZ__0__SMOOTHADVGLASS__EASYMODEPresetDef(),
 new BezelMega_BezelPresetsBase_CRT_PresetsMBZ__0__SMOOTHADVGLASS__GDVMINIPresetDef(),
 new BezelMega_BezelPresetsBase_CRT_PresetsMBZ__0__SMOOTHADVGLASS__GDVNTSCPresetDef(),
@@ -2080,8 +2518,10 @@ new BezelMega_BezelPresetsMegaBezel_SMOOTHADVPresetDef(),
 new BezelMega_BezelPresetsMegaBezel_STDGLASSPresetDef(),
 new BezelMega_BezelPresetsMegaBezel_STDNOREFLECTPresetDef(),
 new BezelMega_BezelPresetsMegaBezel_STDPresetDef(),
-new BezelUborderAmbientLightCrtPresetDef(),
+new BezelUborderAppendUborderBezelReflectionsPresetDef(),
+new BezelUborderKokoAmbiCrtPresetDef(),
 new BezelUborderUborderBezelReflectionsPresetDef(),
+new BezelUborderUborderKokoAmbiPresetDef(),
 new StockBilinearPresetDef(),
 new BlursDual_filter_2_passPresetDef(),
 new BlursDual_filter_4_passPresetDef(),
@@ -2644,6 +3084,7 @@ new PresetsFsrFsrCrtroyaleXm29plusPresetDef(),
 new PresetsFsrFsrCrtroyalePresetDef(),
 new PresetsFsrFsrLv2AaChromacityGlassPresetDef(),
 new PresetsFsrFsrSmaaColorimetryConvergencePresetDef(),
+new PresetsGameboyAdvanceDotMatrixSepiaPresetDef(),
 new PresetsGizmoCrtGizmoCrtCurvatorPresetDef(),
 new PresetsGizmoCrtGizmoCrtMegadriveCurvatorPresetDef(),
 new PresetsGizmoCrtGizmoCrtMegadrivePresetDef(),
@@ -2799,6 +3240,276 @@ new ReshadeHandheldColorLUTsVBAColorspacePresetDef(),
 new ReshadeLutPresetDef(),
 new ReshadeMagicbloomPresetDef(),
 new ReshadeNormalsDisplacementPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCN64PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPCEPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCN64PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPCEPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCN64PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPCEPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCN64PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPCEPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCN64PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPCEPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCPS2PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCVHS1080pCurvedPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCVHS2160pCurvedPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCVHS240pCurvedPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCVHS360pCurvedPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCVHS480pCurvedPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCVHS720pCurvedPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCN64PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPCEPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCPS2PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCVHS1080pPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCVHS2160pPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCVHS240pPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCVHS360pPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCVHS480pPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCVHS720pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCArcadeCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCArcadeDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCDOSHighResCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCDOSHighResDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCDOSLowResCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCDOSLowResDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCDreamcastCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCDreamcastDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCGBACleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCGBADirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMasterSystemCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMasterSystemDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveRF100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCN64PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCNESCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCNESDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCNESComposite100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPCEComposite100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPCERGB100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPCEPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPlayStationCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPlayStationDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPlayStationRGB100240pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPlayStationRGB100480iPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPS2CleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPS2DirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCPS2PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSaturnPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSGBCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSGBDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSNESCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSNESDirtyPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSNESRF100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCVHS1080pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCVHS2160pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCVHS240pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCVHS360pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCVHS480pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCVHS720pPresetDef(),
 new ScanlinesIntegerScalingScanlinesPresetDef(),
 new ScanlinesOsscPresetDef(),
 new ScanlinesOssc_slotPresetDef(),

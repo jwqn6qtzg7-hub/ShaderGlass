@@ -945,8 +945,8 @@ public:
 		Params.push_back(ShaderParam("shadow_opacity", -1, 80, 4, 0.010000f, 1.000000f, 0.550000f, 0.010000f, "Shadow Opacity"));
 		Params.push_back(ShaderParam("shadow_offset_x", -1, 84, 4, -5.000000f, 5.000000f, 1.000000f, 0.500000f, "Shadow Offset Horiz"));
 		Params.push_back(ShaderParam("shadow_offset_y", -1, 88, 4, -5.000000f, 5.000000f, 1.000000f, 0.500000f, "Shadow Offset Vert"));
-		Params.push_back(ShaderParam("screen_offset_x", -1, 92, 4, -5.000000f, 5.000000f, 0.000000f, 0.500000f, "Screen Offset Horiz"));
-		Params.push_back(ShaderParam("screen_offset_y", -1, 96, 4, -5.000000f, 5.000000f, 0.000000f, 0.500000f, "Screen Offset Vert"));
+		Params.push_back(ShaderParam("screen_offset_x", -1, 92, 4, -5.000000f, 5.000000f, -1.000000f, 0.500000f, "Screen Offset Horiz"));
+		Params.push_back(ShaderParam("screen_offset_y", -1, 96, 4, -5.000000f, 5.000000f, -1.000000f, 0.500000f, "Screen Offset Vert"));
 		Samplers.push_back(ShaderSampler("PassOutput1", 2));
 		Samplers.push_back(ShaderSampler("BACKGROUND", 3));
 		Samplers.push_back(ShaderSampler("Source", 1));

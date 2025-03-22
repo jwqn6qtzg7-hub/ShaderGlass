@@ -115,6 +115,18 @@ SourceShaderInfo getShaderInfo(const filesystem::path& slangInput, const string&
     replace(info.category, "+", "-");
     replace(info.category, "/Mega_Bezel/Presets", "");
     replace(info.category, "Base_CRT_Presets", "Mega_Bezel_Base");
+    replace(info.category, "koko-aio/Presets-ng/TV", "koko-aio");
+    replace(info.category, "koko-aio/Presets-ng/VGA", "koko-aio");
+    replace(info.category, "koko-aio/Presets-ng/VectorGFX", "koko-aio");
+    replace(info.category, "koko-aio/Presets-ng", "koko-aio");
+    replace(info.category, "koko-aio/Presets_Handhelds-ng", "koko-aio");
+    replace(info.category, "koko-aio/Presets_HiresGames_Fast/Presets-ng/TV", "koko-aio-HiresGames_Fast");
+    replace(info.category, "koko-aio/Presets_HiresGames_Fast/Presets-ng/VGA", "koko-aio-HiresGames_Fast");
+    replace(info.category, "koko-aio/Presets_HiresGames_Fast/Presets-ng/VectorGFX", "koko-aio-HiresGames_Fast");
+    replace(info.category, "koko-aio/Presets_HiresGames_Fast/Presets-ng", "koko-aio-HiresGames_Fast");
+    replace(info.category, "koko-aio/Presets_HiresGames_Fast/Presets_Handhelds-ng", "koko-aio-HiresGames_Fast");
+    replace(info.category, "koko-aio/Presets_HiresGames_Fast", "koko-aio-HiresGames_Fast");
+    replace(info.category, "koko-aio/Presets-ng", "koko-aio-ng");
 
     return info;
 }

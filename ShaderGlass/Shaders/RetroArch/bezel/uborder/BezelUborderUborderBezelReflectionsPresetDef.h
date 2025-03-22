@@ -34,6 +34,11 @@ public:
 .Param("mipmap", "false")
 .Param("name", "BORDER")
 .Param("wrap_mode", "clamp_to_border"));
+            TextureDefs.push_back(BezelUborderTexturesBordersDefault_layer2TextureDef()
+.Param("linear", "true")
+.Param("mipmap", "false")
+.Param("name", "LAYER2")
+.Param("wrap_mode", "clamp_to_border"));
             OverrideParam("CN_MASK_STRENGTH", (float)0.500000);
             OverrideParam("CN_SCAN_SIZE", (float)0.950000);
             OverrideParam("CN_VIG_EXP", (float)0.320000);

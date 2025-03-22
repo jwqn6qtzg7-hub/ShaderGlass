@@ -8,7 +8,7 @@ which are then compiled with ShaderGlass.
 
 ## Rebuilding whole shader library
 
-0. Build ShaderGen using Visual Studio in Debug configuration
+0. Build ShaderGen using Visual Studio in Release configuration
 1. Go into Scripts folder
 2. Run DownloadShaders.bat
 
@@ -17,7 +17,7 @@ tweaks and exclusions. You can clone original slang-shaders repo instead
 but beware many shaders will fail to compile or not work properly.
 
 3. Run RebuildAllShaders.bat
-> This will try to rebuild all shaders (takes A LONG TIME, 30 min+)
+> This will try to rebuild all shaders (takes a bit of time, 10 mins or so)
 
 4. Rebuild ShaderGlass using Visual Studio
 

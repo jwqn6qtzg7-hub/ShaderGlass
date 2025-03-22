@@ -233,7 +233,15 @@ void BrowserWindow::Build()
             return false;
         return c1 < c2;
     };
-    std::map<std::string, std::vector<std::pair<const char*, UINT>>, decltype(categoryComp)> categoryMenus;
+    auto shaderComp = [](const std::string& c1, const std::string& c2) {
+        std::string s1(c1.length(), ' ');
+        std::string s2(c2.length(), ' ');
+        auto        lower = [](char c) { return tolower(c); };
+        std::transform(c1.begin(), c1.end(), s1.begin(), lower);
+        std::transform(c2.begin(), c2.end(), s2.begin(), lower);
+        return s1 < s2;
+    };
+    std::map<std::string, std::map<std::string, UINT, decltype(shaderComp)>, decltype(categoryComp)> categoryMenus;
 
     HTREEITEM noneItem = nullptr;
 
@@ -249,10 +257,10 @@ void BrowserWindow::Build()
         }
         if(categoryMenus.find(sp->Category) == categoryMenus.end())
         {
-            categoryMenus.insert(std::make_pair(sp->Category, std::vector<std::pair<const char*, UINT>>()));
+            categoryMenus.insert(std::make_pair(sp->Category, std::map<std::string, UINT, decltype(shaderComp)>()));
         }
         auto& menu = categoryMenus.find(sp->Category)->second;
-        menu.push_back(std::make_pair(sp->Name.c_str(), WM_SHADER(i++)));
+        menu.insert(std::make_pair(sp->Name, WM_SHADER(i++)));
     }
 
     AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Favorites"), -1, 1);
@@ -305,7 +313,7 @@ void BrowserWindow::Build()
         }
         for(auto p : m.second)
         {
-            auto item         = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(p.first), p.second, level + 1);
+            auto item         = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(p.first.c_str()), p.second, level + 1);
             m_items[p.second] = item;
         }
     }
