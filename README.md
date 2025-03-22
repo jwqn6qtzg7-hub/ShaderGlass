@@ -25,7 +25,7 @@ Overlay for running GPU shaders on top of Windows desktop.
 
 ### Download
 
-Latest release (v1.0.2, 25 Feb 2025):
+Latest stable release (v1.0.2, 25 Feb 2025):
 * refresh of RetroArch shader library
 * back-end extensions to support more complex shaders (MegaBezel)
 * improved fullscreen with letterboxing and aspect ratio preservation
@@ -37,6 +37,14 @@ Latest release (v1.0.2, 25 Feb 2025):
 https://github.com/mausimus/ShaderGlass/releases/download/v1.0.2/ShaderGlass-1.0.2-win-x64.zip
 
 <br/>
+
+Latest beta (v1.0.3, 22 Mar 2025):
+* ability to import .slangp/.slang shaders on the fly
+* shader library refresh: added koko-aio and retro-crisis
+* ability to tag personal favorites
+* new frame timing mechanism
+* advanced menu with DXGI settings
+* option to save window position
 
 [Betas and older versions available here](https://github.com/mausimus/ShaderGlass/releases)
 
