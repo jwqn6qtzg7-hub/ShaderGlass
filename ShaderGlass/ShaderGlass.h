@@ -11,16 +11,20 @@ class ShaderGlass
 {
 public:
     ShaderGlass();
-    void Initialize(HWND outputWindow, HWND captureWindow, HMONITOR captureMonitor, bool clone, bool image, winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<ID3D11DeviceContext> context);
-    void Process(winrt::com_ptr<ID3D11Texture2D> texture);
-    void SetInputScale(float w, float h);
-    void SetOutputScale(float w, float h);
-    void SetOutputFlip(bool h, bool v);
-    void SetShaderPreset(PresetDef* p, const std::vector<std::tuple<int, std::string, double>>& params);
-    void SetFrameSkip(int s);
-    void SetLockedArea(RECT area);
-    void SetFreeScale(bool freeScale);
-    float FPS() { return m_fps; }
+    void Initialize(
+        HWND outputWindow, HWND captureWindow, HMONITOR captureMonitor, bool clone, bool image, bool flipMode, bool allowTearing, winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<ID3D11DeviceContext> context);
+    void  Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG frameTicks);
+    void  SetInputScale(float w, float h);
+    void  SetOutputScale(float w, float h);
+    void  SetOutputFlip(bool h, bool v);
+    void  SetShaderPreset(PresetDef* p, const std::vector<std::tuple<int, std::string, double>>& params);
+    void  SetFrameSkip(int s);
+    void  SetLockedArea(RECT area);
+    void  SetFreeScale(bool freeScale);
+    float FPS()
+    {
+        return m_fps;
+    }
     winrt::com_ptr<ID3D11Texture2D>            GrabOutput();
     std::vector<std::tuple<int, ShaderParam*>> Params();
     void                                       UpdateParams();
@@ -61,10 +65,17 @@ private:
     HWND       m_captureWindow {0};
     bool       m_clone {false};
     bool       m_image {false};
+    bool       m_flipMode {false};
+    bool       m_allowTearing {false};
     int        m_frameCounter {0};
+    int        m_logicalFrameCounter {0};
+    ULONGLONG  m_startTicks {0};
     int        m_renderCounter {0};
     int        m_prevRenderCounter {0};
+    ULONGLONG  m_prevRenderTicks {0};
     ULONGLONG  m_prevTicks {0};
+    ULONGLONG  m_prevFrameTicks {0};
+    int        m_prevLogicalFrameNo {0};
     float      m_fps {0};
     bool       m_requiresFeedback {false};
     int        m_requiresHistory {0};
