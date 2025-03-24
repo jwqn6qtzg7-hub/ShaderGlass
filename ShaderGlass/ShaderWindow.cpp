@@ -438,11 +438,8 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     if(m_captureOptions.captureWindow)
     {
         const auto& crop = m_captureOptions.croppedArea;
-        if(crop.top || crop.bottom || crop.left || crop.right)
-        {
-            outfile << "CroppedArea \"" << std::to_string(crop.left) << " " << std::to_string(crop.top) << " "
-                    << std::to_string(crop.right) << " " << std::to_string(crop.bottom) << "\"" << std::endl;
-        }
+        outfile << "CroppedArea \"" << std::to_string(crop.left) << " " << std::to_string(crop.top) << " "
+            << std::to_string(crop.right) << " " << std::to_string(crop.bottom) << "\"" << std::endl;
 
         auto windowTitle = GetWindowStringText(m_captureOptions.captureWindow);
         char utfName[MAX_WINDOW_TITLE];
