@@ -163,6 +163,12 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                 else
                     CheckMenuItem(m_flipMenu, IDM_FLIP_VERTICAL, MF_UNCHECKED | MF_BYCOMMAND);
             }
+            else if(key == "Vertical")
+            {
+                m_captureOptions.vertical = (value == "1");
+                CheckMenuItem(m_orientationMenu, ID_ORIENTATION_HORIZONTAL, (m_captureOptions.vertical ? MF_UNCHECKED : MF_CHECKED) | MF_BYCOMMAND);
+                CheckMenuItem(m_orientationMenu, ID_ORIENTATION_VERTICAL, (m_captureOptions.vertical ? MF_CHECKED : MF_UNCHECKED) | MF_BYCOMMAND);
+            }
             else if(key == "Clone")
             {
                 clone = (value == "1");
@@ -450,6 +456,7 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     outfile << "OutputScale " << std::quoted(m_captureOptions.freeScale ? "Free" : outputScale.mnemonic) << std::endl;
     outfile << "FlipH " << std::quoted(std::to_string(m_captureOptions.flipHorizontal)) << std::endl;
     outfile << "FlipV " << std::quoted(std::to_string(m_captureOptions.flipVertical)) << std::endl;
+    outfile << "Vertical " << std::quoted(std::to_string(m_captureOptions.vertical)) << std::endl;
     outfile << "Clone " << std::quoted(std::to_string(m_captureOptions.clone)) << std::endl;
     outfile << "CaptureCursor " << std::quoted(std::to_string(m_captureOptions.captureCursor)) << std::endl;
     outfile << "Transparent " << std::quoted(std::to_string(m_captureOptions.transparent)) << std::endl;
@@ -775,7 +782,9 @@ void ShaderWindow::BuildOutputMenu()
     }
     InsertMenu(sMenu, 4, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_aspectRatioMenu, L"Aspect Ratio Correction");
 
-    InsertMenu(sMenu, 5, MF_BYPOSITION | MF_STRING, ID_PROCESSING_FULLSCREEN, L"Fullscreen\tCtrl+Shift+G");
+    m_orientationMenu = GetSubMenu(sMenu, 5);
+
+    InsertMenu(sMenu, 6, MF_BYPOSITION | MF_STRING, ID_PROCESSING_FULLSCREEN, L"Fullscreen\tCtrl+Shift+G");
 }
 
 void ShaderWindow::BuildShaderMenu()
@@ -958,8 +967,17 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
 
         RECT r;
         GetClientRect(hWnd, &r);
-        auto requiredW = static_cast<LONG>(inputWidth * m_captureOptions.outputScale / m_captureOptions.aspectRatio);
-        auto requiredH = static_cast<LONG>(inputHeight * m_captureOptions.outputScale);
+        LONG requiredW, requiredH;
+        if(m_captureOptions.vertical)
+        {
+            requiredW = static_cast<LONG>(roundf(inputWidth * m_captureOptions.outputScale));
+            requiredH = static_cast<LONG>(roundf(inputHeight * m_captureOptions.outputScale * m_captureOptions.aspectRatio));
+        }
+        else
+        {
+            requiredW = static_cast<LONG>(roundf(inputWidth * m_captureOptions.outputScale / m_captureOptions.aspectRatio));
+            requiredH = static_cast<LONG>(roundf(inputHeight * m_captureOptions.outputScale));
+        }
         if(requiredW == 0)
             requiredW = 1;
         if(requiredH == 0)
@@ -1354,6 +1372,25 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                 CheckMenuItem(m_flipMenu, IDM_FLIP_VERTICAL, MF_UNCHECKED | MF_BYCOMMAND);
             m_captureManager.UpdateOutputFlip();
             break;
+        case ID_ORIENTATION_HORIZONTAL:
+        case ID_ORIENTATION_VERTICAL: {
+            m_captureOptions.vertical = (wmId == ID_ORIENTATION_VERTICAL);
+            CheckMenuItem(m_orientationMenu, ID_ORIENTATION_HORIZONTAL, (m_captureOptions.vertical ? MF_UNCHECKED : MF_CHECKED) | MF_BYCOMMAND);
+            CheckMenuItem(m_orientationMenu, ID_ORIENTATION_VERTICAL, (m_captureOptions.vertical ? MF_CHECKED : MF_UNCHECKED) | MF_BYCOMMAND);
+            auto preset = m_captureOptions.presetNo;
+            if(m_captureManager.IsActive())
+            {
+                m_captureManager.RememberLastPreset();
+            }
+            m_captureManager.UpdateVertical();
+            if(m_captureManager.IsActive())
+            {
+                m_captureManager.UpdateShaderPreset();
+                m_captureManager.SetLastPreset(preset);
+                AdjustWindowSize(hWnd);
+            }
+        }
+        break;
         case IDM_WINDOW_SOLID:
             m_captureOptions.transparent = false;
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_UNCHECKED | MF_BYCOMMAND);

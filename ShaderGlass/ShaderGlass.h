@@ -22,6 +22,7 @@ public:
     void  SetLockedArea(RECT area);
     void  SetCroppedArea(RECT area);
     void  SetFreeScale(bool freeScale);
+    void  SetVertical(bool vertical);
     float FPS()
     {
         return m_fps;
@@ -110,4 +111,6 @@ private:
     volatile bool  m_freeScale {false};
     volatile RECT  m_croppedArea {0, 0, 0, 0};
     volatile bool  m_croppedAreaUpdated {false};
+    volatile bool  m_vertical {false};
+    volatile bool  m_verticalUpdated {false};
 };

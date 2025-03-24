@@ -301,7 +301,7 @@ void ShaderPass::Render(ID3D11ShaderResourceView* sourceView, std::map<std::stri
         m_context->PSSetConstantBuffers(1, 1, buffer);
     }
 
-    if(this->m_shader.m_shaderDef.Name == "preprocess")
+    if(m_preprocess)
     {
         m_context->Draw(s_vertexCount, 0);
     }

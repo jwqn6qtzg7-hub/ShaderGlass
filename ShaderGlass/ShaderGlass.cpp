@@ -148,11 +148,17 @@ void ShaderGlass::Initialize(
 void ShaderGlass::RebuildShaders()
 {
     m_shaderPreset->Create(m_device);
-    m_shaderPasses.reserve(m_shaderPreset->m_shaders.size());
+    m_shaderPasses.reserve(m_shaderPreset->m_shaders.size() + (m_vertical ? 1 : 0));
     for(auto& shader : m_shaderPreset->m_shaders)
     {
         m_shaderPasses.emplace_back(shader, *m_shaderPreset, m_device, m_context);
     }
+    if(m_vertical)
+    {
+        m_shaderPasses.emplace_back(m_preprocessShader, m_preprocessPreset, m_device, m_context);                
+    }
+    float vertical = m_vertical ? 1 : 0;
+    m_preprocessShader.SetParam("SGVertical", &vertical);
 
     m_presetTextures.clear();
     for(auto& texture : m_shaderPreset->m_textures)
@@ -220,6 +226,12 @@ void ShaderGlass::SetFreeScale(bool freeScale)
 {
     m_freeScale      = freeScale;
     m_outputRescaled = true;
+}
+
+void ShaderGlass::SetVertical(bool vertical)
+{
+    m_vertical        = vertical;
+    m_verticalUpdated = true;
 }
 
 void ShaderGlass::DestroyTargets()
@@ -545,7 +557,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     m_outputRescaled   = false;
 
     // force recreate
-    if(inputRescaled || inputResized)
+    if(inputRescaled || inputResized || m_verticalUpdated)
     {
         if(m_preprocessedRenderTarget != nullptr)
         {
@@ -564,13 +576,16 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
 
     bool rebuildPasses = false;
 
-    if(m_newShaderPreset)
+    if(m_newShaderPreset || m_verticalUpdated)
     {
         m_startTicks = GetTickCount64(); // reset logical frame no
 
         DestroyShaders();
-        m_shaderPreset.swap(m_newShaderPreset);
-        m_newShaderPreset.reset();
+        if(m_newShaderPreset)
+        {
+            m_shaderPreset.swap(m_newShaderPreset);
+            m_newShaderPreset.reset();
+        }
         RebuildShaders();
         if(m_newParams.size())
         {
@@ -593,6 +608,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         inputRescaled = true;
         outputResized = true;
         rebuildPasses = true;
+        m_verticalUpdated = false;
     }
 
     // size of preprocessed input, which is 'original' for the shader chain
@@ -616,8 +632,8 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         desc2.BindFlags      = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
         desc2.CPUAccessFlags = 0;
         desc2.MiscFlags      = 0;
-        desc2.Width          = originalWidth;
-        desc2.Height         = originalHeight;
+        desc2.Width          = m_vertical ? originalHeight : originalWidth;
+        desc2.Height         = m_vertical ? originalWidth : originalHeight;
 
         hr = m_device->CreateTexture2D(&desc2, nullptr, m_preprocessedTexture.put());
         assert(SUCCEEDED(hr));
@@ -638,6 +654,12 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
 
     if(inputRescaled || outputResized || inputResized)
     {
+        if(m_vertical)
+        {
+            std::swap(originalWidth, originalHeight);
+            std::swap(viewportWidth, viewportHeight);
+        }
+
         m_textureSizes.clear();
         m_textureSizes.insert(std::make_pair("Original", float4 {(float)originalWidth, (float)originalHeight, 1.0f / originalWidth, 1.0f / originalHeight}));
         m_textureSizes.insert(std::make_pair("FinalViewport", float4 {(float)viewportWidth, (float)viewportHeight, 1.0f / viewportWidth, 1.0f / viewportHeight}));
@@ -652,7 +674,14 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         {
             auto& shaderPass = m_shaderPasses[p];
             if(p == m_shaderPasses.size() - 1) // last shader scales source to viewport
+            {
+                if(m_vertical)
+                {
+                    std::swap(originalWidth, originalHeight);
+                    std::swap(viewportWidth, viewportHeight);
+                }
                 passSizes.push_back({sourceWidth, sourceHeight, viewportWidth, viewportHeight});
+            }
             else
             {
                 UINT outputWidth  = sourceWidth;
@@ -781,8 +810,8 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
             desc2.BindFlags      = D3D11_BIND_SHADER_RESOURCE;
             desc2.CPUAccessFlags = 0;
             desc2.MiscFlags      = 0;
-            desc2.Width          = originalWidth;
-            desc2.Height         = originalHeight;
+            desc2.Width          = m_vertical ? originalHeight : originalWidth;
+            desc2.Height         = m_vertical ? originalWidth : originalHeight;
 
             for(int h = 0; h < m_requiresHistory; h++)
             {

@@ -45,6 +45,7 @@ private:
     HMENU                        m_importsMenu {nullptr};
     HMENU                        m_advancedMenu {nullptr};
     HMENU                        m_helpMenu {nullptr};
+    HMENU                        m_orientationMenu {nullptr};
     std::vector<CaptureWindow>   m_captureWindows;
     std::vector<CaptureDisplay>  m_captureDisplays;
     CaptureManager&              m_captureManager;

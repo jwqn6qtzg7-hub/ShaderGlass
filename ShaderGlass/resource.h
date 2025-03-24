@@ -3,7 +3,6 @@
 // Used by ShaderGlass.rc
 //
 #define IDC_MYICON                      2
-#define IDOK2                           3
 #define IDRESET                         3
 #define IDD_SHADERGLASS_DIALOG          102
 #define IDS_APP_TITLE                   103
@@ -170,6 +169,9 @@
 #define ID_ADVANCED_CHANGINGTHESEOPTIONSREQUIRESRESTART 32911
 #define ID_PROCESSING_REMEMBERPOSITION  32912
 #define ID_WINDOW_CROP                  32913
+#define ID_OUTPUT_ORIENTATION           32914
+#define ID_ORIENTATION_HORIZONTAL       32915
+#define ID_ORIENTATION_VERTICAL         32916
 #define IDC_STATIC                      -1
 #define IDC_STATIC_LABEL                -1
 
@@ -179,7 +181,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        138
-#define _APS_NEXT_COMMAND_VALUE         32914
+#define _APS_NEXT_COMMAND_VALUE         32917
 #define _APS_NEXT_CONTROL_VALUE         1002
 #define _APS_NEXT_SYMED_VALUE           115
 #endif

@@ -105,6 +105,7 @@ bool CaptureManager::StartSession()
     UpdateFrameSkip();
     UpdateLockedArea();
     UpdateCroppedArea();
+    UpdateVertical();
 
     if(m_options.imageFile.size())
     {
@@ -262,7 +263,10 @@ void CaptureManager::UpdateOutputSize()
 {
     if(m_shaderGlass)
     {
-        m_shaderGlass->SetOutputScale(1.0f * m_options.aspectRatio / m_options.outputScale, 1.0f / m_options.outputScale);
+        if(m_options.vertical)
+            m_shaderGlass->SetOutputScale(1.0f / m_options.outputScale, 1.0f / m_options.aspectRatio / m_options.outputScale);
+        else
+            m_shaderGlass->SetOutputScale(1.0f * m_options.aspectRatio / m_options.outputScale, 1.0f / m_options.outputScale);
         m_shaderGlass->SetFreeScale(m_options.freeScale);
     }
 }
@@ -311,6 +315,15 @@ void CaptureManager::UpdateCroppedArea()
     if(m_shaderGlass)
     {
         m_shaderGlass->SetCroppedArea(m_options.croppedArea);
+    }
+}
+
+void CaptureManager::UpdateVertical()
+{
+    if(m_shaderGlass)
+    {
+        m_shaderGlass->SetVertical(m_options.vertical);
+        UpdateOutputSize();
     }
 }
 
