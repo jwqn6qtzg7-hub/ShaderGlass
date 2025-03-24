@@ -28,6 +28,7 @@ private:
     HWND                         m_compileWindow {nullptr};
     HMENU                        m_mainMenu {nullptr};
     HMENU                        m_programMenu {nullptr};
+    HMENU                        m_gpuMenu {nullptr};
     HMENU                        m_shaderMenu {nullptr};
     HMENU                        m_pixelSizeMenu {nullptr};
     HMENU                        m_aspectRatioMenu {nullptr};
@@ -41,6 +42,7 @@ private:
     HMENU                        m_inputMenu {nullptr};
     HMENU                        m_recentMenu {nullptr};
     HMENU                        m_advancedMenu {nullptr};
+    HMENU                        m_helpMenu {nullptr};
     std::vector<CaptureWindow>   m_captureWindows;
     std::vector<CaptureDisplay>  m_captureDisplays;
     CaptureManager&              m_captureManager;
@@ -110,6 +112,7 @@ private:
     void LoadRecentProfiles();
     void AddRecentProfile(const std::wstring& path);
     void RemoveRecentProfile(const std::wstring& path);
+    void UpdateGPUName();
 
     static BOOL CALLBACK    EnumWindowsProcProxy(_In_ HWND hwnd, _In_ LPARAM lParam);
     static BOOL CALLBACK    EnumDisplayMonitorsProcProxy(_In_ HMONITOR hMonitor, _In_ HDC hDC, _In_ LPRECT lpRect, _In_ LPARAM lParam);

@@ -14,7 +14,7 @@ using namespace std;
 using namespace util;
 using namespace util::uwp;
 
-CaptureManager::CaptureManager() : m_options(), m_lastPreset(-1) { }
+CaptureManager::CaptureManager() : m_options(), m_deviceName(L"Default"), m_lastPreset(-1) { }
 
 bool CaptureManager::Initialize()
 {
@@ -63,6 +63,19 @@ bool CaptureManager::StartSession()
 
     auto dxgiDevice = m_d3dDevice.as<IDXGIDevice>();
     auto device     = CreateDirect3DDevice(dxgiDevice.get());
+
+    // get GPU name
+    {
+        winrt::com_ptr<IDXGIAdapter> adapter;
+        if(SUCCEEDED(dxgiDevice->GetAdapter(adapter.put())))
+        {
+            DXGI_ADAPTER_DESC desc;
+            if(SUCCEEDED(adapter->GetDesc(&desc)))
+            {
+                m_deviceName = std::wstring(desc.Description);
+            }
+        }
+    }
 
 #ifdef _DEBUG
     m_d3dDevice->QueryInterface(__uuidof(ID3D11Debug), reinterpret_cast<void**>(m_debug.put()));

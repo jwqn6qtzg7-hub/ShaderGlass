@@ -36,6 +36,7 @@ public:
     CaptureManager();
 
     CaptureOptions m_options;
+    std::wstring   m_deviceName;
 
     const std::vector<std::unique_ptr<PresetDef>>& Presets();
     std::vector<std::tuple<int, ShaderParam*>>     Params();

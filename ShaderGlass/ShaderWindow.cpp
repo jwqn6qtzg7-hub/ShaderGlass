@@ -501,8 +501,8 @@ void ShaderWindow::CompileThreadFunc()
             auto          preset = ShaderGC::CompilePreset(m_importPath, log, warn);
             if(preset == nullptr)
                 throw std::runtime_error("Internal error");
-            auto          id     = m_captureManager.AddPreset(preset);
-            m_numPresets         = m_captureManager.Presets().size();
+            auto id      = m_captureManager.AddPreset(preset);
+            m_numPresets = m_captureManager.Presets().size();
             SendMessage(m_browserWindow, WM_COMMAND, WM_USER + 1, id);
             SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(id), 0);
         }
@@ -664,9 +664,19 @@ void ShaderWindow::ScanDisplays()
 
 void ShaderWindow::BuildProgramMenu()
 {
+    m_frameSkipMenu = CreatePopupMenu();
+    for(const auto& fs : frameSkips)
+    {
+        AppendMenu(m_frameSkipMenu, MF_STRING, fs.first, fs.second.text);
+    }
+    InsertMenu(m_programMenu, 8, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_frameSkipMenu, L"FPS");
+
     m_recentMenu = CreatePopupMenu();
-    InsertMenu(m_programMenu, 9, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_recentMenu, L"Recent profiles");
+    InsertMenu(m_programMenu, 13, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_recentMenu, L"Recent profiles");
     LoadRecentProfiles();
+
+    m_gpuMenu      = GetSubMenu(m_programMenu, 7);
+    m_advancedMenu = GetSubMenu(m_programMenu, 9);
 }
 
 void ShaderWindow::BuildInputMenu()
@@ -723,14 +733,7 @@ void ShaderWindow::BuildOutputMenu()
     }
     InsertMenu(sMenu, 4, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_aspectRatioMenu, L"Aspect Ratio Correction");
 
-    m_frameSkipMenu = CreatePopupMenu();
-    for(const auto& fs : frameSkips)
-    {
-        AppendMenu(m_frameSkipMenu, MF_STRING, fs.first, fs.second.text);
-    }
-    InsertMenu(sMenu, 5, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_frameSkipMenu, L"FPS");
-
-    InsertMenu(sMenu, 6, MF_BYPOSITION | MF_STRING, ID_PROCESSING_FULLSCREEN, L"Fullscreen\tCtrl+Shift+G");
+    InsertMenu(sMenu, 5, MF_BYPOSITION | MF_STRING, ID_PROCESSING_FULLSCREEN, L"Fullscreen\tCtrl+Shift+G");
 }
 
 void ShaderWindow::BuildShaderMenu()
@@ -838,7 +841,7 @@ void ShaderWindow::SaveStartingPosition()
         SaveRegistryInt(L"Y", rc.top);
         SaveRegistryInt(L"W", rc.right - rc.left);
         SaveRegistryInt(L"H", rc.bottom - rc.top);
-    }    
+    }
 }
 
 void ShaderWindow::ForgetStartingPosition()
@@ -856,17 +859,7 @@ BOOL ShaderWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     int x, y, w, h;
     GetStartingPosition(x, y, w, h);
 
-    HWND hWnd = CreateWindowW(m_windowClass,
-                              m_title,
-                              WS_OVERLAPPEDWINDOW | WS_EX_WINDOWEDGE,
-                              x,
-                              y,
-                              w,
-                              h,
-                              nullptr,
-                              nullptr,
-                              hInstance,
-                              this);
+    HWND hWnd = CreateWindowW(m_windowClass, m_title, WS_OVERLAPPEDWINDOW | WS_EX_WINDOWEDGE, x, y, w, h, nullptr, nullptr, hInstance, this);
 
     if(!hWnd)
     {
@@ -1037,9 +1030,9 @@ void ShaderWindow::UpdateTitle()
         const char* scaleString = m_captureOptions.freeScale ? "free" : outputScale.mnemonic;
         const auto  inFPS       = (int)roundf(m_captureManager.InFPS());
         const auto  outFPS      = (int)roundf(m_captureManager.OutFPS());
-        char advancedFlags[10];
+        char        advancedFlags[10];
         advancedFlags[0] = ' ';
-        int a = 1;
+        int a            = 1;
         if(m_captureOptions.flipMode)
         {
             advancedFlags[a++] = 'F';
@@ -1625,6 +1618,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             {
                 if(m_captureManager.StartSession())
                 {
+                    UpdateGPUName();
                     m_captureOptions.paused = false;
                 }
             }
@@ -1707,6 +1701,7 @@ bool ShaderWindow::Start()
     {
         EnableMenuItem(m_programMenu, IDM_START, MF_BYCOMMAND | MF_DISABLED);
         EnableMenuItem(m_programMenu, IDM_STOP, MF_BYCOMMAND | MF_ENABLED);
+        UpdateGPUName();
     }
     else
     {
@@ -1826,7 +1821,7 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
 
     m_programMenu = GetSubMenu(m_mainMenu, 0);
     m_shaderMenu  = GetSubMenu(m_mainMenu, 3);
-    m_advancedMenu = GetSubMenu(m_mainMenu, 4);
+    m_helpMenu    = GetSubMenu(m_mainMenu, 4);
     BuildProgramMenu();
     BuildInputMenu();
     BuildOutputMenu();
@@ -1836,7 +1831,7 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
 
     if(Is1903())
     {
-        ModifyMenu(GetSubMenu(m_mainMenu, 5),
+        ModifyMenu(m_helpMenu,
                    ID_HELP_WINDOWSVERSION,
                    MF_BYCOMMAND | MF_STRING | MF_DISABLED,
                    ID_HELP_WINDOWSVERSION,
@@ -1845,9 +1840,9 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
 
     if(CanDisableBorder())
     {
-        CheckMenuItem(GetSubMenu(m_mainMenu, 1), IDM_INPUT_REMOVEBORDER, MF_CHECKED | MF_BYCOMMAND);
+        CheckMenuItem(m_inputMenu, IDM_INPUT_REMOVEBORDER, MF_CHECKED | MF_BYCOMMAND);
 
-        ModifyMenu(GetSubMenu(m_mainMenu, 5), ID_HELP_WINDOWSVERSION, MF_BYCOMMAND | MF_STRING | MF_DISABLED, ID_HELP_WINDOWSVERSION, L"Excellent functionality, Windows 11");
+        ModifyMenu(m_helpMenu, ID_HELP_WINDOWSVERSION, MF_BYCOMMAND | MF_STRING | MF_DISABLED, ID_HELP_WINDOWSVERSION, L"Excellent functionality, Windows 11");
     }
 
     SetMenu(m_mainWindow, m_mainMenu);
@@ -1940,7 +1935,7 @@ void ShaderWindow::SaveRegistryInt(const wchar_t* name, int value)
     DWORD dwDisposition;
     if(RegCreateKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass"), 0, NULL, 0, KEY_WRITE | KEY_SET_VALUE, NULL, &hkey, &dwDisposition) == ERROR_SUCCESS)
     {
-        DWORD size  = sizeof(DWORD);
+        DWORD size   = sizeof(DWORD);
         DWORD dvalue = value;
         RegSetValueEx(hkey, name, 0, REG_DWORD, (PBYTE)&dvalue, size);
         RegCloseKey(hkey);
@@ -1953,7 +1948,7 @@ int ShaderWindow::GetRegistryInt(const wchar_t* name, int default)
     if(RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass"), 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
     {
         DWORD dvalue = default;
-        DWORD size  = sizeof(DWORD);
+        DWORD size   = sizeof(DWORD);
         RegGetValue(hKey, NULL, name, RRF_RT_REG_DWORD, NULL, &dvalue, &size);
         RegCloseKey(hKey);
         return (int)dvalue;
@@ -2095,6 +2090,11 @@ void ShaderWindow::RemoveRecentProfile(const std::wstring& path)
         m_recentProfiles.erase(existingPos);
         SaveRecentProfiles();
     }
+}
+
+void ShaderWindow::UpdateGPUName()
+{
+    ModifyMenu(m_gpuMenu, ID_GPU_DEFAULT, MF_BYCOMMAND | MF_STRING | MF_CHECKED | MF_DISABLED, ID_GPU_DEFAULT, m_captureManager.m_deviceName.c_str());
 }
 
 void ShaderWindow::RegisterHotkeys()
