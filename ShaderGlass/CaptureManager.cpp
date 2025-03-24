@@ -104,6 +104,7 @@ bool CaptureManager::StartSession()
     UpdateShaderPreset();
     UpdateFrameSkip();
     UpdateLockedArea();
+    UpdateCroppedArea();
 
     if(m_options.imageFile.size())
     {
@@ -302,6 +303,14 @@ void CaptureManager::UpdateLockedArea()
     if(m_shaderGlass)
     {
         m_shaderGlass->SetLockedArea(m_options.inputArea);
+    }
+}
+
+void CaptureManager::UpdateCroppedArea()
+{
+    if(m_shaderGlass)
+    {
+        m_shaderGlass->SetCroppedArea(m_options.croppedArea);
     }
 }
 

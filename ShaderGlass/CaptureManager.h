@@ -28,6 +28,7 @@ struct CaptureOptions
     bool         flipMode {false};
     bool         allowTearing {false};
     bool         maxCaptureRate {false};
+    RECT         croppedArea {0, 0, 0, 0};
 };
 
 class CaptureManager
@@ -55,6 +56,7 @@ public:
     bool  UpdateInput();
     void  UpdateCursor();
     void  UpdateLockedArea();
+    void  UpdateCroppedArea();
     void  GrabOutput();
     void  UpdateParams();
     void  ResetParams();

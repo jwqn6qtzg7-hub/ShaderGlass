@@ -7,6 +7,7 @@
 #include "Options.h"
 #include "CaptureManager.h"
 #include "InputDialog.h"
+#include "CropDialog.h"
 #include "Helpers.h"
 
 class ShaderWindow
@@ -61,6 +62,7 @@ private:
     float                        m_dpiScale {1.0f};
     RECT                         m_lastPosition;
     std::unique_ptr<InputDialog> m_inputDialog;
+    std::unique_ptr<CropDialog>  m_cropDialog;
     bool                         m_toggledNone;
     unsigned                     m_toggledPresetNo;
     std::vector<std::wstring>    m_recentProfiles;
@@ -74,6 +76,7 @@ private:
     bool ImportShader(const std::wstring& fileName);
     void ScanWindows();
     void ScanDisplays();
+    void CropWindow();
     void BuildProgramMenu();
     void BuildInputMenu();
     void BuildOutputMenu();

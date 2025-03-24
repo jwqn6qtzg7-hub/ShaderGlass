@@ -20,6 +20,7 @@ public:
     void  SetShaderPreset(PresetDef* p, const std::vector<std::tuple<int, std::string, double>>& params);
     void  SetFrameSkip(int s);
     void  SetLockedArea(RECT area);
+    void  SetCroppedArea(RECT area);
     void  SetFreeScale(bool freeScale);
     float FPS()
     {
@@ -106,4 +107,6 @@ private:
     volatile RECT  m_lockedArea {0, 0, 0, 0};
     volatile bool  m_lockedAreaUpdated {false};
     volatile bool  m_freeScale {false};
+    volatile RECT  m_croppedArea {0, 0, 0, 0};
+    volatile bool  m_croppedAreaUpdated {false};
 };

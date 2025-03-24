@@ -3,6 +3,8 @@
 // Used by ShaderGlass.rc
 //
 #define IDC_MYICON                      2
+#define IDOK2                           3
+#define IDRESET                         3
 #define IDD_SHADERGLASS_DIALOG          102
 #define IDS_APP_TITLE                   103
 #define IDM_ABOUT                       104
@@ -24,7 +26,15 @@
 #define IDB_SHADER                      135
 #define IDB_BITMAP1                     136
 #define IDB_FOLDER                      136
+#define IDD_CROP_DIALOG                 137
 #define IDC_EDIT1                       1000
+#define IDC_SPIN1                       1001
+#define IDC_SPIN2                       1002
+#define IDC_EDIT2                       1003
+#define IDC_SPIN3                       1004
+#define IDC_EDIT3                       1005
+#define IDC_SPIN4                       1008
+#define IDC_EDIT4                       1009
 #define ID_FILE_START                   32771
 #define IDM_FILE_START                  32772
 #define IDM_START                       32773
@@ -159,6 +169,7 @@
 #define ID_ADVANCED_MAXCAPTUREFRAMERATE 32910
 #define ID_ADVANCED_CHANGINGTHESEOPTIONSREQUIRESRESTART 32911
 #define ID_PROCESSING_REMEMBERPOSITION  32912
+#define ID_WINDOW_CROP                  32913
 #define IDC_STATIC                      -1
 #define IDC_STATIC_LABEL                -1
 
@@ -167,9 +178,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        137
-#define _APS_NEXT_COMMAND_VALUE         32913
-#define _APS_NEXT_CONTROL_VALUE         1001
+#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_COMMAND_VALUE         32914
+#define _APS_NEXT_CONTROL_VALUE         1002
 #define _APS_NEXT_SYMED_VALUE           115
 #endif
 #endif

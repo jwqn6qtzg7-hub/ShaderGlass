@@ -204,6 +204,18 @@ void ShaderGlass::SetLockedArea(RECT lockedArea)
     m_lockedAreaUpdated = true;
 }
 
+void ShaderGlass::SetCroppedArea(RECT croppedArea)
+{
+    if(m_croppedArea.top != croppedArea.top || m_croppedArea.bottom != croppedArea.bottom || m_croppedArea.left != croppedArea.left || m_croppedArea.right != croppedArea.right)
+    {
+        m_croppedArea.top    = croppedArea.top;
+        m_croppedArea.bottom = croppedArea.bottom;
+        m_croppedArea.left   = croppedArea.left;
+        m_croppedArea.right  = croppedArea.right;
+        m_croppedAreaUpdated = true;
+    }
+}
+
 void ShaderGlass::SetFreeScale(bool freeScale)
 {
     m_freeScale      = freeScale;
@@ -418,6 +430,15 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         GetClientRect(m_captureWindow, &captureClient);
 
         DwmGetWindowAttribute(m_captureWindow, DWMWA_EXTENDED_FRAME_BOUNDS, &captureRect, sizeof(RECT));
+        captureTopLeft.x += m_croppedArea.left;
+        captureTopLeft.y += m_croppedArea.top;
+        captureClient.right -= (m_croppedArea.left + m_croppedArea.right);
+        captureClient.bottom -= (m_croppedArea.top + m_croppedArea.bottom);
+        if(captureClient.right <= 0)
+            captureClient.right = 1;
+        if(captureClient.bottom <= 0)
+            captureClient.bottom = 1;
+
         outputMoved = (m_lastCaptureWindowPos.x != captureRect.left || m_lastCaptureWindowPos.y != captureRect.bottom);
         if(outputMoved)
         {
@@ -438,8 +459,10 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     textureRect.right  = capturedTextureDesc.Width;
     textureRect.bottom = capturedTextureDesc.Height;
 
-    auto outputResized = false;
-    outputResized      = TryResizeSwapChain(clientRect, m_outputRescaled);
+    auto outputResized   = false;
+    auto inputResized    = m_captureWindow && m_croppedAreaUpdated;
+    m_croppedAreaUpdated = false;
+    outputResized        = TryResizeSwapChain(clientRect, m_outputRescaled);
 
     if(clientRect.right <= 0 || clientRect.bottom <= 0)
     {
@@ -509,11 +532,15 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     m_outputRescaled   = false;
 
     // force recreate
-    if(inputRescaled)
+    if(inputRescaled || inputResized)
     {
         if(m_preprocessedRenderTarget != nullptr)
         {
             DestroyTargets();
+            if(m_displayRenderTarget)
+            {
+                m_context->ClearRenderTargetView(m_displayRenderTarget.get(), background_colour);
+            }
         }
         else
         {
@@ -596,7 +623,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         rebuildPasses = true;
     }
 
-    if(inputRescaled || outputResized)
+    if(inputRescaled || outputResized || inputResized)
     {
         m_textureSizes.clear();
         m_textureSizes.insert(std::make_pair("Original", float4 {(float)originalWidth, (float)originalHeight, 1.0f / originalWidth, 1.0f / originalHeight}));
@@ -789,7 +816,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         }
     }
 
-    if(outputMoved || outputResized || (m_lastPos.x != topLeft.x || m_lastPos.y != topLeft.y) || m_lockedAreaUpdated)
+    if(outputMoved || outputResized || inputResized || (m_lastPos.x != topLeft.x || m_lastPos.y != topLeft.y) || m_lockedAreaUpdated)
     {
         // preprocess captured frame to a texture: crop (via scale & translation), reduce resolution, and whatnot (invert y?)
         float sx = 1.0f, sy = 1.0f, tx = 0.0f, ty = 0.0f;
@@ -922,7 +949,9 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
             auto lastPassFeedback = m_passResources.find(std::string("PassFeedback") + std::to_string(p));
             winrt::com_ptr<ID3D11Resource> lastPassFeedbackResource;
             lastPassFeedback->second->GetResource(lastPassFeedbackResource.put());
-            if(m_boxX != 0 || m_boxY != 0)
+            D3D11_TEXTURE2D_DESC desc3 = {};
+            displayTexture->GetDesc(&desc3);
+            if(m_boxX != 0 || m_boxY != 0 || lastPass.m_destWidth != desc3.Width || lastPass.m_destHeight != desc3.Height)
             {
                 D3D11_BOX srcBox;
                 srcBox.left = m_boxX;

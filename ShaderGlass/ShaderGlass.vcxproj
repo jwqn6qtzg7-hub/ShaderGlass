@@ -170,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="BrowserWindow.h" />
     <ClInclude Include="CompileWindow.h" />
+    <ClInclude Include="CropDialog.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="InputDialog.h" />
     <ClInclude Include="ParamsWindow.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="CaptureManager.cpp" />
     <ClCompile Include="CaptureSession.cpp" />
     <ClCompile Include="CompileWindow.cpp" />
+    <ClCompile Include="CropDialog.cpp" />
     <ClCompile Include="InputDialog.cpp" />
     <ClCompile Include="WIC\ScreenGrab11.cpp" />
     <ClCompile Include="WinMain.cpp" />

@@ -184,6 +184,14 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                 else
                     CheckMenuItem(m_displayMenu, ID_DESKTOP_LOCKINPUTAREA, MF_UNCHECKED | MF_BYCOMMAND);
             }
+            else if(key == "CroppedArea")
+            {
+                std::istringstream iss(value);
+                iss >> m_captureOptions.croppedArea.left;
+                iss >> m_captureOptions.croppedArea.top;
+                iss >> m_captureOptions.croppedArea.right;
+                iss >> m_captureOptions.croppedArea.bottom;
+            }
             else if(key.starts_with("Param-") && key.size() >= 9)
             {
                 try
@@ -429,6 +437,13 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
             << std::to_string(m_captureOptions.inputArea.right) << " " << std::to_string(m_captureOptions.inputArea.bottom) << "\"" << std::endl;
     if(m_captureOptions.captureWindow)
     {
+        const auto& crop = m_captureOptions.croppedArea;
+        if(crop.top || crop.bottom || crop.left || crop.right)
+        {
+            outfile << "CroppedArea \"" << std::to_string(crop.left) << " " << std::to_string(crop.top) << " "
+                    << std::to_string(crop.right) << " " << std::to_string(crop.bottom) << "\"" << std::endl;
+        }
+
         auto windowTitle = GetWindowStringText(m_captureOptions.captureWindow);
         char utfName[MAX_WINDOW_TITLE];
         WideCharToMultiByte(CP_UTF8, 0, windowTitle.c_str(), -1, utfName, MAX_WINDOW_TITLE, NULL, NULL);
@@ -660,6 +675,11 @@ void ShaderWindow::ScanDisplays()
         if(m_captureOptions.monitor == w.monitor)
             CheckMenuItem(m_displayMenu, WM_CAPTURE_DISPLAY(i - 1), MF_CHECKED | MF_BYCOMMAND);
     }
+}
+
+void ShaderWindow::CropWindow()
+{
+    m_cropDialog->Show(m_captureOptions.croppedArea);
 }
 
 void ShaderWindow::BuildProgramMenu()
@@ -901,8 +921,8 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
         {
             RECT captureRect;
             GetClientRect(m_captureOptions.captureWindow, &captureRect);
-            inputWidth  = captureRect.right;
-            inputHeight = captureRect.bottom;
+            inputWidth  = captureRect.right - (m_captureOptions.croppedArea.left + m_captureOptions.croppedArea.right);
+            inputHeight = captureRect.bottom - (m_captureOptions.croppedArea.top + m_captureOptions.croppedArea.bottom);
         }
         else
         {
@@ -1340,6 +1360,9 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             TryUpdateInput();
             UpdateWindowState();
             break;
+        case ID_WINDOW_CROP:
+            CropWindow();
+            break;
         case IDM_WINDOW_SCAN:
             ScanWindows();
             break;
@@ -1571,6 +1594,29 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         }
     }
     break;
+    case WM_USER_CROP_UPDATED: {
+            switch(wParam)
+            {
+            case 0:
+                m_captureOptions.croppedArea.top = lParam;
+                break;
+            case 1:
+                m_captureOptions.croppedArea.right = lParam;
+                break;
+            case 2:
+                m_captureOptions.croppedArea.bottom = lParam;
+                break;
+            case 3:
+                m_captureOptions.croppedArea.left = lParam;
+                break;
+            case 4:
+                m_captureOptions.croppedArea = RECT {0, 0, 0, 0};
+                break;
+            }
+            m_captureManager.UpdateCroppedArea();
+            AdjustWindowSize(hWnd);
+        }
+        break;
     case WM_HOTKEY: {
         switch(wParam)
         {
@@ -2141,6 +2187,7 @@ void ShaderWindow::Start(_In_ LPWSTR lpCmdLine, HWND paramsWindow, HWND browserW
     m_browserWindow = browserWindow;
     m_compileWindow = compileWindow;
     m_inputDialog.reset(new InputDialog(m_instance, m_mainWindow));
+    m_cropDialog.reset(new CropDialog(m_instance, m_mainWindow));
 
     if(autoStart)
     {
