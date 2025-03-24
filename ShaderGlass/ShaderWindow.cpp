@@ -1932,7 +1932,7 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     m_captureOptions.outputWindow = m_mainWindow;
 
     // set defaults
-    SendMessage(m_mainWindow, WM_COMMAND, WM_PIXEL_SIZE(2), 0);
+    SendMessage(m_mainWindow, WM_COMMAND, WM_PIXEL_SIZE(3), 0);
     SendMessage(m_mainWindow, WM_COMMAND, WM_ASPECT_RATIO(0), 0);
     auto defaultNo = m_captureManager.FindByName(defaultPreset);
     if(defaultNo != -1)
