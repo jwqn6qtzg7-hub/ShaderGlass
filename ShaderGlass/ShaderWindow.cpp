@@ -1893,7 +1893,7 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     {
         SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(defaultNo), 0);
     }
-    SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(1), 0);
+    SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(0), 0);
     SendMessage(m_mainWindow, WM_COMMAND, WM_OUTPUT_SCALE(0), 0);
     SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_DISPLAY(0), 0);
     SendMessage(m_mainWindow, WM_COMMAND, Is1903() ? IDM_MODE_CLONE : IDM_MODE_GLASS, 0);
