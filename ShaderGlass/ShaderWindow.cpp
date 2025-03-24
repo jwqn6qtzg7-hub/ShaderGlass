@@ -31,6 +31,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
 
         std::string                                       shaderCategory;
         std::string                                       shaderName;
+        std::optional<std::wstring>                       shaderPath;
         std::optional<std::wstring>                       windowName;
         std::optional<std::string>                        desktopName;
         std::optional<bool>                               transparent;
@@ -111,6 +112,12 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
             else if(key == "ShaderName")
             {
                 shaderName = value;
+            }
+            else if(key == "ShaderPath")
+            {
+                wchar_t wideName[MAX_PATH];
+                MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, wideName, MAX_PATH);
+                shaderPath = std::wstring(wideName);
             }
             else if(key == "FrameSkip")
             {
@@ -214,7 +221,11 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
         infile.close();
 
         // try to find shader
-        if(shaderName.size())
+        if(shaderPath.has_value() && !shaderPath.value().empty())
+        {
+            ImportShader(shaderPath.value());
+        }
+        else if(shaderName.size())
         {
             const auto& presets = m_captureManager.Presets();
             for(unsigned i = 0; i < presets.size(); i++)
@@ -424,8 +435,17 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
         outfile << "AspectRatio " << std::quoted(std::to_string(aspectRatio.r)) << std::endl;
     else
         outfile << "AspectRatio " << std::quoted(aspectRatio.mnemonic) << std::endl;
-    outfile << "ShaderCategory " << std::quoted(shader->Category) << std::endl;
-    outfile << "ShaderName " << std::quoted(shader->Name) << std::endl;
+    if(shader->Category == "Imported")
+    {
+        char utfName[MAX_PATH * 4];
+        WideCharToMultiByte(CP_UTF8, 0, shader->ImportPath.c_str(), -1, utfName, MAX_PATH * 4, NULL, NULL);
+        outfile << "ShaderPath " << std::quoted(utfName) << std::endl;
+    }
+    else
+    {
+        outfile << "ShaderCategory " << std::quoted(shader->Category) << std::endl;
+        outfile << "ShaderName " << std::quoted(shader->Name) << std::endl;
+    }
     outfile << "FrameSkip " << std::quoted(frameSkip.mnemonic) << std::endl;
     outfile << "OutputScale " << std::quoted(m_captureOptions.freeScale ? "Free" : outputScale.mnemonic) << std::endl;
     outfile << "FlipH " << std::quoted(std::to_string(m_captureOptions.flipHorizontal)) << std::endl;
@@ -538,6 +558,11 @@ bool ShaderWindow::ImportShader(const std::wstring& fileName)
     try
     {
         m_importPath = fileName;
+
+        if(m_importPath.empty())
+            return false;
+
+        AddRecentImport(m_importPath);
 
         RECT rc, rcDlg, rcOwner;
         GetWindowRect(m_mainWindow, &rcOwner);
@@ -759,6 +784,10 @@ void ShaderWindow::BuildShaderMenu()
     m_numPresets = m_captureManager.Presets().size();
     if(m_numPresets >= MAX_SHADERS)
         throw std::runtime_error("Too many shaders!");
+
+    m_importsMenu = CreatePopupMenu();
+    InsertMenu(m_shaderMenu, 6, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_importsMenu, L"Recent imports");
+    LoadRecentImports();
 }
 
 LRESULT CALLBACK ShaderWindow::WndProcProxy(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -1586,6 +1615,19 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     }
                     break;
                 }
+                if(wmId >= WM_RECENT_IMPORT(0) && wmId < WM_RECENT_IMPORT(MAX_RECENT_IMPORTS))
+                {
+                    auto importId = wmId - WM_RECENT_IMPORT(0);
+                    if(importId < m_recentImports.size())
+                    {
+                        auto path = m_recentImports.at(importId);
+                        if(!ImportShader(path))
+                        {
+                            RemoveRecentImport(path);
+                        }
+                    }
+                    break;
+                }
             }
             return DefWindowProc(hWnd, message, wParam, lParam);
         }
@@ -2132,6 +2174,101 @@ void ShaderWindow::RemoveRecentProfile(const std::wstring& path)
     {
         m_recentProfiles.erase(existingPos);
         SaveRecentProfiles();
+    }
+}
+
+void ShaderWindow::LoadRecentImports()
+{
+    m_recentImports.clear();
+
+    HKEY hKey;
+    if(RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass\\Imports"), 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
+    {
+        for(int p = 0; p < MAX_RECENT_IMPORTS; p++)
+        {
+            auto value = std::to_wstring(p);
+
+            wchar_t path[MAX_PATH + 1];
+            DWORD   size = MAX_PATH * sizeof(wchar_t);
+            if(RegGetValue(hKey, NULL, value.data(), RRF_RT_REG_SZ, NULL, path, &size) == ERROR_SUCCESS)
+            {
+                if(lstrlen(path) > 0)
+                    m_recentImports.push_back(path);
+            }
+        }
+        RegCloseKey(hKey);
+    }
+
+    // update menu
+    for(UINT i = 0; i < MAX_RECENT_IMPORTS; i++)
+    {
+        RemoveMenu(m_importsMenu, WM_RECENT_IMPORT(i), MF_BYCOMMAND);
+    }
+    for(int p = 0; p < m_recentImports.size(); p++)
+    {
+        const auto& import = m_recentImports.at(p);
+        InsertMenu(m_importsMenu, p, MF_STRING, WM_RECENT_IMPORT(p), import.data());
+    }
+}
+
+void ShaderWindow::SaveRecentImports()
+{
+    HKEY  hkey;
+    DWORD dwDisposition;
+    if(RegCreateKeyEx(HKEY_CURRENT_USER, TEXT("Software\\ShaderGlass\\Imports"), 0, NULL, 0, KEY_WRITE | KEY_SET_VALUE, NULL, &hkey, &dwDisposition) == ERROR_SUCCESS)
+    {
+        for(int p = 0; p < MAX_RECENT_IMPORTS; p++)
+        {
+            auto value = std::to_wstring(p);
+            if(p < m_recentImports.size())
+            {
+                // update value
+                const auto& path = m_recentImports.at(p);
+                RegSetValueEx(hkey, value.data(), 0, REG_SZ, (PBYTE)path.data(), path.size() * sizeof(wchar_t));
+            }
+            else
+            {
+                // blank
+                RegSetValueEx(hkey, value.data(), 0, REG_SZ, (PBYTE)TEXT(""), sizeof(wchar_t));
+            }
+        }
+        RegCloseKey(hkey);
+    }
+
+    LoadRecentImports(); // rebuild menu
+}
+
+void ShaderWindow::AddRecentImport(const std::wstring& path)
+{
+    if(path.find(L":") == std::wstring::npos) // don't store relative paths
+        return;
+
+    auto existingPos = std::find(m_recentImports.begin(), m_recentImports.end(), path);
+    if(existingPos != m_recentImports.end())
+    {
+        // already first one
+        if(*m_recentImports.begin() == path)
+            return;
+
+        // remove from the middle
+        m_recentImports.erase(existingPos);
+    }
+    // add to front
+    m_recentImports.insert(m_recentImports.begin(), path);
+    if(m_recentImports.size() > MAX_RECENT_IMPORTS)
+    {
+        m_recentImports.resize(MAX_RECENT_IMPORTS);
+    }
+    SaveRecentImports();
+}
+
+void ShaderWindow::RemoveRecentImport(const std::wstring& path)
+{
+    auto existingPos = std::find(m_recentImports.begin(), m_recentImports.end(), path);
+    if(existingPos != m_recentImports.end())
+    {
+        m_recentImports.erase(existingPos);
+        SaveRecentImports();
     }
 }
 

@@ -42,6 +42,7 @@ private:
     HMENU                        m_outputWindowMenu {nullptr};
     HMENU                        m_inputMenu {nullptr};
     HMENU                        m_recentMenu {nullptr};
+    HMENU                        m_importsMenu {nullptr};
     HMENU                        m_advancedMenu {nullptr};
     HMENU                        m_helpMenu {nullptr};
     std::vector<CaptureWindow>   m_captureWindows;
@@ -66,6 +67,7 @@ private:
     bool                         m_toggledNone;
     unsigned                     m_toggledPresetNo;
     std::vector<std::wstring>    m_recentProfiles;
+    std::vector<std::wstring>    m_recentImports;
     std::filesystem::path        m_importPath;
 
     bool LoadProfile(const std::wstring& fileName);
@@ -115,6 +117,10 @@ private:
     void LoadRecentProfiles();
     void AddRecentProfile(const std::wstring& path);
     void RemoveRecentProfile(const std::wstring& path);
+    void SaveRecentImports();
+    void LoadRecentImports();
+    void AddRecentImport(const std::wstring& path);
+    void RemoveRecentImport(const std::wstring& path);
     void UpdateGPUName();
 
     static BOOL CALLBACK    EnumWindowsProcProxy(_In_ HWND hwnd, _In_ LPARAM lParam);

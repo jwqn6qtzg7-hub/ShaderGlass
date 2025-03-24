@@ -7,7 +7,7 @@
 class PresetDef
 {
 public:
-    PresetDef() : ShaderDefs {}, TextureDefs {}, Overrides {}, Name {}, Category {} { }
+    PresetDef() : ShaderDefs {}, TextureDefs {}, Overrides {}, Name {}, Category {}, ImportPath {} { }
 
     virtual void Build() { }
 
@@ -29,4 +29,5 @@ public:
     std::vector<ParamOverride> Overrides;
     std::string                Name;
     std::string                Category;
+    std::filesystem::path      ImportPath;
 };

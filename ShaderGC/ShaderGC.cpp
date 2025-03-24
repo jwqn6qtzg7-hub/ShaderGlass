@@ -77,9 +77,17 @@ PresetDef* ShaderGC::CompileShader(std::filesystem::path source, ostream& log, b
 
     // dummy preset
     PresetDef* pdef = new PresetDef();
-    pdef->Name      = source.filename().string();
+    try
+    {
+        pdef->Name = source.filename().string();
+    }
+    catch(...)
+    {
+        pdef->Name = std::string("???"); // unicode...
+    }
     pdef->Category  = "Imported";
     pdef->ShaderDefs.push_back(shaderDef);
+    pdef->ImportPath = source;
 
     return pdef;
 }
@@ -438,6 +446,8 @@ void setPresetParams(SourceTextureDef& def, std::string name, const map<string, 
 void ShaderGC::ParsePreset(const std::filesystem::path& input, std::map<std::string, std::string>& keyValues, std::map<std::string, std::filesystem::path>& valuePaths)
 {
     fstream infile(input);
+    if(!infile.good())
+        throw std::runtime_error("Unable to find " + input.string());
     string  line;
     while(getline(infile, line))
     {
@@ -475,7 +485,14 @@ PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bo
     ProcessSourcePreset(sp, log, warn);
 
     PresetDef* def = new PresetDef();
-    def->Name     = input.filename().string();
+    try
+    {
+        def->Name = input.filename().string();
+    }
+    catch(...)
+    {
+        def->Name = std::string("???"); // unicode...
+    }
     def->Category = "Imported";
 
     for(auto& s : sp.shaders)
@@ -503,6 +520,8 @@ PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bo
     {
         def->OverrideParam(CopyString(o.name), o.def);
     }
+
+    def->ImportPath = input;
 
     return def;
 }
