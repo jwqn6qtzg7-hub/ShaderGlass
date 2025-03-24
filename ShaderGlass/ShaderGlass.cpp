@@ -7,7 +7,7 @@ static HRESULT hr;
 static const float background_colour[4] = {0, 0, 0, 1.0f};
 
 ShaderGlass::ShaderGlass() :
-    m_lastSize {}, m_lastPos {}, m_lastCaptureWindowPos {}, m_passthroughDef(), m_shaderPreset(new Preset(m_passthroughDef)), m_preprocessShader(m_preprocessShaderDef),
+    m_lastSize {}, m_lastPos {}, m_lastCaptureWindowPos {}, m_lastCaptureWindowSize {}, m_passthroughDef(), m_shaderPreset(new Preset(m_passthroughDef)), m_preprocessShader(m_preprocessShaderDef),
     m_preprocessPreset(m_preprocessPresetDef), m_preprocessPass(m_preprocessShader, m_preprocessPreset, true)
 { }
 
@@ -417,6 +417,9 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     D3D11_TEXTURE2D_DESC capturedTextureDesc = {};
     texture->GetDesc(&capturedTextureDesc);
 
+    auto inputResized    = m_captureWindow && m_croppedAreaUpdated;
+    m_croppedAreaUpdated = false;
+
     // properties of the window being captured
     RECT  captureRect;
     POINT captureTopLeft;
@@ -445,6 +448,13 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
             m_lastCaptureWindowPos.x = captureRect.left;
             m_lastCaptureWindowPos.y = captureRect.bottom;
         }
+
+        inputResized |= m_lastCaptureWindowSize.x != capturedTextureDesc.Width || m_lastCaptureWindowSize.y != capturedTextureDesc.Height;
+        if(inputResized)
+        {
+            m_lastCaptureWindowSize.x = capturedTextureDesc.Width;
+            m_lastCaptureWindowSize.y = capturedTextureDesc.Height;
+        }
     }
     else if (m_image)
     {
@@ -460,8 +470,6 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     textureRect.bottom = capturedTextureDesc.Height;
 
     auto outputResized   = false;
-    auto inputResized    = m_captureWindow && m_croppedAreaUpdated;
-    m_croppedAreaUpdated = false;
     outputResized        = TryResizeSwapChain(clientRect, m_outputRescaled);
 
     if(clientRect.right <= 0 || clientRect.bottom <= 0)
@@ -512,6 +520,11 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
                 boxX += (clientRect.right - (captureW / m_outputScaleW)) / 2.0f;
                 boxY += (clientRect.bottom - (captureH / m_outputScaleH)) / 2.0f;
             }
+
+            if(boxX < 0)
+                boxX = 0;
+            if(boxY < 0)
+                boxY = 0;
         }
     }
     m_boxX = static_cast<int>(boxX);

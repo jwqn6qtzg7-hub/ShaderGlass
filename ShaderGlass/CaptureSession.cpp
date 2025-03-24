@@ -22,9 +22,10 @@ CaptureSession::CaptureSession(winrt::IDirect3DDevice const&     device,
                                winrt::DirectXPixelFormat         pixelFormat,
                                ShaderGlass&                      shaderGlass,
                                bool                              maxCaptureRate,
-                               HANDLE                            frameEvent) : m_device {device}, m_item {item}, m_shaderGlass {shaderGlass}, m_frameEvent(frameEvent)
+                               HANDLE                            frameEvent) : m_device {device}, m_item {item}, m_pixelFormat {pixelFormat}, m_shaderGlass {shaderGlass}, m_frameEvent(frameEvent)
 {
-    m_framePool = winrt::Direct3D11CaptureFramePool::CreateFreeThreaded(m_device, pixelFormat, 2, m_item.Size());
+    m_contentSize = m_item.Size();
+    m_framePool = winrt::Direct3D11CaptureFramePool::CreateFreeThreaded(m_device, pixelFormat, 2, m_contentSize);
     m_session   = m_framePool.CreateCaptureSession(m_item);
 
     // try to disable yellow border
@@ -79,6 +80,15 @@ void CaptureSession::OnFrameArrived(winrt::Direct3D11CaptureFramePool const& sen
     auto frame   = sender.TryGetNextFrame();
     m_inputFrame = GetDXGIInterfaceFromObject<ID3D11Texture2D>(frame.Surface());
     m_frameTicks = GetTickCount64();
+    
+    auto contentSize = frame.ContentSize();
+    if(contentSize.Width != m_contentSize.Width || contentSize.Height != m_contentSize.Height)
+    {
+        m_contentSize.Width  = contentSize.Width;
+        m_contentSize.Height = contentSize.Height;
+        m_framePool.Recreate(m_device, m_pixelFormat, 2, m_contentSize);
+    }
+
     SetEvent(m_frameEvent);
     m_numInputFrames++;
     if(m_frameTicks - m_prevTicks > 1000)

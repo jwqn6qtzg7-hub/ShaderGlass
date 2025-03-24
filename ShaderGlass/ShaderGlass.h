@@ -44,6 +44,7 @@ private:
     POINT                                    m_lastSize;
     POINT                                    m_lastPos;
     POINT                                    m_lastCaptureWindowPos;
+    POINT                                    m_lastCaptureWindowSize;
     winrt::com_ptr<ID3D11DeviceContext>      m_context {nullptr};
     winrt::com_ptr<ID3D11Device>             m_device {nullptr};
     winrt::com_ptr<ID3D11ShaderResourceView> m_originalView {nullptr};

@@ -37,6 +37,8 @@ private:
     winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice m_device {nullptr};
     winrt::com_ptr<ID3D11Texture2D>                                m_inputImage {nullptr};
     winrt::com_ptr<ID3D11Texture2D>                                m_inputFrame {nullptr};
+    winrt::Windows::Graphics::DirectX::DirectXPixelFormat          m_pixelFormat {0};
+    winrt::Windows::Graphics::SizeInt32                            m_contentSize {0, 0};
     ULONGLONG                                                      m_frameTicks {0};
     float                                                          m_fps {0};
     int                                                            m_numInputFrames {0};
