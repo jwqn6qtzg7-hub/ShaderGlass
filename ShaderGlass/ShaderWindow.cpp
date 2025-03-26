@@ -795,7 +795,7 @@ void ShaderWindow::BuildShaderMenu()
         throw std::runtime_error("Too many shaders!");
 
     m_importsMenu = CreatePopupMenu();
-    InsertMenu(m_shaderMenu, 6, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_importsMenu, L"Recent imports");
+    InsertMenu(m_shaderMenu, 7, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_importsMenu, L"Recent imports");
     LoadRecentImports();
 }
 
