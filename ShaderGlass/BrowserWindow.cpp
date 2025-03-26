@@ -493,6 +493,27 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                     PostMessage(m_shaderWindow, WM_COMMAND, pnmtv->itemNew.lParam, 0);
                 }
             }
+
+            auto selected = TreeView_GetSelection(m_treeControl);
+            if(selected != NULL)
+            {
+                auto parent = TreeView_GetParent(m_treeControl, selected);
+                if(parent == m_imported)
+                {
+                    EnableWindow(m_addFavButton, false);
+                    EnableWindow(m_delFavButton, false);
+                }
+                else if(parent == m_personalItems)
+                {
+                    EnableWindow(m_addFavButton, false);
+                    EnableWindow(m_delFavButton, true);
+                }
+                else
+                {
+                    EnableWindow(m_addFavButton, true);
+                    EnableWindow(m_delFavButton, true);
+                }
+            }
         }
         else if(lpnmh->code == TVN_KEYDOWN)
         {
