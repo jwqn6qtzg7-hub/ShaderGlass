@@ -6,7 +6,7 @@ Overlay for running GPU shaders on top of Windows desktop.
 
 ### Features
 
-* applies shader effects on top of the desktop, in a window or full-screen
+* applies shader effects on top of desktop, in a floating window or full-screen
 * built-in [RetroArch](https://github.com/libretro/RetroArch) shader library (1200+ shaders!) covering:
   * CRT monitor simulation
   * image upscaling
@@ -81,7 +81,7 @@ ShaderGlass running over multiple applications on Windows 11 desktop.
 
 ![screenshot](images/screen7.png)
 
-##### Desktop Glass mode
+#### Desktop Glass mode
 
 In this mode a transparent floating window will apply a shader to anything behind it.
 Requires Windows 10 2004 - on 1903/1909 you will see only a black window if you switch to this mode.
@@ -90,33 +90,33 @@ Wikipedia in Chrome processed by crt-geom shader which applies scanlines and CRT
 
 ![screenshot](images/screen1.png)
 
-##### Window Clone mode
+#### Window Clone mode
 
 When capture is fixed to a specific window it's easier to tune scaling to match the input
 and image can also be recaptured (screenshot/OBS etc.)
 
-###### FS-UAE
+##### FS-UAE
 
 Amiga version of [The Secret of Monkey Island (1990)](https://store.steampowered.com/app/32360/The_Secret_of_Monkey_Island_Special_Edition/)
 running in FS-UAE with crt-interlaced-halation shader applied.
 
 ![screenshot](images/screen4.png)
 
-###### Altirra
+##### Altirra
 
 [Ninja (1986)](https://www.mobygames.com/game/ninja_) for the Atari XL
 running in Altirra with a TV-OUT simulation shader.
 
 ![screenshot](images/screen5.png)
 
-###### Adventure Game Studio
+##### Adventure Game Studio
 
 [The Crimson Diamond (2024)](https://store.steampowered.com/app/1098770/The_Crimson_Diamond/),
 a modern AGS game using HSM MegaBezel STD shader.
 
 ![screenshot](images/screen3.png)
 
-###### DOSBox
+##### DOSBox
 
 [Police Quest (1987)](https://store.steampowered.com/app/494740/Police_Quest_Collection/)
 with its massive half-EGA pixels, aspect-ratio corrected and post-processed using newpixie-crt shader.
@@ -239,7 +239,6 @@ ShaderGlass.exe [-p|--paused] [-f|--fullscreen] [profile.sgp]
 ```
 
 You can pass profile filename as a command-line parameter to ShaderGlass.exe and it will be auto-loaded.
-
 If your profile file name contains spaces please put it in quotes.
 
 In addition -p will launch in paused mode, and -f will launch in fullscreen mode.
