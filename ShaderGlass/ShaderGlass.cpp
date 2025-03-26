@@ -230,8 +230,11 @@ void ShaderGlass::SetFreeScale(bool freeScale)
 
 void ShaderGlass::SetVertical(bool vertical)
 {
-    m_vertical        = vertical;
-    m_verticalUpdated = true;
+    if(m_vertical != vertical)
+    {
+        m_vertical        = vertical;
+        m_verticalUpdated = true;
+    }
 }
 
 void ShaderGlass::DestroyTargets()
