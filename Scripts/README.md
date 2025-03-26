@@ -1,7 +1,9 @@
 # Rebuilding Shaders
 
-Shaders in ShaderGlass are precompiled and included in the binary. If you'd like to add
-or modify a shader, you will need to rebuild it and then recompile ShaderGlass.
+ShaderGlass comes with a precompiled library of shaders embedded in the binary. If you'd like to add
+or modify an embedded shader, you will need to rebuild it and then recompile ShaderGlass.
+
+To try out an external shader, you can simply "Import custom..." which will load it on-the-fly.
 
 ShaderGen is a tool that reads .slangp profiles and generates header files
 which are then compiled with ShaderGlass.

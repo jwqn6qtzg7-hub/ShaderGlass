@@ -6,19 +6,20 @@ Overlay for running GPU shaders on top of Windows desktop.
 
 ### Features
 
-* applies shader effects on top of any window on the desktop
-* includes [RetroArch](https://github.com/libretro/RetroArch) shader library covering:
+* applies shader effects on top of the desktop, in a window or full-screen
+* built-in [RetroArch](https://github.com/libretro/RetroArch) shader library (1200+ shaders!) covering:
   * CRT monitor simulation
   * image upscaling
-  * TV / VHS simulation
+  * TV, VHS and handheld simulation
   * softening, denoising, blur, sharpen and many more
 * works with most emulators, retro platforms and pixel art editors including:
   * [DOSBox](https://www.dosbox.com/), [FS-UAE](https://github.com/FrodeSolheim/fs-uae), [Altirra](http://www.virtualdub.org/altirra.html),
   [ScummVM](https://github.com/scummvm/scummvm), [AGS](https://github.com/adventuregamestudio/ags), [VICE](https://sf.net/projects/vice-emu), [Aseprite](https://www.aseprite.org/) etc.
-* excellent companion for pixel art drawing showing shaded and/or aspect-ratio corrected preview
+* excellent companion for pixel art showing shaded and/or aspect-ratio corrected preview
 * you can even use it on top of YouTube, Twitch or modern games
 * saving and loading profiles
-* multiple operating modes, including borderless fullscreen
+* import of external .slangp/.slang shaders
+* high customizability with various options, operating modes and shader parameters
 * can be captured by OBS (using Game Capture source)
 
 <br/>
@@ -68,13 +69,17 @@ If the app reports missing libraries please install [Visual C++ Redistributable 
 
 <br/>
 
+### Demo
+
+Click to view on YouTube
+
+[![ShaderGlass (YouTube)](https://img.youtube.com/vi/gWOcucS9_mg/maxresdefault.jpg)](https://www.youtube.com/watch?v=gWOcucS9_mg)
+
 ### Screenshots
 
 ShaderGlass running over multiple applications on Windows 11 desktop.
 
 ![screenshot](images/screen7.png)
-
-[Demonstration video (YouTube)](https://www.youtube.com/watch?v=gWOcucS9_mg "ShaderGlass")
 
 ##### Desktop Glass mode
 
@@ -125,68 +130,102 @@ with C64 monitor shader applied.
 
 <br/>
 
-### Options
+### Menu Options
 
 Currently supported options are:
 
-* _Processing -> Enable Global Hotkeys_ - toggle use of global hotkeys (if they conflict with another app)
+#### Processing
 
-* _Input -> Desktop_ - captures the whole desktop or an individual monitor, defaults to Glass mode
+* __Enable Global Hotkeys__ - toggle use of global hotkeys (if they conflict with another app)
 
-  * _Lock Current Area_ - always capture current area even if ShaderGlass window is moved
+* __Show Menu__ - toggle menu bar ('m')
 
-* _Input -> Window_ - captures the selected window, defaults to Clone mode
+* __Remember Position__ - remember previous window position and size on startup
 
-* _Input -> File..._ - load a .png or .jpg file as input
+* __GPU__ - shows the GPU which Windows assigned to ShaderGlass (read-only)
 
-* _Input -> Capture Cursor_ - whether to include mouse cursor in capture
+* __FPS__ - by default ShaderGlass runs at V-Sync, you can reduce GPU load by lowering the frame rate (for pixel art etc.)
 
-* _Input -> Remove Yellow Border_ - disables yellow frame around captured area (forced security feature); currently only supported on Windows 11
+* __Advanced__ - extra options for lowering latency; these options require restarting ShaderGlass
+  * __Use Flip Mode__ - uses DXGI Flip Presentation mode (as opposed to BitBlt) which is faster but a little unstable (especially on Windows 10)
+  * __Allow Tearing__ - removes explicit V-Sync, required for VRR to work
+  * __Max Capture Rate__ - remove capture frame limit of WGC, only supported since Windows 11 24H2
 
-* _Input -> Pixel Size_ - indicates the size of input pixels (pre-scaling), i.e. if you run a game in x3 scaling mode set this to x3 as well so that ShaderGlass can tell the original resolution
+* __Load/Save/Recent Profiles__ - you can save ShaderGlass' configuration into a profile file and load later
 
-  * _Adjust for DPI Scale_ - if your source always applies Windows DPI Scaling when displaying images
+#### Input
+
+* __Desktop__ - captures the whole desktop or an individual monitor, defaults to Glass mode
+
+  * __Lock Current Area__ - always capture current area even if ShaderGlass window is moved
+
+* __Window__ - captures the selected window, defaults to Clone mode
+
+  * __Rescan__ - refresh the list of open windows
+
+  * __Crop__ - remove border around captured window, if your emulator has a toolbar for example
+
+* __File__ - load a .png or .jpg file as input
+
+* __Pixel Size__ - indicates the size of input pixels (pre-scaling), i.e. if you run a game in x3 scaling mode set this to x3 as well so that ShaderGlass can tell the original resolution
+
+  * __Adjust for DPI Scale__ - if your source always applies Windows DPI Scaling when displaying images
 (for example browsers) enable this option to take it into account; most emulators don't do this however
 
-* _Output -> Mode_ - overrides default mode for the input type:
+* __Capture Cursor__ - whether to include mouse cursor in capture
 
-  * _Glass_ (default for Desktop) - ShaderGlass window appears transparent, you have to position it over the window or area you'd like to capture
+* __Remove Yellow Border__ - disables yellow frame around captured area (forced security feature); currently only supported on Windows 11
 
-  * _Clone_ (default for Window) - ShaderGlass copies the content of capture so you can position it anywhere; this mode is also faster and more compatible
+#### Output
 
-* _Output -> Window_ - override mouse behavior:
+* __Mode__ - overrides default mode for the input type:
 
-  * _Solid_ (default for Clone) - ShaderGlass window area is solid (traps mouse events), with the only exception of passing focus to captured window when clicked
+  * __Glass__ (default for Desktop) - ShaderGlass window appears transparent, you have to position it over the window or area you'd like to capture
 
-  * _Click-through_ (default for Glass) - ShaderGlass window area is transparent and clickable/scrollable-through to window(s) underneath
+  * __Clone__ (default for Window) - ShaderGlass copies the content of capture so you can position it anywhere; this mode is also faster and more compatible
 
-* _Output -> Scale_ - apply additional scaling to the output if you'd like it to be larger; using no pre-scaling and only output scaling should result in best performance
+* __Window__ - override mouse behavior:
 
-  * _Free_ - allow manual resizing of ShaderGlass window (Window Clone and File modes only)
+  * __Solid__ (default for Clone) - ShaderGlass window area is solid (traps mouse events), with the only exception of passing focus to captured window when clicked
 
-* _Output -> Aspect Ratio Correction_ - presets for common aspect ratio correction factors (DOS, etc.), applied horizontally to preserve scanline count
+  * __Click-through__ (default for Glass) - ShaderGlass window area is transparent and clickable/scrollable-through to window(s) underneath
+
+* __Flip__ - flip output image horizontally and/or vertically
+
+* __Scale__ - apply additional scaling to the output if you'd like it to be larger; using no pre-scaling and only output scaling should result in best performance
+
+  * __Free__ - allow manual resizing of ShaderGlass window (Window Clone and File modes only)
+
+* __Aspect Ratio Correction__ - presets for common aspect ratio correction factors (DOS, etc.), applied horizontally to preserve scanline count
 
   * If you select _Custom_ you can enter your own correction ratio expressed as pixel height (1.0 being square pixel). For example,
   in MS-DOS era a picture of 320x200 resolution (16:10) was displayed on a 4:3 screen meaning each pixel was 1.2x tall on screen, 1.2 = (16/10) / (4/3)
 
-* _Output -> FPS_ - by default ShaderGlass runs at V-Sync, but in order to reduce GPU load you can divide the frame rate by n (for pixel art etc.)
+* __Orientation__ - direction of shader effect, "Vertical" emulates display rotated 90 degrees, like in arcade cabinets
 
-* _Output -> Take Snapshot_ - export current picture in .png format
-
-* _Output -> Fullscreen_ (Ctrl+Shift+G) - turn ShaderGlass into a topmost fullscreen borderless window, in Glass mode you will still see yellow outline around the screen but if you can use
+* __Fullscreen__ (Ctrl+Shift+G) - turn ShaderGlass into a topmost fullscreen borderless window, in Glass mode you will still see yellow outline around the screen but if you can use
 Window Glass (surrounding black bars) or Window Clone (top-left aligned) with your source then you can avoid yellow edges; press Ctrl+Shift+G to revert
 
-* _Shader_ - choose RetroArch shader to apply, or _none_ shader for testing
+* __Take Snapshot__ - export current image in .png format
 
-  * _Choose_ - open Shader Browser to switch the current shader
+#### Shader
 
-  * _Next_ - switch to the next Shader
+* __Choose from Library__ - open Shader Browser to switch the current shader; Shader Library consists of:
 
-  * _Random_ - choose a random Shader
+  * __Personal Favorites__ - you can mark shaders as favorites using Add/Remove Favorite buttons
+  * __Imported__ - custom .slangp/.slang shaders you imported (these are NOT persisted between restarts)
+  * __Community Favorites__ - selection of popular shaders
+  * __RetroArch Library__ - built-in shaders from libretro repository
 
-  * _Active_ - temporarily switch to 'none' Shader to see the difference (hold TAB)
+* __Next__ - switch to the next Shader
 
-  * _Parameters_ - show and modify active shader's parameters
+* __Random__ - choose a random Shader
+
+* __Active__ - temporarily switch to 'none' Shader to see the difference (hold TAB)
+
+* __Import custom__ - load and compile an external .slangp/.slang shader
+
+* __Parameters__ - show and modify active shader's parameters
 
 You can save and load profile files which will store all the options. It's also possible to pass profile file path on the command
 line and ShaderGlass will load it on startup.
@@ -207,7 +246,7 @@ In addition -p will launch in paused mode, and -f will launch in fullscreen mode
 
 <br/>
 
-#### Tuning
+### Tuning
 
 In order to achieve the best effect it's necessary to tune parameters to match your input:
 
