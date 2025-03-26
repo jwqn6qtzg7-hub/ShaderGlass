@@ -38,7 +38,7 @@ https://github.com/mausimus/ShaderGlass/releases/download/v1.0.2/ShaderGlass-1.0
 
 <br/>
 
-Latest beta (v1.0.4, 24 Mar 2025):
+Latest beta (v1.0.5, 26 Mar 2025):
 * ability to import .slangp/.slang shaders on the fly
 * shader library refresh: added koko-aio and retro-crisis
 * ability to tag personal favorites
@@ -46,6 +46,7 @@ Latest beta (v1.0.4, 24 Mar 2025):
 * advanced menu with DXGI settings
 * option to save window position
 * option to crop input window
+* option for vertical orientation
 * 100% FPS now default
 
 [Betas and older versions available here](https://github.com/mausimus/ShaderGlass/releases)
