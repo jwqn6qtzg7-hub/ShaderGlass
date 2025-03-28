@@ -19,7 +19,7 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedStockShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedStockShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")
@@ -29,7 +29,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedStockShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedStockShaderDef()
 .Param("alias", "StockPass")
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")
@@ -40,7 +40,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedAfterglow0ShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedAfterglow0ShaderDef()
 .Param("alias", "AfterglowPass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
@@ -51,7 +51,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedPreShadersAfterglowShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedPreShadersAfterglowShaderDef()
 .Param("alias", "PrePass0")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
@@ -62,7 +62,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedNtscNtscPass1ShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedNtscNtscPass1ShaderDef()
 .Param("alias", "NPass1")
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")
@@ -73,7 +73,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedNtscNtscPass2ShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedNtscNtscPass2ShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
 .Param("mipmap_input", "false")
@@ -83,7 +83,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedNtscNtscPass3ShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedNtscNtscPass3ShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")
@@ -93,7 +93,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedCustomFastSharpenShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedCustomFastSharpenShaderDef()
 .Param("alias", "NtscPass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
@@ -104,7 +104,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedStockShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedStockShaderDef()
 .Param("alias", "PrePass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
@@ -115,7 +115,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedAvgLumNtscShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedAvgLumNtscShaderDef()
 .Param("alias", "AvgLumPass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
@@ -126,7 +126,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedLinearizeNtscShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedLinearizeNtscShaderDef()
 .Param("alias", "LinearizePass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
@@ -137,7 +137,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedCrtGuestAdvancedNtscPass1ShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedCrtGuestAdvancedNtscPass1ShaderDef()
 .Param("alias", "Pass1")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
@@ -148,7 +148,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestHdGaussian_horizontalShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestHdGaussian_horizontalShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
 .Param("mipmap_input", "false")
@@ -158,7 +158,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedGaussian_verticalShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedGaussian_verticalShaderDef()
 .Param("alias", "GlowPass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
@@ -169,7 +169,7 @@ public:
 .Param("scale_y", "600")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestHdBloom_horizontalShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestHdBloom_horizontalShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
 .Param("mipmap_input", "false")
@@ -179,7 +179,7 @@ public:
 .Param("scale_y", "600")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedBloom_verticalShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedBloom_verticalShaderDef()
 .Param("alias", "BloomPass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
@@ -190,7 +190,7 @@ public:
 .Param("scale_y", "600")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedCrtGuestAdvancedNtscPass2ShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedCrtGuestAdvancedNtscPass2ShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
 .Param("mipmap_input", "false")
@@ -200,7 +200,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(SlangShadersCrtShadersGuestAdvancedDeconvergenceNtscShaderDef()
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedDeconvergenceNtscShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")
@@ -210,22 +210,22 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-            TextureDefs.push_back(SlangShadersCrtShadersGuestAdvancedLutTrinitronLutTextureDef()
+            TextureDefs.push_back(CrtShadersGuestAdvancedLutTrinitronLutTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "SamplerLUT1")
 .Param("wrap_mode", "clamp_to_border"));
-            TextureDefs.push_back(SlangShadersCrtShadersGuestAdvancedLutInvTrinitronLutTextureDef()
+            TextureDefs.push_back(CrtShadersGuestAdvancedLutInvTrinitronLutTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "SamplerLUT2")
 .Param("wrap_mode", "clamp_to_border"));
-            TextureDefs.push_back(SlangShadersCrtShadersGuestAdvancedLutNecLutTextureDef()
+            TextureDefs.push_back(CrtShadersGuestAdvancedLutNecLutTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "SamplerLUT3")
 .Param("wrap_mode", "clamp_to_border"));
-            TextureDefs.push_back(SlangShadersCrtShadersGuestAdvancedLutNtscLutTextureDef()
+            TextureDefs.push_back(CrtShadersGuestAdvancedLutNtscLutTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "SamplerLUT4")

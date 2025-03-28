@@ -14,6 +14,7 @@ This file is auto-generated, do not modify directly.
 /////////////////////////////////////////////////////////////////////////////////////
 // STATIC FEATURES ENABLE/DISABLE
 // In case you're running an old pRetrtoarch version (pre 1.16), please comment this (prepend: // )
+//#define _HAS_ROTATION_UNIFORM
 // BEZEL STATIC CONFIG ////////////////////////////////////////////////////////
 //The following defines the monitor frame resolution in textures/monitor_body_[curved/straight].png
 //and are used to calculate the sampling lod.

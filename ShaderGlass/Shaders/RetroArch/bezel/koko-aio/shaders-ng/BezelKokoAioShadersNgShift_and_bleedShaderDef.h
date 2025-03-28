@@ -14,6 +14,7 @@ This file is auto-generated, do not modify directly.
 /////////////////////////////////////////////////////////////////////////////////////
 // STATIC FEATURES ENABLE/DISABLE
 // In case you're running an old pRetrtoarch version (pre 1.16), please comment this (prepend: // )
+//#define _HAS_ROTATION_UNIFORM
 // BEZEL STATIC CONFIG ////////////////////////////////////////////////////////
 //The following defines the monitor frame resolution in textures/monitor_body_[curved/straight].png
 //and are used to calculate the sampling lod.
@@ -3430,10 +3431,10 @@ static const BYTE sVertexByteCode[] =
 
 static const BYTE sFragmentByteCode[] =
 {
-68,88,66,67,41,235,
-58,160,156,81,11,159,
-34,133,224,40,60,72,
-180,216,1,0,0,0,
+68,88,66,67,248,187,
+19,244,156,177,132,102,
+186,82,107,239,244,27,
+54,24,1,0,0,0,
 216,89,0,0,5,0,
 0,0,52,0,0,0,
 196,61,0,0,160,62,
@@ -6161,7 +6162,7 @@ static const BYTE sFragmentByteCode[] =
 51,0,0,8,18,0,
 16,0,1,0,0,0,
 1,64,0,0,0,0,
-160,65,10,128,32,0,
+160,64,10,128,32,0,
 0,0,0,0,18,0,
 0,0,24,0,0,8,
 34,0,16,0,1,0,
