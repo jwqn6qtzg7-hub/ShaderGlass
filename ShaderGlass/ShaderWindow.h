@@ -112,6 +112,9 @@ private:
     bool GetTearingState();
     void SaveMaxCaptureRateState(bool state);
     bool GetMaxCaptureRateState();
+    void SaveRememberFPS(int fps);
+    bool RememberFPS();
+    int  GetRememberFPS();
     bool GetRegistryOption(const wchar_t* name, bool default);
     void SaveRegistryOption(const wchar_t* name, bool value);
     int  GetRegistryInt(const wchar_t* name, int default);

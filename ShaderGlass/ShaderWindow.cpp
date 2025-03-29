@@ -126,7 +126,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                 MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, wideName, MAX_PATH);
                 shaderPath = std::wstring(wideName);
             }
-            else if(key == "FrameSkip")
+            else if(key == "FrameSkip" && !RememberFPS())
             {
                 for(const auto& p : frameSkips)
                 {
@@ -722,12 +722,11 @@ void ShaderWindow::CropWindow()
 
 void ShaderWindow::BuildProgramMenu()
 {
-    m_frameSkipMenu = CreatePopupMenu();
+    m_frameSkipMenu = GetSubMenu(m_programMenu, 8);
     for(const auto& fs : frameSkips)
     {
         AppendMenu(m_frameSkipMenu, MF_STRING, fs.first, fs.second.text);
     }
-    InsertMenu(m_programMenu, 8, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_frameSkipMenu, L"FPS");
 
     m_recentMenu = CreatePopupMenu();
     InsertMenu(m_programMenu, 13, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_recentMenu, L"Recent profiles");
@@ -1508,6 +1507,18 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             }
         }
         break;
+        case ID_FPS_REMEMBERFPS:
+            if(GetMenuState(m_frameSkipMenu, ID_FPS_REMEMBERFPS, MF_BYCOMMAND) & MF_CHECKED)
+            {
+                CheckMenuItem(m_frameSkipMenu, ID_FPS_REMEMBERFPS, MF_UNCHECKED);
+                SaveRememberFPS(-1); // forget
+            }
+            else
+            {
+                CheckMenuItem(m_frameSkipMenu, ID_FPS_REMEMBERFPS, MF_CHECKED);
+                SaveRememberFPS(m_captureOptions.frameSkip);
+            }
+            break;
         case IDM_ABOUT1:
         case IDM_ABOUT2:
         case IDM_ABOUT3:
@@ -1643,9 +1654,13 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                 if(frameSkip != frameSkips.end())
                 {
                     m_selectedFrameSkip = wmId - WM_FRAME_SKIP(0);
-                    CheckMenuRadioItem(m_frameSkipMenu, 0, static_cast<UINT>(frameSkips.size()), wmId - WM_FRAME_SKIP(0), MF_BYPOSITION);
+                    CheckMenuRadioItem(m_frameSkipMenu, 1, static_cast<UINT>(frameSkips.size() + 1), wmId - WM_FRAME_SKIP(0) + 1, MF_BYPOSITION);
                     m_captureOptions.frameSkip = frameSkip->second.s;
                     m_captureManager.UpdateFrameSkip();
+                    if(RememberFPS())
+                    {
+                        SaveRememberFPS(m_captureOptions.frameSkip);
+                    }
                     break;
                 }
                 if(wmId >= WM_RECENT_PROFILE(0) && wmId < WM_RECENT_PROFILE(MAX_RECENT_PROFILES))
@@ -2000,6 +2015,10 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     {
         CheckMenuItem(m_programMenu, ID_PROCESSING_REMEMBERPOSITION, MF_BYCOMMAND | MF_CHECKED);
     }
+    if(RememberFPS())
+    {
+        CheckMenuItem(m_frameSkipMenu, ID_FPS_REMEMBERFPS, MF_BYCOMMAND | MF_CHECKED);
+    }
     if(CanSetCaptureRate())
     {
         if(GetMaxCaptureRateState())
@@ -2024,7 +2043,14 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     {
         SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(defaultNo), 0);
     }
-    SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(0), 0);
+    if(RememberFPS())
+    {
+        SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(GetRememberFPS()), 0);
+    }
+    else
+    {
+        SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(0), 0);
+    }
     SendMessage(m_mainWindow, WM_COMMAND, WM_OUTPUT_SCALE(0), 0);
     SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_DISPLAY(0), 0);
     SendMessage(m_mainWindow, WM_COMMAND, Is1903() ? IDM_MODE_CLONE : IDM_MODE_GLASS, 0);
@@ -2126,6 +2152,21 @@ void ShaderWindow::SaveMaxCaptureRateState(bool state)
 bool ShaderWindow::GetMaxCaptureRateState()
 {
     return GetRegistryOption(TEXT("Max Capture Rate"), false);
+}
+
+void ShaderWindow::SaveRememberFPS(int fps)
+{
+    SaveRegistryInt(TEXT("Remember FPS"), fps);
+}
+
+bool ShaderWindow::RememberFPS()
+{
+    return GetRememberFPS() >= 0;
+}
+
+int ShaderWindow::GetRememberFPS()
+{
+    return GetRegistryInt(TEXT("Remember FPS"), -1);
 }
 
 void ShaderWindow::LoadRecentProfiles()
