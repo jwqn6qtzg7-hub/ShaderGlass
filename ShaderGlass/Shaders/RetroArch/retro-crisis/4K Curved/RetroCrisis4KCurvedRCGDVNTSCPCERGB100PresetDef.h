@@ -1,6 +1,6 @@
 /*
-ShaderGlass preset retro-crisis/4K-Curved / RC GDV-NTSC - PCE RGB 100 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/retro-crisis/4K Curved/RC GDV-NTSC - PCE RGB 100.slangp
+ShaderGlass preset retro-crisis/4K-Curved / RC GDV-NTSC - PCE RGB 100 imported from RetroCrisis:
+https://github.com/RetroCrisis/Retro-Crisis-GDV-NTSC
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

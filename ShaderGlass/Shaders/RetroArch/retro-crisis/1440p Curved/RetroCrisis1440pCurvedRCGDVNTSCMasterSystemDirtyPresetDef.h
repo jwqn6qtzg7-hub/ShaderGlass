@@ -1,6 +1,6 @@
 /*
-ShaderGlass preset retro-crisis/1440p-Curved / RC GDV-NTSC - Master System - Dirty imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/retro-crisis/1440p Curved/RC GDV-NTSC - Master System - Dirty.slangp
+ShaderGlass preset retro-crisis/1440p-Curved / RC GDV-NTSC - Master System - Dirty imported from RetroCrisis:
+https://github.com/RetroCrisis/Retro-Crisis-GDV-NTSC
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

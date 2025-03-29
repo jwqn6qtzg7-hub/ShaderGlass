@@ -43,7 +43,9 @@ const char* _fxcPath  = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26
 const char* _glslExe  = "glslangValidator.exe";
 const char* _spirvExe = "spirv-cross.exe";
 
-const char*      _raUrl = "https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/";
+const char*      _raUrl = "https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/";
+const char*      _mbUrl = "https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/Mega_Bezel";
+const char*      _rcUrl = "https://github.com/RetroCrisis/Retro-Crisis-GDV-NTSC";
 bool             _force = false;
 bool             _tools = false;
 filesystem::path outputPath;

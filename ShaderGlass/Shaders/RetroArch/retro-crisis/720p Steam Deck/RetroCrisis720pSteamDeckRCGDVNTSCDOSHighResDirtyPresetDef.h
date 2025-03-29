@@ -1,6 +1,6 @@
 /*
-ShaderGlass preset retro-crisis/720p-Steam-Deck / RC GDV-NTSC - DOS - High Res - Dirty imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/retro-crisis/720p Steam Deck/RC GDV-NTSC - DOS - High Res - Dirty.slangp
+ShaderGlass preset retro-crisis/720p-Steam-Deck / RC GDV-NTSC - DOS - High Res - Dirty imported from RetroCrisis:
+https://github.com/RetroCrisis/Retro-Crisis-GDV-NTSC
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

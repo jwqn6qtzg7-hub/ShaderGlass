@@ -343,8 +343,21 @@ void populateShaderTemplate(SourceShaderDef def, ofstream& log)
         }
         else if(line.starts_with("%HEADER"))
         {
-            outfile << "ShaderGlass shader " << info.category << "\\" << info.shaderName << " imported from " << _libName << ":" << endl;
-            outfile << _raUrl << def.input.generic_string() << endl;
+            if(info.className.find("RetroCrisis") != string::npos)
+            {
+                outfile << "ShaderGlass shader " << info.category << " / " << info.shaderName << " imported from RetroCrisis:" << endl;
+                outfile << _rcUrl << endl;
+            }
+            else if(info.className.find("Mega_Bezel") != string::npos)
+            {
+                outfile << "ShaderGlass shader " << info.category << " / " << info.shaderName << " imported from MegaBezel:" << endl;
+                outfile << _mbUrl << endl;
+            }
+            else
+            {
+                outfile << "ShaderGlass shader " << info.category << "\\" << info.shaderName << " imported from " << _libName << ":" << endl;
+                outfile << _raUrl << def.input.generic_string() << endl;
+            }
             outfile << "See original file for full credits and usage license with excerpts below. " << endl;
             outfile << "This file is auto-generated, do not modify directly." << endl;
             if(def.comments.size())
@@ -385,8 +398,21 @@ void populateTextureTemplate(SourceTextureDef def, ofstream& log)
             continue;
         if(line.starts_with("%HEADER"))
         {
-            outfile << "ShaderGlass texture " << info.category << " / " << info.shaderName << " imported from " << _libName << ":" << endl;
-            outfile << _raUrl << def.input.generic_string() << endl;
+            if(info.className.find("RetroCrisis") != string::npos)
+            {
+                outfile << "ShaderGlass texture " << info.category << " / " << info.shaderName << " imported from RetroCrisis:" << endl;
+                outfile << _rcUrl << endl;
+            }
+            else if(info.className.find("Mega_Bezel") != string::npos)
+            {
+                outfile << "ShaderGlass texture " << info.category << " / " << info.shaderName << " imported from MegaBezel:" << endl;
+                outfile << _mbUrl << endl;
+            }
+            else
+            {
+                outfile << "ShaderGlass texture " << info.category << " / " << info.shaderName << " imported from " << _libName << ":" << endl;
+                outfile << _raUrl << def.input.generic_string() << endl;
+            }
             outfile << "See original file for credits and usage license. " << endl;
             outfile << "This file is auto-generated, do not modify directly." << endl;
         }
@@ -477,8 +503,21 @@ void populatePresetTemplate(
         }
         else if(line.starts_with("%HEADER"))
         {
-            outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from " << _libName << ":" << endl;
-            outfile << _raUrl << input.generic_string() << endl;
+            if(info.className.find("RetroCrisis") != string::npos)
+            {
+                outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from RetroCrisis:" << endl;
+                outfile << _rcUrl << endl;
+            }
+            else if(info.className.find("Mega_Bezel") != string::npos)
+            {
+                outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from MegaBezel:" << endl;
+                outfile << _mbUrl << endl;
+            }
+            else
+            {
+                outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from " << _libName << ":" << endl;
+                outfile << _raUrl << input.generic_string() << endl;
+            }
             outfile << "See original file for credits and usage license. " << endl;
             outfile << "This file is auto-generated, do not modify directly." << endl;
         }

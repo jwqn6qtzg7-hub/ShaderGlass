@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader stereoscopic-3d/shaders/fubax_vr\VR imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/stereoscopic-3d/shaders/fubax_vr/VR.slang
+https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/stereoscopic-3d/shaders/fubax_vr/VR.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 

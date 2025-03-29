@@ -1,6 +1,6 @@
 /*
-ShaderGlass preset bezel/Mega_Bezel_Base / MBZ__2__ADV-NO-REFLECT__MEGATRON imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/bezel/Mega_Bezel/Presets/Base_CRT_Presets/MBZ__2__ADV-NO-REFLECT__MEGATRON.slangp
+ShaderGlass preset bezel/Mega_Bezel_Base / MBZ__2__ADV-NO-REFLECT__MEGATRON imported from MegaBezel:
+https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/Mega_Bezel
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

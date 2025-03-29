@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader nes_raw_palette/shaders/cgwg-famicom-geom\lowpass-notch-decode-yiq imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/nes_raw_palette/shaders/cgwg-famicom-geom/lowpass-notch-decode-yiq.slang
+https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/nes_raw_palette/shaders/cgwg-famicom-geom/lowpass-notch-decode-yiq.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 

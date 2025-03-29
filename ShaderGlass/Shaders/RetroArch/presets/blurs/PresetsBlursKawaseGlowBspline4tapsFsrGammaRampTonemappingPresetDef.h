@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset presets/blurs / kawase-glow-bspline-4taps-fsr-gamma-ramp-tonemapping imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/presets/blurs/kawase-glow-bspline-4taps-fsr-gamma-ramp-tonemapping.slangp
+https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/presets/blurs/kawase-glow-bspline-4taps-fsr-gamma-ramp-tonemapping.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
