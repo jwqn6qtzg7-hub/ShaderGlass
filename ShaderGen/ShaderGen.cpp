@@ -74,7 +74,7 @@ filesystem::path glsl(const filesystem::path& shaderPath, const string& stage, c
         const auto& result    = exec(cmdstring, log);
         if(result.length() > 0)
             log << result << endl;
-        if(result.contains("error") || result.contains("ERROR"))
+        if(result.find("error") != string::npos || result.find("ERROR") != string::npos)
             throw std::runtime_error("SPIR-V conversion error");
     }
     else
@@ -144,9 +144,9 @@ string fxc(const filesystem::path& shaderPath, const string& profile, const stri
         const auto& result = exec(cmd.str().c_str(), log);
         if(result.length() > 0)
             log << result << endl;
-        if(result.contains("error") || result.contains("ERROR"))
+        if(result.find("error") != string::npos || result.find("ERROR") != string::npos)
             throw std::runtime_error("FXC compilation error");
-        if(result.contains("warn"))
+        if(result.find("warn") != string::npos)
             warn = true;
 
         fstream      infile(output.string());
