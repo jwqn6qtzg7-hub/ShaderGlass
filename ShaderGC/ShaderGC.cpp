@@ -1,5 +1,9 @@
-// ShaderGC.cpp : Defines the functions for the static library.
-//
+/*
+ShaderGC: slangp shader compiler for ShaderGlass
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
 
 #include "pch.h"
 #include "framework.h"
@@ -85,7 +89,7 @@ PresetDef* ShaderGC::CompileShader(std::filesystem::path source, ostream& log, b
     {
         pdef->Name = std::string("???"); // unicode...
     }
-    pdef->Category  = "Imported";
+    pdef->Category = "Imported";
     pdef->ShaderDefs.push_back(shaderDef);
     pdef->ImportPath = source;
 
@@ -99,7 +103,7 @@ vector<string> ShaderGC::LoadSource(const filesystem::path& input, bool followIn
     fstream infile(input);
     if(!infile.good())
         throw std::runtime_error("Unable to find " + input.string());
-    string  line;
+    string line;
     while(getline(infile, line))
     {
         if(followIncludes && line.starts_with("#include"))
@@ -448,7 +452,7 @@ void ShaderGC::ParsePreset(const std::filesystem::path& input, std::map<std::str
     fstream infile(input);
     if(!infile.good())
         throw std::runtime_error("Unable to find " + input.string());
-    string  line;
+    string line;
     while(getline(infile, line))
     {
         if(line.starts_with("#reference"))

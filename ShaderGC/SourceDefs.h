@@ -1,3 +1,10 @@
+/*
+ShaderGC: slangp shader compiler for ShaderGlass
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #pragma once
 
 #include "framework.h"
@@ -116,7 +123,7 @@ struct SourcePresetDef
     SourcePresetDef(const std::filesystem::path& input, SourceShaderInfo info) : input {input}, info {info} { }
 
     std::filesystem::path          input;
-    std::vector<SourceShaderDef>   shaders;    
+    std::vector<SourceShaderDef>   shaders;
     std::vector<SourceTextureDef>  textures;
     std::vector<SourceShaderParam> overrides;
     SourceShaderInfo               info;

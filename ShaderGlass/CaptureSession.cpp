@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 #include "CaptureSession.h"
 #include "Helpers.h"
@@ -22,11 +29,11 @@ CaptureSession::CaptureSession(winrt::IDirect3DDevice const&     device,
                                winrt::DirectXPixelFormat         pixelFormat,
                                ShaderGlass&                      shaderGlass,
                                bool                              maxCaptureRate,
-                               HANDLE                            frameEvent) : m_device {device}, m_item {item}, m_pixelFormat {pixelFormat}, m_shaderGlass {shaderGlass}, m_frameEvent(frameEvent)
+                               HANDLE frameEvent) : m_device {device}, m_item {item}, m_pixelFormat {pixelFormat}, m_shaderGlass {shaderGlass}, m_frameEvent(frameEvent)
 {
     m_contentSize = m_item.Size();
-    m_framePool = winrt::Direct3D11CaptureFramePool::CreateFreeThreaded(m_device, pixelFormat, 2, m_contentSize);
-    m_session   = m_framePool.CreateCaptureSession(m_item);
+    m_framePool   = winrt::Direct3D11CaptureFramePool::CreateFreeThreaded(m_device, pixelFormat, 2, m_contentSize);
+    m_session     = m_framePool.CreateCaptureSession(m_item);
 
     // try to disable yellow border
     if(CanDisableBorder())
@@ -80,7 +87,7 @@ void CaptureSession::OnFrameArrived(winrt::Direct3D11CaptureFramePool const& sen
     auto frame   = sender.TryGetNextFrame();
     m_inputFrame = GetDXGIInterfaceFromObject<ID3D11Texture2D>(frame.Surface());
     m_frameTicks = GetTickCount64();
-    
+
     auto contentSize = frame.ContentSize();
     if(contentSize.Width != m_contentSize.Width || contentSize.Height != m_contentSize.Height)
     {

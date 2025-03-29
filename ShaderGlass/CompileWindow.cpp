@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "resource.h"
@@ -59,17 +66,8 @@ BOOL CompileWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     rect.bottom = (LONG)(WINDOW_HEIGHT * m_dpiScale);
     AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
 
-    HWND hWnd = CreateWindowW(m_windowClass,
-                              m_title,
-                              WS_EX_TOOLWINDOW,
-                              CW_USEDEFAULT,
-                              CW_USEDEFAULT,
-                              rect.right - rect.left,
-                              rect.bottom - rect.top,
-                              m_shaderWindow,
-                              nullptr,
-                              hInstance,
-                              this);
+    HWND hWnd = CreateWindowW(
+        m_windowClass, m_title, WS_EX_TOOLWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top, m_shaderWindow, nullptr, hInstance, this);
 
     if(!hWnd)
     {
@@ -105,7 +103,9 @@ void CompileWindow::Build()
     RECT rcClient; // dimensions of client area
     GetClientRect(m_mainWindow, &rcClient);
     m_textControl = CreateWindowEx(0,
-                                   L"STATIC", TEXT("Compiling shader...\r\n"), SS_CENTER | SS_CENTERIMAGE | WS_VISIBLE | WS_CHILD,
+                                   L"STATIC",
+                                   TEXT("Compiling shader...\r\n"),
+                                   SS_CENTER | SS_CENTERIMAGE | WS_VISIBLE | WS_CHILD,
                                    0,
                                    0,
                                    rcClient.right,

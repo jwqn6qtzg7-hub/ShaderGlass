@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "Shader.h"
@@ -15,10 +22,11 @@ public:
     void Initialize(winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<ID3D11DeviceContext> context);
     void Render(std::map<std::string, winrt::com_ptr<ID3D11ShaderResourceView>>& resources, int frameCount, int boxX, int boxY);
     void Render(ID3D11ShaderResourceView* sourceView, std::map<std::string, winrt::com_ptr<ID3D11ShaderResourceView>>& resources, int frameCount, int boxX, int boxY);
-    void Resize(int sourceWidth, int sourceHeight, int destWidth, int destHeight, const std::map<std::string, float4>& textureSizes, const std::vector<std::array<UINT, 4>>& passSizes);
+    void
+    Resize(int sourceWidth, int sourceHeight, int destWidth, int destHeight, const std::map<std::string, float4>& textureSizes, const std::vector<std::array<UINT, 4>>& passSizes);
     void UpdateMVP(float sx, float sy, float tx, float ty);
     bool RequiresFeedback() const;
-    int RequiresHistory() const;
+    int  RequiresHistory() const;
 
     Shader&                   m_shader;
     Preset&                   m_preset;

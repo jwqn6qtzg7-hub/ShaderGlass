@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "resource.h"
@@ -6,8 +13,8 @@
 #include "BrowserWindow.h"
 #include "CompileWindow.h"
 
-#pragma comment(                                                                                                                           \
-    linker,                                                                                                                                \
+#pragma comment(                                                                                                                                                                   \
+    linker,                                                                                                                                                                        \
     "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)

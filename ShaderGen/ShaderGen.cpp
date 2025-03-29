@@ -1,5 +1,6 @@
 /*
-ShaderGen: slangp shader converter for ShaderGlass
+ShaderGen: shader precompiler for ShaderGlass
+Copyright (C) 2021-2025 mausimus (mausimus.net)
 https://github.com/mausimus/ShaderGlass
 GNU General Public License v3.0
 */

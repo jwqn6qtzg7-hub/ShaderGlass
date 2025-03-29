@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "TextureDef.h"
@@ -7,14 +14,14 @@
 class Texture
 {
 public:
-    TextureDef&               m_textureDef;
-    std::string               m_name;
-    bool                      m_linear;
-    bool                      m_mipmap;
-    bool                      m_clamp;
-    bool                      m_repeat;
-    bool                      m_mirror;
-    winrt::com_ptr<ID3D11Resource> m_textureResource;
+    TextureDef&                              m_textureDef;
+    std::string                              m_name;
+    bool                                     m_linear;
+    bool                                     m_mipmap;
+    bool                                     m_clamp;
+    bool                                     m_repeat;
+    bool                                     m_mirror;
+    winrt::com_ptr<ID3D11Resource>           m_textureResource;
     winrt::com_ptr<ID3D11ShaderResourceView> m_textureView;
 
     Texture(TextureDef& textureDef);

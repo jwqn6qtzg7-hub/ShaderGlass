@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "ShaderPass.h"
@@ -7,8 +14,7 @@ static HRESULT hr;
 
 ShaderPass::ShaderPass(Shader& shader, Preset& preset, bool preprocess) : m_shader {shader}, m_preset {preset}, m_preprocess {preprocess} { }
 
-ShaderPass::ShaderPass(Shader& shader, Preset& preset, winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<ID3D11DeviceContext> context) :
-    ShaderPass(shader, preset, false)
+ShaderPass::ShaderPass(Shader& shader, Preset& preset, winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<ID3D11DeviceContext> context) : ShaderPass(shader, preset, false)
 {
     Initialize(device, context);
 }
@@ -34,15 +40,10 @@ void ShaderPass::Initialize(winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<
     m_device  = device;
     m_context = context;
 
-    D3D11_INPUT_ELEMENT_DESC inputElementDesc[] = {
-        {"TEXCOORD", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-        {"TEXCOORD", 1, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0}};
+    D3D11_INPUT_ELEMENT_DESC inputElementDesc[] = {{"TEXCOORD", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+                                                   {"TEXCOORD", 1, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0}};
 
-    hr = m_device->CreateInputLayout(inputElementDesc,
-                                     ARRAYSIZE(inputElementDesc),
-                                     m_shader.m_shaderDef.VertexByteCode,
-                                     m_shader.m_shaderDef.VertexLength,
-                                     m_inputLayout.put());
+    hr = m_device->CreateInputLayout(inputElementDesc, ARRAYSIZE(inputElementDesc), m_shader.m_shaderDef.VertexByteCode, m_shader.m_shaderDef.VertexLength, m_inputLayout.put());
     assert(SUCCEEDED(hr));
     {
         D3D11_BUFFER_DESC vertex_buff_descr = {};
@@ -173,7 +174,8 @@ ShaderPass::~ShaderPass()
     m_samplers.clear();
 }
 
-void ShaderPass::Resize(int sourceWidth, int sourceHeight, int destWidth, int destHeight, const std::map<std::string, float4>& textureSizes, const std::vector<std::array<UINT, 4>>& passSizes)
+void ShaderPass::Resize(
+    int sourceWidth, int sourceHeight, int destWidth, int destHeight, const std::map<std::string, float4>& textureSizes, const std::vector<std::array<UINT, 4>>& passSizes)
 {
     m_destWidth  = destWidth;
     m_destHeight = destHeight;
@@ -199,8 +201,8 @@ void ShaderPass::Resize(int sourceWidth, int sourceHeight, int destWidth, int de
         const auto& passSize = passSizes.at(p);
         if(passSize[2] != 0 && passSize[3] != 0)
         {
-            auto sizeParam = "PassOutputSize" + std::to_string(p);
-            float passSizeF[4] = { (float)passSize[2], (float)passSize[3], 1.0f / passSize[2], 1.0f / passSize[3] };
+            auto  sizeParam    = "PassOutputSize" + std::to_string(p);
+            float passSizeF[4] = {(float)passSize[2], (float)passSize[3], 1.0f / passSize[2], 1.0f / passSize[3]};
             m_shader.SetParam(sizeParam, passSizeF);
         }
     }

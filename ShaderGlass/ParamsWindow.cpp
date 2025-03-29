@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "resource.h"
@@ -13,11 +20,11 @@ constexpr int PARAM_HEIGHT  = 40;
 constexpr int WINDOW_WIDTH  = 600;
 constexpr int WINDOW_HEIGHT = 600;
 constexpr int TRACK_WIDTH   = 200;
-constexpr int TRACK_HEIGHT  = 30;        
+constexpr int TRACK_HEIGHT  = 30;
 
 ParamsWindow::ParamsWindow(CaptureManager& captureManager) :
-    m_captureManager(captureManager), m_captureOptions(captureManager.m_options), m_title(), m_windowClass(), m_resetButtonWnd(0),
-    m_closeButtonWnd(0), m_font(0), m_dpiScale(1.0f), m_hwndTip(NULL)
+    m_captureManager(captureManager), m_captureOptions(captureManager.m_options), m_title(), m_windowClass(), m_resetButtonWnd(0), m_closeButtonWnd(0), m_font(0), m_dpiScale(1.0f),
+    m_hwndTip(NULL)
 { }
 
 LRESULT CALLBACK ParamsWindow::WndProcProxy(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -184,7 +191,7 @@ void ParamsWindow::RebuildControls()
         ResizeScrollBar();
     }
 
-    char title[200];
+    char        title[200];
     const auto& shader = m_captureManager.Presets().at(m_captureOptions.presetNo);
     if(m_captureManager.IsActive())
         snprintf(title, 200, "Shader Parameters: %s", shader->Name.c_str());
@@ -193,17 +200,17 @@ void ParamsWindow::RebuildControls()
     SetWindowTextA(m_mainWindow, title);
 
     m_hwndTip = CreateWindowEx(NULL,
-                             TOOLTIPS_CLASS,
-                             NULL,
-                             WS_POPUP | TTS_NOANIMATE | TTS_NOFADE | TTS_NOPREFIX,
-                             CW_USEDEFAULT,
-                             CW_USEDEFAULT,
-                             CW_USEDEFAULT,
-                             CW_USEDEFAULT,
-                             m_mainWindow,
-                             NULL,
-                             m_instance,
-                             NULL);
+                               TOOLTIPS_CLASS,
+                               NULL,
+                               WS_POPUP | TTS_NOANIMATE | TTS_NOFADE | TTS_NOPREFIX,
+                               CW_USEDEFAULT,
+                               CW_USEDEFAULT,
+                               CW_USEDEFAULT,
+                               CW_USEDEFAULT,
+                               m_mainWindow,
+                               NULL,
+                               m_instance,
+                               NULL);
 
     for(const auto& pt : m_captureManager.Params())
     {
@@ -231,13 +238,8 @@ void ParamsWindow::RebuildControls()
     else
         ShowWindow(m_resetButtonWnd, SW_HIDE);
 
-    SetWindowPos(m_closeButtonWnd,
-                 m_mainWindow,
-                 (LONG)(m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
-                 (LONG)(m_dpiScale * BUTTON_TOP),
-                 0,
-                 0,
-                 SWP_NOSIZE | SWP_NOZORDER);
+    SetWindowPos(
+        m_closeButtonWnd, m_mainWindow, (LONG)(m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))), (LONG)(m_dpiScale * BUTTON_TOP), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
     ResizeScrollBar();
 }
@@ -409,7 +411,7 @@ void ParamsWindow::AddTrackbar(UINT iMin, UINT iMax, UINT iStart, UINT iSteps, c
 
     SendMessage(hwndTrack, WM_SETFONT, (LPARAM)m_font, true);
 
-    const char* label = p->description.size() ? p->description.c_str() : name;
+    const char* label   = p->description.size() ? p->description.c_str() : name;
     const char* tooltip = label; //p->description.size() ? name : p->description.c_str();
 
     auto paramNameWnd = CreateWindowEx(0,

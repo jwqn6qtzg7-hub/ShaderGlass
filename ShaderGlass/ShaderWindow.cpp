@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "resource.h"
@@ -465,8 +472,8 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     if(m_captureOptions.captureWindow)
     {
         const auto& crop = m_captureOptions.croppedArea;
-        outfile << "CroppedArea \"" << std::to_string(crop.left) << " " << std::to_string(crop.top) << " "
-            << std::to_string(crop.right) << " " << std::to_string(crop.bottom) << "\"" << std::endl;
+        outfile << "CroppedArea \"" << std::to_string(crop.left) << " " << std::to_string(crop.top) << " " << std::to_string(crop.right) << " " << std::to_string(crop.bottom)
+                << "\"" << std::endl;
 
         auto windowTitle = GetWindowStringText(m_captureOptions.captureWindow);
         char utfName[MAX_WINDOW_TITLE];
@@ -478,7 +485,7 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
         MONITORINFOEX info;
         info.cbSize = sizeof(info);
         GetMonitorInfo(m_captureOptions.monitor, &info);
-        char         utfName[MAX_WINDOW_TITLE];
+        char utfName[MAX_WINDOW_TITLE];
         WideCharToMultiByte(CP_UTF8, 0, info.szDevice, -1, utfName, MAX_WINDOW_TITLE, NULL, NULL);
         outfile << "CaptureDesktop " << std::quoted(utfName) << std::endl;
     }
@@ -1673,28 +1680,28 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
     }
     break;
     case WM_USER_CROP_UPDATED: {
-            switch(wParam)
-            {
-            case 0:
-                m_captureOptions.croppedArea.top = (LONG)lParam;
-                break;
-            case 1:
-                m_captureOptions.croppedArea.right = (LONG)lParam;
-                break;
-            case 2:
-                m_captureOptions.croppedArea.bottom = (LONG)lParam;
-                break;
-            case 3:
-                m_captureOptions.croppedArea.left = (LONG)lParam;
-                break;
-            case 4:
-                m_captureOptions.croppedArea = RECT {0, 0, 0, 0};
-                break;
-            }
-            m_captureManager.UpdateCroppedArea();
-            AdjustWindowSize(hWnd);
+        switch(wParam)
+        {
+        case 0:
+            m_captureOptions.croppedArea.top = (LONG)lParam;
+            break;
+        case 1:
+            m_captureOptions.croppedArea.right = (LONG)lParam;
+            break;
+        case 2:
+            m_captureOptions.croppedArea.bottom = (LONG)lParam;
+            break;
+        case 3:
+            m_captureOptions.croppedArea.left = (LONG)lParam;
+            break;
+        case 4:
+            m_captureOptions.croppedArea = RECT {0, 0, 0, 0};
+            break;
         }
-        break;
+        m_captureManager.UpdateCroppedArea();
+        AdjustWindowSize(hWnd);
+    }
+    break;
     case WM_HOTKEY: {
         switch(wParam)
         {

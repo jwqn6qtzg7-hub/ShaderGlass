@@ -1,3 +1,10 @@
+/*
+ShaderGen: shader precompiler for ShaderGlass
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #pragma once
 
 #include <iostream>
@@ -32,13 +39,13 @@ const char* _outputPath   = "..\\ShaderGlass\\Shaders\\";
 const char* _tempPath     = "temp";
 
 // only needed when using -tools option
-const char* _fxcPath      = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\fxc.exe";
-const char* _glslExe      = "glslangValidator.exe";
-const char* _spirvExe     = "spirv-cross.exe";
+const char* _fxcPath  = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\fxc.exe";
+const char* _glslExe  = "glslangValidator.exe";
+const char* _spirvExe = "spirv-cross.exe";
 
-const char* _raUrl        = "https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/";
-bool _force = false;
-bool _tools = false;
+const char*      _raUrl = "https://github.com/libretro/slang-shaders/blob/23046258f7fd02242cc6dd4c08c997a8ddb84935/";
+bool             _force = false;
+bool             _tools = false;
 filesystem::path outputPath;
 
 void replace(string& str, const string& macro, const string& value)

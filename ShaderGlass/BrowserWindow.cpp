@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "resource.h"
@@ -106,7 +113,13 @@ void BrowserWindow::Resize()
     GetClientRect(m_mainWindow, &rcClient);
     SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
     SetWindowPos(m_addFavButton, NULL, 0, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), (LONG)(BUTTON_WIDTH * m_dpiScale), (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
-    SetWindowPos(m_delFavButton, NULL, (LONG)(BUTTON_WIDTH * m_dpiScale), rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), (LONG)(BUTTON_WIDTH * m_dpiScale), (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
+    SetWindowPos(m_delFavButton,
+                 NULL,
+                 (LONG)(BUTTON_WIDTH * m_dpiScale),
+                 rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
+                 (LONG)(BUTTON_WIDTH * m_dpiScale),
+                 (LONG)(PANEL_HEIGHT * m_dpiScale),
+                 0);
 }
 
 BOOL BrowserWindow::CreateImageList(HWND hwndTV)

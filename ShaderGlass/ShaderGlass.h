@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #pragma once
 
 #include "Preset.h"
@@ -11,8 +18,15 @@ class ShaderGlass
 {
 public:
     ShaderGlass();
-    void Initialize(
-        HWND outputWindow, HWND captureWindow, HMONITOR captureMonitor, bool clone, bool image, bool flipMode, bool allowTearing, winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<ID3D11DeviceContext> context);
+    void  Initialize(HWND                                outputWindow,
+                     HWND                                captureWindow,
+                     HMONITOR                            captureMonitor,
+                     bool                                clone,
+                     bool                                image,
+                     bool                                flipMode,
+                     bool                                allowTearing,
+                     winrt::com_ptr<ID3D11Device>        device,
+                     winrt::com_ptr<ID3D11DeviceContext> context);
     void  Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG frameTicks);
     void  SetInputScale(float w, float h);
     void  SetOutputScale(float w, float h);

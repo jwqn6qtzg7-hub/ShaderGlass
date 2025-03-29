@@ -1,3 +1,10 @@
+/*
+ShaderGC: slangp shader compiler for ShaderGlass
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #pragma once
 
 #include "PresetDef.h"
@@ -19,6 +26,6 @@ public:
     LookupParams(const std::vector<SourceShaderParam>& declaredParams, std::vector<SourceShaderSampler>& textures, const std::string& metadata);
 
 private:
-    static ShaderDef CompileSourceShader(SourceShaderDef& def, std::ostream& log, bool& warn);
+    static ShaderDef  CompileSourceShader(SourceShaderDef& def, std::ostream& log, bool& warn);
     static PresetDef* CompileShader(std::filesystem::path source, std::ostream& log, bool& warn);
 };

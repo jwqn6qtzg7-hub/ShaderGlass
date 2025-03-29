@@ -1,3 +1,10 @@
+/*
+ShaderGlass: shader effect overlay
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 #include "CaptureManager.h"
 #include "ShaderList.h"
@@ -96,8 +103,15 @@ bool CaptureManager::StartSession()
     }
 
     m_shaderGlass = make_unique<ShaderGlass>();
-    m_shaderGlass->Initialize(
-        m_options.outputWindow, m_options.captureWindow, m_options.monitor, m_options.clone, !m_options.imageFile.empty(), m_options.flipMode, m_options.allowTearing, m_d3dDevice, m_context);
+    m_shaderGlass->Initialize(m_options.outputWindow,
+                              m_options.captureWindow,
+                              m_options.monitor,
+                              m_options.clone,
+                              !m_options.imageFile.empty(),
+                              m_options.flipMode,
+                              m_options.allowTearing,
+                              m_d3dDevice,
+                              m_context);
     UpdatePixelSize();
     UpdateOutputSize();
     UpdateOutputFlip();
@@ -134,7 +148,8 @@ bool CaptureManager::StartSession()
     }
     else
     {
-        m_session = make_unique<CaptureSession>(device, captureItem, winrt::Windows::Graphics::DirectX::DirectXPixelFormat::B8G8R8A8UIntNormalized, *m_shaderGlass, m_options.maxCaptureRate, m_frameEvent);
+        m_session = make_unique<CaptureSession>(
+            device, captureItem, winrt::Windows::Graphics::DirectX::DirectXPixelFormat::B8G8R8A8UIntNormalized, *m_shaderGlass, m_options.maxCaptureRate, m_frameEvent);
     }
 
     m_active = true;

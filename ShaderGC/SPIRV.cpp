@@ -1,3 +1,10 @@
+/*
+ShaderGC: slangp shader compiler for ShaderGlass
+Copyright (C) 2021-2025 mausimus (mausimus.net)
+https://github.com/mausimus/ShaderGlass
+GNU General Public License v3.0
+*/
+
 #include "pch.h"
 
 #include "SPIRV.h"
@@ -28,7 +35,7 @@ std::pair<std::string, std::string> SPIRV::GenerateHLSL(const std::vector<uint32
         CompilerHLSL hlsl(bin);
 
         CompilerHLSL::Options options;
-        options.shader_model = 50;        
+        options.shader_model = 50;
         hlsl.set_hlsl_options(options);
         std::string source = hlsl.compile();
 
