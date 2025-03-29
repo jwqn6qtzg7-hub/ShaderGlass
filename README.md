@@ -146,6 +146,8 @@ Currently supported options are:
 
 * __FPS__ - by default ShaderGlass runs at V-Sync, you can reduce GPU load by lowering the frame rate (for pixel art etc.)
 
+  * __Remember FPS__ - tick so that ShaderGlass remembers and always uses current FPS setting (this overrides any preset)
+
 * __Advanced__ - extra options for lowering latency; these options require restarting ShaderGlass
   * __Use Flip Mode__ - uses DXGI Flip Presentation mode (as opposed to BitBlt) which is faster but a little unstable (especially on Windows 10)
   * __Allow Tearing__ - removes explicit V-Sync, required for VRR to work
@@ -313,7 +315,7 @@ into .h files which can be merged into ShaderGlass. The conversion process requi
 * Includes precompiled shaders from [libretro/RetroArch shader repository](https://github.com/libretro/slang-shaders).
 Please refer to copyright notes within shader code for detailed copyright and license information about each shader.
 
-* App icon courtesy of [Icons-Land](http://www.icons-land.com/)
+* App icon courtesy of Icons-Land
 
 * Big kudos to RetroArch team, emulator developers and the wide retro community!
 
