@@ -157,7 +157,7 @@ void ShaderGlass::RebuildShaders()
     {
         m_shaderPasses.emplace_back(m_preprocessShader, m_preprocessPreset, m_device, m_context);                
     }
-    float vertical = m_vertical ? 1 : 0;
+    float vertical = m_vertical ? 1.0f : 0.0f;
     m_preprocessShader.SetParam("SGVertical", &vertical);
 
     m_presetTextures.clear();
@@ -505,8 +505,8 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
 
         if(!m_freeScale)
         {
-            clientWidth = roundf(captureW / m_outputScaleW);
-            clientHeight = roundf(captureH / m_outputScaleH);
+            clientWidth = (LONG)roundf(captureW / m_outputScaleW);
+            clientHeight = (LONG)roundf(captureH / m_outputScaleH);
         }
 
         // box if needed
@@ -599,7 +599,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
                 {
                     if(get<0>(ip) == get<0>(sp) && get<1>(ip) == get<1>(sp)->name)
                     {
-                        get<1>(sp)->currentValue = get<2>(ip);
+                        get<1>(sp)->currentValue = (float)get<2>(ip);
                         break;
                     }
                 }
@@ -834,7 +834,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         if(m_requiresFeedback)
         {
             // add feedback for last pass
-            int                  p        = m_shaderPasses.size() - 1;
+            int                  p        = (int)m_shaderPasses.size() - 1;
             const auto&          lastPass = m_shaderPasses[p];
 
             D3D11_TEXTURE2D_DESC desc2    = {};
@@ -989,7 +989,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         auto displayTexture = m_displayTexture;
         if(displayTexture)
         {
-            int p = m_shaderPasses.size() - 1;
+            int p = (int)m_shaderPasses.size() - 1;
             const auto& lastPass = m_shaderPasses[p];
             auto lastPassFeedback = m_passResources.find(std::string("PassFeedback") + std::to_string(p));
             winrt::com_ptr<ID3D11Resource> lastPassFeedbackResource;

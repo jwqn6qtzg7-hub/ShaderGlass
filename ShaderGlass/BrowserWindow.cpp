@@ -62,8 +62,8 @@ BOOL BrowserWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     RECT rect;
     rect.left   = 0;
     rect.top    = 0;
-    rect.right  = WINDOW_WIDTH * m_dpiScale;
-    rect.bottom = WINDOW_HEIGHT * m_dpiScale;
+    rect.right  = (LONG)(WINDOW_WIDTH * m_dpiScale);
+    rect.bottom = (LONG)(WINDOW_HEIGHT * m_dpiScale);
     AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
 
     HWND hWnd = CreateWindowW(m_windowClass,
@@ -104,9 +104,9 @@ void BrowserWindow::Resize()
 {
     RECT rcClient;
     GetClientRect(m_mainWindow, &rcClient);
-    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (PANEL_HEIGHT * m_dpiScale), 0);
-    SetWindowPos(m_addFavButton, NULL, 0, rcClient.bottom - (PANEL_HEIGHT * m_dpiScale), BUTTON_WIDTH * m_dpiScale, PANEL_HEIGHT * m_dpiScale, 0);
-    SetWindowPos(m_delFavButton, NULL, BUTTON_WIDTH * m_dpiScale, rcClient.bottom - (PANEL_HEIGHT * m_dpiScale), BUTTON_WIDTH * m_dpiScale, PANEL_HEIGHT * m_dpiScale, 0);
+    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
+    SetWindowPos(m_addFavButton, NULL, 0, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), (LONG)(BUTTON_WIDTH * m_dpiScale), (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
+    SetWindowPos(m_delFavButton, NULL, (LONG)(BUTTON_WIDTH * m_dpiScale), rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), (LONG)(BUTTON_WIDTH * m_dpiScale), (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
 }
 
 BOOL BrowserWindow::CreateImageList(HWND hwndTV)
@@ -222,7 +222,7 @@ void BrowserWindow::Build()
                                    0,
                                    0,
                                    rcClient.right,
-                                   rcClient.bottom - (PANEL_HEIGHT * m_dpiScale),
+                                   rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
                                    m_mainWindow,
                                    NULL,
                                    m_instance,
@@ -354,9 +354,9 @@ void BrowserWindow::Build()
                                   L"Add Favorite",
                                   WS_TABSTOP | WS_VISIBLE | WS_CHILD,
                                   0,
-                                  rcClient.bottom - (PANEL_HEIGHT * m_dpiScale),
-                                  BUTTON_WIDTH * m_dpiScale,
-                                  PANEL_HEIGHT * m_dpiScale,
+                                  rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
+                                  (LONG)(BUTTON_WIDTH * m_dpiScale),
+                                  (LONG)(PANEL_HEIGHT * m_dpiScale),
                                   m_mainWindow,
                                   NULL,
                                   (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
@@ -366,10 +366,10 @@ void BrowserWindow::Build()
     m_delFavButton = CreateWindow(L"BUTTON",
                                   L"Remove Favorite",
                                   WS_TABSTOP | WS_VISIBLE | WS_CHILD,
-                                  BUTTON_WIDTH * m_dpiScale,
-                                  rcClient.bottom - (PANEL_HEIGHT * m_dpiScale),
-                                  BUTTON_WIDTH * m_dpiScale,
-                                  PANEL_HEIGHT * m_dpiScale,
+                                  (LONG)(BUTTON_WIDTH * m_dpiScale),
+                                  rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
+                                  (LONG)(BUTTON_WIDTH * m_dpiScale),
+                                  (LONG)(PANEL_HEIGHT * m_dpiScale),
                                   m_mainWindow,
                                   NULL,
                                   (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
@@ -467,7 +467,7 @@ void BrowserWindow::SavePersonal()
                 _snwprintf_s(value, MAX_VALUE, L"%S:%S", profile->Category.c_str(), profile->Name.c_str());
                 wchar_t name[MAX_NAME];
                 _snwprintf_s(name, MAX_NAME, L"%d", index++);
-                RegSetValueEx(hkey, name, 0, REG_SZ, (PBYTE)value, wcslen(value) * sizeof(wchar_t));
+                RegSetValueEx(hkey, name, 0, REG_SZ, (PBYTE)value, (DWORD)(wcslen(value) * sizeof(wchar_t)));
             }
         }
         catch(...)
@@ -550,7 +550,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             if(HIWORD(wParam)) // quick toggle
                 return 0;
             // sync shader
-            auto favorite = m_favorites.find(lParam);
+            auto favorite = m_favorites.find((UINT)lParam);
             if(favorite != m_favorites.end())
             {
                 // check if already selected
@@ -561,7 +561,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                     return 0;
                 }
             }
-            auto personal = m_personal.find(lParam);
+            auto personal = m_personal.find((UINT)lParam);
             if(personal != m_personal.end())
             {
                 // check if already selected
@@ -572,7 +572,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                     return 0;
                 }
             }
-            auto item = m_items.find(lParam);
+            auto item = m_items.find((UINT)lParam);
             if(item != m_items.end())
             {
                 PostMessage(m_treeControl, TVM_SELECTITEM, TVGN_CARET, (LPARAM)item->second);
@@ -581,7 +581,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             return 0;
         }
         case WM_USER + 1: {
-            int id = WM_SHADER(lParam);
+            auto id = (UINT)WM_SHADER(lParam);
 
             if(m_items.contains(id)) // in-place update
                 return 0;
@@ -599,7 +599,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             return 0;
         }
         case BN_CLICKED: {
-            if(lParam == (UINT)m_addFavButton)
+            if(lParam == (LPARAM)m_addFavButton)
             {
                 auto selected = TreeView_GetSelection(m_treeControl);
                 if(selected == nullptr)
@@ -608,7 +608,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                 tvi.mask  = TVIF_PARAM;
                 tvi.hItem = selected;
                 TreeView_GetItem(m_treeControl, &tvi);
-                const auto id = tvi.lParam;
+                const auto id = (UINT)tvi.lParam;
                 if(m_personal.find(id) == m_personal.end())
                 {
                     const auto& preset = m_captureManager.Presets().at(id - WM_SHADER(0));
@@ -630,7 +630,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                     SavePersonal();
                 }
             }
-            else if(lParam == (UINT)m_delFavButton)
+            else if(lParam == (LPARAM)m_delFavButton)
             {
                 auto selected = TreeView_GetSelection(m_treeControl);
                 if(selected == nullptr)
@@ -639,7 +639,7 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                 tvi.mask  = TVIF_PARAM;
                 tvi.hItem = selected;
                 TreeView_GetItem(m_treeControl, &tvi);
-                const auto id           = tvi.lParam;
+                const auto id           = (UINT)tvi.lParam;
                 const auto personalItem = m_personal.find(id);
                 if(personalItem != m_personal.end())
                 {

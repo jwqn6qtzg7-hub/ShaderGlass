@@ -183,7 +183,7 @@ int CaptureManager::AddPreset(PresetDef* preset)
     else
     {
         m_presetList.push_back(std::unique_ptr<PresetDef>(preset));
-        return m_presetList.size() - 1;
+        return (int)m_presetList.size() - 1;
     }
 }
 

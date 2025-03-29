@@ -17,9 +17,6 @@ CropDialog::CropDialog(HINSTANCE hInstance, HWND mainWindow) : m_instance(hInsta
 
 INT_PTR CALLBACK CropProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    TCHAR lpszInput[16];
-    WORD  cchInput;
-
     switch(message)
     {
     case WM_INITDIALOG: {

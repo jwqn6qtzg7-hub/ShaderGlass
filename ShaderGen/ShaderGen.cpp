@@ -108,7 +108,7 @@ pair<string, string> spirv(const filesystem::path& input, const std::string& sta
     else
     {
         ifstream inf(input, ios::binary | ios::ate);
-        int      size = inf.tellg();
+        auto     size = inf.tellg();
         inf.seekg(0, ios::beg);
         vector<uint32_t> buffer;
         buffer.resize(size / sizeof(uint32_t));

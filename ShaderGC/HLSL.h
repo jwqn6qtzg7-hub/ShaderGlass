@@ -3,5 +3,5 @@
 class HLSL
 {
 public:
-    static std::vector<uint8_t> CompileHLSL(const char* source, int size, const char* profile, std::ostream& log, bool& warn);
+    static std::vector<uint8_t> CompileHLSL(const char* source, size_t size, const char* profile, std::ostream& log, bool& warn);
 };

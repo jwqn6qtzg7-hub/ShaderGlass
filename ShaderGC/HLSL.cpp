@@ -7,7 +7,7 @@
 
 #pragma comment(lib, "d3dcompiler.lib")
 
-std::vector<uint8_t> HLSL::CompileHLSL(const char* source, int size, const char* profile, std::ostream& log, bool& warn)
+std::vector<uint8_t> HLSL::CompileHLSL(const char* source, size_t size, const char* profile, std::ostream& log, bool& warn)
 {
     //std::cout << "CompileHLSL...";
 

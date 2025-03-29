@@ -65,8 +65,8 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     RECT rect;
     rect.left   = 0;
     rect.top    = 0;
-    rect.right  = WINDOW_WIDTH * m_dpiScale;
-    rect.bottom = WINDOW_HEIGHT * m_dpiScale;
+    rect.right  = (LONG)(WINDOW_WIDTH * m_dpiScale);
+    rect.bottom = (LONG)(WINDOW_HEIGHT * m_dpiScale);
     AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
 
     HWND hWnd = CreateWindowW(m_windowClass,
@@ -96,10 +96,10 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     m_resetButtonWnd = CreateWindow(L"BUTTON",
                                     L"Defaults",
                                     WS_TABSTOP | WS_VISIBLE | WS_CHILD,
-                                    m_dpiScale * ((WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2)),
-                                    m_dpiScale * BUTTON_TOP,
-                                    m_dpiScale * BUTTON_WIDTH,
-                                    m_dpiScale * BUTTON_HEIGHT,
+                                    (LONG)(m_dpiScale * ((WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
+                                    (LONG)(m_dpiScale * BUTTON_TOP),
+                                    (LONG)(m_dpiScale * BUTTON_WIDTH),
+                                    (LONG)(m_dpiScale * BUTTON_HEIGHT),
                                     m_mainWindow,
                                     NULL,
                                     (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
@@ -109,10 +109,10 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     m_closeButtonWnd = CreateWindow(L"BUTTON",
                                     L"Close",
                                     WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-                                    m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2)),
-                                    m_dpiScale * BUTTON_TOP,
-                                    m_dpiScale * BUTTON_WIDTH,
-                                    m_dpiScale * BUTTON_HEIGHT,
+                                    (LONG)(m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
+                                    (LONG)(m_dpiScale * BUTTON_TOP),
+                                    (LONG)(m_dpiScale * BUTTON_WIDTH),
+                                    (LONG)(m_dpiScale * BUTTON_HEIGHT),
                                     m_mainWindow,
                                     NULL,
                                     (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
@@ -155,7 +155,7 @@ void ParamsWindow::ResizeScrollBar()
         EnableScrollBar(m_mainWindow, SB_VERT, ESB_ENABLE_BOTH);
         ScrollWindow(m_mainWindow, 0, 5 * si.nPos, NULL, NULL);
         si.nMin = 0;
-        si.nMax = (requiredSize - actualSize) / 5;
+        si.nMax = (int)((requiredSize - actualSize) / 5);
         si.nPos = 0;
         SetScrollInfo(m_mainWindow, SB_VERT, &si, true);
     }
@@ -223,8 +223,8 @@ void ParamsWindow::RebuildControls()
     if(m_trackbars.size())
         SetWindowPos(m_resetButtonWnd,
                      m_mainWindow,
-                     m_dpiScale * ((WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2)),
-                     m_dpiScale * BUTTON_TOP,
+                     (LONG)(m_dpiScale * ((WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
+                     (LONG)(m_dpiScale * BUTTON_TOP),
                      0,
                      0,
                      SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW);
@@ -233,8 +233,8 @@ void ParamsWindow::RebuildControls()
 
     SetWindowPos(m_closeButtonWnd,
                  m_mainWindow,
-                 m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2)),
-                 m_dpiScale * BUTTON_TOP,
+                 (LONG)(m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
+                 (LONG)(m_dpiScale * BUTTON_TOP),
                  0,
                  0,
                  SWP_NOSIZE | SWP_NOZORDER);
@@ -348,11 +348,11 @@ LRESULT CALLBACK ParamsWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         switch(wmId)
         {
         case BN_CLICKED: {
-            if(lParam == (UINT)m_closeButtonWnd)
+            if(lParam == (LPARAM)m_closeButtonWnd)
             {
                 ShowWindow(m_mainWindow, SW_HIDE);
             }
-            else if(lParam == (UINT)m_resetButtonWnd)
+            else if(lParam == (LPARAM)m_resetButtonWnd)
             {
                 m_captureManager.ResetParams();
                 RebuildControls();
@@ -388,10 +388,10 @@ void ParamsWindow::AddTrackbar(UINT iMin, UINT iMax, UINT iStart, UINT iSteps, c
                                     TRACKBAR_CLASS,
                                     L"Trackbar Control",
                                     WS_CHILD | WS_VISIBLE | TBS_AUTOTICKS,
-                                    m_dpiScale * STATIC_WIDTH,
-                                    m_dpiScale * (m_trackbars.size() * PARAM_HEIGHT + PARAMS_TOP),
-                                    m_dpiScale * TRACK_WIDTH,
-                                    m_dpiScale * TRACK_HEIGHT,
+                                    (LONG)(m_dpiScale * STATIC_WIDTH),
+                                    (LONG)(m_dpiScale * (m_trackbars.size() * PARAM_HEIGHT + PARAMS_TOP)),
+                                    (LONG)(m_dpiScale * TRACK_WIDTH),
+                                    (LONG)(m_dpiScale * TRACK_HEIGHT),
                                     m_mainWindow,
                                     (HMENU)m_trackbars.size(),
                                     m_instance,
@@ -418,8 +418,8 @@ void ParamsWindow::AddTrackbar(UINT iMin, UINT iMax, UINT iStart, UINT iSteps, c
                                        SS_RIGHT | SS_NOTIFY | WS_CHILD | WS_VISIBLE,
                                        2,
                                        0,
-                                       m_dpiScale * STATIC_WIDTH - 2,
-                                       m_dpiScale * STATIC_HEIGHT,
+                                       (LONG)(m_dpiScale * STATIC_WIDTH - 2),
+                                       (LONG)(m_dpiScale * STATIC_HEIGHT),
                                        m_mainWindow,
                                        NULL,
                                        m_instance,
@@ -448,8 +448,8 @@ void ParamsWindow::AddTrackbar(UINT iMin, UINT iMax, UINT iStart, UINT iSteps, c
                                         SS_LEFT | WS_CHILD | WS_VISIBLE,
                                         0,
                                         0,
-                                        m_dpiScale * STATIC_WIDTH,
-                                        m_dpiScale * STATIC_HEIGHT,
+                                        (LONG)(m_dpiScale * STATIC_WIDTH),
+                                        (LONG)(m_dpiScale * STATIC_HEIGHT),
                                         m_mainWindow,
                                         NULL,
                                         m_instance,

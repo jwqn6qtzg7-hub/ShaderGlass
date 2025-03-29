@@ -55,8 +55,8 @@ BOOL CompileWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     RECT rect;
     rect.left   = 0;
     rect.top    = 0;
-    rect.right  = WINDOW_WIDTH * m_dpiScale;
-    rect.bottom = WINDOW_HEIGHT * m_dpiScale;
+    rect.right  = (LONG)(WINDOW_WIDTH * m_dpiScale);
+    rect.bottom = (LONG)(WINDOW_HEIGHT * m_dpiScale);
     AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
 
     HWND hWnd = CreateWindowW(m_windowClass,

@@ -97,7 +97,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                     {
                         float customValue = std::stof(value);
                         if(customValue != 0 && !std::isnan(customValue))
-                            SendMessage(m_mainWindow, WM_COMMAND, aspectRatios.rbegin()->first, customValue * CUSTOM_PARAM_SCALE);
+                            SendMessage(m_mainWindow, WM_COMMAND, aspectRatios.rbegin()->first, (LPARAM)(customValue * CUSTOM_PARAM_SCALE));
                     }
                     catch(std::exception&)
                     {
@@ -218,7 +218,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                     auto name   = key.substr(split + 1);
                     params.push_back(std::make_tuple(passNo, name, std::stod(value)));
                 }
-                catch(std::exception& e)
+                catch(std::exception&)
                 {
                     // ignored
                 }
@@ -416,7 +416,7 @@ void ShaderWindow::LoadImage()
                 defaultScale = max(1, min(r.right / m_captureOptions.imageWidth, r.bottom / m_captureOptions.imageHeight));
             }
 
-            m_captureOptions.outputScale = defaultScale;
+            m_captureOptions.outputScale = (float)defaultScale;
             SendMessage(m_mainWindow, WM_COMMAND, WM_PIXEL_SIZE(0), 0);
             SetFreeScale();
         }
@@ -478,8 +478,9 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
         MONITORINFOEX info;
         info.cbSize = sizeof(info);
         GetMonitorInfo(m_captureOptions.monitor, &info);
-        std::wstring wname(info.szDevice);
-        outfile << "CaptureDesktop " << std::quoted(std::string(wname.begin(), wname.end())) << std::endl;
+        char         utfName[MAX_WINDOW_TITLE];
+        WideCharToMultiByte(CP_UTF8, 0, info.szDevice, -1, utfName, MAX_WINDOW_TITLE, NULL, NULL);
+        outfile << "CaptureDesktop " << std::quoted(utfName) << std::endl;
     }
     for(const auto& pt : m_captureManager.Params())
     {
@@ -541,7 +542,7 @@ void ShaderWindow::CompileThreadFunc()
             if(preset == nullptr)
                 throw std::runtime_error("Internal error");
             auto id      = m_captureManager.AddPreset(preset);
-            m_numPresets = m_captureManager.Presets().size();
+            m_numPresets = (unsigned int)m_captureManager.Presets().size();
             SendMessage(m_browserWindow, WM_COMMAND, WM_USER + 1, id);
             SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(id), 0);
         }
@@ -618,8 +619,9 @@ BOOL CALLBACK ShaderWindow::EnumDisplayMonitorsProc(_In_ HMONITOR hMonitor, _In_
     info.cbSize = sizeof(info);
     GetMonitorInfo(hMonitor, &info);
 
-    std::wstring   wname(info.szDevice);
-    CaptureDisplay cd(hMonitor, std::string(wname.begin(), wname.end()));
+    char utfName[MAX_WINDOW_TITLE];
+    WideCharToMultiByte(CP_UTF8, 0, info.szDevice, -1, utfName, MAX_WINDOW_TITLE, NULL, NULL);
+    CaptureDisplay cd(hMonitor, std::string(utfName));
     if(cd.name.size())
         m_captureDisplays.emplace_back(cd);
 
@@ -790,7 +792,7 @@ void ShaderWindow::BuildOutputMenu()
 void ShaderWindow::BuildShaderMenu()
 {
     // now deferred to BrowserWindow
-    m_numPresets = m_captureManager.Presets().size();
+    m_numPresets = (unsigned int)m_captureManager.Presets().size();
     if(m_numPresets >= MAX_SHADERS)
         throw std::runtime_error("Too many shaders!");
 
@@ -1674,16 +1676,16 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             switch(wParam)
             {
             case 0:
-                m_captureOptions.croppedArea.top = lParam;
+                m_captureOptions.croppedArea.top = (LONG)lParam;
                 break;
             case 1:
-                m_captureOptions.croppedArea.right = lParam;
+                m_captureOptions.croppedArea.right = (LONG)lParam;
                 break;
             case 2:
-                m_captureOptions.croppedArea.bottom = lParam;
+                m_captureOptions.croppedArea.bottom = (LONG)lParam;
                 break;
             case 3:
-                m_captureOptions.croppedArea.left = lParam;
+                m_captureOptions.croppedArea.left = (LONG)lParam;
                 break;
             case 4:
                 m_captureOptions.croppedArea = RECT {0, 0, 0, 0};
@@ -2166,7 +2168,7 @@ void ShaderWindow::SaveRecentProfiles()
             {
                 // update value
                 const auto& path = m_recentProfiles.at(p);
-                RegSetValueEx(hkey, value.data(), 0, REG_SZ, (PBYTE)path.data(), path.size() * sizeof(wchar_t));
+                RegSetValueEx(hkey, value.data(), 0, REG_SZ, (PBYTE)path.data(), (int)path.size() * sizeof(wchar_t));
             }
             else
             {
@@ -2261,7 +2263,7 @@ void ShaderWindow::SaveRecentImports()
             {
                 // update value
                 const auto& path = m_recentImports.at(p);
-                RegSetValueEx(hkey, value.data(), 0, REG_SZ, (PBYTE)path.data(), path.size() * sizeof(wchar_t));
+                RegSetValueEx(hkey, value.data(), 0, REG_SZ, (PBYTE)path.data(), (int)path.size() * sizeof(wchar_t));
             }
             else
             {

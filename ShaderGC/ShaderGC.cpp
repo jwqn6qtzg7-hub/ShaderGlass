@@ -597,11 +597,11 @@ TextureDef ShaderGC::CompileTexture(std::filesystem::path source, std::ostream& 
     if(inf.bad())
         throw std::runtime_error("Error loading texture " + source.string());
 
-    int size = inf.tellg();
+    auto size = inf.tellg();
     inf.seekg(0, ios::beg);
 
     def.Data       = new uint8_t[size];
-    def.DataLength = size;
+    def.DataLength = (int)size;
     def.Name       = source.filename().string();
     inf.read((char*)def.Data, size);
     inf.close();

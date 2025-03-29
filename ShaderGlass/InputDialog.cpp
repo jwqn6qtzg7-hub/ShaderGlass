@@ -65,7 +65,7 @@ INT_PTR CALLBACK InputProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam
             {
                 inputValue = std::stof(lpszInput);
             }
-            catch(std::exception& e)
+            catch(std::exception&)
             {
                 MessageBox(hDlg, L"Invalid value entered.", L"Error", MB_OK);
                 EndDialog(hDlg, FALSE);

@@ -200,7 +200,7 @@ void ShaderPass::Resize(int sourceWidth, int sourceHeight, int destWidth, int de
         if(passSize[2] != 0 && passSize[3] != 0)
         {
             auto sizeParam = "PassOutputSize" + std::to_string(p);
-            float passSizeF[4] = { passSize[2], passSize[3], 1.0f / passSize[2], 1.0f / passSize[3] };
+            float passSizeF[4] = { (float)passSize[2], (float)passSize[3], 1.0f / passSize[2], 1.0f / passSize[3] };
             m_shader.SetParam(sizeParam, passSizeF);
         }
     }
