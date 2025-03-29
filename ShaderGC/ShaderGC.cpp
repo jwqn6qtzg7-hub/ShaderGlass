@@ -100,7 +100,7 @@ vector<string> ShaderGC::LoadSource(const filesystem::path& input, bool followIn
 {
     vector<string> lines;
 
-    fstream infile(input);
+    ifstream infile(input);
     if(!infile.good())
         throw std::runtime_error("Unable to find " + input.string());
     string line;
@@ -132,7 +132,7 @@ void ShaderGC::ProcessSourceShader(SourceShaderDef& def, ostream& log, bool& war
     ostringstream fragmentSource;
 
     bool        isVertex = true, isFragment = true;
-    const auto& source    = LoadSource(def.input, true);
+    const auto& source    = LoadSource(def.input.lexically_normal(), true);
     bool        inComment = false;
     for(const auto& line : source)
     {
@@ -449,9 +449,9 @@ void setPresetParams(SourceTextureDef& def, std::string name, const map<string, 
 
 void ShaderGC::ParsePreset(const std::filesystem::path& input, std::map<std::string, std::string>& keyValues, std::map<std::string, std::filesystem::path>& valuePaths)
 {
-    fstream infile(input);
+    ifstream infile(input.lexically_normal());
     if(!infile.good())
-        throw std::runtime_error("Unable to find " + input.string());
+        throw std::runtime_error("Unable to find " + input.lexically_normal().string());
     string line;
     while(getline(infile, line))
     {
@@ -597,7 +597,7 @@ TextureDef ShaderGC::CompileTexture(std::filesystem::path source, std::ostream& 
 {
     TextureDef def;
 
-    ifstream inf(source, ios::binary | ios::ate);
+    ifstream inf(source.lexically_normal(), ios::binary | ios::ate);
     if(inf.bad())
         throw std::runtime_error("Error loading texture " + source.string());
 
