@@ -38,7 +38,7 @@ https://github.com/mausimus/ShaderGlass/releases/download/v1.0.2/ShaderGlass-1.0
 
 <br/>
 
-Latest beta (v1.0.6, 29 Mar 2025):
+Latest beta (v1.0.7, 30 Mar 2025):
 * ability to import .slangp/.slang shaders on the fly
 * shader library refresh: added koko-aio and retro-crisis
 * ability to tag personal favorites
