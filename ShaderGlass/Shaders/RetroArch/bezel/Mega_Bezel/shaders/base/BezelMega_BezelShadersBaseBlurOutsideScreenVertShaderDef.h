@@ -22223,6 +22223,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa474ecee,0x3a7ffc56,0x44eee07c,0x61d0532a,0xefcf3c18,0x70adad17,
+0x8fbbfafa,0x6c335e54
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xbd29cfe0,0xa28182de,0x68ba4a8b,0xc11846a4,0xe8a28a27,0x2342cccd,
+0x28979836,0xda0d01b6
+};
+
 }
 
 namespace RetroArch
@@ -22235,8 +22249,10 @@ public:
 		Name = "blur-outside-screen-vert";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBaseBlurOutsideScreenVertShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBaseBlurOutsideScreenVertShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBaseBlurOutsideScreenVertShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBaseBlurOutsideScreenVertShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBaseBlurOutsideScreenVertShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBaseBlurOutsideScreenVertShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

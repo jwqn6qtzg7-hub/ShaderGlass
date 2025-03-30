@@ -341,6 +341,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9636d14d,0x8cd00e91,0xe4902d53,0x5154c808,0x4e74d0be,0x20eee1e0,
+0xc402dff0,0x6303f494
+};
+
 }
 
 namespace RetroArch
@@ -353,8 +367,10 @@ public:
 		Name = "screen_combine";
 		VertexByteCode = RetroArchBlursShadersKawaseScreen_combineShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersKawaseScreen_combineShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersKawaseScreen_combineShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersKawaseScreen_combineShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersKawaseScreen_combineShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersKawaseScreen_combineShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

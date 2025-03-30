@@ -1214,6 +1214,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd711c2a6,0xd1dbc086,0x139d8a1e,0xdbc55f96,0xf6074d4,0xe5bcd467,
+0xe14f5caa,0x1662c37a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5e9bc9e8,0x836cfdd0,0xc4cdc4e6,0x5f9bfe20,0x525034a,0xc45b35f2,
+0x78b85879,0xd845b16d
+};
+
 }
 
 namespace RetroArch
@@ -1226,8 +1240,10 @@ public:
 		Name = "g-sharp_resampler";
 		VertexByteCode = RetroArchDitheringShadersGSharp_resamplerShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersGSharp_resamplerShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersGSharp_resamplerShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersGSharp_resamplerShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersGSharp_resamplerShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersGSharp_resamplerShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

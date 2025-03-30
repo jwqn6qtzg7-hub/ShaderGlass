@@ -3885,6 +3885,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x57c6db19,0xdd1ef1eb,0x7ba1b35,0x89db88c2,0x581d311f,0xb2cc9d9f,
+0x33bfbeb1,0x17534c61
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9ff6622c,0xf17a5b84,0x56928844,0xb8df05d0,0xec900919,0x2076706e,
+0xc6ef9573,0x7f078395
+};
+
 }
 
 namespace RetroArch
@@ -3897,8 +3911,10 @@ public:
 		Name = "crt-royale-mask-resize-vertical";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleMaskResizeVerticalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleMaskResizeVerticalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleMaskResizeVerticalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleMaskResizeVerticalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleMaskResizeVerticalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleMaskResizeVerticalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.400000f, 0.025000f, "Simulated CRT Gamma"));

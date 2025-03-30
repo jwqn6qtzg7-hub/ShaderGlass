@@ -35707,6 +35707,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x508dd314,0x104a5282,0x26a8adfd,0x669b6805,0xf1fe5743,0xe696a045,
+0x71636a5a,0x513fbd82
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x56ab0427,0xec10b4f7,0x7e9fb813,0xeb5fa51e,0xe826e722,0xbcabfd81,
+0x7fabe210,0x11bd6d84
+};
+
 }
 
 namespace RetroArch
@@ -35719,8 +35733,10 @@ public:
 		Name = "hsm-crt-guest-advanced-no-reflect";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestHsmCrtGuestAdvancedNoReflectShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmCrtGuestAdvancedNoReflectShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestHsmCrtGuestAdvancedNoReflectShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestHsmCrtGuestAdvancedNoReflectShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmCrtGuestAdvancedNoReflectShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmCrtGuestAdvancedNoReflectShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

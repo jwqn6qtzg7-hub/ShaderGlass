@@ -355,6 +355,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfc333502,0x8c8abef2,0xaf4ceace,0x713f7ada,0x62039b68,0x8ccf17a5,
+0xaa1da39a,0xe8405aa3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x38b0497c,0x9fd7dea9,0x86685216,0xe35a21a,0x46c09c06,0xc29130f9,
+0xfdf39dc0,0x1ce252c6
+};
+
 }
 
 namespace RetroArch
@@ -367,8 +381,10 @@ public:
 		Name = "box-center";
 		VertexByteCode = RetroArchAutoBoxBoxCenterShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchAutoBoxBoxCenterShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchAutoBoxBoxCenterShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchAutoBoxBoxCenterShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchAutoBoxBoxCenterShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchAutoBoxBoxCenterShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

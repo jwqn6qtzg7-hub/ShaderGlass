@@ -569,6 +569,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xea1a1b52,0xcfa20822,0x8512317b,0x58e87031,0x218a9a02,0xa6d52887,
+0xf721166,0x8daaa0e7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x30a5fabb,0x45002358,0x255ffccd,0x1b689895,0x62b1f260,0x2a18078a,
+0x81e2a032,0x2b8db379
+};
+
 }
 
 namespace RetroArch
@@ -581,8 +595,10 @@ public:
 		Name = "composite-encode";
 		VertexByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

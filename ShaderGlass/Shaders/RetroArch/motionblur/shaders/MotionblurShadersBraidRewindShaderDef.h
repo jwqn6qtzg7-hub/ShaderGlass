@@ -681,6 +681,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfceb01d,0xce9962cd,0x9131fa30,0x2dbbdc72,0x909d767b,0xcc321d21,
+0x36d194af,0xb1100abf
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb09386cf,0x541401a0,0xb8a58c71,0x45dcf0aa,0x57a9905a,0xf7066cb4,
+0xcb9c92be,0xa850a877
+};
+
 }
 
 namespace RetroArch
@@ -693,8 +707,10 @@ public:
 		Name = "braid-rewind";
 		VertexByteCode = RetroArchMotionblurShadersBraidRewindShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMotionblurShadersBraidRewindShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMotionblurShadersBraidRewindShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMotionblurShadersBraidRewindShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMotionblurShadersBraidRewindShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMotionblurShadersBraidRewindShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

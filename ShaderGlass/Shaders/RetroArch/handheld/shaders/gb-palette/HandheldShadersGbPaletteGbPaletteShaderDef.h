@@ -337,6 +337,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1035b4b1,0x79591c0e,0xec185630,0x6139140d,0xb07b0e04,0x45461996,
+0xe98ab752,0xcfaff271
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5266a93d,0xe0eae0c2,0xf726b3b8,0x33d88a66,0xf352aaed,0x37cf2327,
+0x3bfdc9c0,0x7b7d336
+};
+
 }
 
 namespace RetroArch
@@ -349,8 +363,10 @@ public:
 		Name = "gb-palette";
 		VertexByteCode = RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

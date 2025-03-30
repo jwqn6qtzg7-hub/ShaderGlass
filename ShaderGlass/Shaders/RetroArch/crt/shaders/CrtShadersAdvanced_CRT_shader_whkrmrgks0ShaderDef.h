@@ -1283,6 +1283,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc62b89de,0x4cff6bb7,0xea927f52,0x252e0ae2,0x6ae64209,0x35d1cf5c,
+0x3a187ba4,0xda0729ba
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc7cbd463,0x1be413b7,0x10b60381,0x8ae1e17,0xb24c30d6,0xec369770,
+0x251ced53,0x7fad98fa
+};
+
 }
 
 namespace RetroArch
@@ -1295,8 +1309,10 @@ public:
 		Name = "Advanced_CRT_shader_whkrmrgks0";
 		VertexByteCode = RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

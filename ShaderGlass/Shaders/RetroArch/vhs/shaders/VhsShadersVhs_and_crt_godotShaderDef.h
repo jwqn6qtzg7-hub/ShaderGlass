@@ -2054,6 +2054,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x42d1a7d8,0xe1a082dc,0x7319d553,0xddaf84eb,0xf557c405,0x158f645,
+0x29a76c70,0xd44728ad
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5a9acd2e,0x380e332,0x3bcf537,0xb2562cfc,0x5611ba5b,0xeea363a4,
+0xfe2feefa,0xadaa0356
+};
+
 }
 
 namespace RetroArch
@@ -2066,8 +2080,10 @@ public:
 		Name = "vhs_and_crt_godot";
 		VertexByteCode = RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("godot_scanlines_opacity", 0, 64, 4, 0.000000f, 1.000000f, 0.400000f, 0.010000f, "Scanlines Opacity"));

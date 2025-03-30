@@ -2003,6 +2003,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc146cfc1,0x9c4a3c2a,0xed4ff6e5,0xe4b289c5,0x92e3f907,0x949d1f56,
+0x240e1d8e,0x7f140ea
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7ab6f0b8,0x1419871e,0xf830206a,0x65b8766c,0xf12de664,0x6c664040,
+0xec51b0c1,0x3cfe700d
+};
+
 }
 
 namespace RetroArch
@@ -2015,8 +2029,10 @@ public:
 		Name = "geom";
 		VertexByteCode = RetroArchMiscShadersGeomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersGeomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersGeomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersGeomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersGeomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersGeomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

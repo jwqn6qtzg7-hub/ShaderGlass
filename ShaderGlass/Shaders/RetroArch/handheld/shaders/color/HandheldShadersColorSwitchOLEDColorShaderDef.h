@@ -572,6 +572,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8024ca66,0x95f7425f,0xe1178032,0xbb860a87,0x60c25d31,0xdc1a063c,
+0x77c1f60d,0x3104ffd1
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x46314ddc,0x69563e01,0x16f20aec,0xbbbe6ecd,0x63ed40d4,0xdbe90eaf,
+0xddda0d68,0x7bda8820
+};
+
 }
 
 namespace RetroArch
@@ -584,8 +598,10 @@ public:
 		Name = "SwitchOLED-color";
 		VertexByteCode = RetroArchHandheldShadersColorSwitchOLEDColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorSwitchOLEDColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorSwitchOLEDColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorSwitchOLEDColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorSwitchOLEDColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorSwitchOLEDColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -2510,6 +2510,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf2f21302,0xb6f5fd74,0x5990d9cf,0x849d4984,0xd7c574d6,0xe59386e8,
+0x5dc2fc2,0xcefbb93f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9ff300ae,0xa9f0a4db,0xc47abb0d,0x39bb3c52,0x5569dd67,0xda69a5fd,
+0x407c171a,0x580221d8
+};
+
 }
 
 namespace RetroArch
@@ -2522,8 +2536,10 @@ public:
 		Name = "crt-pocket";
 		VertexByteCode = RetroArchCrtShadersCrtPocketShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtPocketShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtPocketShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtPocketShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtPocketShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtPocketShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("DOTMASK_STRENGTH", 0, 64, 4, 0.000000f, 1.000000f, 0.700000f, 0.050000f, "CGWG Dot Mask Strength"));

@@ -718,6 +718,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf5ddc3d1,0xe2d031e6,0x18c06eca,0xc003a737,0xe16e4c81,0x3ba53cee,
+0x88958e78,0xae93ac0e
+};
+
 }
 
 namespace RetroArch
@@ -730,8 +744,10 @@ public:
 		Name = "motion_interpolation_pass0";
 		VertexByteCode = RetroArchMotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

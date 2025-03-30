@@ -942,6 +942,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfda731b,0x411589aa,0xa546687a,0xbb5e4ffa,0x14fe1610,0x31ec1b9b,
+0x78f2d2db,0xa41bcbf3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7a1f129c,0x8ccbe7d7,0x204747f,0x653be826,0x312c4a8e,0xb5ead0be,
+0x448bddd4,0x6f312482
+};
+
 }
 
 namespace RetroArch
@@ -954,8 +968,10 @@ public:
 		Name = "crt-cgwg-fast";
 		VertexByteCode = RetroArchCrtShadersCrtCgwgFastShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtCgwgFastShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtCgwgFastShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -678,6 +678,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb6c96242,0x942d4565,0xd364,0xc26faa71,0x75b973d4,0x1bac001a,
+0xf3af2b22,0x4bf56b3b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x63683ca,0x9930be72,0x7f9158f2,0xeb8e0f38,0xb7369161,0x8bef31e3,
+0x8d6b9b79,0xe98500f0
+};
+
 }
 
 namespace RetroArch
@@ -690,8 +704,10 @@ public:
 		Name = "dilation";
 		VertexByteCode = RetroArchWarpShadersDilationShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchWarpShadersDilationShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchWarpShadersDilationShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchWarpShadersDilationShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchWarpShadersDilationShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchWarpShadersDilationShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

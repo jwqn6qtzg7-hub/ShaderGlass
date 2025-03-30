@@ -513,6 +513,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x21b9986e,0xeaec3367,0xc5843a3b,0xa7538afc,0x6ff53294,0x6a299459,
+0x760d180f,0x47e4eadc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc1c268e,0xf0d86ac0,0xbe40ffbc,0x3643435a,0x5c7116c1,0x91dbcdc3,
+0x162fed2b,0xca6a8496
+};
+
 }
 
 namespace RetroArch
@@ -525,8 +539,10 @@ public:
 		Name = "sunset-gaussian-horiz";
 		VertexByteCode = RetroArchCrtShadersTorridgristleSunsetGaussianHorizShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersTorridgristleSunsetGaussianHorizShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersTorridgristleSunsetGaussianHorizShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersTorridgristleSunsetGaussianHorizShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersTorridgristleSunsetGaussianHorizShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersTorridgristleSunsetGaussianHorizShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

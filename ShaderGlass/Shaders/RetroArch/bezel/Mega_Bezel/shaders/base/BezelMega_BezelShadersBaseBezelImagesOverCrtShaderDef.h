@@ -51507,6 +51507,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8c833dda,0xe0e65b15,0x816c62aa,0xbd4df3dd,0x54c8855,0xe1315aea,
+0xf3336d29,0x8a73c0d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x96a99838,0x9cd386e0,0x7d0430f,0x4fc0b25e,0xc4a53b51,0xc10e4cd9,
+0xc7c9c1f7,0x6b6a6ef1
+};
+
 }
 
 namespace RetroArch
@@ -51519,8 +51533,10 @@ public:
 		Name = "bezel-images-over-crt";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBaseBezelImagesOverCrtShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBaseBezelImagesOverCrtShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBaseBezelImagesOverCrtShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBaseBezelImagesOverCrtShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBaseBezelImagesOverCrtShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBaseBezelImagesOverCrtShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

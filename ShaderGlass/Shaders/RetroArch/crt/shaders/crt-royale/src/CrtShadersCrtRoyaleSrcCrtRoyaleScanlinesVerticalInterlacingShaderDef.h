@@ -5488,6 +5488,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4f28232b,0xdd61badf,0x1471d94,0x1ff41f5e,0xf5a31e2d,0xb3bf826b,
+0x765fde0c,0x77626b3b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf0111c47,0xe14d012,0x65c63bb,0xb23034d9,0x586ea0cb,0x2a9ceb04,
+0x7a94371c,0xb7db9607
+};
+
 }
 
 namespace RetroArch
@@ -5500,8 +5514,10 @@ public:
 		Name = "crt-royale-scanlines-vertical-interlacing";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesVerticalInterlacingShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesVerticalInterlacingShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesVerticalInterlacingShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesVerticalInterlacingShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesVerticalInterlacingShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesVerticalInterlacingShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.500000f, 0.025000f, "Simulated CRT Gamma"));

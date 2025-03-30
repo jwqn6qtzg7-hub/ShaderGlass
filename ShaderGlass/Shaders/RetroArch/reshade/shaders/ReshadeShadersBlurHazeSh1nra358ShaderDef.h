@@ -642,6 +642,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x25757bc2,0xe459a831,0x3059e85f,0x39440d31,0xc60a4e96,0x5327efc5,
+0x55f85750,0x91778a55
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe33b6665,0x8fe99513,0xa56e6ea1,0x7b01f3cd,0x35ab088c,0xe152e8ea,
+0xc47c2b9d,0xd1a40166
+};
+
 }
 
 namespace RetroArch
@@ -654,8 +668,10 @@ public:
 		Name = "blur-haze-sh1nra358";
 		VertexByteCode = RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

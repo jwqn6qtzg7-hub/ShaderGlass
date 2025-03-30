@@ -612,6 +612,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4ddc47fd,0xc648e282,0xb6a745b3,0xd19ab758,0xbfa1bcb3,0x6272a2eb,
+0xa9675b07,0xae750295
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x46314ddc,0x69563e01,0x16f20aec,0xbbbe6ecd,0x63ed40d4,0xdbe90eaf,
+0xddda0d68,0x7bda8820
+};
+
 }
 
 namespace RetroArch
@@ -624,8 +638,10 @@ public:
 		Name = "palm-color";
 		VertexByteCode = RetroArchHandheldShadersColorPalmColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorPalmColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorPalmColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorPalmColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorPalmColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorPalmColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -742,6 +742,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3d1ec92f,0x17781dfd,0xe4ef8eb1,0x15844774,0xf383c564,0x50541e00,
+0x7d5279ba,0x3960167
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3fa5f018,0xff435314,0x18073f84,0x468d3783,0xa8257462,0x5254de56,
+0xebfd803f,0xc0034dc
+};
+
 }
 
 namespace RetroArch
@@ -754,8 +768,10 @@ public:
 		Name = "phosphor_apply";
 		VertexByteCode = RetroArchCrtShadersGeomDeluxePhosphor_applyShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGeomDeluxePhosphor_applyShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGeomDeluxePhosphor_applyShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGeomDeluxePhosphor_applyShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGeomDeluxePhosphor_applyShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGeomDeluxePhosphor_applyShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

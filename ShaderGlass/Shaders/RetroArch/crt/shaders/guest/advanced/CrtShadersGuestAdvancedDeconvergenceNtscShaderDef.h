@@ -8054,6 +8054,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf3503483,0x1fe24346,0xcfd76270,0xa4cf143b,0xa4e54b3c,0x19d62af6,
+0x2750f286,0xe8b0703
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb054a998,0x528e1759,0xcdc0cb52,0x3a39b686,0x7c38083d,0xa70e118d,
+0x331e66b2,0x592daa89
+};
+
 }
 
 namespace RetroArch
@@ -8066,8 +8080,10 @@ public:
 		Name = "deconvergence-ntsc";
 		VertexByteCode = RetroArchCrtShadersGuestAdvancedDeconvergenceNtscShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestAdvancedDeconvergenceNtscShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestAdvancedDeconvergenceNtscShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestAdvancedDeconvergenceNtscShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedDeconvergenceNtscShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestAdvancedDeconvergenceNtscShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

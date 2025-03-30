@@ -405,6 +405,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x98f0f647,0x58c82acc,0x509f9ab6,0xb10cbaa4,0xc2803e4a,0x8303c96,
+0x3c6fbf5,0x9ac262a
+};
+
 }
 
 namespace RetroArch
@@ -417,8 +431,10 @@ public:
 		Name = "hermite";
 		VertexByteCode = RetroArchInterpolationShadersHermiteShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchInterpolationShadersHermiteShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchInterpolationShadersHermiteShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchInterpolationShadersHermiteShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchInterpolationShadersHermiteShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchInterpolationShadersHermiteShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

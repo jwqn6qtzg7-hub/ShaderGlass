@@ -23811,6 +23811,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb7aa9b01,0x5cbcb3a2,0x200ed911,0xa8b6b5b2,0xc137c0a5,0x1e6a2ede,
+0x7c3b3fd,0xdce86ae6
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6458950d,0xe25cb4a9,0xeb5abdba,0xdc78e59e,0x336920c6,0x6562f09d,
+0x48033f52,0x2fb8725c
+};
+
 }
 
 namespace RetroArch
@@ -23823,8 +23837,10 @@ public:
 		Name = "crt-sony-megatron-potato";
 		VertexByteCode = RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -1429,6 +1429,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8362ecc1,0xc5c8589a,0xa26ecf67,0xb69c19cf,0x3c5f5e66,0xb3fbf15b,
+0x1e44407d,0x9d30bd5e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb1a75965,0x3417a9e6,0x6f63509c,0xb4ffd84a,0x6619a758,0x480aa117,
+0xc7c7aaab,0x3096a05b
+};
+
 }
 
 namespace RetroArch
@@ -1441,8 +1455,10 @@ public:
 		Name = "image-adjustment";
 		VertexByteCode = RetroArchMiscShadersImageAdjustmentShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersImageAdjustmentShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersImageAdjustmentShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersImageAdjustmentShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersImageAdjustmentShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersImageAdjustmentShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_FLIP_HORZ", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Flip Horiz Axis"));

@@ -543,6 +543,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6278886c,0x944e0884,0x6958fce7,0x79d2bbaa,0xc8dcf6bc,0xda856f22,
+0x8310aa5,0x2e0e9f9d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xaf3835de,0x40f49792,0x6ca24efb,0xedbfd90d,0xb85df812,0x6d85b7f9,
+0x5fe04f75,0x62979555
+};
+
 }
 
 namespace RetroArch
@@ -555,8 +569,10 @@ public:
 		Name = "dslite-color";
 		VertexByteCode = RetroArchHandheldShadersColorDsliteColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorDsliteColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorDsliteColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorDsliteColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorDsliteColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorDsliteColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

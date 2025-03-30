@@ -895,6 +895,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x130d0a75,0x491d282d,0x603b70b5,0xb5e1f267,0xfe44b21a,0x194eef4c,
+0x710195d5,0x4bf4015c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xad411144,0xaca237e4,0x89166d0e,0x8c1a43b1,0x2a9c5040,0x49b28cfa,
+0x5fa6a7c9,0xf9d2a2fb
+};
+
 }
 
 namespace RetroArch
@@ -907,8 +921,10 @@ public:
 		Name = "hsm-scalefx-pass1";
 		VertexByteCode = RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

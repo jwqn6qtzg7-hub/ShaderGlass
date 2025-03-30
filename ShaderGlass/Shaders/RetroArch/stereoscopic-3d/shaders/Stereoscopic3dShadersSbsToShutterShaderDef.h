@@ -708,6 +708,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x383dda60,0xc04b89e1,0xd660f635,0xd9c3ea0e,0xa6be4b1,0x5b5c04f0,
+0x73a1a2,0x5299e834
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa186b000,0x1ce50064,0x433ba07a,0x735a3aed,0xdbb0024c,0x91126fc5,
+0xe2b38df1,0x8933312
+};
+
 }
 
 namespace RetroArch
@@ -720,8 +734,10 @@ public:
 		Name = "sbs-to-shutter";
 		VertexByteCode = RetroArchStereoscopic3dShadersSbsToShutterShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchStereoscopic3dShadersSbsToShutterShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchStereoscopic3dShadersSbsToShutterShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchStereoscopic3dShadersSbsToShutterShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersSbsToShutterShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchStereoscopic3dShadersSbsToShutterShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

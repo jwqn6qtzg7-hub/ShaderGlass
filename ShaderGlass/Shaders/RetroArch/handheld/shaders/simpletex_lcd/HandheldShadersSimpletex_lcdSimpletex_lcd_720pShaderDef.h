@@ -650,6 +650,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd4d54a65,0xc1b8096d,0x8012442b,0x583e6b3,0x2baacca3,0x4f1b2e84,
+0x925a6c4f,0x8b944ac7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x18772824,0xe037888c,0x88f7c43d,0xa870259c,0x431d72cd,0xb473a406,
+0xd5a127cb,0x5a1bb102
+};
+
 }
 
 namespace RetroArch
@@ -662,8 +676,10 @@ public:
 		Name = "simpletex_lcd_720p";
 		VertexByteCode = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcd_720pShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcd_720pShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcd_720pShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcd_720pShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcd_720pShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcd_720pShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("GRID_INTENSITY", -1, 0, 4, 0.000000f, 1.000000f, 0.900000f, 0.010000f, "Grid Intensity"));

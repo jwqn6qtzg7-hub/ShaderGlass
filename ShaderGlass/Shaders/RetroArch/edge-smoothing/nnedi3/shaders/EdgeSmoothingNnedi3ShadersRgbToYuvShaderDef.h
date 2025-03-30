@@ -325,6 +325,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1d39c018,0x564cfa15,0xaed8a86a,0x9353e555,0x425cfe22,0xbed1e3ce,
+0xb2f66cee,0xda270fb4
+};
+
 }
 
 namespace RetroArch
@@ -337,8 +351,10 @@ public:
 		Name = "rgb-to-yuv";
 		VertexByteCode = RetroArchEdgeSmoothingNnedi3ShadersRgbToYuvShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingNnedi3ShadersRgbToYuvShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingNnedi3ShadersRgbToYuvShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingNnedi3ShadersRgbToYuvShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingNnedi3ShadersRgbToYuvShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingNnedi3ShadersRgbToYuvShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

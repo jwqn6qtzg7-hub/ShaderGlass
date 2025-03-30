@@ -1572,6 +1572,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9e555b35,0x2cf88d65,0x7f4d16ce,0x610bb5a2,0x10e6ca96,0x333e955b,
+0x13c7f27f,0x2cd54255
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3bbd89ec,0x2b544acf,0x17787743,0x83fba373,0xde533c90,0xbfd2f257,
+0x2d8202af,0x2c099d96
+};
+
 }
 
 namespace RetroArch
@@ -1584,8 +1598,10 @@ public:
 		Name = "tvout-tweaks";
 		VertexByteCode = RetroArchCrtShadersTvoutTweaksShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersTvoutTweaksShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersTvoutTweaksShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

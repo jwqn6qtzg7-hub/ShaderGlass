@@ -473,6 +473,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe557decf,0xf324780a,0xa9556175,0xe7caf03d,0x66ed363e,0xacd305ea,
+0x12f9d7c7,0x9173ddab
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1581b323,0x94583d23,0x170bb6d9,0xa2585765,0x5c12a764,0x1a499299,
+0x4bec3bfd,0x7f2e1563
+};
+
 }
 
 namespace RetroArch
@@ -485,8 +499,10 @@ public:
 		Name = "crt-nes-mini";
 		VertexByteCode = RetroArchCrtShadersCrtNesMiniShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtNesMiniShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtNesMiniShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtNesMiniShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtNesMiniShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtNesMiniShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

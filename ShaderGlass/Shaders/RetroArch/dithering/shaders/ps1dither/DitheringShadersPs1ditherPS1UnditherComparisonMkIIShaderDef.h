@@ -577,6 +577,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf130d9bd,0xa1b298ed,0x1b3bd30d,0xcc451123,0x8b4be90a,0x9f7efb4d,
+0x30179b51,0x16377c83
+};
+
 }
 
 namespace RetroArch
@@ -589,8 +603,10 @@ public:
 		Name = "PS1-Undither-Comparison-MkII";
 		VertexByteCode = RetroArchDitheringShadersPs1ditherPS1UnditherComparisonMkIIShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersPs1ditherPS1UnditherComparisonMkIIShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersPs1ditherPS1UnditherComparisonMkIIShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersPs1ditherPS1UnditherComparisonMkIIShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersPs1ditherPS1UnditherComparisonMkIIShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersPs1ditherPS1UnditherComparisonMkIIShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

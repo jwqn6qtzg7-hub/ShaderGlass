@@ -18156,6 +18156,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd0bc099f,0xe0cefe2,0xaa27aac5,0x5a44b377,0xe44cc156,0x31522a18,
+0x2fb8c931,0x2eb15b8d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x566158a1,0xdf6a6c95,0xc1d95013,0xedf3e5b5,0xe93fdaca,0x2d6a2e27,
+0x7f609618,0x3ed7b6a0
+};
+
 }
 
 namespace RetroArch
@@ -18168,8 +18182,10 @@ public:
 		Name = "output-hdr";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBaseOutputHdrShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBaseOutputHdrShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBaseOutputHdrShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBaseOutputHdrShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBaseOutputHdrShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBaseOutputHdrShaderDefs::sFragmentHash;
 		Format = "A2B10G10R10_UNORM_PACK32";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -3745,6 +3745,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x39decd0e,0x2bb3100e,0xa0c03c9a,0xaffae3be,0xc3246d25,0xb9206c9a,
+0x4bbd7f76,0x7f2aaf0c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xfef963ee,0xd5e6fc28,0x8dc07509,0x8bda5add,0xabcde850,0x417d81af,
+0xcd3a799c,0xc0a9126
+};
+
 }
 
 namespace RetroArch
@@ -3757,8 +3771,10 @@ public:
 		Name = "blur-glow-mask-geom";
 		VertexByteCode = RetroArchCrtShadersHyllianSupportGlowBlurGlowMaskGeomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersHyllianSupportGlowBlurGlowMaskGeomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersHyllianSupportGlowBlurGlowMaskGeomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersHyllianSupportGlowBlurGlowMaskGeomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianSupportGlowBlurGlowMaskGeomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersHyllianSupportGlowBlurGlowMaskGeomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -517,6 +517,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x15631af8,0xf516ea71,0x983c3338,0x9299523,0xab9282f2,0xc9dc8908,
+0xd2261afb,0x4f184c53
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x84586400,0x52ac0f60,0x677eba65,0xe31f65eb,0x85f57a83,0x941871b1,
+0x99ebc96,0x99ccff8b
+};
+
 }
 
 namespace RetroArch
@@ -529,8 +543,10 @@ public:
 		Name = "convergence";
 		VertexByteCode = RetroArchMiscShadersConvergenceShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersConvergenceShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersConvergenceShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersConvergenceShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersConvergenceShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersConvergenceShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

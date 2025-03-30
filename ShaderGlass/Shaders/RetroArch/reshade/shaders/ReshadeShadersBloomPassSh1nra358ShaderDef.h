@@ -393,6 +393,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc1a22350,0x2e9ab8bf,0xa2f5300d,0xcf0c1917,0x7fb541f,0xc437d293,
+0xd122f2ef,0xf17d90c1
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd09002,0x1692f103,0x10593108,0x1ddd6beb,0x46e39c8,0x69651f49,
+0x21c85534,0x654b7e25
+};
+
 }
 
 namespace RetroArch
@@ -405,8 +419,10 @@ public:
 		Name = "bloom-pass-sh1nra358";
 		VertexByteCode = RetroArchReshadeShadersBloomPassSh1nra358ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersBloomPassSh1nra358ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersBloomPassSh1nra358ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersBloomPassSh1nra358ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersBloomPassSh1nra358ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersBloomPassSh1nra358ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -529,6 +529,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc8d19bca,0x2ef2ca8e,0x7aef90f6,0xc1dbee2c,0x2a6cf743,0xf8e6c455,
+0x1758a465,0xa1845eab
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4d817d80,0x9d0a4961,0x4de64e1c,0x356ec837,0x95141510,0x83a7d66d,
+0x4bf1d515,0x7f4025bd
+};
+
 }
 
 namespace RetroArch
@@ -541,8 +555,10 @@ public:
 		Name = "magicbloom_blur_pass_7";
 		VertexByteCode = RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_7ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_7ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_7ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_7ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_7ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_7ShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

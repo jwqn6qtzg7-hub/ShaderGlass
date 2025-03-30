@@ -1268,6 +1268,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x15e66989,0x39b811bb,0xf90716f,0xcbd59d66,0xd9aac612,0xc2d14604,
+0x367cfb2,0x98e88c6b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x31625593,0x9255c336,0x768831d6,0x22c71de6,0xcafa2660,0xe70e8389,
+0x7277970d,0x15553b46
+};
+
 }
 
 namespace RetroArch
@@ -1280,8 +1294,10 @@ public:
 		Name = "gizmo-crt";
 		VertexByteCode = RetroArchCrtShadersGizmoCrtShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGizmoCrtShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGizmoCrtShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -7788,6 +7788,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x55a6cadd,0x156b4f09,0x71491f72,0xbd215d9a,0xd43a0735,0x41acd06e,
+0x58d35056,0xfa9f0f3d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa2a113e0,0x1501a072,0x74078705,0x131e0cf6,0x6a29c019,0x1865519c,
+0x4724c503,0x5f87e59
+};
+
 }
 
 namespace RetroArch
@@ -7800,8 +7814,10 @@ public:
 		Name = "crt-royale-bloom-horizontal-reconstitute";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomHorizontalReconstituteShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomHorizontalReconstituteShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomHorizontalReconstituteShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomHorizontalReconstituteShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomHorizontalReconstituteShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomHorizontalReconstituteShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.500000f, 0.025000f, "Simulated CRT Gamma"));

@@ -869,6 +869,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x36d1fb2f,0x737a584c,0xb1a0bba0,0xdde7f2c9,0x68a8b145,0x42be09af,
+0x983b6f4f,0x20fb6dfd
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xfb6b221a,0xf8bb2c55,0x8711a513,0x5f2941b4,0xbe664d9a,0xf60b4488,
+0xe5e7b547,0x84b6d3f0
+};
+
 }
 
 namespace RetroArch
@@ -881,8 +895,10 @@ public:
 		Name = "sgenpt-mix-pass5";
 		VertexByteCode = RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

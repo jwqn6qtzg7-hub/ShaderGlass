@@ -1305,6 +1305,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd09ce658,0xabf547b,0x3f733fc6,0x8fc2491d,0x4476c0dc,0x75898b32,
+0xd99cf32,0xfa2eec03
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xca62d343,0x2c0b2d9e,0xcf403968,0x24586a3b,0x56f6f41d,0x425b8118,
+0x5f9b6ec1,0x35989ee7
+};
+
 }
 
 namespace RetroArch
@@ -1317,8 +1331,10 @@ public:
 		Name = "super-res-ex";
 		VertexByteCode = RetroArchSharpenShadersSuperResExShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersSuperResExShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersSuperResExShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersSuperResExShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersSuperResExShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersSuperResExShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

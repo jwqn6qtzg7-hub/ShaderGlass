@@ -4084,6 +4084,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x2650b847,0x14e58ffc,0xac9bccb5,0x976fee0d,0xc6f9a276,0x84e6e7cf,
+0xea476dee,0x6427f95f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x57e80782,0x83d8b20a,0x64cb49c5,0xcc0dfdda,0x8c8b024a,0xeb005b55,
+0xcd0676e2,0x213f8cc1
+};
+
 }
 
 namespace RetroArch
@@ -4096,8 +4110,10 @@ public:
 		Name = "crt-royale-scanlines-horizontal-apply-mask";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleScanlinesHorizontalApplyMaskShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleScanlinesHorizontalApplyMaskShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleScanlinesHorizontalApplyMaskShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleScanlinesHorizontalApplyMaskShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleScanlinesHorizontalApplyMaskShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleScanlinesHorizontalApplyMaskShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.400000f, 0.025000f, "Simulated CRT Gamma"));

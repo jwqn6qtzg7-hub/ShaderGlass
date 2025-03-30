@@ -930,6 +930,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xcff12b7a,0x54de788e,0xb8757d70,0xbd62c89b,0x7a39fc1f,0x7a3532ad,
+0x7400b6b9,0xfa1d8430
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xba15c8bd,0x27095d86,0x58cb02fd,0x658d43aa,0xc3f30574,0x4a2eac2a,
+0x17b92d18,0x6f3be466
+};
+
 }
 
 namespace RetroArch
@@ -942,8 +956,10 @@ public:
 		Name = "MMJ_Cel_Shader_MP_Color";
 		VertexByteCode = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_ColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_ColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_ColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_ColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_ColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_ColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("MMJ_OutlineSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

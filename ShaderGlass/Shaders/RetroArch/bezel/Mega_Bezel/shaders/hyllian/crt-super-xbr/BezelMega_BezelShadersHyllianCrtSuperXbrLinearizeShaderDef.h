@@ -360,6 +360,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf29d8d48,0x51f67524,0xc51b6549,0x5e8c7d72,0x9d07ca09,0x8a3afe93,
+0xad64cc2c,0x75dc6123
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3e81dc0,0x94ce99ae,0xc95b89ea,0x93505365,0x681c153d,0x444fd9fd,
+0x6ff02c5b,0x4636e195
+};
+
 }
 
 namespace RetroArch
@@ -372,8 +386,10 @@ public:
 		Name = "linearize";
 		VertexByteCode = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -285,6 +285,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa4238ea3,0x133b6ab5,0x767441ac,0xc78ce22b,0x4869bc45,0x7977c30b,
+0xeaf878d8,0xc7aa5683
+};
+
 }
 
 namespace RetroArch
@@ -297,8 +311,10 @@ public:
 		Name = "original";
 		VertexByteCode = RetroArchBezelUborderShadersSupport_shadersOriginalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelUborderShadersSupport_shadersOriginalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelUborderShadersSupport_shadersOriginalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelUborderShadersSupport_shadersOriginalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelUborderShadersSupport_shadersOriginalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelUborderShadersSupport_shadersOriginalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

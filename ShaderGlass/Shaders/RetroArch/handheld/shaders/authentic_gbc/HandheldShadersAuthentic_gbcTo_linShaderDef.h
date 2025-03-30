@@ -296,6 +296,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd21d72cd,0x69d4e505,0x58531137,0xaed05f39,0x522e9445,0x1128f2c,
+0x1118ca53,0x3d7f9e28
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x142ac1d2,0x4ecc1e8c,0x750cb0ad,0xfef56e73,0x687bc3e3,0x2084b60e,
+0x5a252fd6,0x41fd39f7
+};
+
 }
 
 namespace RetroArch
@@ -308,8 +322,10 @@ public:
 		Name = "to_lin";
 		VertexByteCode = RetroArchHandheldShadersAuthentic_gbcTo_linShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersAuthentic_gbcTo_linShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersAuthentic_gbcTo_linShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersAuthentic_gbcTo_linShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersAuthentic_gbcTo_linShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersAuthentic_gbcTo_linShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));

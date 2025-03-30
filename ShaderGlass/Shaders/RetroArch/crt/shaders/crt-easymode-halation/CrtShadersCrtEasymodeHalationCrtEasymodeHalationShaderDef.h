@@ -2209,6 +2209,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1b3440d5,0xa100a585,0xc9c8a2f2,0x76237286,0x248defd2,0xcfc31f99,
+0xfa4c8ba5,0x4b5e442b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xee34f27e,0x8e0e47e9,0x83fcd9f4,0x108ef456,0x156c038f,0x7f6c547e,
+0x8e111bde,0xb2ae0fdb
+};
+
 }
 
 namespace RetroArch
@@ -2221,8 +2235,10 @@ public:
 		Name = "crt-easymode-halation";
 		VertexByteCode = RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", 0, 64, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

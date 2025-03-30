@@ -7473,6 +7473,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d0bc4a5,0xaab81f14,0xc51e64c0,0x10d3e832,0xe573f503,0xa8c536e,
+0xc4c12f44,0x44e24b90
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xec47f44f,0x2c2de47d,0x442c1f4f,0xf2fc6bd9,0x1897ddcf,0xe679f541,
+0xb144dacd,0xca237727
+};
+
 }
 
 namespace RetroArch
@@ -7485,8 +7499,10 @@ public:
 		Name = "in_glow_y";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgIn_glow_yShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgIn_glow_yShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgIn_glow_yShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgIn_glow_yShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgIn_glow_yShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgIn_glow_yShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

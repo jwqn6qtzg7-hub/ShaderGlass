@@ -333,6 +333,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x46caa408,0x2a28c029,0x25e1ebce,0x60c20970,0x9d417f71,0xad95ac9f,
+0xe99fbfc4,0xb2c92885
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb9af27d5,0x5a5d72f2,0xca49088e,0x99164222,0xdf4c0128,0x582cec28,
+0x4a01bfe6,0xbb5a731c
+};
+
 }
 
 namespace RetroArch
@@ -345,8 +359,10 @@ public:
 		Name = "linear-to-srgb";
 		VertexByteCode = RetroArchNtscShadersPatchyNtscLinearToSrgbShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersPatchyNtscLinearToSrgbShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersPatchyNtscLinearToSrgbShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersPatchyNtscLinearToSrgbShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersPatchyNtscLinearToSrgbShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersPatchyNtscLinearToSrgbShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

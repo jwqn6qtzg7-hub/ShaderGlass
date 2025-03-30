@@ -553,6 +553,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1983532d,0x3ddca476,0xd0edc689,0x66436b8e,0x6a8cebe4,0x67e4d04e,
+0xd035166c,0x50c871fc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x655be8cd,0xf53d0138,0xb0a2f62c,0x9db831f4,0xe08394e,0xcd8d68b9,
+0x4ddebbd0,0x5f4cc1c0
+};
+
 }
 
 namespace RetroArch
@@ -565,8 +579,10 @@ public:
 		Name = "ultra_potato";
 		VertexByteCode = RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

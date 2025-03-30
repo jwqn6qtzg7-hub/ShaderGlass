@@ -560,6 +560,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfb9d212e,0xed5e415b,0xedf7f891,0x51daba81,0xf427c5d8,0x9f13aed9,
+0xaf211ba9,0xba69b1f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x91ddf6a6,0x13d01318,0xfcd56b22,0x7f2f352e,0x69ad699,0xd66a5275,
+0x6f2fd30e,0x4cf1f820
+};
+
 }
 
 namespace RetroArch
@@ -572,8 +586,10 @@ public:
 		Name = "edge-detect";
 		VertexByteCode = RetroArchMiscShadersEdgeDetectShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersEdgeDetectShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersEdgeDetectShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersEdgeDetectShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersEdgeDetectShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersEdgeDetectShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

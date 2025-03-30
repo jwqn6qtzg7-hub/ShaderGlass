@@ -5625,6 +5625,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaf785c37,0x8dd55696,0xfdb88a53,0x8258b020,0x4a389c72,0xdec6d37c,
+0xfebd53f8,0xa178ea9
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x26aa1092,0x8a2a0f34,0x6083f709,0x2d89dfee,0x7499c1aa,0xcc791735,
+0xc95d16f3,0xc4441156
+};
+
 }
 
 namespace RetroArch
@@ -5637,8 +5651,10 @@ public:
 		Name = "grade-no-LUT";
 		VertexByteCode = RetroArchMiscShadersGradeNoLUTShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersGradeNoLUTShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersGradeNoLUTShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersGradeNoLUTShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersGradeNoLUTShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersGradeNoLUTShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

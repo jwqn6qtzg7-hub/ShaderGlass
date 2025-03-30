@@ -2096,6 +2096,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1ab042,0x4e329905,0xd13c20c1,0xc9d69c14,0xc2db4d2,0x9dc56baf,
+0x118d23cb,0xd9f94968
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xabe63ada,0x60f48697,0x880755ae,0xd162e78a,0xd2f847f9,0x79faa548,
+0xb837c4c8,0xfc53093e
+};
+
 }
 
 namespace RetroArch
@@ -2108,8 +2122,10 @@ public:
 		Name = "Chromatic";
 		VertexByteCode = RetroArchStereoscopic3dShadersFubax_vrChromaticShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchStereoscopic3dShadersFubax_vrChromaticShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchStereoscopic3dShadersFubax_vrChromaticShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchStereoscopic3dShadersFubax_vrChromaticShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersFubax_vrChromaticShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchStereoscopic3dShadersFubax_vrChromaticShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SoloLines", 0, 64, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Lines (All, Horz, Vert, Rad)"));

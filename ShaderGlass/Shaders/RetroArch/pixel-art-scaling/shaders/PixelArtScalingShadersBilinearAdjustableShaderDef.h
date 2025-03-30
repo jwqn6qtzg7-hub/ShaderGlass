@@ -497,6 +497,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe47ddb53,0x7e63eeee,0x9eb52369,0x38302ad4,0xf0465c35,0xa17bf2d9,
+0xada3dc32,0x61bbec0c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x93b192a2,0xdff3c8c1,0x846d1aea,0xa2e97a83,0xe4437dfa,0xa04e32fa,
+0xceee6855,0xed6671da
+};
+
 }
 
 namespace RetroArch
@@ -509,8 +523,10 @@ public:
 		Name = "bilinear-adjustable";
 		VertexByteCode = RetroArchPixelArtScalingShadersBilinearAdjustableShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersBilinearAdjustableShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersBilinearAdjustableShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersBilinearAdjustableShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersBilinearAdjustableShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersBilinearAdjustableShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

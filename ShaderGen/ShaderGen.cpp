@@ -11,6 +11,7 @@ GNU General Public License v3.0
 #include "GLSL.h"
 #include "SPIRV.h"
 #include "HLSL.h"
+#include "ShaderCache.h"
 
 filesystem::path startupPath;
 filesystem::path templatePath;
@@ -119,7 +120,49 @@ pair<string, string> spirv(const filesystem::path& input, const std::string& sta
     }
 }
 
-string fxc(const filesystem::path& shaderPath, const string& profile, const string& source, ofstream& log, bool& warn)
+static string byteArrayToString(uint8_t* data, size_t size)
+{
+    ostringstream sbuf;
+    sbuf << "{" << endl;
+    int nl = 0;
+    for(int i = 0; i < size; i++)
+    {
+        const auto b = data[i];
+        sbuf << (int)b;
+        if(nl < size - 1)
+        {
+            sbuf << ",";
+            if(++nl % 6 == 0)
+                sbuf << endl;
+        }
+    }
+    sbuf << endl << "};" << endl;
+
+    return sbuf.str();
+}
+
+static string intArrayToString(uint32_t* data, size_t size)
+{
+    ostringstream sbuf;
+    sbuf << "{" << std::hex << endl;
+    int nl = 0;
+    for(int i = 0; i < size; i++)
+    {
+        const auto b = data[i];
+        sbuf << "0x" << b;
+        if(nl < size - 1)
+        {
+            sbuf << ",";
+            if(++nl % 6 == 0)
+                sbuf << endl;
+        }
+    }
+    sbuf << endl << "};" << endl;
+
+    return sbuf.str();
+}
+
+pair<string, string> fxc(const filesystem::path& shaderPath, const string& profile, const string& source, ofstream& log, bool& warn)
 {
     filesystem::path input = tempPath / shaderPath;
     input.replace_extension("." + profile + ".hlsl");
@@ -169,34 +212,22 @@ string fxc(const filesystem::path& shaderPath, const string& profile, const stri
                 outs << line << endl;
             }
         }
-        return outs.str();
+
+        return make_pair(outs.str(), "{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};");
     }
     else
     {
         auto bin = HLSL::CompileHLSL(fullSource.c_str(), fullSource.size(), profile.c_str(), log, warn);
 
-        ostringstream sbuf;
-        sbuf << "{" << endl;
-        int nl = 0;
-        for(auto b : bin)
-        {
-            sbuf << (int)b;
-            if(nl < bin.size() - 1)
-            {
-                sbuf << ",";
-                if(++nl % 6 == 0)
-                    sbuf << endl;
-            }
-        }
-        sbuf << endl << "};" << endl;
-
-        auto str = sbuf.str();
+        auto str     = byteArrayToString(bin.data(), bin.size());
+        auto hash    = ShaderCache::CalculateHash(source);
+        auto hashStr = intArrayToString(hash.data(), hash.size());
 
         ofstream outf(output);
         outf << str;
         outf.close();
 
-        return str;
+        return make_pair(str, hashStr);
     }
 }
 
@@ -227,6 +258,27 @@ void updateShaderList(const SourceShaderInfo& shaderInfo)
     if(find(shaderList.begin(), shaderList.end(), shaderInclude) == shaderList.end())
     {
         auto insertSpot = find(shaderList.begin(), shaderList.end(), "// %SHADER_INCLUDE%");
+        shaderList.insert(insertSpot, shaderInclude);
+        saveSource(listPath, shaderList);
+    }
+}
+
+void updateCacheList(const SourceShaderInfo& shaderInfo)
+{
+    ostringstream oss;
+    oss << " cached.emplace_back(";
+    oss << _libName << shaderInfo.className << "ShaderDefs::sVertexHash, ";
+    oss << _libName << shaderInfo.className << "ShaderDefs::sVertexByteCode, ";
+    oss << "sizeof(" << _libName << shaderInfo.className << "ShaderDefs::sVertexByteCode));";
+    oss << " cached.emplace_back(";
+    oss << _libName << shaderInfo.className << "ShaderDefs::sFragmentHash, ";
+    oss << _libName << shaderInfo.className << "ShaderDefs::sFragmentByteCode, ";
+    oss << "sizeof(" << _libName << shaderInfo.className << "ShaderDefs::sFragmentByteCode));";
+
+    const auto& shaderInclude = oss.str();
+    if(find(shaderList.begin(), shaderList.end(), shaderInclude) == shaderList.end())
+    {
+        auto insertSpot = find(shaderList.begin(), shaderList.end(), "// %SHADER_CACHE%");
         shaderList.insert(insertSpot, shaderInclude);
         saveSource(listPath, shaderList);
     }
@@ -292,6 +344,8 @@ void populateShaderTemplate(SourceShaderDef def, ofstream& log)
     replace(bufferString, "%FRAGMENT_SOURCE%", splitCode(def.fragmentSource));
     replace(bufferString, "%VERTEX_BYTECODE%", def.vertexByteCode);
     replace(bufferString, "%FRAGMENT_BYTECODE%", def.fragmentByteCode);
+    replace(bufferString, "%VERTEX_HASH%", def.vertexHash);
+    replace(bufferString, "%FRAGMENT_HASH%", def.fragmentHash);
 
     if(def.fragmentByteCode.empty() || def.vertexByteCode.empty())
     {
@@ -545,11 +599,17 @@ void processShader(SourceShaderDef def, ofstream& log, bool& warn)
         metaOutput.replace_extension(".meta");
         saveSource(metaOutput, fragmentOutput.second);
 
-        def.vertexByteCode   = fxc(def.input, "vs_5_0", vertexOutput.first, log, warn);
-        def.fragmentByteCode = fxc(def.input, "ps_5_0", fragmentOutput.first, log, warn);
+        auto vertexCode      = fxc(def.input, "vs_5_0", vertexOutput.first, log, warn);
+        auto fragmentCode    = fxc(def.input, "ps_5_0", fragmentOutput.first, log, warn);
+        def.vertexByteCode   = vertexCode.first;
+        def.vertexHash       = vertexCode.second;
+        def.fragmentByteCode = fragmentCode.first;
+        def.fragmentHash     = fragmentCode.second;
 
         replace(def.vertexByteCode, " ", "");
+        replace(def.vertexHash, " ", "");
         replace(def.fragmentByteCode, " ", "");
+        replace(def.fragmentHash, " ", "");
 
         populateShaderTemplate(def, log);
     }
@@ -611,6 +671,7 @@ void processPreset(SourcePresetDef& def, ofstream& log, bool& warn)
             processShader(s, log, warn);
         }
         updateShaderList(s.info);
+        updateCacheList(s.info);
     }
 
     for(auto& t : def.textures)

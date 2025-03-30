@@ -1779,6 +1779,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf2a6b2aa,0x9a440aaa,0x544af43,0x62e7e9cc,0x7bbadd45,0xc598ce27,
+0x9d358938,0x94f9cc35
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xbefdf805,0x12cd4e0f,0x6a6546c3,0x9540a275,0xee49fe8,0xdf98d7d6,
+0xbcbebdf8,0x2e54ffcc
+};
+
 }
 
 namespace RetroArch
@@ -1791,8 +1805,10 @@ public:
 		Name = "nedi-hybrid-pass2";
 		VertexByteCode = RetroArchEdgeSmoothingNediShadersNediHybridPass2ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingNediShadersNediHybridPass2ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingNediShadersNediHybridPass2ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingNediShadersNediHybridPass2ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingNediShadersNediHybridPass2ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingNediShadersNediHybridPass2ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

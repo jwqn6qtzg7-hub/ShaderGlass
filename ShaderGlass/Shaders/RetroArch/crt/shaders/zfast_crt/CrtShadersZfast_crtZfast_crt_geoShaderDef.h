@@ -843,6 +843,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x31a64d51,0x43998891,0x394cd9f7,0xf560e78a,0x4eef80bb,0x6a368878,
+0x9debafc3,0x1b556d71
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5dc83c20,0xb6c5cb93,0x7bb3cc4b,0x924c5b83,0x7cc0dc28,0x2479b0b3,
+0xb7117c1e,0xf64e39c5
+};
+
 }
 
 namespace RetroArch
@@ -855,8 +869,10 @@ public:
 		Name = "zfast_crt_geo";
 		VertexByteCode = RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

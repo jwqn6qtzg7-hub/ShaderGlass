@@ -478,6 +478,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x464d4d6e,0xbddfa51e,0xdd78c93a,0x11184c43,0xf19c7a36,0x4c645275,
+0x9db3fc1a,0x318a36fc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x18a190dd,0x852faac5,0x824f7e76,0xf2fcf658,0xb4f36eb,0xdeacf86d,
+0x746a8b73,0x32812f32
+};
+
 }
 
 namespace RetroArch
@@ -490,8 +504,10 @@ public:
 		Name = "zfast_lcd";
 		VertexByteCode = RetroArchHandheldShadersZfast_lcdShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersZfast_lcdShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersZfast_lcdShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersZfast_lcdShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersZfast_lcdShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersZfast_lcdShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -789,6 +789,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc49a5333,0x4d5cdb09,0x53954c0a,0xebfbfa7c,0x12d01f46,0x363bcc02,
+0x57cc5387,0x6e9dfae
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x452f7a5e,0x8b2bf48a,0xe72ca40a,0x57543a8e,0xf6a93820,0x6e9490ed,
+0xdd9beb1a,0x547a41f1
+};
+
 }
 
 namespace RetroArch
@@ -801,8 +815,10 @@ public:
 		Name = "white_point";
 		VertexByteCode = RetroArchMiscShadersWhite_pointShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersWhite_pointShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersWhite_pointShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersWhite_pointShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersWhite_pointShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersWhite_pointShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

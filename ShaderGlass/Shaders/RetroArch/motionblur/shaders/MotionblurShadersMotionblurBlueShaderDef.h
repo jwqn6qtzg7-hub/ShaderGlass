@@ -571,6 +571,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa76a1391,0x5354f616,0x379c23f3,0x692045f2,0x7e0426e1,0xf53f9ca8,
+0xd0efa5d3,0x4686028b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x45001e95,0x12784adf,0xee1bd650,0x2f89876d,0x7025a9c0,0xbdde6d94,
+0x1b09d2c6,0x996693e4
+};
+
 }
 
 namespace RetroArch
@@ -583,8 +597,10 @@ public:
 		Name = "motionblur-blue";
 		VertexByteCode = RetroArchMotionblurShadersMotionblurBlueShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMotionblurShadersMotionblurBlueShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMotionblurShadersMotionblurBlueShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMotionblurShadersMotionblurBlueShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMotionblurShadersMotionblurBlueShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMotionblurShadersMotionblurBlueShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

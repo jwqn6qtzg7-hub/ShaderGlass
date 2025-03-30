@@ -1980,6 +1980,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf1dc5c04,0xc5053f43,0x68781eb3,0x3b38aecc,0xb6b4834b,0x9bd06609,
+0xf65f0c2b,0x9c0eda42
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x23869345,0xdd4b1d48,0xa6ff6b5a,0x8ca4bb52,0xfe4d60cd,0xfb5b7e0e,
+0x3692962,0x939b064d
+};
+
 }
 
 namespace RetroArch
@@ -1992,8 +2006,10 @@ public:
 		Name = "LightingCombine";
 		VertexByteCode = RetroArchReshadeShadersBloomLightingCombineShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersBloomLightingCombineShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersBloomLightingCombineShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersBloomLightingCombineShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersBloomLightingCombineShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersBloomLightingCombineShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("iBloomMixmode", 0, 64, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Bloom Mix Mode"));

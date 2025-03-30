@@ -988,6 +988,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfb3c944f,0xb1b1ecc9,0x7818d0c5,0x3c1ebdf7,0x6d0cb20e,0xbb1dde41,
+0x5f569174,0xa4d7e505
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb839c9f2,0x9a06bc3e,0x2dfa57f0,0xcce8f2b,0x7ee9e2c,0x2c438442,
+0xcbd3fd94,0x9fe741c4
+};
+
 }
 
 namespace RetroArch
@@ -1000,8 +1014,10 @@ public:
 		Name = "mix_frames_smart";
 		VertexByteCode = RetroArchMotionblurShadersMix_frames_smartShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMotionblurShadersMix_frames_smartShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMotionblurShadersMix_frames_smartShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("DEFLICKER_EMPHASIS", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Deflicker Emphasis"));

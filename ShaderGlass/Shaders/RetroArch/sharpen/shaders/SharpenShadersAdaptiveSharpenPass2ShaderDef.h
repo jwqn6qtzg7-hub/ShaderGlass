@@ -3617,6 +3617,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf8d497fe,0x1d92a92d,0x86d06479,0x778458dd,0x42b3ccbf,0x2a8837bc,
+0x30455955,0xbd15fc79
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xfdb86ce5,0x85ef0bb1,0xc8b93e61,0x20d7fcbe,0xef2dbc0c,0x4b6fed8b,
+0x433b818d,0x6c87c4cf
+};
+
 }
 
 namespace RetroArch
@@ -3629,8 +3643,10 @@ public:
 		Name = "adaptive-sharpen-pass2";
 		VertexByteCode = RetroArchSharpenShadersAdaptiveSharpenPass2ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersAdaptiveSharpenPass2ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersAdaptiveSharpenPass2ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersAdaptiveSharpenPass2ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersAdaptiveSharpenPass2ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersAdaptiveSharpenPass2ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

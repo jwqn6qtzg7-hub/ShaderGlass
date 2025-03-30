@@ -607,6 +607,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x20909542,0x42f81405,0x8ddfa9fd,0xe3cc4ba5,0x3f90e614,0x6fd9df13,
+0x127bf1b5,0xe7c777b6
+};
+
 }
 
 namespace RetroArch
@@ -619,8 +633,10 @@ public:
 		Name = "catmull-rom-5-taps";
 		VertexByteCode = RetroArchInterpolationShadersCatmullRom5TapsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchInterpolationShadersCatmullRom5TapsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchInterpolationShadersCatmullRom5TapsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchInterpolationShadersCatmullRom5TapsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchInterpolationShadersCatmullRom5TapsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchInterpolationShadersCatmullRom5TapsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -278,6 +278,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9235c3a2,0x59dc5c7e,0x10089cd1,0x92df940a,0xf9ea1578,0xe108df81,
+0x5c58b9e4,0x9a26e463
+};
+
 }
 
 namespace RetroArch
@@ -290,8 +304,10 @@ public:
 		Name = "hsm-fetch-drez-output";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestExtrasHsmFetchDrezOutputShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmFetchDrezOutputShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestExtrasHsmFetchDrezOutputShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestExtrasHsmFetchDrezOutputShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmFetchDrezOutputShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestExtrasHsmFetchDrezOutputShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

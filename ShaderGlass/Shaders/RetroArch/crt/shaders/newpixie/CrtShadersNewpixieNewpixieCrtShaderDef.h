@@ -1664,6 +1664,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6d31f6ae,0x289caa1,0x111dae4f,0x3e7b25ba,0xd69b47b8,0x8cf2b7e4,
+0x8983a3ec,0xc0a327a2
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6e0873f7,0xf8692150,0xfb21225b,0x86076420,0xa78f55c7,0x2ef1abb6,
+0xb63fb92e,0x3c334ce5
+};
+
 }
 
 namespace RetroArch
@@ -1676,8 +1690,10 @@ public:
 		Name = "newpixie-crt";
 		VertexByteCode = RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

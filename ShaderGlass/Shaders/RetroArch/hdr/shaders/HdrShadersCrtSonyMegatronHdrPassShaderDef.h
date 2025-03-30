@@ -625,6 +625,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5f43ae93,0x1f4a7b02,0xe129549f,0xe91e958c,0x15b5ea11,0x84b799b1,
+0xf85a8c56,0xee6fa581
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf8aa89c,0x9e1a0a88,0x9a848a91,0xb52b33da,0xdd9f53e7,0x94cf41cf,
+0xf8a9c953,0xe9684566
+};
+
 }
 
 namespace RetroArch
@@ -637,8 +651,10 @@ public:
 		Name = "crt-sony-megatron-hdr-pass";
 		VertexByteCode = RetroArchHdrShadersCrtSonyMegatronHdrPassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHdrShadersCrtSonyMegatronHdrPassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHdrShadersCrtSonyMegatronHdrPassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHdrShadersCrtSonyMegatronHdrPassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHdrShadersCrtSonyMegatronHdrPassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHdrShadersCrtSonyMegatronHdrPassShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

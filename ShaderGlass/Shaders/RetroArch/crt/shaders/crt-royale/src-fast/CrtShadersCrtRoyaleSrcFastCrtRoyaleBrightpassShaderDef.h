@@ -1470,6 +1470,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9360479c,0x7f5d61e,0xad90a718,0x61e85796,0x82ea4f0a,0x42bcb368,
+0x6210b7f3,0x46eb632c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x2ab5e7ca,0x2dad78c6,0xfecf7846,0x9debe40,0x2dd2ee14,0x769488a1,
+0x9505cc8e,0xef781a51
+};
+
 }
 
 namespace RetroArch
@@ -1482,8 +1496,10 @@ public:
 		Name = "crt-royale-brightpass";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBrightpassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBrightpassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBrightpassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBrightpassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBrightpassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBrightpassShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.400000f, 0.025000f, "Simulated CRT Gamma"));

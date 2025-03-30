@@ -408,6 +408,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb4bae59f,0xb77f2aa7,0xa7c266d1,0xad5d0de6,0x7622f362,0x24845074,
+0xfb82e4ec,0x4a01911
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5891544b,0xfb09b0d1,0xf7d1a3bc,0x27263d60,0x514978b7,0x5a5092d4,
+0x3a53adbe,0xca2dc17a
+};
+
 }
 
 namespace RetroArch
@@ -420,8 +434,10 @@ public:
 		Name = "hsm-gtu-pass1";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGtuHsmGtuPass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGtuHsmGtuPass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGtuHsmGtuPass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGtuHsmGtuPass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGtuHsmGtuPass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGtuHsmGtuPass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

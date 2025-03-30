@@ -1473,6 +1473,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1e4f5f8a,0xbf5ed995,0x7ea7a7ed,0x50403282,0x1e794542,0xb9c8013f,
+0x6bf3079e,0x8a942b96
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd95b7edd,0xbb0618c3,0xe70522d4,0xa4a81622,0xc7e58b25,0x29fc22b,
+0x4b5699d6,0x17eb1665
+};
+
 }
 
 namespace RetroArch
@@ -1485,8 +1499,10 @@ public:
 		Name = "crt-beam-simulator";
 		VertexByteCode = RetroArchSubframeBfiShadersCrtBeamSimulatorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSubframeBfiShadersCrtBeamSimulatorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSubframeBfiShadersCrtBeamSimulatorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSubframeBfiShadersCrtBeamSimulatorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSubframeBfiShadersCrtBeamSimulatorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSubframeBfiShadersCrtBeamSimulatorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

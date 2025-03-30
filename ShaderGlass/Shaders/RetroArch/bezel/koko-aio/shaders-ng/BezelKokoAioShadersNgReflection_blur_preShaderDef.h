@@ -6386,6 +6386,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x552411c,0x3c11f5ba,0xd92ae1cc,0x444a69c,0x3c78a174,0xbecbb64,
+0x26495b8b,0x8a18f005
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa738a517,0x368534ff,0x26621743,0x12dfdcc7,0xe22c17ca,0x672d2be7,
+0x1e5e5134,0x8322063e
+};
+
 }
 
 namespace RetroArch
@@ -6398,8 +6412,10 @@ public:
 		Name = "reflection_blur_pre";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgReflection_blur_preShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgReflection_blur_preShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgReflection_blur_preShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgReflection_blur_preShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgReflection_blur_preShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgReflection_blur_preShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

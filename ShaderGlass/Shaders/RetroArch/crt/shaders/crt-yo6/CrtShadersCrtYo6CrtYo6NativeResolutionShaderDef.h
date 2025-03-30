@@ -527,6 +527,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd770a991,0x338de612,0xd6d62e91,0x1c60052a,0xac4b58b6,0x6f27ecde,
+0xcd227016,0xf87bf673
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb3694706,0x98425e6b,0x4b737fad,0xf1c157e2,0x27270500,0x99dd0f36,
+0x5a1a4d6b,0xf7bccd15
+};
+
 }
 
 namespace RetroArch
@@ -539,8 +553,10 @@ public:
 		Name = "crt-yo6-native-resolution";
 		VertexByteCode = RetroArchCrtShadersCrtYo6CrtYo6NativeResolutionShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtYo6CrtYo6NativeResolutionShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtYo6CrtYo6NativeResolutionShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtYo6CrtYo6NativeResolutionShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtYo6CrtYo6NativeResolutionShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtYo6CrtYo6NativeResolutionShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

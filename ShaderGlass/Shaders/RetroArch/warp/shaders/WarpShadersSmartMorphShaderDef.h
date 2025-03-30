@@ -807,6 +807,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x93d0f0d7,0x37f6b2c7,0xccc19800,0x3c9d4fb4,0x884523c,0x351e16ef,
+0x3fbea10a,0x9c6c9cc5
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xab988ca6,0x1decab0d,0xe669757,0x65525eae,0xefc35aee,0xc0a1dd8a,
+0x22074c65,0xa07a60e5
+};
+
 }
 
 namespace RetroArch
@@ -819,8 +833,10 @@ public:
 		Name = "smart-morph";
 		VertexByteCode = RetroArchWarpShadersSmartMorphShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchWarpShadersSmartMorphShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchWarpShadersSmartMorphShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchWarpShadersSmartMorphShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchWarpShadersSmartMorphShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchWarpShadersSmartMorphShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

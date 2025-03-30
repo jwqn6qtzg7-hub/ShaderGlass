@@ -975,6 +975,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf1dc5c04,0xc5053f43,0x68781eb3,0x3b38aecc,0xb6b4834b,0x9bd06609,
+0xf65f0c2b,0x9c0eda42
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdfde56f1,0x2e95dfb9,0x450901d,0xefdb1855,0x81bb652a,0xc4466e29,
+0x851cef85,0x94136ceb
+};
+
 }
 
 namespace RetroArch
@@ -987,8 +1001,10 @@ public:
 		Name = "LensFlarePass1";
 		VertexByteCode = RetroArchReshadeShadersBloomLensFlarePass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersBloomLensFlarePass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersBloomLensFlarePass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersBloomLensFlarePass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersBloomLensFlarePass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersBloomLensFlarePass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("iBloomMixmode", 0, 64, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Bloom Mix Mode"));

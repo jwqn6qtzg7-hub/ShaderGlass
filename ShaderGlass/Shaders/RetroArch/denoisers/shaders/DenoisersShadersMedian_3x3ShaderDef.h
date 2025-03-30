@@ -627,6 +627,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1cde5e04,0x35e54c82,0x6c5c92cb,0x5bfd9840,0x67bef754,0x1d464b68,
+0xca28ea65,0xdd6335f0
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xafb47e9a,0x5068d922,0x46ee9d0d,0xfda84a4e,0x5d5f9c2,0xb61370c4,
+0x2be678d2,0xa26bc311
+};
+
 }
 
 namespace RetroArch
@@ -639,8 +653,10 @@ public:
 		Name = "median_3x3";
 		VertexByteCode = RetroArchDenoisersShadersMedian_3x3ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDenoisersShadersMedian_3x3ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDenoisersShadersMedian_3x3ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDenoisersShadersMedian_3x3ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDenoisersShadersMedian_3x3ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDenoisersShadersMedian_3x3ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

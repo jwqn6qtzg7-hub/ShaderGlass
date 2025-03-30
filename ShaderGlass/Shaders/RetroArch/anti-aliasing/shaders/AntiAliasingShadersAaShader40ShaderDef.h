@@ -1748,6 +1748,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5ec48ac7,0x6fb544df,0x2483ec77,0x222e8a5d,0x69431a64,0x3e5ea9d9,
+0x75a446d6,0xf7558456
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x39852acc,0x60ab888b,0x65b7d290,0x3394de3,0x6071a1ae,0xbab59e0c,
+0xe5aa0189,0xb9c964ae
+};
+
 }
 
 namespace RetroArch
@@ -1760,8 +1774,10 @@ public:
 		Name = "aa-shader-4.0";
 		VertexByteCode = RetroArchAntiAliasingShadersAaShader40ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchAntiAliasingShadersAaShader40ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchAntiAliasingShadersAaShader40ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchAntiAliasingShadersAaShader40ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchAntiAliasingShadersAaShader40ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchAntiAliasingShadersAaShader40ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

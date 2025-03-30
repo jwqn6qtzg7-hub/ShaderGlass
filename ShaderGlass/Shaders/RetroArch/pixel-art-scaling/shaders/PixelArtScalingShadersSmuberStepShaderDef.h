@@ -489,6 +489,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf6747e29,0x561f80be,0xe0afa88c,0xe6973fb8,0x42513780,0xf42c611c,
+0x2b292e92,0x1b379026
+};
+
 }
 
 namespace RetroArch
@@ -501,8 +515,10 @@ public:
 		Name = "SmuberStep";
 		VertexByteCode = RetroArchPixelArtScalingShadersSmuberStepShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersSmuberStepShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersSmuberStepShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersSmuberStepShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersSmuberStepShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersSmuberStepShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

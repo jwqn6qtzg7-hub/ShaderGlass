@@ -1892,6 +1892,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xad476c43,0xf2b2d935,0xbf1c8f8c,0x99702812,0xa57e915a,0x2f3741fb,
+0xbada8191,0xd172208f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x70493f85,0x24e23c7a,0x2675670b,0x1e0dcf70,0x3390627b,0xcdfe0dec,
+0x5f9f9a4f,0x582c6402
+};
+
 }
 
 namespace RetroArch
@@ -1904,8 +1918,10 @@ public:
 		Name = "tv_reflection";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("OutputSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

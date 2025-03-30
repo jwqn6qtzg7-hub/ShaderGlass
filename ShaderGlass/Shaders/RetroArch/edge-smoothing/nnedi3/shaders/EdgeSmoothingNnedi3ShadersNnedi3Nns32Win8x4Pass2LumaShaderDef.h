@@ -7832,6 +7832,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4fd20493,0xf17e2c2e,0x39d02bc7,0xa0e2e6bc,0xc4b7ea54,0xb6723a5f,
+0xb8c13e8f,0x9ab371e5
+};
+
 }
 
 namespace RetroArch
@@ -7844,8 +7858,10 @@ public:
 		Name = "nnedi3-nns32-win8x4-pass2-luma";
 		VertexByteCode = RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

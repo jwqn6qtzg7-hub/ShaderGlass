@@ -1331,6 +1331,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xad4ea6e1,0x7b9914d8,0xc786a3,0xf6a1bfa6,0xc43b27b7,0x117e1f40,
+0x101bdbfc,0xc70a425c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe01c70e5,0x57ae5f7e,0x8ed212b2,0x98956f5d,0x16ddf01b,0x6d61b5dc,
+0xc134dc99,0x4f28330f
+};
+
 }
 
 namespace RetroArch
@@ -1343,8 +1357,10 @@ public:
 		Name = "film_noise";
 		VertexByteCode = RetroArchFilmShadersFilm_noiseShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchFilmShadersFilm_noiseShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchFilmShadersFilm_noiseShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchFilmShadersFilm_noiseShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchFilmShadersFilm_noiseShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchFilmShadersFilm_noiseShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

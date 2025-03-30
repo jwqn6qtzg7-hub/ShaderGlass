@@ -4155,6 +4155,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd0225ba9,0xf9996c86,0x15261091,0x3018d78a,0x9fe44808,0xd515a17,
+0xecbee11f,0xa33d5612
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc88c9084,0x146946cd,0x388ff9a,0x96a06bfd,0xb9bcc9df,0x99cd5cc4,
+0x4141f1e0,0xb83baa7d
+};
+
 }
 
 namespace RetroArch
@@ -4167,8 +4181,10 @@ public:
 		Name = "effect-border-iq";
 		VertexByteCode = RetroArchBorderShadersEffectBorderIqShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBorderShadersEffectBorderIqShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBorderShadersEffectBorderIqShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBorderShadersEffectBorderIqShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBorderShadersEffectBorderIqShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBorderShadersEffectBorderIqShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

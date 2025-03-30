@@ -720,6 +720,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8a26ef99,0x4f59607f,0x9d1bb5a9,0x5a8d8f3,0xceb700bd,0xfd850c9,
+0xd94a8ca1,0xc0a78371
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3e32d012,0xef7954b3,0x4d4655a5,0x5cc5f1b3,0x413d6c9c,0xeb0594d4,
+0xb2048518,0xb72e24ca
+};
+
 }
 
 namespace RetroArch
@@ -732,8 +746,10 @@ public:
 		Name = "color-mangler";
 		VertexByteCode = RetroArchMiscShadersColorManglerShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersColorManglerShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersColorManglerShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersColorManglerShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersColorManglerShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersColorManglerShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

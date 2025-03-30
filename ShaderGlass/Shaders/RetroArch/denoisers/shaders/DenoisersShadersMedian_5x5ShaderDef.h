@@ -1580,6 +1580,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x92f86291,0xef6f7129,0x306f49c2,0x45925355,0xa8e16ce5,0x73081339,
+0x16ec8299,0x456180f6
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3da5cb07,0xc5975bd,0xa10475dc,0x51334a07,0xe38e3348,0x71609fed,
+0x5f5ba94c,0xcefb9848
+};
+
 }
 
 namespace RetroArch
@@ -1592,8 +1606,10 @@ public:
 		Name = "median_5x5";
 		VertexByteCode = RetroArchDenoisersShadersMedian_5x5ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDenoisersShadersMedian_5x5ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDenoisersShadersMedian_5x5ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDenoisersShadersMedian_5x5ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDenoisersShadersMedian_5x5ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDenoisersShadersMedian_5x5ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

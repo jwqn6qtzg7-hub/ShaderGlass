@@ -403,6 +403,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf019c486,0x41d06a7,0x7285973e,0x5959676b,0x6eaeea5e,0xf7fb868c,
+0xf94c5b4b,0x20213e4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa0973184,0x119e7378,0xf5fcf756,0x5f04cb51,0xffda2ce3,0x9fcb9f1f,
+0xce50906c,0x8e156224
+};
+
 }
 
 namespace RetroArch
@@ -415,8 +429,10 @@ public:
 		Name = "gauss_2tap_v";
 		VertexByteCode = RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

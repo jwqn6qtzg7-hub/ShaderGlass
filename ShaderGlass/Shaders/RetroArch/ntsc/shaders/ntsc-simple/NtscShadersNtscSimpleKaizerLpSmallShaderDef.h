@@ -493,6 +493,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x318b432a,0xfcaaa939,0xdddb0b7b,0x6b2662a5,0x2b4f8509,0x72ea386d,
+0x43dc1d07,0x5b2f46ca
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x89d98666,0x66d58210,0x28c516f8,0xf90daa4f,0xf57ca629,0x3ab994a,
+0x1b28647b,0xef00c14d
+};
+
 }
 
 namespace RetroArch
@@ -505,8 +519,10 @@ public:
 		Name = "kaizer-lp-small";
 		VertexByteCode = RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

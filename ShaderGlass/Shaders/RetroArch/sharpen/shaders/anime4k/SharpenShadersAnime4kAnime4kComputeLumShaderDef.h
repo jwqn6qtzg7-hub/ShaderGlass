@@ -304,6 +304,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd9a7b473,0xdc43a4a8,0x5d4ceba,0x6f9f484b,0xaf6d8218,0x3f3370ed,
+0x732140ac,0x9ecc2c2f
+};
+
 }
 
 namespace RetroArch
@@ -316,8 +330,10 @@ public:
 		Name = "anime4k-compute-lum";
 		VertexByteCode = RetroArchSharpenShadersAnime4kAnime4kComputeLumShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersAnime4kAnime4kComputeLumShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersAnime4kAnime4kComputeLumShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersAnime4kAnime4kComputeLumShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersAnime4kAnime4kComputeLumShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersAnime4kAnime4kComputeLumShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

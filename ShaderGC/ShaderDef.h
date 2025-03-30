@@ -45,7 +45,8 @@ class ShaderDef
 {
 public:
     ShaderDef() :
-        Params {}, Samplers {}, Name {}, VertexSource {}, FragmentSource {}, VertexByteCode {}, FragmentByteCode {}, VertexLength {}, FragmentLength {}, Format {}, Dynamic {false}
+        Params {}, Samplers {}, Name {}, VertexSource {}, FragmentSource {}, VertexByteCode {}, FragmentByteCode {}, VertexHash {}, FragmentHash {}, VertexLength {},
+        FragmentLength {}, Format {}, Dynamic {false}
     { }
 
     std::vector<ShaderParam>           Params;
@@ -56,6 +57,8 @@ public:
     const char*                        FragmentSource;
     const uint8_t*                     VertexByteCode;
     const uint8_t*                     FragmentByteCode;
+    const uint32_t*                    VertexHash;
+    const uint32_t*                    FragmentHash;
     size_t                             VertexLength;
     size_t                             FragmentLength;
     char*                              Format;

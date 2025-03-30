@@ -382,6 +382,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaa44baec,0xcf983422,0x658f6f1c,0xe00170e,0xf5f6d9,0xba8b8672,
+0x9a111bb3,0x86efff3c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x76fd4fed,0xdbaadef1,0x7238dd1e,0x3e410c69,0x5986baf8,0x28bdf8a8,
+0xffc20e94,0x83b280c6
+};
+
 }
 
 namespace RetroArch
@@ -394,8 +408,10 @@ public:
 		Name = "threshold";
 		VertexByteCode = RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

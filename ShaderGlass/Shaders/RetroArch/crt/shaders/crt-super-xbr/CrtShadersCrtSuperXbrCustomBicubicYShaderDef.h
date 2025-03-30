@@ -581,6 +581,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc9b4bad9,0xf46fc9fb,0x9874f804,0x5c14a091,0xb1fed53b,0xa8defa49,
+0x62d568c6,0x440b4305
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf564a309,0x99a66c40,0x84ed77f5,0x2e932e28,0x71e219e4,0x31ba3ac0,
+0x11c1fb2,0x271de239
+};
+
 }
 
 namespace RetroArch
@@ -593,8 +607,10 @@ public:
 		Name = "custom-bicubic-y";
 		VertexByteCode = RetroArchCrtShadersCrtSuperXbrCustomBicubicYShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtSuperXbrCustomBicubicYShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtSuperXbrCustomBicubicYShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtSuperXbrCustomBicubicYShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSuperXbrCustomBicubicYShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtSuperXbrCustomBicubicYShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

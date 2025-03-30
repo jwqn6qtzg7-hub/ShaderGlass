@@ -681,6 +681,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x60ec583c,0x6c2739d0,0xb76b302f,0xe85e898c,0xe4eb0a38,0x33fddf4e,
+0x35fb8f6b,0xdd87476a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdb43b1a3,0x3f8daf5e,0x837930e5,0xd4bdf8bb,0x561a8580,0x25da44ea,
+0xce26f240,0xbcd080a0
+};
+
 }
 
 namespace RetroArch
@@ -693,8 +707,10 @@ public:
 		Name = "response-time";
 		VertexByteCode = RetroArchMotionblurShadersResponseTimeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMotionblurShadersResponseTimeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMotionblurShadersResponseTimeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMotionblurShadersResponseTimeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMotionblurShadersResponseTimeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMotionblurShadersResponseTimeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

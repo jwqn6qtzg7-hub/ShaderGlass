@@ -494,6 +494,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd273f1b3,0x407a04cf,0x8e737dd5,0xd7ef588f,0xe0efe96d,0x7659538,
+0x59ac4095,0x19565b84
+};
+
 }
 
 namespace RetroArch
@@ -506,8 +520,10 @@ public:
 		Name = "cbod-v1-pass1";
 		VertexByteCode = RetroArchDitheringShadersCbodV1CbodV1Pass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersCbodV1CbodV1Pass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersCbodV1CbodV1Pass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersCbodV1CbodV1Pass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersCbodV1CbodV1Pass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersCbodV1CbodV1Pass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

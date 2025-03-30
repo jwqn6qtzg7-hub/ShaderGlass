@@ -777,6 +777,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x732294aa,0x681d40c4,0xb0b1a6a,0xabbe6025,0x4855212e,0x938e8371,
+0x8d642a23,0x9ea1221e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc05ea8fd,0xb0ebd733,0xe1a4e4a3,0x144e5b41,0x733ba6d8,0xe1f2824c,
+0x8ee1fd21,0x4bb86490
+};
+
 }
 
 namespace RetroArch
@@ -789,8 +803,10 @@ public:
 		Name = "artifact-colors2";
 		VertexByteCode = RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

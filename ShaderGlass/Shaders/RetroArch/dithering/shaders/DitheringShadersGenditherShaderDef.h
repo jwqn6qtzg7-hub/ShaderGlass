@@ -526,6 +526,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa52fc2e,0x4e9df4b0,0xef25f185,0x9889a28f,0x7b7bebfd,0x5c1c7ff3,
+0xcc6c88c8,0xbcb67c8d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x62bb0605,0x1adb499,0xde381383,0x51046c40,0x53f90c3b,0xaaa381ba,
+0x2bb7fc4f,0x487ce841
+};
+
 }
 
 namespace RetroArch
@@ -538,8 +552,10 @@ public:
 		Name = "gendither";
 		VertexByteCode = RetroArchDitheringShadersGenditherShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersGenditherShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersGenditherShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersGenditherShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersGenditherShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersGenditherShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

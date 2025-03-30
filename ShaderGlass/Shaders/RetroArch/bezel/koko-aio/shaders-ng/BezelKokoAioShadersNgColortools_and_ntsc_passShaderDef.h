@@ -9308,6 +9308,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x116fd6b6,0xcbad382f,0x873db12f,0x66582d6,0xafe26359,0xc796a534,
+0xa5146f3c,0x6d77964c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x53f01877,0xcb001660,0xad7ac566,0x4158fbf0,0x5d253537,0x708aaf4b,
+0x5fa1def4,0x455e823
+};
+
 }
 
 namespace RetroArch
@@ -9320,8 +9334,10 @@ public:
 		Name = "colortools_and_ntsc_pass";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgColortools_and_ntsc_passShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgColortools_and_ntsc_passShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgColortools_and_ntsc_passShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgColortools_and_ntsc_passShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgColortools_and_ntsc_passShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgColortools_and_ntsc_passShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

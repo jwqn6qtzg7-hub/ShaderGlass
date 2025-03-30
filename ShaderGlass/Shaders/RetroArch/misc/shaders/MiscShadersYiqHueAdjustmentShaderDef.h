@@ -600,6 +600,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xee283ba7,0xbd2e40ae,0x989addc3,0xfd67c378,0x278f826,0xe5620fdf,
+0x73e8ec19,0x4769f744
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe2b7eaad,0x94d9ccd9,0x89063833,0x28dedd5b,0xec9b2245,0x52156dd6,
+0xa542ac3a,0xee6875a5
+};
+
 }
 
 namespace RetroArch
@@ -612,8 +626,10 @@ public:
 		Name = "yiq-hue-adjustment";
 		VertexByteCode = RetroArchMiscShadersYiqHueAdjustmentShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersYiqHueAdjustmentShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersYiqHueAdjustmentShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersYiqHueAdjustmentShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersYiqHueAdjustmentShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersYiqHueAdjustmentShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -10529,6 +10529,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9a5254ac,0xd151fa78,0x58b65b74,0x3ce5d7c8,0x5405379a,0xa8f53349,
+0x64fe870e,0xf5b5feb5
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd0b05952,0x4d3abcde,0x587442d1,0x4563d07f,0x1b392b93,0x5344cdf1,
+0xf93bf807,0xdfefcda8
+};
+
 }
 
 namespace RetroArch
@@ -10541,8 +10555,10 @@ public:
 		Name = "crt-royale-bloom-approx";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.500000f, 0.025000f, "Simulated CRT Gamma"));

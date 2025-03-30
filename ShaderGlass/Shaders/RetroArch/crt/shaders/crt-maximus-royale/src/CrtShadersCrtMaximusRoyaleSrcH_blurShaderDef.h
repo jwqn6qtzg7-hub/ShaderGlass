@@ -395,6 +395,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x96c999c6,0x95d63c11,0xced7657e,0x2e79a2d9,0x41a16ed2,0x85359df5,
+0xa4e6dc19,0x78814d9b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9618c9c8,0x67e7570b,0x815f233a,0xe24ba57a,0xdf0ee917,0xbd62c731,
+0xef007176,0x820940b8
+};
+
 }
 
 namespace RetroArch
@@ -407,8 +421,10 @@ public:
 		Name = "H_blur";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcH_blurShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcH_blurShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcH_blurShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcH_blurShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcH_blurShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcH_blurShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Hsharpness", -1, 0, 4, 1.000000f, 20.000000f, 10.000000f, 0.500000f, "Horizontal Sharpness"));

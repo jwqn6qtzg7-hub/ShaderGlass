@@ -3027,6 +3027,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xdaf74f0a,0xef9d0d77,0x139e716f,0x2528da65,0xadb33b03,0xfe1b3dc4,
+0xcfde73c1,0xa1312124
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf1bfb220,0x3a21f441,0xca9d2651,0x6adece6c,0xa9f4d927,0x7816fc1,
+0x7bce54fb,0xa878d2fb
+};
+
 }
 
 namespace RetroArch
@@ -3039,8 +3053,10 @@ public:
 		Name = "crt-consumer";
 		VertexByteCode = RetroArchCrtShadersCrtConsumerShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtConsumerShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtConsumerShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtConsumerShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtConsumerShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtConsumerShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("blurx", 0, 64, 4, -4.000000f, 4.000000f, 0.250000f, 0.050000f, "Convergence X"));

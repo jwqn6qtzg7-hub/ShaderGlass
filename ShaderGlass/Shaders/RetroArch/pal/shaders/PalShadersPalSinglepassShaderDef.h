@@ -2452,6 +2452,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xeea703fe,0x5985c730,0x33cf1516,0x97f3fa3e,0x992ab0aa,0xb3220a6c,
+0xfac524b6,0xaae1930a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x249f4986,0xa920f38,0x1331310d,0xeec856e4,0xafa46835,0x7c25953b,
+0xd630364,0xba952dfc
+};
+
 }
 
 namespace RetroArch
@@ -2464,8 +2478,10 @@ public:
 		Name = "pal-singlepass";
 		VertexByteCode = RetroArchPalShadersPalSinglepassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPalShadersPalSinglepassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPalShadersPalSinglepassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPalShadersPalSinglepassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPalShadersPalSinglepassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPalShadersPalSinglepassShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

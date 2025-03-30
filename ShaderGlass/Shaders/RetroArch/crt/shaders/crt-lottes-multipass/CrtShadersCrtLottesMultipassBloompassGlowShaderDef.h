@@ -1761,6 +1761,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x81a50ea3,0x520c0d83,0x23aac561,0xd64f6520,0x7cfa3758,0x813f2a22,
+0xac50f8c,0x20d4458
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc268e13c,0xebaa1517,0x40c008c0,0x159c3d54,0x315af043,0xdd9acf95,
+0xb3e5ee5b,0x19eb9eb9
+};
+
 }
 
 namespace RetroArch
@@ -1773,8 +1787,10 @@ public:
 		Name = "bloompass-glow";
 		VertexByteCode = RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

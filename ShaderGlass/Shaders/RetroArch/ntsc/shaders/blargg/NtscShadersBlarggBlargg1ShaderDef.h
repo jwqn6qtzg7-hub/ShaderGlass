@@ -1205,6 +1205,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x635b042f,0x418d5ec,0x34ede5be,0xab2af086,0x4a48875b,0xa6917bcd,
+0x8d4549c5,0xac5ec671
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9278302,0xe7b4a1f3,0x34c5755e,0xee35b9ea,0x5005a93f,0xa5b9e315,
+0xdb938e8e,0xd1e89c6b
+};
+
 }
 
 namespace RetroArch
@@ -1217,8 +1231,10 @@ public:
 		Name = "blargg-1";
 		VertexByteCode = RetroArchNtscShadersBlarggBlargg1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersBlarggBlargg1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersBlarggBlargg1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersBlarggBlargg1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersBlarggBlargg1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersBlarggBlargg1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

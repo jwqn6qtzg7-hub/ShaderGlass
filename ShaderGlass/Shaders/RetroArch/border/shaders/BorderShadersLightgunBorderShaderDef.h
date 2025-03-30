@@ -559,6 +559,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xef4b7ee7,0xcac03e42,0x6766f842,0xb9f99cf7,0xf7166187,0xa3ba3bb6,
+0xdbb77e8d,0x2917bb27
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8da103f7,0x2ea9e490,0xc07859a6,0x95f4be5c,0x4f0569f9,0xe2264e5e,
+0x9e8affb2,0xca04fefa
+};
+
 }
 
 namespace RetroArch
@@ -571,8 +585,10 @@ public:
 		Name = "lightgun-border";
 		VertexByteCode = RetroArchBorderShadersLightgunBorderShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBorderShadersLightgunBorderShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBorderShadersLightgunBorderShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBorderShadersLightgunBorderShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBorderShadersLightgunBorderShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBorderShadersLightgunBorderShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

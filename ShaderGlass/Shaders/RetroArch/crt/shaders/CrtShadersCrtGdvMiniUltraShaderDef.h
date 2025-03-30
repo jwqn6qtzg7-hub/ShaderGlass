@@ -3537,6 +3537,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x33aba3e2,0x6eb22846,0xc2602a9c,0xfb07bcf3,0xffc13fec,0x9de8c50e,
+0x949c3eb0,0xe57b53b7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd214fc0d,0x3d238b96,0xccd235e7,0x6700b5af,0x9622493,0x79444782,
+0x99344654,0x41016360
+};
+
 }
 
 namespace RetroArch
@@ -3549,8 +3563,10 @@ public:
 		Name = "crt-gdv-mini-ultra";
 		VertexByteCode = RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

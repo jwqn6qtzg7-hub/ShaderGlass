@@ -687,6 +687,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1421543e,0xc0ee1d75,0x5e27cbe,0x4a6fdb27,0x99e52fca,0x8aa8e38e,
+0xaf73f6df,0xab945bbe
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4e433fa1,0x69da0587,0x8920320e,0x717e24cc,0x2a8a3468,0xff972844,
+0x928407af,0xd8824baf
+};
+
 }
 
 namespace RetroArch
@@ -699,8 +713,10 @@ public:
 		Name = "yeetron";
 		VertexByteCode = RetroArchCrtShadersYeetronShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersYeetronShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersYeetronShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersYeetronShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersYeetronShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersYeetronShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

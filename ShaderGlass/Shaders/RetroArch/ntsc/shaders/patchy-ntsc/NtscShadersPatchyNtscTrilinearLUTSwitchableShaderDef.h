@@ -1593,6 +1593,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb7dc3fbb,0x45c8e57e,0x78dc6381,0x3280af80,0xde33d346,0xbe5435c7,
+0x59d45cbe,0xd6841fb1
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd234136f,0x73795838,0x14b57218,0xaa5ee629,0xadb84a6f,0x4b2190ff,
+0xaabeafbf,0xb343f917
+};
+
 }
 
 namespace RetroArch
@@ -1605,8 +1619,10 @@ public:
 		Name = "trilinearLUT-switchable";
 		VertexByteCode = RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

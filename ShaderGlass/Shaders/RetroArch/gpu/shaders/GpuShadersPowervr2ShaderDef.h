@@ -780,6 +780,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe354ea67,0x19e5412f,0xbe3e80ad,0x2019b419,0x11c3984c,0xe71372e9,
+0x4da7db65,0xbe355137
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x78d3b6d2,0x1cc13860,0xce47cb2b,0xc7e65c44,0xf08ba131,0x969c9872,
+0xcc0f75f0,0xcb457381
+};
+
 }
 
 namespace RetroArch
@@ -792,8 +806,10 @@ public:
 		Name = "powervr2";
 		VertexByteCode = RetroArchGpuShadersPowervr2ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchGpuShadersPowervr2ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchGpuShadersPowervr2ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchGpuShadersPowervr2ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchGpuShadersPowervr2ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchGpuShadersPowervr2ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

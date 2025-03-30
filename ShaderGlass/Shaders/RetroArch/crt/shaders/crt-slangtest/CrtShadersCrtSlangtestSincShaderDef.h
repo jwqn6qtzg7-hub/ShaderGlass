@@ -528,6 +528,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8acc1058,0x67dad1de,0x167fac5c,0x3a7eab30,0x7f41eddc,0x4397016b,
+0xfc52925b,0x5132d6b3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf5e6ea28,0x50a4f408,0x9f63beed,0x83732203,0xe26d290e,0xed03f011,
+0x76287982,0x6d67b753
+};
+
 }
 
 namespace RetroArch
@@ -540,8 +554,10 @@ public:
 		Name = "sinc";
 		VertexByteCode = RetroArchCrtShadersCrtSlangtestSincShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtSlangtestSincShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtSlangtestSincShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtSlangtestSincShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSlangtestSincShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtSlangtestSincShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -328,6 +328,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd21d72cd,0x69d4e505,0x58531137,0xaed05f39,0x522e9445,0x1128f2c,
+0x1118ca53,0x3d7f9e28
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7c3744ec,0xea8784c9,0xe11eb24a,0x5734d98f,0x51ec75d7,0xcd5c4726,
+0xba514cdf,0x4bee5f43
+};
+
 }
 
 namespace RetroArch
@@ -340,8 +354,10 @@ public:
 		Name = "mix_frames";
 		VertexByteCode = RetroArchMotionblurShadersMix_framesShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMotionblurShadersMix_framesShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMotionblurShadersMix_framesShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMotionblurShadersMix_framesShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMotionblurShadersMix_framesShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMotionblurShadersMix_framesShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));

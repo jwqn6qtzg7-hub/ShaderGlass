@@ -1523,6 +1523,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3aec854a,0x33679fd5,0x63140f1,0xd11e77ad,0x3b53df75,0xc7eaa1df,
+0x5b78d52,0xbabdc268
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x698664a3,0x4e29ea73,0x37a26568,0x55f7f992,0x2e0edae5,0xa0c5fda2,
+0x8b0d8cc6,0xe551943
+};
+
 }
 
 namespace RetroArch
@@ -1535,8 +1549,10 @@ public:
 		Name = "jinc2-on-passoutput0";
 		VertexByteCode = RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -315,6 +315,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdf60c384,0x3d8c340b,0x37fdbd7d,0xe8de66f7,0x7ac12979,0x3e3d3d6f,
+0xb4350128,0x6f017598
+};
+
 }
 
 namespace RetroArch
@@ -327,8 +341,10 @@ public:
 		Name = "hsm-crt-easymode-threshold";
 		VertexByteCode = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeThresholdShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeThresholdShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeThresholdShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeThresholdShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeThresholdShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeThresholdShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -626,6 +626,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x33911dce,0x871abe71,0x4dc46baf,0x3adeef9b,0xb70e0e9d,0xbb5de7be,
+0x7f7105c8,0xbfa07661
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x954e9e7e,0x289fdeba,0xa1185802,0xded85593,0x60770649,0xbd345dfc,
+0xe61139b,0x9bad6010
+};
+
 }
 
 namespace RetroArch
@@ -638,8 +652,10 @@ public:
 		Name = "relief";
 		VertexByteCode = RetroArchMiscShadersReliefShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersReliefShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersReliefShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersReliefShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersReliefShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersReliefShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

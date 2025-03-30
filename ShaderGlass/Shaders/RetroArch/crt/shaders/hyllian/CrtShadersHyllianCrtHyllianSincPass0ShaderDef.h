@@ -1197,6 +1197,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe1f6050b,0xadd735c5,0x5b6449bb,0xf572bd09,0xded57c05,0xd705de9a,
+0x386f5b56,0xdde1a22f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6405ce28,0xc7c5c02e,0x5c98f213,0x4579604,0xd5eedfe,0xd2ecab18,
+0x74f4dcd,0x969dbb93
+};
+
 }
 
 namespace RetroArch
@@ -1209,8 +1223,10 @@ public:
 		Name = "crt-hyllian-sinc-pass0";
 		VertexByteCode = RetroArchCrtShadersHyllianCrtHyllianSincPass0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianSincPass0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersHyllianCrtHyllianSincPass0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersHyllianCrtHyllianSincPass0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianSincPass0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersHyllianCrtHyllianSincPass0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

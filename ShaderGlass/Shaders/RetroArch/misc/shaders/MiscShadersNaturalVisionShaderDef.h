@@ -487,6 +487,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3944ecc9,0x85ad1684,0xc6a648e0,0x1bd53d11,0xd2cb52ea,0xf0381f19,
+0xd5bb8611,0x5b171b45
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x60402b15,0x492c699e,0x8830c0b3,0xdc9b5051,0x7842490f,0x16db5ce4,
+0x72103df,0x6cec5bd3
+};
+
 }
 
 namespace RetroArch
@@ -499,8 +513,10 @@ public:
 		Name = "natural-vision";
 		VertexByteCode = RetroArchMiscShadersNaturalVisionShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersNaturalVisionShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersNaturalVisionShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

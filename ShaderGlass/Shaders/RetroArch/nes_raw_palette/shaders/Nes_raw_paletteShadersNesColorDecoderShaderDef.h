@@ -986,6 +986,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa9b2b7f8,0x7a86bebf,0x21377ad0,0x42210db1,0xf702eb48,0x81de0c9e,
+0x8ff353fa,0x5cebdfda
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc9f528ab,0x274f8bb4,0x84caa067,0x78bb8fdc,0x9bd74c2d,0x3e70ea69,
+0xd8fd862e,0xc0618e6e
+};
+
 }
 
 namespace RetroArch
@@ -998,8 +1012,10 @@ public:
 		Name = "nes-color-decoder";
 		VertexByteCode = RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

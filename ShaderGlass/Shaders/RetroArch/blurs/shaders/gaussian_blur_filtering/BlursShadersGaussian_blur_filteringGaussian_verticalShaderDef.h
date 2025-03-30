@@ -541,6 +541,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xca402d56,0x3b8a08dd,0x9e7eed5d,0xea960084,0x27460d08,0xdc0aa0e1,
+0x6fe127b5,0x8c7e8aa
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x540854a5,0xaa269e64,0xc2572e79,0x4402008c,0xb9fa7166,0x4207e18f,
+0xa975787,0x6fff97c8
+};
+
 }
 
 namespace RetroArch
@@ -553,8 +567,10 @@ public:
 		Name = "gaussian_vertical";
 		VertexByteCode = RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

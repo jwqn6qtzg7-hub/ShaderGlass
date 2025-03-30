@@ -1485,6 +1485,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3b50f7bd,0x9acd712c,0x9dd00e6f,0x94a426fd,0x9f0ee64a,0xe31c495b,
+0x41cbd3fe,0x7c834cb8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xae57146c,0xd5d0205d,0x44679c30,0x23d05274,0x79dc9f68,0x10c40c23,
+0xe8512046,0x28fe55e7
+};
+
 }
 
 namespace RetroArch
@@ -1497,8 +1511,10 @@ public:
 		Name = "custom-jinc2-sharper";
 		VertexByteCode = RetroArchEdgeSmoothingXbrShadersSuperXbrCustomJinc2SharperShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingXbrShadersSuperXbrCustomJinc2SharperShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingXbrShadersSuperXbrCustomJinc2SharperShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingXbrShadersSuperXbrCustomJinc2SharperShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingXbrShadersSuperXbrCustomJinc2SharperShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingXbrShadersSuperXbrCustomJinc2SharperShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

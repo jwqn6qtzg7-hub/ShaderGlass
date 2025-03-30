@@ -540,6 +540,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5fca5447,0x8fb4daf6,0x9aedfd6f,0x9df3a468,0xef2a5e4e,0x27dd0bf8,
+0x97eb3089,0x4812be96
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7d723ac2,0x28c0b4a6,0x3b57b51d,0x8f1b9992,0x7077559c,0xee2e40d,
+0x69e7b109,0xc8c3c2e6
+};
+
 }
 
 namespace RetroArch
@@ -552,8 +566,10 @@ public:
 		Name = "lanczos_horiz";
 		VertexByteCode = RetroArchCrtShadersGlowLanczos_horizShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGlowLanczos_horizShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGlowLanczos_horizShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGlowLanczos_horizShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGlowLanczos_horizShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGlowLanczos_horizShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

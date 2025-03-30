@@ -401,6 +401,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x867eaf62,0x618075d0,0x1974b658,0x602f8166,0x2859c27e,0x3630646c,
+0x4f01e720,0x733790ea
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x90a11f0e,0xdc62171f,0x91b2747c,0xf950cc4f,0x25a44e70,0x802ffde6,
+0x33bcb017,0x32c32e6d
+};
+
 }
 
 namespace RetroArch
@@ -413,8 +427,10 @@ public:
 		Name = "BGcolor_pass1";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("bgMode", -1, 0, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "BG Mode"));

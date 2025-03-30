@@ -654,6 +654,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x55f26d00,0x98aa6784,0xb3064cc6,0xc222f641,0xfd3bacf,0xfb275f58,
+0x6a125e14,0xa66a7045
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7ac744c7,0xe96085ce,0x7d9243ed,0xc7c87d55,0xd2fa98af,0xef2b9ab9,
+0x1ad96c48,0x4843e7b9
+};
+
 }
 
 namespace RetroArch
@@ -666,8 +680,10 @@ public:
 		Name = "lowpass-chroma";
 		VertexByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassChromaShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassChromaShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassChromaShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassChromaShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassChromaShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassChromaShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

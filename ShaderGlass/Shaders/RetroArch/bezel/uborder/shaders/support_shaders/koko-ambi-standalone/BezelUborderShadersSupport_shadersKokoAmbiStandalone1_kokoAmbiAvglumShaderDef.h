@@ -507,6 +507,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x2bde2a19,0xa8833781,0x66034c20,0x20f4d6db,0xba353fde,0xb35791ff,
+0x4d618513,0x375256f4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x886c22a2,0x1c104ccf,0xce3f9648,0x3122f88f,0xa3e3ba8b,0xf25d73f0,
+0x1789344b,0xb36772af
+};
+
 }
 
 namespace RetroArch
@@ -519,8 +533,10 @@ public:
 		Name = "1_koko-ambi-avglum";
 		VertexByteCode = RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("MVP", -1, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

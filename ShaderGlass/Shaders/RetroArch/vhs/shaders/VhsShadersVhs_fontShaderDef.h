@@ -11384,6 +11384,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe51d16ad,0x5853fca8,0xe7a16a89,0xeb2f95f8,0x38ff97d3,0x772ea20b,
+0xf64db2b6,0xfb72e97a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xac47aef9,0x4ceefc0e,0xe666cea9,0xe5bfbffa,0xedc4879a,0xf33df4d0,
+0x570c38ee,0x31ef5fbb
+};
+
 }
 
 namespace RetroArch
@@ -11396,8 +11410,10 @@ public:
 		Name = "vhs_font";
 		VertexByteCode = RetroArchVhsShadersVhs_fontShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchVhsShadersVhs_fontShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchVhsShadersVhs_fontShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchVhsShadersVhs_fontShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchVhsShadersVhs_fontShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchVhsShadersVhs_fontShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

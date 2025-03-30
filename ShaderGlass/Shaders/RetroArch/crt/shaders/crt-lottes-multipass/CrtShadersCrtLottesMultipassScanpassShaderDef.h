@@ -1990,6 +1990,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xdce46cd1,0xefb9f73c,0x950569b0,0x3fdb3391,0x472cae6a,0xbadd2b25,
+0xde968c56,0xcf88ac2a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x520d922c,0xdc811138,0xafd8ead4,0xff5a43,0x8414a047,0x2909553,
+0xfd5801b,0xb1a14aa9
+};
+
 }
 
 namespace RetroArch
@@ -2002,8 +2016,10 @@ public:
 		Name = "scanpass";
 		VertexByteCode = RetroArchCrtShadersCrtLottesMultipassScanpassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtLottesMultipassScanpassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtLottesMultipassScanpassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtLottesMultipassScanpassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtLottesMultipassScanpassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtLottesMultipassScanpassShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

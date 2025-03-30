@@ -868,6 +868,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd6a90846,0x614812c2,0xecfbc030,0x6d358410,0x97bb7513,0x52b99f19,
+0xad7cbba6,0x40a50d98
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4e0d687c,0x116b3b09,0x4cbae425,0x5f8467ac,0xb99f5008,0xad925ae,
+0x7300ae35,0x51b74049
+};
+
 }
 
 namespace RetroArch
@@ -880,8 +894,10 @@ public:
 		Name = "deband";
 		VertexByteCode = RetroArchMiscShadersDebandShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersDebandShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersDebandShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersDebandShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersDebandShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersDebandShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

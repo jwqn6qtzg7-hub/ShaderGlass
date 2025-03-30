@@ -1078,6 +1078,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x215de198,0xdf6abae8,0x67f69794,0x901e630d,0xf3ecebf8,0xd192c53d,
+0x59dcf1bb,0x7939d7f
+};
+
 }
 
 namespace RetroArch
@@ -1090,8 +1104,10 @@ public:
 		Name = "HorizontalSoften";
 		VertexByteCode = RetroArchVhsShadersGristleVHSHorizontalSoftenShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchVhsShadersGristleVHSHorizontalSoftenShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchVhsShadersGristleVHSHorizontalSoftenShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchVhsShadersGristleVHSHorizontalSoftenShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchVhsShadersGristleVHSHorizontalSoftenShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchVhsShadersGristleVHSHorizontalSoftenShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

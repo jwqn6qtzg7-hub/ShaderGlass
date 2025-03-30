@@ -468,6 +468,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xec791f22,0xc0fdf3d3,0x777dd979,0xd99daf8b,0xa15ef72b,0x29bf15c7,
+0x7211ffe,0x1ee07672
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3688bc91,0x1387a6bf,0xd8a80b97,0x9af8f670,0x27863609,0xb6465f5b,
+0x777e3aa6,0x80b2895f
+};
+
 }
 
 namespace RetroArch
@@ -480,8 +494,10 @@ public:
 		Name = "Candy-Bloom";
 		VertexByteCode = RetroArchCrtShadersTorridgristleCandyBloomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersTorridgristleCandyBloomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersTorridgristleCandyBloomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersTorridgristleCandyBloomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersTorridgristleCandyBloomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersTorridgristleCandyBloomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

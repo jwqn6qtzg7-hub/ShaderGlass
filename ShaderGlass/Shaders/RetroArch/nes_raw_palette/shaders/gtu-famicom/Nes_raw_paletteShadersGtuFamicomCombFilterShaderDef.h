@@ -633,6 +633,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8dc9ac0e,0x4bb17595,0x17804bde,0x1d138097,0x5a221ee2,0x3ecfc1af,
+0xced715fc,0x600286e4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x146da536,0x5575f70,0x1e39666f,0xaf885d9b,0x26d1374f,0x28cedf79,
+0x936dc82a,0x56d429d9
+};
+
 }
 
 namespace RetroArch
@@ -645,8 +659,10 @@ public:
 		Name = "combFilter";
 		VertexByteCode = RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

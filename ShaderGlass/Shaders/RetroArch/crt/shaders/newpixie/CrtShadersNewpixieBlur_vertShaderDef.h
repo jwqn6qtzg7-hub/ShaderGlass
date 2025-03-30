@@ -557,6 +557,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8f51a990,0x5bd732a4,0xcda1dc56,0xb21277a7,0x5b6f5e8f,0xcd19065,
+0xede66b2,0x3b5a3400
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8e2ac0bf,0x3cfeb875,0x810bcb84,0xf7daeb7a,0x735b3865,0x741f8a87,
+0x1e27485f,0x6ed373e2
+};
+
 }
 
 namespace RetroArch
@@ -569,8 +583,10 @@ public:
 		Name = "blur_vert";
 		VertexByteCode = RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

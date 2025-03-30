@@ -409,6 +409,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x98f75eff,0xfbc5f901,0xf07921d,0xa69c205f,0x956601c8,0xd17dbaca,
+0x63c61740,0x8b3217ec
+};
+
 }
 
 namespace RetroArch
@@ -421,8 +435,10 @@ public:
 		Name = "quilez";
 		VertexByteCode = RetroArchInterpolationShadersQuilezShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchInterpolationShadersQuilezShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchInterpolationShadersQuilezShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchInterpolationShadersQuilezShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchInterpolationShadersQuilezShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchInterpolationShadersQuilezShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

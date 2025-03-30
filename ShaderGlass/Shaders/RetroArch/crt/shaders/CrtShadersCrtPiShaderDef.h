@@ -805,6 +805,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xdb1127a8,0xae821129,0xa5ce2b05,0x445572fa,0xba3adaac,0xc4f19634,
+0x47884ae3,0xb18f5742
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe285ef4c,0x7366b5bf,0x254b0fe0,0xa5416f7c,0x3fccf05a,0xf82bea52,
+0x3d3c3e4b,0xf42b1d80
+};
+
 }
 
 namespace RetroArch
@@ -817,8 +831,10 @@ public:
 		Name = "crt-pi";
 		VertexByteCode = RetroArchCrtShadersCrtPiShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtPiShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtPiShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtPiShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtPiShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtPiShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

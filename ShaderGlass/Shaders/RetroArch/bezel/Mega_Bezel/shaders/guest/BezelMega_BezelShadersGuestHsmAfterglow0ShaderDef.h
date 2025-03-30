@@ -524,6 +524,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4ffecb6f,0x8fc034b9,0xd8459493,0x66d77a6,0x7b0c1371,0x2bf46b8d,
+0xd7319906,0xeb4d3163
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x85c3a410,0xdb096fa0,0x60d6489,0xe6288c04,0x3c07dc0e,0xbbee9fb2,
+0x156f1bb8,0x4b92249e
+};
+
 }
 
 namespace RetroArch
@@ -536,8 +550,10 @@ public:
 		Name = "hsm-afterglow0";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

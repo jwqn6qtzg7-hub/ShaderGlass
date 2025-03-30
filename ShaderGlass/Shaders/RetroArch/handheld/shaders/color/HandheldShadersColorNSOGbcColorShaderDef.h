@@ -474,6 +474,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1ef1a078,0xbb0bb9f5,0x5493f38c,0x8651eb4f,0xc70ad5db,0x220ad762,
+0xeb57cf5a,0x5575365c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8e52430e,0x45d25831,0x86711418,0x5b3af51f,0x2a64f64d,0xdfba42a9,
+0x7ef4d220,0x17cbba7c
+};
+
 }
 
 namespace RetroArch
@@ -486,8 +500,10 @@ public:
 		Name = "NSO-gbc-color";
 		VertexByteCode = RetroArchHandheldShadersColorNSOGbcColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorNSOGbcColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorNSOGbcColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorNSOGbcColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorNSOGbcColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorNSOGbcColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -489,6 +489,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfab8f506,0x7f46165e,0xaab0486e,0x5017c5bd,0x9f33f3a4,0x654952bb,
+0x60cd86aa,0xc1a6e792
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe60991da,0x4f7ba8ae,0x4af03974,0x85844116,0x15f68420,0x43ebee1d,
+0x50fdeccd,0x9ec48f7f
+};
+
 }
 
 namespace RetroArch
@@ -501,8 +515,10 @@ public:
 		Name = "lcd1x_psp";
 		VertexByteCode = RetroArchHandheldShadersLcd1x_pspShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersLcd1x_pspShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersLcd1x_pspShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersLcd1x_pspShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersLcd1x_pspShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersLcd1x_pspShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("BRIGHTEN_SCANLINES", -1, 0, 4, 1.000000f, 32.000000f, 16.000000f, 0.500000f, "Brighten Scanlines"));

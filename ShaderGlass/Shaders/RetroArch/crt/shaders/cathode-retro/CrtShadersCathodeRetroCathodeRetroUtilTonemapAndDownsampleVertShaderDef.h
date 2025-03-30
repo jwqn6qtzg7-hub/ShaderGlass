@@ -1231,6 +1231,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4cbac5b3,0xa9f1ab30,0xff2a5ee8,0x52f5f73c,0x9bfa596b,0x4c0d82f4,
+0xd74c81fc,0xb4a0a039
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x71206365,0x5e416cad,0x313574bb,0x39315659,0x59d7655a,0x3a81adbb,
+0xaf0814fd,0xb2791f93
+};
+
 }
 
 namespace RetroArch
@@ -1243,8 +1257,10 @@ public:
 		Name = "cathode-retro-util-tonemap-and-downsample-vert";
 		VertexByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroUtilTonemapAndDownsampleVertShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroUtilTonemapAndDownsampleVertShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCathodeRetroCathodeRetroUtilTonemapAndDownsampleVertShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroUtilTonemapAndDownsampleVertShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroUtilTonemapAndDownsampleVertShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCathodeRetroCathodeRetroUtilTonemapAndDownsampleVertShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

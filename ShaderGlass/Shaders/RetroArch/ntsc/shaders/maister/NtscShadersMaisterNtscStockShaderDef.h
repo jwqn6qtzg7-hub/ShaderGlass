@@ -330,6 +330,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc5f7a24c,0x3c2196de,0x5382b21b,0xd6081fdd,0x83f4b809,0x4e04a3f3,
+0x6bd28d7c,0xa524c6bc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4edd39fc,0x7c6ff5fe,0x57a69df9,0xcae10015,0xe9490cd1,0x8f6131c3,
+0xa41fde34,0xf3f3ce27
+};
+
 }
 
 namespace RetroArch
@@ -342,8 +356,10 @@ public:
 		Name = "ntsc-stock";
 		VertexByteCode = RetroArchNtscShadersMaisterNtscStockShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersMaisterNtscStockShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersMaisterNtscStockShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersMaisterNtscStockShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersMaisterNtscStockShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersMaisterNtscStockShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

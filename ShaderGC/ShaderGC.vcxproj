@@ -154,6 +154,8 @@
     <ClInclude Include="HLSL.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PresetDef.h" />
+    <ClInclude Include="sha256.h" />
+    <ClInclude Include="ShaderCache.h" />
     <ClInclude Include="ShaderDef.h" />
     <ClInclude Include="ShaderGC.h" />
     <ClInclude Include="SourceDefs.h" />
@@ -169,6 +171,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="sha256.cpp" />
+    <ClCompile Include="ShaderCache.cpp" />
     <ClCompile Include="ShaderGC.cpp" />
     <ClCompile Include="SPIRV.cpp" />
   </ItemGroup>

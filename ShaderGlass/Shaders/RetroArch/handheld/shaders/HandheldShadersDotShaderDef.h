@@ -1161,6 +1161,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xbd794c05,0xbc72ff19,0xd58f9946,0x913a86c7,0x55a86b75,0xa984ecd8,
+0x251d0b56,0x70b4dbe5
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x13f5ad67,0x59aa3ba0,0xd6631e94,0x77ab54cc,0xb62b7d0e,0x3be85155,
+0x16818ef4,0xe4dddf48
+};
+
 }
 
 namespace RetroArch
@@ -1173,8 +1187,10 @@ public:
 		Name = "dot";
 		VertexByteCode = RetroArchHandheldShadersDotShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersDotShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersDotShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersDotShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersDotShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersDotShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -3962,6 +3962,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xbb9ca8d8,0x39a33cdd,0xcd18808c,0xab22e26d,0x55e1f017,0xb9b6cfdd,
+0x6800fb66,0xe8917320
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x916d2ae7,0x6dfb8162,0xdb0d96dd,0xf8b47768,0x799f5f9d,0x3b635a19,
+0x10a4149b,0x8e7b8152
+};
+
 }
 
 namespace RetroArch
@@ -3974,8 +3988,10 @@ public:
 		Name = "VHSPro_Second";
 		VertexByteCode = RetroArchVhsShadersVHSProVHSPro_SecondShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchVhsShadersVHSProVHSPro_SecondShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchVhsShadersVHSProVHSPro_SecondShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchVhsShadersVHSProVHSPro_SecondShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchVhsShadersVHSProVHSPro_SecondShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchVhsShadersVHSProVHSPro_SecondShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("screenLinesNum", 0, 64, 4, 1.000000f, 2160.000000f, 1080.000000f, 16.000000f, "Screen Resolution [VHSPro]"));

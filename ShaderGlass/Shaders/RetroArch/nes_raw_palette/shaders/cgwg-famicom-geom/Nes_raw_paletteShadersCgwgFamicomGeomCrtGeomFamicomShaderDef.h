@@ -2561,6 +2561,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb72adf49,0x19fe738b,0xa40fc799,0x4106980e,0x40d29bdd,0xe2155201,
+0x490cd7d6,0x251fd0bd
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xef3d795a,0x92a795ea,0x9ba99472,0x9f21ff9f,0xb467e41b,0xcac966bb,
+0x236df84,0x14982ef0
+};
+
 }
 
 namespace RetroArch
@@ -2573,8 +2587,10 @@ public:
 		Name = "crt-geom-famicom";
 		VertexByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

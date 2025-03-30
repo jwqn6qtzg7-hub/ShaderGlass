@@ -560,6 +560,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf9a9eceb,0x4151d4f4,0x708eff2d,0x3a16f4fa,0xa255d5ef,0x16029e83,
+0xc97d3e53,0x1517fd62
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6aaf3fd5,0x62fdee6f,0x3d31156a,0xda7a8770,0x6c7af1e7,0xa205de3f,
+0xc11d20a,0xa82172ea
+};
+
 }
 
 namespace RetroArch
@@ -572,8 +586,10 @@ public:
 		Name = "snes-hires-blend";
 		VertexByteCode = RetroArchCrtShadersSnesHiresBlendShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersSnesHiresBlendShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersSnesHiresBlendShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersSnesHiresBlendShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersSnesHiresBlendShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersSnesHiresBlendShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

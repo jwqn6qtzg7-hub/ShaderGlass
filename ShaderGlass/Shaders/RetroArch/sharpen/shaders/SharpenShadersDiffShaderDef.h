@@ -318,6 +318,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1fc16a41,0x3cc113b3,0x25382c8a,0xbb72cc2c,0xedd62696,0x58588362,
+0x37c372a2,0x1ac88dd2
+};
+
 }
 
 namespace RetroArch
@@ -330,8 +344,10 @@ public:
 		Name = "diff";
 		VertexByteCode = RetroArchSharpenShadersDiffShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersDiffShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersDiffShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersDiffShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersDiffShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersDiffShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

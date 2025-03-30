@@ -1165,6 +1165,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc53bbfda,0x94ed5498,0x435ad06f,0x8f6db845,0x24bfd9cb,0x66376683,
+0x8468428c,0x1be8827e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xaba21fc2,0x3bebf744,0x9b7b6e7f,0xaf7f81ca,0x3cff1bf6,0x8970b205,
+0x7d94663f,0xea3ed69f
+};
+
 }
 
 namespace RetroArch
@@ -1177,8 +1191,10 @@ public:
 		Name = "gizmo-blur";
 		VertexByteCode = RetroArchBlursShadersGizmoBlurShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersGizmoBlurShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersGizmoBlurShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

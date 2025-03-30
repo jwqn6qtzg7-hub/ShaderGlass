@@ -835,6 +835,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xba380710,0xa34e7cc0,0x7035ce07,0x96c99334,0xf0d09455,0x353cc9c4,
+0xdcd9a169,0x377407da
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x12cf621e,0x6c4b3357,0x27cc9fdd,0x4cca77c,0x5a1f9c41,0x2682f3d6,
+0x24d792cb,0xf03b4907
+};
+
 }
 
 namespace RetroArch
@@ -847,8 +861,10 @@ public:
 		Name = "scaleX";
 		VertexByteCode = RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

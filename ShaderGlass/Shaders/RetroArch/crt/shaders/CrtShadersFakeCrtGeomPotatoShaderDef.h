@@ -745,6 +745,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf1350e4e,0xe57c7717,0x962822bf,0x508af1d0,0x64c46306,0xed3c7c29,
+0x8eca003f,0xee452acc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x436f8169,0x8eb230cb,0xca33645a,0x12668406,0x13417728,0x6e147505,
+0x7cdd6b06,0x11e21454
+};
+
 }
 
 namespace RetroArch
@@ -757,8 +771,10 @@ public:
 		Name = "fake-crt-geom-potato";
 		VertexByteCode = RetroArchCrtShadersFakeCrtGeomPotatoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersFakeCrtGeomPotatoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersFakeCrtGeomPotatoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersFakeCrtGeomPotatoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersFakeCrtGeomPotatoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersFakeCrtGeomPotatoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

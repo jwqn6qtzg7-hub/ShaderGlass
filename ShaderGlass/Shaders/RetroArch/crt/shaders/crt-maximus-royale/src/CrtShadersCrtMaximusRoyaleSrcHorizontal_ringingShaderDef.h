@@ -571,6 +571,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa12fbc2e,0x5d4f94e8,0xe8c19d3,0xc93a3f5d,0x43e0d652,0x81c73093,
+0x50ba6b88,0x2f183e8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x2e3328dd,0x49c3f9be,0xd787c51f,0xa990b2d,0xd2f90757,0x9706c63d,
+0x747523da,0xdc2d7128
+};
+
 }
 
 namespace RetroArch
@@ -583,8 +597,10 @@ public:
 		Name = "horizontal_ringing";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ringAct", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Ringing On"));

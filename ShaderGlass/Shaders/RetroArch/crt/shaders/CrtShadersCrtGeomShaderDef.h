@@ -11175,6 +11175,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa232ff97,0xab5adaec,0xcec0d130,0x64b1e806,0xa1d9251b,0x8e609e25,
+0xbf09fd5,0x8704763
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xff6f1e7d,0x34ecaca6,0xb26f1207,0x7f9e3d14,0xcaeea98f,0x2af77504,
+0x4167b03e,0xe8f4c4ca
+};
+
 }
 
 namespace RetroArch
@@ -11187,8 +11201,10 @@ public:
 		Name = "crt-geom";
 		VertexByteCode = RetroArchCrtShadersCrtGeomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtGeomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtGeomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtGeomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtGeomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtGeomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

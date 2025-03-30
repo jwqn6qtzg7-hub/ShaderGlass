@@ -4786,6 +4786,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf19439fb,0x3e355870,0x7e147bcf,0x7a637f,0x3d1e9bad,0xc07efed7,
+0xfdd7036d,0x58954f0a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3201448f,0x229341db,0x239579e5,0x280be8e,0xc4e7165c,0xb7f80973,
+0x77a67451,0xe4df4785
+};
+
 }
 
 namespace RetroArch
@@ -4798,8 +4812,10 @@ public:
 		Name = "patchy-ntsc-encode-y-c";
 		VertexByteCode = RetroArchNtscShadersPatchyNtscPatchyNtscEncodeYCShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersPatchyNtscPatchyNtscEncodeYCShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersPatchyNtscPatchyNtscEncodeYCShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersPatchyNtscPatchyNtscEncodeYCShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersPatchyNtscPatchyNtscEncodeYCShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersPatchyNtscPatchyNtscEncodeYCShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("pn_test_pattern", 0, 64, 4, 0.000000f, 5.000000f, 0.000000f, 1.000000f, "Test Pattern: Color Bars, Ramps, HSV, Focused HSV, NES Full"));

@@ -1887,6 +1887,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4cbac5b3,0xa9f1ab30,0xff2a5ee8,0x52f5f73c,0x9bfa596b,0x4c0d82f4,
+0xd74c81fc,0xb4a0a039
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x12bebfdf,0xe5a8c82a,0x9f40119,0x50008190,0x142c5b12,0x29691a9c,
+0x22f1bb89,0xd82864c6
+};
+
 }
 
 namespace RetroArch
@@ -1899,8 +1913,10 @@ public:
 		Name = "cathode-retro-crt-generate-screen-texture";
 		VertexByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroCrtGenerateScreenTextureShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroCrtGenerateScreenTextureShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCathodeRetroCathodeRetroCrtGenerateScreenTextureShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroCrtGenerateScreenTextureShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroCrtGenerateScreenTextureShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCathodeRetroCathodeRetroCrtGenerateScreenTextureShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

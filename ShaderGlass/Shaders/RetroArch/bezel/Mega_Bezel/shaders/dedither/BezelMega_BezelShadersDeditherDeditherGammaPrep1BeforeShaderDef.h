@@ -422,6 +422,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x127e4919,0x31a74326,0x67faba0c,0x2247acd6,0x4539f889,0x44bcfd46,
+0x23ee94eb,0x2df32619
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8395e4eb,0xa77104e3,0x8edab30c,0x6a68e9bd,0x54bb0907,0x57530a2b,
+0xed011f21,0x899c0324
+};
+
 }
 
 namespace RetroArch
@@ -434,8 +448,10 @@ public:
 		Name = "dedither-gamma-prep-1-before";
 		VertexByteCode = RetroArchBezelMega_BezelShadersDeditherDeditherGammaPrep1BeforeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersDeditherDeditherGammaPrep1BeforeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersDeditherDeditherGammaPrep1BeforeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersDeditherDeditherGammaPrep1BeforeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersDeditherDeditherGammaPrep1BeforeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersDeditherDeditherGammaPrep1BeforeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

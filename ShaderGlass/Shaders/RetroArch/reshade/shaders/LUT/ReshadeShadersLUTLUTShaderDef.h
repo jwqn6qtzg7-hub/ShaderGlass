@@ -423,6 +423,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1035b4b1,0x79591c0e,0xec185630,0x6139140d,0xb07b0e04,0x45461996,
+0xe98ab752,0xcfaff271
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6bc5eeba,0x4690fdb3,0x62a56572,0xf45744b5,0x6bb2f0ee,0xed21c3a5,
+0x1258edb2,0xf6e46f9b
+};
+
 }
 
 namespace RetroArch
@@ -435,8 +449,10 @@ public:
 		Name = "LUT";
 		VertexByteCode = RetroArchReshadeShadersLUTLUTShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersLUTLUTShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersLUTLUTShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersLUTLUTShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersLUTLUTShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersLUTLUTShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

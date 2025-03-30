@@ -1986,6 +1986,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x307aea91,0xddd08f22,0x6970bbd9,0xf66f897,0xc634e234,0xf1f2b166,
+0x4500b6c7,0x583ca76
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc93345e,0xdc41577a,0x3a5c28db,0xaa332178,0x1be1c403,0xcaacbdcc,
+0x7896a013,0x3575663c
+};
+
 }
 
 namespace RetroArch
@@ -1998,8 +2012,10 @@ public:
 		Name = "rt_curvature";
 		VertexByteCode = RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

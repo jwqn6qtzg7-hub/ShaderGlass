@@ -668,6 +668,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc4e468d8,0x1fbf7d8f,0xb146fcd9,0x37f480d9,0x67ee9964,0x454e86b8,
+0x90d9e20b,0x2ce2e366
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd9776816,0xcb8353ff,0xa594cd1,0x17ddd155,0x6d0ecd7a,0x471d33dd,
+0xcf2c536c,0xe5398fe1
+};
+
 }
 
 namespace RetroArch
@@ -680,8 +694,10 @@ public:
 		Name = "anamorphic";
 		VertexByteCode = RetroArchAnamorphicShadersAnamorphicShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchAnamorphicShadersAnamorphicShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchAnamorphicShadersAnamorphicShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

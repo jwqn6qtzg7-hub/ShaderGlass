@@ -692,6 +692,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x2e4118a3,0xa9215f50,0x210af5ca,0x71b1cb70,0x8e7d95e1,0x9805daab,
+0x9c796334,0xcc212f4a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf53a000c,0xf31ddc9b,0x5316b70a,0xe307c99a,0x32c5fb78,0x74b62817,
+0x14d29e2e,0x4b4f85d2
+};
+
 }
 
 namespace RetroArch
@@ -704,8 +718,10 @@ public:
 		Name = "crt-interlaced-halation-pass0";
 		VertexByteCode = RetroArchCrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

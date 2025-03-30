@@ -1098,6 +1098,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe775485,0x8dc0f5a,0xc3a85de5,0xf633987b,0x1dba296,0x846b6d0d,
+0xbf92d83,0x318bb486
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xcbaa33cb,0xe0c22a5f,0x7f161f6c,0x27ec36c8,0xb9439d1b,0x11dbadcd,
+0xefea5568,0x32130318
+};
+
 }
 
 namespace RetroArch
@@ -1110,8 +1124,10 @@ public:
 		Name = "bandlimit-pixel";
 		VertexByteCode = RetroArchPixelArtScalingShadersBandlimitPixelShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersBandlimitPixelShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersBandlimitPixelShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersBandlimitPixelShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersBandlimitPixelShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersBandlimitPixelShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

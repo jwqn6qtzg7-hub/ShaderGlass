@@ -519,6 +519,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xbf049e66,0x849e0f78,0x7e1cc241,0x8198d487,0x7776623e,0x313b779a,
+0x8c692d8b,0x397f1157
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x15456eda,0x3c018db,0xaab46a43,0xf8b9c62c,0x2b33bb83,0x72c3b0b0,
+0x1665d6ae,0x566d41e3
+};
+
 }
 
 namespace RetroArch
@@ -531,8 +545,10 @@ public:
 		Name = "grid-blend-hybrid";
 		VertexByteCode = RetroArchPixelArtScalingShadersGridBlendHybridShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersGridBlendHybridShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersGridBlendHybridShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersGridBlendHybridShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersGridBlendHybridShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersGridBlendHybridShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

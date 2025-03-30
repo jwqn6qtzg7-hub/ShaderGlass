@@ -1388,6 +1388,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x596ae7f1,0x70870ae7,0xa156e8f7,0xa3fd0dba,0xeb48a3b4,0xfd1e8f7b,
+0xc7462400,0x924bb584
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x54d1effa,0x929fff47,0xd0678efe,0xe61093fd,0x4e14eb56,0x94b332cf,
+0x684db659,0xacdb9a1c
+};
+
 }
 
 namespace RetroArch
@@ -1400,8 +1414,10 @@ public:
 		Name = "nedi-pass1";
 		VertexByteCode = RetroArchEdgeSmoothingNediShadersNediPass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingNediShadersNediPass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingNediShadersNediPass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingNediShadersNediPass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingNediShadersNediPass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingNediShadersNediPass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

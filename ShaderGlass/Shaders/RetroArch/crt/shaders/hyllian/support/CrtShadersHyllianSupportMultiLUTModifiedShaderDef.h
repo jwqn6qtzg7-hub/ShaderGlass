@@ -604,6 +604,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8f22ae50,0x8820283e,0xa0984007,0x5fb9ead2,0x71e15d17,0xd71a8df9,
+0x120a917f,0x6c7a9f68
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x35a8ba0a,0x18b13e7e,0xc0838fc1,0x5ee28139,0xb35efc3a,0xf714e422,
+0x4def77fd,0xc1da9015
+};
+
 }
 
 namespace RetroArch
@@ -616,8 +630,10 @@ public:
 		Name = "multiLUT-modified";
 		VertexByteCode = RetroArchCrtShadersHyllianSupportMultiLUTModifiedShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersHyllianSupportMultiLUTModifiedShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersHyllianSupportMultiLUTModifiedShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersHyllianSupportMultiLUTModifiedShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianSupportMultiLUTModifiedShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersHyllianSupportMultiLUTModifiedShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

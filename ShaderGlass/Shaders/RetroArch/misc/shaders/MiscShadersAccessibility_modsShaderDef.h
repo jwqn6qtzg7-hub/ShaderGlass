@@ -597,6 +597,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xbe54d74a,0x2a9be2e,0xf4fa4d9a,0xf30356d1,0xd82be227,0xf486894,
+0x9e9fdb3,0x92138062
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf0bbdf3e,0x93d6f70,0x14c402ee,0xc08b229b,0x65bca260,0xdf756929,
+0x69a235b5,0x6d642ebe
+};
+
 }
 
 namespace RetroArch
@@ -609,8 +623,10 @@ public:
 		Name = "accessibility_mods";
 		VertexByteCode = RetroArchMiscShadersAccessibility_modsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersAccessibility_modsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersAccessibility_modsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersAccessibility_modsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersAccessibility_modsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersAccessibility_modsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

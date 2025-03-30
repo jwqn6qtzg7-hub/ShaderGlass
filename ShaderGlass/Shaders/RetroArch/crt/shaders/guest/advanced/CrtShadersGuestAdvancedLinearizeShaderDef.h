@@ -1477,6 +1477,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd76ce706,0x6377116,0x7b3aeb29,0xff6ba5e4,0xce773819,0x761e68ba,
+0xe1b87e3,0xfe7c3301
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xea4bc286,0xee36c38d,0x6fb96e0d,0xf9f20f5b,0x9c785942,0xfa8e0aae,
+0x3356ecf9,0xf91e0be5
+};
+
 }
 
 namespace RetroArch
@@ -1489,8 +1503,10 @@ public:
 		Name = "linearize";
 		VertexByteCode = RetroArchCrtShadersGuestAdvancedLinearizeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestAdvancedLinearizeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestAdvancedLinearizeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestAdvancedLinearizeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedLinearizeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestAdvancedLinearizeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -598,6 +598,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7a7d43d1,0xa57d25ff,0xba121827,0x2e8b805b,0xa1e9a25d,0x5c4a99e1,
+0xc2220b11,0xc4e3e1df
+};
+
 }
 
 namespace RetroArch
@@ -610,8 +624,10 @@ public:
 		Name = "catmull-rom";
 		VertexByteCode = RetroArchInterpolationShadersCatmullRomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchInterpolationShadersCatmullRomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchInterpolationShadersCatmullRomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchInterpolationShadersCatmullRomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchInterpolationShadersCatmullRomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchInterpolationShadersCatmullRomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

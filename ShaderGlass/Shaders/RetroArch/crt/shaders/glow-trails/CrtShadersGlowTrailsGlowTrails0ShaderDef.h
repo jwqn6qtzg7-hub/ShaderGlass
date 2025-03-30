@@ -467,6 +467,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xccc67f9b,0xf6a58169,0xfea45698,0xa594cc75,0x6ed9561c,0x1044b04b,
+0x69846d7f,0x826b94cc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x59d05c8e,0x3c6dba88,0x8bbb6fd0,0xa4701ae3,0x337c8279,0x9c9a3931,
+0xcfeba1aa,0x8bde3e8c
+};
+
 }
 
 namespace RetroArch
@@ -479,8 +493,10 @@ public:
 		Name = "glow-trails0";
 		VertexByteCode = RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

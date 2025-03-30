@@ -727,6 +727,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xdb381688,0xccb84ca5,0x9cfd9497,0xdc7feda4,0x80842fa1,0x264ec364,
+0xe88fc668,0x5127fdd0
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9d6de61,0x6d22c136,0x102a5a56,0xd569b27e,0xb8314ce0,0xfd50f7ab,
+0x7060e1c2,0x52c2c599
+};
+
 }
 
 namespace RetroArch
@@ -739,8 +753,10 @@ public:
 		Name = "deinterlace";
 		VertexByteCode = RetroArchMiscShadersDeinterlaceShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersDeinterlaceShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersDeinterlaceShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersDeinterlaceShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersDeinterlaceShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersDeinterlaceShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

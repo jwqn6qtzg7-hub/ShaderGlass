@@ -1671,6 +1671,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x7f47b811,0x635be7b9,0x81af41df,0xfdabc568,0xc556900c,0xe53f4cce,
+0x6a21b6,0x4b493b83
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x66d29587,0x7b2b78da,0xae8c8a0,0xc80b7fe2,0xd120b3d1,0xa2e40cd8,
+0xb45b3b75,0x5d8b89c7
+};
+
 }
 
 namespace RetroArch
@@ -1683,8 +1697,10 @@ public:
 		Name = "crt-royale-first-pass-linearize-crt-gamma-bob-fields";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.400000f, 0.025000f, "Simulated CRT Gamma"));

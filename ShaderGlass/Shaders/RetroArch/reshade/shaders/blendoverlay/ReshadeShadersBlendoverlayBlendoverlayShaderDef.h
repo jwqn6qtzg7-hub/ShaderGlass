@@ -501,6 +501,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x695ac122,0x31729a59,0x418a43b,0x8293de82,0x67653b14,0xcf8911f2,
+0xeb55b7fa,0x693e0516
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x742a546a,0x86596dcb,0x15977225,0x503abb3c,0x898ac013,0xea4a0994,
+0xdf37c87b,0x931b3c34
+};
+
 }
 
 namespace RetroArch
@@ -513,8 +527,10 @@ public:
 		Name = "blendoverlay";
 		VertexByteCode = RetroArchReshadeShadersBlendoverlayBlendoverlayShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersBlendoverlayBlendoverlayShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersBlendoverlayBlendoverlayShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersBlendoverlayBlendoverlayShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersBlendoverlayBlendoverlayShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersBlendoverlayBlendoverlayShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

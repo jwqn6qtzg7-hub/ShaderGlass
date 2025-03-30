@@ -489,6 +489,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x61e40e5f,0xdaeabff3,0x14b8cd4d,0x27a39770,0x335698ff,0x2291f029,
+0xb3882bc8,0xe0c99f73
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x27d4a8c5,0x882a2eae,0xdcb2dd5a,0x70f30324,0x49e3bdf6,0x78e6fe93,
+0xf2cc7767,0x3626cd72
+};
+
 }
 
 namespace RetroArch
@@ -501,8 +515,10 @@ public:
 		Name = "crop_and_sample_bottom";
 		VertexByteCode = RetroArchBorderShadersAverage_fillCrop_and_sample_bottomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBorderShadersAverage_fillCrop_and_sample_bottomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBorderShadersAverage_fillCrop_and_sample_bottomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBorderShadersAverage_fillCrop_and_sample_bottomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBorderShadersAverage_fillCrop_and_sample_bottomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBorderShadersAverage_fillCrop_and_sample_bottomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

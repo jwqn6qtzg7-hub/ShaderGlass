@@ -8,6 +8,7 @@ GNU General Public License v3.0
 #pragma once
 
 #include "CaptureSession.h"
+#include "ShaderCache.h"
 
 struct CaptureOptions
 {
@@ -49,6 +50,7 @@ public:
 
     const std::vector<std::unique_ptr<PresetDef>>& Presets();
     std::vector<std::tuple<int, ShaderParam*>>     Params();
+    const ShaderCache&                             Cache();
 
     bool  Initialize();
     bool  IsActive();
@@ -92,6 +94,7 @@ private:
     std::vector<std::unique_ptr<PresetDef>>           m_presetList;
     std::vector<std::tuple<int, std::string, double>> m_queuedParams;
     std::vector<std::tuple<int, std::string, double>> m_lastParams;
+    ShaderCache                                       m_shaderCache;
     HANDLE                                            m_frameEvent {nullptr};
     unsigned int                                      m_lastPreset;
 };

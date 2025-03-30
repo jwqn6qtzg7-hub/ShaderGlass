@@ -7267,6 +7267,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xcadb9157,0x99c7f76c,0xbc83b91f,0x49322508,0x3053855e,0x16f37996,
+0xd69bdc1d,0xecb3de1f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf6658e12,0x7752fa6e,0xc3c4a391,0xaa51249b,0x5b7b6c31,0x5e06e35,
+0xa6df562a,0x5456f4ce
+};
+
 }
 
 namespace RetroArch
@@ -7279,8 +7293,10 @@ public:
 		Name = "shift_and_bleed";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgShift_and_bleedShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgShift_and_bleedShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgShift_and_bleedShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgShift_and_bleedShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgShift_and_bleedShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgShift_and_bleedShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

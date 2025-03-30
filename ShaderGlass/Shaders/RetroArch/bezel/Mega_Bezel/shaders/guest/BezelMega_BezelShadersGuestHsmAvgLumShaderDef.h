@@ -697,6 +697,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5eca6e66,0xba569c84,0xb5735870,0x7b45929b,0x51d28ed5,0x54f9514c,
+0x44cc992,0xbb0ef7c6
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x10c20167,0x5869e9f2,0x4f6ca96,0x2214fe3c,0xdcfd04bc,0xd152b0e0,
+0xc55bc10d,0xb8037843
+};
+
 }
 
 namespace RetroArch
@@ -709,8 +723,10 @@ public:
 		Name = "hsm-avg-lum";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

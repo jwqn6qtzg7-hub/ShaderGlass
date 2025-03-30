@@ -697,6 +697,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5cbe8d97,0x16138b87,0x4f9828b3,0x4b37e34e,0xdf730744,0x4529ac20,
+0x642f6346,0xfbe85bc8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x31147c30,0x55905506,0xaeb4970b,0x5cf021ea,0xa0c8d19d,0xaaab425e,
+0xfbdd9e21,0x6997731c
+};
+
 }
 
 namespace RetroArch
@@ -709,8 +723,10 @@ public:
 		Name = "rcas";
 		VertexByteCode = RetroArchSharpenShadersRcasShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersRcasShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersRcasShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersRcasShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersRcasShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersRcasShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

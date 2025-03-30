@@ -7981,6 +7981,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb1e201c8,0x18047870,0xe4882f5f,0x6b951c3,0x7b002f1f,0x2ca01ff0,
+0x334a4ae7,0x56eba077
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x87aaa6e2,0x90579c6e,0x97620b50,0xfbb5dc84,0x3e08512f,0xd583e5ca,
+0x912450dc,0xd95bb733
+};
+
 }
 
 namespace RetroArch
@@ -7993,8 +8007,10 @@ public:
 		Name = "crt-royale-geometry-aa-last-pass-intel";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.500000f, 0.025000f, "Simulated CRT Gamma"));

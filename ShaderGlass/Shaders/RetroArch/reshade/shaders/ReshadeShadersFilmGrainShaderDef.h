@@ -660,6 +660,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa4dad0ac,0xdf29d641,0xde0e21fe,0xceddd4,0x530cd5b4,0xd857deac,
+0x32bdb5a2,0xb09e9fc8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x882f22ad,0x856bb9,0x67457c81,0xab5c205f,0x58c4a9b5,0xdfd1e4f,
+0x2e7d96cf,0xa51723f
+};
+
 }
 
 namespace RetroArch
@@ -672,8 +686,10 @@ public:
 		Name = "FilmGrain";
 		VertexByteCode = RetroArchReshadeShadersFilmGrainShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersFilmGrainShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersFilmGrainShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersFilmGrainShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersFilmGrainShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersFilmGrainShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

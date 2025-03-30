@@ -1207,6 +1207,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa6ad6ea2,0xbc925d22,0x6360f003,0x3a7c3712,0x291cb32d,0xc1242a69,
+0x381c72a,0xbca9421a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1a74cf4c,0x6e763cd7,0xa5f3d228,0x645d3f8d,0x2d9b3dc6,0xf322a876,
+0xa4a75435,0x28bfaf3e
+};
+
 }
 
 namespace RetroArch
@@ -1219,8 +1233,10 @@ public:
 		Name = "2xsai";
 		VertexByteCode = RetroArchEdgeSmoothingEagleShaders2xsaiShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingEagleShaders2xsaiShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingEagleShaders2xsaiShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingEagleShaders2xsaiShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingEagleShaders2xsaiShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingEagleShaders2xsaiShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

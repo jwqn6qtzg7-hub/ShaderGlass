@@ -284,6 +284,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd21d72cd,0x69d4e505,0x58531137,0xaed05f39,0x522e9445,0x1128f2c,
+0x1118ca53,0x3d7f9e28
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe13b84df,0xe2e2a03c,0x238a9b22,0x6285b4b7,0x627fd7f7,0xd7b26eb8,
+0xec6ec66d,0xaa004fbd
+};
+
 }
 
 namespace RetroArch
@@ -296,8 +310,10 @@ public:
 		Name = "stock";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBaseStockShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBaseStockShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBaseStockShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBaseStockShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBaseStockShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBaseStockShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));

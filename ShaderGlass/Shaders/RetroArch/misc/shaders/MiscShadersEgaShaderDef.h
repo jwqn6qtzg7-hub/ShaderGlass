@@ -654,6 +654,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4d69a673,0x7bed2310,0xaafcf798,0xa39ea3f,0x946de0cf,0xb4cae78e,
+0x46303f07,0x30c8cd28
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x210d874,0x6c8a1b60,0xdedebac7,0xf47df864,0xab9eefe3,0x8ddfc62b,
+0xca952ba2,0x2a5a0a59
+};
+
 }
 
 namespace RetroArch
@@ -666,8 +680,10 @@ public:
 		Name = "ega";
 		VertexByteCode = RetroArchMiscShadersEgaShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersEgaShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersEgaShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersEgaShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersEgaShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersEgaShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

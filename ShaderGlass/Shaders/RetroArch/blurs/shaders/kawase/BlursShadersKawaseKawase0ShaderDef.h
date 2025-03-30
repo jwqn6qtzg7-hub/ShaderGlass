@@ -551,6 +551,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe9ac41a5,0x5b10a0f9,0xbaac0a34,0xb322574f,0x457af4da,0xafbbe180,
+0x5026330a,0x72cc10c2
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xbfea8f94,0x4a9ed023,0xcbac22e6,0xefec3723,0xe63e0c57,0x31f13c2b,
+0x78365180,0xcd139eb6
+};
+
 }
 
 namespace RetroArch
@@ -563,8 +577,10 @@ public:
 		Name = "kawase0";
 		VertexByteCode = RetroArchBlursShadersKawaseKawase0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersKawaseKawase0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersKawaseKawase0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersKawaseKawase0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersKawaseKawase0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersKawaseKawase0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

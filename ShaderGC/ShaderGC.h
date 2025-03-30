@@ -9,11 +9,12 @@ GNU General Public License v3.0
 
 #include "PresetDef.h"
 #include "SourceDefs.h"
+#include "ShaderCache.h"
 
 class ShaderGC
 {
 public:
-    static PresetDef* CompilePreset(std::filesystem::path source, std::ostream& log, bool& warn);
+    static PresetDef* CompilePreset(std::filesystem::path source, std::ostream& log, bool& warn, const ShaderCache& cache);
     static TextureDef CompileTexture(std::filesystem::path source, std::ostream& log, bool& warn);
 
     static std::vector<std::string> LoadSource(const std::filesystem::path& input, bool followIncludes);
@@ -26,6 +27,6 @@ public:
     LookupParams(const std::vector<SourceShaderParam>& declaredParams, std::vector<SourceShaderSampler>& textures, const std::string& metadata);
 
 private:
-    static ShaderDef  CompileSourceShader(SourceShaderDef& def, std::ostream& log, bool& warn);
-    static PresetDef* CompileShader(std::filesystem::path source, std::ostream& log, bool& warn);
+    static ShaderDef  CompileSourceShader(SourceShaderDef& def, std::ostream& log, bool& warn, const ShaderCache& cache);
+    static PresetDef* CompileShader(std::filesystem::path source, std::ostream& log, bool& warn, const ShaderCache& cache);
 };

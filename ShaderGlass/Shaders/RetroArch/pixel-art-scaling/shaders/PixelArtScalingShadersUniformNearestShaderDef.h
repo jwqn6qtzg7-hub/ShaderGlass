@@ -547,6 +547,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xea178a1d,0xecd9f571,0x8b0b672c,0x848af6f3,0x4224fdbe,0xbd9ef9ac,
+0x1d753c40,0x30fb9dbd
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa1da0401,0xa6cbdffa,0x5afd479f,0x5f220f70,0xfdce1aaa,0xaa55d38e,
+0x2df68230,0x8a0caf2d
+};
+
 }
 
 namespace RetroArch
@@ -559,8 +573,10 @@ public:
 		Name = "uniform-nearest";
 		VertexByteCode = RetroArchPixelArtScalingShadersUniformNearestShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersUniformNearestShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersUniformNearestShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersUniformNearestShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersUniformNearestShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersUniformNearestShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

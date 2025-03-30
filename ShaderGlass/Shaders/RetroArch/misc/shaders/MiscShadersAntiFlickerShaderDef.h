@@ -597,6 +597,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x98ad27c9,0xd46c924e,0x3bc84c74,0x84eb5416,0x28a60fd6,0x974daee2,
+0x3ec105da,0x2ef1e532
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x40597cde,0xce9cb671,0x3b914447,0x1721ac22,0xb3dd2a26,0x2a5011b,
+0x90d19f96,0xf18d2126
+};
+
 }
 
 namespace RetroArch
@@ -609,8 +623,10 @@ public:
 		Name = "anti-flicker";
 		VertexByteCode = RetroArchMiscShadersAntiFlickerShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersAntiFlickerShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersAntiFlickerShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersAntiFlickerShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersAntiFlickerShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersAntiFlickerShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

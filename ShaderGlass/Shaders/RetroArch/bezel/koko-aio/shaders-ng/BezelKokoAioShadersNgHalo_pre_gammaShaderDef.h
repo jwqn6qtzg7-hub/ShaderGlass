@@ -5901,6 +5901,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x145e481a,0x419981f3,0xa8dc19f6,0xa25fbf23,0xf65df5e4,0xafccd8c5,
+0x49614e74,0xdf9e6850
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc4f213,0x86a6287c,0xcf385732,0x2ce598d3,0x63bbfc2e,0x88d9039a,
+0x5d8cfc29,0x2d3d74d2
+};
+
 }
 
 namespace RetroArch
@@ -5913,8 +5927,10 @@ public:
 		Name = "halo_pre_gamma";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgHalo_pre_gammaShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgHalo_pre_gammaShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgHalo_pre_gammaShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgHalo_pre_gammaShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgHalo_pre_gammaShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgHalo_pre_gammaShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

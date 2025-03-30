@@ -11041,6 +11041,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4721a5af,0x25e7ea93,0xb6a28d02,0x8614249,0x36c2d0d5,0xdd78201a,
+0x5b771718,0xaf9c26cb
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x74fabe09,0x4871da01,0x7ba9fa9d,0x51b6c5ce,0xfb7c5ce2,0xb0d0af6b,
+0xd1bfd8cf,0x2c9c564b
+};
+
 }
 
 namespace RetroArch
@@ -11053,8 +11067,10 @@ public:
 		Name = "ambi_temporal_pass";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgAmbi_temporal_passShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgAmbi_temporal_passShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgAmbi_temporal_passShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgAmbi_temporal_passShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgAmbi_temporal_passShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgAmbi_temporal_passShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

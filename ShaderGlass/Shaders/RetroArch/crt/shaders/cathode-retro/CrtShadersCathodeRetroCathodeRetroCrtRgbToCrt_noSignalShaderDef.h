@@ -1949,6 +1949,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4cbac5b3,0xa9f1ab30,0xff2a5ee8,0x52f5f73c,0x9bfa596b,0x4c0d82f4,
+0xd74c81fc,0xb4a0a039
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xed636a40,0x216ea9b2,0xdd6e7766,0xe4ddff0d,0xe3fb49d6,0x4336a6da,
+0x42a1b355,0x42fa7bb6
+};
+
 }
 
 namespace RetroArch
@@ -1961,8 +1975,10 @@ public:
 		Name = "cathode-retro-crt-rgb-to-crt_no-signal";
 		VertexByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroCrtRgbToCrt_noSignalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroCrtRgbToCrt_noSignalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCathodeRetroCathodeRetroCrtRgbToCrt_noSignalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroCrtRgbToCrt_noSignalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroCrtRgbToCrt_noSignalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCathodeRetroCathodeRetroCrtRgbToCrt_noSignalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

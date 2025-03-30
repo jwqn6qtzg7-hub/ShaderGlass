@@ -764,6 +764,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xcad17904,0x653fef54,0xf63157de,0x6042b999,0xfb607277,0x5a82ac7a,
+0x7f5994a1,0x433f18ec
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8915b86b,0xc037e90c,0xe967730a,0x9576f2cc,0x796badee,0xfb26b18d,
+0x987a687c,0x9eb13440
+};
+
 }
 
 namespace RetroArch
@@ -776,8 +790,10 @@ public:
 		Name = "crt-frutbunn";
 		VertexByteCode = RetroArchCrtShadersCrtFrutbunnShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtFrutbunnShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtFrutbunnShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

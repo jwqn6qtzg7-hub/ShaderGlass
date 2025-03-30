@@ -22701,6 +22701,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9f3f595,0xde197adf,0xd277592e,0x4bcb2185,0x269b023f,0xee38dccf,
+0x8f3ccd,0xace3ebca
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xcdb7812f,0xb4ed9ef6,0xca71b9af,0xf063465f,0x30f5eaed,0x2dc81fc6,
+0x1f28cb22,0xe6d1d119
+};
+
 }
 
 namespace RetroArch
@@ -22713,8 +22727,10 @@ public:
 		Name = "cache-info-glass-params";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBaseCacheInfoGlassParamsShaderDefs::sFragmentHash;
 		Format = "R32G32B32A32_SFLOAT";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

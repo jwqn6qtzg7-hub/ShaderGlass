@@ -407,6 +407,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x13b33563,0x98ad9dac,0x2e0e13b4,0xd9b0606a,0x7cef30d7,0xd81ba9df,
+0x27a3d8eb,0x4e17ff1a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa2c77605,0xb5489652,0x87eb6eec,0xd3207459,0xde5967e0,0x579b703b,
+0x88ca77ed,0xaa117fc0
+};
+
 }
 
 namespace RetroArch
@@ -419,8 +433,10 @@ public:
 		Name = "night_mode";
 		VertexByteCode = RetroArchMiscShadersNight_modeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersNight_modeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersNight_modeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersNight_modeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersNight_modeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersNight_modeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

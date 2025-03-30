@@ -705,6 +705,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x19a45c4b,0x285db88c,0xc69dc807,0xdda57b38,0x9cf10c53,0x1db76f5d,
+0x943d2157,0x80a90925
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x2e533342,0x969ccab3,0xa71d1086,0xa90b2a98,0xbf947bb7,0xcc840f7d,
+0xb49f024d,0x1fe3d14b
+};
+
 }
 
 namespace RetroArch
@@ -717,8 +731,10 @@ public:
 		Name = "avg-lum-ntsc";
 		VertexByteCode = RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

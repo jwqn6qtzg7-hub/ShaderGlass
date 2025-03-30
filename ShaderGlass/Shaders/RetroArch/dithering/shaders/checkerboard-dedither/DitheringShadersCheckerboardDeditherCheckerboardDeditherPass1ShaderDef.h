@@ -589,6 +589,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaaeb9827,0x86b70ce9,0x5e907664,0x84488f58,0xa689387c,0x53816ed0,
+0xdc147fc7,0x86cc2a5f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8922f697,0xcf446039,0x1d897864,0x222d6b46,0xbb45cc32,0xe40b3d0,
+0x90b283bd,0x669a4202
+};
+
 }
 
 namespace RetroArch
@@ -601,8 +615,10 @@ public:
 		Name = "checkerboard-dedither-pass1";
 		VertexByteCode = RetroArchDitheringShadersCheckerboardDeditherCheckerboardDeditherPass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersCheckerboardDeditherCheckerboardDeditherPass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersCheckerboardDeditherCheckerboardDeditherPass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersCheckerboardDeditherCheckerboardDeditherPass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersCheckerboardDeditherCheckerboardDeditherPass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersCheckerboardDeditherCheckerboardDeditherPass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

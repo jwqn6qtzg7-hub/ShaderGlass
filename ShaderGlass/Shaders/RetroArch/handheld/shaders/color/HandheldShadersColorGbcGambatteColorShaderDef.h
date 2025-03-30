@@ -341,6 +341,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa76a1391,0x5354f616,0x379c23f3,0x692045f2,0x7e0426e1,0xf53f9ca8,
+0xd0efa5d3,0x4686028b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3dc8c877,0xd3626c53,0x783e4b21,0xc75cbbca,0x9dec2ca,0x1f6343d7,
+0xb64c5697,0x24ea223a
+};
+
 }
 
 namespace RetroArch
@@ -353,8 +367,10 @@ public:
 		Name = "gbc-gambatte-color";
 		VertexByteCode = RetroArchHandheldShadersColorGbcGambatteColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorGbcGambatteColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorGbcGambatteColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorGbcGambatteColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorGbcGambatteColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorGbcGambatteColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -1748,6 +1748,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3d0c4255,0x6d859234,0x47afe6b1,0xced78af1,0xcafbc377,0x62e75327,
+0x2ace30d5,0x25fb35c9
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdba4b3e9,0xefc91f0,0xf9afb5c9,0x4054a59b,0xc12cbbda,0x9688f21,
+0x84120a60,0xf264bca9
+};
+
 }
 
 namespace RetroArch
@@ -1760,8 +1774,10 @@ public:
 		Name = "ntsc-pass1";
 		VertexByteCode = RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

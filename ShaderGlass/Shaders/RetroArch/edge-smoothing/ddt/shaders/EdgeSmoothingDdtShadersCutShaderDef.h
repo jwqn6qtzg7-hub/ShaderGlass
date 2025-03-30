@@ -940,6 +940,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc0673819,0xfe370288,0x335be007,0x7fbb8bf6,0x68819549,0x52bc7151,
+0xb7643b82,0x5174433c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd85dab29,0xf503aaf8,0x5e43c602,0xf6cf0735,0x74dc3f19,0xa23e6e50,
+0xb75c7e4b,0x2bafcb1c
+};
+
 }
 
 namespace RetroArch
@@ -952,8 +966,10 @@ public:
 		Name = "cut";
 		VertexByteCode = RetroArchEdgeSmoothingDdtShadersCutShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingDdtShadersCutShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingDdtShadersCutShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingDdtShadersCutShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingDdtShadersCutShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingDdtShadersCutShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -465,6 +465,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x217d99ef,0xa24999d0,0x161c1f39,0xd8b3f38,0x3e31b8c8,0x8492bfb7,
+0xf1ebede0,0x46346499
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1cad6195,0xd92216cd,0xe7b37f43,0x39fb705d,0xc909b97f,0x536449,
+0xc81c9f5b,0xb7694ed1
+};
+
 }
 
 namespace RetroArch
@@ -477,8 +491,10 @@ public:
 		Name = "DAC_LUT";
 		VertexByteCode = RetroArchNes_raw_paletteShadersGtuFamicomDAC_LUTShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomDAC_LUTShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersGtuFamicomDAC_LUTShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersGtuFamicomDAC_LUTShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomDAC_LUTShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersGtuFamicomDAC_LUTShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

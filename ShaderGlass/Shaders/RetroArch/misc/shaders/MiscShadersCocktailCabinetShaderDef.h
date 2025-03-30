@@ -454,6 +454,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xcf09224f,0xe977296c,0xb84491a,0x11b83b13,0xbaad0c36,0x8f945d9a,
+0xc66c4047,0x9d05bc1a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3dd1f7f9,0xa8a11695,0x3580a089,0x4b7de0d1,0xb5b98ee7,0x40606e2d,
+0x1a0b066f,0xafd17d22
+};
+
 }
 
 namespace RetroArch
@@ -466,8 +480,10 @@ public:
 		Name = "cocktail-cabinet";
 		VertexByteCode = RetroArchMiscShadersCocktailCabinetShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersCocktailCabinetShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersCocktailCabinetShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersCocktailCabinetShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersCocktailCabinetShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersCocktailCabinetShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

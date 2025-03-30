@@ -1443,6 +1443,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6daa1c65,0x9e3bc88a,0xcc5a7f5d,0x1b9b83a2,0x906c2d6,0x197fd193,
+0x9924edf2,0xcbf06248
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xeb19a37a,0xf2d40aa3,0xb795d80d,0x7e95209e,0x85384eac,0xfb32caca,
+0xe580ac02,0x8faae604
+};
+
 }
 
 namespace RetroArch
@@ -1455,8 +1469,10 @@ public:
 		Name = "imgborder";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcImgborderShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcImgborderShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcImgborderShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcImgborderShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcImgborderShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcImgborderShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

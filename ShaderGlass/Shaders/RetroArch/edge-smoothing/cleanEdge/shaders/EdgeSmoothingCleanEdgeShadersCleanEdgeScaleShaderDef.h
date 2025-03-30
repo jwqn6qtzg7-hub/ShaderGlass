@@ -12388,6 +12388,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaf3bc0da,0x2321606,0xc339b8e8,0xae7db71,0x31e176df,0x8c2ce131,
+0xe3a501c2,0x113938cc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x767d3c79,0x94cfbf79,0x16399951,0x551aafb7,0x97baaa7d,0xfcd3cc07,
+0xbc1c79c8,0xb49d05d7
+};
+
 }
 
 namespace RetroArch
@@ -12400,8 +12414,10 @@ public:
 		Name = "cleanEdge-scale";
 		VertexByteCode = RetroArchEdgeSmoothingCleanEdgeShadersCleanEdgeScaleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingCleanEdgeShadersCleanEdgeScaleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingCleanEdgeShadersCleanEdgeScaleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingCleanEdgeShadersCleanEdgeScaleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingCleanEdgeShadersCleanEdgeScaleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingCleanEdgeShadersCleanEdgeScaleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -580,6 +580,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1035b4b1,0x79591c0e,0xec185630,0x6139140d,0xb07b0e04,0x45461996,
+0xe98ab752,0xcfaff271
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x88dabeed,0x8faab23e,0xb7c513fd,0xde2dc2ee,0xb9220bab,0x75f462f,
+0xe3730362,0x7c30414c
+};
+
 }
 
 namespace RetroArch
@@ -592,8 +606,10 @@ public:
 		Name = "anime4k-compute-gradient";
 		VertexByteCode = RetroArchSharpenShadersAnime4kAnime4kComputeGradientShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersAnime4kAnime4kComputeGradientShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersAnime4kAnime4kComputeGradientShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersAnime4kAnime4kComputeGradientShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersAnime4kAnime4kComputeGradientShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersAnime4kAnime4kComputeGradientShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

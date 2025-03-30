@@ -7807,6 +7807,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe8e02427,0x5a693409,0xf77f909d,0x72aacfc0,0x9d4b9ad7,0x4496d3a9,
+0xc493b2ea,0xe8e87ac4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7108ac1f,0xe7109e5e,0x48bee779,0x40301114,0x1057c2d2,0xb6c6881e,
+0x2f5ed3f5,0x726f39ba
+};
+
 }
 
 namespace RetroArch
@@ -7819,8 +7833,10 @@ public:
 		Name = "crt-mattias";
 		VertexByteCode = RetroArchCrtShadersCrtMattiasShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMattiasShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMattiasShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMattiasShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMattiasShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMattiasShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

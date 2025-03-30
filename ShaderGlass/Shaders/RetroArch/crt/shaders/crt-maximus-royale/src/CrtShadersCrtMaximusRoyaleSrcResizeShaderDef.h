@@ -398,6 +398,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x2af868e7,0xffe5b85d,0x950f2f58,0x3c9486a5,0xfceea44b,0x94cadc4b,
+0x6c75755a,0x15e37b8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9dc61821,0x751e227f,0xc1f52973,0xc0a106dd,0x9fb86649,0x73bf0472,
+0xc30d408e,0x8d518e8c
+};
+
 }
 
 namespace RetroArch
@@ -410,8 +424,10 @@ public:
 		Name = "resize";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcResizeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcResizeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcResizeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcResizeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcResizeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcResizeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Xscale", -1, 0, 4, 75.000000f, 150.000000f, 100.000000f, 0.100000f, "Horizontal Scale %"));

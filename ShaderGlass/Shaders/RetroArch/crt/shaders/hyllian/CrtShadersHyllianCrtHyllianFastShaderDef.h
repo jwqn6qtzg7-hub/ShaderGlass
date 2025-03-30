@@ -832,6 +832,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb22899e,0x86c34548,0x395f292,0x9c5ea405,0xf73e952c,0xc964490c,
+0x8cd15cc0,0xcb13da3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x492f79f8,0xe277940d,0x6509caba,0xe09b843,0x16f0f6ea,0x8bfbfe22,
+0xe1498586,0x83b27ce3
+};
+
 }
 
 namespace RetroArch
@@ -844,8 +858,10 @@ public:
 		Name = "crt-hyllian-fast";
 		VertexByteCode = RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

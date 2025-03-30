@@ -579,6 +579,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf2cfed37,0xc64cd2e,0xd0f552d6,0x538edf1e,0x7d77e88b,0x7f8299df,
+0x6c6302e,0x2cbf16a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x890a107c,0x2e4e18b4,0xce117d4c,0x3cc58f89,0x4da82a7b,0x32deb69c,
+0x4dc07b61,0x7463ac2
+};
+
 }
 
 namespace RetroArch
@@ -591,8 +605,10 @@ public:
 		Name = "b-spline-x";
 		VertexByteCode = RetroArchEdgeSmoothingXbrShadersSupportBSplineXShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingXbrShadersSupportBSplineXShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingXbrShadersSupportBSplineXShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingXbrShadersSupportBSplineXShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingXbrShadersSupportBSplineXShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingXbrShadersSupportBSplineXShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

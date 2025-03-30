@@ -758,6 +758,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa76a1391,0x5354f616,0x379c23f3,0x692045f2,0x7e0426e1,0xf53f9ca8,
+0xd0efa5d3,0x4686028b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x2a6a69b4,0x5ae0d2ec,0x8824c635,0x36cba200,0xa2294160,0xe5c2321e,
+0x33e1f856,0xa301b73c
+};
+
 }
 
 namespace RetroArch
@@ -770,8 +784,10 @@ public:
 		Name = "cubic-gamma-correct";
 		VertexByteCode = RetroArchInterpolationShadersCubicGammaCorrectShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchInterpolationShadersCubicGammaCorrectShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchInterpolationShadersCubicGammaCorrectShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchInterpolationShadersCubicGammaCorrectShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchInterpolationShadersCubicGammaCorrectShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchInterpolationShadersCubicGammaCorrectShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

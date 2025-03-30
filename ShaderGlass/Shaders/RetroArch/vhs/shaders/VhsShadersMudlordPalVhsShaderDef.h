@@ -867,6 +867,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe0ec7b29,0xcd73d474,0x36e86e6f,0x5def59c1,0x69fdc9ad,0x7b498f20,
+0x68cef25e,0x8eebf810
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xff847cec,0x7a9822b4,0x81e4fd9f,0x89d91aea,0x863393ed,0x5f36c4e4,
+0x1ff177ba,0xf3a829b6
+};
+
 }
 
 namespace RetroArch
@@ -879,8 +893,10 @@ public:
 		Name = "mudlord-pal-vhs";
 		VertexByteCode = RetroArchVhsShadersMudlordPalVhsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchVhsShadersMudlordPalVhsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchVhsShadersMudlordPalVhsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchVhsShadersMudlordPalVhsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchVhsShadersMudlordPalVhsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchVhsShadersMudlordPalVhsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

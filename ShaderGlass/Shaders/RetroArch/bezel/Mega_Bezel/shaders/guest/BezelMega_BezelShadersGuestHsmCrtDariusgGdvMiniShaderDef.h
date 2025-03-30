@@ -28074,6 +28074,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb534f149,0x6a8419be,0x69caac12,0xea30b125,0x6db1bbd4,0x9917767a,
+0xe6da3384,0x6678845c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x320223e6,0xe26206d6,0x5f4eca7a,0x1e5db561,0x3c57ed0e,0x7108d4b,
+0x648f3398,0x29ea8f8e
+};
+
 }
 
 namespace RetroArch
@@ -28086,8 +28100,10 @@ public:
 		Name = "hsm-crt-dariusg-gdv-mini";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestHsmCrtDariusgGdvMiniShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmCrtDariusgGdvMiniShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestHsmCrtDariusgGdvMiniShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestHsmCrtDariusgGdvMiniShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmCrtDariusgGdvMiniShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmCrtDariusgGdvMiniShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

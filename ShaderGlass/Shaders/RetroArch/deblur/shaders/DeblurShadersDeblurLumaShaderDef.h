@@ -996,6 +996,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x35ec2319,0x18399ee1,0x7d512bab,0x2b14838a,0x4c5fef91,0xd6c6e4c3,
+0xc486033,0x50200109
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8f0ec977,0x57e2916a,0xc5d2160,0xab1c76c8,0x97872127,0x893061e9,
+0xa2abf539,0x268681cd
+};
+
 }
 
 namespace RetroArch
@@ -1008,8 +1022,10 @@ public:
 		Name = "deblur-luma";
 		VertexByteCode = RetroArchDeblurShadersDeblurLumaShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDeblurShadersDeblurLumaShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDeblurShadersDeblurLumaShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDeblurShadersDeblurLumaShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDeblurShadersDeblurLumaShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDeblurShadersDeblurLumaShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

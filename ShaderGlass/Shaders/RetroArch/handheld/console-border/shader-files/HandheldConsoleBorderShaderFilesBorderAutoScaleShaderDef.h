@@ -541,6 +541,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfc2661b0,0x4938ddbc,0x42ea19e,0xf7681ea1,0x32801353,0x51526cff,
+0xcd53fb0e,0xbe23e0df
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3ecacc39,0xcedd609a,0x2eed26a7,0x93c35824,0xe39c5331,0x86761780,
+0x61fdf4d7,0x37897d6f
+};
+
 }
 
 namespace RetroArch
@@ -553,8 +567,10 @@ public:
 		Name = "border-auto-scale";
 		VertexByteCode = RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

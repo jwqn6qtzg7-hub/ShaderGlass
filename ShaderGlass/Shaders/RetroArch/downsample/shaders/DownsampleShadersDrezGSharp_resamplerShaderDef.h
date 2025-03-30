@@ -1425,6 +1425,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4b8bd309,0xecbdc823,0xb616e8af,0x8356fa9d,0xd4b53d5e,0x298ee356,
+0xea87032a,0xc4a5248c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1ad8792b,0xf4e6f08a,0xe6290894,0xa9299f5,0xba9a9ddf,0xe5b0b6e1,
+0x497a025a,0x772e35e
+};
+
 }
 
 namespace RetroArch
@@ -1437,8 +1451,10 @@ public:
 		Name = "drez-g-sharp_resampler";
 		VertexByteCode = RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

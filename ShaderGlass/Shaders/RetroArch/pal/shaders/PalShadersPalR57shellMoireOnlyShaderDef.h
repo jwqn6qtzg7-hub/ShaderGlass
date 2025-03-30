@@ -895,6 +895,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x85bc4c90,0xabe69491,0xc22f4951,0xa8a3bcb9,0xa7fd83c1,0x3b5306ce,
+0x6b02cd12,0x7efccd6f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3a6dbf13,0x9a8cf0fa,0xf6b5555d,0xebc135f5,0xac00c9b4,0xa468ed35,
+0x7312af8,0xcc93f654
+};
+
 }
 
 namespace RetroArch
@@ -907,8 +921,10 @@ public:
 		Name = "pal-r57shell-moire-only";
 		VertexByteCode = RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

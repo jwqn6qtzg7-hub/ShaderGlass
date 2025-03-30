@@ -6465,6 +6465,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xdfd1f720,0xcc4fdeaa,0xc3c9c2d5,0xdb7260ab,0x60accc87,0x28ed2feb,
+0xc87808c3,0x35a396f2
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x33030a6a,0x3d0428c6,0x73616c6a,0xf995558a,0xaec0159e,0x687cf619,
+0x9b2fed13,0x30c17786
+};
+
 }
 
 namespace RetroArch
@@ -6477,8 +6491,10 @@ public:
 		Name = "halo";
 		VertexByteCode = RetroArchBezelKokoAioShadersNgHaloShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelKokoAioShadersNgHaloShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelKokoAioShadersNgHaloShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelKokoAioShadersNgHaloShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelKokoAioShadersNgHaloShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelKokoAioShadersNgHaloShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

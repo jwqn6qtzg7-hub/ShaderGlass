@@ -556,6 +556,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5460bd29,0x949e7546,0x82ef5a52,0x23c771bc,0x7637607f,0xcf79e818,
+0xbbf6df46,0xce30fb2c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdc88333f,0x6bc03e6c,0x7b81fecf,0x5769c15e,0xa71111d2,0x5f3049fa,
+0xc2d108f9,0xece67c6
+};
+
 }
 
 namespace RetroArch
@@ -568,8 +582,10 @@ public:
 		Name = "scanlines-sine-abs";
 		VertexByteCode = RetroArchScanlinesShadersScanlinesSineAbsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchScanlinesShadersScanlinesSineAbsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchScanlinesShadersScanlinesSineAbsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchScanlinesShadersScanlinesSineAbsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchScanlinesShadersScanlinesSineAbsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchScanlinesShadersScanlinesSineAbsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

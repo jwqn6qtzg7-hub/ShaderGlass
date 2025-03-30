@@ -18770,6 +18770,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8a790d16,0x4d19f028,0xaa6cabb9,0xee8e8e0a,0x827600c0,0x10b17043,
+0xde4e42c6,0x3299ff82
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xad6f2c33,0x27c30a14,0x4f47f9a2,0x9d9749c,0xd4e944b6,0x8f94891,
+0x4cf160d6,0x2def58bc
+};
+
 }
 
 namespace RetroArch
@@ -18782,8 +18796,10 @@ public:
 		Name = "hsm-interlace";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestHsmInterlaceShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmInterlaceShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestHsmInterlaceShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestHsmInterlaceShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmInterlaceShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmInterlaceShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

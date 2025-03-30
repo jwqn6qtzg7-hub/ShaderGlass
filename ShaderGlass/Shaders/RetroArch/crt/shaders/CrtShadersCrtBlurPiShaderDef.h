@@ -660,6 +660,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfcded535,0xfec2cd30,0x7cc1d586,0xe14e8777,0x64f4859a,0x1e620eda,
+0x1c890608,0x47184e7f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x852569da,0x65947c7c,0x10953055,0x5172bfb6,0x11917a5f,0x2218c51b,
+0xcfe6b11a,0x323e710e
+};
+
 }
 
 namespace RetroArch
@@ -672,8 +686,10 @@ public:
 		Name = "crt-blurPi";
 		VertexByteCode = RetroArchCrtShadersCrtBlurPiShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtBlurPiShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtBlurPiShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtBlurPiShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtBlurPiShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtBlurPiShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

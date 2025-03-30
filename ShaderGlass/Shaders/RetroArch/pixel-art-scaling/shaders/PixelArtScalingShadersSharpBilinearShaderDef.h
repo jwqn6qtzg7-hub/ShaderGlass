@@ -454,6 +454,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x74271b2e,0xbb212f36,0x7d220f9c,0x95344c22,0x806cc72e,0xbce70132,
+0xf076403,0x87793925
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6010b614,0xaf36a432,0x2f1e2a6a,0x9a0bfb4b,0x3adfc661,0xb5bb229d,
+0xba37b1e,0xade206ad
+};
+
 }
 
 namespace RetroArch
@@ -466,8 +480,10 @@ public:
 		Name = "sharp-bilinear";
 		VertexByteCode = RetroArchPixelArtScalingShadersSharpBilinearShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersSharpBilinearShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersSharpBilinearShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersSharpBilinearShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersSharpBilinearShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersSharpBilinearShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

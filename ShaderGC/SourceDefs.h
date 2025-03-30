@@ -101,6 +101,8 @@ struct SourceShaderDef
     std::string                        fragmentSource;
     std::string                        fragmentByteCode;
     std::string                        fragmentMetadata;
+    std::string                        vertexHash;
+    std::string                        fragmentHash;
     std::vector<SourceShaderParam>     params;
     SourceShaderInfo                   info;
     std::string                        format;

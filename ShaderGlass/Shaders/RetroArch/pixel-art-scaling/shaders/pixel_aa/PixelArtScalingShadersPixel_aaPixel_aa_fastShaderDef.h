@@ -445,6 +445,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x69fe14ab,0x4ef26b04,0x13ae6c2d,0x84405b68,0xb06302e7,0x6bc5e897,
+0x10d2ed04,0xb53aa094
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3e2f3afb,0xe9d241e0,0x504e4a3,0x4effd163,0xc99f6b62,0x3851c69e,
+0x2c7645b,0x3cc193a
+};
+
 }
 
 namespace RetroArch
@@ -457,8 +471,10 @@ public:
 		Name = "pixel_aa_fast";
 		VertexByteCode = RetroArchPixelArtScalingShadersPixel_aaPixel_aa_fastShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersPixel_aaPixel_aa_fastShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersPixel_aaPixel_aa_fastShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersPixel_aaPixel_aa_fastShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersPixel_aaPixel_aa_fastShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersPixel_aaPixel_aa_fastShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

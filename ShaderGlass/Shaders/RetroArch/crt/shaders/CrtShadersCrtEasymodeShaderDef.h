@@ -1417,6 +1417,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc8ddfe06,0xb47c6fc3,0xcc982981,0x3ec5fb7b,0xfa933376,0xa3f03e40,
+0xf855412a,0xb9afdc94
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x32ef155a,0x4b3653c3,0xbf16b6c3,0x62607fca,0x93712712,0xbcefab55,
+0x1e0730a2,0x581b541e
+};
+
 }
 
 namespace RetroArch
@@ -1429,8 +1443,10 @@ public:
 		Name = "crt-easymode";
 		VertexByteCode = RetroArchCrtShadersCrtEasymodeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtEasymodeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtEasymodeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtEasymodeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtEasymodeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtEasymodeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

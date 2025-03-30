@@ -734,6 +734,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x2345e317,0xed977769,0xccab866e,0x5a42b41e,0x6dede517,0xdd96ce8f,
+0x57457179,0x4a722e3b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7471158,0x5ff2d238,0xd0294f15,0x45376e9a,0x5ddd1dca,0xa3d6dadd,
+0x13f94c6f,0x4567fb54
+};
+
 }
 
 namespace RetroArch
@@ -746,8 +760,10 @@ public:
 		Name = "ds-hybrid-view";
 		VertexByteCode = RetroArchHandheldShadersDsHybridViewShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersDsHybridViewShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersDsHybridViewShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ds_hybrid_view_refpassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

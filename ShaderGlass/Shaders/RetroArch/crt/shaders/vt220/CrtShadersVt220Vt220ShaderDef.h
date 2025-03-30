@@ -7351,6 +7351,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x2b6546a4,0x4e9dada,0x447687d2,0x31c7abe7,0x1b845f5b,0xa87ff74c,
+0xf28b8b30,0x3a2142cc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x992185b6,0x3e72b403,0xe6111f13,0x4db9404a,0xf65b06d1,0xf631916c,
+0x69afa37f,0x16a8ed26
+};
+
 }
 
 namespace RetroArch
@@ -7363,8 +7377,10 @@ public:
 		Name = "vt220";
 		VertexByteCode = RetroArchCrtShadersVt220Vt220ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersVt220Vt220ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersVt220Vt220ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ntsc_toggle", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "NTSC Toggle"));

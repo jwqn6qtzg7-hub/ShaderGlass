@@ -897,6 +897,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x37f90097,0x9190ecc5,0xeed212cb,0x98709a58,0x99a3402b,0xb05e4d91,
+0xdbf4e5d0,0xb916f675
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4b274e6,0xccebf1e1,0x91278f69,0x638db3c8,0x2a26137d,0x3a7f0e8f,
+0x58bc4ad7,0x27d1744d
+};
+
 }
 
 namespace RetroArch
@@ -909,8 +923,10 @@ public:
 		Name = "crt-guest-advanced-pass1f";
 		VertexByteCode = RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -911,6 +911,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd3a957ba,0xcc8a68d6,0xb737a3c1,0x9c9f0300,0x626e53a6,0x6a020888,
+0xa04ed05f,0x1b840167
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x22f0ff7c,0xea502742,0x799f6c75,0x1b621253,0x13fd2955,0x21b3e2e2,
+0x77311e3c,0xb7e53ddb
+};
+
 }
 
 namespace RetroArch
@@ -923,8 +937,10 @@ public:
 		Name = "colorimetry";
 		VertexByteCode = RetroArchMiscShadersColorimetryShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersColorimetryShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersColorimetryShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersColorimetryShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersColorimetryShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersColorimetryShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

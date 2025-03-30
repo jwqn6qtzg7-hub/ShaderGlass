@@ -6478,6 +6478,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x352f1cee,0xa80540db,0x4503e131,0xfb6bbee3,0x60937251,0xb5beaaea,
+0x97778f97,0xef04f3c0
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x246f4120,0xc0db2,0x9bca70e7,0xdbaf0f65,0x3eaef014,0xaa992980,
+0xe293430,0x29ac2a6b
+};
+
 }
 
 namespace RetroArch
@@ -6490,8 +6504,10 @@ public:
 		Name = "uborder-bezel-reflections";
 		VertexByteCode = RetroArchBezelUborderShadersUborderBezelReflectionsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelUborderShadersUborderBezelReflectionsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelUborderShadersUborderBezelReflectionsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelUborderShadersUborderBezelReflectionsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelUborderShadersUborderBezelReflectionsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelUborderShadersUborderBezelReflectionsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -499,6 +499,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x66ce05cf,0x98dedbf3,0x714c3a48,0xa86db729,0x10bbcc63,0x1e282629,
+0xdc62455f,0x15a9d781
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6e37d030,0x5d52abe9,0x146c6ec3,0xe18077db,0xf7f200a6,0xd876853f,
+0xef81b908,0x1b199145
+};
+
 }
 
 namespace RetroArch
@@ -511,8 +525,10 @@ public:
 		Name = "combine";
 		VertexByteCode = RetroArchCrtShadersGlowTrailsCombineShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGlowTrailsCombineShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGlowTrailsCombineShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGlowTrailsCombineShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGlowTrailsCombineShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGlowTrailsCombineShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

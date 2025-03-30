@@ -1479,6 +1479,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xffe969cb,0x40ab84f7,0xa64229f4,0x1e39533b,0x19caa380,0x2973bace,
+0x37677304,0x8d00fa4c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8a419841,0x76ece537,0x2df8082b,0xbc10645a,0x413a4677,0xfc63f81d,
+0xadbc839d,0x3ddf8819
+};
+
 }
 
 namespace RetroArch
@@ -1491,8 +1505,10 @@ public:
 		Name = "mdapt-pass4";
 		VertexByteCode = RetroArchDitheringShadersMdaptPassesMdaptPass4ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersMdaptPassesMdaptPass4ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersMdaptPassesMdaptPass4ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersMdaptPassesMdaptPass4ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersMdaptPassesMdaptPass4ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersMdaptPassesMdaptPass4ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -437,6 +437,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x85782b60,0x82057d,0xfc3dd427,0x8b7015b6,0x36005f35,0x258838bb,
+0x2878c87d,0xea7038cc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf6a343b1,0xd54b2f4c,0xc4cf07ca,0x563b81b2,0xf2a64ab7,0xa0801317,
+0xb6ef88a1,0xbaf96b4d
+};
+
 }
 
 namespace RetroArch
@@ -449,8 +463,10 @@ public:
 		Name = "bevel";
 		VertexByteCode = RetroArchHandheldShadersBevelShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersBevelShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersBevelShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersBevelShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersBevelShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersBevelShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -396,6 +396,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf72402f4,0x568192a9,0x3f4967b7,0xf608e8e1,0x39bfbe31,0x3f06d9d5,
+0x8870fc14,0xfaeb21b0
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x20ae4acb,0xa3482efe,0xa60ae5af,0x85a1e051,0xa74af4d3,0xce7a1726,
+0x5d23844d,0xd1a8800f
+};
+
 }
 
 namespace RetroArch
@@ -408,8 +422,10 @@ public:
 		Name = "3dfx_pass_2";
 		VertexByteCode = RetroArchGpuShaders3dfx3dfx_pass_2ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchGpuShaders3dfx3dfx_pass_2ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchGpuShaders3dfx3dfx_pass_2ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchGpuShaders3dfx3dfx_pass_2ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchGpuShaders3dfx3dfx_pass_2ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchGpuShaders3dfx3dfx_pass_2ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

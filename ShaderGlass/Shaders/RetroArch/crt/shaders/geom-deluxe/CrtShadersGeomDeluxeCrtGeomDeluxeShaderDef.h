@@ -7458,6 +7458,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x54fb937a,0x83eecc6e,0xe5261c7,0x169ec,0x81f9863,0xba41f085,
+0x7074343b,0x12d3087f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7467a07,0x7f4506c1,0xe4f79e61,0x3244ed6a,0x9e89cdeb,0xfd844b8,
+0xc491a32,0x5b3a540c
+};
+
 }
 
 namespace RetroArch
@@ -7470,8 +7484,10 @@ public:
 		Name = "crt-geom-deluxe";
 		VertexByteCode = RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

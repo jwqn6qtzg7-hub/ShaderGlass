@@ -30959,6 +30959,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf067ba93,0x9b9fba23,0x722274ff,0x13ae6953,0x260914b0,0xbb0d682e,
+0x214bd27c,0x93f6a7fc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5470997b,0xd37bb528,0x91194406,0x3820b9cf,0x805fa19e,0x9d1b0727,
+0xe46277b,0xd100989c
+};
+
 }
 
 namespace RetroArch
@@ -30971,8 +30985,10 @@ public:
 		Name = "crt-hyllian-sinc-curvature";
 		VertexByteCode = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -824,6 +824,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x4cbac5b3,0xa9f1ab30,0xff2a5ee8,0x52f5f73c,0x9bfa596b,0x4c0d82f4,
+0xd74c81fc,0xb4a0a039
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xaeb06a35,0xe9dc2efd,0xf0483c59,0x7d516d1b,0x7fdcb7dd,0xa23ce049,
+0xf30e34d2,0x83accc28
+};
+
 }
 
 namespace RetroArch
@@ -836,8 +850,10 @@ public:
 		Name = "cathode-retro-util-gaussian-blur-vert";
 		VertexByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroUtilGaussianBlurVertShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroUtilGaussianBlurVertShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCathodeRetroCathodeRetroUtilGaussianBlurVertShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCathodeRetroCathodeRetroUtilGaussianBlurVertShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCathodeRetroCathodeRetroUtilGaussianBlurVertShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCathodeRetroCathodeRetroUtilGaussianBlurVertShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

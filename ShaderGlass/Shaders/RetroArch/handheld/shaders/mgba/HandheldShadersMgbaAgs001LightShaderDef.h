@@ -494,6 +494,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x969630e6,0x69770f44,0x3434b73f,0xbfa739aa,0x4ad3d472,0xdd24589f,
+0x5eef8499,0xe755331b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6e4f49b5,0x63085593,0x74abccfb,0x2df68b96,0x871e74a0,0xa7381201,
+0xcd292bd5,0x1f96b11a
+};
+
 }
 
 namespace RetroArch
@@ -506,8 +520,10 @@ public:
 		Name = "ags001-light";
 		VertexByteCode = RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -745,6 +745,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5ff4b25e,0xffc9e5ad,0x64d7274a,0x7522ebc8,0x894a79b8,0x48291f7a,
+0xf87c575,0xb4057fbf
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xad8df6ac,0x71c9e762,0x128cdae6,0x99ccdfd0,0xfb3c65da,0x5936f974,
+0xe1ad9d17,0x4a517fb8
+};
+
 }
 
 namespace RetroArch
@@ -757,8 +771,10 @@ public:
 		Name = "ntsc-gauss-pass";
 		VertexByteCode = RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

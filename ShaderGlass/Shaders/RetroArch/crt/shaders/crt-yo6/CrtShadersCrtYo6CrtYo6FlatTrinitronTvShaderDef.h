@@ -1183,6 +1183,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaf2a916,0xfc52402f,0xf464175a,0xc3939d56,0x2575b044,0x1a3e0d23,
+0xf681ce29,0x31874ce7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6ef45be1,0x88ae5e79,0x147f0666,0xef4fee0b,0x26a1e16d,0xce67a687,
+0x5db32394,0xd58c4c5a
+};
+
 }
 
 namespace RetroArch
@@ -1195,8 +1209,10 @@ public:
 		Name = "crt-yo6-flat-trinitron-tv";
 		VertexByteCode = RetroArchCrtShadersCrtYo6CrtYo6FlatTrinitronTvShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtYo6CrtYo6FlatTrinitronTvShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtYo6CrtYo6FlatTrinitronTvShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtYo6CrtYo6FlatTrinitronTvShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtYo6CrtYo6FlatTrinitronTvShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtYo6CrtYo6FlatTrinitronTvShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

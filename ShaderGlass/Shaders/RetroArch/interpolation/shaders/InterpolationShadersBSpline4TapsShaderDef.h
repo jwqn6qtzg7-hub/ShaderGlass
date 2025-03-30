@@ -569,6 +569,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5e677e44,0x71fb6588,0xa9abe354,0xae15e44d,0x57e77c71,0xf02c0eaf,
+0xde78b997,0x2b3f9e64
+};
+
 }
 
 namespace RetroArch
@@ -581,8 +595,10 @@ public:
 		Name = "b-spline-4-taps";
 		VertexByteCode = RetroArchInterpolationShadersBSpline4TapsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchInterpolationShadersBSpline4TapsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchInterpolationShadersBSpline4TapsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchInterpolationShadersBSpline4TapsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchInterpolationShadersBSpline4TapsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchInterpolationShadersBSpline4TapsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

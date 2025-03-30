@@ -687,6 +687,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf7616107,0x6fe60e58,0xf934e3b5,0xb9bcc9bc,0x2db0776e,0x2b3b8d01,
+0xb067bce9,0xbc5db429
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdd7526de,0xc929f150,0xe0af2b24,0xc642c78a,0x22e43e1,0x5f9eda7e,
+0x17bb122,0x914c142
+};
+
 }
 
 namespace RetroArch
@@ -699,8 +713,10 @@ public:
 		Name = "cmyk-halftone-dot";
 		VertexByteCode = RetroArchMiscShadersCmykHalftoneDotShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersCmykHalftoneDotShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersCmykHalftoneDotShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersCmykHalftoneDotShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersCmykHalftoneDotShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersCmykHalftoneDotShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

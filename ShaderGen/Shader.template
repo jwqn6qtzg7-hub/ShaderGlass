@@ -11,6 +11,12 @@ static const BYTE sVertexByteCode[] =
 
 static const BYTE sFragmentByteCode[] =
 %FRAGMENT_BYTECODE%
+
+static const uint32_t sVertexHash[] = 
+%VERTEX_HASH%
+
+static const uint32_t sFragmentHash[] =
+%FRAGMENT_HASH%
 }
 
 namespace %LIB_NAME%
@@ -23,8 +29,10 @@ public:
 		Name = "%SHADER_NAME%";
 		VertexByteCode = %LIB_NAME%%CLASS_NAME%ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(%LIB_NAME%%CLASS_NAME%ShaderDefs::sVertexByteCode);
+		VertexHash = %LIB_NAME%%CLASS_NAME%ShaderDefs::sVertexHash;
 		FragmentByteCode = %LIB_NAME%%CLASS_NAME%ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(%LIB_NAME%%CLASS_NAME%ShaderDefs::sFragmentByteCode);
+		FragmentHash = %LIB_NAME%%CLASS_NAME%ShaderDefs::sFragmentHash;
 		Format = "%SHADER_FORMAT%";
 %PARAM%		Params.push_back(ShaderParam("%PARAM_NAME%", %PARAM_BUFFER%, %PARAM_OFFSET%, %PARAM_SIZE%, %PARAM_MIN%f, %PARAM_MAX%f, %PARAM_DEF%f, %PARAM_STEP%f, "%PARAM_DESC%"));
 %TEXTURE%		Samplers.push_back(ShaderSampler("%TEXTURE_NAME%", %TEXTURE_BINDING%));

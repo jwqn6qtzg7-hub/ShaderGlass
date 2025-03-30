@@ -477,6 +477,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf519fc97,0xd57bee87,0xa1fc32dc,0x680efb38,0xb3418dfa,0x9ce7aa63,
+0x77d3542f,0xeb8ead38
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x823fe7dc,0x8c028c72,0x6052344c,0xc89db73d,0x739dd944,0x49542551,
+0x1a740c2c,0xf1445a46
+};
+
 }
 
 namespace RetroArch
@@ -489,8 +503,10 @@ public:
 		Name = "ControlledSharpness";
 		VertexByteCode = RetroArchPixelArtScalingShadersControlledSharpnessShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersControlledSharpnessShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersControlledSharpnessShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersControlledSharpnessShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersControlledSharpnessShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersControlledSharpnessShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

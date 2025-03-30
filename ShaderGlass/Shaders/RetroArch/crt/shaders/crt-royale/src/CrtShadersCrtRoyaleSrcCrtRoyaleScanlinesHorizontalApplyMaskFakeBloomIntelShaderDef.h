@@ -8831,6 +8831,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x99c71607,0xf4dacb47,0xef1bf6eb,0x65660a90,0xa1b88b05,0xab8db111,
+0x31dd8ed,0xf44bd91f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7c0eab86,0x44037734,0x393840d2,0x1eca8b14,0x3a985311,0xb3d20c51,
+0xc4f29ee3,0xf2360404
+};
+
 }
 
 namespace RetroArch
@@ -8843,8 +8857,10 @@ public:
 		Name = "crt-royale-scanlines-horizontal-apply-mask-fake-bloom-intel";
 		VertexByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.500000f, 0.025000f, "Simulated CRT Gamma"));

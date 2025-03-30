@@ -511,6 +511,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8c0b2db1,0xe23a9be9,0xe3bfa016,0x3b088c6e,0x5807781b,0x3389e2aa,
+0x6164682a,0xfe759432
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xada77ed9,0x7e0cfd2f,0x5f7e5007,0xb4624ae1,0x95eaffd7,0x8a25a3a7,
+0x2906b439,0xbca38eca
+};
+
 }
 
 namespace RetroArch
@@ -523,8 +537,10 @@ public:
 		Name = "phosphorlut-pass0";
 		VertexByteCode = RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

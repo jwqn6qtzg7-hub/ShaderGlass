@@ -5088,6 +5088,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6f0d0f95,0xe3776206,0x680b8c16,0x55e66f34,0x939e113a,0x60478f8e,
+0x7a3739d4,0x6402fb04
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x16da1179,0x3f7c0c18,0x1c57dc38,0x26c5c68a,0x9659c138,0x336d0dbe,
+0x82a459d4,0x8c1a4e94
+};
+
 }
 
 namespace RetroArch
@@ -5100,8 +5114,10 @@ public:
 		Name = "patchy-color";
 		VertexByteCode = RetroArchNtscShadersPatchyNtscPatchyColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNtscShadersPatchyNtscPatchyColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNtscShadersPatchyNtscPatchyColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNtscShadersPatchyNtscPatchyColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNtscShadersPatchyNtscPatchyColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNtscShadersPatchyNtscPatchyColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("pc_unused1", 0, 64, 4, 0.000000f, 0.000000f, 0.000000f, 1.000000f, "===== Patchy Color Settings ====="));

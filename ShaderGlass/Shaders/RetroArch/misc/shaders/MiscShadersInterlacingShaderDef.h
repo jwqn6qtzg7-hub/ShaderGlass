@@ -455,6 +455,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xafd9c0f5,0x39da8177,0x5fb0de00,0x7a2b68a6,0xc43c0456,0x3984e857,
+0xa97576f,0x73d45960
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xac77ee68,0x63c58e4a,0xd304a4ba,0xdee20ef6,0x286c1098,0x4b437b6d,
+0x89656b66,0x9d9d0d10
+};
+
 }
 
 namespace RetroArch
@@ -467,8 +481,10 @@ public:
 		Name = "interlacing";
 		VertexByteCode = RetroArchMiscShadersInterlacingShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersInterlacingShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersInterlacingShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersInterlacingShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersInterlacingShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersInterlacingShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

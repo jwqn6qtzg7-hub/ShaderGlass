@@ -827,6 +827,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xec14e696,0x47133405,0x8ea436c8,0xc9d83357,0xe96eb80a,0xdd1c6a98,
+0xd0d715ca,0x7a2c4129
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd20b691a,0xe90c49c,0x6e1d89b4,0x94f472ac,0xc8d5363b,0x390b519e,
+0xe6203631,0x888271b8
+};
+
 }
 
 namespace RetroArch
@@ -839,8 +853,10 @@ public:
 		Name = "custom-fast-sharpen";
 		VertexByteCode = RetroArchCrtShadersGuestAdvancedCustomFastSharpenShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestAdvancedCustomFastSharpenShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestAdvancedCustomFastSharpenShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestAdvancedCustomFastSharpenShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedCustomFastSharpenShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestAdvancedCustomFastSharpenShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

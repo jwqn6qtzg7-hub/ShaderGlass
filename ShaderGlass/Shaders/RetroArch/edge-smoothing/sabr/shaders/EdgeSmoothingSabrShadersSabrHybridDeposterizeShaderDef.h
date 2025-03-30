@@ -3115,6 +3115,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5b142d14,0xd2380f68,0xaeccb071,0xe0e77b8c,0x232d35dd,0xfa0fd43c,
+0x8649ae43,0xf6ccc69b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x73cdac15,0x9c0d280f,0xab7dd9b1,0x78ad3ee9,0x984aa0dc,0xe4be2e8c,
+0x725c005f,0xc216bf8b
+};
+
 }
 
 namespace RetroArch
@@ -3127,8 +3141,10 @@ public:
 		Name = "sabr-hybrid-deposterize";
 		VertexByteCode = RetroArchEdgeSmoothingSabrShadersSabrHybridDeposterizeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingSabrShadersSabrHybridDeposterizeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingSabrShadersSabrHybridDeposterizeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingSabrShadersSabrHybridDeposterizeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingSabrShadersSabrHybridDeposterizeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingSabrShadersSabrHybridDeposterizeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

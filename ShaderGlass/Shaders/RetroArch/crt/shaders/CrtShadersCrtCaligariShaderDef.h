@@ -891,6 +891,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8fd48911,0x7d77ab72,0xfd661167,0x1e67fd26,0x6e8efc7d,0x251c5bc0,
+0xb1fb5515,0x8eecd9b7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe8a58c74,0x34239c05,0x5f641233,0x2500c07f,0x3f6550a8,0xadd40bf2,
+0x9c9c869a,0x2ea23c53
+};
+
 }
 
 namespace RetroArch
@@ -903,8 +917,10 @@ public:
 		Name = "crt-caligari";
 		VertexByteCode = RetroArchCrtShadersCrtCaligariShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtCaligariShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtCaligariShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -421,6 +421,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x813094bb,0x58dbb653,0x9ac3533e,0xb329308e,0x2a2850ef,0xbb1f4fde,
+0xdeff1ab2,0x44e71aa6
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdf3e7566,0x6464665c,0x2f1f0fd3,0x7a56d36d,0x206a1cff,0x42fe52dc,
+0x7debba9e,0x54ab437d
+};
+
 }
 
 namespace RetroArch
@@ -433,8 +447,10 @@ public:
 		Name = "MMJ_Cel_Shader_MP_Blur_H";
 		VertexByteCode = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

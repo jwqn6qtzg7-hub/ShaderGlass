@@ -36888,6 +36888,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9a1ffa22,0x88730956,0x656fc0f1,0xbf74e82a,0xf3ffb832,0x9c203db4,
+0xce33b674,0xe9516bd7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7f0c5684,0xecee63ea,0x86f9df71,0xa89f2fd4,0xb89ab435,0xe67a954b,
+0x59026664,0x1c3b2dad
+};
+
 }
 
 namespace RetroArch
@@ -36900,8 +36914,10 @@ public:
 		Name = "post-crt-prep-glass";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBasePostCrtPrepGlassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepGlassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBasePostCrtPrepGlassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBasePostCrtPrepGlassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepGlassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBasePostCrtPrepGlassShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

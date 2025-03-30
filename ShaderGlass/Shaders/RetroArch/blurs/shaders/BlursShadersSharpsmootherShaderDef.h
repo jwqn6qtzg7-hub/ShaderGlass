@@ -1446,6 +1446,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xa8bb299b,0x1047e821,0x77412ffc,0x8b5e788e,0xe5da475f,0xa68a3a51,
+0xb2e984a7,0x4daa8a44
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8adfda9a,0x9f423e22,0xea757c5c,0x77324d9d,0x48f698c4,0x1e1c1a83,
+0x6bde5859,0x4a46c684
+};
+
 }
 
 namespace RetroArch
@@ -1458,8 +1472,10 @@ public:
 		Name = "sharpsmoother";
 		VertexByteCode = RetroArchBlursShadersSharpsmootherShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersSharpsmootherShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersSharpsmootherShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersSharpsmootherShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersSharpsmootherShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersSharpsmootherShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

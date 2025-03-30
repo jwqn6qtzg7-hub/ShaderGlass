@@ -286,6 +286,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5a4252af,0x19db72b0,0x74f9244d,0x6fc0c0ad,0x97f52ffc,0xee527885,
+0x7644e5ff,0xd33d235
+};
+
 }
 
 namespace RetroArch
@@ -298,8 +312,10 @@ public:
 		Name = "naive_resample";
 		VertexByteCode = RetroArchBlursShadersDual_filterNaive_resampleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersDual_filterNaive_resampleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersDual_filterNaive_resampleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersDual_filterNaive_resampleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersDual_filterNaive_resampleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersDual_filterNaive_resampleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

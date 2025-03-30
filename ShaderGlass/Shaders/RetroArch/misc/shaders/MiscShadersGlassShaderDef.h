@@ -4564,6 +4564,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x352eb20e,0xebf12452,0xd9c7a8ab,0xaf028b9c,0xc79d788d,0x471f63b0,
+0x76383c0e,0x8b1b6d4b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7809dc8,0x65925c79,0xd2d3b1ab,0xd6361ec,0xeec1216f,0xb9ede8dd,
+0x33944253,0x85739e34
+};
+
 }
 
 namespace RetroArch
@@ -4576,8 +4590,10 @@ public:
 		Name = "glass";
 		VertexByteCode = RetroArchMiscShadersGlassShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersGlassShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersGlassShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersGlassShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersGlassShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersGlassShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

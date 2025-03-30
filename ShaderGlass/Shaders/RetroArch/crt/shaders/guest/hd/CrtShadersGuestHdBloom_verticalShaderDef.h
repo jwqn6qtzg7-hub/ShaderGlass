@@ -618,6 +618,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1ad4ff36,0x66395d42,0xd649545c,0xc7cae2f3,0x9fc28ff3,0xd819f9ae,
+0x1af20c26,0x36c948b1
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x567e2f60,0xed27499e,0xf04b27d8,0xf3958f12,0xdbf5551e,0x7394712c,
+0x805f5a32,0x22b342a7
+};
+
 }
 
 namespace RetroArch
@@ -630,8 +644,10 @@ public:
 		Name = "bloom_vertical";
 		VertexByteCode = RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

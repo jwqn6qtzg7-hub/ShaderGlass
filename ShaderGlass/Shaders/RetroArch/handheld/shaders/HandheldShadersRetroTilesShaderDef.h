@@ -845,6 +845,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x76bd8345,0x62ba60bf,0xc73de1d1,0xa16e70f0,0xbf31f700,0x87ed9b70,
+0x439636b9,0xd67d23c6
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x68ca10b1,0x61520070,0xd44f3291,0x16d79089,0x1f8edf27,0x70d7a0e3,
+0xb98fc781,0xe7177014
+};
+
 }
 
 namespace RetroArch
@@ -857,8 +871,10 @@ public:
 		Name = "retro-tiles";
 		VertexByteCode = RetroArchHandheldShadersRetroTilesShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersRetroTilesShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersRetroTilesShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersRetroTilesShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersRetroTilesShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersRetroTilesShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

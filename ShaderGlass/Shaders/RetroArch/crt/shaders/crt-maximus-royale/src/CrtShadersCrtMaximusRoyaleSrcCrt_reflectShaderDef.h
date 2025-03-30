@@ -789,6 +789,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x423ae2d2,0x10552555,0x3cbe366e,0x2ac79ceb,0xb70e1270,0xa90750fb,
+0x5536e975,0x5acfa807
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa04fe67b,0x24b5c51e,0xc2283267,0x7c332c7f,0xec62b24d,0x91bbbb08,
+0xdad002c8,0x91b48db9
+};
+
 }
 
 namespace RetroArch
@@ -801,8 +815,10 @@ public:
 		Name = "crt_reflect";
 		VertexByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crtFrame", -1, 0, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "CRT Frame"));

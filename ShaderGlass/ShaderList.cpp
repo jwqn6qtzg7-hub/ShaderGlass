@@ -9,8 +9,14 @@ GNU General Public License v3.0
 
 #pragma once
 
+#include "ShaderCache.h"
 #include "ShaderList.h"
 
 #include "shaders\RetroArch.h"
 
 std::vector<PresetDef*> RetroArchPresetList = RetroArch::PresetList;
+
+std::vector<CachedShader> RetroArchCachedShaders()
+{
+	return RetroArch::CachedShaders();
+}

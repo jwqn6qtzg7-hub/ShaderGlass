@@ -32,7 +32,7 @@ static uint8_t* CopyVector(const std::vector<uint8_t>& d)
     return copy;
 }
 
-ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool& warn)
+ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool& warn, const ShaderCache& cache)
 {
     // convert GLSL to SPIRV
     auto vertexSPIRV   = GLSL::GenerateSPIRV(def.vertexSource.c_str(), false, log, warn);
@@ -43,8 +43,27 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
     auto fragmentHLSL = SPIRV::GenerateHLSL(fragmentSPIRV, true, log, warn);
 
     // compile HLSL to DXBC
-    auto vertexDXBC   = HLSL::CompileHLSL(vertexHLSL.first.c_str(), (int)vertexHLSL.first.size(), "vs_5_0", log, warn);
-    auto fragmentDXBC = HLSL::CompileHLSL(fragmentHLSL.first.c_str(), (int)fragmentHLSL.first.size(), "ps_5_0", log, warn);
+    std::vector<uint8_t> vertexDXBC, fragmentDXBC;
+    if(!cache.empty())
+    {
+        auto vertexCached = cache.FindCachedShader(vertexHLSL.first);
+        if(vertexCached != nullptr)
+        {
+            vertexDXBC.resize(vertexCached->len);
+            memcpy(vertexDXBC.data(), vertexCached->data, vertexCached->len);
+        }
+
+        auto fragmentCached = cache.FindCachedShader(fragmentHLSL.first);
+        if(fragmentCached != nullptr)
+        {
+            fragmentDXBC.resize(fragmentCached->len);
+            memcpy(fragmentDXBC.data(), fragmentCached->data, fragmentCached->len);
+        }
+    }
+    if(vertexDXBC.empty())
+        vertexDXBC = HLSL::CompileHLSL(vertexHLSL.first.c_str(), (int)vertexHLSL.first.size(), "vs_5_0", log, warn);
+    if(fragmentDXBC.empty())
+        fragmentDXBC = HLSL::CompileHLSL(fragmentHLSL.first.c_str(), (int)fragmentHLSL.first.size(), "ps_5_0", log, warn);
 
     // map declared to reflected parameters
     std::vector<SourceShaderSampler> textures;
@@ -73,11 +92,11 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
     return sd;
 }
 
-PresetDef* ShaderGC::CompileShader(std::filesystem::path source, ostream& log, bool& warn)
+PresetDef* ShaderGC::CompileShader(std::filesystem::path source, ostream& log, bool& warn, const ShaderCache& cache)
 {
     SourceShaderDef def(source, SourceShaderInfo());
     ProcessSourceShader(def, log, warn);
-    auto shaderDef = CompileSourceShader(def, log, warn);
+    auto shaderDef = CompileSourceShader(def, log, warn, cache);
 
     // dummy preset
     PresetDef* pdef = new PresetDef();
@@ -480,10 +499,10 @@ void ShaderGC::ParsePreset(const std::filesystem::path& input, std::map<std::str
     infile.close();
 }
 
-PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bool& warn)
+PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bool& warn, const ShaderCache& cache)
 {
     if(_stricmp(input.extension().string().c_str(), ".slang") == 0)
-        return CompileShader(input, log, warn);
+        return CompileShader(input, log, warn, cache);
 
     SourcePresetDef sp(input, SourceShaderInfo());
     ProcessSourcePreset(sp, log, warn);
@@ -502,7 +521,7 @@ PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bo
     for(auto& s : sp.shaders)
     {
         ProcessSourceShader(s, log, warn);
-        auto sd = CompileSourceShader(s, log, warn);
+        auto sd = CompileSourceShader(s, log, warn, cache);
         for(auto& pp : s.presetParams)
         {
             sd.Param(pp.first, pp.second);

@@ -12515,6 +12515,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x370ee4cb,0x3d6fdd78,0xfcea9895,0xa694d4ed,0xb43a076f,0x55fcbc5,
+0xc0a8f,0xd212a02
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3482d7de,0x366232dd,0x98fd25cd,0x3373524f,0xc04fb0f1,0x511e196f,
+0x7061435a,0xf2f1cd26
+};
+
 }
 
 namespace RetroArch
@@ -12527,8 +12541,10 @@ public:
 		Name = "cleanEdge-rotate";
 		VertexByteCode = RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

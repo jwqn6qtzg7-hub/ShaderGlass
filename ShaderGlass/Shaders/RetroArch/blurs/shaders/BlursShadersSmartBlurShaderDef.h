@@ -945,6 +945,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc5b4e36a,0x433a3030,0xb2b20dd9,0x50a7ea93,0x369d4b06,0x8331ad5a,
+0x2cae0c5d,0xf909ae67
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x100c8265,0x5a75a667,0x48437dcf,0x7f01f8fc,0x9916fd46,0x174a279e,
+0x1c945bb8,0xc00c0f5c
+};
+
 }
 
 namespace RetroArch
@@ -957,8 +971,10 @@ public:
 		Name = "smart-blur";
 		VertexByteCode = RetroArchBlursShadersSmartBlurShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersSmartBlurShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersSmartBlurShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersSmartBlurShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersSmartBlurShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersSmartBlurShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

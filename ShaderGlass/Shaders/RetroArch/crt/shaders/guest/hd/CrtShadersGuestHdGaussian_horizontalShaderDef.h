@@ -817,6 +817,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe1b890bb,0x2e720121,0x5508bba7,0x1d0dbe8b,0xd9c73260,0xfad6b935,
+0x1d28a39a,0x7fa13771
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa6f4b247,0xd9e19b4,0x4dd1ee3f,0xd538b370,0xa7beac7e,0x36ddb77c,
+0x336b5e59,0x346fbca2
+};
+
 }
 
 namespace RetroArch
@@ -829,8 +843,10 @@ public:
 		Name = "gaussian_horizontal";
 		VertexByteCode = RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("LinearizePassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

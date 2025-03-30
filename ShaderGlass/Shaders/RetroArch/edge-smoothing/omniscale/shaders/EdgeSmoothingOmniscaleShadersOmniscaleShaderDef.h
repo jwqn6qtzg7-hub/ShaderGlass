@@ -3833,6 +3833,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1035b4b1,0x79591c0e,0xec185630,0x6139140d,0xb07b0e04,0x45461996,
+0xe98ab752,0xcfaff271
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x55fd93a2,0xcbc8fca7,0xe7d616d8,0xe8a91b19,0xf4c12d56,0x814f376a,
+0x50a3de1f,0x76b7a112
+};
+
 }
 
 namespace RetroArch
@@ -3845,8 +3859,10 @@ public:
 		Name = "omniscale";
 		VertexByteCode = RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

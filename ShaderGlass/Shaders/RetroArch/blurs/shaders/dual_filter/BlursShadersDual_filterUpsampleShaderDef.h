@@ -527,6 +527,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc8b4e918,0xcfae2c6,0x8d13d5a7,0x400d9c19,0xe8735e52,0xb9067494,
+0x54e7e78,0x4827ec09
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc092b4ee,0xdf41a57f,0x6b1a654d,0x506e235d,0xd5add3e7,0x1f94d035,
+0xa5283b0c,0xf601a9c4
+};
+
 }
 
 namespace RetroArch
@@ -539,8 +553,10 @@ public:
 		Name = "upsample";
 		VertexByteCode = RetroArchBlursShadersDual_filterUpsampleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersDual_filterUpsampleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersDual_filterUpsampleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersDual_filterUpsampleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersDual_filterUpsampleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersDual_filterUpsampleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

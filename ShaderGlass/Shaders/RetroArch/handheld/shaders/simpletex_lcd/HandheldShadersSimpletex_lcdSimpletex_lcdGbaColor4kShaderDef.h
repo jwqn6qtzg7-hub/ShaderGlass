@@ -722,6 +722,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd4d54a65,0xc1b8096d,0x8012442b,0x583e6b3,0x2baacca3,0x4f1b2e84,
+0x925a6c4f,0x8b944ac7
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x37eb73ca,0x41d3ded3,0x8da5ac1f,0xc0fac3e9,0x2542a8cd,0x68a44d58,
+0x447ca6b4,0xf4339222
+};
+
 }
 
 namespace RetroArch
@@ -734,8 +748,10 @@ public:
 		Name = "simpletex_lcd+gba-color-4k";
 		VertexByteCode = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("GRID_INTENSITY", -1, 0, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "Grid Intensity"));

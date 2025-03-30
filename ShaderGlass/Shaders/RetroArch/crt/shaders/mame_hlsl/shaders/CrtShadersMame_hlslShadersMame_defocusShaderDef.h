@@ -2757,6 +2757,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x58b450d7,0xa60e4342,0xcbe4452,0xd5cd08b4,0x16896a29,0x8c4a9e22,
+0x53f4cafb,0x97e4cb47
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xafab53e2,0x68f4f60,0x7a32a8ae,0x168994f9,0x26304a97,0xbc6bae56,
+0x1d9c25d9,0x9faecb7b
+};
+
 }
 
 namespace RetroArch
@@ -2769,8 +2783,10 @@ public:
 		Name = "mame_defocus";
 		VertexByteCode = RetroArchCrtShadersMame_hlslShadersMame_defocusShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersMame_hlslShadersMame_defocusShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersMame_hlslShadersMame_defocusShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersMame_hlslShadersMame_defocusShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersMame_hlslShadersMame_defocusShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersMame_hlslShadersMame_defocusShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ntscsignal", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.010000f, "NTSC Signal Mode"));

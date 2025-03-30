@@ -843,6 +843,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x70460cad,0x4dc1687d,0xfcbcb433,0xab145a57,0x7d17e42e,0xe240b0e,
+0x48cc290e,0x8299f24b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x65671df6,0x26ef2278,0xe1e90e41,0x3229a0fa,0xd873800f,0x56402dd8,
+0x379b0a78,0x57f3529e
+};
+
 }
 
 namespace RetroArch
@@ -855,8 +869,10 @@ public:
 		Name = "crt-simple";
 		VertexByteCode = RetroArchCrtShadersCrtSimpleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtSimpleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtSimpleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtSimpleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSimpleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtSimpleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

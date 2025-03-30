@@ -896,6 +896,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9e075225,0x42fb78a8,0xa65bd985,0xd6d0ab50,0x6bbbd5e4,0xf08ae5c0,
+0x18801c72,0x190466f1
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd7853a2d,0xf050de4c,0x8c621e8e,0xc9dea87c,0xa46fb20f,0xf214973a,
+0xe6cc8998,0x455b5de
+};
+
 }
 
 namespace RetroArch
@@ -908,8 +922,10 @@ public:
 		Name = "vhs_mpalko_pass1";
 		VertexByteCode = RetroArchVhsShadersVhs_mpalkoVhs_mpalko_pass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchVhsShadersVhs_mpalkoVhs_mpalko_pass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchVhsShadersVhs_mpalkoVhs_mpalko_pass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchVhsShadersVhs_mpalkoVhs_mpalko_pass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchVhsShadersVhs_mpalkoVhs_mpalko_pass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchVhsShadersVhs_mpalkoVhs_mpalko_pass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -1058,6 +1058,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xb3365083,0xc39240b7,0x791d4a20,0x7ef3588,0x657992b6,0xa86d3d6d,
+0x17ee505c,0xc8dbc6a6
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x7a871f17,0xbcb64e96,0x78de14b5,0xa4e59aa6,0x746d8a1b,0xef1d841,
+0xc9c83f82,0x7ead6278
+};
+
 }
 
 namespace RetroArch
@@ -1070,8 +1084,10 @@ public:
 		Name = "bilateral";
 		VertexByteCode = RetroArchDenoisersShadersBilateralShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDenoisersShadersBilateralShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDenoisersShadersBilateralShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDenoisersShadersBilateralShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDenoisersShadersBilateralShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDenoisersShadersBilateralShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

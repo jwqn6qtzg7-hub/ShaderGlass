@@ -414,6 +414,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x876cce36,0x2d180d60,0xee1b4cb6,0x3e3d32ee,0x15f5564a,0x8ddcdd70,
+0x6744889e,0xfbc191cf
+};
+
 }
 
 namespace RetroArch
@@ -426,8 +440,10 @@ public:
 		Name = "blur_horiz";
 		VertexByteCode = RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

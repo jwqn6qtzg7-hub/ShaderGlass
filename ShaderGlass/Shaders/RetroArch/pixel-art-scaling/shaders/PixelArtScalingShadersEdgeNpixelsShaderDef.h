@@ -576,6 +576,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x48ff2ef4,0x856fa6c0,0x2495e20c,0xaed57da1,0xffcf7fad,0x9a43604c,
+0x6c0761a5,0xc75a1ada
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4dccb11c,0xbea18ddb,0xf8e655a4,0xc7ef7a14,0x5247666e,0xd4d5fe8b,
+0x981a340c,0x866473a0
+};
+
 }
 
 namespace RetroArch
@@ -588,8 +602,10 @@ public:
 		Name = "edgeNpixels";
 		VertexByteCode = RetroArchPixelArtScalingShadersEdgeNpixelsShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersEdgeNpixelsShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersEdgeNpixelsShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersEdgeNpixelsShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersEdgeNpixelsShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersEdgeNpixelsShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

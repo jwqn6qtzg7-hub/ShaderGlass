@@ -1924,6 +1924,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1035b4b1,0x79591c0e,0xec185630,0x6139140d,0xb07b0e04,0x45461996,
+0xe98ab752,0xcfaff271
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5bab1dd8,0xaf34126d,0x6b57cc60,0xa405c6fa,0x65d21959,0x6a9feb,
+0x809f716e,0xd90e5c0e
+};
+
 }
 
 namespace RetroArch
@@ -1936,8 +1950,10 @@ public:
 		Name = "hq2x-halphon";
 		VertexByteCode = RetroArchEdgeSmoothingHqxShadersHq2xHalphonShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchEdgeSmoothingHqxShadersHq2xHalphonShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchEdgeSmoothingHqxShadersHq2xHalphonShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchEdgeSmoothingHqxShadersHq2xHalphonShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchEdgeSmoothingHqxShadersHq2xHalphonShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchEdgeSmoothingHqxShadersHq2xHalphonShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -1520,6 +1520,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6be40609,0x4d29c8a5,0xe00da50b,0x528ebdf8,0xe097a4bf,0x79b12a2,
+0x788b8cdc,0xc5eb2193
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xf17421a6,0x3303ddba,0xe3ae804,0x44a4b63e,0x1e346888,0xb9466e9b,
+0x9f4d682c,0xa0998615
+};
+
 }
 
 namespace RetroArch
@@ -1532,8 +1546,10 @@ public:
 		Name = "crt-aperture";
 		VertexByteCode = RetroArchCrtShadersCrtApertureShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtApertureShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtApertureShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtApertureShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtApertureShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtApertureShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

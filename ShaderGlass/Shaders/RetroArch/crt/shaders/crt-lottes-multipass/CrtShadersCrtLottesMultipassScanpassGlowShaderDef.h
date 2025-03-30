@@ -1437,6 +1437,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf23adbaf,0x2fc3a427,0x9eab1bab,0xfc281eb2,0xca33030,0x6daac0a1,
+0x8c760216,0x9b534128
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe35a7b75,0x9717a393,0xfde99b35,0x7b20bcbe,0xe2eac2c0,0xf7c5cd9f,
+0x9d0f917d,0x9f0afff8
+};
+
 }
 
 namespace RetroArch
@@ -1449,8 +1463,10 @@ public:
 		Name = "scanpass-glow";
 		VertexByteCode = RetroArchCrtShadersCrtLottesMultipassScanpassGlowShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtLottesMultipassScanpassGlowShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtLottesMultipassScanpassGlowShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtLottesMultipassScanpassGlowShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtLottesMultipassScanpassGlowShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtLottesMultipassScanpassGlowShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

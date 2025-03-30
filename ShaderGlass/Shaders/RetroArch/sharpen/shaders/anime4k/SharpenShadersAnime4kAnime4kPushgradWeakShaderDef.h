@@ -1072,6 +1072,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x42697ca,0x3db47592,0x92c3e0f0,0x796751a,0xd1656088,0xd0d4df15,
+0xf9bfb0ce,0xbd40e77d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xadfb3619,0x709663cf,0x196de9fb,0xb9050916,0xb4880e89,0x33fff18f,
+0x62a84d01,0x5ac05dbd
+};
+
 }
 
 namespace RetroArch
@@ -1084,8 +1098,10 @@ public:
 		Name = "anime4k-pushgrad-weak";
 		VertexByteCode = RetroArchSharpenShadersAnime4kAnime4kPushgradWeakShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchSharpenShadersAnime4kAnime4kPushgradWeakShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchSharpenShadersAnime4kAnime4kPushgradWeakShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchSharpenShadersAnime4kAnime4kPushgradWeakShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchSharpenShadersAnime4kAnime4kPushgradWeakShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchSharpenShadersAnime4kAnime4kPushgradWeakShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -1416,6 +1416,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x49772026,0xab22b973,0x2cb49e9d,0x3bae05b2,0xf8a680a6,0xb6988f9a,
+0x274d5d5b,0x4682ff4e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xdec161cf,0x97b8c30e,0xe8eac986,0x7d06982,0x4fbd34f0,0xa2b1b41d,
+0xd8fc88e8,0x6327d326
+};
+
 }
 
 namespace RetroArch
@@ -1428,8 +1442,10 @@ public:
 		Name = "crt-sines";
 		VertexByteCode = RetroArchCrtShadersCrtSinesShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtSinesShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtSinesShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtSinesShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSinesShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtSinesShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

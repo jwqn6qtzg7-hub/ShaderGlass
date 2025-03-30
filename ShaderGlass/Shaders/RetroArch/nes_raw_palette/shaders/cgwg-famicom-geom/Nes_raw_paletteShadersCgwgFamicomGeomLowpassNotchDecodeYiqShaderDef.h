@@ -1245,6 +1245,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5afd884d,0x59b868d1,0x18bd47c5,0x7191e667,0x7d1c2b0,0xd5725fad,
+0xcb829d27,0x7f3d1cbc
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4aeed046,0x991d8ead,0x17a78a4f,0xfec9147b,0x21c2e552,0x217699c4,
+0xd1e0d425,0x7c256ebe
+};
+
 }
 
 namespace RetroArch
@@ -1257,8 +1271,10 @@ public:
 		Name = "lowpass-notch-decode-yiq";
 		VertexByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassNotchDecodeYiqShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassNotchDecodeYiqShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassNotchDecodeYiqShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassNotchDecodeYiqShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassNotchDecodeYiqShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomLowpassNotchDecodeYiqShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

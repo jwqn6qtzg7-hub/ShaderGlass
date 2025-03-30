@@ -24704,6 +24704,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x508dd314,0x104a5282,0x26a8adfd,0x669b6805,0xf1fe5743,0xe696a045,
+0x71636a5a,0x513fbd82
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd8255c63,0x9b45b0a2,0x99c64acb,0x27ddbb9f,0x28385a4c,0xc9be31cd,
+0x81717ffd,0xfe396cbb
+};
+
 }
 
 namespace RetroArch
@@ -24716,8 +24730,10 @@ public:
 		Name = "hsm-deconvergence-potato";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestHsmDeconvergencePotatoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmDeconvergencePotatoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestHsmDeconvergencePotatoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestHsmDeconvergencePotatoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmDeconvergencePotatoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmDeconvergencePotatoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

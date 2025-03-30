@@ -798,6 +798,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x43813b75,0xcc0bdc80,0xb6231379,0x6bf9ce81,0xd8253f4a,0x3bf23ecb,
+0x4d62394,0x57780381
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x175d4f4,0x12a1e192,0x1ffc92c2,0xab9b7243,0xc4091729,0x1f0582cb,
+0x59c2dfbd,0xd6aa512f
+};
+
 }
 
 namespace RetroArch
@@ -810,8 +824,10 @@ public:
 		Name = "tonemapping";
 		VertexByteCode = RetroArchMiscShadersTonemappingShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersTonemappingShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersTonemappingShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersTonemappingShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersTonemappingShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersTonemappingShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

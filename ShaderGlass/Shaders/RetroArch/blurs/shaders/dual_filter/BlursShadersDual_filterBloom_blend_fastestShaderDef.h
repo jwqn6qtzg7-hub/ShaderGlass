@@ -1294,6 +1294,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3bb855b2,0x812d3f65,0x7641c56c,0x73ca0863,0x7f9917cc,0xb11aa921,
+0xa8c68753,0x625f4de4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x76401f2f,0xdb308705,0x8345f769,0x1e9bdd1a,0x49a18a17,0x5297841b,
+0xde5b0340,0xcd8a9da2
+};
+
 }
 
 namespace RetroArch
@@ -1306,8 +1320,10 @@ public:
 		Name = "bloom_blend_fastest";
 		VertexByteCode = RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

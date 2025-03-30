@@ -1728,6 +1728,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6dc3c82,0x75683d68,0xf741f02d,0x9abb0310,0x3599893a,0x6f749d75,
+0xef4719f4,0x10c2583b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x75a58710,0xe7687574,0x1d5fcd83,0xee39880e,0x23b62011,0x8be1a3a3,
+0x643e7082,0x91639f9c
+};
+
 }
 
 namespace RetroArch
@@ -1740,8 +1754,10 @@ public:
 		Name = "reverse-aa-post3x-pass1";
 		VertexByteCode = RetroArchAntiAliasingShadersReverseAaPost3xReverseAaPost3xPass1ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchAntiAliasingShadersReverseAaPost3xReverseAaPost3xPass1ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchAntiAliasingShadersReverseAaPost3xReverseAaPost3xPass1ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchAntiAliasingShadersReverseAaPost3xReverseAaPost3xPass1ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchAntiAliasingShadersReverseAaPost3xReverseAaPost3xPass1ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchAntiAliasingShadersReverseAaPost3xReverseAaPost3xPass1ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

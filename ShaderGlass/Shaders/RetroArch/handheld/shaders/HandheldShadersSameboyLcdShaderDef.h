@@ -940,6 +940,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8aadfb7c,0x300018e3,0x1f613bf0,0x537f26a0,0xbf1ba85,0x19042ce1,
+0x8160d76a,0x7b1d916e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc7094353,0xd8e854d5,0xee6f23f2,0xec81ac61,0x3a8e0497,0xd6a41c4d,
+0xfedf834b,0x616d0411
+};
+
 }
 
 namespace RetroArch
@@ -952,8 +966,10 @@ public:
 		Name = "sameboy-lcd";
 		VertexByteCode = RetroArchHandheldShadersSameboyLcdShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersSameboyLcdShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersSameboyLcdShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersSameboyLcdShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersSameboyLcdShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersSameboyLcdShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

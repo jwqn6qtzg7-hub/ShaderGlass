@@ -1007,6 +1007,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5867669d,0x4d264e9b,0xcbda65aa,0x52920b64,0x4b1bbcd0,0x662dea29,
+0x96181dab,0xab64d1e1
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xfb349409,0x77d70bc1,0xd05b71ee,0x98942363,0xf7fbb5fe,0xcca519cf,
+0x5f80b2b5,0xf8c83369
+};
+
 }
 
 namespace RetroArch
@@ -1019,8 +1033,10 @@ public:
 		Name = "advcartoon";
 		VertexByteCode = RetroArchCelShadersAdvcartoonShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCelShadersAdvcartoonShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCelShadersAdvcartoonShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCelShadersAdvcartoonShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCelShadersAdvcartoonShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCelShadersAdvcartoonShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

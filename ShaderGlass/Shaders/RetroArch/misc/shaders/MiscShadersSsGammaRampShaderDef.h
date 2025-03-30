@@ -546,6 +546,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x433c7690,0x53b58779,0x33b6d8cf,0x944f975d,0xf4b8f687,0xc312b941,
+0x6f0fbb62,0xa5eb7a00
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8edb6bbe,0x97b01de6,0x59b9c311,0xc1e023fd,0x5a542bd7,0x61137f86,
+0xf622d37,0xbd082cf2
+};
+
 }
 
 namespace RetroArch
@@ -558,8 +572,10 @@ public:
 		Name = "ss-gamma-ramp";
 		VertexByteCode = RetroArchMiscShadersSsGammaRampShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersSsGammaRampShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersSsGammaRampShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersSsGammaRampShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersSsGammaRampShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersSsGammaRampShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

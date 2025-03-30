@@ -511,6 +511,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x67b6fb42,0x9106a1d4,0xd3066658,0xda45622f,0xbb14fb83,0xc5ac7f4d,
+0xc82d4142,0xd7fd5e7c
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3b529d89,0x966dcf02,0x68bbdc86,0x2fe94cc2,0xf2640d04,0x2c1b59b4,
+0x10890370,0x168352ae
+};
+
 }
 
 namespace RetroArch
@@ -523,8 +537,10 @@ public:
 		Name = "magicbloom_get_adapt";
 		VertexByteCode = RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sFragmentHash;
 		Format = "R32G32B32A32_SFLOAT";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -1830,6 +1830,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9e65c9b4,0x28c60704,0xf4b1df37,0x91290feb,0x35202eac,0x92ad0535,
+0x90481d90,0xa3dbda92
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x4e93282b,0x4bf056d8,0x5596e6a4,0xecf16573,0xacc36dfc,0x782d3367,
+0x3099eed4,0xda0a840
+};
+
 }
 
 namespace RetroArch
@@ -1842,8 +1856,10 @@ public:
 		Name = "adaptive-comb-decode";
 		VertexByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomAdaptiveCombDecodeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomAdaptiveCombDecodeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomAdaptiveCombDecodeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchNes_raw_paletteShadersCgwgFamicomGeomAdaptiveCombDecodeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomAdaptiveCombDecodeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomAdaptiveCombDecodeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -741,6 +741,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xba8be8d0,0x4dbb267e,0xc01f996b,0x4f45ad38,0xe0f13062,0x95b2fbb0,
+0xe4878b94,0x3024262d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6fccf410,0x67ac8d32,0x7d9786eb,0x4f639cf6,0x6be04d4b,0x96118bf8,
+0x612832f6,0x8a6f36bd
+};
+
 }
 
 namespace RetroArch
@@ -753,8 +767,10 @@ public:
 		Name = "sbs-to-interlaced";
 		VertexByteCode = RetroArchStereoscopic3dShadersSbsToInterlacedShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchStereoscopic3dShadersSbsToInterlacedShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchStereoscopic3dShadersSbsToInterlacedShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchStereoscopic3dShadersSbsToInterlacedShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersSbsToInterlacedShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchStereoscopic3dShadersSbsToInterlacedShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

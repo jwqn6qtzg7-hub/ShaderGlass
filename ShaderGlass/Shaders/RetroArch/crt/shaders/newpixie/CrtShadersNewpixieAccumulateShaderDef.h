@@ -411,6 +411,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x83647f52,0x48b2e5f1,0x7e14757e,0x96b4eb3e,0xbdf7cadd,0xf597c332,
+0xf353a9f7,0x69535670
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xeb5a55d8,0x761e977f,0xa1d4d3d,0xe3711727,0x91ef80f4,0x5c373bcb,
+0x8a0e80b1,0xd322d69b
+};
+
 }
 
 namespace RetroArch
@@ -423,8 +437,10 @@ public:
 		Name = "accumulate";
 		VertexByteCode = RetroArchCrtShadersNewpixieAccumulateShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersNewpixieAccumulateShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersNewpixieAccumulateShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersNewpixieAccumulateShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersNewpixieAccumulateShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersNewpixieAccumulateShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

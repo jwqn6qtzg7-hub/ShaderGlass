@@ -1252,6 +1252,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe1e47803,0xcb68228b,0xdd20db5e,0xe2b69741,0xb14c30f6,0x35b56db0,
+0xa10110b9,0xeb324057
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x424ee973,0x1eb4519f,0x1928fc5b,0x23bcc900,0x29d4a9e0,0xde96a4d9,
+0x6b6fcf55,0xac533f96
+};
+
 }
 
 namespace RetroArch
@@ -1264,8 +1278,10 @@ public:
 		Name = "hsm-g-sharp_resampler";
 		VertexByteCode = RetroArchBezelMega_BezelShadersGuestExtrasHsmGSharp_resamplerShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmGSharp_resamplerShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersGuestExtrasHsmGSharp_resamplerShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersGuestExtrasHsmGSharp_resamplerShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmGSharp_resamplerShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersGuestExtrasHsmGSharp_resamplerShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

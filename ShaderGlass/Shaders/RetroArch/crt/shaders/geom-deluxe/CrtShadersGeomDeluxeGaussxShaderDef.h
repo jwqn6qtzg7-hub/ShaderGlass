@@ -1133,6 +1133,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x52f70073,0x974c0017,0x3e6e4bc8,0xd5de9d27,0x5ad891b3,0xdd0230a8,
+0x8e74d232,0x3c20903b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3499c434,0xdb82118,0x5041fd55,0x2740695f,0x379b966c,0xe0390b5f,
+0x8a74eb56,0xda3f084b
+};
+
 }
 
 namespace RetroArch
@@ -1145,8 +1159,10 @@ public:
 		Name = "gaussx";
 		VertexByteCode = RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

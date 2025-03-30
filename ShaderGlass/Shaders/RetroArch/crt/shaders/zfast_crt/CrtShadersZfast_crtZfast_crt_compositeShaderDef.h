@@ -1061,6 +1061,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf597b446,0xad2a6c0b,0x1ac04676,0xc6746fca,0x4d954db2,0xfb36a59c,
+0xab50191,0xe1927beb
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8ac3860a,0xc127ee23,0x63dbd2cd,0x1fade6f2,0x47bd7f70,0x1943cb6,
+0x7f80fe22,0x7f8013ad
+};
+
 }
 
 namespace RetroArch
@@ -1073,8 +1087,10 @@ public:
 		Name = "zfast_crt_composite";
 		VertexByteCode = RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

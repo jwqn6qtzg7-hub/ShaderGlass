@@ -1042,6 +1042,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3e7ff26f,0xab6be88b,0xd8acd2fd,0x4fbfe47c,0x94af91ba,0xaf666b40,
+0x52466d91,0xdf58426b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x613c6571,0x4ab4aadf,0x8463fed5,0x7413406a,0x95517d5e,0xc091522c,
+0x151552ae,0x161cf146
+};
+
 }
 
 namespace RetroArch
@@ -1054,8 +1068,10 @@ public:
 		Name = "ambient-glow";
 		VertexByteCode = RetroArchBorderShadersAmbientGlowShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBorderShadersAmbientGlowShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBorderShadersAmbientGlowShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBorderShadersAmbientGlowShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBorderShadersAmbientGlowShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBorderShadersAmbientGlowShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -19692,6 +19692,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaad9dfbe,0x71966f70,0x2c99015,0xd82a056c,0x66060c2,0x2af99f67,
+0x897651e5,0xeb3408f5
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xcac32447,0x8202d6f9,0x9cb46ef5,0xbe8d03c9,0x12bbdfcc,0x1abd360d,
+0xfc496601,0x57647aaa
+};
+
 }
 
 namespace RetroArch
@@ -19704,8 +19718,10 @@ public:
 		Name = "hsm-lcd-grid-v2-potato";
 		VertexByteCode = RetroArchBezelMega_BezelShadersLcdCgwgHsmLcdGridV2PotatoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersLcdCgwgHsmLcdGridV2PotatoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersLcdCgwgHsmLcdGridV2PotatoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersLcdCgwgHsmLcdGridV2PotatoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersLcdCgwgHsmLcdGridV2PotatoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersLcdCgwgHsmLcdGridV2PotatoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

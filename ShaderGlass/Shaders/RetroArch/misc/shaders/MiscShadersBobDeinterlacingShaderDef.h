@@ -712,6 +712,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xc434f067,0xc27a2ca6,0x41f98df5,0x24f7c8f6,0x793706c2,0xa199d361,
+0xec8498de,0x4edcc684
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6c0e15a,0x80ff2759,0xc6b762a7,0x8b1e36e3,0x31ba1fec,0x2de5bc52,
+0x7d1ea968,0xcc2e03f3
+};
+
 }
 
 namespace RetroArch
@@ -724,8 +738,10 @@ public:
 		Name = "bob-deinterlacing";
 		VertexByteCode = RetroArchMiscShadersBobDeinterlacingShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchMiscShadersBobDeinterlacingShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchMiscShadersBobDeinterlacingShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchMiscShadersBobDeinterlacingShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchMiscShadersBobDeinterlacingShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchMiscShadersBobDeinterlacingShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

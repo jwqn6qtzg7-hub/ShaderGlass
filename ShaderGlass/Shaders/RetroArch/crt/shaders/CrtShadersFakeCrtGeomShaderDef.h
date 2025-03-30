@@ -869,6 +869,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe13db251,0xc01319b4,0x3e39e779,0xdda49be9,0xfefccc2c,0xb004bdbe,
+0x4f11918b,0x758474da
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x3f1254e9,0x3a95bf2a,0xb1eac2ae,0x39f0da9c,0x17b8cbac,0x8f29d653,
+0x6a5dddb,0xc0b43907
+};
+
 }
 
 namespace RetroArch
@@ -881,8 +895,10 @@ public:
 		Name = "fake-crt-geom";
 		VertexByteCode = RetroArchCrtShadersFakeCrtGeomShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersFakeCrtGeomShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersFakeCrtGeomShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersFakeCrtGeomShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersFakeCrtGeomShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersFakeCrtGeomShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

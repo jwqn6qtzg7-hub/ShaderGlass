@@ -740,6 +740,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x90115b9e,0x7afa34e5,0xdf1b13f5,0xcbe26320,0x28cc0cd,0x204b561a,
+0xf400f81,0xcb9da8d8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb6f190d2,0x30b37a4,0x78f82ba3,0xcc180c90,0xdeafc9e8,0x1d0ae5d2,
+0x99b95ab6,0xc93eaf15
+};
+
 }
 
 namespace RetroArch
@@ -752,8 +766,10 @@ public:
 		Name = "bayer-matrix-dithering";
 		VertexByteCode = RetroArchDitheringShadersBayerMatrixDitheringShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersBayerMatrixDitheringShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersBayerMatrixDitheringShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersBayerMatrixDitheringShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersBayerMatrixDitheringShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersBayerMatrixDitheringShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

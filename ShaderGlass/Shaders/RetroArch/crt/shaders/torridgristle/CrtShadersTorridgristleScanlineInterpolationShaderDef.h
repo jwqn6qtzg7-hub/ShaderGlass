@@ -373,6 +373,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xec9703ba,0xcd483b5e,0x2ca011d8,0x621dc331,0xe7a0688,0x7a70c420,
+0x92f0d651,0x7adb297b
+};
+
 }
 
 namespace RetroArch
@@ -385,8 +399,10 @@ public:
 		Name = "Scanline-Interpolation";
 		VertexByteCode = RetroArchCrtShadersTorridgristleScanlineInterpolationShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersTorridgristleScanlineInterpolationShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersTorridgristleScanlineInterpolationShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersTorridgristleScanlineInterpolationShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersTorridgristleScanlineInterpolationShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersTorridgristleScanlineInterpolationShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

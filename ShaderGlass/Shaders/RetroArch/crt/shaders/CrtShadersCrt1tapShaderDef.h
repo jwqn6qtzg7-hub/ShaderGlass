@@ -586,6 +586,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x7cc5c107,0xc07f25a9,0xe973a18b,0x94ded36a,0xe84d422f,0xdc12d1ab,
+0x6f087720,0x85e2f12e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb41cf77f,0x9414f1da,0xa01550e,0xf8a9fc68,0xc0d66ae0,0x206bce96,
+0x93c7e740,0x6a084900
+};
+
 }
 
 namespace RetroArch
@@ -598,8 +612,10 @@ public:
 		Name = "crt-1tap";
 		VertexByteCode = RetroArchCrtShadersCrt1tapShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrt1tapShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrt1tapShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrt1tapShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrt1tapShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrt1tapShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -392,6 +392,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xaa8385b1,0x11b22337,0x5c83f070,0x8cf54af0,0xcb3d391c,0xeb25143b,
+0xec6ae531,0x670a4141
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x989ed5ca,0x62415b53,0xf41eb83d,0xa4adb419,0xa9ac2e99,0x130fe0ae,
+0x9b1cda31,0xd97aa6d1
+};
+
 }
 
 namespace RetroArch
@@ -404,8 +418,10 @@ public:
 		Name = "magicbloom_get_small_luma";
 		VertexByteCode = RetroArchReshadeShadersMagicbloomMagicbloom_get_small_lumaShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_get_small_lumaShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchReshadeShadersMagicbloomMagicbloom_get_small_lumaShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchReshadeShadersMagicbloomMagicbloom_get_small_lumaShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_get_small_lumaShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_get_small_lumaShaderDefs::sFragmentHash;
 		Format = "R32G32B32A32_SFLOAT";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -19796,6 +19796,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xfdaf9dd5,0x3389f637,0x710567f6,0x9f5b6726,0xfae5be52,0xcb5ef183,
+0x61aa1c4f,0xe64a08f3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x790b4840,0x4ac0df27,0x87c0c830,0xa74f5d20,0x6a0768b4,0x6bd03137,
+0x71777f4d,0x9ef97925
+};
+
 }
 
 namespace RetroArch
@@ -19808,8 +19822,10 @@ public:
 		Name = "post-crt-prep-potato-megatron";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

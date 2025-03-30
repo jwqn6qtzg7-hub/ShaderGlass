@@ -558,6 +558,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x5a687c85,0xb0e2acba,0x5ca1fee2,0xab0da10f,0xe6ab9dd0,0xff0b72db,
+0x61b90780,0xca1dca15
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe8b22e6f,0x59cec638,0xc7d5f718,0x29093858,0x58e2b85a,0x19c81a21,
+0x354213da,0xd416d385
+};
+
 }
 
 namespace RetroArch
@@ -570,8 +584,10 @@ public:
 		Name = "lcd-pass-2";
 		VertexByteCode = RetroArchHandheldShadersLcdShaderLcdPass2ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersLcdShaderLcdPass2ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersLcdShaderLcdPass2ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersLcdShaderLcdPass2ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersLcdShaderLcdPass2ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersLcdShaderLcdPass2ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

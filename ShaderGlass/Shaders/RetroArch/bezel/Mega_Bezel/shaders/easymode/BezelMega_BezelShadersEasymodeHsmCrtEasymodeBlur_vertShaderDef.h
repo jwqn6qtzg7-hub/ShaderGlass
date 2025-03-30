@@ -414,6 +414,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8d7c1562,0x97a9242f,0xbf8494c5,0x71b46398,0x640d0678,0x37fc69de,
+0xf0c560c,0x7799ba2b
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1a455566,0xa6913f06,0xfbcbab67,0x151be756,0xa5cb544b,0x1f262eae,
+0xeafcc6f9,0x79bd59b2
+};
+
 }
 
 namespace RetroArch
@@ -426,8 +440,10 @@ public:
 		Name = "hsm-crt-easymode-blur_vert";
 		VertexByteCode = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeBlur_vertShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeBlur_vertShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeBlur_vertShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeBlur_vertShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeBlur_vertShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersEasymodeHsmCrtEasymodeBlur_vertShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

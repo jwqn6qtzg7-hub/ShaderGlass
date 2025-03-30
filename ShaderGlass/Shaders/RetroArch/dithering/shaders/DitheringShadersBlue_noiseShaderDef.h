@@ -1172,6 +1172,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xbf65880d,0xba7e2ef,0xc08c99e1,0xdcf3a030,0x10703153,0x2c7e0d2f,
+0x6ab63e54,0xce3a4de4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xc4d14448,0x777c31cb,0x5c0d3cc9,0x618d538e,0x1818d4e6,0x36425643,
+0x1f052592,0xab59ba1d
+};
+
 }
 
 namespace RetroArch
@@ -1184,8 +1198,10 @@ public:
 		Name = "blue_noise";
 		VertexByteCode = RetroArchDitheringShadersBlue_noiseShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchDitheringShadersBlue_noiseShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchDitheringShadersBlue_noiseShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchDitheringShadersBlue_noiseShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchDitheringShadersBlue_noiseShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchDitheringShadersBlue_noiseShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

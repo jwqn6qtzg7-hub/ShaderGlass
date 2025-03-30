@@ -917,6 +917,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1cb7254c,0xab9bfe5,0xbc41c191,0x568d0dd8,0xff699089,0xf6405b73,
+0x2be94562,0xe3dc544d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x6eb47b2c,0xd2c6e1c7,0x97e7632e,0xd86609cb,0x27f21cd4,0x58043f8e,
+0x997e149e,0xde61f4d0
+};
+
 }
 
 namespace RetroArch
@@ -929,8 +943,10 @@ public:
 		Name = "gb-pass4";
 		VertexByteCode = RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

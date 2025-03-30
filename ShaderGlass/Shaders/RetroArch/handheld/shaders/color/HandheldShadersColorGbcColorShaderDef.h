@@ -577,6 +577,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe9b98e21,0x6bd90566,0x5b8598f5,0x757a74a,0xd4b53da7,0x4e84088a,
+0xe50aa208,0xadcababf
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb0a8d6e,0x65b0efbe,0x25ecb0ed,0x2c33e831,0x6674c806,0x969096f2,
+0xffd6485,0x35a76d2c
+};
+
 }
 
 namespace RetroArch
@@ -589,8 +603,10 @@ public:
 		Name = "gbc-color";
 		VertexByteCode = RetroArchHandheldShadersColorGbcColorShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorGbcColorShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorGbcColorShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorGbcColorShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorGbcColorShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorGbcColorShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

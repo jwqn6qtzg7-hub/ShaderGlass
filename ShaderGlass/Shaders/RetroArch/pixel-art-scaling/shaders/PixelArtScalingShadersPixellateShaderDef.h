@@ -782,6 +782,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x47918ffd,0xb29a5503,0xa66e5961,0x4637948a,0x6ae40478,0x357623b6,
+0xfa1cb,0x423a74c4
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x243b96e1,0xf2f29a34,0x2f725dd3,0xa27c77be,0xa6e896e4,0xe9965efd,
+0x88651479,0x9c7462cc
+};
+
 }
 
 namespace RetroArch
@@ -794,8 +808,10 @@ public:
 		Name = "pixellate";
 		VertexByteCode = RetroArchPixelArtScalingShadersPixellateShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersPixellateShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersPixellateShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersPixellateShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersPixellateShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersPixellateShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

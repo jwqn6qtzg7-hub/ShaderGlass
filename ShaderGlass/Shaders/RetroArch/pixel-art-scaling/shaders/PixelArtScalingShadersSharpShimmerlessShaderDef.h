@@ -534,6 +534,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x8069298a,0x964703aa,0x2c379a13,0x83e470f5,0x57386bf3,0x89de18fe,
+0xde6be505,0x2520a42a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xe5d1f990,0xbb6f13d7,0xaaec26d4,0xf04ab337,0x3ba658fa,0xac8c5890,
+0x65f7291f,0xc787bf3c
+};
+
 }
 
 namespace RetroArch
@@ -546,8 +560,10 @@ public:
 		Name = "sharp-shimmerless";
 		VertexByteCode = RetroArchPixelArtScalingShadersSharpShimmerlessShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersSharpShimmerlessShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersSharpShimmerlessShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersSharpShimmerlessShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersSharpShimmerlessShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersSharpShimmerlessShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

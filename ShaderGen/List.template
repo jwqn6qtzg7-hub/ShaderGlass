@@ -11,4 +11,11 @@ namespace %LIB_NAME%
 const static std::vector<PresetDef*> PresetList = {
 // %PRESET_CLASS%
 };
+
+std::vector<CachedShader> CachedShaders() {
+    std::vector<CachedShader> cached;
+// %SHADER_CACHE%
+    return cached;
+}
+
 }

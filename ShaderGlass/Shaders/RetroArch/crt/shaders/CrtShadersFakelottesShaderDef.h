@@ -856,6 +856,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x6d55661e,0x633cc36d,0xd05797c8,0x19863a1e,0x1970e59f,0x33460bea,
+0x593f6558,0xcbb75a6f
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xac4ff865,0xb94c37f9,0x2e87f646,0xefed70af,0xf9dd337f,0xae4626f3,
+0x7e985717,0xddb9e231
+};
+
 }
 
 namespace RetroArch
@@ -868,8 +882,10 @@ public:
 		Name = "fakelottes";
 		VertexByteCode = RetroArchCrtShadersFakelottesShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersFakelottesShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersFakelottesShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersFakelottesShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersFakelottesShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersFakelottesShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

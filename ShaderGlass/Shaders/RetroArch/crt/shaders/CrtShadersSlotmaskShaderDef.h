@@ -1045,6 +1045,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x94aefba7,0x4a358036,0xd9ab6421,0x1b2b73eb,0xb6950b47,0xbebe8245,
+0x53bcbb8b,0xdff01284
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x503b160a,0x7b78e707,0x25bd0a9e,0x403e6973,0x15382541,0xdd8e9392,
+0xc69fc305,0x7596a72
+};
+
 }
 
 namespace RetroArch
@@ -1057,8 +1071,10 @@ public:
 		Name = "slotmask";
 		VertexByteCode = RetroArchCrtShadersSlotmaskShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersSlotmaskShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersSlotmaskShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersSlotmaskShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersSlotmaskShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersSlotmaskShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

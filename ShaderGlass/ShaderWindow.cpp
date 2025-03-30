@@ -532,6 +532,8 @@ DWORD WINAPI CompileThreadFuncProxy(LPVOID lpParam)
 // shader compiler needs to reuse thread
 void ShaderWindow::CompileThreadFunc()
 {
+    const ShaderCache& cache = m_captureManager.Cache();
+
     while(true)
     {
         WaitForSingleObject(m_compileEvent, INFINITE);
@@ -545,7 +547,7 @@ void ShaderWindow::CompileThreadFunc()
         {
             std::ofstream log;
             bool          warn;
-            auto          preset = ShaderGC::CompilePreset(m_importPath, log, warn);
+            auto          preset = ShaderGC::CompilePreset(m_importPath, log, warn, cache);
             if(preset == nullptr)
                 throw std::runtime_error("Internal error");
             auto id      = m_captureManager.AddPreset(preset);

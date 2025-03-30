@@ -1846,6 +1846,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x45d24aa6,0x4c214541,0x64854241,0x2117d7c8,0x2f85f55b,0x991e344,
+0xa1c5632a,0xf58faa01
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xd61a3473,0xba640dce,0xf5d71554,0x4a8cbc47,0x9faa9ec4,0x50dc7402,
+0x3627a1c4,0x6610d410
+};
+
 }
 
 namespace RetroArch
@@ -1858,8 +1872,10 @@ public:
 		Name = "crt-lottes-fast";
 		VertexByteCode = RetroArchCrtShadersCrtLottesFastShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtLottesFastShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtLottesFastShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtLottesFastShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtLottesFastShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtLottesFastShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

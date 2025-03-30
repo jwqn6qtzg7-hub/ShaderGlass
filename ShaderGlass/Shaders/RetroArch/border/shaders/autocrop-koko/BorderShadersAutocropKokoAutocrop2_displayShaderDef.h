@@ -545,6 +545,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x83a412b0,0xc0538b11,0xfc24c705,0x7d85f103,0xb0258b5d,0x33762d3c,
+0x86e632c0,0x4ff3bc9a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x2b27597a,0x888ef4d4,0x388b64f7,0x61ca397f,0x76cb3c1,0xe717e198,
+0x3d24932c,0x4b9f9d9b
+};
+
 }
 
 namespace RetroArch
@@ -557,8 +571,10 @@ public:
 		Name = "autocrop2_display";
 		VertexByteCode = RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("AUTOCROP_MAX", 0, 64, 4, 0.000000f, 0.500000f, 25.000000f, 0.010000f, "★ Autocrop: maximum amount"));

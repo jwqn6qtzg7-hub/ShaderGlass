@@ -421,6 +421,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd2ea572f,0xf606225e,0x4c0b6bf,0xb9f0dc51,0x13448354,0xffacd9ba,
+0x37e4c703,0x567ea77e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb80aae74,0xa347b1b8,0x3b419629,0xb9a093ff,0x899e0d02,0x3670625a,
+0xfeb09b12,0xc5723d9f
+};
+
 }
 
 namespace RetroArch
@@ -433,8 +447,10 @@ public:
 		Name = "Brighten";
 		VertexByteCode = RetroArchCrtShadersTorridgristleBrightenShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersTorridgristleBrightenShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersTorridgristleBrightenShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersTorridgristleBrightenShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersTorridgristleBrightenShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersTorridgristleBrightenShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -2856,6 +2856,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x22fa32b4,0xa28f4f83,0xe7f7dda1,0x5000f4d2,0x9031ebef,0xc1abf5dc,
+0xb782454c,0x7060fa68
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x86780e09,0xafe07098,0x31a50158,0x771da1e9,0x832e2a05,0xffafcb26,
+0x727e3d45,0xf1569ac7
+};
+
 }
 
 namespace RetroArch
@@ -2868,8 +2882,10 @@ public:
 		Name = "crt-nobody";
 		VertexByteCode = RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

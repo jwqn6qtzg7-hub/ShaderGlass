@@ -1330,6 +1330,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x88c9be29,0xe959a33,0xae355212,0x97f7e505,0x123f38df,0x6a2a0825,
+0xe3d317a4,0xc93ac7de
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb0b243d9,0x4ffd029c,0x10754690,0xa68d37a,0xdb66e0c,0xf63b3544,
+0x29d138c4,0xc16a396b
+};
+
 }
 
 namespace RetroArch
@@ -1342,8 +1356,10 @@ public:
 		Name = "crt-resswitch-glitch-koko";
 		VertexByteCode = RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

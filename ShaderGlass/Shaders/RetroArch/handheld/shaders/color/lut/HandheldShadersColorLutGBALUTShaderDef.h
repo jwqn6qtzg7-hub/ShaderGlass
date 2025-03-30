@@ -626,6 +626,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xeb456575,0x3737e194,0xcb779fcf,0xec22c93f,0x110b8125,0x1d0ea436,
+0x676ea7f6,0x1b9851f8
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa3ca8937,0x6313ed7e,0x8c705411,0x9080aa96,0x8f4b979,0xeae464c0,
+0xd22d5145,0xc2453893
+};
+
 }
 
 namespace RetroArch
@@ -638,8 +652,10 @@ public:
 		Name = "GBA-LUT";
 		VertexByteCode = RetroArchHandheldShadersColorLutGBALUTShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersColorLutGBALUTShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersColorLutGBALUTShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersColorLutGBALUTShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersColorLutGBALUTShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersColorLutGBALUTShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

@@ -538,6 +538,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xe5b717d4,0x657af4aa,0x7ca3ff49,0xb182b4fa,0xee98bc65,0xef7cba0b,
+0xb4b7eac8,0xac6b1f0a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x5d9640df,0xb07a93ee,0x2ea2b2bb,0x97c90bba,0x71565400,0x64e23f42,
+0x91da37fe,0xca03f8aa
+};
+
 }
 
 namespace RetroArch
@@ -550,8 +564,10 @@ public:
 		Name = "scanline";
 		VertexByteCode = RetroArchScanlinesShadersScanlineShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchScanlinesShadersScanlineShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchScanlinesShadersScanlineShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchScanlinesShadersScanlineShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchScanlinesShadersScanlineShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchScanlinesShadersScanlineShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

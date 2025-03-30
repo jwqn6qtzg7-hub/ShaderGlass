@@ -899,6 +899,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xd48b1eb8,0xd93c3a8,0xc4899eb2,0x7a4f5074,0x9424937,0x8521a2,
+0xd014a84a,0x57b11e87
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x1a6c32bd,0x7199b18e,0x1b04608e,0x51e6a018,0xccccfbf1,0x86fca1b1,
+0x9e46a8db,0xb5689507
+};
+
 }
 
 namespace RetroArch
@@ -911,8 +925,10 @@ public:
 		Name = "anaglyph-to-side-by-side";
 		VertexByteCode = RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

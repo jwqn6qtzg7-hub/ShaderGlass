@@ -44,6 +44,17 @@ vector<tuple<int, ShaderParam*>> CaptureManager::Params()
     return vector<tuple<int, ShaderParam*>>();
 }
 
+const ShaderCache& CaptureManager::Cache()
+{
+    if(m_shaderCache.empty())
+    {
+        const auto& raShaders = RetroArchCachedShaders();
+        m_shaderCache.m_cachedShaders.insert(m_shaderCache.m_cachedShaders.begin(), raShaders.begin(), raShaders.end());
+    }
+
+    return m_shaderCache;
+}
+
 bool CaptureManager::UpdateInput()
 {
     if(IsActive())

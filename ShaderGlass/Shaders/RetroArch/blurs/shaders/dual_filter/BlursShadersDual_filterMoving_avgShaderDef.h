@@ -415,6 +415,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xcde701b2,0xec488c34,0xf39d2a42,0xc25bdfb,0x640f8f0c,0x88cc00c8,
+0xe887cf78,0x8f80139a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x53ec379c,0x9fb564db,0xa120a79c,0x81b47fe8,0x87b56781,0xb51671e4,
+0xa8c89c46,0xfa22f3c8
+};
+
 }
 
 namespace RetroArch
@@ -427,8 +441,10 @@ public:
 		Name = "moving_avg";
 		VertexByteCode = RetroArchBlursShadersDual_filterMoving_avgShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersDual_filterMoving_avgShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersDual_filterMoving_avgShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersDual_filterMoving_avgShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersDual_filterMoving_avgShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersDual_filterMoving_avgShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

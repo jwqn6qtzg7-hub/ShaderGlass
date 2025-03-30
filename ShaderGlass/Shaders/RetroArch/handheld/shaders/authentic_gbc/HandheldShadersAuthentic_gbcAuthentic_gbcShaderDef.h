@@ -5842,6 +5842,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x9478c436,0x4ac63afc,0x1a8e18d0,0xfd4be862,0xfc2ce5bc,0xb1695ab5,
+0x3fcb4c2c,0x67668daf
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x9621b404,0x2ef5299f,0xa5f996d8,0xab0800e8,0x82c7c11,0xe00e081f,
+0xf9cdaa9f,0x5cea8ad4
+};
+
 }
 
 namespace RetroArch
@@ -5854,8 +5868,10 @@ public:
 		Name = "authentic_gbc";
 		VertexByteCode = RetroArchHandheldShadersAuthentic_gbcAuthentic_gbcShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchHandheldShadersAuthentic_gbcAuthentic_gbcShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchHandheldShadersAuthentic_gbcAuthentic_gbcShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchHandheldShadersAuthentic_gbcAuthentic_gbcShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchHandheldShadersAuthentic_gbcAuthentic_gbcShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchHandheldShadersAuthentic_gbcAuthentic_gbcShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

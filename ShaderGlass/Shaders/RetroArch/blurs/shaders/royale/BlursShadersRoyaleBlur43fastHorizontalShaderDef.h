@@ -2277,6 +2277,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x31284fa2,0x44393569,0x96d18a8,0xfd6f8b6a,0xa3e76bf4,0x590d4a11,
+0xa9a513ab,0x83598bae
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xecd07e1e,0x7d7bfb59,0x6cb47208,0xa9cde8a9,0xd145687,0xb5ca5511,
+0xd0e5b247,0xd643ae4f
+};
+
 }
 
 namespace RetroArch
@@ -2289,8 +2303,10 @@ public:
 		Name = "blur43fast-horizontal";
 		VertexByteCode = RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

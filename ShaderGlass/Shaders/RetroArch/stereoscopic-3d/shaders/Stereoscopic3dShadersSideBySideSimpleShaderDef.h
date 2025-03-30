@@ -736,6 +736,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x1317fcc0,0xb2186bb1,0x6e6d5a58,0xe48ebaf5,0xc4ffe031,0x278464c2,
+0x65bc2af6,0xc85d3eb
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x475b0697,0xabbb4824,0x8c0a4289,0x5ad8145d,0x8efd959e,0xf122c7b0,
+0x17bac399,0x4095b51d
+};
+
 }
 
 namespace RetroArch
@@ -748,8 +762,10 @@ public:
 		Name = "side-by-side-simple";
 		VertexByteCode = RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

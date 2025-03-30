@@ -36902,6 +36902,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x19bfc798,0xfdf483da,0x527e9ea8,0xdd1eea7f,0xdfb8d7f3,0x5324ba76,
+0x4912de8d,0x96df981a
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa2b90faf,0x6bd9c89e,0xb0e52d30,0x9634ad1,0xe700e84e,0xa503c585,
+0x3d30ea39,0xf0051138
+};
+
 }
 
 namespace RetroArch
@@ -36914,8 +36928,10 @@ public:
 		Name = "post-crt-prep-image-layers";
 		VertexByteCode = RetroArchBezelMega_BezelShadersBasePostCrtPrepImageLayersShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepImageLayersShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersBasePostCrtPrepImageLayersShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersBasePostCrtPrepImageLayersShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepImageLayersShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersBasePostCrtPrepImageLayersShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

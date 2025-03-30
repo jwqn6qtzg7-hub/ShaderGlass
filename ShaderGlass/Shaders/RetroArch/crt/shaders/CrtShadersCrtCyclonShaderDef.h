@@ -1910,6 +1910,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xf72af2c9,0x3150a863,0x45a576e4,0xabecb10c,0xadc62124,0x34958f06,
+0xe2d498cd,0xe0f01eb3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xaf389308,0x86004adf,0x63514410,0x167607ad,0x30dfc3bf,0x92373a21,
+0xc126db98,0x5e072014
+};
+
 }
 
 namespace RetroArch
@@ -1922,8 +1936,10 @@ public:
 		Name = "crt-Cyclon";
 		VertexByteCode = RetroArchCrtShadersCrtCyclonShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersCrtCyclonShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersCrtCyclonShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("BLACK", 0, 64, 4, -0.200000f, 0.200000f, 0.000000f, 0.010000f, "Black Level"));

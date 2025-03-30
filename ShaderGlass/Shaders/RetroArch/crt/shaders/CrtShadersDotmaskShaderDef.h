@@ -935,6 +935,20 @@ static const BYTE sFragmentByteCode[] =
 0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x3349fbf0,0x4449161f,0xbaaa7073,0x492d21fb,0x26202bbc,0xf4663cc1,
+0xcfc12df0,0x45bfa25
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xa97b88b3,0x6d11d384,0xcfcae3e8,0x60c145a6,0x71a0804e,0xab153362,
+0x18cde841,0x5fd5e237
+};
+
 }
 
 namespace RetroArch
@@ -947,8 +961,10 @@ public:
 		Name = "dotmask";
 		VertexByteCode = RetroArchCrtShadersDotmaskShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchCrtShadersDotmaskShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchCrtShadersDotmaskShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchCrtShadersDotmaskShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchCrtShadersDotmaskShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchCrtShadersDotmaskShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

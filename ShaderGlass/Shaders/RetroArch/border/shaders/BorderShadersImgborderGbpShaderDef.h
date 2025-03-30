@@ -817,6 +817,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x44047041,0xddb51672,0x8ffb9ef6,0xb9bb6b4,0x5d3c5397,0x492a62d,
+0x531ca3e9,0x289530e3
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x2320501,0x5b06d9c5,0x5060c408,0x84c0e1b8,0x359ece64,0x79f76880,
+0x7f9067c1,0x1a560dfc
+};
+
 }
 
 namespace RetroArch
@@ -829,8 +843,10 @@ public:
 		Name = "imgborder-gbp";
 		VertexByteCode = RetroArchBorderShadersImgborderGbpShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBorderShadersImgborderGbpShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBorderShadersImgborderGbpShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBorderShadersImgborderGbpShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBorderShadersImgborderGbpShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBorderShadersImgborderGbpShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

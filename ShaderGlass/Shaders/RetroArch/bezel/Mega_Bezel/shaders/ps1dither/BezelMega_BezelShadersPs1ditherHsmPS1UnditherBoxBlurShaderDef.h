@@ -663,6 +663,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0xcdc10277,0x3b80c2ef,0x6f4ee19b,0x8d3e6f5d,0x73214a0c,0x8a9e9e4d,
+0xc1cb157b,0x46013a7d
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0x8ad8d1a2,0xdff2bfce,0x7ea056a,0x48ac00df,0x7f3b8565,0x2950b533,
+0x91a63a48,0x17c2974a
+};
+
 }
 
 namespace RetroArch
@@ -675,8 +689,10 @@ public:
 		Name = "hsm-PS1-Undither-BoxBlur";
 		VertexByteCode = RetroArchBezelMega_BezelShadersPs1ditherHsmPS1UnditherBoxBlurShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchBezelMega_BezelShadersPs1ditherHsmPS1UnditherBoxBlurShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchBezelMega_BezelShadersPs1ditherHsmPS1UnditherBoxBlurShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchBezelMega_BezelShadersPs1ditherHsmPS1UnditherBoxBlurShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersPs1ditherHsmPS1UnditherBoxBlurShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchBezelMega_BezelShadersPs1ditherHsmPS1UnditherBoxBlurShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

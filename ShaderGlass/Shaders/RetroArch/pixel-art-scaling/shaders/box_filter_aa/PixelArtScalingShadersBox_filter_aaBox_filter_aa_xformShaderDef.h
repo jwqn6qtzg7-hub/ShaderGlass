@@ -1633,6 +1633,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0
 };
 
+
+static const uint32_t sVertexHash[] = 
+{
+0x18a7bd22,0xcffa1138,0xf9835e1d,0x8c184e1f,0x88e8d7cc,0x3e66ec97,
+0x7caa091,0x1b3b646e
+};
+
+
+static const uint32_t sFragmentHash[] =
+{
+0xb105f80c,0xdba307a1,0x3b80bae2,0x319d751c,0x9a9c3ceb,0x4d53cd06,
+0xd43573c2,0x2fdca8ed
+};
+
 }
 
 namespace RetroArch
@@ -1645,8 +1659,10 @@ public:
 		Name = "box_filter_aa_xform";
 		VertexByteCode = RetroArchPixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDefs::sVertexByteCode;
 		VertexLength = sizeof(RetroArchPixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDefs::sVertexByteCode);
+		VertexHash = RetroArchPixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDefs::sVertexHash;
 		FragmentByteCode = RetroArchPixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDefs::sFragmentByteCode;
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDefs::sFragmentByteCode);
+		FragmentHash = RetroArchPixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDefs::sFragmentHash;
 		Format = "";
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
