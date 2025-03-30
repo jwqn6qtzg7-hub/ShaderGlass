@@ -31,8 +31,8 @@ const CachedShader* ShaderCache::FindCachedShader(const std::string& source) con
 
     for(const auto& cs : m_cachedShaders)
     {
-        if(cs.hash[0] == hash[0] && cs.hash[1] == hash[1] && cs.hash[2] == hash[2] && cs.hash[3] == hash[3] && cs.hash[4] == hash[4] && cs.hash[5] == hash[5] &&
-           cs.hash[6] == hash[6] && cs.hash[7] == hash[7])
+        if(cs.hash != nullptr && cs.hash[0] == hash[0] && cs.hash[1] == hash[1] && cs.hash[2] == hash[2] && cs.hash[3] == hash[3] && cs.hash[4] == hash[4] &&
+           cs.hash[5] == hash[5] && cs.hash[6] == hash[6] && cs.hash[7] == hash[7])
             return &cs;
     }
     return nullptr;
