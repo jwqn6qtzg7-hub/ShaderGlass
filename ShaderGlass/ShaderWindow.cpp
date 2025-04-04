@@ -11,6 +11,8 @@ GNU General Public License v3.0
 #include "ShaderWindow.h"
 #include "ShaderGC.h"
 
+#include "Shlobj.h"
+
 #define TIMER_TITLE 0
 
 ShaderWindow::ShaderWindow(CaptureManager& captureManager) :
@@ -441,7 +443,7 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     const auto& shader      = m_captureManager.Presets().at(m_captureOptions.presetNo);
 
     std::ofstream outfile(fileName);
-    outfile << "ProfileVersion " << std::quoted("1.0") << std::endl;
+    outfile << "ProfileVersion " << std::quoted("1.1") << std::endl;
     outfile << "PixelSize " << std::quoted(pixelSize.mnemonic) << std::endl;
     outfile << "DPIScaling " << std::quoted(std::to_string(m_captureOptions.dpiScale != 1.0f)) << std::endl;
     if(aspectRatio.mnemonic == CUSTOM_MNEMONIC)
@@ -1225,6 +1227,12 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             break;
         case ID_INPUT_FILE:
             LoadImage();
+            break;
+        case ID_PROCESSING_SETASDEFAULT:
+            SaveDefault();
+            break;
+        case ID_PROCESSING_REMOVEDEFAULT:
+            RemoveDefault();
             break;
         case ID_PROCESSING_GLOBALHOTKEYS:
             if(GetMenuState(m_programMenu, ID_PROCESSING_GLOBALHOTKEYS, MF_BYCOMMAND) & MF_CHECKED)
@@ -2037,26 +2045,28 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     m_captureOptions.monitor      = nullptr;
     m_captureOptions.outputWindow = m_mainWindow;
 
-    // set defaults
-    SendMessage(m_mainWindow, WM_COMMAND, WM_PIXEL_SIZE(3), 0);
-    SendMessage(m_mainWindow, WM_COMMAND, WM_ASPECT_RATIO(0), 0);
-    auto defaultNo = m_captureManager.FindByName(defaultPreset);
-    if(defaultNo != -1)
+    if(!LoadDefault())
     {
-        SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(defaultNo), 0);
+        // set defaults
+        SendMessage(m_mainWindow, WM_COMMAND, WM_PIXEL_SIZE(3), 0);
+        SendMessage(m_mainWindow, WM_COMMAND, WM_ASPECT_RATIO(0), 0);
+        auto defaultNo = m_captureManager.FindByName(defaultPreset);
+        if(defaultNo != -1)
+        {
+            SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(defaultNo), 0);
+        }
+        if(RememberFPS())
+        {
+            SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(GetRememberFPS()), 0);
+        }
+        else
+        {
+            SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(0), 0);
+        }
+        SendMessage(m_mainWindow, WM_COMMAND, WM_OUTPUT_SCALE(0), 0);
+        SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_DISPLAY(0), 0);
+        SendMessage(m_mainWindow, WM_COMMAND, Is1903() ? IDM_MODE_CLONE : IDM_MODE_GLASS, 0);
     }
-    if(RememberFPS())
-    {
-        SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(GetRememberFPS()), 0);
-    }
-    else
-    {
-        SendMessage(m_mainWindow, WM_COMMAND, WM_FRAME_SKIP(0), 0);
-    }
-    SendMessage(m_mainWindow, WM_COMMAND, WM_OUTPUT_SCALE(0), 0);
-    SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_DISPLAY(0), 0);
-    SendMessage(m_mainWindow, WM_COMMAND, Is1903() ? IDM_MODE_CLONE : IDM_MODE_GLASS, 0);
-
     return TRUE;
 }
 
@@ -2234,7 +2244,7 @@ void ShaderWindow::SaveRecentProfiles()
 
 void ShaderWindow::AddRecentProfile(const std::wstring& path)
 {
-    if(path.find(L":") == std::wstring::npos) // don't store relative paths
+    if(path.find(L":") == std::wstring::npos || path == GetDefaultPath()) // don't store relative paths
         return;
 
     auto existingPos = std::find(m_recentProfiles.begin(), m_recentProfiles.end(), path);
@@ -2364,6 +2374,50 @@ void ShaderWindow::RemoveRecentImport(const std::wstring& path)
 void ShaderWindow::UpdateGPUName()
 {
     ModifyMenu(m_gpuMenu, ID_GPU_DEFAULT, MF_BYCOMMAND | MF_STRING | MF_CHECKED | MF_DISABLED, ID_GPU_DEFAULT, m_captureManager.m_deviceName.c_str());
+}
+
+std::wstring ShaderWindow::GetDefaultPath() const
+{
+    wchar_t* path;
+    if(SUCCEEDED(SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &path)))
+    {
+        return std::wstring(path) + L"\\ShaderGlassDefault.sgp";
+    }
+    return L"ShaderGlassDefault.sgp";
+}
+
+void ShaderWindow::SaveDefault()
+{
+    SaveProfile(GetDefaultPath());
+}
+
+void ShaderWindow::RemoveDefault()
+{
+    try
+    {
+        const auto& path = GetDefaultPath();
+        if(std::filesystem::exists(path))
+        {
+            std::filesystem::remove(path);
+        }
+    }
+    catch(...)
+    { }
+}
+
+bool ShaderWindow::LoadDefault()
+{
+    try
+    {
+        const auto& path = GetDefaultPath();
+        if(std::filesystem::exists(path))
+        {
+            return LoadProfile(path);
+        }
+    }
+    catch(...)
+    { }
+    return false;
 }
 
 void ShaderWindow::RegisterHotkeys()

@@ -133,6 +133,10 @@ private:
     void AddRecentImport(const std::wstring& path);
     void RemoveRecentImport(const std::wstring& path);
     void UpdateGPUName();
+    std::wstring GetDefaultPath() const;
+    void SaveDefault();
+    void RemoveDefault();
+    bool LoadDefault();
 
     static BOOL CALLBACK    EnumWindowsProcProxy(_In_ HWND hwnd, _In_ LPARAM lParam);
     static BOOL CALLBACK    EnumDisplayMonitorsProcProxy(_In_ HMONITOR hMonitor, _In_ HDC hDC, _In_ LPRECT lpRect, _In_ LPARAM lParam);
