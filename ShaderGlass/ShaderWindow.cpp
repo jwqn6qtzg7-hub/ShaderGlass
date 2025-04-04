@@ -186,6 +186,13 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
             {
                 transparent = (value == "1");
             }
+            else if(key == "ScaleLocked")
+            {
+                if(value == "1")
+                    CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_LOCKSCALE, MF_CHECKED | MF_BYCOMMAND);
+                else
+                    CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_LOCKSCALE, MF_UNCHECKED | MF_BYCOMMAND);
+            }
             else if(key == "CaptureCursor")
             {
                 m_captureOptions.captureCursor = (value == "1");
@@ -371,9 +378,12 @@ void ShaderWindow::ImportShader()
 
 void ShaderWindow::SetFreeScale()
 {
-    CheckMenuRadioItem(m_outputScaleMenu, WM_OUTPUT_SCALE(0), WM_OUTPUT_SCALE(static_cast<UINT>(outputScales.size() - 1)), 0, MF_BYCOMMAND);
-    CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_CHECKED | MF_BYCOMMAND);
-    m_captureOptions.freeScale = true;
+    if(!ScaleLocked())
+    {
+        CheckMenuRadioItem(m_outputScaleMenu, WM_OUTPUT_SCALE(0), WM_OUTPUT_SCALE(static_cast<UINT>(outputScales.size() - 1)), 0, MF_BYCOMMAND);
+        CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_CHECKED | MF_BYCOMMAND);
+        m_captureOptions.freeScale = true;
+    }
     m_captureManager.UpdateOutputSize();
 }
 
@@ -469,6 +479,7 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     outfile << "Clone " << std::quoted(std::to_string(m_captureOptions.clone)) << std::endl;
     outfile << "CaptureCursor " << std::quoted(std::to_string(m_captureOptions.captureCursor)) << std::endl;
     outfile << "Transparent " << std::quoted(std::to_string(m_captureOptions.transparent)) << std::endl;
+    outfile << "ScaleLocked " << std::quoted(std::to_string(ScaleLocked())) << std::endl;
     outfile << "InputArea \"" << std::to_string(m_captureOptions.inputArea.left) << " " << std::to_string(m_captureOptions.inputArea.top) << " "
             << std::to_string(m_captureOptions.inputArea.right) << " " << std::to_string(m_captureOptions.inputArea.bottom) << "\"" << std::endl;
     if(m_captureOptions.captureWindow)
@@ -785,6 +796,7 @@ void ShaderWindow::BuildOutputMenu()
     {
         AppendMenu(m_outputScaleMenu, MF_STRING, os.first, os.second.text);
     }
+    AppendMenu(m_outputScaleMenu, MF_STRING, IDM_OUTPUT_LOCKSCALE, L"Retain");
     InsertMenu(sMenu, 3, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_outputScaleMenu, L"Scale");
 
     m_aspectRatioMenu = CreatePopupMenu();
@@ -1344,6 +1356,16 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             }
             m_captureManager.UpdateOutputSize();
             UpdateWindowState();
+            break;
+        case IDM_OUTPUT_LOCKSCALE:
+            if(ScaleLocked())
+            {
+                CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_LOCKSCALE, MF_UNCHECKED | MF_BYCOMMAND);
+            }
+            else
+            {
+                CheckMenuItem(m_outputScaleMenu, IDM_OUTPUT_LOCKSCALE, MF_CHECKED | MF_BYCOMMAND);
+            }
             break;
         case IDM_INPUT_CAPTURECURSOR:
             m_captureOptions.captureCursor = !m_captureOptions.captureCursor;
@@ -2418,6 +2440,11 @@ bool ShaderWindow::LoadDefault()
     catch(...)
     { }
     return false;
+}
+
+bool ShaderWindow::ScaleLocked() const
+{
+    return GetMenuState(m_outputScaleMenu, IDM_OUTPUT_LOCKSCALE, MF_BYCOMMAND) & MF_CHECKED;
 }
 
 void ShaderWindow::RegisterHotkeys()

@@ -20,6 +20,7 @@
 #define IDM_UPDATE_PARAMS               112
 #define IDM_PIXELSIZE_DPI               113
 #define IDM_OUTPUT_FREESCALE            114
+#define IDM_OUTPUT_LOCKSCALE            115
 #define IDR_MAINFRAME                   128
 #define IDD_INPUT_DIALOG                129
 #define IDB_SHADER                      135
@@ -187,6 +188,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        138
 #define _APS_NEXT_COMMAND_VALUE         32921
 #define _APS_NEXT_CONTROL_VALUE         1002
-#define _APS_NEXT_SYMED_VALUE           115
+#define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif

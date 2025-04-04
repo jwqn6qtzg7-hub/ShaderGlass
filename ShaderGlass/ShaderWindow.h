@@ -137,6 +137,7 @@ private:
     void SaveDefault();
     void RemoveDefault();
     bool LoadDefault();
+    bool ScaleLocked() const;
 
     static BOOL CALLBACK    EnumWindowsProcProxy(_In_ HWND hwnd, _In_ LPARAM lParam);
     static BOOL CALLBACK    EnumDisplayMonitorsProcProxy(_In_ HMONITOR hMonitor, _In_ HDC hDC, _In_ LPRECT lpRect, _In_ LPARAM lParam);
