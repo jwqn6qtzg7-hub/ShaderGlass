@@ -155,6 +155,8 @@ Currently supported options are:
 
 * __Load/Save/Recent Profiles__ - you can save ShaderGlass' configuration into a profile file and load later
 
+* __Set as default/Remove default__ - make current settings the default when starting up
+
 #### Input
 
 * __Desktop__ - captures the whole desktop or an individual monitor, defaults to Glass mode
@@ -198,7 +200,9 @@ Currently supported options are:
 
   * __Free__ - allow manual resizing of ShaderGlass window (Window Clone and File modes only)
 
-* __Aspect Ratio Correction__ - presets for common aspect ratio correction factors (DOS, etc.), applied horizontally to preserve scanline count
+  * __Retain__ - prevent scale from resetting when switching inputs
+
+* * __Aspect Ratio Correction__ - presets for common aspect ratio correction factors (DOS, etc.), applied horizontally to preserve scanline count
 
   * If you select _Custom_ you can enter your own correction ratio expressed as pixel height (1.0 being square pixel). For example,
   in MS-DOS era a picture of 320x200 resolution (16:10) was displayed on a 4:3 screen meaning each pixel was 1.2x tall on screen, 1.2 = (16/10) / (4/3)
