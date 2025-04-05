@@ -303,7 +303,7 @@ features that ShaderGlass doesn't support so might not work just as well.
 
 #### Writing your own shaders
 
-ShaderGlass lets you easily experiment with your own shaders! _CustomShader.slang_ is a minimal example
+ShaderGlass lets you easily experiment with your own shaders! [CustomShader.slang](Misc/CustomShader.slang) is a minimal example
 of a shader that swaps color channels and applies a boost, meant as an example from which you could
 start writing your own shaders and have them applied to your desktop. Check out
 [RetroArch shader repository](https://github.com/libretro/slang-shaders) for tons of examples.
