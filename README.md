@@ -293,6 +293,37 @@ and/or aspect ratio correction in ShaderGlass and enjoy the game.
 
 <br/>
 
+### Importing Custom Shaders
+
+ShaderGlass comes with a large built-in library of shaders, but you can also import custom ones
+written in [RetroArch shader system](https://github.com/libretro/slang-shaders/blob/master/README.md).
+It accepts both individual shaders (_.slang_) and multi-pass presets (_.slangp_).
+
+When working on a custom shader, you can use _Recent imports_ menu to quickly reload it.
+
+#### RetroArch shader/preset packs
+
+A lot of preset packs out there rely on base RetroArch shaders so to import them into ShaderGlass
+install them into RetroArch first, and then Import from RetroArch's shaders directory.
+
+Please note some shaders might require Vulkan (ShaderGlass is DirectX 11 only) or rely on RetroArch
+features that ShaderGlass doesn't support so might not work just as well.
+
+#### Writing your own shaders
+
+ShaderGlass lets you easily experiment with your own shaders! _CustomShader.slang_ is a minimal example
+of a shader that swaps color channels and applies a boost, meant as an example from which you could
+start writing your own shaders and have them applied to your desktop. Check out
+[RetroArch shader repository](https://github.com/libretro/slang-shaders) for tons of examples.
+
+#### Modifying RetroArch shaders
+
+To modify shaders from RetroArch library, download their source code
+[from here](https://github.com/mausimus/slang-shaders/archive/refs/heads/shaderglass.zip),
+make changes and import.
+
+<br/>
+
 ### Frequently Asked Questions
 
 See FAQ [here](FAQ.md).

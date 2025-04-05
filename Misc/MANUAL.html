@@ -194,7 +194,39 @@
             and/or aspect ratio correction in ShaderGlass and enjoy the game.
         </p>
         <p><br /></p>
-        <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+        <h2 id="parameters">Importing Custom Shaders</h2>
+        <p>
+            ShaderGlass comes with a large built-in library of shaders, but you can also import custom ones
+            written in <a href="https://github.com/libretro/slang-shaders/blob/master/README.md">RetroArch shader system</a>.
+            It accepts both individual shaders (<i>.slang</i>) and multi-pass presets (<i>.slangp</i>).
+        </p>
+        <p>
+            When working on a custom shader, you can use <i>Recent imports</i> menu to quickly reload it.
+        </p>
+        <h3>RetroArch shader/preset packs</h3>
+        <p>
+            A lot of preset packs out there rely on base RetroArch shaders so to import them into ShaderGlass
+            install them into RetroArch first, and then Import from RetroArch's shaders directory.
+        </p><p>
+            Please note some shaders might require Vulkan (ShaderGlass is DirectX 11 only) or rely on RetroArch
+            features that ShaderGlass doesn't support so might not work just as well.
+        </p>
+        <h3>Writing your own shaders</h3>
+        <p>
+            ShaderGlass lets you easily experiment with your own shaders! <i>CustomShader.slang</i> is a minimal example
+            of a shader that swaps color channels and applies a boost, meant as an example from which you could
+            start writing your own shaders and have them applied to your desktop. Check out
+            <a href="https://github.com/libretro/slang-shaders">RetroArch shader repository</a> for tons of examples.
+        </p>
+
+        <h3>Modifying RetroArch shaders</h3>
+        <p>
+            To modify shaders from RetroArch library, download their source code
+            <a href="https://github.com/mausimus/slang-shaders/archive/refs/heads/shaderglass.zip">from here</a>,
+            make changes and import.
+        </p>
+        <p><br /></p>
+        <h2 id="frequently-asked-questions" style="page-break-before: always;">Frequently Asked Questions</h2>
         <h3 id="-im-seeing-black-only">&gt; I'm seeing black only</h3>
         <p>Make sure you're using <strong>Windows 10, version 2004</strong> (build 19041) or <strong>Windows 11</strong>.</p>
         <h3 id="-can-i-use-it-with-reshade">&gt; Can I use it with Reshade?</h3>
@@ -214,15 +246,13 @@
             open Windows Settings app and search for "screenshot borders". Make sure all the options and ShaderGlass are allowed to
             remove the border.
         </p>
-        <h3 id="-i-cant-capture-using-obs" style="page-break-before: always;">&gt; I can't capture using OBS</h3>
+        <h3 id="-i-cant-capture-using-obs">&gt; I can't capture using OBS</h3>
         <p>
             OBS can capture ShaderGlass but only as a Game Capture source (not Window Capture nor Desktop Capture). Use "Capture specific window" within
             Game Capture to select ShaderGlass window only.
         </p>
         <h3 id="-textletters-are-all-blurry-or-pixelated">&gt; Text/letters are all blurry or pixelated</h3>
         <p>For maximum sharpness set Input -&gt; Pixel Size -&gt; x1 but note that a lot of shaders expect pixelated input so set this option accordingly to each scenario.</p>
-        <h3 id="-can-i-save-a-profile">&gt; Can I save a profile?</h3>
-        <p>Yes, you can save shader profiles as files, access from Recent Profiles menu and even load them on startup via a command line parameter.</p>
         <h3 id="-i-dont-see-my-favourite-retroarch-shader">&gt; I don't see my favourite RetroArch shader</h3>
         <p>
             ShaderGlass includes majority of RetroArch repository at time of release, but some shaders had to be excluded because of features SG doesn't yet support (for example HDR).<br />
