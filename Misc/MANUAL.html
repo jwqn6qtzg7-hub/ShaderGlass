@@ -1,0 +1,464 @@
+
+<html>
+<head>
+    <title>ShaderGlass Manual v1.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id='content'>
+        <h2 id="shaderglass">ShaderGlass v1.1</h2>
+        <p>Overlay for running GPU shaders on top of Windows desktop</p>
+        <p style="font-size: 12px;">
+            Copyright (c) 2021-2025 mausimus (<a href="https://mausimus.net">mausimus.net</a>)<br />
+            Distributed under GNU General Public License v3.0
+        </p>
+        <p>&nbsp;</p>
+        <h3 id="features">Features</h3>
+        <ul>
+            <li>applies shader effects on top of desktop, in a floating window or full-screen</li>
+            <li>built-in <a href="https://github.com/libretro/RetroArch">RetroArch</a> shader library (1200+ shaders!) covering:</li>
+            <ul>
+                <li>CRT monitor simulation</li>
+                <li>image upscaling</li>
+                <li>TV, VHS and handheld simulation</li>
+                <li>softening, denoising, blur, sharpen and many more</li>
+            </ul>
+            <li>works with most emulators, retro platforms and pixel art editors including:</li>
+            <ul>
+                <li>
+                    <a href="https://www.dosbox.com/">DOSBox</a>, <a href="https://github.com/FrodeSolheim/fs-uae">FS-UAE</a>, <a href="http://www.virtualdub.org/altirra.html">Altirra</a>,
+                    <a href="https://github.com/scummvm/scummvm">ScummVM</a>, <a href="https://github.com/adventuregamestudio/ags">AGS</a>, <a href="https://sf.net/projects/vice-emu">VICE</a>, <a href="https://www.aseprite.org/">Aseprite</a> etc.
+                </li>
+            </ul>
+            <li>excellent companion for pixel art showing shaded and/or aspect-ratio corrected preview</li>
+            <li>you can even use it on top of YouTube, Twitch or modern games</li>
+            <li>saving and loading profiles</li>
+            <li>import of external .slangp/.slang shaders</li>
+            <li>high customizability with various options, operating modes and shader parameters</li>
+            <li>can be captured by OBS (using Game Capture source)</li>
+        </ul>
+        <p><br /></p>
+        <h3 id="download">Download</h3>
+        <p>GitHub: <a href="https://github.com/mausimus/ShaderGlass">https://github.com/mausimus/ShaderGlass</a></p>
+        <p>Itch: <a href="https://mausimus.itch.io/shaderglass">https://mausimus.itch.io/shaderglass</a></p>
+        <p><br /></p>
+        <h3 id="requirements">Requirements</h3>
+        <ul>
+            <li><strong>Windows 10, version 2004</strong> (build 19041) or <strong>Windows 11</strong></li>
+            <li>will work on version 1903 but in limited capacity (no Desktop Glass mode)</li>
+            <li>Windows 11 allows the <strong>removal of yellow border</strong> (see FAQ for tips on avoiding it on Win 10)</li>
+            <li>DirectX 11-capable GPU</li>
+        </ul>
+        <p><br /></p>
+        <h2 id="menu-options" style="page-break-before: always;">Menu Options</h2>
+        <p>Currently supported options are:</p>
+        <h4 id="processing">Processing</h4>
+        <ul>
+            <li><p><strong>Enable Global Hotkeys</strong> - toggle use of global hotkeys (if they conflict with another app)</p></li>
+            <li><p><strong>Show Menu</strong> - toggle menu bar ('m')</p></li>
+            <li><p><strong>Remember Position</strong> - remember previous window position and size on startup</p></li>
+            <li><p><strong>GPU</strong> - shows the GPU which Windows assigned to ShaderGlass (read-only)</p></li>
+            <li><p><strong>FPS</strong> - by default ShaderGlass runs at V-Sync, you can reduce GPU load by lowering the frame rate (for pixel art etc.)</p></li>
+            <ul><li><p><strong>Remember FPS</strong> - tick so that ShaderGlass remembers and always uses current FPS setting (this overrides any preset)</p></li></ul>
+            <li><p><strong>Advanced</strong> - extra options for lowering latency; these options require restarting ShaderGlass</p></li>
+            <ul>
+                <li><p><strong>Use Flip Mode</strong> - uses DXGI Flip Presentation mode (as opposed to BitBlt) which is faster but a little unstable (especially on Windows 10)</p></li>
+                <li><p><strong>Allow Tearing</strong> - removes explicit V-Sync, required for VRR to work</p></li>
+                <li><p><strong>Max Capture Rate</strong> - remove capture frame limit of WGC, only supported since Windows 11 24H2</p></li>
+            </ul>
+            <li><p><strong>Load/Save/Recent Profiles</strong> - you can save ShaderGlass' configuration into a profile file and load later</p></li>
+            <li><p><strong>Set as default/Remove default</strong> - make current settings the default when starting up</p></li>
+        </ul>
+        <h4 id="input">Input</h4>
+        <ul>
+            <li><p><strong>Desktop</strong> - captures the whole desktop or an individual monitor, defaults to Glass mode</p></li>
+            <ul><li><p><strong>Lock Current Area</strong> - always capture current area even if ShaderGlass window is moved</p></li></ul>
+            <li><p><strong>Window</strong> - captures the selected window, defaults to Clone mode</p></li>
+            <ul>
+                <li><p><strong>Rescan</strong> - refresh the list of open windows</p></li>
+                <li><p><strong>Crop</strong> - remove border around captured window, if your emulator has a toolbar for example</p></li>
+            </ul>
+            <li><p><strong>File</strong> - load a .png or .jpg file as input</p></li>
+            <li><p><strong>Pixel Size</strong> - indicates the size of input pixels (pre-scaling), i.e. if you run a game in x3 scaling mode set this to x3 as well so that ShaderGlass can tell the original resolution</p></li>
+            <ul>
+                <li>
+                    <p>
+                        <strong>Adjust for DPI Scale</strong> - if your source always applies Windows DPI Scaling when displaying images<br />
+                        (for example browsers) enable this option to take it into account; most emulators don't do this however
+                    </p>
+                </li>
+            </ul>
+            <li><p><strong>Capture Cursor</strong> - whether to include mouse cursor in capture</p></li>
+            <li><p><strong>Remove Yellow Border</strong> - disables yellow frame around captured area (forced security feature); currently only supported on Windows 11</p></li>
+        </ul>
+        <h4 id="output" style="page-break-before: always;">Output</h4>
+        <ul>
+            <li><p><strong>Mode</strong> - overrides default mode for the input type:</p></li>
+            <ul>
+                <li><p><strong>Glass</strong> (default for Desktop) - ShaderGlass window appears transparent, you have to position it over the window or area you'd like to capture</p></li>
+                <li><p><strong>Clone</strong> (default for Window) - ShaderGlass copies the content of capture so you can position it anywhere; this mode is also faster and more compatible</p></li>
+            </ul>
+            <li><p><strong>Window</strong> - override mouse behavior:</p></li>
+            <ul>
+                <li><p><strong>Solid</strong> (default for Clone) - ShaderGlass window area is solid (traps mouse events), with the only exception of passing focus to captured window when clicked</p></li>
+                <li><p><strong>Click-through</strong> (default for Glass) - ShaderGlass window area is transparent and clickable/scrollable-through to window(s) underneath</p></li>
+            </ul>
+            <li><p><strong>Flip</strong> - flip output image horizontally and/or vertically</p></li>
+            <li><p><strong>Scale</strong> - apply additional scaling to the output if you'd like it to be larger; using no pre-scaling and only output scaling should result in best performance</p></li>
+            <ul><li><p><strong>Free</strong> - allow manual resizing of ShaderGlass window (Window Clone and File modes only)</p></li></ul>
+            <ul><li><p><strong>Retain</strong> - prevent scale from resetting when switching inputs</p></li></ul>
+            <li><p><strong>Aspect Ratio Correction</strong> - presets for common aspect ratio correction factors (DOS, etc.), applied horizontally to preserve scanline count</p></li>
+            <p>
+                If you select <em>Custom</em> you can enter your own correction ratio expressed as pixel height (1.0 being square pixel). For example,
+                in MS-DOS era a picture of 320x200 resolution (16:10) was displayed on a 4:3 screen meaning each pixel was 1.2x tall on screen, 1.2 = (16/10) / (4/3)
+            </p>
+            <li><p><strong>Orientation</strong> - direction of shader effect, "Vertical" emulates display rotated 90 degrees, like in arcade cabinets</p></li>
+            <li>
+                <p>
+                    <strong>Fullscreen</strong> (Ctrl+Shift+G) - turn ShaderGlass into a topmost fullscreen borderless window, in Glass mode you will still see yellow outline around the screen but if you can use
+                    Window Glass (surrounding black bars) or Window Clone (top-left aligned) with your source then you can avoid yellow edges; press Ctrl+Shift+G to revert
+                </p>
+            </li>
+            <li><p><strong>Take Snapshot</strong> - export current image in .png format</p></li>
+        </ul>
+        <h4 id="shader">Shader</h4>
+        <ul>
+            <li><p><strong>Choose from Library</strong> - open Shader Browser to switch the current shader:</p></li>
+            <ul>
+                <li><p><strong>Personal Favorites</strong> - mark shaders as favorites using Add/Remove Favorite buttons</p></li>
+                <li><p><strong>Imported</strong> - custom .slangp/.slang shaders you imported (these are NOT persisted between restarts)</p></li>
+                <li><p><strong>Community Favorites</strong> - selection of popular shaders</p></li>
+                <li><p><strong>RetroArch Library</strong> - built-in shaders from libretro repository</p></li>
+            </ul>
+            <li><p><strong>Next</strong> - switch to the next Shader</p></li>
+            <li><p><strong>Random</strong> - choose a random Shader</p></li>
+            <li><p><strong>Active</strong> - temporarily switch to 'none' Shader to see the difference (hold TAB)</p></li>
+            <li><p><strong>Import custom</strong> - load and compile an external .slangp/.slang shader</p></li>
+            <li><p><strong>Parameters</strong> - show and modify active shader's parameters</p></li>
+        </ul>
+        <p style="page-break-before: always;">&nbsp;</p>
+        <p>
+            You can save and load profile files which will store all the options. It's also possible to pass profile file path on the command
+            line and ShaderGlass will load it on startup.
+        </p>
+        <p><br /></p>
+        <h2 id="command-line">Command Line</h2>
+<pre><code><span>ShaderGlass.exe [-p|--paused]</span> <span>[-f|--fullscreen]</span> <span>[profile.sgp]</span>
+</code></pre>
+        <p>
+            You can pass profile filename as a command-line parameter to ShaderGlass.exe and it will be auto-loaded.
+            If your profile file name contains spaces please put it in quotes.
+        </p>
+        <p>In addition -p will launch in paused mode, and -f will launch in fullscreen mode.</p>
+        <p><br /></p>
+        <h2 id="tuning">Tuning</h2>
+        <p>In order to achieve the best effect it's necessary to tune parameters to match your input:</p>
+        <ul>
+            <li><p>if you use scaling in your input, use nearest-neighbour (i.e. no smoothing) and set <em>Input -> Pixel Size</em> to match</p></li>
+            <li><p>moving/resizing the window slightly might also help find the best fit for downscaling pixels</p></li>
+            <li><p>use Window Clone mode if you can, it's fastest and most compatible; if you need mouse click-through use Glass mode</p></li>
+        </ul>
+        <p>
+            <strong>Always check that input is crisply pixelated using the "none" shader</strong> as there is often implicit
+            scaling happening (for example even when Chrome displays an image at 100%, Windows DPI scaling is still applied).
+            The none shader should display a pixelated image with no smoothing whatsoever,
+            try to match Input Pixel Size setting with your input's size to achieve that.
+        </p>
+        <p><br /></p>
+        <h2 id="parameters">Parameters</h2>
+        <p>
+            All shaders start using default Parameters as defined by their authors, but you can also tweak them using
+            <em>Shader -> Parameters</em> menu option.
+        </p>
+        <p><br /></p>
+        <h2 id="emulators">Emulators</h2>
+        <p>
+            Most emulators (DOSBox, FS-UAE, Altirra etc.) will capture mouse by default so you can use them in Window Clone mode.
+            ShaderGlass window will remain topmost so just position it over the
+            game window and Alt-Tab to the game to have mouse and focus captured.
+        </p>
+        <h3 id="scummvm" style="page-break-before: always;">ScummVM</h3>
+        <p>
+            ScummVM doesn't capture mouse cursor by default so for best results follow below steps:
+            <ol>
+                <li>Use Window Clone mode, set Input/Output/Shader options to your liking</li>
+                <li>Switch Output Window to Click-through</li>
+                <li>Click or Alt-Tab to ScummVM game window so that it has focus</li>
+                <li>Press Ctrl-M which will force ScummVM to capture mouse</li>
+            </ol>
+        </p>
+        <p>
+            This way you should have the mouse captured by ScummVM so that it remains within
+            the game window until you press Ctrl-M again. You can apply output scaling
+            and/or aspect ratio correction in ShaderGlass and enjoy the game.
+        </p>
+        <p><br /></p>
+        <h2 id="parameters">Importing Custom Shaders</h2>
+        <p>
+            ShaderGlass comes with a large built-in library of shaders, but you can also import custom ones
+            written in <a href="https://github.com/libretro/slang-shaders/blob/master/README.md">RetroArch shader system</a>.
+            It accepts both individual shaders (<i>.slang</i>) and multi-pass presets (<i>.slangp</i>).
+        </p>
+        <p>
+            When working on a custom shader, you can use <i>Recent imports</i> menu to quickly reload it.
+        </p>
+        <h3>RetroArch shader/preset packs</h3>
+        <p>
+            A lot of preset packs out there rely on base RetroArch shaders so to import them into ShaderGlass
+            install them into RetroArch first, and then Import from RetroArch's shaders directory.
+        </p><p>
+            Please note some shaders might require Vulkan (ShaderGlass is DirectX 11 only) or rely on RetroArch
+            features that ShaderGlass doesn't support so might not work just as well.
+        </p>
+        <h3>Writing your own shaders</h3>
+        <p>
+            ShaderGlass lets you easily experiment with your own shaders! <i>CustomShader.slang</i> is a minimal example
+            of a shader that swaps color channels and applies a boost, meant as an example from which you could
+            start writing your own shaders and have them applied to your desktop. Check out
+            <a href="https://github.com/libretro/slang-shaders">RetroArch shader repository</a> for tons of examples.
+        </p>
+
+        <h3>Modifying RetroArch shaders</h3>
+        <p>
+            To modify shaders from RetroArch library, download their source code
+            <a href="https://github.com/mausimus/slang-shaders/archive/refs/heads/shaderglass.zip">from here</a>,
+            make changes and import.
+        </p>
+        <p><br /></p>
+        <h2 id="frequently-asked-questions" style="page-break-before: always;">Frequently Asked Questions</h2>
+        <h3 id="-im-seeing-black-only">&gt; I'm seeing black only</h3>
+        <p>Make sure you're using <strong>Windows 10, version 2004</strong> (build 19041) or <strong>Windows 11</strong>.</p>
+        <h3 id="-can-i-use-it-with-reshade">&gt; Can I use it with Reshade?</h3>
+        <p>While there is no special support for it, you can inject Reshade into ShaderGlass just like into any other DirectX 11 app and stack Reshade shaders on top.</p>
+        <h3 id="-i-see-yellow-border-around-captured-screenwindow">&gt; I see yellow border around captured screen/window</h3>
+        <h4 id="windows-10">Windows 10</h4>
+        <p>Unfortunately yellow border is enforced on Windows 10 and there's no way to remove it. There are some ways to avoid it, for example:</p>
+        <ul>
+            <li>start up your game in Windowed mode</li>
+            <li>in ShaderGlass choose Input -&gt; Window -&gt; choose your game's window</li>
+            <li>click onto your game window to give it focus</li>
+            <li>press Ctrl+Shift+G to make ShaderGlass fullscreen</li>
+        </ul>
+        <h4 id="windows-11">Windows 11</h4>
+        <p>
+            It's possible to disable yellow border but only on Windows 11. If you are using Windows 11 and still seeing the border,
+            open Windows Settings app and search for "screenshot borders". Make sure all the options and ShaderGlass are allowed to
+            remove the border.
+        </p>
+        <h3 id="-i-cant-capture-using-obs">&gt; I can't capture using OBS</h3>
+        <p>
+            OBS can capture ShaderGlass but only as a Game Capture source (not Window Capture nor Desktop Capture). Use "Capture specific window" within
+            Game Capture to select ShaderGlass window only.
+        </p>
+        <h3 id="-textletters-are-all-blurry-or-pixelated">&gt; Text/letters are all blurry or pixelated</h3>
+        <p>For maximum sharpness set Input -&gt; Pixel Size -&gt; x1 but note that a lot of shaders expect pixelated input so set this option accordingly to each scenario.</p>
+        <h3 id="-i-dont-see-my-favourite-retroarch-shader">&gt; I don't see my favourite RetroArch shader</h3>
+        <p>
+            ShaderGlass includes majority of RetroArch repository at time of release, but some shaders had to be excluded because of features SG doesn't yet support (for example HDR).<br />
+        </p>
+        <h3 id="-shaderglass-cant-capture-some-windows">&gt; ShaderGlass can't capture some windows</h3>
+        <p>Unfortunately some old-style rendering windows are not supported by modern Windows Capture API. Please use Desktop mode to capture those.</p>
+        <p><br /></p>
+        <h2 id="notices">Notices</h2>
+        <ul>
+            <li><p>ShaderGlass application is provided under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a></p></li>
+            <li>
+                <p>
+                    Includes precompiled shaders from <a href="https://github.com/libretro/slang-shaders">libretro/RetroArch shader repository</a>.<br />
+                    Please refer to copyright notes within shader code for detailed copyright and license information about each shader.
+                </p>
+            </li>
+            <li><p>App icon courtesy of Icons-Land</p></li>
+            <li><p>Big kudos to RetroArch team, emulator developers and the wide retro community!</p></li>
+        </ul>
+    </div>
+    <style type='text/css'>
+
+        @page {
+            size: auto; /* auto is the initial value */
+            /* this affects the margin in the printer settings */
+            margin: 50mm 50mm 50mm 50mm;
+        }
+
+        body {
+            font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #d1d7e0;
+            background-color: #212830;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-feature-settings: "kern" 1;
+            -moz-font-feature-settings: "kern" 1;
+            -o-font-feature-settings: "kern" 1;
+            font-feature-settings: "kern" 1;
+            font-kerning: normal;
+            padding: 30px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+                body > #content {
+                    padding: 0px 20px 20px 20px !important;
+                }
+        }
+
+        body > #content {
+            margin: 0px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        summary {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        hr {
+            color: #bbb;
+            background-color: #bbb;
+            height: 1px;
+            flex: 0 1 auto;
+            margin: 1em 0;
+            padding: 0;
+            border: none;
+        }
+
+        a {
+            color: #d19a66;
+            text-decoration: none;
+        }
+
+            a:visited {
+                color: #0366d6;
+            }
+
+            a:hover {
+                color: #0366d6;
+                text-decoration: underline;
+            }
+
+        pre {
+            border-radius: 3px;
+            font-size: 85%;
+            line-height: 1.45;
+            overflow: auto;
+            padding: 16px;
+        }
+
+        code {
+            background-color: rgba(0, 0, 0, .5);
+            border-radius: 3px;
+            font-size: 85%;
+            margin: 0;
+            word-wrap: break-word;
+            padding: .2em .4em;
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+        }
+
+        pre > code {
+            background-color: transparent;
+            border: 0;
+            display: inline;
+            line-height: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: 0;
+            word-wrap: normal;
+            font-size: 100%;
+        }
+
+        blockquote {
+            margin-left: 30px;
+            margin-top: 0px;
+            margin-bottom: 16px;
+            border-left-width: 3px;
+            padding: 0 1em;
+            border-left: 4px solid #e8e8e8;
+            padding-left: 15px;
+            font-size: 18px;
+            letter-spacing: -1px;
+            font-style: italic;
+        }
+
+            blockquote * {
+                font-style: normal !important;
+                letter-spacing: 0;
+            }
+
+        table {
+            border-spacing: 2px;
+            display: block;
+            font-size: 14px;
+            overflow: auto;
+            width: 100%;
+            margin-bottom: 16px;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+
+        th {
+            font-weight: 600;
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+
+        tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        p {
+            line-height: 24px;
+            font-weight: 400;
+            font-size: 16px;
+            margin: 2px;
+        }
+
+        ul {
+            margin-top: 0;
+        }
+
+        li {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-top: 0.2em;
+        }
+
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        a:visited {
+            color: #0366d6;
+        }
+
+        h1,
+        h2,
+        h3 {
+            border-bottom: 1px solid #aaacaf;
+            color: #eee;
+        }
+
+        code > * {
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+        }
+    </style>
+
+</body>
+</html>
