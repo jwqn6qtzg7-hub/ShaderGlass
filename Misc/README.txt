@@ -6,3 +6,5 @@ https://mausimus.itch.io/shaderglass
 
 Includes RetroArch/libretro shader library
 https://github.com/libretro/slang-shaders
+
+See MANUAL.pdf for instructions.
