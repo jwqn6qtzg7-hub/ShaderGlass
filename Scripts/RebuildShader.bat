@@ -1,6 +1,6 @@
 @echo off
 if [%1]==[] goto usage
-..\x64\Debug\ShaderGen.exe force %1
+..\x64\Release\ShaderGen.exe --force %1
 goto :eof
 
 :usage
