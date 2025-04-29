@@ -42,9 +42,11 @@ Latest stable release (v1.1.0, 5 Apr 2025):
 
 https://github.com/mausimus/ShaderGlass/releases/download/v1.1.0/ShaderGlass-1.1.0-win-x64.zip
 
-[Betas and older versions available here](https://github.com/mausimus/ShaderGlass/releases)
+Get it on Steam!
 
-<br/>
+[![ShaderGlass on Steam](images/steam.png)](https://store.steampowered.com/app/3613770/ShaderGlass/)
+
+[Betas and older versions available here](https://github.com/mausimus/ShaderGlass/releases)
 
 Follow [ShaderGlass on itch.io](https://mausimus.itch.io/shaderglass) for latest updates.
 
