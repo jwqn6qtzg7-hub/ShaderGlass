@@ -394,7 +394,7 @@ void ShaderWindow::LoadImage()
     ZeroMemory(&ofn, sizeof(ofn));
     ofn.lStructSize = sizeof(ofn);
     ofn.hwndOwner   = NULL;
-    ofn.lpstrFilter = (LPCWSTR)L"Images (*.png;*.jpg)\0*.png;*.jpg\0All Files (*.*)\0*.*\0";
+    ofn.lpstrFilter = (LPCWSTR)L"Images (*.png;*.jpg,*.gif)\0*.png;*.jpg;*.gif\0All Files (*.*)\0*.*\0";
     ofn.lpstrFile   = (LPWSTR)szFileName;
     ofn.nMaxFile    = MAX_PATH;
     ofn.Flags       = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
