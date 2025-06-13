@@ -64,13 +64,11 @@ BOOL BrowserWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     m_instance = hInstance;
 
-    m_dpiScale = GetDpiForSystem() / 96.0f;
-
     RECT rect;
     rect.left   = 0;
     rect.top    = 0;
-    rect.right  = (LONG)(WINDOW_WIDTH * m_dpiScale);
-    rect.bottom = (LONG)(WINDOW_HEIGHT * m_dpiScale);
+    rect.right  = (LONG)(WINDOW_WIDTH);
+    rect.bottom = (LONG)(WINDOW_HEIGHT);
     AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
 
     HWND hWnd = CreateWindowW(m_windowClass,
@@ -90,11 +88,20 @@ BOOL BrowserWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
         return FALSE;
     }
 
+    m_dpi      = GetDpiForWindow(hWnd);
+    m_dpiScale = m_dpi / (float)USER_DEFAULT_SCREEN_DPI;
+    if(m_dpi != USER_DEFAULT_SCREEN_DPI)
+    {
+        rect.right *= m_dpiScale;
+        rect.bottom *= m_dpiScale;
+        SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOMOVE);
+    }
+
     NONCLIENTMETRICS metrics = {};
     metrics.cbSize           = sizeof(metrics);
-    SystemParametersInfo(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0);
+    SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0, m_dpi);
+    m_font = CreateFontIndirect(&metrics.lfCaptionFont);
 
-    m_font       = CreateFontIndirect(&metrics.lfCaptionFont);
     m_mainWindow = hWnd;
 
     Build();
@@ -109,6 +116,23 @@ BOOL BrowserWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 void BrowserWindow::Resize()
 {
+    auto dpi = GetDpiForWindow(m_mainWindow);
+    if(dpi != m_dpi)
+    {
+        m_dpi      = dpi;
+        m_dpiScale = dpi / (float)USER_DEFAULT_SCREEN_DPI;
+
+        // resize fonts
+        NONCLIENTMETRICS metrics = {};
+        metrics.cbSize           = sizeof(metrics);
+        SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0, m_dpi);
+        DeleteObject(m_font);
+        m_font = CreateFontIndirect(&metrics.lfCaptionFont);
+
+        SendMessage(m_addFavButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_delFavButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+    }
+
     RECT rcClient;
     GetClientRect(m_mainWindow, &rcClient);
     SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), 0);

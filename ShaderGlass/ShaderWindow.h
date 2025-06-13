@@ -34,6 +34,7 @@ private:
     HWND                         m_paramsWindow {nullptr};
     HWND                         m_browserWindow {nullptr};
     HWND                         m_compileWindow {nullptr};
+    UINT                         m_dpi {USER_DEFAULT_SCREEN_DPI};
     HMENU                        m_mainMenu {nullptr};
     HMENU                        m_programMenu {nullptr};
     HMENU                        m_gpuMenu {nullptr};

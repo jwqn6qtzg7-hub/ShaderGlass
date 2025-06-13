@@ -762,10 +762,10 @@ void ShaderWindow::BuildInputMenu()
 
     auto systemDpi = GetDpiForSystem();
     char dpiMenu[100];
-    m_dpiScale = GetDpiForSystem() / 96.0f;
+    m_dpiScale = GetDpiForSystem() / (float)USER_DEFAULT_SCREEN_DPI;
     snprintf(dpiMenu, 100, "Adjust for DPI Scale (%d%%)", static_cast<int>(100.0f * m_dpiScale));
     AppendMenu(m_pixelSizeMenu, MF_STRING, IDM_PIXELSIZE_DPI, convertCharArrayToLPCWSTR(dpiMenu));
-    if(systemDpi == 96)
+    if(systemDpi == USER_DEFAULT_SCREEN_DPI)
     {
         // no scaling can be applied
         m_dpiScale = 1.0f;
@@ -946,7 +946,7 @@ BOOL ShaderWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     }
 
     m_mainWindow = hWnd;
-
+    m_dpi        = GetDpiForWindow(hWnd);
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
@@ -1011,7 +1011,15 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
         {
             r.right  = requiredW;
             r.bottom = requiredH;
-            AdjustWindowRect(&r, GetWindowLong(hWnd, GWL_STYLE), TRUE);
+
+            auto dpi = GetDpiForWindow(hWnd);
+            if(dpi != m_dpi)
+            {
+                m_dpi = dpi;
+                return; // avoid infinite loop of resize/reposition during DPI change
+            }
+            LONG extStyle = GetWindowLong(m_mainWindow, GWL_EXSTYLE);
+            AdjustWindowRectExForDpi(&r, GetWindowLong(hWnd, GWL_STYLE), GetMenu(hWnd) != 0, extStyle, dpi);
             SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, r.right - r.left, r.bottom - r.top, SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE);
         }
     }
@@ -1035,7 +1043,14 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
             {
                 clientRect.right  = requiredW;
                 clientRect.bottom = requiredH;
-                AdjustWindowRect(&clientRect, GetWindowLong(hWnd, GWL_STYLE), GetMenu(hWnd) != 0);
+                auto dpi          = GetDpiForWindow(hWnd);
+                if(dpi != m_dpi)
+                {
+                    m_dpi = dpi;
+                    return; // avoid infinite loop of resize/reposition during DPI change
+                }
+                LONG extStyle = GetWindowLong(m_mainWindow, GWL_EXSTYLE);
+                AdjustWindowRectExForDpi(&clientRect, GetWindowLong(hWnd, GWL_STYLE), GetMenu(hWnd) != 0, extStyle, dpi);
 
                 RECT windowRect;
                 GetWindowRect(hWnd, &windowRect);

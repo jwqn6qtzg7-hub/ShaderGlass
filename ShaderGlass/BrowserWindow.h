@@ -31,6 +31,7 @@ private:
     HWND                      m_paramsWindow;
     HWND                      m_addFavButton;
     HWND                      m_delFavButton;
+    UINT                      m_dpi {USER_DEFAULT_SCREEN_DPI};
     HFONT                     m_font;
     CaptureManager&           m_captureManager;
     CaptureOptions&           m_captureOptions;

@@ -49,6 +49,7 @@ private:
     HWND            m_hwndTip;
     HWND            m_shaderWindow;
     HFONT           m_font;
+    UINT            m_dpi {USER_DEFAULT_SCREEN_DPI};
     CaptureManager& m_captureManager;
     CaptureOptions& m_captureOptions;
     float           m_dpiScale;
@@ -56,8 +57,8 @@ private:
     std::vector<ParamsTrackbar> m_trackbars;
 
     void AddTrackbar(UINT iMin, UINT iMax, UINT iStart, UINT iStep, const char* name, ShaderParam* p);
-    void ResizeScrollBar();
-    void RebuildControls();
+    void Resize();
+    void RebuildControls(bool doResize);
 
     static LRESULT CALLBACK WndProcProxy(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
     ATOM                    MyRegisterClass(HINSTANCE hInstance);

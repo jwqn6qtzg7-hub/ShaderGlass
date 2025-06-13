@@ -67,13 +67,11 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     m_instance = hInstance;
 
-    m_dpiScale = GetDpiForSystem() / 96.0f;
-
     RECT rect;
     rect.left   = 0;
     rect.top    = 0;
-    rect.right  = (LONG)(WINDOW_WIDTH * m_dpiScale);
-    rect.bottom = (LONG)(WINDOW_HEIGHT * m_dpiScale);
+    rect.right  = (LONG)(WINDOW_WIDTH);
+    rect.bottom = (LONG)(WINDOW_HEIGHT);
     AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, true, WS_EX_WINDOWEDGE);
 
     HWND hWnd = CreateWindowW(m_windowClass,
@@ -93,11 +91,20 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
         return FALSE;
     }
 
+    m_dpi      = GetDpiForWindow(hWnd);
+    m_dpiScale = m_dpi / (float)USER_DEFAULT_SCREEN_DPI;
+    if(m_dpi != USER_DEFAULT_SCREEN_DPI)
+    {
+        rect.right *= m_dpiScale;
+        rect.bottom *= m_dpiScale;
+        SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOMOVE);
+    }
+
     NONCLIENTMETRICS metrics = {};
     metrics.cbSize           = sizeof(metrics);
-    SystemParametersInfo(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0);
+    SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0, m_dpi);
+    m_font = CreateFontIndirect(&metrics.lfCaptionFont);
 
-    m_font       = CreateFontIndirect(&metrics.lfCaptionFont);
     m_mainWindow = hWnd;
 
     m_resetButtonWnd = CreateWindow(L"BUTTON",
@@ -105,8 +112,8 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
                                     WS_TABSTOP | WS_VISIBLE | WS_CHILD,
                                     (LONG)(m_dpiScale * ((WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
                                     (LONG)(m_dpiScale * BUTTON_TOP),
-                                    (LONG)(m_dpiScale * BUTTON_WIDTH),
-                                    (LONG)(m_dpiScale * BUTTON_HEIGHT),
+                                    (LONG)(m_dpiScale * BUTTON_WIDTH * m_dpiScale),
+                                    (LONG)(m_dpiScale * BUTTON_HEIGHT * m_dpiScale),
                                     m_mainWindow,
                                     NULL,
                                     (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
@@ -118,8 +125,8 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
                                     WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
                                     (LONG)(m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))),
                                     (LONG)(m_dpiScale * BUTTON_TOP),
-                                    (LONG)(m_dpiScale * BUTTON_WIDTH),
-                                    (LONG)(m_dpiScale * BUTTON_HEIGHT),
+                                    (LONG)(m_dpiScale * BUTTON_WIDTH * m_dpiScale),
+                                    (LONG)(m_dpiScale * BUTTON_HEIGHT * m_dpiScale),
                                     m_mainWindow,
                                     NULL,
                                     (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
@@ -134,8 +141,29 @@ BOOL ParamsWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
-void ParamsWindow::ResizeScrollBar()
+void ParamsWindow::Resize()
 {
+    auto dpi = GetDpiForWindow(m_mainWindow);
+    if(dpi != m_dpi)
+    {
+        m_dpi      = dpi;
+        m_dpiScale = dpi / (float)USER_DEFAULT_SCREEN_DPI;
+
+        // resize fonts
+        NONCLIENTMETRICS metrics = {};
+        metrics.cbSize           = sizeof(metrics);
+        SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS, metrics.cbSize, &metrics, 0, m_dpi);
+        DeleteObject(m_font);
+        m_font = CreateFontIndirect(&metrics.lfCaptionFont);
+        
+        SendMessage(m_resetButtonWnd, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_closeButtonWnd, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SetWindowPos(m_resetButtonWnd, 0, 0, 0, BUTTON_WIDTH * m_dpiScale, BUTTON_HEIGHT * m_dpiScale, SWP_NOMOVE | SWP_NOZORDER);
+        SetWindowPos(m_closeButtonWnd, 0, 0, 0, BUTTON_WIDTH * m_dpiScale, BUTTON_HEIGHT * m_dpiScale, SWP_NOMOVE | SWP_NOZORDER);
+
+        RebuildControls(false);
+    }
+
     RECT rect;
     GetClientRect(m_mainWindow, &rect);
 
@@ -168,7 +196,7 @@ void ParamsWindow::ResizeScrollBar()
     }
 }
 
-void ParamsWindow::RebuildControls()
+void ParamsWindow::RebuildControls(bool doResize)
 {
     for(auto& t : m_trackbars)
     {
@@ -186,9 +214,9 @@ void ParamsWindow::RebuildControls()
     si.cbSize = sizeof(si);
     si.fMask  = SIF_ALL;
     GetScrollInfo(m_mainWindow, SB_VERT, &si);
-    if(si.nPos != 0)
+    if(si.nPos != 0 && doResize)
     {
-        ResizeScrollBar();
+        Resize();
     }
 
     char        title[200];
@@ -241,7 +269,8 @@ void ParamsWindow::RebuildControls()
     SetWindowPos(
         m_closeButtonWnd, m_mainWindow, (LONG)(m_dpiScale * ((2 * WINDOW_WIDTH / 3) - (BUTTON_WIDTH / 2))), (LONG)(m_dpiScale * BUTTON_TOP), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-    ResizeScrollBar();
+    if(doResize)
+        Resize();
 }
 
 LRESULT CALLBACK ParamsWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -252,7 +281,7 @@ LRESULT CALLBACK ParamsWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         if(wParam)
         {
             // showing
-            RebuildControls();
+            RebuildControls(true);
         }
         break;
     }
@@ -269,7 +298,7 @@ LRESULT CALLBACK ParamsWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         return 0;
     }
     case WM_SIZE: {
-        ResizeScrollBar();
+        Resize();
         break;
     }
     case WM_MOUSEWHEEL:
@@ -357,14 +386,14 @@ LRESULT CALLBACK ParamsWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             else if(lParam == (LPARAM)m_resetButtonWnd)
             {
                 m_captureManager.ResetParams();
-                RebuildControls();
+                RebuildControls(true);
             }
             return 0;
         }
         case IDM_UPDATE_PARAMS: {
             if(IsWindowVisible(m_mainWindow))
             {
-                RebuildControls();
+                RebuildControls(true);
             }
         }
             return 0;
