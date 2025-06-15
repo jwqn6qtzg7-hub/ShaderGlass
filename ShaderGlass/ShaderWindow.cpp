@@ -506,7 +506,7 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     {
         const auto& s = std::get<0>(pt);
         const auto& p = std::get<1>(pt);
-        if(p->currentValue != p->defaultValue)
+        if(p->currentValue != m_captureManager.GetDefaultValue(p))
         {
             outfile << "Param-" << s << "-" << p->name << " " << std::quoted(std::to_string(p->currentValue)) << std::endl;
         }

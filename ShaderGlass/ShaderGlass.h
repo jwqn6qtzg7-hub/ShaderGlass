@@ -45,6 +45,7 @@ public:
     std::vector<std::tuple<int, ShaderParam*>> Params();
     void                                       UpdateParams();
     void                                       ResetParams();
+    float                                      GetDefaultValue(ShaderParam* p);
     void                                       Stop();
     ~ShaderGlass();
 

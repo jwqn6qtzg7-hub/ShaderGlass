@@ -72,6 +72,7 @@ public:
     void  UpdateParams();
     void  ResetParams();
     void  SetParams(const std::vector<std::tuple<int, std::string, double>>& params);
+    float GetDefaultValue(ShaderParam* p);
     void  RememberLastPreset();
     void  SetLastPreset(unsigned presetNo);
     void  ForgetLastPreset();

@@ -176,6 +176,15 @@ void CaptureManager::SetParams(const std::vector<std::tuple<int, std::string, do
     ForgetLastPreset();
 }
 
+float CaptureManager::GetDefaultValue(ShaderParam* p)
+{
+    if(m_shaderGlass)
+    {
+        return m_shaderGlass->GetDefaultValue(p);
+    }
+    return p->defaultValue;
+}
+
 void CaptureManager::UpdateCursor()
 {
     if(m_session)

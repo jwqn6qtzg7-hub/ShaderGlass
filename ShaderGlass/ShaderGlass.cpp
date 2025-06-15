@@ -271,6 +271,18 @@ void ShaderGlass::UpdateParams()
         }
 }
 
+float ShaderGlass::GetDefaultValue(ShaderParam* p)
+{
+    for(auto& o : m_shaderPreset->m_presetDef.Overrides)
+    {
+        if(o.name == p->name)
+        {
+            return o.value;
+        }
+    }
+    return p->defaultValue;
+}
+
 void ShaderGlass::ResetParams()
 {
     for(auto& s : m_shaderPreset->m_shaders)
