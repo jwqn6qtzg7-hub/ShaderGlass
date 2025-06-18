@@ -26,7 +26,7 @@ Overlay for running GPU shaders on top of Windows desktop.
 
 ### Download
 
-Latest stable release (v1.1.x, 18 Jun 2025):
+Latest stable release (v1.2.x, 18 Jun 2025):
 * ability to import .slangp/.slang shaders on the fly
 * shader library refresh: added koko-aio and retro-crisis
 * ability to tag personal favorites
@@ -40,8 +40,9 @@ Latest stable release (v1.1.x, 18 Jun 2025):
 * advanced menu with DXGI settings
 * minor menu rearrangement
 * (1.1.1) fix input alignment when using multiple monitors with different DPIs
+* (1.1.2) fix mirror/repeat stages (koko-aio)
 
-https://github.com/mausimus/ShaderGlass/releases/download/v1.1.1/ShaderGlass-1.1.1-win-x64.zip
+https://github.com/mausimus/ShaderGlass/releases/download/v1.1.2/ShaderGlass-1.1.2-win-x64.zip
 
 Get it on Steam!
 
