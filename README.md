@@ -26,7 +26,7 @@ Overlay for running GPU shaders on top of Windows desktop.
 
 ### Download
 
-Latest stable release (v1.2.x, 18 Jun 2025):
+Latest stable release (v1.1.x, 18 Jun 2025):
 * ability to import .slangp/.slang shaders on the fly
 * shader library refresh: added koko-aio and retro-crisis
 * ability to tag personal favorites
