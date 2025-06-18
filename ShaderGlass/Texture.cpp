@@ -26,7 +26,7 @@ Texture::Texture(TextureDef& textureDef) : m_linear(false), m_mipmap(false), m_r
     {
         if(value == "repeat")
             m_repeat = true;
-        if(value == "clamp_to_border")
+        if(value == "clamp_to_edge")
             m_clamp = true;
         if(value == "mirrored_repeat")
             m_mirror = true;

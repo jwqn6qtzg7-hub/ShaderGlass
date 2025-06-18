@@ -48,6 +48,8 @@ public:
     DXGI_FORMAT                        m_format {DXGI_FORMAT_B8G8R8A8_UNORM};
     bool                               m_filterLinear {false};
     bool                               m_clamp {false};
+    bool                               m_mirror {false};
+    bool                               m_repeat {false};
     int                                m_frameCountMod {0};
 
     Shader(ShaderDef& shaderDef);

@@ -119,6 +119,10 @@ Shader::Shader(ShaderDef& shaderDef) :
     {
         if(value == "clamp_to_edge")
             m_clamp = true;
+        else if(value == "repeat")
+            m_repeat = true;
+        else if(value == "mirrored_repeat")
+            m_mirror = true;
     }
 }
 

@@ -108,6 +108,18 @@ void ShaderPass::Initialize(winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<
                     samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
                     samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
                 }
+                if(m_shader.m_repeat)
+                {
+                    samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+                    samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+                    samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+                }
+                if(m_shader.m_mirror)
+                {
+                    samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MIRROR;
+                    samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MIRROR;
+                    samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MIRROR;
+                }
             }
         }
 
