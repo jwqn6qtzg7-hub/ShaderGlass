@@ -154,7 +154,7 @@ public:
 .Param("mipmap", "false")
 .Param("name", "bg_over")
 .Param("wrap_mode", "mirrored_repeat"));
-            TextureDefs.push_back(BezelKokoAioTexturesBoothillTextureDef()
+            TextureDefs.push_back(BezelKokoAioTexturesBackdropTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "backdrop")
@@ -177,12 +177,12 @@ public:
             OverrideParam("BEZEL_RFL_BLR_SHD", (float)-0.200000);
             OverrideParam("BEZEL_RFL_OFFSET", (float)0.001000);
             OverrideParam("BLOOM_EYE_ADPT_SRT", (float)0.600000);
-            OverrideParam("BLOOM_EYE_INERTIA", (float)250.000000);
+            OverrideParam("BLOOM_EYE_INERTIA", (float)1500.000000);
             OverrideParam("BLOOM_GAMMA", (float)3.000000);
             OverrideParam("BLOOM_GAMMA_OUT", (float)2.200000);
-            OverrideParam("BLOOM_MIX", (float)0.150000);
+            OverrideParam("BLOOM_MIX", (float)0.300000);
             OverrideParam("BLOOM_OVER_WHITE", (float)0.500000);
-            OverrideParam("BLOOM_POWER", (float)4.600000);
+            OverrideParam("BLOOM_POWER", (float)2.000001);
             OverrideParam("BLOOM_QUALITY", (float)1.000000);
             OverrideParam("BLOOM_SIZE", (float)4.000000);
             OverrideParam("DECON_BX", (float)0.000000);
@@ -204,57 +204,58 @@ public:
             OverrideParam("DO_NTSC_ARTIFACTS", (float)0.000000);
             OverrideParam("DO_PIXELGRID", (float)1.000000);
             OverrideParam("DO_PIXELGRID_H", (float)1.000000);
+            OverrideParam("DO_PIXELGRID_W", (float)0.950000);
             OverrideParam("DO_RF_NOISE", (float)0.000000);
             OverrideParam("DO_SAT_BLEED", (float)0.000000);
             OverrideParam("DO_SHIFT_RGB", (float)1.000000);
             OverrideParam("DO_SPOT", (float)1.000000);
             OverrideParam("DO_VIGNETTE", (float)1.000000);
-            OverrideParam("GAMMA_OUT", (float)0.440000);
-            OverrideParam("GEOM_CORNER_SIZE", (float)0.005000);
-            OverrideParam("GEOM_CORNER_SMOOTH", (float)150.000000);
+            OverrideParam("GAMMA_OUT", (float)0.360000);
             OverrideParam("GLOBAL_ZOOM", (float)0.991500);
             OverrideParam("HALO_GAMMA", (float)1.000000);
-            OverrideParam("HALO_GAMMA_OUT", (float)1.300000);
+            OverrideParam("HALO_GAMMA_OUT", (float)2.350000);
             OverrideParam("HALO_NO_PREGAIN", (float)1.000000);
-            OverrideParam("HALO_POWER", (float)0.600000);
+            OverrideParam("HALO_POWER", (float)1.000000);
             OverrideParam("HALO_SHARPNESS", (float)7.000000);
-            OverrideParam("HALO_VS_SCAN", (float)1.000000);
+            OverrideParam("HALO_VS_SCAN", (float)0.260000);
             OverrideParam("IN_GLOW_BIAS", (float)0.000000);
-            OverrideParam("IN_GLOW_GAMMA", (float)2.200000);
-            OverrideParam("IN_GLOW_H", (float)3.000000);
+            OverrideParam("IN_GLOW_GAMMA", (float)2.000000);
+            OverrideParam("IN_GLOW_H", (float)7.000000);
             OverrideParam("IN_GLOW_POWER", (float)1.600000);
-            OverrideParam("IN_GLOW_SPREAD", (float)1.999999);
-            OverrideParam("IN_GLOW_SPREAD_SHARPNESS", (float)1.200000);
-            OverrideParam("IN_GLOW_W", (float)2.000000);
-            OverrideParam("LUMINANCE", (float)0.100000);
+            OverrideParam("IN_GLOW_SPREAD", (float)1.700000);
+            OverrideParam("IN_GLOW_W", (float)7.000000);
+            OverrideParam("LUMINANCE", (float)0.050000);
             OverrideParam("OFFSET_STRENGTH", (float)0.250000);
             OverrideParam("PIXELGRID_BASAL_GRID", (float)0.020000);
             OverrideParam("PIXELGRID_DECON_B_H", (float)0.600000);
             OverrideParam("PIXELGRID_DECON_R_H", (float)-0.600000);
-            OverrideParam("PIXELGRID_GAMMA_H", (float)5.200000);
-            OverrideParam("PIXELGRID_GAMMA_W", (float)1.500000);
-            OverrideParam("PIXELGRID_H_PRST", (float)5.000000);
-            OverrideParam("PIXELGRID_MAX_H", (float)0.700000);
-            OverrideParam("PIXELGRID_MAX_W", (float)0.400000);
-            OverrideParam("PIXELGRID_MIN_H", (float)0.300000);
+            OverrideParam("PIXELGRID_GAMMA_H", (float)3.000000);
+            OverrideParam("PIXELGRID_GAMMA_W", (float)4.200000);
+            OverrideParam("PIXELGRID_H_DEDOT", (float)0.700000);
+            OverrideParam("PIXELGRID_H_PRST", (float)2.000000);
+            OverrideParam("PIXELGRID_MAX_H", (float)0.850000);
+            OverrideParam("PIXELGRID_MAX_W", (float)0.050000);
+            OverrideParam("PIXELGRID_MIN_H", (float)0.450000);
             OverrideParam("PIXELGRID_MIN_W", (float)0.050000);
             OverrideParam("PIXELGRID_OFFSET_CORE", (float)0.000000);
             OverrideParam("PIXELGRID_OVERMASK", (float)1.000000);
-            OverrideParam("PIXELGRID_Y_MASK", (float)0.300000);
+            OverrideParam("PIXELGRID_Y_MASK", (float)0.700000);
             OverrideParam("PIXELGRID_Y_MASK_COORDS", (float)1.000000);
             OverrideParam("PIXELGRID_Y_MASK_HEIGHT", (float)-2.000000);
-            OverrideParam("PIXELGRID_Y_MASK_ON_WHITE", (float)0.500000);
+            OverrideParam("PIXELGRID_Y_MASK_OFFSET_DEHIVE", (float)0.700000);
+            OverrideParam("PIXELGRID_Y_MASK_ON_WHITE", (float)0.000000);
             OverrideParam("PIXELGRID_Y_MASK_SHIFT", (float)-0.010000);
-            OverrideParam("PIXELGRID_Y_MASK_STEEP", (float)8.000000);
-            OverrideParam("PIXELGRID_Y_SPARK", (float)0.500000);
+            OverrideParam("PIXELGRID_Y_MASK_STEEP", (float)2.000000);
+            OverrideParam("PIXELGRID_Y_SPARK", (float)0.000000);
             OverrideParam("SHIFT_B", (float)20.000000);
-            OverrideParam("SHIFT_G", (float)1.000000);
+            OverrideParam("SHIFT_G", (float)0.000000);
             OverrideParam("SHIFT_R", (float)-20.000000);
             OverrideParam("S_POSITION_X", (float)-0.500000);
             OverrideParam("S_POSITION_Y", (float)0.500000);
             OverrideParam("S_POWER", (float)0.067000);
             OverrideParam("S_SIZE", (float)0.360000);
             OverrideParam("TEMPERATURE", (float)7200.000000);
+            OverrideParam("VIBRANCE", (float)0.100000);
             OverrideParam("V_POWER", (float)1.000000);
             OverrideParam("V_SIZE", (float)1.200000);
 	}

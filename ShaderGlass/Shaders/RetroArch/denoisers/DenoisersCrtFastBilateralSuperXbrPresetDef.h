@@ -56,6 +56,15 @@ public:
 .Param("scale_x", "1.000000")
 .Param("scale_y", "0.500000")
 .Param("wrap_mode", "clamp_to_edge"));
+         	ShaderDefs.push_back(CrtShadersHyllianSupportMultiLUTLinearFastShaderDef()
+.Param("float_framebuffer", "false")
+.Param("mipmap_input", "false")
+.Param("scale_type_x", "source")
+.Param("scale_type_y", "source")
+.Param("scale_x", "1.000000")
+.Param("scale_y", "1.000000")
+.Param("srgb_framebuffer", "true")
+.Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(CrtShadersHyllianCrtHyllianPass0ShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")
@@ -76,6 +85,12 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_edge"));
+            TextureDefs.push_back(CrtShadersHyllianSupportLUTSony_Wega_29FA310_no_gammaV2TextureDef()
+.Param("linear", "true")
+.Param("name", "SamplerLUT1"));
+            TextureDefs.push_back(CrtShadersHyllianSupportLUTSony_Wega_29FA310_no_gammaTextureDef()
+.Param("linear", "true")
+.Param("name", "SamplerLUT2"));
             OverrideParam("JINC2_AR_STRENGTH", (float)0.000000);
             OverrideParam("JINC2_SINC", (float)0.880000);
             OverrideParam("JINC2_WINDOW_SINC", (float)0.500000);

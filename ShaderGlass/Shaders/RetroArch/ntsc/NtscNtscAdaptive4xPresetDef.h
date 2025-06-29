@@ -19,17 +19,47 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(NtscShadersNtscAdaptiveNtscPass1ShaderDef()
+         	ShaderDefs.push_back(StockStockShaderDef()
+.Param("alias", "PrePass0")
+.Param("filter_linear", "false")
+.Param("float_framebuffer", "false")
+.Param("mipmap_input", "false")
+.Param("scale_type_x", "source")
+.Param("scale_type_y", "source")
+.Param("scale_x", "1.000000")
+.Param("scale_y", "1.000000")
+.Param("srgb_framebuffer", "false")
+.Param("wrap_mode", "clamp_to_border"));
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedNtscNtscPass1ShaderDef()
+.Param("alias", "NPass1")
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")
+.Param("mipmap_input", "false")
+.Param("scale_type_x", "source")
+.Param("scale_type_y", "source")
+.Param("scale_x", "1.0")
+.Param("scale_y", "0.25")
+.Param("srgb_framebuffer", "false")
+.Param("wrap_mode", "clamp_to_border"));
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedNtscNtscPass2ShaderDef()
+.Param("filter_linear", "true")
+.Param("float_framebuffer", "true")
+.Param("mipmap_input", "false")
+.Param("scale_type", "source")
+.Param("scale_x", "0.85")
+.Param("scale_y", "1.50")
+.Param("srgb_framebuffer", "false")
+.Param("wrap_mode", "clamp_to_border"));
+         	ShaderDefs.push_back(CrtShadersGuestAdvancedNtscNtscPass3ShaderDef()
+.Param("filter_linear", "true")
+.Param("float_framebuffer", "false")
+.Param("mipmap_input", "false")
 .Param("scale_type", "source")
 .Param("scale_x", "1.0")
-.Param("scale_y", "0.25"));
-         	ShaderDefs.push_back(NtscShadersNtscAdaptiveNtscPass2ShaderDef()
-.Param("filter_linear", "true")
-.Param("scale_type", "source")
-.Param("scale_x", "0.5")
-.Param("scale_y", "4.0"));
+.Param("scale_y", "1.0")
+.Param("srgb_framebuffer", "false")
+.Param("wrap_mode", "clamp_to_border"));
+            OverrideParam("ntsc_scale", (float)0.275000);
 	}
 };
 }

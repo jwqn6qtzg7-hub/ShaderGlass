@@ -19,12 +19,11 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(EdgeSmoothingXbrShadersSupportLinearizeShaderDef()
+         	ShaderDefs.push_back(EdgeSmoothingXbrShadersSupportLumaShaderDef()
 .Param("alias", "XbrSource")
 .Param("filter_linear", "false")
 .Param("scale", "1.000000")
-.Param("scale_type", "source")
-.Param("srgb_framebuffer", "true"));
+.Param("scale_type", "source"));
          	ShaderDefs.push_back(EdgeSmoothingXbrShadersSuperXbrSuperXbrFastPass0ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.000000")
@@ -49,8 +48,10 @@ public:
 .Param("scale_type", "viewport")
 .Param("srgb_framebuffer", "true")
 .Param("wrap_mode", "clamp_to_edge"));
-         	ShaderDefs.push_back(EdgeSmoothingXbrShadersSupportDelinearizeShaderDef()
-.Param("filter_linear", "false"));
+         	ShaderDefs.push_back(EdgeSmoothingXbrShadersSupportDeblurFastShaderDef()
+.Param("filter_linear", "linear")
+.Param("wrap_mode", "clamp_to_edge"));
+            OverrideParam("XBR_EDGE_STR_P0", (float)0.400000);
 	}
 };
 }

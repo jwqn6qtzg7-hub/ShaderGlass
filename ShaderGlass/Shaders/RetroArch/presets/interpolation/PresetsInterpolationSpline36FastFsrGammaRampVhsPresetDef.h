@@ -19,7 +19,7 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(InterpolationShadersSpline36XShaderDef()
+         	ShaderDefs.push_back(InterpolationShadersSplineSpline36XShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")
@@ -29,7 +29,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_edge"));
-         	ShaderDefs.push_back(InterpolationShadersSpline36YShaderDef()
+         	ShaderDefs.push_back(InterpolationShadersSplineSpline36YShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")

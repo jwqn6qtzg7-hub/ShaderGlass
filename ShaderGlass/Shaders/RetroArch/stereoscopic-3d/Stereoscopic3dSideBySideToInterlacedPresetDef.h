@@ -19,6 +19,8 @@ public:
 	}
 
 	virtual void Build() {
+         	ShaderDefs.push_back(StockStockShaderDef()
+.Param("scale_type", "viewport"));
          	ShaderDefs.push_back(Stereoscopic3dShadersSbsToInterlacedShaderDef()
 .Param("scale_type", "source"));
 	}

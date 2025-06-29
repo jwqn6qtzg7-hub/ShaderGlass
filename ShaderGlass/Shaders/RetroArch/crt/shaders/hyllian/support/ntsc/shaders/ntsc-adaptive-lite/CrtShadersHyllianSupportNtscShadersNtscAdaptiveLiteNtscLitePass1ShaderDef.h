@@ -1196,15 +1196,15 @@ public:
 		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("quality", 0, 116, 4, -1.000000f, 2.000000f, 1.000000f, 1.000000f, "NTSC Preset (Svideo=0 Composite=1 RF=2 Custom=-1)"));
-		Params.push_back(ShaderParam("ntsc_sat", 0, 120, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "NTSC Color Saturation"));
-		Params.push_back(ShaderParam("cust_fringing", 0, 124, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "NTSC Custom Fringing Value"));
-		Params.push_back(ShaderParam("cust_artifacting", 0, 128, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "NTSC Custom Artifacting Value"));
-		Params.push_back(ShaderParam("ntsc_bright", 0, 132, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "NTSC Brightness"));
-		Params.push_back(ShaderParam("ntsc_scale", 0, 136, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "NTSC Resolution Scaling"));
-		Params.push_back(ShaderParam("ntsc_fields", 0, 140, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "NTSC Merge Fields"));
-		Params.push_back(ShaderParam("ntsc_phase", 0, 144, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase"));
-		Params.push_back(ShaderParam("ntsc_artifacting_rainbow", 0, 148, 4, -1.000000f, 1.000000f, 0.000000f, 0.100000f, "NTSC Artifacting Rainbow Effect"));
+		Params.push_back(ShaderParam("quality", 0, 116, 4, -1.000000f, 2.000000f, 1.000000f, 1.000000f, "Preset (Svideo=0 Composite=1 RF=2 Custom=-1)"));
+		Params.push_back(ShaderParam("ntsc_sat", 0, 120, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Color Saturation"));
+		Params.push_back(ShaderParam("cust_fringing", 0, 124, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "Custom Fringing Value"));
+		Params.push_back(ShaderParam("cust_artifacting", 0, 128, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "Custom Artifacting Value"));
+		Params.push_back(ShaderParam("ntsc_bright", 0, 132, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "Brightness"));
+		Params.push_back(ShaderParam("ntsc_scale", 0, 136, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "Resolution Scaling"));
+		Params.push_back(ShaderParam("ntsc_fields", 0, 140, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Merge Fields"));
+		Params.push_back(ShaderParam("ntsc_phase", 0, 144, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase"));
+		Params.push_back(ShaderParam("ntsc_artifacting_rainbow", 0, 148, 4, -1.000000f, 1.000000f, 0.000000f, 0.100000f, "Artifacting Rainbow Effect"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

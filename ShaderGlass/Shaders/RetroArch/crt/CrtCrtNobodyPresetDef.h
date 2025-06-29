@@ -21,7 +21,8 @@ public:
 	virtual void Build() {
          	ShaderDefs.push_back(CrtShadersCrtNobodyShaderDef()
 .Param("filter_linear", "false")
-.Param("scale_type", "viewport"));
+.Param("scale_type", "viewport")
+.Param("wrap_mode", "clamp_to_border"));
 	}
 };
 }

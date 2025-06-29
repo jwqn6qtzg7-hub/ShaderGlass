@@ -154,7 +154,7 @@ public:
 .Param("mipmap", "false")
 .Param("name", "bg_over")
 .Param("wrap_mode", "mirrored_repeat"));
-            TextureDefs.push_back(BezelKokoAioTexturesBoothillTextureDef()
+            TextureDefs.push_back(BezelKokoAioTexturesBackdropTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "backdrop")
@@ -205,7 +205,7 @@ public:
             OverrideParam("IN_GLOW_POWER", (float)1.200000);
             OverrideParam("IN_GLOW_SPREAD", (float)4.000000);
             OverrideParam("IN_GLOW_W", (float)-1.000001);
-            OverrideParam("IN_GLOW_WARPSHARP_GAMMA", (float)0.010000);
+            OverrideParam("IN_GLOW_WARPSHARP_GAMMA", (float)0.200000);
             OverrideParam("IN_GLOW_WARPSHARP_X", (float)0.100000);
             OverrideParam("IN_GLOW_WARPSHARP_Y", (float)0.100000);
             OverrideParam("PIXELGRID_COREY_FAKE_SCAN", (float)0.000000);

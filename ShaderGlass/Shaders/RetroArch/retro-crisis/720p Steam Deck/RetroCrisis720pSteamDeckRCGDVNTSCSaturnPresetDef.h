@@ -251,7 +251,7 @@ public:
             OverrideParam("mcut", (float)2.000000);
             OverrideParam("ntsc_bright", (float)0.700000);
             OverrideParam("ntsc_cscale", (float)2.250000);
-            OverrideParam("ntsc_phase", (float)4.000000);
+            OverrideParam("ntsc_phase", (float)3.000000);
             OverrideParam("ntsc_sat", (float)1.200000);
             OverrideParam("ntsc_scale", (float)1.000000);
             OverrideParam("ntsc_sharp", (float)-10.000000);

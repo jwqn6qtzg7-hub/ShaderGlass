@@ -2174,11 +2174,11 @@ public:
 		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("linearize", 0, 112, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "NTSC Linearize Output Gamma"));
-		Params.push_back(ShaderParam("ntsc_scale", 0, 116, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "NTSC Resolution Scaling"));
-		Params.push_back(ShaderParam("ntsc_phase", 0, 120, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase"));
+		Params.push_back(ShaderParam("linearize", 0, 112, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Linearize Output Gamma"));
+		Params.push_back(ShaderParam("ntsc_scale", 0, 116, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "Resolution Scaling"));
+		Params.push_back(ShaderParam("ntsc_phase", 0, 120, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase"));
 		Params.push_back(ShaderParam("auto_res", 0, 124, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("chroma_scale", 0, 128, 4, 0.200000f, 4.000000f, 1.000000f, 0.100000f, "NTSC Chroma Scaling"));
+		Params.push_back(ShaderParam("chroma_scale", 0, 128, 4, 0.200000f, 4.000000f, 1.000000f, 0.100000f, "Chroma Scaling"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

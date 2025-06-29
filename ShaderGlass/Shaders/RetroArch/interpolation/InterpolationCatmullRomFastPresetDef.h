@@ -19,14 +19,16 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(InterpolationShadersCatmullRomXShaderDef()
+         	ShaderDefs.push_back(InterpolationShadersBicubicCatmullRomYShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")
-.Param("scale_type_x", "viewport")
-.Param("scale_type_y", "source")
+.Param("scale_type_x", "source")
+.Param("scale_type_y", "viewport")
+.Param("srgb_framebuffer", "true")
 .Param("wrap_mode", "clamp_to_edge"));
-         	ShaderDefs.push_back(InterpolationShadersCatmullRomYShaderDef()
+         	ShaderDefs.push_back(InterpolationShadersBicubicCatmullRomXShaderDef()
 .Param("filter_linear", "false")
+.Param("scale_type", "viewport")
 .Param("wrap_mode", "clamp_to_edge"));
 	}
 };

@@ -28,15 +28,20 @@ public:
 .Param("filter_linear", "false")
 .Param("scale_type", "source")
 .Param("scale_x", "2.0")
-.Param("scale_y", "2.0"));
-         	ShaderDefs.push_back(InterpolationShadersBSplineXShaderDef()
+.Param("scale_y", "2.0")
+.Param("srgb_framebuffer", "true")
+.Param("wrap_mode", "clamp_to_edge"));
+         	ShaderDefs.push_back(InterpolationShadersBicubicBSplineYShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")
-.Param("scale_type_x", "viewport")
-.Param("scale_type_y", "source"));
-         	ShaderDefs.push_back(InterpolationShadersBSplineYShaderDef()
+.Param("scale_type_x", "source")
+.Param("scale_type_y", "viewport")
+.Param("srgb_framebuffer", "true")
+.Param("wrap_mode", "clamp_to_edge"));
+         	ShaderDefs.push_back(InterpolationShadersBicubicBSplineXShaderDef()
 .Param("filter_linear", "false")
-.Param("scale_type", "viewport"));
+.Param("scale_type", "viewport")
+.Param("wrap_mode", "clamp_to_edge"));
 	}
 };
 }

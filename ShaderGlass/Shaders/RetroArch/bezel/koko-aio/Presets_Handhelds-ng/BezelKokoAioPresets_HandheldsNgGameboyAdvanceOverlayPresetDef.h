@@ -154,7 +154,7 @@ public:
 .Param("mipmap", "false")
 .Param("name", "bg_over")
 .Param("wrap_mode", "mirrored_repeat"));
-            TextureDefs.push_back(BezelKokoAioTexturesBoothillTextureDef()
+            TextureDefs.push_back(BezelKokoAioTexturesBackdropTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "backdrop")
@@ -175,6 +175,7 @@ public:
             OverrideParam("ASPECT_X", (float)254.000000);
             OverrideParam("ASPECT_Y", (float)162.000000);
             OverrideParam("BG_IMAGE_WRAP_MODE", (float)1.000000);
+            OverrideParam("BG_IMAGE_ZOOM", (float)1.018000);
             OverrideParam("DOT_M_MBLUR_STR", (float)0.200000);
             OverrideParam("DO_AMBILIGHT", (float)0.000000);
             OverrideParam("DO_BG_IMAGE", (float)1.000000);
@@ -195,13 +196,13 @@ public:
             OverrideParam("GEOM_WARP_Y", (float)0.000000);
             OverrideParam("GLOBAL_OFFX", (float)0.001500);
             OverrideParam("GLOBAL_OFFY", (float)-0.029000);
-            OverrideParam("GLOBAL_ZOOM", (float)0.481500);
+            OverrideParam("GLOBAL_ZOOM", (float)0.496500);
             OverrideParam("IN_GLOW_GAMMA", (float)2.000000);
             OverrideParam("IN_GLOW_H", (float)-1.000000);
             OverrideParam("IN_GLOW_POWER", (float)1.200001);
             OverrideParam("IN_GLOW_SPREAD", (float)0.000000);
             OverrideParam("IN_GLOW_W", (float)-1.000000);
-            OverrideParam("IN_GLOW_WARPSHARP_GAMMA", (float)0.010000);
+            OverrideParam("IN_GLOW_WARPSHARP_GAMMA", (float)0.200000);
             OverrideParam("IN_GLOW_WARPSHARP_X", (float)0.150000);
             OverrideParam("IN_GLOW_WARPSHARP_Y", (float)0.150000);
             OverrideParam("LUMINANCE", (float)0.100000);

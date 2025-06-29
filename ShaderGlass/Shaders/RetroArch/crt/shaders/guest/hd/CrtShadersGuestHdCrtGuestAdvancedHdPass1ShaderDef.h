@@ -1072,7 +1072,7 @@ public:
 		Params.push_back(ShaderParam("spike", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Scanline Spike Removal"));
 		Params.push_back(ShaderParam("SIGMA_VER", -1, 76, 4, 0.100000f, 7.000000f, 0.500000f, 0.025000f, "Vertical Blur Sigma"));
 		Params.push_back(ShaderParam("VSHARPNESS", -1, 80, 4, 1.000000f, 8.000000f, 1.000000f, 0.050000f, "Vertical Filter Range"));
-		Params.push_back(ShaderParam("internal_res", -1, 84, 4, 1.000000f, 8.000000f, 1.000000f, 0.100000f, "Internal Resolution"));
+		Params.push_back(ShaderParam("internal_res", -1, 84, 4, 0.500000f, 8.000000f, 1.000000f, 0.100000f, "Internal Resolution"));
 		Params.push_back(ShaderParam("auto_res", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
 		Params.push_back(ShaderParam("MAXS", -1, 92, 4, 0.000000f, 0.300000f, 0.150000f, 0.010000f, "Maximum Sharpness"));
 		Samplers.push_back(ShaderSampler("LinearizePass", 2));

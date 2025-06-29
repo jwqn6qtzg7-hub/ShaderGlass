@@ -154,7 +154,7 @@ public:
 .Param("mipmap", "false")
 .Param("name", "bg_over")
 .Param("wrap_mode", "mirrored_repeat"));
-            TextureDefs.push_back(BezelKokoAioTexturesBoothillTextureDef()
+            TextureDefs.push_back(BezelKokoAioTexturesBackdropTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "backdrop")

@@ -249,7 +249,7 @@ public:
             OverrideParam("mcut", (float)2.000000);
             OverrideParam("ntsc_cscale", (float)2.250000);
             OverrideParam("ntsc_fields", (float)0.000000);
-            OverrideParam("ntsc_phase", (float)4.000000);
+            OverrideParam("ntsc_phase", (float)3.000000);
             OverrideParam("ntsc_sat", (float)1.200000);
             OverrideParam("scan_falloff", (float)0.100000);
             OverrideParam("scangamma", (float)5.000000);

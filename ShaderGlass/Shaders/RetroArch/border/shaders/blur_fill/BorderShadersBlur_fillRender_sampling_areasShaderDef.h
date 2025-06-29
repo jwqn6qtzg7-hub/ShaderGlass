@@ -3216,7 +3216,7 @@ public:
 		Params.push_back(ShaderParam("ASPECT_V", -1, 60, 4, 0.000000f, 256.000000f, 0.000000f, 1.000000f, "Vertical aspect ratio before crop (0 = unchanged)"));
 		Params.push_back(ShaderParam("FORCE_INTEGER_SCALING_H", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Force integer scaling horizontally"));
 		Params.push_back(ShaderParam("FORCE_INTEGER_SCALING_V", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Force integer scaling vertically"));
-		Params.push_back(ShaderParam("OVERSCALE", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Overscale (0 = full image, 1 = full screen)"));
+		Params.push_back(ShaderParam("OVERSCALE", -1, 72, 4, -4.000000f, 8.000000f, 0.000000f, 0.050000f, "Overscale (0 = full image, 1 = full screen)"));
 		Params.push_back(ShaderParam("OS_CROP_TOP", -1, 76, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop top"));
 		Params.push_back(ShaderParam("OS_CROP_BOTTOM", -1, 80, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop bottom"));
 		Params.push_back(ShaderParam("OS_CROP_LEFT", -1, 84, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop left"));

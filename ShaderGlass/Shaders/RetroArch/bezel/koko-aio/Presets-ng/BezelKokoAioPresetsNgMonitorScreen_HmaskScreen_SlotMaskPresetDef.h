@@ -154,7 +154,7 @@ public:
 .Param("mipmap", "false")
 .Param("name", "bg_over")
 .Param("wrap_mode", "mirrored_repeat"));
-            TextureDefs.push_back(BezelKokoAioTexturesBoothillTextureDef()
+            TextureDefs.push_back(BezelKokoAioTexturesBackdropTextureDef()
 .Param("linear", "true")
 .Param("mipmap", "false")
 .Param("name", "backdrop")
@@ -191,8 +191,6 @@ public:
             OverrideParam("DO_SPOT", (float)1.000000);
             OverrideParam("DO_VIGNETTE", (float)1.000000);
             OverrideParam("GAMMA_OUT", (float)0.350000);
-            OverrideParam("GEOM_CORNER_SIZE", (float)0.005000);
-            OverrideParam("GEOM_CORNER_SMOOTH", (float)150.000000);
             OverrideParam("GLOBAL_ZOOM", (float)0.991500);
             OverrideParam("HALO_GAMMA_OUT", (float)1.700000);
             OverrideParam("HALO_NO_PREGAIN", (float)1.000000);

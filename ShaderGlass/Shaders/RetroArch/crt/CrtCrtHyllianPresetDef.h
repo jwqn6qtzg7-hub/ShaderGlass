@@ -19,7 +19,7 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(CrtShadersHyllianSupportMultiLUTLinearShaderDef()
+         	ShaderDefs.push_back(CrtShadersHyllianSupportMultiLUTLinearFastShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.000000")
 .Param("scale_type", "source")
@@ -46,10 +46,10 @@ public:
 .Param("scale_type", "viewport")
 .Param("srgb_framebuffer", "true")
 .Param("wrap_mode", "clamp_to_border"));
-            TextureDefs.push_back(ReshadeShadersLUTGradeRgbTextureDef()
+            TextureDefs.push_back(CrtShadersHyllianSupportLUTSony_Wega_29FA310_no_gammaV2TextureDef()
 .Param("linear", "true")
 .Param("name", "SamplerLUT1"));
-            TextureDefs.push_back(ReshadeShadersLUTGradeCompositeTextureDef()
+            TextureDefs.push_back(CrtShadersHyllianSupportLUTSony_Wega_29FA310_no_gammaTextureDef()
 .Param("linear", "true")
 .Param("name", "SamplerLUT2"));
 	}

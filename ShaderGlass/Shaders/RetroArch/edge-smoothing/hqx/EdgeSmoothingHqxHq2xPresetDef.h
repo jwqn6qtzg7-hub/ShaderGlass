@@ -28,14 +28,20 @@ public:
          	ShaderDefs.push_back(EdgeSmoothingHqxShadersHq2xShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "2.0")
-.Param("scale_type", "source"));
-         	ShaderDefs.push_back(InterpolationShadersBicubicXShaderDef()
+.Param("scale_type", "source")
+.Param("srgb_framebuffer", "true")
+.Param("wrap_mode", "clamp_to_edge"));
+         	ShaderDefs.push_back(InterpolationShadersBicubicBicubicYShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")
-.Param("scale_type_x", "viewport")
-.Param("scale_type_y", "source"));
-         	ShaderDefs.push_back(InterpolationShadersBicubicYShaderDef()
-.Param("filter_linear", "false"));
+.Param("scale_type_x", "source")
+.Param("scale_type_y", "viewport")
+.Param("srgb_framebuffer", "true")
+.Param("wrap_mode", "clamp_to_edge"));
+         	ShaderDefs.push_back(InterpolationShadersBicubicBicubicXShaderDef()
+.Param("filter_linear", "false")
+.Param("scale_type", "viewport")
+.Param("wrap_mode", "clamp_to_edge"));
             TextureDefs.push_back(EdgeSmoothingHqxResourcesHq2xTextureDef()
 .Param("linear", "false")
 .Param("name", "LUT"));

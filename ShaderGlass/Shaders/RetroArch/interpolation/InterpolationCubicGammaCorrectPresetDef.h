@@ -19,7 +19,7 @@ public:
 	}
 
 	virtual void Build() {
-         	ShaderDefs.push_back(InterpolationShadersLinearizeShaderDef()
+         	ShaderDefs.push_back(InterpolationShadersSupportLinearizeShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")
 .Param("scale_type", "source")
