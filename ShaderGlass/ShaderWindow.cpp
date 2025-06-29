@@ -1338,6 +1338,32 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                 SaveMaxCaptureRateState(true);
             }
             break;
+        case ID_ADVANCED_USEHDR:
+            if(GetMenuState(m_advancedMenu, ID_ADVANCED_USEHDR, MF_BYCOMMAND) & MF_CHECKED)
+            {
+                CheckMenuItem(m_advancedMenu, ID_ADVANCED_USEHDR, MF_UNCHECKED);
+                SaveUseHDRState(false);
+
+                EnableMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_ENABLED);
+
+                if(GetFlipModeState())
+                {
+                    CheckMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_CHECKED);
+                }
+                else
+                {
+                    CheckMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_UNCHECKED);
+                }
+            }
+            else
+            {
+                CheckMenuItem(m_advancedMenu, ID_ADVANCED_USEHDR, MF_CHECKED);
+                SaveUseHDRState(true);
+
+                CheckMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_CHECKED);
+                EnableMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_GRAYED);
+            }
+            break;
         case ID_DESKTOP_LOCKINPUTAREA:
             if(!HasCaptureAPI())
                 break;
@@ -2093,8 +2119,18 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     {
         CheckMenuItem(m_programMenu, ID_PROCESSING_GLOBALHOTKEYS, MF_BYCOMMAND | MF_UNCHECKED);
     }
-    if(GetFlipModeState())
+    if(GetUseHDRState())
     {
+        CheckMenuItem(m_advancedMenu, ID_ADVANCED_USEHDR, MF_BYCOMMAND | MF_CHECKED);
+        m_captureOptions.useHDR = true;
+
+        CheckMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_CHECKED);
+        EnableMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_GRAYED);
+        m_captureOptions.flipMode = true;
+    }
+    else if(GetFlipModeState())
+    {
+        EnableMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_ENABLED);
         CheckMenuItem(m_advancedMenu, ID_PRESENTATION_USEFLIPMODE, MF_BYCOMMAND | MF_CHECKED);
         m_captureOptions.flipMode = true;
     }
@@ -2246,6 +2282,16 @@ void ShaderWindow::SaveMaxCaptureRateState(bool state)
 bool ShaderWindow::GetMaxCaptureRateState()
 {
     return GetRegistryOption(TEXT("Max Capture Rate"), false);
+}
+
+void ShaderWindow::SaveUseHDRState(bool state)
+{
+    SaveRegistryOption(TEXT("Use HDR"), state);
+}
+
+bool ShaderWindow::GetUseHDRState()
+{
+    return GetRegistryOption(TEXT("Use HDR"), false);
 }
 
 void ShaderWindow::SaveRememberFPS(int fps)
