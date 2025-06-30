@@ -26,7 +26,7 @@ Overlay for running GPU shaders on top of Windows desktop.
 
 ### Download
 
-Latest stable release (v1.1.x, 18 Jun 2025):
+Latest stable release (v1.1.2, 18 Jun 2025):
 * ability to import .slangp/.slang shaders on the fly
 * shader library refresh: added koko-aio and retro-crisis
 * ability to tag personal favorites
@@ -43,6 +43,12 @@ Latest stable release (v1.1.x, 18 Jun 2025):
 * (1.1.2) fix mirror/repeat stages (koko-aio)
 
 https://github.com/mausimus/ShaderGlass/releases/download/v1.1.2/ShaderGlass-1.1.2-win-x64.zip
+
+Latest beta release (v1.1.3, 30 June 2025):
+* HDR support (Processing -> Advanced) by @EndlesslyFlowering
+* Allow running without Capture API (i.e. file input only); makes it possible to run under Wine (set Wine to use Vulkan renderer)
+
+https://github.com/mausimus/ShaderGlass/releases/download/v1.1.3/ShaderGlass-1.1.3-beta-win-x64.zip
 
 Get it on Steam!
 
