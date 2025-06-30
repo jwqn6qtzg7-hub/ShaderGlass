@@ -356,4 +356,4 @@ Please refer to copyright notes within shader code for detailed copyright and li
 
 * Big kudos to RetroArch team, emulator developers and the wide retro community!
 
-* Thanks to @lonestarr for PRs and everyone for feedback and testing :thumbsup:
+* Thanks to @lonestarr and @EndlesslyFlowering for PRs and everyone for feedback and testing :thumbsup:
