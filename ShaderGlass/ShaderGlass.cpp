@@ -890,7 +890,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
             const auto& lastPass = m_shaderPasses[p];
 
             D3D11_TEXTURE2D_DESC desc2 = {};
-            texture->GetDesc(&desc2);
+            m_displayTexture->GetDesc(&desc2);
             desc2.Usage          = D3D11_USAGE_DEFAULT;
             desc2.BindFlags      = D3D11_BIND_SHADER_RESOURCE;
             desc2.CPUAccessFlags = 0;
