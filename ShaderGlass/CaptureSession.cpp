@@ -112,11 +112,11 @@ void CaptureSession::ProcessInput()
 {
     if(m_inputImage.get())
     {
-        m_shaderGlass.Process(m_inputImage, 0);
+        m_shaderGlass.Process(m_inputImage, 0, 1);
     }
     else
     {
-        m_shaderGlass.Process(m_inputFrame, m_frameTicks);
+        m_shaderGlass.Process(m_inputFrame, m_frameTicks, m_numInputFrames);
     }
 }
 
