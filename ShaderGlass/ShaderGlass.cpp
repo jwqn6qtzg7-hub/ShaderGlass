@@ -1008,8 +1008,8 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         CURSORINFO ci {.cbSize = sizeof(CURSORINFO)};
         if(GetCursorInfo(&ci))
         {
-            auto mx = ci.ptScreenPos.x;
-            auto my = ci.ptScreenPos.y;
+            auto mx = ci.ptScreenPos.x - m_monitorOffset.x;
+            auto my = ci.ptScreenPos.y - m_monitorOffset.y;
             mx -= topLeft.x;
             my -= topLeft.y;
 
