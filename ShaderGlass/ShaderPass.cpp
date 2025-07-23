@@ -176,31 +176,29 @@ void ShaderPass::Initialize(winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<
         m_cursorMVP.m[3][1] = -1.0f;
         m_cursorMVP.m[3][3] = 1.0f;
 
-        if(SUCCEEDED(hr))
+        for(const auto& texture : m_shader.m_shaderDef.Samplers)
         {
-            for(const auto& texture : m_shader.m_shaderDef.Samplers)
+            auto& sampler = m_samplers.at(texture.binding);
+            if(texture.name == "Source")
             {
-                auto& sampler = m_samplers.at(texture.binding);
-                if(texture.name == "Source")
-                {
-                    m_sourceBinding = texture.binding;
-                    break;
-                }
+                m_sourceBinding = texture.binding;
+                break;
             }
-
-            D3D11_BLEND_DESC omDesc;
-            ZeroMemory(&omDesc, sizeof(D3D11_BLEND_DESC));
-            omDesc.RenderTarget[0].BlendEnable           = true;
-            omDesc.RenderTarget[0].SrcBlend              = D3D11_BLEND_SRC_ALPHA;
-            omDesc.RenderTarget[0].DestBlend             = D3D11_BLEND_INV_SRC_ALPHA;
-            omDesc.RenderTarget[0].BlendOp               = D3D11_BLEND_OP_ADD;
-            omDesc.RenderTarget[0].SrcBlendAlpha         = D3D11_BLEND_ONE;
-            omDesc.RenderTarget[0].DestBlendAlpha        = D3D11_BLEND_ZERO;
-            omDesc.RenderTarget[0].BlendOpAlpha          = D3D11_BLEND_OP_ADD;
-            omDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
-            assert(SUCCEEDED(device->CreateBlendState(&omDesc, m_blendState.put())));
         }
+
+        D3D11_BLEND_DESC omDesc;
+        ZeroMemory(&omDesc, sizeof(D3D11_BLEND_DESC));
+        omDesc.RenderTarget[0].BlendEnable           = true;
+        omDesc.RenderTarget[0].SrcBlend              = D3D11_BLEND_SRC_ALPHA;
+        omDesc.RenderTarget[0].DestBlend             = D3D11_BLEND_INV_SRC_ALPHA;
+        omDesc.RenderTarget[0].BlendOp               = D3D11_BLEND_OP_ADD;
+        omDesc.RenderTarget[0].SrcBlendAlpha         = D3D11_BLEND_ONE;
+        omDesc.RenderTarget[0].DestBlendAlpha        = D3D11_BLEND_ZERO;
+        omDesc.RenderTarget[0].BlendOpAlpha          = D3D11_BLEND_OP_ADD;
+        omDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+        hr = device->CreateBlendState(&omDesc, m_blendState.put());
+        assert(SUCCEEDED(hr));
     }
 }
 
