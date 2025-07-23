@@ -56,6 +56,19 @@ const ShaderCache& CaptureManager::Cache()
     return m_shaderCache;
 }
 
+const std::vector<CaptureDevice>& CaptureManager::CaptureDevices()
+{
+    if(!m_captureDevices.size())
+    {
+        m_captureDevices   = m_deviceCapture.GetCaptureDevices();
+        int deviceFormatNo = 1;
+        for(auto& d : m_captureDevices)
+            for(auto& f : d.formats)
+                f.deviceFormatNo = deviceFormatNo < MAX_CAPTURE_DEVICE_FORMATS ? deviceFormatNo++ : 0;
+    }
+    return m_captureDevices;
+}
+
 bool CaptureManager::UpdateInput()
 {
     if(IsActive())
@@ -101,7 +114,9 @@ bool CaptureManager::StartSession()
 #endif
 
     winrt::Windows::Graphics::Capture::GraphicsCaptureItem captureItem {nullptr};
-    if(!m_options.imageFile.size())
+
+    auto isCaptureAPI = !m_options.imageFile.size() && m_options.deviceFormatNo == 0;
+    if(isCaptureAPI)
     {
         try
         {
@@ -119,7 +134,7 @@ bool CaptureManager::StartSession()
                               m_options.captureWindow,
                               m_options.monitor,
                               m_options.clone,
-                              !m_options.imageFile.empty(),
+                              !m_options.imageFile.empty() || m_options.deviceFormatNo,
                               m_options.flipMode,
                               m_options.allowTearing,
                               m_options.useHDR,
@@ -159,14 +174,31 @@ bool CaptureManager::StartSession()
         m_session = make_unique<CaptureSession>(device, inputTexture, *m_shaderGlass, m_frameEvent);
         UpdatePixelSize();
     }
+    else if(m_options.deviceFormatNo)
+    {
+        std::vector<CaptureDevice>::const_iterator di;
+        std::vector<CaptureFormat>::const_iterator fi;
+        if(!FindDeviceFormat(m_options.deviceFormatNo, di, fi))
+            return false;
+
+        m_deviceCapture.Start(m_d3dDevice, di->no, fi->no);
+
+        // retrieve input image size
+        auto                 inputTexture = m_deviceCapture.m_outputTexture;
+        D3D11_TEXTURE2D_DESC desc         = {};
+        inputTexture->GetDesc(&desc);
+        m_options.imageWidth  = desc.Width;
+        m_options.imageHeight = desc.Height;
+
+        m_session = make_unique<CaptureSession>(device, inputTexture, *m_shaderGlass, m_frameEvent);
+        UpdatePixelSize();
+    }
     else
     {
-        winrt::Windows::Graphics::DirectX::DirectXPixelFormat pixelFormat =
-            m_options.useHDR ? winrt::Windows::Graphics::DirectX::DirectXPixelFormat::R16G16B16A16Float
-                             : winrt::Windows::Graphics::DirectX::DirectXPixelFormat::B8G8R8A8UIntNormalized;
+        winrt::Windows::Graphics::DirectX::DirectXPixelFormat pixelFormat = m_options.useHDR ? winrt::Windows::Graphics::DirectX::DirectXPixelFormat::R16G16B16A16Float
+                                                                                             : winrt::Windows::Graphics::DirectX::DirectXPixelFormat::B8G8R8A8UIntNormalized;
 
-        m_session = make_unique<CaptureSession>(
-            device, captureItem, pixelFormat, *m_shaderGlass, m_options.maxCaptureRate, m_frameEvent);
+        m_session = make_unique<CaptureSession>(device, captureItem, pixelFormat, *m_shaderGlass, m_options.maxCaptureRate, m_frameEvent);
     }
 
     m_active = true;
@@ -255,6 +287,8 @@ void CaptureManager::ProcessFrame()
 {
     if(m_session.get())
     {
+        if(m_deviceCapture.m_active && m_deviceCapture.Poll())
+            m_session->OnInputFrame();
         m_session->ProcessInput();
     }
 }
@@ -277,6 +311,9 @@ void CaptureManager::Exit()
     {
         m_active = false;
         SetEvent(m_frameEvent);
+
+        if(m_deviceCapture.m_active)
+            m_deviceCapture.Stop();
 
         m_session->Stop();
         delete m_session.release();
@@ -448,4 +485,24 @@ int CaptureManager::FindByName(const char* presetName)
         p++;
     }
     return -1;
+}
+
+bool CaptureManager::FindDeviceFormat(int deviceFormatNo, std::vector<CaptureDevice>::const_iterator& device, std::vector<CaptureFormat>::const_iterator& format)
+{
+    auto        found   = false;
+    const auto& devices = CaptureDevices();
+    for(auto di = devices.begin(); di != devices.end(); di++)
+    {
+        for(auto fi = di->formats.begin(); fi != di->formats.end(); fi++)
+        {
+            if(fi->deviceFormatNo == m_options.deviceFormatNo)
+            {
+                device = di;
+                format = fi;
+                return true;
+            }
+        }
+    }
+
+    return false;
 }

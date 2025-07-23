@@ -42,6 +42,8 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
         std::string                                       shaderName;
         std::optional<std::wstring>                       shaderPath;
         std::optional<std::wstring>                       windowName;
+        std::optional<std::wstring>                       deviceName;
+        std::optional<std::string>                        deviceFormat;
         std::optional<std::string>                        desktopName;
         std::optional<bool>                               transparent;
         std::optional<bool>                               clone;
@@ -62,6 +64,16 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
                 wchar_t wideName[MAX_WINDOW_TITLE];
                 MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, wideName, MAX_WINDOW_TITLE);
                 windowName = std::wstring(wideName);
+            }
+            else if(key == "CaptureDevice")
+            {
+                wchar_t wideName[MAX_DEVICE_NAME];
+                MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, wideName, MAX_DEVICE_NAME);
+                deviceName = std::wstring(wideName);
+            }
+            else if(key == "CaptureFormat")
+            {
+                deviceFormat = value;
             }
             else if(key == "CaptureDesktop")
             {
@@ -260,8 +272,15 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
             }
         }
 
-        // try to find window
-        if(windowName.has_value() && windowName.value().size())
+        if(deviceName.has_value() && deviceName.value().size() && deviceFormat.has_value() && deviceFormat.value().size())
+        {
+            auto devices = m_captureManager.CaptureDevices();
+            for(const auto& d : devices)
+                for(const auto& f : d.formats)
+                    if(d.name == deviceName && f.id == deviceFormat)
+                        SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_DEVICE_FORMAT(f.deviceFormatNo), 0);
+        }
+        else if(windowName.has_value() && windowName.value().size())
         {
             SendMessage(m_mainWindow, WM_COMMAND, IDM_WINDOW_SCAN, 0);
             for(unsigned i = 0; i < m_captureWindows.size(); i++)
@@ -403,50 +422,61 @@ void ShaderWindow::LoadImage()
     if(GetOpenFileName(&ofn))
     {
         std::wstring ws(ofn.lpstrFile);
-        m_captureOptions.imageFile     = ws;
-        m_captureOptions.captureWindow = NULL;
-        m_captureOptions.monitor       = NULL;
+        m_captureOptions.imageFile      = ws;
+        m_captureOptions.deviceFormatNo = 0;
 
-        // update input checkboxes
-        CheckMenuRadioItem(m_windowMenu, WM_CAPTURE_WINDOW(0), WM_CAPTURE_WINDOW(static_cast<UINT>(m_captureWindows.size())), 0, MF_BYCOMMAND);
-        CheckMenuRadioItem(m_displayMenu, WM_CAPTURE_DISPLAY(0), WM_CAPTURE_DISPLAY(static_cast<UINT>(m_captureDisplays.size())), 0, MF_BYCOMMAND);
         auto prevState   = CheckMenuItem(m_inputMenu, ID_INPUT_FILE, MF_CHECKED | MF_BYCOMMAND);
         auto setDefaults = prevState != MF_CHECKED;
 
-        // default to solid clone
-        m_captureOptions.clone = true;
-        CheckMenuItem(m_modeMenu, IDM_MODE_GLASS, MF_UNCHECKED | MF_BYCOMMAND);
-        CheckMenuItem(m_modeMenu, IDM_MODE_CLONE, MF_CHECKED | MF_BYCOMMAND);
-        m_captureOptions.transparent = false;
-        CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_UNCHECKED | MF_BYCOMMAND);
-        CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_CHECKED | MF_BYCOMMAND);
-        TryUpdateInput();
-        EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
-
-        // if we are *switching* to file mode, default pixel size and freescale
-        if(setDefaults)
-        {
-            // set starting scale to fit within current window size
-            RECT r;
-            GetClientRect(m_mainWindow, &r);
-            int defaultScale = 1;
-            if(m_captureOptions.imageWidth > 0 && m_captureOptions.imageHeight > 0)
-            {
-                defaultScale = max(1, min(r.right / m_captureOptions.imageWidth, r.bottom / m_captureOptions.imageHeight));
-            }
-
-            m_captureOptions.outputScale = (float)defaultScale;
-            SendMessage(m_mainWindow, WM_COMMAND, WM_PIXEL_SIZE(0), 0);
-            SetFreeScale();
-        }
-
-        if(!HasCaptureAPI() && !m_captureManager.IsActive())
-        {
-            Start();
-        }
-
-        UpdateWindowState();
+        StartImage(setDefaults, setDefaults ? WM_PIXEL_SIZE(0) : 0);
     }
+}
+
+void ShaderWindow::StartImage(bool autoScale, int pixelSize)
+{
+    m_captureOptions.captureWindow = NULL;
+    m_captureOptions.monitor       = NULL;
+
+    // update input checkboxes
+    CheckMenuRadioItem(m_windowMenu, WM_CAPTURE_WINDOW(0), WM_CAPTURE_WINDOW(static_cast<UINT>(m_captureWindows.size())), 0, MF_BYCOMMAND);
+    CheckMenuRadioItem(m_displayMenu, WM_CAPTURE_DISPLAY(0), WM_CAPTURE_DISPLAY(static_cast<UINT>(m_captureDisplays.size())), 0, MF_BYCOMMAND);
+
+    // default to solid clone
+    m_captureOptions.clone = true;
+    CheckMenuItem(m_modeMenu, IDM_MODE_GLASS, MF_UNCHECKED | MF_BYCOMMAND);
+    CheckMenuItem(m_modeMenu, IDM_MODE_CLONE, MF_CHECKED | MF_BYCOMMAND);
+    m_captureOptions.transparent = false;
+    CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_UNCHECKED | MF_BYCOMMAND);
+    CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_CHECKED | MF_BYCOMMAND);
+    TryUpdateInput();
+    EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
+
+    // if we are *switching* to file mode, default pixel size and freescale
+    if(pixelSize)
+    {
+        SendMessage(m_mainWindow, WM_COMMAND, pixelSize, 0);
+    }
+    if(autoScale && !ScaleLocked())
+    {
+        // set starting scale to fit within current window size
+        RECT r;
+        GetClientRect(m_mainWindow, &r);
+        int defaultScale = 1;
+        if(m_captureOptions.imageWidth > 0 && m_captureOptions.imageHeight > 0)
+        {
+            defaultScale = max(1, min(r.right / m_captureOptions.imageWidth, r.bottom / m_captureOptions.imageHeight));
+        }
+
+        m_captureOptions.outputScale = (float)defaultScale;
+        SetFreeScale();
+    }
+
+    if(!HasCaptureAPI() && !m_captureManager.IsActive())
+    {
+        Start();
+    }
+
+    UpdateWindowState();
 }
 
 void ShaderWindow::SaveProfile(const std::wstring& fileName)
@@ -487,7 +517,19 @@ void ShaderWindow::SaveProfile(const std::wstring& fileName)
     outfile << "ScaleLocked " << std::quoted(std::to_string(ScaleLocked())) << std::endl;
     outfile << "InputArea \"" << std::to_string(m_captureOptions.inputArea.left) << " " << std::to_string(m_captureOptions.inputArea.top) << " "
             << std::to_string(m_captureOptions.inputArea.right) << " " << std::to_string(m_captureOptions.inputArea.bottom) << "\"" << std::endl;
-    if(m_captureOptions.captureWindow)
+    if(m_captureOptions.deviceFormatNo)
+    {
+        std::vector<CaptureDevice>::const_iterator di;
+        std::vector<CaptureFormat>::const_iterator fi;
+        if(m_captureManager.FindDeviceFormat(m_captureOptions.deviceFormatNo, di, fi))
+        {
+            char buf[MAX_DEVICE_NAME];
+            WideCharToMultiByte(CP_UTF8, 0, di->name.c_str(), -1, buf, MAX_DEVICE_NAME, NULL, NULL);
+            outfile << "CaptureDevice " << std::quoted(buf) << std::endl;
+            outfile << "CaptureFormat " << std::quoted(fi->id) << std::endl;
+        }
+    }
+    else if(m_captureOptions.captureWindow)
     {
         const auto& crop = m_captureOptions.croppedArea;
         outfile << "CroppedArea \"" << std::to_string(crop.left) << " " << std::to_string(crop.top) << " " << std::to_string(crop.right) << " " << std::to_string(crop.bottom)
@@ -709,6 +751,47 @@ void ShaderWindow::ScanWindows()
     }
 }
 
+void ShaderWindow::ScanDevices()
+{
+    RemoveMenu(m_deviceMenu, ID_DEVICE_NODEVICESFOUND, MF_BYCOMMAND);
+
+    auto numDevices = GetMenuItemCount(m_deviceMenu);
+    for(int i = numDevices - 1; i >= 0; i--)
+    {
+        auto deviceMenu = GetSubMenu(m_deviceMenu, i);
+        auto numFormats = GetMenuItemCount(deviceMenu);
+        for(int j = numFormats - 1; j >= 0; j--)
+            RemoveMenu(deviceMenu, j, MF_BYPOSITION);
+        RemoveMenu(m_deviceMenu, i, MF_BYPOSITION);
+    }
+
+    const auto& captureDevices = m_captureManager.CaptureDevices();
+
+    if(!captureDevices.size())
+    {
+        InsertMenu(m_deviceMenu, 1, MF_STRING | MF_DISABLED, ID_DEVICE_NODEVICESFOUND, TEXT("No capture devices"));
+        return;
+    }
+
+    for(auto& w : captureDevices)
+    {
+        auto deviceMenu = CreatePopupMenu();
+        for(auto& f : w.formats)
+        {
+            if(f.deviceFormatNo)
+            {
+                auto id = WM_CAPTURE_DEVICE_FORMAT(f.deviceFormatNo);
+                InsertMenu(deviceMenu, 1, MF_STRING, id, f.name.c_str());
+
+                if(m_captureOptions.deviceFormatNo == f.deviceFormatNo)
+                    CheckMenuItem(deviceMenu, id, MF_CHECKED | MF_BYCOMMAND);
+            }
+        }
+
+        InsertMenu(m_deviceMenu, 1, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)deviceMenu, w.name.c_str());
+    }
+}
+
 void ShaderWindow::ScanDisplays()
 {
     m_captureDisplays.clear();
@@ -787,10 +870,11 @@ void ShaderWindow::BuildInputMenu()
     {
         AppendMenu(m_pixelSizeMenu, MF_STRING, px.first, convertCharArrayToLPCWSTR(px.second.text));
     }
-    InsertMenu(m_inputMenu, 4, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_pixelSizeMenu, L"Pixel Size");
+    InsertMenu(m_inputMenu, 5, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_pixelSizeMenu, L"Pixel Size");
 
     m_displayMenu = GetSubMenu(m_inputMenu, 0);
     m_windowMenu  = GetSubMenu(m_inputMenu, 1);
+    m_deviceMenu  = GetSubMenu(m_inputMenu, 2);
 }
 
 void ShaderWindow::BuildOutputMenu()
@@ -984,7 +1068,8 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
         return;
 
     // resize client area to captured window/file x scale
-    if(m_captureManager.IsActive() && !m_captureOptions.freeScale && ((m_captureOptions.captureWindow && m_captureOptions.clone) || !m_captureOptions.imageFile.empty()))
+    if(m_captureManager.IsActive() && !m_captureOptions.freeScale &&
+       ((m_captureOptions.captureWindow && m_captureOptions.clone) || !m_captureOptions.imageFile.empty() || m_captureOptions.deviceFormatNo))
     {
         LONG inputWidth = 0, inputHeight = 0;
 
@@ -1667,6 +1752,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     CheckMenuItem(m_inputMenu, ID_INPUT_FILE, MF_UNCHECKED | MF_BYCOMMAND);
                     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
                     m_captureOptions.imageFile.clear();
+                    m_captureOptions.deviceFormatNo = 0;
                     TryUpdateInput();
                     UpdateWindowState();
                     SetFreeScale();
@@ -1700,6 +1786,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     CheckMenuItem(m_inputMenu, ID_INPUT_FILE, MF_UNCHECKED | MF_BYCOMMAND);
                     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_DISABLED);
                     m_captureOptions.imageFile.clear();
+                    m_captureOptions.deviceFormatNo = 0;
                     TryUpdateInput();
                     UpdateWindowState();
                     break;
@@ -1791,6 +1878,17 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                             RemoveRecentImport(path);
                         }
                     }
+                    break;
+                }
+                if(wmId >= WM_CAPTURE_DEVICE_FORMAT(0) && wmId < WM_CAPTURE_DEVICE_FORMAT(MAX_CAPTURE_DEVICE_FORMATS))
+                {
+                    auto deviceFormatNo = wmId - WM_CAPTURE_DEVICE_FORMAT(0);
+                    auto setDefaults    = (m_captureOptions.deviceFormatNo == 0);
+                    m_captureOptions.imageFile.clear();
+                    m_captureOptions.deviceFormatNo = deviceFormatNo;
+                    CheckMenuItem(m_inputMenu, ID_INPUT_FILE, MF_UNCHECKED | MF_BYCOMMAND);
+
+                    StartImage(setDefaults, setDefaults ? WM_PIXEL_SIZE(3) : 0);
                     break;
                 }
             }
@@ -1912,6 +2010,14 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         ValidateRect(hWnd, NULL);
         return 0;
     }
+
+    case WM_INITMENUPOPUP: {
+        if(wParam == (WPARAM)m_deviceMenu)
+        {
+            ScanDevices();
+        }
+    }
+    break;
     case WM_TIMER:
         switch(wParam)
         {
@@ -2081,11 +2187,7 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
 
     if(!HasCaptureAPI())
     {
-        ModifyMenu(m_helpMenu,
-                   ID_HELP_WINDOWSVERSION,
-                   MF_BYCOMMAND | MF_STRING | MF_DISABLED,
-                   ID_HELP_WINDOWSVERSION,
-                   L"No Windows Capture API! Only file input is possible.");
+        ModifyMenu(m_helpMenu, ID_HELP_WINDOWSVERSION, MF_BYCOMMAND | MF_STRING | MF_DISABLED, ID_HELP_WINDOWSVERSION, L"No Windows Capture API! Only file input is possible.");
 
         EnableMenuItem(m_inputMenu, 0, MF_BYPOSITION | MF_DISABLED);
         EnableMenuItem(m_inputMenu, 1, MF_BYPOSITION | MF_DISABLED);
