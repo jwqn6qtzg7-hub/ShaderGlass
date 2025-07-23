@@ -283,7 +283,7 @@ bool ShaderWindow::LoadProfile(const std::wstring& fileName)
         }
         else if(windowName.has_value() && windowName.value().size())
         {
-            SendMessage(m_mainWindow, WM_COMMAND, IDM_WINDOW_SCAN, 0);
+            ScanWindows();
             for(unsigned i = 0; i < m_captureWindows.size(); i++)
             {
                 if(m_captureWindows.at(i).name == windowName.value())
@@ -1620,9 +1620,6 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         case ID_WINDOW_CROP:
             CropWindow();
             break;
-        case IDM_WINDOW_SCAN:
-            ScanWindows();
-            break;
         /*case IDM_DISPLAY_ALLDISPLAYS:
             CheckMenuRadioItem(
                 m_windowMenu, WM_CAPTURE_WINDOW(0), WM_CAPTURE_WINDOW(static_cast<UINT>(m_captureWindows.size())), 0, MF_BYCOMMAND);
@@ -2030,6 +2027,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         {
             ScanDevices();
         }
+        else if (wParam == (WPARAM)m_windowMenu)
+        {
+            ScanWindows();
+        }
     }
     break;
     case WM_TIMER:
@@ -2196,7 +2197,6 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
     BuildInputMenu();
     BuildOutputMenu();
     BuildShaderMenu();
-    ScanWindows();
     ScanDisplays();
 
     if(!HasCaptureAPI())
