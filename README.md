@@ -45,11 +45,11 @@ Latest stable release (v1.1.4, 6 Jul 2025):
 
 https://github.com/mausimus/ShaderGlass/releases/download/v1.1.4/ShaderGlass-1.1.4-win-x64.zip
 
-Latest beta release (v1.1.3, 30 June 2025):
-* HDR support (Processing -> Advanced) by @EndlesslyFlowering
-* Allow running without Capture API (i.e. file input only); makes it possible to run under Wine (set Wine to use Vulkan renderer)
+Latest beta release (v1.1.5, 23 July 2025):
+* Device capture input (webcam/capture card)
+* Hide original mouse cursor when "Capture Cursor" is enabled
 
-https://github.com/mausimus/ShaderGlass/releases/download/v1.1.3/ShaderGlass-1.1.3-beta-win-x64.zip
+https://github.com/mausimus/ShaderGlass/releases/download/v1.1.5/ShaderGlass-1.1.5-beta-win-x64.zip
 
 Get it on Steam!
 
