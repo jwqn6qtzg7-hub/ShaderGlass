@@ -68,6 +68,14 @@ void CaptureManager::ShowCursor()
 
 const std::vector<CaptureDevice>& CaptureManager::CaptureDevices()
 {
+    if(!m_captureDevices.size())
+    {
+        m_captureDevices   = m_deviceCapture.GetCaptureDevices();
+        int deviceFormatNo = 1;
+        for(auto& d : m_captureDevices)
+            for(auto& f : d.formats)
+                f.deviceFormatNo = deviceFormatNo < MAX_CAPTURE_DEVICE_FORMATS ? deviceFormatNo++ : 0;
+    }
     return m_captureDevices;
 }
 
