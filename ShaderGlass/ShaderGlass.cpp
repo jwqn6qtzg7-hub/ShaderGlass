@@ -1008,10 +1008,23 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
         CURSORINFO ci {.cbSize = sizeof(CURSORINFO)};
         if(GetCursorInfo(&ci))
         {
-            auto mx = ci.ptScreenPos.x - m_monitorOffset.x;
-            auto my = ci.ptScreenPos.y - m_monitorOffset.y;
-            mx -= topLeft.x;
-            my -= topLeft.y;
+            auto mx = ci.ptScreenPos.x;
+            auto my = ci.ptScreenPos.y;
+            
+            if(!m_clone)
+            {
+                // glass
+                mx -= m_monitorOffset.x;
+                my -= m_monitorOffset.y;
+
+                mx -= topLeft.x;
+                my -= topLeft.y;
+            }
+            else if(m_captureWindow)
+            {
+                mx -= captureTopLeft.x;
+                my -= captureTopLeft.y;
+            }
 
             auto cursor = m_cursorEmulator.GetCursor();
             if(cursor && cursor->image)

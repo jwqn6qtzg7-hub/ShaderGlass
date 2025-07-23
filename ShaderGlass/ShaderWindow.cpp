@@ -1581,6 +1581,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             if(!HasCaptureAPI())
                 break;
             m_captureOptions.transparent = false;
+            if(m_captureManager.IsActive())
+            {
+                m_captureManager.UpdateCursor();
+            }
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_UNCHECKED | MF_BYCOMMAND);
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_CHECKED | MF_BYCOMMAND);
             UpdateWindowState();
@@ -1589,6 +1593,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             if(!HasCaptureAPI())
                 break;
             m_captureOptions.transparent = true;
+            if(m_captureManager.IsActive())
+            {
+                m_captureManager.UpdateCursor();
+            }
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_CHECKED | MF_BYCOMMAND);
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_UNCHECKED | MF_BYCOMMAND);
             UpdateWindowState();
@@ -1600,6 +1608,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             CheckMenuItem(m_modeMenu, IDM_MODE_GLASS, MF_CHECKED | MF_BYCOMMAND);
             CheckMenuItem(m_modeMenu, IDM_MODE_CLONE, MF_UNCHECKED | MF_BYCOMMAND);
             m_captureOptions.transparent = true;
+            if(m_captureManager.IsActive())
+            {
+                m_captureManager.UpdateCursor();
+            }
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_CHECKED | MF_BYCOMMAND);
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_UNCHECKED | MF_BYCOMMAND);
             TryUpdateInput();
@@ -1612,6 +1624,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             CheckMenuItem(m_modeMenu, IDM_MODE_GLASS, MF_UNCHECKED | MF_BYCOMMAND);
             CheckMenuItem(m_modeMenu, IDM_MODE_CLONE, MF_CHECKED | MF_BYCOMMAND);
             m_captureOptions.transparent = false;
+            if(m_captureManager.IsActive())
+            {
+                m_captureManager.UpdateCursor();
+            }
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_TRANSPARENT, MF_UNCHECKED | MF_BYCOMMAND);
             CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_CHECKED | MF_BYCOMMAND);
             TryUpdateInput();
@@ -1751,6 +1767,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
                     m_captureOptions.imageFile.clear();
                     m_captureOptions.deviceFormatNo = 0;
+                    if(m_captureManager.IsActive())
+                    {
+                        m_captureManager.UpdateCursor();
+                    }
                     TryUpdateInput();
                     UpdateWindowState();
                     SetFreeScale();
@@ -1785,6 +1805,10 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_DISABLED);
                     m_captureOptions.imageFile.clear();
                     m_captureOptions.deviceFormatNo = 0;
+                    if(m_captureManager.IsActive())
+                    {
+                        m_captureManager.UpdateCursor();
+                    }
                     TryUpdateInput();
                     UpdateWindowState();
                     break;
