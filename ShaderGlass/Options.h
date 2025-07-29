@@ -36,12 +36,12 @@ GNU General Public License v3.0
 
 struct PixelSizeInfo
 {
-    float       w;
-    float       h;
-    const char* text;
-    const char* mnemonic;
+    float          w;
+    float          h;
+    const wchar_t* text;
+    const char*    mnemonic;
 
-    PixelSizeInfo(float w, float h, const char* text, const char* mnemonic) : w(w), h(h), text(text), mnemonic(mnemonic) { }
+    PixelSizeInfo(float w, float h, const wchar_t* text, const char* mnemonic) : w(w), h(h), text(text), mnemonic(mnemonic) { }
 };
 
 struct AspectRatioInfo
@@ -107,21 +107,21 @@ struct CaptureDevice
     std::vector<CaptureFormat> formats;
 };
 
-static const std::map<UINT, PixelSizeInfo> pixelSizes = {{WM_PIXEL_SIZE(0), PixelSizeInfo(1.0f, 1.0f, "x1", "1")},
-                                                         {WM_PIXEL_SIZE(1), PixelSizeInfo(2.0f, 2.0f, "x2", "2")},
-                                                         {WM_PIXEL_SIZE(2), PixelSizeInfo(2.25f, 2.25f, "x2.25 (480p -> 1080p)", "2.25")},
-                                                         {WM_PIXEL_SIZE(3), PixelSizeInfo(3.0f, 3.0f, "x3", "3")},
-                                                         {WM_PIXEL_SIZE(4), PixelSizeInfo(4.0f, 4.0f, "x4", "4")},
-                                                         {WM_PIXEL_SIZE(5), PixelSizeInfo(4.5f, 4.5f, "x4.5 (240p -> 1080p)", "4.5")},
-                                                         {WM_PIXEL_SIZE(6), PixelSizeInfo(5.0f, 5.0f, "x5", "5")},
-                                                         {WM_PIXEL_SIZE(7), PixelSizeInfo(5.4f, 5.4f, "x5.4 (200p -> 1080p)", "5.4")},
-                                                         {WM_PIXEL_SIZE(8), PixelSizeInfo(6.0f, 6.0f, "x6 (240p -> 1440p)", "6")},
-                                                         {WM_PIXEL_SIZE(9), PixelSizeInfo(7.0f, 7.0f, "x7", "7")},
-                                                         {WM_PIXEL_SIZE(10), PixelSizeInfo(7.2f, 7.2f, "x7.2 (200p -> 1440p)", "7.2")},
-                                                         {WM_PIXEL_SIZE(11), PixelSizeInfo(8.0f, 8.0f, "x8", "8")},
-                                                         {WM_PIXEL_SIZE(12), PixelSizeInfo(9.0f, 9.0f, "x9 (240p -> 4K)", "9")},
-                                                         {WM_PIXEL_SIZE(13), PixelSizeInfo(10.0f, 10.0f, "x10", "10")},
-                                                         {WM_PIXEL_SIZE(14), PixelSizeInfo(10.8f, 10.8f, "x10.8 (200p -> 4K)", "10.8")}};
+static const std::map<UINT, PixelSizeInfo> pixelSizes = {{WM_PIXEL_SIZE(0), PixelSizeInfo(1.0f, 1.0f, L"x1", "1")},
+                                                         {WM_PIXEL_SIZE(1), PixelSizeInfo(2.0f, 2.0f, L"x2", "2")},
+                                                         {WM_PIXEL_SIZE(2), PixelSizeInfo(2.25f, 2.25f, L"x2.25 (480p -> 1080p)", "2.25")},
+                                                         {WM_PIXEL_SIZE(3), PixelSizeInfo(3.0f, 3.0f, L"x3", "3")},
+                                                         {WM_PIXEL_SIZE(4), PixelSizeInfo(4.0f, 4.0f, L"x4", "4")},
+                                                         {WM_PIXEL_SIZE(5), PixelSizeInfo(4.5f, 4.5f, L"x4.5 (240p -> 1080p)", "4.5")},
+                                                         {WM_PIXEL_SIZE(6), PixelSizeInfo(5.0f, 5.0f, L"x5", "5")},
+                                                         {WM_PIXEL_SIZE(7), PixelSizeInfo(5.4f, 5.4f, L"x5.4 (200p -> 1080p)", "5.4")},
+                                                         {WM_PIXEL_SIZE(8), PixelSizeInfo(6.0f, 6.0f, L"x6 (240p -> 1440p)", "6")},
+                                                         {WM_PIXEL_SIZE(9), PixelSizeInfo(7.0f, 7.0f, L"x7", "7")},
+                                                         {WM_PIXEL_SIZE(10), PixelSizeInfo(7.2f, 7.2f, L"x7.2 (200p -> 1440p)", "7.2")},
+                                                         {WM_PIXEL_SIZE(11), PixelSizeInfo(8.0f, 8.0f, L"x8", "8")},
+                                                         {WM_PIXEL_SIZE(12), PixelSizeInfo(9.0f, 9.0f, L"x9 (240p -> 4K)", "9")},
+                                                         {WM_PIXEL_SIZE(13), PixelSizeInfo(10.0f, 10.0f, L"x10", "10")},
+                                                         {WM_PIXEL_SIZE(14), PixelSizeInfo(10.8f, 10.8f, L"x10.8 (200p -> 4K)", "10.8")}};
 
 static std::map<UINT, AspectRatioInfo> aspectRatios = {
     {WM_ASPECT_RATIO(0), AspectRatioInfo(1.0f, L"None", "1")},

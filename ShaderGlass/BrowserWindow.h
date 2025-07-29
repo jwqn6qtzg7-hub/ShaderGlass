@@ -31,6 +31,10 @@ private:
     HWND                      m_paramsWindow;
     HWND                      m_addFavButton;
     HWND                      m_delFavButton;
+    HWND                      m_paramsButton;
+    HWND                      m_pixelSizeTrackBar;
+    HWND                      m_pixelSizeLabel;
+    HWND                      m_pixelSizeValue;
     UINT                      m_dpi {USER_DEFAULT_SCREEN_DPI};
     HFONT                     m_font;
     CaptureManager&           m_captureManager;
@@ -56,5 +60,6 @@ private:
     LRESULT CALLBACK        WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
     BOOL      CreateImageList(HWND hwndTV);
-    HTREEITEM BrowserWindow::AddItemToTree(HWND hwndTV, LPTSTR lpszItem, LPARAM lParam, int nLevel);
+    void      CreatePixelSizeSlider(const RECT& rcClient);
+    HTREEITEM AddItemToTree(HWND hwndTV, LPTSTR lpszItem, LPARAM lParam, int nLevel);
 };

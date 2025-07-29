@@ -11,12 +11,16 @@ GNU General Public License v3.0
 #include "BrowserWindow.h"
 
 constexpr int WINDOW_WIDTH  = 400;
-constexpr int WINDOW_HEIGHT = 680;
+constexpr int WINDOW_HEIGHT = 700;
 constexpr int CX_BITMAP     = 24;
 constexpr int CY_BITMAP     = 24;
 constexpr int NUM_BITMAPS   = 3;
 constexpr int BUTTON_WIDTH  = 140;
 constexpr int PANEL_HEIGHT  = 40;
+constexpr int STATIC_WIDTH  = 70;
+constexpr int STATIC_HEIGHT = 30;
+constexpr int TRACK_WIDTH   = 150;
+constexpr int TRACK_HEIGHT  = 30;
 constexpr int MAX_NAME      = 20;
 constexpr int MAX_VALUE     = 200;
 
@@ -131,17 +135,45 @@ void BrowserWindow::Resize()
 
         SendMessage(m_addFavButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
         SendMessage(m_delFavButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_paramsButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_pixelSizeLabel, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_pixelSizeValue, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
     }
 
     RECT rcClient;
     GetClientRect(m_mainWindow, &rcClient);
-    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
+    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (LONG)(PANEL_HEIGHT * 2 * m_dpiScale), 0);
+    SetWindowPos(m_pixelSizeTrackBar,
+                 NULL,
+                 (LONG)(m_dpiScale * STATIC_WIDTH),
+                 (LONG)(rcClient.bottom - (PANEL_HEIGHT * 1.75f * m_dpiScale)),
+                 (LONG)(m_dpiScale * TRACK_WIDTH),
+                 (LONG)(m_dpiScale * TRACK_HEIGHT),
+                 0);
+    SetWindowPos(
+        m_pixelSizeLabel, NULL, 2, (LONG)(rcClient.bottom - (PANEL_HEIGHT * 1.75f * m_dpiScale)), (LONG)(m_dpiScale * STATIC_WIDTH - 2), (LONG)(m_dpiScale * STATIC_HEIGHT), 0);
+    SetWindowPos(m_pixelSizeValue,
+                 NULL,
+                 (LONG)((STATIC_WIDTH + TRACK_WIDTH) * m_dpiScale),
+                 (LONG)(rcClient.bottom - (PANEL_HEIGHT * 1.75f * m_dpiScale)),
+                 (LONG)(m_dpiScale * STATIC_WIDTH * 2),
+                 (LONG)(m_dpiScale * STATIC_HEIGHT),
+                 0);
+
     SetWindowPos(m_addFavButton, NULL, 0, rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale), (LONG)(BUTTON_WIDTH * m_dpiScale), (LONG)(PANEL_HEIGHT * m_dpiScale), 0);
     SetWindowPos(m_delFavButton,
                  NULL,
                  (LONG)(BUTTON_WIDTH * m_dpiScale),
                  rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
                  (LONG)(BUTTON_WIDTH * m_dpiScale),
+                 (LONG)(PANEL_HEIGHT * m_dpiScale),
+                 0);
+
+    SetWindowPos(m_paramsButton,
+                 NULL,
+                 (LONG)(BUTTON_WIDTH * 2 * m_dpiScale),
+                 rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
+                 rcClient.right - (LONG)(BUTTON_WIDTH * 2 * m_dpiScale),
                  (LONG)(PANEL_HEIGHT * m_dpiScale),
                  0);
 }
@@ -172,6 +204,62 @@ BOOL BrowserWindow::CreateImageList(HWND hwndTV)
     TreeView_SetImageList(hwndTV, himl, TVSIL_NORMAL);
 
     return TRUE;
+}
+
+void BrowserWindow::CreatePixelSizeSlider(const RECT& rcClient)
+{
+    m_pixelSizeTrackBar = CreateWindowEx(0,
+                                         TRACKBAR_CLASS,
+                                         L"Trackbar Control",
+                                         WS_CHILD | WS_VISIBLE | TBS_AUTOTICKS,
+                                         (LONG)(m_dpiScale * STATIC_WIDTH),
+                                         (LONG)(rcClient.bottom - (PANEL_HEIGHT * 2 * m_dpiScale)),
+                                         (LONG)(m_dpiScale * TRACK_WIDTH),
+                                         (LONG)(m_dpiScale * TRACK_HEIGHT),
+                                         m_mainWindow,
+                                         0,
+                                         m_instance,
+                                         NULL);
+
+    SendMessage(m_pixelSizeTrackBar,
+                TBM_SETRANGE,
+                (WPARAM)TRUE, // redraw flag
+                (LPARAM)MAKELONG(0, pixelSizes.size() - 1));
+
+    SendMessage(m_pixelSizeTrackBar,
+                TBM_SETPOS,
+                (WPARAM)TRUE, // redraw flag
+                (LPARAM)4);
+
+    SendMessage(m_pixelSizeTrackBar, WM_SETFONT, (LPARAM)m_font, true);
+
+    m_pixelSizeLabel = CreateWindowEx(0,
+                                      L"STATIC",
+                                      L"Pixel Size",
+                                      SS_RIGHT | SS_NOTIFY | WS_CHILD | WS_VISIBLE,
+                                      2,
+                                      0,
+                                      (LONG)(m_dpiScale * STATIC_WIDTH - 2),
+                                      (LONG)(m_dpiScale * STATIC_HEIGHT),
+                                      m_mainWindow,
+                                      NULL,
+                                      m_instance,
+                                      NULL);
+    SendMessage(m_pixelSizeLabel, WM_SETFONT, (LPARAM)m_font, true);
+
+    const wchar_t* label = L"?";
+    for(const auto& ps : pixelSizes)
+    {
+        if(m_captureOptions.pixelWidth == ps.second.w && m_captureOptions.pixelHeight == ps.second.h)
+        {
+            label = ps.second.text;
+            break;
+        }
+    }
+
+    m_pixelSizeValue = CreateWindowEx(
+        0, L"STATIC", label, SS_LEFT | WS_CHILD | WS_VISIBLE, 0, 0, (LONG)(m_dpiScale * STATIC_WIDTH), (LONG)(m_dpiScale * STATIC_HEIGHT), m_mainWindow, NULL, m_instance, NULL);
+    SendMessage(m_pixelSizeValue, WM_SETFONT, (LPARAM)m_font, true);
 }
 
 HTREEITEM BrowserWindow::AddItemToTree(HWND hwndTV, LPTSTR lpszItem, LPARAM lParam, int nLevel)
@@ -259,7 +347,7 @@ void BrowserWindow::Build()
                                    0,
                                    0,
                                    rcClient.right,
-                                   rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
+                                   rcClient.bottom - (LONG)(PANEL_HEIGHT * 2 * m_dpiScale),
                                    m_mainWindow,
                                    NULL,
                                    m_instance,
@@ -387,6 +475,8 @@ void BrowserWindow::Build()
     }
 
     /// build other controls
+    CreatePixelSizeSlider(rcClient);
+
     m_addFavButton = CreateWindow(L"BUTTON",
                                   L"Add Favorite",
                                   WS_TABSTOP | WS_VISIBLE | WS_CHILD,
@@ -412,6 +502,19 @@ void BrowserWindow::Build()
                                   (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
                                   NULL);
     SendMessage(m_delFavButton, WM_SETFONT, (LPARAM)m_font, true);
+
+    m_paramsButton = CreateWindow(L"BUTTON",
+                                  L"Parameters",
+                                  WS_TABSTOP | WS_VISIBLE | WS_CHILD,
+                                  (LONG)(BUTTON_WIDTH * 2 * m_dpiScale),
+                                  rcClient.bottom - (LONG)(PANEL_HEIGHT * m_dpiScale),
+                                  rcClient.right - (LONG)(BUTTON_WIDTH * 2 * m_dpiScale),
+                                  (LONG)(PANEL_HEIGHT * m_dpiScale),
+                                  m_mainWindow,
+                                  NULL,
+                                  (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
+                                  NULL);
+    SendMessage(m_paramsButton, WM_SETFONT, (LPARAM)m_font, true);
 
     Resize();
 }
@@ -579,6 +682,14 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         }
         break;
     }
+    case WM_HSCROLL: {
+        if(lParam != 0)
+        {
+            auto pos = SendMessage(m_pixelSizeTrackBar, TBM_GETPOS, 0, 0);
+            PostMessage(m_shaderWindow, WM_COMMAND, WM_PIXEL_SIZE(pos), 0);
+        }
+        return 0;
+    }
     case WM_COMMAND: {
         UINT wmId = LOWORD(wParam);
         switch(wmId)
@@ -635,6 +746,17 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             m_items[id]            = TreeView_InsertItem(m_treeControl, &is);
             return 0;
         }
+        case WM_USER + 2: {
+            auto newPos = (UINT)WM_PIXEL_SIZE(lParam);
+            auto oldPos = SendMessage(m_pixelSizeTrackBar, TBM_GETPOS, 0, 0);
+            if(newPos != oldPos)
+            {
+                SendMessage(m_pixelSizeTrackBar, TBM_SETPOS, (WPARAM)TRUE, lParam);
+                const auto& label = pixelSizes.at(newPos).text;
+                SetWindowText(m_pixelSizeValue, label);
+            }
+            return 0;
+        };
         case BN_CLICKED: {
             if(lParam == (LPARAM)m_addFavButton)
             {
@@ -684,6 +806,10 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
                     m_personal.erase(personalItem->first);
                     SavePersonal();
                 }
+            }
+            else if(lParam == (LPARAM)m_paramsButton)
+            {
+                PostMessage(m_shaderWindow, WM_COMMAND, IDM_SHADER_PARAMETERS, 0);
             }
             return 0;
         }

@@ -869,7 +869,7 @@ void ShaderWindow::BuildInputMenu()
     }
     for(const auto& px : pixelSizes)
     {
-        AppendMenu(m_pixelSizeMenu, MF_STRING, px.first, convertCharArrayToLPCWSTR(px.second.text));
+        AppendMenu(m_pixelSizeMenu, MF_STRING, px.first, px.second.text);
     }
     InsertMenu(m_inputMenu, 5, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_pixelSizeMenu, L"Pixel Size");
 
@@ -1130,8 +1130,8 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
             RECT clientRect;
             GetClientRect(hWnd, &clientRect);
 
-            int requiredW = static_cast<LONG>(static_cast<int>(clientRect.right / xAlign) * xAlign);
-            int requiredH = static_cast<LONG>(static_cast<int>(clientRect.bottom / yAlign) * yAlign);
+            int requiredW = static_cast<LONG>(static_cast<int>(roundf(clientRect.right / xAlign)) * xAlign);
+            int requiredH = static_cast<LONG>(static_cast<int>(roundf(clientRect.bottom / yAlign)) * yAlign);
             if(requiredW == 0)
                 requiredW = 1;
             if(requiredH == 0)
@@ -1822,6 +1822,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     m_captureOptions.pixelHeight = pixelSize->second.h;
                     m_captureManager.UpdatePixelSize();
                     UpdateWindowState();
+                    SendMessage(m_browserWindow, WM_COMMAND, WM_USER + 2, m_selectedPixelSize);
                     break;
                 }
                 const auto& outputScale = outputScales.find(wmId);
