@@ -1761,7 +1761,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
 #endif
             break;
         case ID_HELP_README:
-            ShellExecute(0, 0, L"https://github.com/mausimus/ShaderGlass/blob/master/README.md", 0, 0, SW_SHOW);
+            ShellExecute(0, 0, L"https://mausimus.github.io/ShaderGlass/MANUAL.html", 0, 0, SW_SHOW);
             break;
         case ID_HELP_FREQUENTLYASKEDQUESTIONS:
             ShellExecute(0, 0, L"https://github.com/mausimus/ShaderGlass/blob/master/FAQ.md", 0, 0, SW_SHOW);
