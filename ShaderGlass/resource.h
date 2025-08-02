@@ -30,9 +30,11 @@
 #define IDC_SG_IBEAM                    138
 #define IDC_SG_BLANK                    139
 #define IDC_SG_CROSS                    140
+#define IDD_HOTKEY_DIALOG               141
 #define IDC_EDIT1                       1000
 #define IDC_SPIN1                       1001
 #define IDC_SPIN2                       1002
+#define IDC_HOTKEY1                     1002
 #define IDC_EDIT2                       1003
 #define IDC_SPIN3                       1004
 #define IDC_EDIT3                       1005
@@ -183,6 +185,16 @@
 #define ID_ADVANCED_USEHDR              32921
 #define ID_INPUT_DEVICE                 32922
 #define ID_DEVICE_NODEVICESFOUND        32923
+#define ID_GLOBALHOTKEYS_ENABLE         32924
+#define ID_GLOBALHOTKEYS_SCREENSHOT     32925
+#define ID_GLOBALHOTKEYS_PAUSE          32926
+#define ID_GLOBALHOTKEYS_CURSOR         32927
+#define ID_GLOBALHOTKEYS_FULLSCREEN     32928
+#define IDM_ACTIVE                      32930
+#define IDM_PIXELSIZE_PREV              32931
+#define IDM_CURSOR                      32933
+#define ID_GLOBALHOTKEYS_ACTIVE         32935
+#define ID_SHADER_ACTIVE                32936
 #define IDC_STATIC                      -1
 #define IDC_STATIC_LABEL                -1
 
@@ -191,9 +203,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        141
-#define _APS_NEXT_COMMAND_VALUE         32924
-#define _APS_NEXT_CONTROL_VALUE         1002
+#define _APS_NEXT_RESOURCE_VALUE        142
+#define _APS_NEXT_COMMAND_VALUE         32937
+#define _APS_NEXT_CONTROL_VALUE         1004
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif
