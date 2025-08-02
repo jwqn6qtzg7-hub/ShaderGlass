@@ -45,11 +45,13 @@ Latest stable release (v1.1.4, 6 Jul 2025):
 
 https://github.com/mausimus/ShaderGlass/releases/download/v1.1.4/ShaderGlass-1.1.4-win-x64.zip
 
-Latest beta release (v1.1.5, 23 July 2025):
-* Device capture input (webcam/capture card)
-* Hide original mouse cursor when "Capture Cursor" is enabled
+Latest beta release (v1.1.6, 2 Aug 2025):
+* (1.1.5) Device capture input (webcam/capture card)
+* (1.1.5) Hide original mouse cursor when "Capture Cursor" is enabled
+* (1.1.6) Ability to edit global hotkeys
+* (1.1.6) New hotkeys: Capture Cursor, Shader Active, Toggle Menu
 
-https://github.com/mausimus/ShaderGlass/releases/download/v1.1.5/ShaderGlass-1.1.5-beta-win-x64.zip
+https://github.com/mausimus/ShaderGlass/releases/download/v1.1.6/ShaderGlass-1.1.6-beta-win-x64.zip
 
 Get it on Steam!
 
