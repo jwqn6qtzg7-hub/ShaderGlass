@@ -1570,7 +1570,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             SendMessage(hWnd, WM_COMMAND, WM_PIXEL_SIZE((m_selectedPixelSize + 1) % pixelSizes.size()), 0);
             break;
         case IDM_PIXELSIZE_PREV:
-            SendMessage(hWnd, WM_COMMAND, WM_PIXEL_SIZE((m_selectedPixelSize - 1 + pixelSizes.size()) % pixelSizes.size()), 0);
+            SendMessage(hWnd, WM_COMMAND, WM_PIXEL_SIZE(((int)m_selectedPixelSize - 1 + pixelSizes.size()) % pixelSizes.size()), 0);
             break;
         case IDM_FLIP_HORIZONTAL:
             m_captureOptions.flipHorizontal = !m_captureOptions.flipHorizontal;
@@ -1770,6 +1770,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         case ID_GLOBALHOTKEYS_SCREENSHOT:
         case ID_GLOBALHOTKEYS_PAUSE:
         case ID_GLOBALHOTKEYS_ACTIVE:
+        case ID_GLOBALHOTKEYS_SHOWMENU:
         case ID_GLOBALHOTKEYS_CURSOR: {
             auto globalState = GetHotkeyState();
             if(globalState)
@@ -2012,6 +2013,9 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
             break;
         case ID_GLOBALHOTKEYS_ACTIVE:
             SendMessage(hWnd, WM_COMMAND, IDM_ACTIVE, 0);
+            break;
+        case ID_GLOBALHOTKEYS_SHOWMENU:
+            SendMessage(hWnd, WM_COMMAND, IDM_TOGGLEMENU, 0);
             break;
         case ID_GLOBALHOTKEYS_PAUSE:
             if(m_captureManager.IsActive())
@@ -2817,6 +2821,10 @@ void ShaderWindow::UpdateHotkey(const HotkeyInfo& hk, bool globalState)
         _snwprintf_s(text, 60, L"Active\t%s | TAB", keyString.c_str());
         ModifyMenu(m_shaderMenu, ID_QUICK_TOGGLE, MF_BYCOMMAND | MF_STRING, ID_QUICK_TOGGLE, text);
         break;
+    case ID_GLOBALHOTKEYS_SHOWMENU:
+        _snwprintf_s(text, 60, L"Toggle Menu\t%s", keyString.c_str());
+        ModifyMenu(m_programMenu, IDM_TOGGLEMENU, MF_BYCOMMAND | MF_STRING, IDM_TOGGLEMENU, text);
+        break;
     }
 }
 
@@ -2827,6 +2835,7 @@ void ShaderWindow::LoadHotkeys()
     m_hotkeys.emplace(ID_GLOBALHOTKEYS_PAUSE, HotkeyInfo(ID_GLOBALHOTKEYS_PAUSE, 0, L"Pause Key", L"t"));
     m_hotkeys.emplace(ID_GLOBALHOTKEYS_CURSOR, HotkeyInfo(ID_GLOBALHOTKEYS_CURSOR, 0, L"Cursor Key", L"c"));
     m_hotkeys.emplace(ID_GLOBALHOTKEYS_ACTIVE, HotkeyInfo(ID_GLOBALHOTKEYS_ACTIVE, 0, L"Active Key", L"a"));
+    m_hotkeys.emplace(ID_GLOBALHOTKEYS_SHOWMENU, HotkeyInfo(ID_GLOBALHOTKEYS_SHOWMENU, 0, L"Menu Key", L"m"));
 }
 
 void ShaderWindow::UpdateHotkeys(bool globalHotkeys)
