@@ -10,14 +10,14 @@ GNU General Public License v3.0
 #include "resource.h"
 #include "ParamsWindow.h"
 
-constexpr int STATIC_WIDTH  = 230;
+constexpr int STATIC_WIDTH  = 350;
 constexpr int STATIC_HEIGHT = 40;
 constexpr int BUTTON_WIDTH  = 100;
 constexpr int BUTTON_HEIGHT = 25;
 constexpr int BUTTON_TOP    = 20;
 constexpr int PARAMS_TOP    = 75;
 constexpr int PARAM_HEIGHT  = 40;
-constexpr int WINDOW_WIDTH  = 600;
+constexpr int WINDOW_WIDTH  = 720;
 constexpr int WINDOW_HEIGHT = 600;
 constexpr int TRACK_WIDTH   = 200;
 constexpr int TRACK_HEIGHT  = 30;
@@ -441,7 +441,7 @@ void ParamsWindow::AddTrackbar(UINT iMin, UINT iMax, UINT iStart, UINT iSteps, c
     SendMessage(hwndTrack, WM_SETFONT, (LPARAM)m_font, true);
 
     const char* label   = p->description.size() ? p->description.c_str() : name;
-    const char* tooltip = label; //p->description.size() ? name : p->description.c_str();
+    const char* tooltip = p->name.c_str();
 
     auto paramNameWnd = CreateWindowEx(0,
                                        L"STATIC",

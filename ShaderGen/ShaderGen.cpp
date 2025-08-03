@@ -582,7 +582,7 @@ void populatePresetTemplate(
     log << "Generated PresetDef " << info.outputPath << endl;
 }
 
-void processShader(SourceShaderDef def, ofstream& log, bool& warn)
+void processShader(SourceShaderDef& def, ofstream& log, bool& warn)
 {
     try
     {

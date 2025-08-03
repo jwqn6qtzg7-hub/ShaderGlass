@@ -26,6 +26,17 @@ static inline std::string trim(std::string s)
     return s;
 }
 
+static inline std::string ascii(std::string s)
+{
+    std::ostringstream as;
+    for(int c = 0; c < s.size(); c++)
+    {
+        if(static_cast<unsigned char>(s[c]) < 128)
+            as << s[c];
+    }
+    return as.str();
+}
+
 struct SourceShaderParam
 {
     SourceShaderParam(std::string s, int size, int buffer) : i {-1}, buffer {buffer}, size {size}, offset {}, name {}, desc {}, min {}, max {}, def {}, step {}
@@ -36,7 +47,7 @@ struct SourceShaderParam
         iss >> name;
         iss >> name;
         iss >> std::quoted(desc);
-        desc = trim(desc);
+        desc = trim(ascii(desc));
         iss >> def;
         iss >> min;
         iss >> max;

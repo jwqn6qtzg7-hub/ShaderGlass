@@ -193,6 +193,12 @@ void ShaderGC::ProcessSourceShader(SourceShaderDef& def, ostream& log, bool& war
             def.format  = trim(format);
             continue;
         }
+        else if(trimLine.starts_with("#pragma name"))
+        {
+            auto name = trimLine.substr(13);
+            def.presetParams["alias"] = name;
+            continue;
+        }
         else if(trimLine.starts_with("//"))
         {
             if(trimLine.ends_with("*/"))
@@ -286,18 +292,20 @@ void AddParams(vector<SourceShaderParam>& actualParams, const vector<SourceShade
         auto mtype   = (string)member.at("type");
 
         bool paramFound = false;
+        int dpi = 0;
         for(auto& p : declaredParams)
         {
             if(p.name == mname)
             {
                 SourceShaderParam actualParam(p);
-                actualParam.i      = 0;
+                actualParam.i      = dpi;
                 actualParam.buffer = buffer;
                 actualParam.offset = moffset;
                 actualParam.size   = GetSize(mtype);
                 actualParams.emplace_back(actualParam);
                 paramFound = true;
             }
+            dpi++;
         }
 
         if(!paramFound)
@@ -345,6 +353,8 @@ std::vector<SourceShaderParam> ShaderGC::LookupParams(const std::vector<SourceSh
         textures.push_back(SourceShaderSampler((string)tx.at("name"), (int)tx.at("binding")));
     }
 
+    std::sort(actualParams.begin(), actualParams.end(), [](const SourceShaderParam& a, const SourceShaderParam& b) { return a.i < b.i; });
+
     return actualParams;
 }
 
@@ -356,6 +366,11 @@ pair<string, string> getKeyValue(string input)
     {
         value = value.substr(0, value.find("\"")); // strip anything beyond quote (comment)
     }
+    if(value.find("//") != string::npos)
+    {
+        value = value.substr(0, value.find("//")); // strip anything beyond quote (comment)
+    }
+    value = trim(value);
     return make_pair(key, value);
 }
 
