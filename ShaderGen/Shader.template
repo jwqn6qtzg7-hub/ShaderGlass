@@ -34,8 +34,8 @@ public:
 		FragmentLength = sizeof(%LIB_NAME%%CLASS_NAME%ShaderDefs::sFragmentByteCode);
 		FragmentHash = %LIB_NAME%%CLASS_NAME%ShaderDefs::sFragmentHash;
 		Format = "%SHADER_FORMAT%";
-%PARAM%		Params.push_back(ShaderParam("%PARAM_NAME%", %PARAM_BUFFER%, %PARAM_OFFSET%, %PARAM_SIZE%, %PARAM_MIN%f, %PARAM_MAX%f, %PARAM_DEF%f, %PARAM_STEP%f, "%PARAM_DESC%"));
-%TEXTURE%		Samplers.push_back(ShaderSampler("%TEXTURE_NAME%", %TEXTURE_BINDING%));
+%PARAM%		AddParam("%PARAM_NAME%", %PARAM_BUFFER%, %PARAM_OFFSET%, %PARAM_SIZE%, %PARAM_MIN%f, %PARAM_MAX%f, %PARAM_DEF%f, %PARAM_STEP%f, "%PARAM_DESC%");
+%TEXTURE%		AddSampler("%TEXTURE_NAME%", %TEXTURE_BINDING%);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

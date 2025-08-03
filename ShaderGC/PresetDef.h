@@ -18,6 +18,7 @@ public:
 
     virtual void Build() { }
 
+    __declspec(noinline)
     void OverrideParam(const char* name, float value)
     {
         Overrides.emplace_back(name, value);

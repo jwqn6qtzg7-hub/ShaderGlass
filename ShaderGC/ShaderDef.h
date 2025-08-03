@@ -78,6 +78,18 @@ public:
         return maxLen;
     }
 
+    __declspec(noinline)
+    void AddParam(const char* name, int buffer, int offset, int size, float minValue, float maxValue, float defaultValue, float stepValue = 0.0f, const char* description = "")
+    {
+        Params.emplace_back(name, buffer, offset, size, minValue, maxValue, defaultValue, stepValue, description);
+    }
+
+    __declspec(noinline)
+    void AddSampler(const char* name, int binding)
+    {
+        Samplers.emplace_back(name, binding);
+    }
+
     ShaderDef& Param(const char* presetKey, const char* presetValue)
     {
         PresetParams.insert(std::make_pair(std::string(presetKey), std::string(presetValue)));
