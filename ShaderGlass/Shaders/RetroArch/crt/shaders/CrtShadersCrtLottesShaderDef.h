@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-lottes imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-lottes.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-lottes.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -4384,10 +4384,6 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtLottesShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtLottesShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("hardScan", -1, 0, 4, -20.000000f, 0.000000f, -8.000000f, 1.000000f, "hardScan"));
 		Params.push_back(ShaderParam("hardPix", -1, 4, 4, -20.000000f, 0.000000f, -3.000000f, 1.000000f, "hardPix"));
 		Params.push_back(ShaderParam("warpX", -1, 8, 4, 0.000000f, 0.125000f, 0.031000f, 0.010000f, "warpX"));
@@ -4397,10 +4393,14 @@ public:
 		Params.push_back(ShaderParam("scaleInLinearGamma", -1, 24, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "scaleInLinearGamma"));
 		Params.push_back(ShaderParam("shadowMask", -1, 28, 4, 0.000000f, 4.000000f, 3.000000f, 1.000000f, "shadowMask"));
 		Params.push_back(ShaderParam("brightBoost", -1, 32, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "brightness boost"));
-		Params.push_back(ShaderParam("hardBloomScan", -1, 36, 4, -4.000000f, -1.000000f, -2.000000f, 0.100000f, "bloom-y soft"));
 		Params.push_back(ShaderParam("hardBloomPix", -1, 40, 4, -2.000000f, -0.500000f, -1.500000f, 0.100000f, "bloom-x soft"));
+		Params.push_back(ShaderParam("hardBloomScan", -1, 36, 4, -4.000000f, -1.000000f, -2.000000f, 0.100000f, "bloom-y soft"));
 		Params.push_back(ShaderParam("bloomAmount", -1, 44, 4, 0.000000f, 1.000000f, 0.150000f, 0.050000f, "bloom ammount"));
 		Params.push_back(ShaderParam("shape", -1, 48, 4, 0.000000f, 10.000000f, 2.000000f, 0.050000f, "filter kernel shape"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

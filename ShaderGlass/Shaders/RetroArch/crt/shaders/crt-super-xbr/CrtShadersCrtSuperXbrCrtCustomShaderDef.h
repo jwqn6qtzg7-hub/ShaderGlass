@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/crt-super-xbr\crt-custom imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-super-xbr/crt-custom.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-super-xbr/crt-custom.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -4616,10 +4616,8 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSuperXbrCrtCustomShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtSuperXbrCrtCustomShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("InputGamma", -1, 28, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputGamma", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("BEAM_MIN_WIDTH", -1, 0, 4, 0.000000f, 1.000000f, 0.920000f, 0.010000f, "MIN BEAM WIDTH"));
 		Params.push_back(ShaderParam("BEAM_MAX_WIDTH", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "MAX BEAM WIDTH"));
 		Params.push_back(ShaderParam("SCANLINES_STRENGTH", -1, 8, 4, 0.000000f, 1.000000f, 0.720000f, 0.010000f, "SCANLINES STRENGTH"));
@@ -4627,15 +4625,17 @@ public:
 		Params.push_back(ShaderParam("SHARPNESS_HACK", -1, 16, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "SHARPNESS_HACK"));
 		Params.push_back(ShaderParam("PHOSPHOR_LAYOUT", -1, 20, 4, 0.000000f, 24.000000f, 4.000000f, 1.000000f, "PHOSPHOR LAYOUT"));
 		Params.push_back(ShaderParam("MASK_INTENSITY", -1, 24, 4, 0.000000f, 1.000000f, 0.700000f, 0.100000f, "MASK INTENSITY"));
-		Params.push_back(ShaderParam("InputGamma", -1, 28, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputGamma", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("VSCANLINES", -1, 36, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SCANLINES DIRECTION"));
-		Params.push_back(ShaderParam("CRT_ANTI_RINGING", -1, 40, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CRT Anti-Ringing [ OFF | ON ]"));
 		Params.push_back(ShaderParam("CRT_CURVATURE", -1, 44, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT-Curvature"));
 		Params.push_back(ShaderParam("CRT_warpX", -1, 48, 4, 0.000000f, 0.125000f, 0.015000f, 0.005000f, "CRT-Curvature X-Axis"));
 		Params.push_back(ShaderParam("CRT_warpY", -1, 52, 4, 0.000000f, 0.125000f, 0.015000f, 0.005000f, "CRT-Curvature Y-Axis"));
 		Params.push_back(ShaderParam("CRT_cornersize", -1, 56, 4, 0.001000f, 1.000000f, 0.010000f, 0.005000f, "CRT-Corner Size"));
 		Params.push_back(ShaderParam("CRT_cornersmooth", -1, 60, 4, 80.000000f, 2080.000000f, 380.000000f, 100.000000f, "CRT-Corner Smoothness"));
+		Params.push_back(ShaderParam("CRT_ANTI_RINGING", -1, 40, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CRT Anti-Ringing [ OFF | ON ]"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

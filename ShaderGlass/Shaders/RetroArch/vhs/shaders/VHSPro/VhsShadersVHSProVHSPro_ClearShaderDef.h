@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader vhs/shaders/VHSPro\VHSPro_Clear imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/vhs/shaders/VHSPro/VHSPro_Clear.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/vhs/shaders/VHSPro/VHSPro_Clear.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1080,8 +1080,8 @@ public:
 		FragmentLength = sizeof(RetroArchVhsShadersVHSProVHSPro_ClearShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchVhsShadersVHSProVHSPro_ClearShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("screenLinesNum", 0, 64, 4, 1.000000f, 2160.000000f, 1080.000000f, 16.000000f, "Screen Resolution [VHSPro]"));
+		Params.push_back(ShaderParam("noiseLinesLum", 0, 120, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("VHS_Bleed_toggle", 0, 68, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Toggle Bleeding [VHSPro]"));
 		Params.push_back(ShaderParam("VHS_BleedMode_select", 0, 72, 4, 1.000000f, 5.000000f, 1.000000f, 1.000000f, "Bleeding Mode [VHSPro]"));
 		Params.push_back(ShaderParam("bleedAmount", 0, 76, 4, 0.000000f, 15.000000f, 0.500000f, 0.100000f, "Bleed Stretch [VHSPro]"));
@@ -1095,7 +1095,7 @@ public:
 		Params.push_back(ShaderParam("VHS_Vignette_toggle", 0, 108, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Toggle Vignette [VHSPro]"));
 		Params.push_back(ShaderParam("vignetteAmount", 0, 112, 4, 0.000000f, 5.000000f, 0.300000f, 0.050000f, "Vignette Amount [VHSPro]"));
 		Params.push_back(ShaderParam("vignetteSpeed", 0, 116, 4, 0.000000f, 5.000000f, 1.000000f, 0.050000f, "Vignette Pulse Speed [VHSPro]"));
-		Params.push_back(ShaderParam("noiseLinesLum", 0, 120, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("noiseLinesNum", 0, 300, 4, 1.000000f, 1080.000000f, 240.000000f, 16.000000f, "Vertical Resolution [VHSPro]"));
 		Params.push_back(ShaderParam("noiseQuantizeX", 0, 124, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Quantize Noise X [VHSPro]"));
 		Params.push_back(ShaderParam("VHS_FilmGrain_toggle", 0, 128, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Toggle Film Grain [VHSPro]"));
 		Params.push_back(ShaderParam("filmGrainAmount", 0, 132, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Film Grain Alpha [VHSPro]"));
@@ -1140,7 +1140,7 @@ public:
 		Params.push_back(ShaderParam("feedbackColor_G", 0, 288, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Green Tint of Phosphor Trail"));
 		Params.push_back(ShaderParam("feedbackColor_B", 0, 292, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Blue Tint of Phosphor Trail"));
 		Params.push_back(ShaderParam("feedbackDebug_toggle", 0, 296, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Toggle Debug Trail [VHSPro]"));
-		Params.push_back(ShaderParam("noiseLinesNum", 0, 300, 4, 1.000000f, 1080.000000f, 240.000000f, 16.000000f, "Vertical Resolution [VHSPro]"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

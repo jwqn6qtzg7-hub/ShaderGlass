@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\tvout-tweaks imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/tvout-tweaks.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/tvout-tweaks.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1603,17 +1603,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("TVOUT_RESOLUTION", -1, 52, 4, 0.000000f, 1024.000000f, 256.000000f, 32.000000f, "TVOut Signal Resolution"));
 		Params.push_back(ShaderParam("TVOUT_COMPOSITE_CONNECTION", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "TVOut Composite Enable"));
 		Params.push_back(ShaderParam("TVOUT_TV_COLOR_LEVELS", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "TVOut TV Color Levels Enable"));
 		Params.push_back(ShaderParam("TVOUT_RESOLUTION_Y", -1, 64, 4, 0.000000f, 1024.000000f, 256.000000f, 32.000000f, "TVOut Luma (Y) Resolution"));
 		Params.push_back(ShaderParam("TVOUT_RESOLUTION_I", -1, 68, 4, 0.000000f, 256.000000f, 83.199997f, 8.000000f, "TVOut Chroma (I) Resolution"));
 		Params.push_back(ShaderParam("TVOUT_RESOLUTION_Q", -1, 72, 4, 0.000000f, 256.000000f, 25.600000f, 8.000000f, "TVOut Chroma (Q) Resolution"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader ntsc/shaders/patchy-ntsc\trilinearLUT-switchable imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/ntsc/shaders/patchy-ntsc/trilinearLUT-switchable.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/shaders/patchy-ntsc/trilinearLUT-switchable.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1624,14 +1624,14 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("lut_toggle", -1, 52, 4, 0.000000f, 4.000000f, 4.000000f, 1.000000f, "Gamut: sRGB, P22-80s, P22-90s, P22-J, Trinitron P22"));
+		Params.push_back(ShaderParam("lut_index", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "White point: SMPTE-C (D65) | NTSC-U (C) | NTSC-J (9300K+27MPCD)"));
+		Params.push_back(ShaderParam("lut_chroma_adapt", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "(For P22-J and Trinitron w/ NTSC-J) Chromatic Adaptation to D65"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("lut_toggle", -1, 52, 4, 0.000000f, 4.000000f, 4.000000f, 1.000000f, "Gamut: sRGB, P22-80s, P22-90s, P22-J, Trinitron P22"));
-		Params.push_back(ShaderParam("lut_index", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "White point: SMPTE-C (D65) | NTSC-U (C) | NTSC-J (9300K+27MPCD)"));
-		Params.push_back(ShaderParam("lut_chroma_adapt", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "(For P22-J and Trinitron w/ NTSC-J) Chromatic Adaptation to D65"));
 		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT1", 3));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT5", 7));

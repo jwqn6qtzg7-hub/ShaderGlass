@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-resswitch-glitch-koko imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-resswitch-glitch-koko.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-resswitch-glitch-koko.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1361,21 +1361,21 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalHistorySize1", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalHistorySize2", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalHistorySize3", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalHistorySize4", 0, 128, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalHistorySize5", 0, 144, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("RESSWITCH_ENABLE", 0, 160, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "★ Resolution switch glitch enable? (no d3d11) ==>"));
+		Params.push_back(ShaderParam("RESSWITCH_ENABLE", 0, 160, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Resolution switch glitch enable? (no d3d11) ==>"));
 		Params.push_back(ShaderParam("RESSWITCH_GLITCH_TRESHOLD", 0, 164, 4, 0.010000f, 1.000000f, 0.100000f, 0.010000f, "Glitch if vertical resolution changes at least by"));
-		Params.push_back(ShaderParam("RESSWITCH_GLITCH_BAR_STR", 0, 168, 4, 0.000000f, 1.000000f, 0.600000f, 0.010000f, "Bars strength"));
-		Params.push_back(ShaderParam("RESSWITCH_GLITCH_BAR_SIZE", 0, 172, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Bars size"));
-		Params.push_back(ShaderParam("RESSWITCH_GLITCH_BAR_SMOOTH", 0, 176, 4, 0.010000f, 1.000000f, 1.000000f, 0.010000f, "Bars smoothness"));
 		Params.push_back(ShaderParam("RESSWITCH_GLITCH_SHAKE_MAX", 0, 180, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Shake amplitude"));
 		Params.push_back(ShaderParam("RESSWITCH_GLITCH_ROT_MAX", 0, 184, 4, 0.000000f, 1.000000f, 0.200000f, 0.010000f, "Tilt amplitude"));
 		Params.push_back(ShaderParam("RESSWITCH_GLITCH_WOB_MAX", 0, 188, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Wobblying amplitude"));
+		Params.push_back(ShaderParam("RESSWITCH_GLITCH_BAR_SIZE", 0, 172, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Bars size"));
+		Params.push_back(ShaderParam("RESSWITCH_GLITCH_BAR_SMOOTH", 0, 176, 4, 0.010000f, 1.000000f, 1.000000f, 0.010000f, "Bars smoothness"));
+		Params.push_back(ShaderParam("RESSWITCH_GLITCH_BAR_STR", 0, 168, 4, 0.000000f, 1.000000f, 0.600000f, 0.010000f, "Bars strength"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", 0, 192, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 1));
 /*

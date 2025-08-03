@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-gdv-mini-ultra imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-gdv-mini-ultra.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-gdv-mini-ultra.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -3568,37 +3568,37 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("brightboost", -1, 0, 4, 0.500000f, 2.000000f, 1.200000f, 0.050000f, "Bright boost"));
-		Params.push_back(ShaderParam("sat", -1, 4, 4, 0.000000f, 2.000000f, 1.200000f, 0.050000f, "Saturation adjustment"));
-		Params.push_back(ShaderParam("glow", -1, 8, 4, 0.000000f, 1.000000f, 0.350000f, 0.010000f, "Glow Strength"));
 		Params.push_back(ShaderParam("Size", -1, 12, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("scanline", -1, 16, 4, 1.000000f, 15.000000f, 10.000000f, 1.000000f, "Scanline Adjust"));
+		Params.push_back(ShaderParam("csize", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("beam_min", -1, 20, 4, 0.500000f, 3.000000f, 1.500000f, 0.050000f, "Scanline Dark"));
 		Params.push_back(ShaderParam("beam_max", -1, 24, 4, 0.500000f, 3.000000f, 2.000000f, 0.050000f, "Scanline Bright"));
 		Params.push_back(ShaderParam("h_sharp", -1, 28, 4, 1.000000f, 5.000000f, 2.500000f, 0.050000f, "Horizontal Sharpness"));
 		Params.push_back(ShaderParam("shadowMask", -1, 32, 4, -1.000000f, 11.000000f, 11.000000f, 1.000000f, "CRT Mask: 0:CGWG, 1-4:Lottes, 5-6:Trinitron"));
+		Params.push_back(ShaderParam("thres", -1, 100, 4, 0.000000f, 0.900000f, 0.400000f, 0.020000f, "Mask Effect Threshold"));
 		Params.push_back(ShaderParam("masksize", -1, 36, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "CRT Mask Size (2.0 is nice in 4k)"));
 		Params.push_back(ShaderParam("mcut", -1, 40, 4, 0.000000f, 0.500000f, 0.200000f, 0.050000f, "Mask 5-7-10 cutoff"));
 		Params.push_back(ShaderParam("maskDark", -1, 44, 4, 0.000000f, 2.000000f, 0.000000f, 0.100000f, "Lottes maskDark"));
 		Params.push_back(ShaderParam("maskLight", -1, 48, 4, 0.000000f, 2.000000f, 1.500000f, 0.100000f, "Lottes maskLight"));
 		Params.push_back(ShaderParam("CGWG", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "CGWG Mask Str."));
-		Params.push_back(ShaderParam("csize", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("warpX", -1, 60, 4, 0.000000f, 0.250000f, 0.000000f, 0.010000f, "CurvatureX (default 0.03)"));
 		Params.push_back(ShaderParam("warpY", -1, 64, 4, 0.000000f, 0.250000f, 0.050000f, 0.010000f, "CurvatureY (default 0.04)"));
+		Params.push_back(ShaderParam("vignette", -1, 80, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vignette On/Off"));
 		Params.push_back(ShaderParam("gamma_out_red", -1, 68, 4, 1.000000f, 4.000000f, 2.200000f, 0.100000f, "Gamma out Red"));
 		Params.push_back(ShaderParam("gamma_out_green", -1, 72, 4, 1.000000f, 4.000000f, 2.200000f, 0.100000f, "Gamma out Green"));
 		Params.push_back(ShaderParam("gamma_out_blue", -1, 76, 4, 1.000000f, 4.000000f, 2.200000f, 0.100000f, "Gamma out Blue"));
-		Params.push_back(ShaderParam("vignette", -1, 80, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vignette On/Off"));
+		Params.push_back(ShaderParam("brightboost", -1, 0, 4, 0.500000f, 2.000000f, 1.200000f, 0.050000f, "Bright boost"));
+		Params.push_back(ShaderParam("sat", -1, 4, 4, 0.000000f, 2.000000f, 1.200000f, 0.050000f, "Saturation adjustment"));
+		Params.push_back(ShaderParam("glow", -1, 8, 4, 0.000000f, 1.000000f, 0.350000f, 0.010000f, "Glow Strength"));
 		Params.push_back(ShaderParam("gdv_mono", -1, 84, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Mono Display On/Off"));
 		Params.push_back(ShaderParam("gdv_R", -1, 88, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Mono Red/Channel"));
 		Params.push_back(ShaderParam("gdv_G", -1, 92, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Mono Green/Channel"));
 		Params.push_back(ShaderParam("gdv_B", -1, 96, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Mono Blue/Channel"));
-		Params.push_back(ShaderParam("thres", -1, 100, 4, 0.000000f, 0.900000f, 0.400000f, 0.020000f, "Mask Effect Threshold"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 1));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

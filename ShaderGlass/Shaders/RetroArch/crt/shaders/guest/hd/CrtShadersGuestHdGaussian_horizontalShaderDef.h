@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/guest/hd\gaussian_horizontal imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/guest/hd/gaussian_horizontal.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/guest/hd/gaussian_horizontal.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -838,21 +838,21 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestHdGaussian_horizontalShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("LinearizePassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SIZEH", -1, 52, 4, 1.000000f, 50.000000f, 6.000000f, 1.000000f, "Horizontal Glow Radius"));
-		Params.push_back(ShaderParam("SIGMA_H", -1, 56, 4, 0.200000f, 15.000000f, 1.200000f, 0.050000f, "Horizontal Glow Sigma"));
-		Params.push_back(ShaderParam("FINE_GLOW", -1, 60, 4, -1.000000f, 5.000000f, 1.000000f, 1.000000f, "Fine Glow/M.Glow Sampling"));
+		Params.push_back(ShaderParam("auto_res", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
 		Params.push_back(ShaderParam("m_glow", -1, 64, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Ordinary Glow / Magic Glow"));
 		Params.push_back(ShaderParam("m_glow_cutoff", -1, 68, 4, 0.000000f, 0.400000f, 0.120000f, 0.010000f, "Magic Glow Cutoff"));
 		Params.push_back(ShaderParam("m_glow_low", -1, 72, 4, 0.000000f, 7.000000f, 0.350000f, 0.050000f, "Magic Glow Low Strength"));
 		Params.push_back(ShaderParam("m_glow_high", -1, 76, 4, 0.000000f, 7.000000f, 5.000000f, 0.100000f, "Magic Glow High Strength"));
 		Params.push_back(ShaderParam("m_glow_dist", -1, 80, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Magic Glow Distribution"));
 		Params.push_back(ShaderParam("m_glow_mask", -1, 84, 4, 0.000000f, 2.000000f, 1.000000f, 0.025000f, "Magic Glow Mask Strength"));
-		Params.push_back(ShaderParam("auto_res", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
+		Params.push_back(ShaderParam("FINE_GLOW", -1, 60, 4, -1.000000f, 5.000000f, 1.000000f, 1.000000f, "Fine Glow/M.Glow Sampling"));
+		Params.push_back(ShaderParam("SIZEH", -1, 52, 4, 1.000000f, 50.000000f, 6.000000f, 1.000000f, "Horizontal Glow Radius"));
+		Params.push_back(ShaderParam("SIGMA_H", -1, 56, 4, 0.200000f, 15.000000f, 1.200000f, 0.050000f, "Horizontal Glow Sigma"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("LinearizePass", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

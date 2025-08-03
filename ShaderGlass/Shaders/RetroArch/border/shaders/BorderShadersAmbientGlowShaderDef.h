@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader border/shaders\ambient-glow imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/border/shaders/ambient-glow.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/border/shaders/ambient-glow.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1073,25 +1073,25 @@ public:
 		FragmentLength = sizeof(RetroArchBorderShadersAmbientGlowShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBorderShadersAmbientGlowShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("effect", -1, 60, 4, 0.100000f, 3.000000f, 1.000000f, 0.100000f, "Glow Brightness"));
+		Params.push_back(ShaderParam("aspect_x", -1, 100, 4, 1.000000f, 256.000000f, 64.000000f, 1.000000f, "Aspect Ratio Numerator"));
+		Params.push_back(ShaderParam("aspect_y", -1, 104, 4, 1.000000f, 256.000000f, 49.000000f, 1.000000f, "Aspect Ratio Denominator"));
 		Params.push_back(ShaderParam("integer_scale", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Force Integer Scaling"));
 		Params.push_back(ShaderParam("overscale", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Integer Overscale"));
-		Params.push_back(ShaderParam("effect", -1, 60, 4, 0.100000f, 3.000000f, 1.000000f, 0.100000f, "Glow Brightness"));
+		Params.push_back(ShaderParam("interp_toggle", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sharpen Linear Scaling"));
 		Params.push_back(ShaderParam("scanline_toggle", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Scanline Toggle"));
 		Params.push_back(ShaderParam("SCANLINE_BASE_BRIGHTNESS", -1, 68, 4, 0.000000f, 1.000000f, 0.950000f, 0.010000f, "Scanline Base Brightness"));
 		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_A", -1, 72, 4, 0.000000f, 0.100000f, 0.000000f, 0.010000f, "Scanline Sine Comp A"));
 		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_B", -1, 76, 4, 0.000000f, 1.000000f, 0.150000f, 0.050000f, "Scanline Intensity"));
-		Params.push_back(ShaderParam("interp_toggle", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sharpen Linear Scaling"));
 		Params.push_back(ShaderParam("OS_MASK_TOP", -1, 84, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Top"));
 		Params.push_back(ShaderParam("OS_MASK_BOTTOM", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Bottom"));
 		Params.push_back(ShaderParam("OS_MASK_LEFT", -1, 92, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Left"));
 		Params.push_back(ShaderParam("OS_MASK_RIGHT", -1, 96, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Right"));
-		Params.push_back(ShaderParam("aspect_x", -1, 100, 4, 1.000000f, 256.000000f, 64.000000f, 1.000000f, "Aspect Ratio Numerator"));
-		Params.push_back(ShaderParam("aspect_y", -1, 104, 4, 1.000000f, 256.000000f, 49.000000f, 1.000000f, "Aspect Ratio Denominator"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("Original", 3));
 /*

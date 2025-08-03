@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/zfast_crt\zfast_crt_finemask imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/zfast_crt/zfast_crt_finemask.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/zfast_crt/zfast_crt_finemask.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -779,17 +779,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("BLURSCALEX", -1, 52, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Blur Amount X-Axis"));
 		Params.push_back(ShaderParam("LOWLUMSCAN", -1, 56, 4, 0.000000f, 10.000000f, 6.000000f, 0.500000f, "Scanline Darkness - Low"));
 		Params.push_back(ShaderParam("HILUMSCAN", -1, 60, 4, 0.000000f, 50.000000f, 8.000000f, 1.000000f, "Scanline Darkness - High"));
 		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 64, 4, 0.500000f, 1.500000f, 1.250000f, 0.050000f, "Dark Pixel Brightness Boost"));
 		Params.push_back(ShaderParam("MASK_DARK", -1, 68, 4, 0.000000f, 1.000000f, 0.250000f, 0.050000f, "Mask Effect Amount"));
 		Params.push_back(ShaderParam("MASK_FADE", -1, 72, 4, 0.000000f, 1.000000f, 0.800000f, 0.050000f, "Mask/Scanline Fade"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

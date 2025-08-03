@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/guest/advanced\crt-guest-advanced imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/guest/advanced/crt-guest-advanced.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/guest/advanced/crt-guest-advanced.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -4387,55 +4387,55 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedCrtGuestAdvancedShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestAdvancedCrtGuestAdvancedShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("bloom", 0, 116, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Bloom Strength"));
-		Params.push_back(ShaderParam("halation", 0, 120, 4, -2.000000f, 2.000000f, 0.000000f, 0.025000f, "Halation Strength"));
-		Params.push_back(ShaderParam("scans", 0, 124, 4, 0.000000f, 6.000000f, 0.500000f, 0.100000f, "Scanline Saturation / Mask Falloff"));
-		Params.push_back(ShaderParam("gamma_c", 0, 128, 4, 0.500000f, 2.000000f, 1.000000f, 0.025000f, "Gamma correct"));
-		Params.push_back(ShaderParam("gamma_c2", 0, 132, 4, 1.000000f, 2.000000f, 1.000000f, 0.025000f, "Complementary Gamma correct"));
-		Params.push_back(ShaderParam("smart_ei", 0, 136, 4, 0.000000f, 0.750000f, 0.000000f, 0.010000f, "Smart Edges Effect Strength"));
-		Params.push_back(ShaderParam("ei_limit", 0, 140, 4, 0.000000f, 0.750000f, 0.250000f, 0.010000f, "Smart Edges Effect Strength Limit"));
-		Params.push_back(ShaderParam("sth", 0, 144, 4, 0.000000f, 1.000000f, 0.230000f, 0.010000f, "Smart Edges Smoothing Threshold"));
-		Params.push_back(ShaderParam("overscanX", 0, 148, 4, -200.000000f, 200.000000f, 0.000000f, 1.000000f, "Overscan X original pixels"));
-		Params.push_back(ShaderParam("overscanY", 0, 152, 4, -200.000000f, 200.000000f, 0.000000f, 1.000000f, "Overscan Y original pixels"));
-		Params.push_back(ShaderParam("c_shape", 0, 156, 4, 0.050000f, 0.600000f, 0.250000f, 0.050000f, "Curvature Shape"));
-		Params.push_back(ShaderParam("intres", 0, 160, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "Internal Resolution Y: 0.5...y-dowsample divider"));
+		Params.push_back(ShaderParam("bsize1", -1, 60, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("csize", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("prescalex", 0, 164, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("scan_falloff", 0, 168, 4, 0.100000f, 2.000000f, 1.000000f, 0.025000f, "Scanline Falloff"));
+		Params.push_back(ShaderParam("hiscan", -1, 96, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "High Resolution Scanlines (prepend a scaler...)"));
+		Params.push_back(ShaderParam("glow", -1, 72, 4, -2.000000f, 2.000000f, 0.080000f, 0.010000f, "(Magic) Glow Strength"));
+		Params.push_back(ShaderParam("bloom", 0, 116, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Bloom Strength"));
 		Params.push_back(ShaderParam("bloom_dist", 0, 172, 4, -2.000000f, 3.000000f, 0.000000f, 0.050000f, "Bloom Distribution"));
-		Params.push_back(ShaderParam("scangamma", 0, 176, 4, 0.500000f, 5.000000f, 2.400000f, 0.050000f, "Scanline Gamma"));
+		Params.push_back(ShaderParam("halation", 0, 120, 4, -2.000000f, 2.000000f, 0.000000f, 0.025000f, "Halation Strength"));
 		Params.push_back(ShaderParam("bmask1", 0, 180, 4, -1.000000f, 1.000000f, 0.000000f, 0.025000f, "Bloom Mask Strength"));
 		Params.push_back(ShaderParam("hmask1", 0, 184, 4, -1.000000f, 1.000000f, 0.500000f, 0.025000f, "Halation Mask Strength"));
-		Params.push_back(ShaderParam("TATE", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "TATE Mode"));
-		Params.push_back(ShaderParam("IOS", -1, 4, 4, 0.000000f, 4.000000f, 0.000000f, 1.000000f, "Integer Scaling: Odd:Y, Even:'X'+Y"));
-		Params.push_back(ShaderParam("OS", -1, 8, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "R. Bloom Overscan Mode"));
-		Params.push_back(ShaderParam("BLOOM", -1, 12, 4, 0.000000f, 20.000000f, 0.000000f, 1.000000f, "Raster bloom %"));
+		Params.push_back(ShaderParam("gamma_c", 0, 128, 4, 0.500000f, 2.000000f, 1.000000f, 0.025000f, "Gamma correct"));
+		Params.push_back(ShaderParam("gamma_c2", 0, 132, 4, 1.000000f, 2.000000f, 1.000000f, 0.025000f, "Complementary Gamma correct"));
 		Params.push_back(ShaderParam("brightboost", -1, 16, 4, 0.250000f, 10.000000f, 1.400000f, 0.050000f, "Bright Boost Dark Pixels"));
 		Params.push_back(ShaderParam("brightboost1", -1, 20, 4, 0.250000f, 3.000000f, 1.100000f, 0.025000f, "Bright Boost Bright Pixels"));
+		Params.push_back(ShaderParam("clips", -1, 92, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Clip Saturated Color Beams"));
 		Params.push_back(ShaderParam("gsl", -1, 24, 4, -1.000000f, 2.000000f, 0.000000f, 1.000000f, "Scanline Type"));
 		Params.push_back(ShaderParam("scanline1", -1, 28, 4, -20.000000f, 40.000000f, 6.000000f, 0.500000f, "Scanline Beam Shape Center"));
 		Params.push_back(ShaderParam("scanline2", -1, 32, 4, 0.000000f, 70.000000f, 8.000000f, 1.000000f, "Scanline Beam Shape Edges"));
 		Params.push_back(ShaderParam("beam_min", -1, 36, 4, 0.250000f, 10.000000f, 1.300000f, 0.050000f, "Scanline Shape Dark Pixels"));
 		Params.push_back(ShaderParam("beam_max", -1, 40, 4, 0.200000f, 3.500000f, 1.000000f, 0.025000f, "Scanline Shape Bright Pixels"));
+		Params.push_back(ShaderParam("tds", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Thinner Dark Scanlines"));
 		Params.push_back(ShaderParam("beam_size", -1, 44, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "Increased Bright Scanline Beam"));
+		Params.push_back(ShaderParam("scans", 0, 124, 4, 0.000000f, 6.000000f, 0.500000f, 0.100000f, "Scanline Saturation / Mask Falloff"));
+		Params.push_back(ShaderParam("scan_falloff", 0, 168, 4, 0.100000f, 2.000000f, 1.000000f, 0.025000f, "Scanline Falloff"));
+		Params.push_back(ShaderParam("spike", -1, 76, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Scanline Spike Removal"));
+		Params.push_back(ShaderParam("scangamma", 0, 176, 4, 0.500000f, 5.000000f, 2.400000f, 0.050000f, "Scanline Gamma"));
+		Params.push_back(ShaderParam("rolling_scan", -1, 100, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Rolling Scanlines"));
+		Params.push_back(ShaderParam("no_scanlines", -1, 84, 4, 0.000000f, 1.500000f, 0.000000f, 0.050000f, "No-scanline mode"));
 		Params.push_back(ShaderParam("h_sharp", -1, 48, 4, 0.200000f, 15.000000f, 5.200000f, 0.100000f, "Horizontal sharpness"));
 		Params.push_back(ShaderParam("s_sharp", -1, 52, 4, 0.000000f, 2.000000f, 0.500000f, 0.100000f, "Substractive sharpness (1.0 recommended)"));
-		Params.push_back(ShaderParam("csize", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("bsize1", -1, 60, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("ring", -1, 80, 4, 0.000000f, 3.000000f, 0.000000f, 0.050000f, "Substractive sharpness Ringing"));
+		Params.push_back(ShaderParam("smart_ei", 0, 136, 4, 0.000000f, 0.750000f, 0.000000f, 0.010000f, "Smart Edges Effect Strength"));
+		Params.push_back(ShaderParam("ei_limit", 0, 140, 4, 0.000000f, 0.750000f, 0.250000f, 0.010000f, "Smart Edges Effect Strength Limit"));
+		Params.push_back(ShaderParam("sth", 0, 144, 4, 0.000000f, 1.000000f, 0.230000f, 0.010000f, "Smart Edges Smoothing Threshold"));
+		Params.push_back(ShaderParam("intres", 0, 160, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "Internal Resolution Y: 0.5...y-dowsample divider"));
+		Params.push_back(ShaderParam("TATE", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "TATE Mode"));
+		Params.push_back(ShaderParam("IOS", -1, 4, 4, 0.000000f, 4.000000f, 0.000000f, 1.000000f, "Integer Scaling: Odd:Y, Even:'X'+Y"));
+		Params.push_back(ShaderParam("OS", -1, 8, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "R. Bloom Overscan Mode"));
+		Params.push_back(ShaderParam("BLOOM", -1, 12, 4, 0.000000f, 20.000000f, 0.000000f, 1.000000f, "Raster bloom %"));
 		Params.push_back(ShaderParam("warpX", -1, 64, 4, 0.000000f, 0.250000f, 0.000000f, 0.010000f, "CurvatureX (default 0.03)"));
 		Params.push_back(ShaderParam("warpY", -1, 68, 4, 0.000000f, 0.250000f, 0.000000f, 0.010000f, "CurvatureY (default 0.04)"));
-		Params.push_back(ShaderParam("glow", -1, 72, 4, -2.000000f, 2.000000f, 0.080000f, 0.010000f, "(Magic) Glow Strength"));
-		Params.push_back(ShaderParam("spike", -1, 76, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Scanline Spike Removal"));
-		Params.push_back(ShaderParam("ring", -1, 80, 4, 0.000000f, 3.000000f, 0.000000f, 0.050000f, "Substractive sharpness Ringing"));
-		Params.push_back(ShaderParam("no_scanlines", -1, 84, 4, 0.000000f, 1.500000f, 0.000000f, 0.050000f, "No-scanline mode"));
-		Params.push_back(ShaderParam("tds", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Thinner Dark Scanlines"));
-		Params.push_back(ShaderParam("clips", -1, 92, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Clip Saturated Color Beams"));
-		Params.push_back(ShaderParam("hiscan", -1, 96, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "High Resolution Scanlines (prepend a scaler...)"));
-		Params.push_back(ShaderParam("rolling_scan", -1, 100, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Rolling Scanlines"));
+		Params.push_back(ShaderParam("c_shape", 0, 156, 4, 0.050000f, 0.600000f, 0.250000f, 0.050000f, "Curvature Shape"));
+		Params.push_back(ShaderParam("overscanX", 0, 148, 4, -200.000000f, 200.000000f, 0.000000f, 1.000000f, "Overscan X original pixels"));
+		Params.push_back(ShaderParam("overscanY", 0, 152, 4, -200.000000f, 200.000000f, 0.000000f, 1.000000f, "Overscan Y original pixels"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("LinearizePass", 2));
 		Samplers.push_back(ShaderSampler("AvgLumPass", 3));
 		Samplers.push_back(ShaderSampler("PrePass", 4));

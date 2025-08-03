@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader blurs/shaders/dual_filter\bloom_blend_fastest imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/blurs/shaders/dual_filter/bloom_blend_fastest.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/blurs/shaders/dual_filter/bloom_blend_fastest.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1325,7 +1325,6 @@ public:
 		FragmentLength = sizeof(RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Downsample1Size", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Downsample2Size", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
@@ -1335,6 +1334,7 @@ public:
 		Params.push_back(ShaderParam("EYE_ADAPTION", -1, 72, 4, 0.000000f, 1.000000f, 0.800000f, 0.050000f, "Eye adaptation strength: Reduce bloom on bright screens"));
 		Params.push_back(ShaderParam("MIN_EXP", -1, 76, 4, 0.000000f, 0.950000f, 0.100000f, 0.010000f, "Minimum exposure value (where bloom is strongest)"));
 		Params.push_back(ShaderParam("MAX_EXP", -1, 80, 4, 0.050000f, 1.000000f, 0.550000f, 0.010000f, "Maximum exposure value (where bloom is weakest)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("MovingAverage", 7));
 		Samplers.push_back(ShaderSampler("Downsample1", 4));
 		Samplers.push_back(ShaderSampler("Downsample2", 5));

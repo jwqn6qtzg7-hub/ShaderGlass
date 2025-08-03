@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader blurs/shaders/sunset_gaussian\sunset_horz imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/blurs/shaders/sunset_gaussian/sunset_horz.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/blurs/shaders/sunset_gaussian/sunset_horz.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 

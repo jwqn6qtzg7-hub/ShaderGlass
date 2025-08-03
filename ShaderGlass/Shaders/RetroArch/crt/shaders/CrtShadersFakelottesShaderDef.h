@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\fakelottes imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/fakelottes.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/fakelottes.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -887,21 +887,21 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersFakelottesShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersFakelottesShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("shadowMask", -1, 52, 4, 0.000000f, 4.000000f, 1.000000f, 1.000000f, "shadowMask"));
 		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_B", -1, 56, 4, 0.000000f, 1.000000f, 0.400000f, 0.050000f, "Scanline Intensity"));
 		Params.push_back(ShaderParam("warpX", -1, 60, 4, 0.000000f, 0.125000f, 0.031000f, 0.010000f, "warpX"));
 		Params.push_back(ShaderParam("warpY", -1, 64, 4, 0.000000f, 0.125000f, 0.041000f, 0.010000f, "warpY"));
 		Params.push_back(ShaderParam("maskDark", -1, 68, 4, 0.000000f, 2.000000f, 0.500000f, 0.100000f, "maskDark"));
 		Params.push_back(ShaderParam("maskLight", -1, 72, 4, 0.000000f, 2.000000f, 1.500000f, 0.100000f, "maskLight"));
-		Params.push_back(ShaderParam("monitor_gamma", -1, 76, 4, 1.000000f, 4.000000f, 2.200000f, 0.050000f, "Monitor Gamma"));
 		Params.push_back(ShaderParam("crt_gamma", -1, 80, 4, 1.000000f, 4.000000f, 2.500000f, 0.050000f, "CRT Gamma"));
+		Params.push_back(ShaderParam("monitor_gamma", -1, 76, 4, 1.000000f, 4.000000f, 2.200000f, 0.050000f, "Monitor Gamma"));
 		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_A", -1, 84, 4, 0.000000f, 0.100000f, 0.000000f, 0.010000f, "Scanline Sine Comp A"));
 		Params.push_back(ShaderParam("SCANLINE_BASE_BRIGHTNESS", -1, 88, 4, 0.000000f, 1.000000f, 0.950000f, 0.010000f, "Scanline Base Brightness"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

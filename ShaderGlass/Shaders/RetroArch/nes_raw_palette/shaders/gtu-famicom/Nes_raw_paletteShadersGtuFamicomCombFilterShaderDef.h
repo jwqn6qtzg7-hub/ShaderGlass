@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader nes_raw_palette/shaders/gtu-famicom\combFilter imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/nes_raw_palette/shaders/gtu-famicom/combFilter.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/nes_raw_palette/shaders/gtu-famicom/combFilter.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -664,13 +664,13 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersGtuFamicomCombFilterShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
+		Params.push_back(ShaderParam("combFilter", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "comb filter"));
+		Params.push_back(ShaderParam("phaseOffset", -1, 56, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "phase offset"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("combFilter", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "comb filter"));
-		Params.push_back(ShaderParam("phaseOffset", -1, 56, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "phase offset"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

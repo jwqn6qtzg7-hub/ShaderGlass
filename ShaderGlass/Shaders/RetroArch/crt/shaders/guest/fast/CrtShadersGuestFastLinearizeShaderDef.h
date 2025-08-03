@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/guest/fast\linearize imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/guest/fast/linearize.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/guest/fast/linearize.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1498,22 +1498,22 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestFastLinearizeShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestFastLinearizeShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("GAMMA_INPUT", -1, 36, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma Input"));
+		Params.push_back(ShaderParam("gamma_out", -1, 68, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma out"));
 		Params.push_back(ShaderParam("inter", -1, 40, 4, 0.000000f, 800.000000f, 375.000000f, 25.000000f, "Interlace Trigger Resolution/VGA Trigger:"));
 		Params.push_back(ShaderParam("interm", -1, 44, 4, 0.000000f, 5.000000f, 1.000000f, 1.000000f, "Interlace Mode: OFF, Normal 1-3, Interpolation 4-5"));
 		Params.push_back(ShaderParam("iscan", -1, 48, 4, 0.000000f, 1.000000f, 0.200000f, 0.050000f, "Interlacing Scanline Effect ('Laced brightness)"));
 		Params.push_back(ShaderParam("intres", -1, 52, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "Internal Resolution Y: 0.5...y-dowsample divider"));
-		Params.push_back(ShaderParam("iscans", -1, 56, 4, 0.000000f, 1.000000f, 0.250000f, 0.050000f, "Interlacing (Scanline) Saturation"));
 		Params.push_back(ShaderParam("downsample_levelx", -1, 60, 4, 0.000000f, 2.000000f, 0.000000f, 0.050000f, "Downsampling-X (High-res content, pre-scalers)"));
 		Params.push_back(ShaderParam("downsample_levely", -1, 64, 4, 0.000000f, 2.000000f, 0.000000f, 0.050000f, "Downsampling-Y (High-res content, pre-scalers)"));
-		Params.push_back(ShaderParam("gamma_out", -1, 68, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma out"));
+		Params.push_back(ShaderParam("iscans", -1, 56, 4, 0.000000f, 1.000000f, 0.250000f, 0.050000f, "Interlacing (Scanline) Saturation"));
 		Params.push_back(ShaderParam("vga_mode", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "VGA Single/Double Scan mode"));
 		Params.push_back(ShaderParam("hiscan", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "High Resolution Scanlines (prepend a scaler...)"));
+		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("PrePass", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

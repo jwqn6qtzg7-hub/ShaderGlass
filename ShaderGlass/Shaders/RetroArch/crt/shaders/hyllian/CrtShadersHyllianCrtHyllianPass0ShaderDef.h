@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/hyllian\crt-hyllian-pass0 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/hyllian/crt-hyllian-pass0.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/hyllian/crt-hyllian-pass0.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -890,16 +890,16 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianPass0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersHyllianCrtHyllianPass0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("HFILTER_PROFILE", -1, 0, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Horizontal Filter Profile [ Sharp1 | Sharp2 ]"));
 		Params.push_back(ShaderParam("SHARPNESS_HACK", -1, 4, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Sharpness Hack"));
 		Params.push_back(ShaderParam("CRT_ANTI_RINGING", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Anti Ringing"));
 		Params.push_back(ShaderParam("CURVATURE", -1, 12, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Curvature Toggle"));
 		Params.push_back(ShaderParam("WARP_X", -1, 16, 4, 0.000000f, 0.125000f, 0.015000f, 0.005000f, "Curvature-X"));
 		Params.push_back(ShaderParam("WARP_Y", -1, 20, 4, 0.000000f, 0.125000f, 0.015000f, 0.005000f, "Curvature-Y"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

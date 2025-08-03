@@ -1,6 +1,6 @@
 /*
 ShaderGlass texture bezel/koko-aio/textures/overlays / psp-e1000 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/koko-aio/textures/overlays/psp-e1000.jpg
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/textures/overlays/psp-e1000.jpg
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

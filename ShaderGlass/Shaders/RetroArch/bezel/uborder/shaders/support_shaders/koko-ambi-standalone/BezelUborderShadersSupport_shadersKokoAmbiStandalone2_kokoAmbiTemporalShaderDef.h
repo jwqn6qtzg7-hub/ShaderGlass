@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader bezel/uborder/shaders/support_shaders/koko-ambi-standalone\2_koko-ambi-temporal imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/uborder/shaders/support_shaders/koko-ambi-standalone/2_koko-ambi-temporal.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/uborder/shaders/support_shaders/koko-ambi-standalone/2_koko-ambi-temporal.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1786,18 +1786,18 @@ public:
 		FragmentLength = sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("AMBI_STRETCH", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Widen lights"));
-		Params.push_back(ShaderParam("AMBI_INT_OFFSET", 0, 68, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Led internalness"));
 		Params.push_back(ShaderParam("DO_AMBILIGHT", 0, 72, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("AMBI_FALLOFF", 0, 76, 4, 0.100000f, 3.000000f, 0.400000f, 0.010000f, "Light Falloff"));
-		Params.push_back(ShaderParam("AMBI_POWER", 0, 80, 4, 0.000000f, 100.000000f, 0.400000f, 0.050000f, "Led power"));
-		Params.push_back(ShaderParam("AMBI_GAMMA", 0, 84, 4, 0.100000f, 8.000000f, 1.300000f, 0.100000f, "Output Gamma"));
+		Params.push_back(ShaderParam("FinalViewportSize", -1, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("AMBI_STEPS", 0, 88, 4, 5.000000f, 1000.000000f, 20.000000f, 5.000000f, "Slowness"));
+		Params.push_back(ShaderParam("AMBI_INT_OFFSET", 0, 68, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Led internalness"));
+		Params.push_back(ShaderParam("AMBI_POWER", 0, 80, 4, 0.000000f, 100.000000f, 0.400000f, 0.050000f, "Led power"));
+		Params.push_back(ShaderParam("AMBI_FALLOFF", 0, 76, 4, 0.100000f, 3.000000f, 0.400000f, 0.010000f, "Light Falloff"));
+		Params.push_back(ShaderParam("AMBI_STRETCH", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Widen lights"));
+		Params.push_back(ShaderParam("AMBI_GAMMA", 0, 84, 4, 0.100000f, 8.000000f, 1.300000f, 0.100000f, "Output Gamma"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("MVP", -1, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 80, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FinalViewportSize", -1, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 4));
 		Samplers.push_back(ShaderSampler("ambi_temporal_passFeedback", 1));
 		Samplers.push_back(ShaderSampler("avglum_passFeedback", 3));

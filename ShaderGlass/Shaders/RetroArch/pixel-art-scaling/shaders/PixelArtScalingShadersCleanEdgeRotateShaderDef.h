@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader pixel-art-scaling/shaders\cleanEdge-rotate imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/pixel-art-scaling/shaders/cleanEdge-rotate.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/pixel-art-scaling/shaders/cleanEdge-rotate.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -12546,18 +12546,18 @@ public:
 		FragmentLength = sizeof(RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchPixelArtScalingShadersCleanEdgeRotateShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("simthresh", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Similarity Threshold"));
 		Params.push_back(ShaderParam("linewidth", -1, 56, 4, 0.010000f, 2.000000f, 1.000000f, 0.100000f, "Line Width"));
 		Params.push_back(ShaderParam("ce_rotation", -1, 60, 4, -6.280000f, 6.280000f, 0.000000f, 0.010000f, "Rotation"));
 		Params.push_back(ShaderParam("ce_zoom", -1, 64, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Zoom"));
 		Params.push_back(ShaderParam("ce_x_off", -1, 68, 4, -1.000000f, 1.000000f, 0.000000f, 0.002000f, "X Offset"));
 		Params.push_back(ShaderParam("ce_y_off", -1, 72, 4, -1.000000f, 1.000000f, 0.000000f, 0.002000f, "Y Offset"));
+		Params.push_back(ShaderParam("simthresh", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Similarity Threshold"));
 		Params.push_back(ShaderParam("ce_mode", -1, 76, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "cleanEdge Effect Toggle (debug)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

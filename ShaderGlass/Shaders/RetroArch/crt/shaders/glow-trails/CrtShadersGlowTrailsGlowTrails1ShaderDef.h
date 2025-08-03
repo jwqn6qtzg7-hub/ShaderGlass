@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/glow-trails\glow-trails1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/glow-trails/glow-trails1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/glow-trails/glow-trails1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -462,12 +462,12 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("trail_bright", -1, 52, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Phos. Trail Brightness"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("trail_bright", -1, 52, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Phos. Trail Brightness"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("glow_trails_refpass", 3));
 /*

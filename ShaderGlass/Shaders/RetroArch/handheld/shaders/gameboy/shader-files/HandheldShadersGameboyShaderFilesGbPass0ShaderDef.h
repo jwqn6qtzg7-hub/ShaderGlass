@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader handheld/shaders/gameboy/shader-files\gb-pass0 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/handheld/shaders/gameboy/shader-files/gb-pass0.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/shaders/gameboy/shader-files/gb-pass0.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1198,16 +1198,16 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalHistorySize1", -1, 48, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("color_toggle", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Color Toggle"));
 		Params.push_back(ShaderParam("baseline_alpha", -1, 64, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Baseline Alpha"));
 		Params.push_back(ShaderParam("grey_balance", -1, 68, 4, 2.000000f, 4.000000f, 3.000000f, 0.100000f, "Grey Balance"));
 		Params.push_back(ShaderParam("response_time", -1, 72, 4, 0.000000f, 0.777000f, 0.333000f, 0.111000f, "LCD Response Time"));
 		Params.push_back(ShaderParam("video_scale", -1, 76, 4, 3.000000f, 5.000000f, 3.000000f, 1.000000f, "Video Scale"));
-		Params.push_back(ShaderParam("color_toggle", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Color Toggle"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
 		Samplers.push_back(ShaderSampler("OriginalHistory2", 4));

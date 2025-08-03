@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/hyllian\crt-hyllian-fast imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/hyllian/crt-hyllian-fast.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/hyllian/crt-hyllian-fast.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -863,17 +863,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersHyllianCrtHyllianFastShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("MASK_INTENSITY", -1, 0, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "MASK INTENSITY"));
 		Params.push_back(ShaderParam("InputGamma", -1, 4, 4, 0.000000f, 5.000000f, 2.400000f, 0.100000f, "INPUT GAMMA"));
 		Params.push_back(ShaderParam("OutputGamma", -1, 8, 4, 0.000000f, 5.000000f, 2.200000f, 0.100000f, "OUTPUT GAMMA"));
 		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 12, 4, 0.000000f, 2.000000f, 1.500000f, 0.100000f, "BRIGHT BOOST"));
 		Params.push_back(ShaderParam("SCANLINES", -1, 16, 4, 0.000000f, 1.000000f, 0.720000f, 0.020000f, "SCANLINES STRENGTH"));
 		Params.push_back(ShaderParam("SHARPER", -1, 20, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SHARPER"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 1));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

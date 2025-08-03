@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader ntsc/shaders/ntsc-simple\ntsc-simple-1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/ntsc/shaders/ntsc-simple/ntsc-simple-1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/shaders/ntsc-simple/ntsc-simple-1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -781,15 +781,15 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ntsc_U", -1, 0, 4, -6.000000f, 6.000000f, 0.800000f, 0.050000f, "U Hue (Purple to Yellow)"));
 		Params.push_back(ShaderParam("ntsc_V", -1, 4, 4, -6.000000f, 6.000000f, 1.000000f, 0.050000f, "V Hue (Red to Cyan)"));
-		Params.push_back(ShaderParam("system_choose", -1, 8, 4, 0.000000f, 6.000000f, 0.000000f, 1.000000f, "SYSTEM CHOOSE"));
 		Params.push_back(ShaderParam("anim_overr", -1, 12, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Force Animate Artifacts"));
+		Params.push_back(ShaderParam("system_choose", -1, 8, 4, 0.000000f, 6.000000f, 0.000000f, 1.000000f, "SYSTEM CHOOSE"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

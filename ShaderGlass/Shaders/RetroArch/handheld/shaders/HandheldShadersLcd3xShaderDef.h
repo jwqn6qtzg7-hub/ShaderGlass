@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader handheld/shaders\lcd3x imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/handheld/shaders/lcd3x.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/shaders/lcd3x.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -457,13 +457,13 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersLcd3xShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersLcd3xShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("brighten_scanlines", -1, 52, 4, 1.000000f, 32.000000f, 16.000000f, 0.500000f, "Brighten Scanlines"));
+		Params.push_back(ShaderParam("brighten_lcd", -1, 56, 4, 1.000000f, 12.000000f, 4.000000f, 0.100000f, "Brighten LCD"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("brighten_scanlines", -1, 52, 4, 1.000000f, 32.000000f, 16.000000f, 0.500000f, "Brighten Scanlines"));
-		Params.push_back(ShaderParam("brighten_lcd", -1, 56, 4, 1.000000f, 12.000000f, 4.000000f, 0.100000f, "Brighten LCD"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

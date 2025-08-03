@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/crt-royale/src-fast\crt-royale-bloom-vertical imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-royale/src-fast/crt-royale-bloom-vertical.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-royale/src-fast/crt-royale-bloom-vertical.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1242,8 +1242,9 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBloomVerticalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtRoyaleSrcFastCrtRoyaleBloomVerticalShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("BLOOM_APPROXSize", -1, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crt_gamma", 0, 64, 4, 1.000000f, 5.000000f, 2.400000f, 0.025000f, "Simulated CRT Gamma"));
+		Params.push_back(ShaderParam("MASKED_SCANLINESSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("lcd_gamma", 0, 68, 4, 1.000000f, 5.000000f, 2.400000f, 0.025000f, "Your Display Gamma"));
 		Params.push_back(ShaderParam("levels_contrast", 0, 72, 4, 0.000000f, 4.000000f, 0.671875f, 0.015625f, "Contrast"));
 		Params.push_back(ShaderParam("bloom_underestimate_levels", 0, 76, 4, 0.000000f, 5.000000f, 1.000000f, 0.010000f, "Bloom - Underestimate Levels"));
@@ -1264,22 +1265,21 @@ public:
 		Params.push_back(ShaderParam("convergence_offset_y_g", 0, 136, 4, -2.000000f, 2.000000f, -0.050000f, 0.050000f, "Convergence - Offset Y Green"));
 		Params.push_back(ShaderParam("convergence_offset_y_b", 0, 140, 4, -2.000000f, 2.000000f, 0.050000f, 0.050000f, "Convergence - Offset Y Blue"));
 		Params.push_back(ShaderParam("mask_type", 0, 144, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Mask - Type"));
-		Params.push_back(ShaderParam("mask_num_triads_desired", 0, 148, 4, 342.000000f, 1920.000000f, 480.000000f, 1.000000f, "Mask - Number of Triads Desired"));
-		Params.push_back(ShaderParam("mask_triad_size_desired", 0, 152, 4, 1.000000f, 18.000000f, 3.000000f, 0.125000f, "Mask - Triad Size Desired"));
 		Params.push_back(ShaderParam("mask_specify_num_triads", 0, 156, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Mask - Specify Number of Triads"));
+		Params.push_back(ShaderParam("mask_triad_size_desired", 0, 152, 4, 1.000000f, 18.000000f, 3.000000f, 0.125000f, "Mask - Triad Size Desired"));
+		Params.push_back(ShaderParam("mask_num_triads_desired", 0, 148, 4, 342.000000f, 1920.000000f, 480.000000f, 1.000000f, "Mask - Number of Triads Desired"));
 		Params.push_back(ShaderParam("aa_subpixel_r_offset_x_runtime", 0, 160, 4, -0.333333f, 0.333333f, -0.333333f, 0.333333f, "AA - Subpixel R Offset X"));
 		Params.push_back(ShaderParam("aa_subpixel_r_offset_y_runtime", 0, 164, 4, -0.333333f, 0.333333f, 0.000000f, 0.333333f, "AA - Subpixel R Offset Y"));
 		Params.push_back(ShaderParam("aa_cubic_c", 0, 168, 4, 0.000000f, 4.000000f, 0.500000f, 0.015625f, "AA - Cubic Sharpness"));
 		Params.push_back(ShaderParam("aa_gauss_sigma", 0, 172, 4, 0.062500f, 1.000000f, 0.500000f, 0.015625f, "AA - Gaussian Sigma"));
+		Params.push_back(ShaderParam("interlace_detect_toggle", 0, 184, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Interlacing - Toggle"));
 		Params.push_back(ShaderParam("interlace_bff", 0, 176, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Interlacing - Bottom Field First"));
 		Params.push_back(ShaderParam("interlace_1080i", 0, 180, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Interlace - Detect 1080i"));
-		Params.push_back(ShaderParam("interlace_detect_toggle", 0, 184, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Interlacing - Toggle"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MASKED_SCANLINESSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("BLOOM_APPROXSize", -1, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

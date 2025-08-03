@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader downsample/shaders\drez-g-sharp_resampler imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/downsample/shaders/drez-g-sharp_resampler.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/downsample/shaders/drez-g-sharp_resampler.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1456,17 +1456,17 @@ public:
 		FragmentLength = sizeof(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("DREZ_GSHARP_ON", 0, 116, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "G-SHARP ON"));
+		Params.push_back(ShaderParam("DREZ_THRESHOLD_RATIO", 0, 136, 4, 1.000000f, 4.000000f, 1.500000f, 0.100000f, "Downsample Threshold (Original Res Vs Downsampled Res)"));
+		Params.push_back(ShaderParam("DREZ_HSHARP0", 0, 124, 4, 1.000000f, 6.000000f, 2.300000f, 0.100000f, "Filter Range"));
+		Params.push_back(ShaderParam("DREZ_SIGMA_HV", 0, 120, 4, 0.100000f, 7.000000f, 0.750000f, 0.050000f, "Gaussian Blur Sigma"));
+		Params.push_back(ShaderParam("DREZ_SHAR", 0, 132, 4, 0.000000f, 2.000000f, 0.500000f, 0.050000f, "Sharpness Definition"));
+		Params.push_back(ShaderParam("DREZ_HAR", 0, 128, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Anti-Ringing"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("DREZ_GSHARP_ON", 0, 116, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "G-SHARP ON"));
-		Params.push_back(ShaderParam("DREZ_SIGMA_HV", 0, 120, 4, 0.100000f, 7.000000f, 0.750000f, 0.050000f, "Gaussian Blur Sigma"));
-		Params.push_back(ShaderParam("DREZ_HSHARP0", 0, 124, 4, 1.000000f, 6.000000f, 2.300000f, 0.100000f, "Filter Range"));
-		Params.push_back(ShaderParam("DREZ_HAR", 0, 128, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Anti-Ringing"));
-		Params.push_back(ShaderParam("DREZ_SHAR", 0, 132, 4, 0.000000f, 2.000000f, 0.500000f, 0.050000f, "Sharpness Definition"));
-		Params.push_back(ShaderParam("DREZ_THRESHOLD_RATIO", 0, 136, 4, 1.000000f, 4.000000f, 1.500000f, 0.100000f, "Downsample Threshold (Original Res Vs Downsampled Res)"));
 		Samplers.push_back(ShaderSampler("Original", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

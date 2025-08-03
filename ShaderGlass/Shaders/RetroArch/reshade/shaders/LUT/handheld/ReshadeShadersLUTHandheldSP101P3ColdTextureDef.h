@@ -1,6 +1,6 @@
 /*
 ShaderGlass texture reshade/shaders/LUT/handheld / SP101-P3-Cold imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/reshade/shaders/LUT/handheld/SP101-P3-Cold.png
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/reshade/shaders/LUT/handheld/SP101-P3-Cold.png
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader scanlines/shaders\ossc imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/scanlines/shaders/ossc.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/scanlines/shaders/ossc.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -849,22 +849,22 @@ public:
 		FragmentLength = sizeof(RetroArchScanlinesShadersOsscShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchScanlinesShadersOsscShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OVERSCAN", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Overscan"));
-		Params.push_back(ShaderParam("ASPECTx", -1, 56, 4, 1.000000f, 32.000000f, 4.000000f, 1.000000f, "Aspect Ratio X"));
-		Params.push_back(ShaderParam("ASPECTy", -1, 60, 4, 1.000000f, 32.000000f, 3.000000f, 1.000000f, "Aspect Ratio Y"));
 		Params.push_back(ShaderParam("LINES", -1, 64, 4, 2.000000f, 5.000000f, 4.000000f, 1.000000f, "Lines"));
+		Params.push_back(ShaderParam("TATE", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "TATE mode"));
 		Params.push_back(ShaderParam("L1", -1, 68, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Line 1 Scanline Strength %"));
 		Params.push_back(ShaderParam("L2", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Line 2 Scanline Strength %"));
 		Params.push_back(ShaderParam("L3", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Line 3 Scanline Strength %"));
 		Params.push_back(ShaderParam("L4", -1, 80, 4, 0.000000f, 1.000000f, 0.400000f, 0.010000f, "Line 4 Scanline Strength %"));
 		Params.push_back(ShaderParam("L5", -1, 84, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Line 5 Scanline Strength %"));
-		Params.push_back(ShaderParam("TATE", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "TATE mode"));
 		Params.push_back(ShaderParam("HYBRID", -1, 92, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Scanline Hybrid Blend % (depend on pixel overlayed)"));
+		Params.push_back(ShaderParam("OVERSCAN", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Overscan"));
+		Params.push_back(ShaderParam("ASPECTx", -1, 56, 4, 1.000000f, 32.000000f, 4.000000f, 1.000000f, "Aspect Ratio X"));
+		Params.push_back(ShaderParam("ASPECTy", -1, 60, 4, 1.000000f, 32.000000f, 3.000000f, 1.000000f, "Aspect Ratio Y"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

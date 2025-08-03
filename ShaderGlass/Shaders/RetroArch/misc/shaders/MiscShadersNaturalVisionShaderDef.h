@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader misc/shaders\natural-vision imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/misc/shaders/natural-vision.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/misc/shaders/natural-vision.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -518,14 +518,14 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("GIN", -1, 32, 4, 0.000000f, 10.000000f, 2.200000f, 0.050000f, "NaturalVision Gamma In"));
 		Params.push_back(ShaderParam("GOUT", -1, 36, 4, 0.000000f, 10.000000f, 2.200000f, 0.050000f, "NaturalVision Gamma Out"));
 		Params.push_back(ShaderParam("Y", -1, 40, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Luminance"));
 		Params.push_back(ShaderParam("I", -1, 44, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Orange-Cyan"));
 		Params.push_back(ShaderParam("Q", -1, 48, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Magenta-Green"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

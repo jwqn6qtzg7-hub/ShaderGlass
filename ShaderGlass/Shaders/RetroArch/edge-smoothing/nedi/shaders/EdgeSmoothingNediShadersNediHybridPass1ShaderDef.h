@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader edge-smoothing/nedi/shaders\nedi-hybrid-pass1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/edge-smoothing/nedi/shaders/nedi-hybrid-pass1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/edge-smoothing/nedi/shaders/nedi-hybrid-pass1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1841,13 +1841,13 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingNediShadersNediHybridPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingNediShadersNediHybridPass1ShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("NEDI_E", -1, 52, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "EDGE STRENGTH"));
+		Params.push_back(ShaderParam("FALLBACK_FILTER", -1, 56, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "FALLBACK FILTER (smooth <--> sharp)"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("NEDI_E", -1, 52, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "EDGE STRENGTH"));
-		Params.push_back(ShaderParam("FALLBACK_FILTER", -1, 56, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "FALLBACK FILTER (smooth <--> sharp)"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

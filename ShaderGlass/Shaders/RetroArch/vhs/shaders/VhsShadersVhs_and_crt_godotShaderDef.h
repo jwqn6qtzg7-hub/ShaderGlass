@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader vhs/shaders\vhs_and_crt_godot imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/vhs/shaders/vhs_and_crt_godot.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/vhs/shaders/vhs_and_crt_godot.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -2085,11 +2085,11 @@ public:
 		FragmentLength = sizeof(RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchVhsShadersVhs_and_crt_godotShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("godot_scanlines_opacity", 0, 64, 4, 0.000000f, 1.000000f, 0.400000f, 0.010000f, "Scanlines Opacity"));
+		Params.push_back(ShaderParam("godot_pixelate", 0, 76, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameDirection", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("godot_scanlines_width", 0, 68, 4, 0.000000f, 0.500000f, 0.250000f, 0.050000f, "Scanlines Width"));
 		Params.push_back(ShaderParam("godot_grille_opacity", 0, 72, 4, 0.000000f, 1.000000f, 0.300000f, 0.010000f, "Grille Opacity"));
-		Params.push_back(ShaderParam("godot_pixelate", 0, 76, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("godot_roll", 0, 80, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Roll Toggle"));
 		Params.push_back(ShaderParam("godot_roll_speed", 0, 84, 4, -20.000000f, 20.000000f, 8.000000f, 0.100000f, "Roll Speed"));
 		Params.push_back(ShaderParam("godot_roll_size", 0, 88, 4, 0.000000f, 100.000000f, 15.000000f, 1.000000f, "Roll Size"));
@@ -2106,11 +2106,11 @@ public:
 		Params.push_back(ShaderParam("godot_vignette_intensity", 0, 132, 4, 0.000000f, 1.000000f, 0.400000f, 0.010000f, "Vignette Intensity"));
 		Params.push_back(ShaderParam("godot_vignette_opacity", 0, 136, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Vignette Opacity"));
 		Params.push_back(ShaderParam("godot_moire", 0, 140, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Warp Scanlines/Mask (Moire!)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameDirection", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

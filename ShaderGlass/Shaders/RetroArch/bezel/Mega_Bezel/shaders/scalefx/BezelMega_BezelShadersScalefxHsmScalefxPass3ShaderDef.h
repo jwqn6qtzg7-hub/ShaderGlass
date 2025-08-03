@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader bezel/Mega_Bezel/shaders/scalefx / hsm-scalefx-pass3 imported from MegaBezel:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/Mega_Bezel
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/Mega_Bezel
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -2884,14 +2884,14 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass3ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass3ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("scalefx_pass0Size", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SFX_RAA", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("HSM_SCALEFX_ON", -1, 32, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "ScaleFx ON - Must Increase Core Res Sampling"));
 		Params.push_back(ShaderParam("SFX_CLR", -1, 36, 4, 0.010000f, 1.000000f, 0.430000f, 0.010000f, "ScaleFX Threshold"));
 		Params.push_back(ShaderParam("SFX_SAA", -1, 40, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "ScaleFX Filter AA"));
 		Params.push_back(ShaderParam("SFX_SCN", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "ScaleFX Filter Corners"));
-		Params.push_back(ShaderParam("SFX_RAA", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 1));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

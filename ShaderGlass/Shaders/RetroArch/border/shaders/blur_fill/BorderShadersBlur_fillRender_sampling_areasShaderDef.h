@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader border/shaders/blur_fill\render_sampling_areas imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/border/shaders/blur_fill/render_sampling_areas.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/border/shaders/blur_fill/render_sampling_areas.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -3203,14 +3203,9 @@ public:
 		FragmentLength = sizeof(RetroArchBorderShadersBlur_fillRender_sampling_areasShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBorderShadersBlur_fillRender_sampling_areasShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FinalViewportSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Rotation", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("EXTEND_H", -1, 36, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Extend the fill horizontally"));
-		Params.push_back(ShaderParam("EXTEND_V", -1, 40, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Extend the fill vertically"));
-		Params.push_back(ShaderParam("MIRROR_BLUR", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Mirror the blur"));
-		Params.push_back(ShaderParam("SAMPLE_SIZE", -1, 48, 4, 1.000000f, 1024.000000f, 16.000000f, 1.000000f, "No. of lines for rendering the blur"));
 		Params.push_back(ShaderParam("FORCE_ASPECT_RATIO", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Force aspect ratio"));
 		Params.push_back(ShaderParam("ASPECT_H", -1, 56, 4, 0.000000f, 256.000000f, 0.000000f, 1.000000f, "Horizontal aspect ratio before crop (0 = unchanged)"));
 		Params.push_back(ShaderParam("ASPECT_V", -1, 60, 4, 0.000000f, 256.000000f, 0.000000f, 1.000000f, "Vertical aspect ratio before crop (0 = unchanged)"));
@@ -3224,6 +3219,11 @@ public:
 		Params.push_back(ShaderParam("SHIFT_H", -1, 92, 4, -2048.000000f, 2048.000000f, 0.000000f, 1.000000f, "Horizontal shift"));
 		Params.push_back(ShaderParam("SHIFT_V", -1, 96, 4, -2048.000000f, 2048.000000f, 0.000000f, 1.000000f, "Vertical shift"));
 		Params.push_back(ShaderParam("CENTER_AFTER_CROPPING", -1, 100, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Center cropped area"));
+		Params.push_back(ShaderParam("EXTEND_H", -1, 36, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Extend the fill horizontally"));
+		Params.push_back(ShaderParam("EXTEND_V", -1, 40, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Extend the fill vertically"));
+		Params.push_back(ShaderParam("MIRROR_BLUR", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Mirror the blur"));
+		Params.push_back(ShaderParam("SAMPLE_SIZE", -1, 48, 4, 1.000000f, 1024.000000f, 16.000000f, 1.000000f, "No. of lines for rendering the blur"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader border/shaders\effect-border-iq imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/border/shaders/effect-border-iq.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/border/shaders/effect-border-iq.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -4186,26 +4186,26 @@ public:
 		FragmentLength = sizeof(RetroArchBorderShadersEffectBorderIqShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBorderShadersEffectBorderIqShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("effect", -1, 76, 4, 1.000000f, 7.000000f, 1.000000f, 1.000000f, "Effect Choice"));
 		Params.push_back(ShaderParam("aspect_x", -1, 52, 4, 1.000000f, 256.000000f, 64.000000f, 1.000000f, "Aspect Ratio Numerator"));
 		Params.push_back(ShaderParam("aspect_y", -1, 56, 4, 1.000000f, 256.000000f, 49.000000f, 1.000000f, "Aspect Ratio Denominator"));
 		Params.push_back(ShaderParam("integer_scale", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Force Integer Scaling"));
 		Params.push_back(ShaderParam("overscale", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Integer Overscale"));
 		Params.push_back(ShaderParam("border_zoom", -1, 68, 4, 0.500000f, 16.000000f, 8.000000f, 0.500000f, "Border Zoom"));
 		Params.push_back(ShaderParam("border_speed", -1, 72, 4, 0.500000f, 10.000000f, 0.500000f, 0.500000f, "Border Animation Speed"));
-		Params.push_back(ShaderParam("effect", -1, 76, 4, 1.000000f, 7.000000f, 1.000000f, 1.000000f, "Effect Choice"));
-		Params.push_back(ShaderParam("scanline_toggle", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Scanline Toggle"));
 		Params.push_back(ShaderParam("interp_toggle", -1, 84, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sharpen Linear Scaling"));
+		Params.push_back(ShaderParam("scanline_toggle", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Scanline Toggle"));
 		Params.push_back(ShaderParam("THICKNESS", -1, 88, 4, 1.000000f, 12.000000f, 2.000000f, 1.000000f, "Scanline Thickness"));
 		Params.push_back(ShaderParam("DARKNESS", -1, 92, 4, 0.000000f, 1.000000f, 0.350000f, 0.050000f, "Scanline Darkness"));
 		Params.push_back(ShaderParam("OS_MASK_TOP", -1, 96, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Top"));
 		Params.push_back(ShaderParam("OS_MASK_BOTTOM", -1, 100, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Bottom"));
 		Params.push_back(ShaderParam("OS_MASK_LEFT", -1, 104, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Left"));
 		Params.push_back(ShaderParam("OS_MASK_RIGHT", -1, 108, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Overscan Mask Right"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("iChannel0", 4));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("Original", 3));

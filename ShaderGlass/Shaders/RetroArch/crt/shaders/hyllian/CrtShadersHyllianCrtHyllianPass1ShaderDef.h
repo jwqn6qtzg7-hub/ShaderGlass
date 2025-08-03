@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/hyllian\crt-hyllian-pass1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/hyllian/crt-hyllian-pass1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/hyllian/crt-hyllian-pass1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -2328,27 +2328,27 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersHyllianCrtHyllianPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("H_OUTPUT_GAMMA", -1, 52, 4, 1.000000f, 3.000000f, 2.200000f, 0.050000f, "Output Gamma"));
-		Params.push_back(ShaderParam("PHOSPHOR_LAYOUT", -1, 56, 4, 0.000000f, 17.000000f, 1.000000f, 1.000000f, "Mask [1-6 APERT, 7-10 DOT, 11-14 SLOT, 15-17 LOTTES]"));
-		Params.push_back(ShaderParam("MASK_STRENGTH", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.020000f, "Mask Strength"));
-		Params.push_back(ShaderParam("MONITOR_SUBPIXELS", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Monitor Subpixels Layout [ RGB, BGR ]"));
+		Params.push_back(ShaderParam("POST_BRIGHTNESS", -1, 88, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 68, 4, 0.500000f, 2.000000f, 1.000000f, 0.010000f, "Brightboost"));
-		Params.push_back(ShaderParam("SCANLINES_SHAPE", -1, 72, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Scanlines Shape [ SHARP, SOFT ]"));
-		Params.push_back(ShaderParam("SCANLINES_STRENGTH", -1, 76, 4, 0.000000f, 1.000000f, 0.720000f, 0.010000f, "Scanlines Strength"));
 		Params.push_back(ShaderParam("BEAM_MIN_WIDTH", -1, 80, 4, 0.000000f, 1.000000f, 0.720000f, 0.010000f, "Min Beam Width"));
 		Params.push_back(ShaderParam("BEAM_MAX_WIDTH", -1, 84, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "Max Beam Width"));
-		Params.push_back(ShaderParam("POST_BRIGHTNESS", -1, 88, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SCANLINES_STRENGTH", -1, 76, 4, 0.000000f, 1.000000f, 0.720000f, 0.010000f, "Scanlines Strength"));
+		Params.push_back(ShaderParam("SCANLINES_SHAPE", -1, 72, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Scanlines Shape [ SHARP, SOFT ]"));
+		Params.push_back(ShaderParam("PHOSPHOR_LAYOUT", -1, 56, 4, 0.000000f, 17.000000f, 1.000000f, 1.000000f, "Mask [1-6 APERT, 7-10 DOT, 11-14 SLOT, 15-17 LOTTES]"));
+		Params.push_back(ShaderParam("MASK_STRENGTH", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.020000f, "Mask Strength"));
+		Params.push_back(ShaderParam("H_MaskGamma", -1, 112, 4, 1.000000f, 3.000000f, 2.400000f, 0.050000f, "Mask Gamma"));
+		Params.push_back(ShaderParam("MONITOR_SUBPIXELS", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Monitor Subpixels Layout [ RGB, BGR ]"));
 		Params.push_back(ShaderParam("CURVATURE", -1, 92, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Curvature Toggle"));
 		Params.push_back(ShaderParam("WARP_X", -1, 96, 4, 0.000000f, 0.125000f, 0.015000f, 0.005000f, "Curvature-X"));
 		Params.push_back(ShaderParam("WARP_Y", -1, 100, 4, 0.000000f, 0.125000f, 0.015000f, 0.005000f, "Curvature-Y"));
 		Params.push_back(ShaderParam("CORNER_SIZE", -1, 104, 4, 0.001000f, 1.000000f, 0.020000f, 0.005000f, "Corner Size"));
 		Params.push_back(ShaderParam("CORNER_SMOOTHNESS", -1, 108, 4, 1.000000f, 2.200000f, 1.100000f, 0.020000f, "Corner Smoothness"));
-		Params.push_back(ShaderParam("H_MaskGamma", -1, 112, 4, 1.000000f, 3.000000f, 2.400000f, 0.050000f, "Mask Gamma"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

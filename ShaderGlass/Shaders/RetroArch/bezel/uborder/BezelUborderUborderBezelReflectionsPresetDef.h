@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/uborder / uborder-bezel-reflections imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/uborder/uborder-bezel-reflections.slangp
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/uborder/uborder-bezel-reflections.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -39,10 +39,12 @@ public:
 .Param("mipmap", "false")
 .Param("name", "LAYER2")
 .Param("wrap_mode", "clamp_to_border"));
-            OverrideParam("CN_MASK_STRENGTH", (float)0.500000);
-            OverrideParam("CN_SCAN_SIZE", (float)0.950000);
+            OverrideParam("CN_MASK_STRENGTH", (float)1.000000);
+            OverrideParam("CN_SCAN_SIZE", (float)0.860000);
             OverrideParam("CN_VIG_EXP", (float)0.320000);
             OverrideParam("CN_VIG_TOGGLE", (float)1.000000);
+            OverrideParam("bz_ambient", (float)0.100000);
+            OverrideParam("bz_ambient_size", (float)0.900000);
             OverrideParam("bz_blue", (float)50.000000);
             OverrideParam("bz_green", (float)50.000000);
             OverrideParam("bz_inner_bezel_x", (float)0.000000);
@@ -54,11 +56,12 @@ public:
             OverrideParam("bz_radius", (float)0.015000);
             OverrideParam("bz_red", (float)50.000000);
             OverrideParam("bz_ref_str", (float)0.350000);
-            OverrideParam("bz_shine", (float)0.150000);
-            OverrideParam("bz_shine_size", (float)0.850000);
+            OverrideParam("bz_shine", (float)0.100000);
+            OverrideParam("bz_shine_size", (float)0.900000);
             OverrideParam("fr_i_scaling_fac", (float)0.000000);
             OverrideParam("fr_zoom", (float)37.799999);
             OverrideParam("h_cornersize", (float)0.020000);
+            OverrideParam("h_radius", (float)6.000000);
 	}
 };
 }

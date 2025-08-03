@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader misc/shaders\color-mangler imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/misc/shaders/color-mangler.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/misc/shaders/color-mangler.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -751,10 +751,6 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersColorManglerShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersColorManglerShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("gamma_boost_r", -1, 0, 4, -5.000000f, 5.000000f, 0.000000f, 0.100000f, "Gamma Mod Red Channel"));
 		Params.push_back(ShaderParam("gamma_boost_g", -1, 4, 4, -5.000000f, 5.000000f, 0.000000f, 0.100000f, "Gamma Mod Green Channel"));
 		Params.push_back(ShaderParam("gamma_boost_b", -1, 8, 4, -5.000000f, 5.000000f, 0.000000f, 0.100000f, "Gamma Mod Blue Channel"));
@@ -773,6 +769,10 @@ public:
 		Params.push_back(ShaderParam("blr", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Black-Red Tint"));
 		Params.push_back(ShaderParam("blg", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Black-Green Tint"));
 		Params.push_back(ShaderParam("blb", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 0.005000f, "Black-Blue Tint"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

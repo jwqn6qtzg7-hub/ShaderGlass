@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-nobody imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-nobody.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-nobody.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -3240,39 +3240,39 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtNobodyShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtNobodyShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("CN_VSCANLINES", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Orientation [ HORIZONTAL, VERTICAL ]"));
-		Params.push_back(ShaderParam("CN_BEAM_MIN_WIDTH", -1, 4, 4, 0.000000f, 1.000000f, 0.800000f, 0.010000f, "Min Beam Width"));
-		Params.push_back(ShaderParam("CN_BEAM_MAX_WIDTH", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "Max Beam Width"));
-		Params.push_back(ShaderParam("CN_SCAN_SIZE", -1, 12, 4, 0.000000f, 1.000000f, 0.860000f, 0.010000f, "Scanlines Thickness"));
+		Params.push_back(ShaderParam("CN_InputGamma", -1, 44, 4, 0.000000f, 4.000000f, 2.400000f, 0.100000f, "Input Gamma"));
+		Params.push_back(ShaderParam("CN_OutputGamma", -1, 48, 4, 0.000000f, 3.000000f, 2.200000f, 0.100000f, "Output Gamma"));
 		Params.push_back(ShaderParam("CN_BRIGHTBOOST", -1, 16, 4, 0.500000f, 1.500000f, 1.000000f, 0.010000f, "Brightness Boost"));
 		Params.push_back(ShaderParam("CN_VIG_TOGGLE", -1, 20, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vignette Toggle"));
 		Params.push_back(ShaderParam("CN_VIG_BASE", -1, 24, 4, 2.000000f, 100.000000f, 48.000000f, 2.000000f, "Vignette Range"));
 		Params.push_back(ShaderParam("CN_VIG_EXP", -1, 28, 4, 0.000000f, 2.000000f, 0.160000f, 0.020000f, "Vignette Strength"));
+		Params.push_back(ShaderParam("CN_BEAM_MIN_WIDTH", -1, 4, 4, 0.000000f, 1.000000f, 0.800000f, 0.010000f, "Min Beam Width"));
+		Params.push_back(ShaderParam("CN_BEAM_MAX_WIDTH", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "Max Beam Width"));
+		Params.push_back(ShaderParam("CN_SCAN_SIZE", -1, 12, 4, 0.000000f, 1.000000f, 0.860000f, 0.010000f, "Scanlines Thickness"));
+		Params.push_back(ShaderParam("CN_VSCANLINES", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Orientation [ HORIZONTAL, VERTICAL ]"));
 		Params.push_back(ShaderParam("CN_PHOSPHOR_LAYOUT", -1, 32, 4, 0.000000f, 17.000000f, 1.000000f, 1.000000f, "Mask [1-6 APERT, 7-10 DOT, 11-14 SLOT, 15-17 LOTTES]"));
 		Params.push_back(ShaderParam("CN_MASK_STRENGTH", -1, 36, 4, 0.000000f, 1.000000f, 1.000000f, 0.020000f, "Mask Strength"));
-		Params.push_back(ShaderParam("CN_MONITOR_SUBPIXELS", -1, 40, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Monitor Subpixels Layout [ RGB, BGR ]"));
-		Params.push_back(ShaderParam("CN_InputGamma", -1, 44, 4, 0.000000f, 4.000000f, 2.400000f, 0.100000f, "Input Gamma"));
-		Params.push_back(ShaderParam("CN_OutputGamma", -1, 48, 4, 0.000000f, 3.000000f, 2.200000f, 0.100000f, "Output Gamma"));
 		Params.push_back(ShaderParam("CN_MaskGamma", -1, 52, 4, 1.000000f, 5.000000f, 2.400000f, 0.100000f, "Mask Gamma"));
+		Params.push_back(ShaderParam("CN_MONITOR_SUBPIXELS", -1, 40, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Monitor Subpixels Layout [ RGB, BGR ]"));
 		Params.push_back(ShaderParam("fr_zoom", -1, 56, 4, 20.000000f, 200.000000f, 100.000000f, 1.000000f, "Zoom %"));
 		Params.push_back(ShaderParam("fr_scale_x", -1, 60, 4, 20.000000f, 200.000000f, 100.000000f, 0.200000f, "Scale X%"));
 		Params.push_back(ShaderParam("fr_scale_y", -1, 64, 4, 20.000000f, 200.000000f, 100.000000f, 0.200000f, "Scale Y%"));
 		Params.push_back(ShaderParam("fr_center_x", -1, 68, 4, -100.000000f, 100.000000f, 0.000000f, 0.100000f, "Center X"));
 		Params.push_back(ShaderParam("fr_center_y", -1, 72, 4, -100.000000f, 100.000000f, 0.000000f, 0.100000f, "Center Y"));
+		Params.push_back(ShaderParam("h_curvature", -1, 108, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle"));
 		Params.push_back(ShaderParam("h_shape", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Shape [ SPHERE, CYLINDER ]"));
 		Params.push_back(ShaderParam("h_radius", -1, 80, 4, 1.000000f, 10.000000f, 6.000000f, 0.100000f, "Curvature Radius"));
 		Params.push_back(ShaderParam("h_cornersize", -1, 84, 4, 0.010000f, 1.000000f, 0.040000f, 0.010000f, "Corner Size"));
 		Params.push_back(ShaderParam("h_cornersmooth", -1, 88, 4, 0.100000f, 1.000000f, 0.500000f, 0.100000f, "Corner Smoothness"));
-		Params.push_back(ShaderParam("h_overscan_x", -1, 92, 4, 20.000000f, 200.000000f, 100.000000f, 0.200000f, "Curved Overscan X%"));
-		Params.push_back(ShaderParam("h_overscan_y", -1, 96, 4, 20.000000f, 200.000000f, 100.000000f, 0.200000f, "Curved Overscan Y%"));
 		Params.push_back(ShaderParam("h_angle_x", -1, 100, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Angle X"));
 		Params.push_back(ShaderParam("h_angle_y", -1, 104, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Angle Y"));
-		Params.push_back(ShaderParam("h_curvature", -1, 108, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle"));
+		Params.push_back(ShaderParam("h_overscan_x", -1, 92, 4, 20.000000f, 200.000000f, 100.000000f, 0.200000f, "Curved Overscan X%"));
+		Params.push_back(ShaderParam("h_overscan_y", -1, 96, 4, 20.000000f, 200.000000f, 100.000000f, 0.200000f, "Curved Overscan Y%"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

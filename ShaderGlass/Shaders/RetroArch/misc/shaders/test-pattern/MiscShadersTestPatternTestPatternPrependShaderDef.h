@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader misc/shaders/test-pattern\test-pattern-prepend imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/misc/shaders/test-pattern/test-pattern-prepend.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/misc/shaders/test-pattern/test-pattern-prepend.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1333,11 +1333,6 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersTestPatternTestPatternPrependShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersTestPatternTestPatternPrependShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("tp_test_pattern", -1, 52, 4, 0.000000f, 8.000000f, 0.000000f, 1.000000f, "##### Test pattern selector #####"));
 		Params.push_back(ShaderParam("tp_test_pattern_split", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Toggle split mode"));
 		Params.push_back(ShaderParam("tp_split_brightness", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.025000f, "Split brightness"));
@@ -1350,6 +1345,11 @@ public:
 		Params.push_back(ShaderParam("tp_univ_border_right", -1, 88, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Border right"));
 		Params.push_back(ShaderParam("tp_univ_border_top", -1, 92, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Border top"));
 		Params.push_back(ShaderParam("tp_univ_border_bottom", -1, 96, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Border bottom"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("tpAllPalettes", 3));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*

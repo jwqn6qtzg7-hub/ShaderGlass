@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader dithering/shaders\blue_noise imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/dithering/shaders/blue_noise.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/dithering/shaders/blue_noise.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1203,15 +1203,15 @@ public:
 		FragmentLength = sizeof(RetroArchDitheringShadersBlue_noiseShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchDitheringShadersBlue_noiseShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("COLOR_DEPTH", -1, 52, 4, 1.000000f, 8.000000f, 1.000000f, 1.000000f, "Color depth in Bits"));
+		Params.push_back(ShaderParam("DITHER_TUNE", -1, 56, 4, -64.000000f, 64.000000f, 0.000000f, 1.000000f, "Tune dithering"));
+		Params.push_back(ShaderParam("MONOCHROME", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Monochrome"));
+		Params.push_back(ShaderParam("EGA_PALETTE", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "EGA palette"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("COLOR_DEPTH", -1, 52, 4, 1.000000f, 8.000000f, 1.000000f, 1.000000f, "Color depth in Bits"));
-		Params.push_back(ShaderParam("DITHER_TUNE", -1, 56, 4, -64.000000f, 64.000000f, 0.000000f, 1.000000f, "Tune dithering"));
-		Params.push_back(ShaderParam("MONOCHROME", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Monochrome"));
-		Params.push_back(ShaderParam("EGA_PALETTE", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "EGA palette"));
 		Samplers.push_back(ShaderSampler("BlueNoiseTexture", 3));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/guest/advanced/ntsc\ntsc-pass3 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/guest/advanced/ntsc/ntsc-pass3.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/guest/advanced/ntsc/ntsc-pass3.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1673,19 +1673,19 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedNtscNtscPass3ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestAdvancedNtscNtscPass3ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase | Mixed"));
 		Params.push_back(ShaderParam("auto_res", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
+		Params.push_back(ShaderParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase | Mixed"));
+		Params.push_back(ShaderParam("ntsc_rainbow1", -1, 80, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC Coloring/Rainbow Effect (2-phase)"));
 		Params.push_back(ShaderParam("ntsc_sharp", -1, 60, 4, -10.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Sharpness (Adaptive)"));
+		Params.push_back(ShaderParam("ntsc_shape", -1, 72, 4, 0.500000f, 1.000000f, 0.800000f, 0.050000f, "NTSC Sharpness Shape"));
 		Params.push_back(ShaderParam("ntsc_charp", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 2-phase"));
 		Params.push_back(ShaderParam("ntsc_charp3", -1, 68, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 3-phase"));
-		Params.push_back(ShaderParam("ntsc_shape", -1, 72, 4, 0.500000f, 1.000000f, 0.800000f, 0.050000f, "NTSC Sharpness Shape"));
 		Params.push_back(ShaderParam("ntsc_gamma", -1, 76, 4, 0.250000f, 2.500000f, 1.000000f, 0.025000f, "NTSC Filtering Gamma Correction"));
-		Params.push_back(ShaderParam("ntsc_rainbow1", -1, 80, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC Coloring/Rainbow Effect (2-phase)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("NPass1", 3));
 		Samplers.push_back(ShaderSampler("PrePass0", 4));

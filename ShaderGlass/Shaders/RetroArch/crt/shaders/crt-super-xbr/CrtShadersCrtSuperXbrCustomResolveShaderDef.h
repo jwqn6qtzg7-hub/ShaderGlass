@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/crt-super-xbr\custom-resolve imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-super-xbr/custom-resolve.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-super-xbr/custom-resolve.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -474,14 +474,14 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSuperXbrCustomResolveShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtSuperXbrCustomResolveShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("BLOOM_STRENGTH", -1, 52, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Bloom Strength"));
+		Params.push_back(ShaderParam("SOURCE_BOOST", -1, 56, 4, 1.000000f, 2.000000f, 1.150000f, 0.050000f, "Bloom Color Boost"));
+		Params.push_back(ShaderParam("OUTPUT_GAMMA", -1, 60, 4, 1.000000f, 3.000000f, 2.200000f, 0.100000f, "OUTPUT GAMMA"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("BLOOM_STRENGTH", -1, 52, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Bloom Strength"));
-		Params.push_back(ShaderParam("SOURCE_BOOST", -1, 56, 4, 1.000000f, 2.000000f, 1.150000f, 0.050000f, "Bloom Color Boost"));
-		Params.push_back(ShaderParam("OUTPUT_GAMMA", -1, 60, 4, 1.000000f, 3.000000f, 2.200000f, 0.100000f, "OUTPUT GAMMA"));
 		Samplers.push_back(ShaderSampler("CRT_PASS", 3));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader bezel/Mega_Bezel/shaders/guest / hsm-afterglow0 imported from MegaBezel:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/Mega_Bezel
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/Mega_Bezel
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -555,11 +555,11 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("PR", -1, 16, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Red -- PR"));
 		Params.push_back(ShaderParam("PG", -1, 20, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Green -- PG"));
 		Params.push_back(ShaderParam("PB", -1, 24, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Blue -- PB"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("PreCRTPass", 2));
 		Samplers.push_back(ShaderSampler("AfterglowPassFeedback", 3));
 /*

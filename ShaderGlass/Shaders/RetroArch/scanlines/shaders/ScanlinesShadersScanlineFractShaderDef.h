@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader scanlines/shaders\scanline-fract imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/scanlines/shaders/scanline-fract.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/scanlines/shaders/scanline-fract.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -517,14 +517,14 @@ public:
 		FragmentLength = sizeof(RetroArchScanlinesShadersScanlineFractShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchScanlinesShadersScanlineFractShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("THICKNESS", -1, 52, 4, 1.000000f, 12.000000f, 2.000000f, 1.000000f, "Scanline Thickness"));
+		Params.push_back(ShaderParam("DARKNESS", -1, 56, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Scanline Darkness"));
+		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 60, 4, 1.000000f, 1.200000f, 1.100000f, 0.100000f, "Scanline Boost Bright"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("THICKNESS", -1, 52, 4, 1.000000f, 12.000000f, 2.000000f, 1.000000f, "Scanline Thickness"));
-		Params.push_back(ShaderParam("DARKNESS", -1, 56, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Scanline Darkness"));
-		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 60, 4, 1.000000f, 1.200000f, 1.100000f, 0.100000f, "Scanline Boost Bright"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

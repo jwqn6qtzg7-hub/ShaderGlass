@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader edge-smoothing/ddt/shaders\ddt-xbr-lv1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/edge-smoothing/ddt/shaders/ddt-xbr-lv1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/edge-smoothing/ddt/shaders/ddt-xbr-lv1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1414,17 +1414,17 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingDdtShadersDdtXbrLv1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingDdtShadersDdtXbrLv1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("USE_DYNAMIC_SHARPNESS", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Dynamic Sharpness [ 0FF | ON ]"));
 		Params.push_back(ShaderParam("USE_SHARPENING_BIAS", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Sharpness Bias [ 0FF | ON ]"));
 		Params.push_back(ShaderParam("DYNAMIC_SHARPNESS_MIN", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "Dynamic Sharpness Min"));
 		Params.push_back(ShaderParam("DYNAMIC_SHARPNESS_MAX", -1, 64, 4, 0.000000f, 1.000000f, 0.300000f, 0.100000f, "Dynamic Sharpness Max"));
 		Params.push_back(ShaderParam("STATIC_SHARPNESS", -1, 68, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Static Sharpness"));
 		Params.push_back(ShaderParam("DDT_THRESHOLD", -1, 72, 4, 1.000000f, 6.000000f, 2.600000f, 0.200000f, "DDT Diagonal Threshold"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

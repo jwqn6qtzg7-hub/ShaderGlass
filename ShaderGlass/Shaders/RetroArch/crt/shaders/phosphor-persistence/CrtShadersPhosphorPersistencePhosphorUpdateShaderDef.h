@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/phosphor-persistence\phosphor-update imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/phosphor-persistence/phosphor-update.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/phosphor-persistence/phosphor-update.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -601,15 +601,15 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("internal1Size", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("phosphor_power", -1, 0, 4, 0.500000f, 3.000000f, 1.200000f, 0.050000f, "Phosphor decay power"));
+		Params.push_back(ShaderParam("phosphor_amplitude", -1, 4, 4, 0.000000f, 0.200000f, 0.040000f, 0.010000f, "Phosphor persistence amplitude"));
+		Params.push_back(ShaderParam("MVP", 0, 96, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", 0, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("internal1Size", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MVP", 0, 96, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("phosphor_power", -1, 0, 4, 0.500000f, 3.000000f, 1.200000f, 0.050000f, "Phosphor decay power"));
-		Params.push_back(ShaderParam("phosphor_amplitude", -1, 4, 4, 0.000000f, 0.200000f, 0.040000f, 0.010000f, "Phosphor persistence amplitude"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("phosphorFeedback", 3));
 /*

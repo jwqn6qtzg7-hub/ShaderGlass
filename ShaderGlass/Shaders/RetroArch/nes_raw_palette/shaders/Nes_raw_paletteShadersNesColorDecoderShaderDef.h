@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader nes_raw_palette/shaders\nes-color-decoder imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/nes_raw_palette/shaders/nes-color-decoder.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/nes_raw_palette/shaders/nes-color-decoder.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1017,11 +1017,6 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("nes_saturation", -1, 0, 4, 0.000000f, 5.000000f, 1.000000f, 0.050000f, "Saturation"));
 		Params.push_back(ShaderParam("nes_hue", -1, 4, 4, -360.000000f, 360.000000f, 0.000000f, 1.000000f, "Hue"));
 		Params.push_back(ShaderParam("nes_contrast", -1, 8, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Contrast"));
@@ -1029,6 +1024,11 @@ public:
 		Params.push_back(ShaderParam("nes_gamma", -1, 16, 4, 1.000000f, 2.500000f, 1.800000f, 0.050000f, "Gamma"));
 		Params.push_back(ShaderParam("nes_sony_matrix", -1, 20, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sony CXA2025AS US colors"));
 		Params.push_back(ShaderParam("nes_clip_method", -1, 24, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Palette clipping method"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

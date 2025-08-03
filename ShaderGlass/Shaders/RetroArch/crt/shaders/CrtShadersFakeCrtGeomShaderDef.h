@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\fake-crt-geom imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/fake-crt-geom.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/fake-crt-geom.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -900,21 +900,21 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersFakeCrtGeomShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersFakeCrtGeomShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_B", -1, 52, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Scanline Intensity"));
+		Params.push_back(ShaderParam("SIZE", -1, 84, 4, 0.500000f, 2.000000f, 1.000000f, 0.500000f, "Scanline size"));
+		Params.push_back(ShaderParam("warpX", -1, 56, 4, 0.000000f, 0.125000f, 0.030000f, 0.010000f, "warpX"));
+		Params.push_back(ShaderParam("warpY", -1, 60, 4, 0.000000f, 0.125000f, 0.050000f, 0.010000f, "warpY"));
+		Params.push_back(ShaderParam("corner_round", -1, 64, 4, 0.005000f, 0.100000f, 0.030000f, 0.005000f, "Corner Roundness"));
+		Params.push_back(ShaderParam("cgwg", -1, 68, 4, 0.000000f, 1.000000f, 0.700000f, 0.100000f, "CGWG mask brightness"));
+		Params.push_back(ShaderParam("crt_gamma", -1, 80, 4, 1.000000f, 4.000000f, 2.400000f, 0.050000f, "CRT Gamma"));
+		Params.push_back(ShaderParam("monitor_gamma", -1, 76, 4, 1.000000f, 4.000000f, 2.250000f, 0.050000f, "Monitor Gamma"));
+		Params.push_back(ShaderParam("boost", -1, 72, 4, 0.000000f, 1.000000f, 0.200000f, 0.020000f, "Bright boost"));
+		Params.push_back(ShaderParam("GLOW_LINE", -1, 88, 4, 0.000000f, 0.200000f, 0.006000f, 0.001000f, "Glowing line"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_B", -1, 52, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Scanline Intensity"));
-		Params.push_back(ShaderParam("warpX", -1, 56, 4, 0.000000f, 0.125000f, 0.030000f, 0.010000f, "warpX"));
-		Params.push_back(ShaderParam("warpY", -1, 60, 4, 0.000000f, 0.125000f, 0.050000f, 0.010000f, "warpY"));
-		Params.push_back(ShaderParam("corner_round", -1, 64, 4, 0.005000f, 0.100000f, 0.030000f, 0.005000f, "Corner Roundness"));
-		Params.push_back(ShaderParam("cgwg", -1, 68, 4, 0.000000f, 1.000000f, 0.700000f, 0.100000f, "CGWG mask brightness"));
-		Params.push_back(ShaderParam("boost", -1, 72, 4, 0.000000f, 1.000000f, 0.200000f, 0.020000f, "Bright boost"));
-		Params.push_back(ShaderParam("monitor_gamma", -1, 76, 4, 1.000000f, 4.000000f, 2.250000f, 0.050000f, "Monitor Gamma"));
-		Params.push_back(ShaderParam("crt_gamma", -1, 80, 4, 1.000000f, 4.000000f, 2.400000f, 0.050000f, "CRT Gamma"));
-		Params.push_back(ShaderParam("SIZE", -1, 84, 4, 0.500000f, 2.000000f, 1.000000f, 0.500000f, "Scanline size"));
-		Params.push_back(ShaderParam("GLOW_LINE", -1, 88, 4, 0.000000f, 0.200000f, 0.006000f, 0.001000f, "Glowing line"));
 		Samplers.push_back(ShaderSampler("Source", 1));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

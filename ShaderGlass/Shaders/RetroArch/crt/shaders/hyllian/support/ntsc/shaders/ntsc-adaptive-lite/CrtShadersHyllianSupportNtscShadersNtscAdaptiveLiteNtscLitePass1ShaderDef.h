@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/hyllian/support/ntsc/shaders/ntsc-adaptive-lite\ntsc-lite-pass1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/hyllian/support/ntsc/shaders/ntsc-adaptive-lite/ntsc-lite-pass1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/hyllian/support/ntsc/shaders/ntsc-adaptive-lite/ntsc-lite-pass1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1191,20 +1191,20 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianSupportNtscShadersNtscAdaptiveLiteNtscLitePass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersHyllianSupportNtscShadersNtscAdaptiveLiteNtscLitePass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("quality", 0, 116, 4, -1.000000f, 2.000000f, 1.000000f, 1.000000f, "Preset (Svideo=0 Composite=1 RF=2 Custom=-1)"));
-		Params.push_back(ShaderParam("ntsc_sat", 0, 120, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Color Saturation"));
-		Params.push_back(ShaderParam("cust_fringing", 0, 124, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "Custom Fringing Value"));
-		Params.push_back(ShaderParam("cust_artifacting", 0, 128, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "Custom Artifacting Value"));
-		Params.push_back(ShaderParam("ntsc_bright", 0, 132, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "Brightness"));
-		Params.push_back(ShaderParam("ntsc_scale", 0, 136, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "Resolution Scaling"));
 		Params.push_back(ShaderParam("ntsc_fields", 0, 140, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Merge Fields"));
 		Params.push_back(ShaderParam("ntsc_phase", 0, 144, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase"));
+		Params.push_back(ShaderParam("ntsc_scale", 0, 136, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "Resolution Scaling"));
+		Params.push_back(ShaderParam("ntsc_sat", 0, 120, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Color Saturation"));
+		Params.push_back(ShaderParam("ntsc_bright", 0, 132, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "Brightness"));
+		Params.push_back(ShaderParam("cust_fringing", 0, 124, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "Custom Fringing Value"));
+		Params.push_back(ShaderParam("cust_artifacting", 0, 128, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "Custom Artifacting Value"));
 		Params.push_back(ShaderParam("ntsc_artifacting_rainbow", 0, 148, 4, -1.000000f, 1.000000f, 0.000000f, 0.100000f, "Artifacting Rainbow Effect"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

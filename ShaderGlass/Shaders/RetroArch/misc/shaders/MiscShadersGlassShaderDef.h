@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader misc/shaders\glass imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/misc/shaders/glass.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/misc/shaders/glass.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -4595,18 +4595,18 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersGlassShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersGlassShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("ia_YPOS", 0, 140, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("gamma_out_lvl", 0, 320, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("warpX", 0, 324, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("warpY", 0, 328, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("cornersize", 0, 332, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_FLIP_HORZ", 0, 116, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_FLIP_VERT", 0, 120, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_overscan_percent_x", 0, 124, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_overscan_percent_y", 0, 128, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_ZOOM", 0, 132, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_XPOS", 0, 136, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("ia_YPOS", 0, 140, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("ia_monitor_gamma", 0, 184, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_GRAIN_STR", 0, 144, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_SHARPEN", 0, 148, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_saturation", 0, 152, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
@@ -4617,7 +4617,7 @@ public:
 		Params.push_back(ShaderParam("ia_target_gamma_r", 0, 172, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_target_gamma_g", 0, 176, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_target_gamma_b", 0, 180, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("ia_monitor_gamma", 0, 184, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("cornersmooth", 0, 336, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_TOPMASK", 0, 188, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_BOTMASK", 0, 192, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_LMASK", 0, 196, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
@@ -4631,11 +4631,11 @@ public:
 		Params.push_back(ShaderParam("ia_gb", 0, 228, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_br", 0, 232, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ia_bg", 0, 236, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("temperature", 0, 240, 4, 1031.000000f, 12047.000000f, 6500.000000f, 72.000000f, "White Point"));
-		Params.push_back(ShaderParam("luma_preserve", 0, 244, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Preserve Luminance"));
-		Params.push_back(ShaderParam("wp_red", 0, 248, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Red Shift"));
-		Params.push_back(ShaderParam("wp_green", 0, 252, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Green Shift"));
-		Params.push_back(ShaderParam("wp_blue", 0, 256, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Blue Shift"));
+		Params.push_back(ShaderParam("Radius", 0, 340, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("Distance", 0, 344, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("x_tilt", 0, 348, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("y_tilt", 0, 352, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("g_csize", -1, 0, 4, 0.000000f, 0.070000f, 0.020000f, 0.010000f, "Corner Size"));
 		Params.push_back(ShaderParam("ar_num", 0, 260, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ar_den", 0, 264, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("integer_scale", 0, 268, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
@@ -4651,22 +4651,12 @@ public:
 		Params.push_back(ShaderParam("g_vstr", 0, 308, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("g_vpower", 0, 312, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("gamma_in_lvl", 0, 316, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("gamma_out_lvl", 0, 320, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("warpX", 0, 324, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("warpY", 0, 328, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("cornersize", 0, 332, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("cornersmooth", 0, 336, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("Radius", 0, 340, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("Distance", 0, 344, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("x_tilt", 0, 348, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("y_tilt", 0, 352, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("g_csize", -1, 0, 4, 0.000000f, 0.070000f, 0.020000f, 0.010000f, "Corner Size"));
 		Params.push_back(ShaderParam("g_bsize", -1, 4, 4, 100.000000f, 600.000000f, 600.000000f, 25.000000f, "Border Smoothness"));
 		Params.push_back(ShaderParam("g_flicker", -1, 8, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Screen Flicker"));
 		Params.push_back(ShaderParam("g_shaker", -1, 12, 4, 0.000000f, 0.500000f, 0.020000f, 0.010000f, "Screen Shake"));
 		Params.push_back(ShaderParam("g_refltog", -1, 16, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Reflection Toggle"));
-		Params.push_back(ShaderParam("g_reflstr", -1, 20, 4, 0.000000f, 1.000000f, 0.150000f, 0.010000f, "Refl. Brightness"));
 		Params.push_back(ShaderParam("g_reflgrain", -1, 24, 4, 0.000000f, 2.000000f, 0.000000f, 0.010000f, "Refl. Deband Grain"));
+		Params.push_back(ShaderParam("g_reflstr", -1, 20, 4, 0.000000f, 1.000000f, 0.150000f, 0.010000f, "Refl. Brightness"));
 		Params.push_back(ShaderParam("g_fresnel", -1, 28, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "Refl. Fresnel"));
 		Params.push_back(ShaderParam("g_reflblur", -1, 32, 4, 0.000000f, 1.000000f, 0.600000f, 0.100000f, "Refl. Blur"));
 		Params.push_back(ShaderParam("gz", -1, 36, 4, 1.000000f, 1.500000f, 1.200000f, 0.010000f, "Zoom"));
@@ -4683,8 +4673,18 @@ public:
 		Params.push_back(ShaderParam("goyb", -1, 80, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Shift-Y Blue"));
 		Params.push_back(ShaderParam("TO", -1, 84, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Afterglow OFF/ON"));
 		Params.push_back(ShaderParam("PH", -1, 88, 4, 0.000000f, 3.000000f, 2.000000f, 1.000000f, "AG Phosphor (0:RGB 1:NTSC-U 2:NTSC-J 3:PAL)"));
-		Params.push_back(ShaderParam("PER", -1, 92, 4, 0.500000f, 2.000000f, 0.750000f, 0.100000f, "Persistence (more is less)"));
 		Params.push_back(ShaderParam("ASAT", -1, 96, 4, 0.000000f, 1.000000f, 0.200000f, 0.010000f, "Afterglow Saturation"));
+		Params.push_back(ShaderParam("PER", -1, 92, 4, 0.500000f, 2.000000f, 0.750000f, 0.100000f, "Persistence (more is less)"));
+		Params.push_back(ShaderParam("temperature", 0, 240, 4, 1031.000000f, 12047.000000f, 6500.000000f, 72.000000f, "White Point"));
+		Params.push_back(ShaderParam("luma_preserve", 0, 244, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Preserve Luminance"));
+		Params.push_back(ShaderParam("wp_red", 0, 248, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Red Shift"));
+		Params.push_back(ShaderParam("wp_green", 0, 252, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Green Shift"));
+		Params.push_back(ShaderParam("wp_blue", 0, 256, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Blue Shift"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
 		Samplers.push_back(ShaderSampler("OriginalHistory2", 4));

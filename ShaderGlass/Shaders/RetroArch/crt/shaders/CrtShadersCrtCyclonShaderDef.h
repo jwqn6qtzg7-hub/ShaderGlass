@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-Cyclon imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-Cyclon.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-Cyclon.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1941,25 +1941,6 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("BLACK", 0, 64, 4, -0.200000f, 0.200000f, 0.000000f, 0.010000f, "Black Level"));
-		Params.push_back(ShaderParam("RG", 0, 68, 4, -0.250000f, 0.250000f, 0.000000f, 0.010000f, "Green <-to-> Red Hue"));
-		Params.push_back(ShaderParam("RB", 0, 72, 4, -0.250000f, 0.250000f, 0.000000f, 0.010000f, "Blue <-to-> Red Hue"));
-		Params.push_back(ShaderParam("GB", 0, 76, 4, -0.250000f, 0.250000f, 0.000000f, 0.010000f, "Blue <-to-> Green Hue"));
-		Params.push_back(ShaderParam("POTATO", 0, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Potato Boost(Simple Gamma, adjust Mask)"));
-		Params.push_back(ShaderParam("SATURATION", 0, 84, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Saturation"));
-		Params.push_back(ShaderParam("BRIGHTNESS_", 0, 88, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Brightness, Sega fix:1.06"));
-		Params.push_back(ShaderParam("bzl", 0, 92, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Bezel On/Off"));
-		Params.push_back(ShaderParam("zoomx", 0, 96, 4, -1.000000f, 1.000000f, 0.000000f, 0.005000f, "Zoom Image X"));
-		Params.push_back(ShaderParam("zoomy", 0, 100, 4, -1.000000f, 1.000000f, 0.000000f, 0.005000f, "Zoom Image Y"));
-		Params.push_back(ShaderParam("centerx", 0, 104, 4, -5.000000f, 5.000000f, 0.000000f, 0.050000f, "Image Center X"));
-		Params.push_back(ShaderParam("centery", 0, 108, 4, -5.000000f, 5.000000f, 0.000000f, 0.050000f, "Image Center Y"));
-		Params.push_back(ShaderParam("vig", 0, 112, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vignette On/Off"));
-		Params.push_back(ShaderParam("ambient", 0, 116, 4, 0.000000f, 1.000000f, 0.250000f, 0.050000f, "Ambient Light"));
-		Params.push_back(ShaderParam("SourceSize", 0, 128, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 144, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 160, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 176, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SCANLINE", -1, 0, 4, 0.200000f, 0.600000f, 0.300000f, 0.050000f, "Scanline Weight"));
 		Params.push_back(ShaderParam("INTERLACE", -1, 4, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Interlacing On/Off"));
 		Params.push_back(ShaderParam("M_TYPE", -1, 8, 4, -1.000000f, 1.000000f, 1.000000f, 1.000000f, "Mask Type: -1:None, 0:CGWG, 1:RGB"));
@@ -1969,15 +1950,34 @@ public:
 		Params.push_back(ShaderParam("BGR", -1, 24, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Subpixels BGR/RGB"));
 		Params.push_back(ShaderParam("Maskl", -1, 28, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Mask Brightness Dark"));
 		Params.push_back(ShaderParam("Maskh", -1, 32, 4, 0.000000f, 1.000000f, 0.750000f, 0.050000f, "Mask Brightness Bright"));
+		Params.push_back(ShaderParam("bzl", 0, 92, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Bezel On/Off"));
+		Params.push_back(ShaderParam("ambient", 0, 116, 4, 0.000000f, 1.000000f, 0.250000f, 0.050000f, "Ambient Light"));
+		Params.push_back(ShaderParam("zoomx", 0, 96, 4, -1.000000f, 1.000000f, 0.000000f, 0.005000f, "Zoom Image X"));
+		Params.push_back(ShaderParam("zoomy", 0, 100, 4, -1.000000f, 1.000000f, 0.000000f, 0.005000f, "Zoom Image Y"));
+		Params.push_back(ShaderParam("centerx", 0, 104, 4, -5.000000f, 5.000000f, 0.000000f, 0.050000f, "Image Center X"));
+		Params.push_back(ShaderParam("centery", 0, 108, 4, -5.000000f, 5.000000f, 0.000000f, 0.050000f, "Image Center Y"));
+		Params.push_back(ShaderParam("WARPX", -1, 52, 4, 0.000000f, 0.250000f, 0.020000f, 0.010000f, "Curvature Horizontal"));
+		Params.push_back(ShaderParam("WARPY", -1, 56, 4, 0.000000f, 0.250000f, 0.010000f, 0.010000f, "Curvature Vertical"));
+		Params.push_back(ShaderParam("vig", 0, 112, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vignette On/Off"));
+		Params.push_back(ShaderParam("BR_DEP", -1, 60, 4, 0.000000f, 0.333000f, 0.200000f, 0.010000f, "Scan/Mask Brightness Dependence"));
+		Params.push_back(ShaderParam("c_space", -1, 64, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Color Space: sRGB,PAL,NTSC-U,NTSC-J"));
+		Params.push_back(ShaderParam("EXT_GAMMA", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "External Gamma In (Glow etc)"));
+		Params.push_back(ShaderParam("SATURATION", 0, 84, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Saturation"));
+		Params.push_back(ShaderParam("BRIGHTNESS_", 0, 88, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Brightness, Sega fix:1.06"));
+		Params.push_back(ShaderParam("BLACK", 0, 64, 4, -0.200000f, 0.200000f, 0.000000f, 0.010000f, "Black Level"));
+		Params.push_back(ShaderParam("RG", 0, 68, 4, -0.250000f, 0.250000f, 0.000000f, 0.010000f, "Green <-to-> Red Hue"));
+		Params.push_back(ShaderParam("RB", 0, 72, 4, -0.250000f, 0.250000f, 0.000000f, 0.010000f, "Blue <-to-> Red Hue"));
+		Params.push_back(ShaderParam("GB", 0, 76, 4, -0.250000f, 0.250000f, 0.000000f, 0.010000f, "Blue <-to-> Green Hue"));
 		Params.push_back(ShaderParam("C_STR", -1, 36, 4, 0.000000f, 0.500000f, 0.000000f, 0.050000f, "Convergence Overall Strength"));
 		Params.push_back(ShaderParam("CONV_R", -1, 40, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Convergence Red X-Axis"));
 		Params.push_back(ShaderParam("CONV_G", -1, 44, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Convergence Green X-axis"));
 		Params.push_back(ShaderParam("CONV_B", -1, 48, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Convergence Blue X-Axis"));
-		Params.push_back(ShaderParam("WARPX", -1, 52, 4, 0.000000f, 0.250000f, 0.020000f, 0.010000f, "Curvature Horizontal"));
-		Params.push_back(ShaderParam("WARPY", -1, 56, 4, 0.000000f, 0.250000f, 0.010000f, 0.010000f, "Curvature Vertical"));
-		Params.push_back(ShaderParam("BR_DEP", -1, 60, 4, 0.000000f, 0.333000f, 0.200000f, 0.010000f, "Scan/Mask Brightness Dependence"));
-		Params.push_back(ShaderParam("c_space", -1, 64, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Color Space: sRGB,PAL,NTSC-U,NTSC-J"));
-		Params.push_back(ShaderParam("EXT_GAMMA", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "External Gamma In (Glow etc)"));
+		Params.push_back(ShaderParam("POTATO", 0, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Potato Boost(Simple Gamma, adjust Mask)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 128, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 144, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 160, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 176, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("bezel", 2));
 		Samplers.push_back(ShaderSampler("Source", 1));
 /*

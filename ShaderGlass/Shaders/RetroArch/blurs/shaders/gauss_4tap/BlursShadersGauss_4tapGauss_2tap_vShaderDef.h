@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader blurs/shaders/gauss_4tap\gauss_2tap_v imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/blurs/shaders/gauss_4tap/gauss_2tap_v.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/blurs/shaders/gauss_4tap/gauss_2tap_v.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -434,9 +434,9 @@ public:
 		FragmentLength = sizeof(RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBlursShadersGauss_4tapGauss_2tap_vShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("SIGMA", -1, 16, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Gaussian filtering sigma"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SIGMA", -1, 16, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Gaussian filtering sigma"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

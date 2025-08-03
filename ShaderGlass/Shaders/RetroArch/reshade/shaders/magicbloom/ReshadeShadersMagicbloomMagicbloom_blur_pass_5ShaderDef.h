@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader reshade/shaders/magicbloom\magicbloom_blur_pass_5 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/reshade/shaders/magicbloom/magicbloom_blur_pass_5.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/reshade/shaders/magicbloom/magicbloom_blur_pass_5.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -560,14 +560,14 @@ public:
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_5ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_5ShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
+		Params.push_back(ShaderParam("ApplyBloom", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
+		Params.push_back(ShaderParam("fBloom_Intensity", -1, 52, 4, 0.000000f, 10.000000f, 1.000000f, 0.100000f, "Bloom Intensity"));
+		Params.push_back(ShaderParam("fBloom_Threshold", -1, 56, 4, 1.000000f, 10.000000f, 2.000000f, 0.100000f, "Bloom Threshold"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("fBloom_Intensity", -1, 52, 4, 0.000000f, 10.000000f, 1.000000f, 0.100000f, "Bloom Intensity"));
-		Params.push_back(ShaderParam("fBloom_Threshold", -1, 56, 4, 1.000000f, 10.000000f, 2.000000f, 0.100000f, "Bloom Threshold"));
-		Params.push_back(ShaderParam("ApplyBloom", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

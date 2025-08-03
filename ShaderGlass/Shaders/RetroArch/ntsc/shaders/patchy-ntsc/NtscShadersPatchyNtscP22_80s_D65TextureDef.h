@@ -1,6 +1,6 @@
 /*
 ShaderGlass texture ntsc/shaders/patchy-ntsc / P22_80s_D65 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/ntsc/shaders/patchy-ntsc/P22_80s_D65.png
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/shaders/patchy-ntsc/P22_80s_D65.png
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

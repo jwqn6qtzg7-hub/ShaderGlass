@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-caligari imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-caligari.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-caligari.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -922,16 +922,16 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SPOT_WIDTH", -1, 52, 4, 0.500000f, 1.500000f, 0.900000f, 0.050000f, "CRTCaligari Spot Width"));
 		Params.push_back(ShaderParam("SPOT_HEIGHT", -1, 56, 4, 0.500000f, 1.500000f, 0.650000f, 0.050000f, "CRTCaligari Spot Height"));
 		Params.push_back(ShaderParam("COLOR_BOOST", -1, 60, 4, 1.000000f, 2.000000f, 1.450000f, 0.050000f, "CRTCaligari Color Boost"));
 		Params.push_back(ShaderParam("InputGamma", -1, 64, 4, 0.000000f, 5.000000f, 2.400000f, 0.100000f, "CRTCaligari Input Gamma"));
 		Params.push_back(ShaderParam("OutputGamma", -1, 68, 4, 0.000000f, 5.000000f, 2.200000f, 0.100000f, "CRTCaligari Output Gamma"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

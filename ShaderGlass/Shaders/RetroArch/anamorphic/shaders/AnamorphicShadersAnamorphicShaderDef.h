@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader anamorphic/shaders\anamorphic imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/anamorphic/shaders/anamorphic.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/anamorphic/shaders/anamorphic.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -699,16 +699,16 @@ public:
 		FragmentLength = sizeof(RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("exc", -1, 48, 4, -10.000000f, 10.000000f, 0.000000f, 0.250000f, "orizontal correction hack (games where players stay at center)"));
+		Params.push_back(ShaderParam("exp_", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "border hack (hack for 2d games extra correction prepass)"));
+		Params.push_back(ShaderParam("vuc", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "vertical Upper resize hack (most important first pass)"));
+		Params.push_back(ShaderParam("vab", -1, 68, 4, 0.500000f, 1.000000f, 1.000000f, 0.010000f, "vertical Bottom resize hack (90-85 second pass)"));
+		Params.push_back(ShaderParam("upc", -1, 52, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Upper  vertical Crop"));
+		Params.push_back(ShaderParam("btc", -1, 56, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Bottom vertical Crop"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("exc", -1, 48, 4, -10.000000f, 10.000000f, 0.000000f, 0.250000f, "orizontal correction hack (games where players stay at center)"));
-		Params.push_back(ShaderParam("upc", -1, 52, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Upper  vertical Crop"));
-		Params.push_back(ShaderParam("btc", -1, 56, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Bottom vertical Crop"));
-		Params.push_back(ShaderParam("exp_", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "border hack (hack for 2d games extra correction prepass)"));
-		Params.push_back(ShaderParam("vuc", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "vertical Upper resize hack (most important first pass)"));
-		Params.push_back(ShaderParam("vab", -1, 68, 4, 0.500000f, 1.000000f, 1.000000f, 0.010000f, "vertical Bottom resize hack (90-85 second pass)"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

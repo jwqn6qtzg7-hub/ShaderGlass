@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/vt220\vt220 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/vt220/vt220.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/vt220/vt220.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -7382,9 +7382,9 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("ntsc_toggle", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "NTSC Toggle"));
 		Params.push_back(ShaderParam("curvature", 0, 68, 4, 0.000000f, 10.000000f, 3.000000f, 0.100000f, "Curve Radius"));
+		Params.push_back(ShaderParam("SCANLINE_BASE_BRIGHTNESS", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_A", 0, 116, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("width", 0, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Width"));
 		Params.push_back(ShaderParam("height", 0, 76, 4, 0.000000f, 2.000000f, 1.120000f, 0.010000f, "Height"));
 		Params.push_back(ShaderParam("smoothness", 0, 80, 4, 0.000000f, 10.000000f, 1.000000f, 0.100000f, "Border Blur"));
@@ -7393,11 +7393,11 @@ public:
 		Params.push_back(ShaderParam("dimmer", 0, 92, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Ambient Brightness"));
 		Params.push_back(ShaderParam("csize", 0, 96, 4, 0.000000f, 0.070000f, 0.045000f, 0.010000f, "Corner size"));
 		Params.push_back(ShaderParam("mask", 0, 100, 4, 0.000000f, 19.000000f, 2.000000f, 1.000000f, "Mask Type"));
-		Params.push_back(ShaderParam("zoom", 0, 104, 4, 0.000000f, 2.000000f, 0.850000f, 0.010000f, "Viewing Distance"));
 		Params.push_back(ShaderParam("mask_strength", 0, 108, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Mask Strength"));
-		Params.push_back(ShaderParam("SCANLINE_BASE_BRIGHTNESS", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_A", 0, 116, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("zoom", 0, 104, 4, 0.000000f, 2.000000f, 0.850000f, 0.010000f, "Viewing Distance"));
 		Params.push_back(ShaderParam("SCANLINE_SINE_COMP_B", 0, 120, 4, 0.000000f, 1.000000f, 0.150000f, 0.050000f, "Scanline Darkness"));
+		Params.push_back(ShaderParam("ntsc_toggle", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "NTSC Toggle"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));

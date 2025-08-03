@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader motionblur/shaders\mix_frames_smart imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/motionblur/shaders/mix_frames_smart.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/motionblur/shaders/mix_frames_smart.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1019,8 +1019,8 @@ public:
 		FragmentLength = sizeof(RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("DEFLICKER_EMPHASIS", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Deflicker Emphasis"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
 		Samplers.push_back(ShaderSampler("OriginalHistory2", 4));

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders\crt-geom imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-geom.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-geom.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -11206,13 +11206,11 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtGeomShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtGeomShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("CRTgamma", -1, 4, 4, 0.100000f, 5.000000f, 2.400000f, 0.100000f, "CRTGeom Target Gamma"));
 		Params.push_back(ShaderParam("monitorgamma", -1, 8, 4, 0.100000f, 5.000000f, 2.200000f, 0.100000f, "CRTGeom Monitor Gamma"));
 		Params.push_back(ShaderParam("d", -1, 12, 4, 0.100000f, 3.000000f, 1.500000f, 0.100000f, "CRTGeom Distance"));
+		Params.push_back(ShaderParam("CURVATURE", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRTGeom Curvature Toggle"));
+		Params.push_back(ShaderParam("invert_aspect", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CRTGeom Curvature Aspect Inversion"));
 		Params.push_back(ShaderParam("R", -1, 16, 4, 0.100000f, 10.000000f, 2.000000f, 0.100000f, "CRTGeom Curvature Radius"));
 		Params.push_back(ShaderParam("cornersize", -1, 20, 4, 0.001000f, 1.000000f, 0.030000f, 0.005000f, "CRTGeom Corner Size"));
 		Params.push_back(ShaderParam("cornersmooth", -1, 24, 4, 80.000000f, 2000.000000f, 1000.000000f, 100.000000f, "CRTGeom Corner Smoothness"));
@@ -11225,13 +11223,15 @@ public:
 		Params.push_back(ShaderParam("DOTMASK_brightboost", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "CRTGeom Mask brightness boost"));
 		Params.push_back(ShaderParam("SHARPER", -1, 56, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "CRTGeom Sharpness"));
 		Params.push_back(ShaderParam("scanline_weight", -1, 60, 4, 0.100000f, 0.500000f, 0.300000f, 0.050000f, "CRTGeom Scanline Weight"));
-		Params.push_back(ShaderParam("CURVATURE", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRTGeom Curvature Toggle"));
-		Params.push_back(ShaderParam("interlace_detect", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRTGeom Interlacing Simulation"));
-		Params.push_back(ShaderParam("lum", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "CRTGeom Luminance"));
-		Params.push_back(ShaderParam("invert_aspect", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CRTGeom Curvature Aspect Inversion"));
 		Params.push_back(ShaderParam("vertical_scanlines", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CRTGeom Vertical Scanlines"));
+		Params.push_back(ShaderParam("lum", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "CRTGeom Luminance"));
+		Params.push_back(ShaderParam("interlace_detect", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRTGeom Interlacing Simulation"));
 		Params.push_back(ShaderParam("xsize", -1, 84, 4, 0.000000f, 1920.000000f, 0.000000f, 16.000000f, "Simulated Width (0==Auto)"));
 		Params.push_back(ShaderParam("ysize", -1, 88, 4, 0.000000f, 1080.000000f, 0.000000f, 16.000000f, "Simulated Height (0==Auto)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

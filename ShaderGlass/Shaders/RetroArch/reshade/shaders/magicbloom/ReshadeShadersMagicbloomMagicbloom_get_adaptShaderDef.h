@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader reshade/shaders/magicbloom\magicbloom_get_adapt imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/reshade/shaders/magicbloom/magicbloom_get_adapt.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/reshade/shaders/magicbloom/magicbloom_get_adapt.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -542,16 +542,16 @@ public:
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_get_adaptShaderDefs::sFragmentHash;
 		Format = "R32G32B32A32_SFLOAT";
+		Params.push_back(ShaderParam("ApplyBloom", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
+		Params.push_back(ShaderParam("fAdapt_Sensitivity", -1, 56, 4, 0.000000f, 3.000000f, 1.000000f, 0.010000f, "Adaptation Sensitivity"));
+		Params.push_back(ShaderParam("f2Adapt_Clip_Min", -1, 60, 4, 0.000000f, 3.000000f, 0.000000f, 0.010000f, "Adaptation Min"));
+		Params.push_back(ShaderParam("f2Adapt_Clip_Max", -1, 64, 4, 0.000000f, 3.000000f, 1.000000f, 0.010000f, "Adaptation Max"));
+		Params.push_back(ShaderParam("fAdapt_Speed", -1, 52, 4, 0.001000f, 1.000000f, 1.000000f, 0.010000f, "Adaptation Speed"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("fAdapt_Speed", -1, 52, 4, 0.001000f, 1.000000f, 1.000000f, 0.010000f, "Adaptation Speed"));
-		Params.push_back(ShaderParam("fAdapt_Sensitivity", -1, 56, 4, 0.000000f, 3.000000f, 1.000000f, 0.010000f, "Adaptation Sensitivity"));
-		Params.push_back(ShaderParam("f2Adapt_Clip_Min", -1, 60, 4, 0.000000f, 3.000000f, 0.000000f, 0.010000f, "Adaptation Min"));
-		Params.push_back(ShaderParam("f2Adapt_Clip_Max", -1, 64, 4, 0.000000f, 3.000000f, 1.000000f, 0.010000f, "Adaptation Max"));
-		Params.push_back(ShaderParam("ApplyBloom", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
 		Samplers.push_back(ShaderSampler("tMagicBloom_Small", 3));
 		Samplers.push_back(ShaderSampler("tMagicBloom_AdaptFeedback", 4));
 		Samplers.push_back(ShaderSampler("Source", 2));

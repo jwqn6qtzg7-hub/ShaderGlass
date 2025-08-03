@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader ntsc/shaders/ntsc-adaptive-tate\ntsc-tate-pass1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/ntsc/shaders/ntsc-adaptive-tate/ntsc-tate-pass1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/shaders/ntsc-adaptive-tate/ntsc-tate-pass1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1157,19 +1157,19 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersNtscAdaptiveTateNtscTatePass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersNtscAdaptiveTateNtscTatePass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("quality", 0, 116, 4, -1.000000f, 2.000000f, 1.000000f, 1.000000f, "NTSC Preset (Svideo=0 Composite=1 RF=2 Custom=-1)"));
-		Params.push_back(ShaderParam("ntsc_sat", 0, 120, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "NTSC Color Saturation"));
-		Params.push_back(ShaderParam("cust_fringing", 0, 124, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "NTSC Custom Fringing Value"));
-		Params.push_back(ShaderParam("cust_artifacting", 0, 128, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "NTSC Custom Artifacting Value"));
-		Params.push_back(ShaderParam("ntsc_bright", 0, 132, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "NTSC Brightness"));
-		Params.push_back(ShaderParam("ntsc_scale", 0, 136, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "NTSC Resolution Scaling"));
 		Params.push_back(ShaderParam("ntsc_fields", 0, 140, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "NTSC Merge Fields"));
 		Params.push_back(ShaderParam("ntsc_phase", 0, 144, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase"));
+		Params.push_back(ShaderParam("ntsc_scale", 0, 136, 4, 0.200000f, 3.000000f, 1.000000f, 0.050000f, "NTSC Resolution Scaling"));
+		Params.push_back(ShaderParam("ntsc_sat", 0, 120, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "NTSC Color Saturation"));
+		Params.push_back(ShaderParam("ntsc_bright", 0, 132, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "NTSC Brightness"));
+		Params.push_back(ShaderParam("cust_fringing", 0, 124, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "NTSC Custom Fringing Value"));
+		Params.push_back(ShaderParam("cust_artifacting", 0, 128, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "NTSC Custom Artifacting Value"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

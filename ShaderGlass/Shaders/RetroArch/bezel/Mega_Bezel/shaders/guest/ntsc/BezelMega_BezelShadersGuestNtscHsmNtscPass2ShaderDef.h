@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader bezel/Mega_Bezel/shaders/guest/ntsc / hsm-ntsc-pass2 imported from MegaBezel:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/Mega_Bezel
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/Mega_Bezel
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -4093,15 +4093,15 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestNtscHsmNtscPass2ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestNtscHsmNtscPass2ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("auto_res", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("ntsc_cscale", -1, 64, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Chroma Scaling / Bleeding"));
 		Params.push_back(ShaderParam("ntsc_scale", -1, 48, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "Resolution Scaling"));
 		Params.push_back(ShaderParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase | Mixed"));
-		Params.push_back(ShaderParam("auto_res", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("ntsc_ring", -1, 60, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Anti-Ringing"));
-		Params.push_back(ShaderParam("ntsc_cscale", -1, 64, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Chroma Scaling / Bleeding"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("PrePass0", 3));
 /*

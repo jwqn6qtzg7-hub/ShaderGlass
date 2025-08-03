@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader ntsc/shaders/artifact-colors\artifact-colors2 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/ntsc/shaders/artifact-colors/artifact-colors2.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/shaders/artifact-colors/artifact-colors2.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -808,11 +808,6 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersArtifactColorsArtifactColors2ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FIR_SIZE", -1, 52, 4, 1.000000f, 50.000000f, 29.000000f, 1.000000f, "FIR Size"));
 		Params.push_back(ShaderParam("F_COL", -1, 56, 4, 0.250000f, 0.500000f, 0.250000f, 0.250000f, "F Col"));
 		Params.push_back(ShaderParam("SATURATION", -1, 60, 4, 0.000000f, 100.000000f, 30.000000f, 1.000000f, "Saturation"));
@@ -821,6 +816,11 @@ public:
 		Params.push_back(ShaderParam("HUE", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Hue"));
 		Params.push_back(ShaderParam("split", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Split Toggle"));
 		Params.push_back(ShaderParam("split_line", -1, 80, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Split Line Location"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("Pass1", 5));
 		Samplers.push_back(ShaderSampler("artifact_colors_refpass", 3));

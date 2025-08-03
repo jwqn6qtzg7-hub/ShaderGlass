@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader ntsc/shaders/artifact-colors\artifact-colors1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/ntsc/shaders/artifact-colors/artifact-colors1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/shaders/artifact-colors/artifact-colors1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -797,15 +797,15 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersArtifactColorsArtifactColors1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersArtifactColorsArtifactColors1ShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
+		Params.push_back(ShaderParam("FIR_SIZE", -1, 52, 4, 1.000000f, 50.000000f, 29.000000f, 1.000000f, "FIR Size"));
+		Params.push_back(ShaderParam("F_COL", -1, 56, 4, 0.250000f, 0.500000f, 0.250000f, 0.250000f, "F Col"));
+		Params.push_back(ShaderParam("F_LUMA_LP", -1, 60, 4, 0.000100f, 0.333333f, 0.166670f, 0.020000f, "F Luma LP"));
+		Params.push_back(ShaderParam("F_COL_BW", -1, 64, 4, 10.000000f, 200.000000f, 50.000000f, 1.000000f, "F Col BW"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FIR_SIZE", -1, 52, 4, 1.000000f, 50.000000f, 29.000000f, 1.000000f, "FIR Size"));
-		Params.push_back(ShaderParam("F_COL", -1, 56, 4, 0.250000f, 0.500000f, 0.250000f, 0.250000f, "F Col"));
-		Params.push_back(ShaderParam("F_LUMA_LP", -1, 60, 4, 0.000100f, 0.333333f, 0.166670f, 0.020000f, "F Luma LP"));
-		Params.push_back(ShaderParam("F_COL_BW", -1, 64, 4, 10.000000f, 200.000000f, 50.000000f, 1.000000f, "F Col BW"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

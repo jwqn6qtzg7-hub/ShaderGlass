@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader nes_raw_palette/shaders/gtu-famicom\lowPass imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/nes_raw_palette/shaders/gtu-famicom/lowPass.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/nes_raw_palette/shaders/gtu-famicom/lowPass.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -651,13 +651,13 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomLowPassShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersGtuFamicomLowPassShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("signalResolution", -1, 48, 4, 20.000000f, 2000.000000f, 700.000000f, 10.000000f, "Signal Resolution"));
 		Params.push_back(ShaderParam("addNoise", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Add Noise"));
 		Params.push_back(ShaderParam("noiseStrength", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Noise Strength"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 60, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader edge-smoothing/xbr/shaders/super-xbr\super-xbr-pass0 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/edge-smoothing/xbr/shaders/super-xbr/super-xbr-pass0.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/edge-smoothing/xbr/shaders/super-xbr/super-xbr-pass0.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1906,17 +1906,17 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingXbrShadersSuperXbrSuperXbrPass0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingXbrShadersSuperXbrSuperXbrPass0ShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("XBR_ANTI_RINGING", -1, 60, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("MODE", -1, 64, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "Mode - Normal, Details, Adaptive"));
+		Params.push_back(ShaderParam("XBR_EDGE_STR_P0", -1, 52, 4, 0.000000f, 5.000000f, 5.000000f, 0.500000f, "Xbr - Edge Strength p0"));
+		Params.push_back(ShaderParam("XBR_WEIGHT", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "Xbr - Filter Weight"));
+		Params.push_back(ShaderParam("XBR_EDGE_SHP", -1, 68, 4, 0.000000f, 3.000000f, 0.400000f, 0.100000f, "Adaptive Dynamic Edge Sharp"));
+		Params.push_back(ShaderParam("XBR_TEXTURE_SHP", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Adaptive Static Edge Sharp"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("XBR_EDGE_STR_P0", -1, 52, 4, 0.000000f, 5.000000f, 5.000000f, 0.500000f, "Xbr - Edge Strength p0"));
-		Params.push_back(ShaderParam("XBR_WEIGHT", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "Xbr - Filter Weight"));
-		Params.push_back(ShaderParam("XBR_ANTI_RINGING", -1, 60, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MODE", -1, 64, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "Mode - Normal, Details, Adaptive"));
-		Params.push_back(ShaderParam("XBR_EDGE_SHP", -1, 68, 4, 0.000000f, 3.000000f, 0.400000f, 0.100000f, "Adaptive Dynamic Edge Sharp"));
-		Params.push_back(ShaderParam("XBR_TEXTURE_SHP", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Adaptive Static Edge Sharp"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

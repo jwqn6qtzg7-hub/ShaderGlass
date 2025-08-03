@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader film/shaders\film-grain imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/film/shaders/film-grain.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/film/shaders/film-grain.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1954,16 +1954,16 @@ public:
 		FragmentLength = sizeof(RetroArchFilmShadersFilmGrainShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchFilmShadersFilmGrainShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("GRAIN_AMOUNT", -1, 52, 4, 0.010000f, 0.200000f, 0.020000f, 0.010000f, "Grain amount"));
 		Params.push_back(ShaderParam("COLOR_AMOUNT", -1, 56, 4, 0.000000f, 1.000000f, 0.600000f, 0.100000f, "Color amount"));
 		Params.push_back(ShaderParam("GRAIN_SIZE", -1, 60, 4, 1.500000f, 2.500000f, 1.600000f, 0.100000f, "Grain particle size"));
 		Params.push_back(ShaderParam("LUM_AMOUNT", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "Luminance amount"));
 		Params.push_back(ShaderParam("COLORED", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Use colored noise"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

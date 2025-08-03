@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader edge-smoothing/xbr/shaders/xbr-lv3-multipass\xbr-lv3-pass0 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/edge-smoothing/xbr/shaders/xbr-lv3-multipass/xbr-lv3-pass0.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/edge-smoothing/xbr/shaders/xbr-lv3-multipass/xbr-lv3-pass0.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -2686,15 +2686,15 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingXbrShadersXbrLv3MultipassXbrLv3Pass0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingXbrShadersXbrLv3MultipassXbrLv3Pass0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SMALL_DETAILS", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "XBR - MODE (VANILLA | SMALL DETAILS)"));
 		Params.push_back(ShaderParam("WP4", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 0.200000f, "XBR - SMOOTHNESS LOCAL WEIGHT"));
 		Params.push_back(ShaderParam("KA", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "XBR - SMOOTHNESS THRESHOLD"));
 		Params.push_back(ShaderParam("XBR_EQ_THRESHOLD", -1, 12, 4, 0.000000f, 1.000000f, 0.260000f, 0.010000f, "XBR - COLOR DISTINCTION THRESHOLD"));
 		Params.push_back(ShaderParam("FD", -1, 16, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "XBR - DITHERING/SMOOTHNESS COMPROMISE (MEDIUM | HIGH)"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

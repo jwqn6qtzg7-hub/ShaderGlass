@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader bezel/uborder/shaders/content_shaders\crt-nobody imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/bezel/uborder/shaders/content_shaders/crt-nobody.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/uborder/shaders/content_shaders/crt-nobody.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -2887,12 +2887,25 @@ public:
 		FragmentLength = sizeof(RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelUborderShadersContent_shadersCrtNobodyShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Rotation", 0, 52, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MVP", 0, 64, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("box_scale", -1, 96, 4, 1.000000f, 10.000000f, 4.000000f, 0.020000f, "Image Scale"));
+		Params.push_back(ShaderParam("in_res_x", -1, 100, 4, 100.000000f, 600.000000f, 320.000000f, 1.000000f, "Viewport Size X"));
+		Params.push_back(ShaderParam("in_res_y", -1, 104, 4, 64.000000f, 512.000000f, 240.000000f, 1.000000f, "Viewport Size Y"));
+		Params.push_back(ShaderParam("geom_center_x", -1, 72, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Center X"));
+		Params.push_back(ShaderParam("geom_center_y", -1, 76, 4, -1.000000f, 1.000000f, 0.000000f, 0.002000f, "Center Y"));
+		Params.push_back(ShaderParam("ub_rotate", -1, 108, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Rotate (TATE)"));
+		Params.push_back(ShaderParam("geom_curvature", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Curvature Toggle"));
+		Params.push_back(ShaderParam("geom_R", -1, 44, 4, 0.300000f, 10.000000f, 2.000000f, 0.100000f, "Curvature Radius"));
+		Params.push_back(ShaderParam("geom_d", -1, 40, 4, 0.100000f, 3.000000f, 1.500000f, 0.100000f, "Distance"));
+		Params.push_back(ShaderParam("geom_invert_aspect", -1, 92, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Curvature Aspect Inversion"));
+		Params.push_back(ShaderParam("geom_cornersize", -1, 48, 4, 0.006000f, 1.000000f, 0.006000f, 0.005000f, "Corner Size"));
+		Params.push_back(ShaderParam("geom_cornersmooth", -1, 52, 4, 80.000000f, 2000.000000f, 400.000000f, 100.000000f, "Corner Smoothness"));
+		Params.push_back(ShaderParam("geom_x_tilt", -1, 56, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Horizontal Tilt"));
+		Params.push_back(ShaderParam("geom_y_tilt", -1, 60, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Vertical Tilt"));
+		Params.push_back(ShaderParam("geom_inner_center_x", -1, 80, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Inner Center X"));
+		Params.push_back(ShaderParam("geom_inner_center_y", -1, 84, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Inner Center Y"));
+		Params.push_back(ShaderParam("geom_overscan_x", -1, 64, 4, -125.000000f, 125.000000f, 100.000000f, 0.500000f, "Horiz. Overscan %"));
+		Params.push_back(ShaderParam("geom_overscan_y", -1, 68, 4, -125.000000f, 125.000000f, 100.000000f, 0.500000f, "Vert. Overscan %"));
 		Params.push_back(ShaderParam("CN_VSCANLINES", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Scanlines"));
 		Params.push_back(ShaderParam("CN_BEAM_MIN_WIDTH", -1, 4, 4, 0.000000f, 1.000000f, 0.800000f, 0.010000f, "Min Beam Width"));
 		Params.push_back(ShaderParam("CN_BEAM_MAX_WIDTH", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "Max Beam Width"));
@@ -2903,24 +2916,11 @@ public:
 		Params.push_back(ShaderParam("CN_VIG_EXP", -1, 28, 4, 0.000000f, 2.000000f, 0.160000f, 0.020000f, "Vignette Strength"));
 		Params.push_back(ShaderParam("CN_InputGamma", -1, 32, 4, 0.000000f, 4.000000f, 2.400000f, 0.100000f, "Input Gamma"));
 		Params.push_back(ShaderParam("CN_OutputGamma", -1, 36, 4, 0.000000f, 3.000000f, 2.200000f, 0.100000f, "Output Gamma"));
-		Params.push_back(ShaderParam("geom_d", -1, 40, 4, 0.100000f, 3.000000f, 1.500000f, 0.100000f, "Distance"));
-		Params.push_back(ShaderParam("geom_R", -1, 44, 4, 0.300000f, 10.000000f, 2.000000f, 0.100000f, "Curvature Radius"));
-		Params.push_back(ShaderParam("geom_cornersize", -1, 48, 4, 0.006000f, 1.000000f, 0.006000f, 0.005000f, "Corner Size"));
-		Params.push_back(ShaderParam("geom_cornersmooth", -1, 52, 4, 80.000000f, 2000.000000f, 400.000000f, 100.000000f, "Corner Smoothness"));
-		Params.push_back(ShaderParam("geom_x_tilt", -1, 56, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Horizontal Tilt"));
-		Params.push_back(ShaderParam("geom_y_tilt", -1, 60, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Vertical Tilt"));
-		Params.push_back(ShaderParam("geom_overscan_x", -1, 64, 4, -125.000000f, 125.000000f, 100.000000f, 0.500000f, "Horiz. Overscan %"));
-		Params.push_back(ShaderParam("geom_overscan_y", -1, 68, 4, -125.000000f, 125.000000f, 100.000000f, 0.500000f, "Vert. Overscan %"));
-		Params.push_back(ShaderParam("geom_center_x", -1, 72, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Center X"));
-		Params.push_back(ShaderParam("geom_center_y", -1, 76, 4, -1.000000f, 1.000000f, 0.000000f, 0.002000f, "Center Y"));
-		Params.push_back(ShaderParam("geom_inner_center_x", -1, 80, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Inner Center X"));
-		Params.push_back(ShaderParam("geom_inner_center_y", -1, 84, 4, -1.000000f, 1.000000f, 0.000000f, 0.001000f, "Inner Center Y"));
-		Params.push_back(ShaderParam("geom_curvature", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Curvature Toggle"));
-		Params.push_back(ShaderParam("geom_invert_aspect", -1, 92, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Curvature Aspect Inversion"));
-		Params.push_back(ShaderParam("box_scale", -1, 96, 4, 1.000000f, 10.000000f, 4.000000f, 0.020000f, "Image Scale"));
-		Params.push_back(ShaderParam("in_res_x", -1, 100, 4, 100.000000f, 600.000000f, 320.000000f, 1.000000f, "Viewport Size X"));
-		Params.push_back(ShaderParam("in_res_y", -1, 104, 4, 64.000000f, 512.000000f, 240.000000f, 1.000000f, "Viewport Size Y"));
-		Params.push_back(ShaderParam("ub_rotate", -1, 108, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Rotate (TATE)"));
+		Params.push_back(ShaderParam("MVP", 0, 64, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", 0, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

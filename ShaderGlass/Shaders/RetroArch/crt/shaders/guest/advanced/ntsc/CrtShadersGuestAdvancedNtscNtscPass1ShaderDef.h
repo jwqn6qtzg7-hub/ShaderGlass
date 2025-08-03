@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/guest/advanced/ntsc\ntsc-pass1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/guest/advanced/ntsc/ntsc-pass1.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/guest/advanced/ntsc/ntsc-pass1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1613,25 +1613,25 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestAdvancedNtscNtscPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("auto_res", -1, 96, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
 		Params.push_back(ShaderParam("quality", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 1.000000f, "INFO --> A&F Values: Svideo = 0.0 | Composite = 1.0 | RF = 2.0"));
-		Params.push_back(ShaderParam("ntsc_sat", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "NTSC Color Saturation"));
-		Params.push_back(ShaderParam("cust_fringing", -1, 60, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "NTSC Fringing Value"));
 		Params.push_back(ShaderParam("cust_artifacting", -1, 64, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "NTSC Artifacting Value"));
-		Params.push_back(ShaderParam("ntsc_bright", -1, 68, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "NTSC Brightness"));
-		Params.push_back(ShaderParam("ntsc_scale", -1, 72, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "NTSC Resolution Scaling"));
+		Params.push_back(ShaderParam("cust_fringing", -1, 60, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "NTSC Fringing Value"));
 		Params.push_back(ShaderParam("ntsc_fields", -1, 76, 4, -1.000000f, 1.000000f, -1.000000f, 1.000000f, "NTSC Merge Fields: Auto | NO | YES"));
 		Params.push_back(ShaderParam("ntsc_phase", -1, 80, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase | Mixed"));
+		Params.push_back(ShaderParam("ntsc_scale", -1, 72, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "NTSC Resolution Scaling"));
+		Params.push_back(ShaderParam("ntsc_sat", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "NTSC Color Saturation"));
+		Params.push_back(ShaderParam("ntsc_bright", -1, 68, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "NTSC Brightness"));
 		Params.push_back(ShaderParam("ntsc_gamma", -1, 84, 4, 0.250000f, 2.500000f, 1.000000f, 0.025000f, "NTSC Filtering Gamma Correction"));
 		Params.push_back(ShaderParam("ntsc_rainbow1", -1, 88, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC Coloring/Rainbow Effect (2-phase)"));
 		Params.push_back(ShaderParam("ntsc_taps", -1, 92, 4, 6.000000f, 32.000000f, 32.000000f, 1.000000f, "NTSC # of Taps (Filter Width)"));
-		Params.push_back(ShaderParam("auto_res", -1, 96, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
 		Params.push_back(ShaderParam("ntsc_charp", -1, 100, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 2-phase"));
 		Params.push_back(ShaderParam("ntsc_charp3", -1, 104, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 3-phase"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

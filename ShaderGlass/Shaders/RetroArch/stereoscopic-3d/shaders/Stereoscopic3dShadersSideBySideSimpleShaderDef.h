@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader stereoscopic-3d/shaders\side-by-side-simple imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/stereoscopic-3d/shaders/side-by-side-simple.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/stereoscopic-3d/shaders/side-by-side-simple.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -767,11 +767,6 @@ public:
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("eye_sep", -1, 52, 4, -1.000000f, 5.000000f, 0.300000f, 0.050000f, "Eye Separation"));
 		Params.push_back(ShaderParam("y_loc", -1, 56, 4, -1.000000f, 1.000000f, 0.250000f, 0.010000f, "Vertical Placement"));
 		Params.push_back(ShaderParam("BOTH", -1, 60, 4, -2.000000f, 2.000000f, 0.510000f, 0.005000f, "Horizontal Placement"));
@@ -781,6 +776,11 @@ public:
 		Params.push_back(ShaderParam("warpX", -1, 76, 4, 0.000000f, 0.500000f, 0.100000f, 0.050000f, "Lens Warp Correction X"));
 		Params.push_back(ShaderParam("warpY", -1, 80, 4, 0.000000f, 0.500000f, 0.100000f, 0.050000f, "Lens Warp Correction Y"));
 		Params.push_back(ShaderParam("pulfrich", -1, 84, 4, 0.000000f, 0.500000f, 0.000000f, 0.250000f, "Pulfrich Effect"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

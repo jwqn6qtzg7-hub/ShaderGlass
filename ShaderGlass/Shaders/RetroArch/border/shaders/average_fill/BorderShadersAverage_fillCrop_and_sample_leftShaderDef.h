@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader border/shaders/average_fill\crop_and_sample_left imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/border/shaders/average_fill/crop_and_sample_left.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/border/shaders/average_fill/crop_and_sample_left.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -534,14 +534,14 @@ public:
 		FragmentLength = sizeof(RetroArchBorderShadersAverage_fillCrop_and_sample_leftShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBorderShadersAverage_fillCrop_and_sample_leftShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("Rotation", -1, 16, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SAMPLE_SIZE", -1, 20, 4, 1.000000f, 64.000000f, 8.000000f, 1.000000f, "No. of lines for calculating the average"));
 		Params.push_back(ShaderParam("OS_CROP_TOP", -1, 24, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop top"));
 		Params.push_back(ShaderParam("OS_CROP_BOTTOM", -1, 28, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop bottom"));
 		Params.push_back(ShaderParam("OS_CROP_LEFT", -1, 32, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop left"));
 		Params.push_back(ShaderParam("OS_CROP_RIGHT", -1, 36, 4, 0.000000f, 1024.000000f, 0.000000f, 1.000000f, "Overscan crop right"));
+		Params.push_back(ShaderParam("SAMPLE_SIZE", -1, 20, 4, 1.000000f, 64.000000f, 8.000000f, 1.000000f, "No. of lines for calculating the average"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Input", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader nes_raw_palette/shaders/cgwg-famicom-geom\crt-geom-famicom imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/nes_raw_palette/shaders/cgwg-famicom-geom/crt-geom-famicom.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/nes_raw_palette/shaders/cgwg-famicom-geom/crt-geom-famicom.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -2592,11 +2592,6 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("CURVATURE_toggle", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle"));
 		Params.push_back(ShaderParam("CRTgamma", -1, 56, 4, 1.000000f, 4.000000f, 2.400000f, 0.050000f, "CRT Gamma"));
 		Params.push_back(ShaderParam("overscan_x", -1, 60, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Overscan X"));
@@ -2607,6 +2602,11 @@ public:
 		Params.push_back(ShaderParam("tiltangle_y", -1, 80, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Tilt Angle Y"));
 		Params.push_back(ShaderParam("cornersize", -1, 84, 4, 0.000100f, 0.100000f, 0.020000f, 0.010000f, "Corner Size"));
 		Params.push_back(ShaderParam("cornersmooth", -1, 88, 4, 0.800000f, 2000.000000f, 800.000000f, 50.000000f, "Corner Smoothness"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

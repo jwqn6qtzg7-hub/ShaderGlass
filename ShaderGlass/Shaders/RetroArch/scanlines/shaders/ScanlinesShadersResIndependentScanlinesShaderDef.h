@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader scanlines/shaders\res-independent-scanlines imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/scanlines/shaders/res-independent-scanlines.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/scanlines/shaders/res-independent-scanlines.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -3564,11 +3564,6 @@ public:
 		FragmentLength = sizeof(RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("amp", -1, 52, 4, 0.000000f, 2.000000f, 1.250000f, 0.050000f, "Amplitude"));
 		Params.push_back(ShaderParam("phase", -1, 56, 4, 0.000000f, 2.000000f, 0.500000f, 0.050000f, "Phase"));
 		Params.push_back(ShaderParam("lines_black", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Lines Blacks"));
@@ -3577,6 +3572,11 @@ public:
 		Params.push_back(ShaderParam("mask_weight", -1, 72, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Mask Weight"));
 		Params.push_back(ShaderParam("fauxRes", -1, 76, 4, 144.000000f, 288.000000f, 224.000000f, 1.000000f, "Simulated Image Height"));
 		Params.push_back(ShaderParam("autoscale", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Automatic Scale"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

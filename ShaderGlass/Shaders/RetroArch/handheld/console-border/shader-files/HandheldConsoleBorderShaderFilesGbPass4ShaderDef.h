@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader handheld/console-border/shader-files\gb-pass4 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/handheld/console-border/shader-files/gb-pass4.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/console-border/shader-files/gb-pass4.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -948,10 +948,6 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("PassOutputSize1", -1, 48, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("contrast", -1, 64, 4, 0.000000f, 1.000000f, 0.700000f, 0.050000f, "Contrast"));
 		Params.push_back(ShaderParam("screen_light", -1, 68, 4, 0.000000f, 2.000000f, 0.850000f, 0.050000f, "Ambient Screen Light"));
@@ -962,6 +958,10 @@ public:
 		Params.push_back(ShaderParam("shadow_offset_y", -1, 88, 4, -5.000000f, 5.000000f, 1.500000f, 0.500000f, "Shadow Offset Vert"));
 		Params.push_back(ShaderParam("screen_offset_x", -1, 92, 4, -5.000000f, 5.000000f, 0.000000f, 0.500000f, "Screen Offset Horiz"));
 		Params.push_back(ShaderParam("screen_offset_y", -1, 96, 4, -5.000000f, 5.000000f, 0.000000f, 0.500000f, "Screen Offset Vert"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("PassOutput1", 2));
 		Samplers.push_back(ShaderSampler("BACKGROUND", 3));
 		Samplers.push_back(ShaderSampler("Source", 1));

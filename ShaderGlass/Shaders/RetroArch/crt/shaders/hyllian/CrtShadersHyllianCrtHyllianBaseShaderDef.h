@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/hyllian\crt-hyllian-base imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/hyllian/crt-hyllian-base.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/hyllian/crt-hyllian-base.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1502,22 +1502,22 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersHyllianCrtHyllianBaseShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersHyllianCrtHyllianBaseShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 92, 4, 0.500000f, 2.000000f, 1.000000f, 0.010000f, "Brightboost"));
 		Params.push_back(ShaderParam("PRESET_OPTION", -1, 48, 4, 0.000000f, 5.000000f, 0.000000f, 1.000000f, "Mask Preset [CUSTOM, APERT1, APERT2, SLOT1, SLOT2, DOT]"));
 		Params.push_back(ShaderParam("BEAM_MIN_WIDTH", -1, 52, 4, 0.000000f, 1.000000f, 0.720000f, 0.010000f, "* Min Beam Width"));
 		Params.push_back(ShaderParam("BEAM_MAX_WIDTH", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "* Max Beam Width"));
 		Params.push_back(ShaderParam("SCANLINES_STRENGTH", -1, 60, 4, 0.000000f, 1.000000f, 0.720000f, 0.010000f, "* Scanlines Strength"));
 		Params.push_back(ShaderParam("SCANLINES_SHAPE", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "* Scanlines Shape [ SHARP, SOFT ]"));
-		Params.push_back(ShaderParam("SHARPNESS_HACK", -1, 68, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Sharpness Hack"));
+		Params.push_back(ShaderParam("VSCANLINES", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Orientation [ HORIZONTAL, VERTICAL ]"));
 		Params.push_back(ShaderParam("SCANLINES_CUTOFF", -1, 72, 4, 0.000000f, 1000.000000f, 400.000000f, 2.000000f, "Scanlines Cutoff"));
 		Params.push_back(ShaderParam("SCANLINES_HIRES", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "High Resolution Scanlines"));
 		Params.push_back(ShaderParam("IR_SCALE", -1, 80, 4, 1.000000f, 10.000000f, 1.000000f, 1.000000f, "Internal Resolution Scale (downsampling)"));
+		Params.push_back(ShaderParam("SHARPNESS_HACK", -1, 68, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Sharpness Hack"));
 		Params.push_back(ShaderParam("CRT_ANTI_RINGING", -1, 84, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Anti Ringing"));
-		Params.push_back(ShaderParam("VSCANLINES", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Orientation [ HORIZONTAL, VERTICAL ]"));
-		Params.push_back(ShaderParam("BRIGHTBOOST", -1, 92, 4, 0.500000f, 2.000000f, 1.000000f, 0.010000f, "Brightboost"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

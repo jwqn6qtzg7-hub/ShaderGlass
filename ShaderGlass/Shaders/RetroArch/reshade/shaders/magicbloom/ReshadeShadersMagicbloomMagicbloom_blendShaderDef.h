@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader reshade/shaders/magicbloom\magicbloom_blend imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/reshade/shaders/magicbloom/magicbloom_blend.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/reshade/shaders/magicbloom/magicbloom_blend.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -932,15 +932,15 @@ public:
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blendShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_blendShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("ApplyBloom", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
+		Params.push_back(ShaderParam("fExposure", -1, 56, 4, 0.000000f, 1.000000f, 0.200000f, 0.010000f, "Exposure"));
+		Params.push_back(ShaderParam("fDirt_Intensity", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Dirt Intensity"));
+		Params.push_back(ShaderParam("iDebug", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Debug: Show Bloom Contribution"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("ApplyBloom", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
-		Params.push_back(ShaderParam("fExposure", -1, 56, 4, 0.000000f, 1.000000f, 0.200000f, 0.010000f, "Exposure"));
-		Params.push_back(ShaderParam("iDebug", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Debug: Show Bloom Contribution"));
-		Params.push_back(ShaderParam("fDirt_Intensity", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Dirt Intensity"));
 		Samplers.push_back(ShaderSampler("PreBloomPass", 3));
 		Samplers.push_back(ShaderSampler("tMagicBloom_1", 4));
 		Samplers.push_back(ShaderSampler("tMagicBloom_2", 5));

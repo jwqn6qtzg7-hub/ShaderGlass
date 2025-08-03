@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/crt-maximus-royale/src\tv_reflection imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/crt-maximus-royale/src/tv_reflection.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/crt-maximus-royale/src/tv_reflection.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1923,10 +1923,10 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("OutputSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("crtFrame", -1, 0, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "CRT Frame"));
 		Params.push_back(ShaderParam("crtReflection", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT Reflection"));
+		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 		Samplers.push_back(ShaderSampler("TVLIGHTS1", 4));
 		Samplers.push_back(ShaderSampler("TVLIGHTS3", 5));

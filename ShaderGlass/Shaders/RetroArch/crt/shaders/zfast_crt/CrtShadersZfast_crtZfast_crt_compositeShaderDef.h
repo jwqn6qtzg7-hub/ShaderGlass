@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader crt/shaders/zfast_crt\zfast_crt_composite imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/crt/shaders/zfast_crt/zfast_crt_composite.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/shaders/zfast_crt/zfast_crt_composite.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1092,22 +1092,22 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentHash;
 		Format = "";
+		Params.push_back(ShaderParam("pi", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("Curvature", -1, 92, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature"));
+		Params.push_back(ShaderParam("blurx", -1, 56, 4, -1.000000f, 2.000000f, 0.850000f, 0.050000f, "Convergence X-Axis"));
+		Params.push_back(ShaderParam("blury", -1, 60, 4, -1.000000f, 1.000000f, -0.100000f, 0.050000f, "Convergence Y-Axis"));
+		Params.push_back(ShaderParam("HIGHSCANAMOUNT1", -1, 64, 4, 0.000000f, 1.000000f, 0.400000f, 0.050000f, "Scanline Amount (Low)"));
+		Params.push_back(ShaderParam("HIGHSCANAMOUNT2", -1, 68, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Scanline Amount (High)"));
+		Params.push_back(ShaderParam("TYPE", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Mask Type"));
+		Params.push_back(ShaderParam("MASK_DARK", -1, 72, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Mask Effect Amount"));
+		Params.push_back(ShaderParam("MASK_FADE", -1, 76, 4, 0.000000f, 1.000000f, 0.700000f, 0.050000f, "Mask/Scanline Fade"));
+		Params.push_back(ShaderParam("sat", -1, 80, 4, 0.000000f, 3.000000f, 1.000000f, 0.050000f, "Saturation"));
+		Params.push_back(ShaderParam("FLICK", -1, 84, 4, 0.000000f, 50.000000f, 10.000000f, 1.000000f, "Flicker"));
 		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("pi", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("blurx", -1, 56, 4, -1.000000f, 2.000000f, 0.850000f, 0.050000f, "Convergence X-Axis"));
-		Params.push_back(ShaderParam("blury", -1, 60, 4, -1.000000f, 1.000000f, -0.100000f, 0.050000f, "Convergence Y-Axis"));
-		Params.push_back(ShaderParam("HIGHSCANAMOUNT1", -1, 64, 4, 0.000000f, 1.000000f, 0.400000f, 0.050000f, "Scanline Amount (Low)"));
-		Params.push_back(ShaderParam("HIGHSCANAMOUNT2", -1, 68, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Scanline Amount (High)"));
-		Params.push_back(ShaderParam("MASK_DARK", -1, 72, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Mask Effect Amount"));
-		Params.push_back(ShaderParam("MASK_FADE", -1, 76, 4, 0.000000f, 1.000000f, 0.700000f, 0.050000f, "Mask/Scanline Fade"));
-		Params.push_back(ShaderParam("sat", -1, 80, 4, 0.000000f, 3.000000f, 1.000000f, 0.050000f, "Saturation"));
-		Params.push_back(ShaderParam("FLICK", -1, 84, 4, 0.000000f, 50.000000f, 10.000000f, 1.000000f, "Flicker"));
-		Params.push_back(ShaderParam("TYPE", -1, 88, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Mask Type"));
-		Params.push_back(ShaderParam("Curvature", -1, 92, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature"));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;

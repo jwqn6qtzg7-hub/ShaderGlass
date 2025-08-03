@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader blurs/shaders\gizmo-blur imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/25311dc03332d9ef2dff8d9d06c611d828028fac/blurs/shaders/gizmo-blur.slang
+https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/blurs/shaders/gizmo-blur.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -1196,17 +1196,17 @@ public:
 		FragmentLength = sizeof(RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Params.push_back(ShaderParam("HORIZONTAL_BLUR", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Horizontal Blur"));
 		Params.push_back(ShaderParam("VERTICAL_BLUR", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Blur"));
 		Params.push_back(ShaderParam("BLUR_OFFSET", -1, 60, 4, -1.000000f, 1.000000f, 0.500000f, 0.050000f, "Blur Intensity"));
 		Params.push_back(ShaderParam("SUBPIXEL_SCALING", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Subpixel scaling"));
 		Params.push_back(ShaderParam("BGR_LCD_PATTERN", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "BGR output pattern"));
 		Params.push_back(ShaderParam("COLOUR_BLEEDING", -1, 72, 4, 0.000000f, 3.000000f, 0.000000f, 0.100000f, "Colour bleeding intensity"));
+		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
+		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
 		Samplers.push_back(ShaderSampler("Source", 2));
 /*
 VertexSource = %*VERTEX_SOURCE*%;
