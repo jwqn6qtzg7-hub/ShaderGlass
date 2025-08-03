@@ -859,19 +859,19 @@ void ShaderWindow::CropWindow()
 
 void ShaderWindow::BuildProgramMenu()
 {
-    m_frameSkipMenu = GetSubMenu(m_programMenu, 8);
+    m_frameSkipMenu = GetSubMenu(m_programMenu, 9);
     for(const auto& fs : frameSkips)
     {
         AppendMenu(m_frameSkipMenu, MF_STRING, fs.first, fs.second.text);
     }
 
     m_recentMenu = CreatePopupMenu();
-    InsertMenu(m_programMenu, 13, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_recentMenu, L"Recent profiles");
+    InsertMenu(m_programMenu, 14, MF_BYPOSITION | MF_STRING | MF_POPUP, (UINT_PTR)m_recentMenu, L"Recent profiles");
     LoadRecentProfiles();
 
     m_hotkeysMenu  = GetSubMenu(m_programMenu, 3);
     m_gpuMenu      = GetSubMenu(m_programMenu, 7);
-    m_advancedMenu = GetSubMenu(m_programMenu, 9);
+    m_advancedMenu = GetSubMenu(m_programMenu, 10);
 }
 
 void ShaderWindow::BuildInputMenu()
