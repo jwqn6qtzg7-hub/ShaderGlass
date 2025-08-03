@@ -217,7 +217,7 @@ pair<string, string> fxc(const filesystem::path& shaderPath, const string& profi
     }
     else
     {
-        auto bin = HLSL::CompileHLSL(fullSource.c_str(), fullSource.size(), profile.c_str(), log, warn);
+        auto bin = HLSL::CompileHLSL(fullSource.c_str(), fullSource.size(), profile.c_str(), true, log, warn);
 
         auto str     = byteArrayToString(bin.data(), bin.size());
         auto hash    = ShaderCache::CalculateHash(source);

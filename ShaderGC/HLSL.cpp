@@ -14,7 +14,24 @@ GNU General Public License v3.0
 
 #pragma comment(lib, "d3dcompiler.lib")
 
-std::vector<uint8_t> HLSL::CompileHLSL(const char* source, size_t size, const char* profile, std::ostream& log, bool& warn)
+static inline void ltrim(std::string& s)
+{
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch) && ch != '\"'; }));
+}
+
+static inline void rtrim(std::string& s)
+{
+    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch) && ch != '\"'; }).base(), s.end());
+}
+
+static inline std::string trim(std::string s)
+{
+    ltrim(s);
+    rtrim(s);
+    return s;
+}
+
+std::vector<uint8_t> HLSL::CompileHLSL(const char* source, size_t size, const char* profile, bool unroll, std::ostream& log, bool& warn)
 {
     //std::cout << "CompileHLSL...";
 
@@ -36,7 +53,30 @@ std::vector<uint8_t> HLSL::CompileHLSL(const char* source, size_t size, const ch
         if(shaderBlob)
             shaderBlob->Release();
 
-        throw std::runtime_error(msg.str());
+        const auto& msgString = msg.str();
+        if(unroll && msgString.find("error X3511") != std::string::npos)
+        {
+            // try to fix up unroll errors...
+            std::ostringstream newSource;
+            std::istringstream oldSource(source);
+            int                lineNo = 0;
+            std::string        line;
+            while(std::getline(oldSource, line))
+            {
+                bool loop     = false;
+                auto trimLine = trim(line);
+                loop |= (trimLine.find("for (") == 0);
+                loop |= (trimLine.find("while (") == 0);
+                loop |= (trimLine == "do");
+                if(loop)
+                    newSource << "[loop]" << std::endl;
+                newSource << line << std::endl;
+            }
+            const auto& newSourceString = newSource.str();
+            return CompileHLSL(newSourceString.c_str(), newSourceString.size(), profile, false, log, warn);
+        }
+
+        throw std::runtime_error(msgString);
     }
 
     auto data  = shaderBlob->GetBufferPointer();

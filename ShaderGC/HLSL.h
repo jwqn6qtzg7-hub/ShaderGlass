@@ -10,5 +10,5 @@ GNU General Public License v3.0
 class HLSL
 {
 public:
-    static std::vector<uint8_t> CompileHLSL(const char* source, size_t size, const char* profile, std::ostream& log, bool& warn);
+    static std::vector<uint8_t> CompileHLSL(const char* source, size_t size, const char* profile, bool unroll, std::ostream& log, bool& warn);
 };

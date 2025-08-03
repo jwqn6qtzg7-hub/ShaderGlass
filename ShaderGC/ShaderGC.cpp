@@ -61,9 +61,9 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
         }
     }
     if(vertexDXBC.empty())
-        vertexDXBC = HLSL::CompileHLSL(vertexHLSL.first.c_str(), (int)vertexHLSL.first.size(), "vs_5_0", log, warn);
+        vertexDXBC = HLSL::CompileHLSL(vertexHLSL.first.c_str(), (int)vertexHLSL.first.size(), "vs_5_0", true, log, warn);
     if(fragmentDXBC.empty())
-        fragmentDXBC = HLSL::CompileHLSL(fragmentHLSL.first.c_str(), (int)fragmentHLSL.first.size(), "ps_5_0", log, warn);
+        fragmentDXBC = HLSL::CompileHLSL(fragmentHLSL.first.c_str(), (int)fragmentHLSL.first.size(), "ps_5_0", true, log, warn);
 
     // map declared to reflected parameters
     std::vector<SourceShaderSampler> textures;
