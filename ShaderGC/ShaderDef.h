@@ -78,9 +78,9 @@ public:
         return maxLen;
     }
 
-    ShaderDef& Param(const std::string& presetKey, const std::string& presetValue)
+    ShaderDef& Param(const char* presetKey, const char* presetValue)
     {
-        PresetParams.insert(std::make_pair(presetKey, presetValue));
+        PresetParams.insert(std::make_pair(std::string(presetKey), std::string(presetValue)));
         return *this;
     }
 

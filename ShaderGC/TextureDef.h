@@ -18,9 +18,9 @@ public:
     bool                               Dynamic;
     std::map<std::string, std::string> PresetParams;
 
-    TextureDef& Param(const std::string& presetKey, const std::string& presetValue)
+    TextureDef& Param(const char* presetKey, const char* presetValue)
     {
-        PresetParams.insert(std::make_pair(presetKey, presetValue));
+        PresetParams.insert(std::make_pair(std::string(presetKey), std::string(presetValue)));
         return *this;
     }
 

@@ -539,7 +539,7 @@ PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bo
         auto sd = CompileSourceShader(s, log, warn, cache);
         for(auto& pp : s.presetParams)
         {
-            sd.Param(pp.first, pp.second);
+            sd.Param(pp.first.c_str(), pp.second.c_str());
         }
         def->ShaderDefs.push_back(sd);
     }
@@ -549,7 +549,7 @@ PresetDef* ShaderGC::CompilePreset(std::filesystem::path input, ostream& log, bo
         auto td = CompileTexture(t.input, log, warn);
         for(auto& pp : t.presetParams)
         {
-            td.Param(pp.first, pp.second);
+            td.Param(pp.first.c_str(), pp.second.c_str());
         }
         def->TextureDefs.push_back(td);
     }
