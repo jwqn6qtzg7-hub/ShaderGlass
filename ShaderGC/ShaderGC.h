@@ -11,6 +11,16 @@ GNU General Public License v3.0
 #include "SourceDefs.h"
 #include "ShaderCache.h"
 
+class file_error : public std::runtime_error
+{
+public:
+    using _Mybase = std::runtime_error;
+
+    explicit file_error(const std::string& _Message) : _Mybase(_Message.c_str()) { }
+
+    explicit file_error(const char* _Message) : _Mybase(_Message) { }
+};
+
 class ShaderGC
 {
 public:

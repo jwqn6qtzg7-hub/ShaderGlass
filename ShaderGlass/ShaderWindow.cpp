@@ -636,6 +636,10 @@ void ShaderWindow::CompileThreadFunc()
             SendMessage(m_browserWindow, WM_COMMAND, WM_USER + 1, id);
             SendMessage(m_mainWindow, WM_COMMAND, WM_SHADER(id), 0);
         }
+        catch(file_error& ex)
+        {
+            errorMsg = std::string(ex.what()) + "\r\n\r\nIf this is a RetroArch preset pack, install it in RetroArch's directory first\r\nand import into ShaderGlass from there.";
+        }
         catch(std::exception& ex)
         {
             errorMsg = std::string(ex.what());

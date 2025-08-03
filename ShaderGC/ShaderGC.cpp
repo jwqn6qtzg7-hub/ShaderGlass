@@ -121,7 +121,7 @@ vector<string> ShaderGC::LoadSource(const filesystem::path& input, bool followIn
 
     ifstream infile(input);
     if(!infile.good())
-        throw std::runtime_error("Unable to find " + input.string());
+        throw file_error("Unable to find " + input.string());
     string line;
     while(getline(infile, line))
     {
@@ -485,7 +485,7 @@ void ShaderGC::ParsePreset(const std::filesystem::path& input, std::map<std::str
 {
     ifstream infile(input.lexically_normal());
     if(!infile.good())
-        throw std::runtime_error("Unable to find " + input.lexically_normal().string());
+        throw file_error("Unable to find " + input.lexically_normal().string());
     string line;
     while(getline(infile, line))
     {
@@ -633,7 +633,7 @@ TextureDef ShaderGC::CompileTexture(std::filesystem::path source, std::ostream& 
 
     ifstream inf(source.lexically_normal(), ios::binary | ios::ate);
     if(inf.bad())
-        throw std::runtime_error("Error loading texture " + source.string());
+        throw file_error("Error loading texture " + source.string());
 
     auto size = inf.tellg();
     inf.seekg(0, ios::beg);
