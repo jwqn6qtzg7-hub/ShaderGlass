@@ -761,18 +761,18 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmGaussian_horizontalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmGaussian_horizontalShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FINE_GLOW", -1, 24, 4, 1.000000f, 5.000000f, 1.000000f, 1.000000f, "Fine Glow/M.Glow Sampling"));
-		Params.push_back(ShaderParam("m_glow", -1, 28, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Ordinary Glow / Magic Glow -- m_glow"));
-		Params.push_back(ShaderParam("m_glow_cutoff", -1, 32, 4, 0.000000f, 0.400000f, 0.120000f, 0.010000f, "Magic Glow Cutoff -- m_glow_cutoff"));
-		Params.push_back(ShaderParam("m_glow_low", -1, 36, 4, 0.000000f, 7.000000f, 0.350000f, 0.050000f, "Magic Glow Low Strength -- m_glow_low"));
-		Params.push_back(ShaderParam("m_glow_high", -1, 40, 4, 0.000000f, 7.000000f, 5.000000f, 0.100000f, "Magic Glow High Strength -- m_glow_high"));
-		Params.push_back(ShaderParam("m_glow_dist", -1, 44, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Magic Glow Distribution -- m_glow_dist"));
-		Params.push_back(ShaderParam("m_glow_mask", -1, 48, 4, 0.000000f, 2.000000f, 1.000000f, 0.025000f, "Magic Glow Mask Strength -- m_glow_mask"));
-		Params.push_back(ShaderParam("SIZEH", -1, 16, 4, 1.000000f, 50.000000f, 6.000000f, 1.000000f, "Horizontal Glow Radius (Num Samples) -- SIZEH"));
-		Params.push_back(ShaderParam("SIGMA_H", -1, 20, 4, 0.200000f, 15.000000f, 1.200000f, 0.050000f, "Horizontal Glow Sigma ( Spread ) -- SIGMA_H"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("LinearizePass", 2));
+		AddParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FINE_GLOW", -1, 24, 4, 1.000000f, 5.000000f, 1.000000f, 1.000000f, "Fine Glow/M.Glow Sampling");
+		AddParam("m_glow", -1, 28, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Ordinary Glow / Magic Glow -- m_glow");
+		AddParam("m_glow_cutoff", -1, 32, 4, 0.000000f, 0.400000f, 0.120000f, 0.010000f, "Magic Glow Cutoff -- m_glow_cutoff");
+		AddParam("m_glow_low", -1, 36, 4, 0.000000f, 7.000000f, 0.350000f, 0.050000f, "Magic Glow Low Strength -- m_glow_low");
+		AddParam("m_glow_high", -1, 40, 4, 0.000000f, 7.000000f, 5.000000f, 0.100000f, "Magic Glow High Strength -- m_glow_high");
+		AddParam("m_glow_dist", -1, 44, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Magic Glow Distribution -- m_glow_dist");
+		AddParam("m_glow_mask", -1, 48, 4, 0.000000f, 2.000000f, 1.000000f, 0.025000f, "Magic Glow Mask Strength -- m_glow_mask");
+		AddParam("SIZEH", -1, 16, 4, 1.000000f, 50.000000f, 6.000000f, 1.000000f, "Horizontal Glow Radius (Num Samples) -- SIZEH");
+		AddParam("SIGMA_H", -1, 20, 4, 0.200000f, 15.000000f, 1.200000f, 0.050000f, "Horizontal Glow Sigma ( Spread ) -- SIGMA_H");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("LinearizePass", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

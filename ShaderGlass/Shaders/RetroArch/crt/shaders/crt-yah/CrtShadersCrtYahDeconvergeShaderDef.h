@@ -1521,17 +1521,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtYahDeconvergeShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtYahDeconvergeShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)"));
-		Params.push_back(ShaderParam("SCREEN_ORIENTATION", -1, 8, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Screen > Orientation  (0-Auto, 1-Horizontal, 2-Vertical)"));
-		Params.push_back(ShaderParam("SCREEN_SCALE", -1, 4, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Screen > Scale  (-Down / 0-Auto / +Up)"));
-		Params.push_back(ShaderParam("DECONVERGE_LINEAR", -1, 12, 4, -2.000000f, 2.000000f, 0.500000f, 0.050000f, "Deconverge > Linear Amount  (0-None .. -/+ 1-Full)"));
-		Params.push_back(ShaderParam("DECONVERGE_RADIAL", -1, 16, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Deconverge > Radial Amount  (0-None .. -/+ 1-Full)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)");
+		AddParam("SCREEN_ORIENTATION", -1, 8, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Screen > Orientation  (0-Auto, 1-Horizontal, 2-Vertical)");
+		AddParam("SCREEN_SCALE", -1, 4, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Screen > Scale  (-Down / 0-Auto / +Up)");
+		AddParam("DECONVERGE_LINEAR", -1, 12, 4, -2.000000f, 2.000000f, 0.500000f, 0.050000f, "Deconverge > Linear Amount  (0-None .. -/+ 1-Full)");
+		AddParam("DECONVERGE_RADIAL", -1, 16, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Deconverge > Radial Amount  (0-None .. -/+ 1-Full)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

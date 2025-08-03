@@ -942,15 +942,15 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersColorimetryShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersColorimetryShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("color_mode", -1, 0, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Colorimetry mode"));
-		Params.push_back(ShaderParam("white_point_d93", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Use D93 white point"));
-		Params.push_back(ShaderParam("clipping_method", -1, 8, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Color clipping method"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("color_mode", -1, 0, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Colorimetry mode");
+		AddParam("white_point_d93", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Use D93 white point");
+		AddParam("clipping_method", -1, 8, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Color clipping method");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

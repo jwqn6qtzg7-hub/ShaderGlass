@@ -560,15 +560,15 @@ public:
 		FragmentLength = sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_4ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_4ShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
-		Params.push_back(ShaderParam("ApplyBloom", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom"));
-		Params.push_back(ShaderParam("fBloom_Intensity", -1, 52, 4, 0.000000f, 10.000000f, 1.000000f, 0.100000f, "Bloom Intensity"));
-		Params.push_back(ShaderParam("fBloom_Threshold", -1, 56, 4, 1.000000f, 10.000000f, 2.000000f, 0.100000f, "Bloom Threshold"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("ApplyBloom", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Apply Bloom");
+		AddParam("fBloom_Intensity", -1, 52, 4, 0.000000f, 10.000000f, 1.000000f, 0.100000f, "Bloom Intensity");
+		AddParam("fBloom_Threshold", -1, 56, 4, 1.000000f, 10.000000f, 2.000000f, 0.100000f, "Bloom Threshold");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

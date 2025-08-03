@@ -4093,17 +4093,17 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestNtscHsmNtscPass2ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestNtscHsmNtscPass2ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("auto_res", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("ntsc_cscale", -1, 64, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Chroma Scaling / Bleeding"));
-		Params.push_back(ShaderParam("ntsc_scale", -1, 48, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "Resolution Scaling"));
-		Params.push_back(ShaderParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase | Mixed"));
-		Params.push_back(ShaderParam("ntsc_ring", -1, 60, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Anti-Ringing"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("PrePass0", 3));
+		AddParam("auto_res", -1, 56, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("ntsc_cscale", -1, 64, 4, 0.200000f, 4.000000f, 1.000000f, 0.050000f, "Chroma Scaling / Bleeding");
+		AddParam("ntsc_scale", -1, 48, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "Resolution Scaling");
+		AddParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase | Mixed");
+		AddParam("ntsc_ring", -1, 60, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Anti-Ringing");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("PrePass0", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

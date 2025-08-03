@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/1080p / 03-1080p-crt-guest-advanced-hd-aperture-grille-u-normal-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/1080p / 03-u-normal-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen1080p031080pCrtGuestAdvancedHdApertureGril
 public:
 	SonkunApertureGrilleCurvedScreen1080p031080pCrtGuestAdvancedHdApertureGrilleUNormalCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "03-1080p-crt-guest-advanced-hd-aperture-grille-u-normal-composite-rainbow-artifacts";
+		Name = "03-u-normal-composite-rainbow-artifacts";
 		Category = "sonkun/aperture-grille/curved-screen/1080p";
 	}
 

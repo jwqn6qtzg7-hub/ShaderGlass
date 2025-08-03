@@ -1325,22 +1325,22 @@ public:
 		FragmentLength = sizeof(RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBlursShadersDual_filterBloom_blend_fastestShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("Downsample1Size", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("Downsample2Size", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("UpsampleSize", -1, 48, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("BLUR_RADIUS", -1, 64, 4, 0.000000f, 7.500000f, 1.000000f, 0.100000f, "Blur radius"));
-		Params.push_back(ShaderParam("MIN_EXP_INTENSITY", -1, 68, 4, 0.000000f, 2.000000f, 0.600000f, 0.050000f, "Bloom intensity"));
-		Params.push_back(ShaderParam("EYE_ADAPTION", -1, 72, 4, 0.000000f, 1.000000f, 0.800000f, 0.050000f, "Eye adaptation strength: Reduce bloom on bright screens"));
-		Params.push_back(ShaderParam("MIN_EXP", -1, 76, 4, 0.000000f, 0.950000f, 0.100000f, 0.010000f, "Minimum exposure value (where bloom is strongest)"));
-		Params.push_back(ShaderParam("MAX_EXP", -1, 80, 4, 0.050000f, 1.000000f, 0.550000f, 0.010000f, "Maximum exposure value (where bloom is weakest)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("MovingAverage", 7));
-		Samplers.push_back(ShaderSampler("Downsample1", 4));
-		Samplers.push_back(ShaderSampler("Downsample2", 5));
-		Samplers.push_back(ShaderSampler("Upsample", 6));
-		Samplers.push_back(ShaderSampler("Input", 3));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("InputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("Downsample1Size", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("Downsample2Size", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("UpsampleSize", -1, 48, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("BLUR_RADIUS", -1, 64, 4, 0.000000f, 7.500000f, 1.000000f, 0.100000f, "Blur radius");
+		AddParam("MIN_EXP_INTENSITY", -1, 68, 4, 0.000000f, 2.000000f, 0.600000f, 0.050000f, "Bloom intensity");
+		AddParam("EYE_ADAPTION", -1, 72, 4, 0.000000f, 1.000000f, 0.800000f, 0.050000f, "Eye adaptation strength: Reduce bloom on bright screens");
+		AddParam("MIN_EXP", -1, 76, 4, 0.000000f, 0.950000f, 0.100000f, 0.010000f, "Minimum exposure value (where bloom is strongest)");
+		AddParam("MAX_EXP", -1, 80, 4, 0.050000f, 1.000000f, 0.550000f, 0.010000f, "Maximum exposure value (where bloom is weakest)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("MovingAverage", 7);
+		AddSampler("Downsample1", 4);
+		AddSampler("Downsample2", 5);
+		AddSampler("Upsample", 6);
+		AddSampler("Input", 3);
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

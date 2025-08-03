@@ -973,13 +973,13 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("CRTCGWG_GAMMA", -1, 0, 4, 0.000000f, 10.000000f, 2.700000f, 0.010000f, "CRTcgwg Gamma"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("CRTCGWG_GAMMA", -1, 0, 4, 0.000000f, 10.000000f, 2.700000f, 0.010000f, "CRTcgwg Gamma");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

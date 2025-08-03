@@ -654,14 +654,14 @@ public:
 		FragmentLength = sizeof(RetroArchInterpolationShadersBicubicBicubic3TapsYShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchInterpolationShadersBicubicBicubic3TapsYShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("B", -1, 52, 4, 0.000000f, 1.000000f, 0.330000f, 0.010000f, "Bicubic Coeff B"));
-		Params.push_back(ShaderParam("C", -1, 56, 4, 0.000000f, 1.000000f, 0.330000f, 0.010000f, "Bicubic Coeff C"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("B", -1, 52, 4, 0.000000f, 1.000000f, 0.330000f, 0.010000f, "Bicubic Coeff B");
+		AddParam("C", -1, 56, 4, 0.000000f, 1.000000f, 0.330000f, 0.010000f, "Bicubic Coeff C");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

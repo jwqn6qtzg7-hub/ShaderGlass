@@ -2997,17 +2997,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtYahNtscPass2ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtYahNtscPass2ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)"));
-		Params.push_back(ShaderParam("SCREEN_ORIENTATION", -1, 8, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Screen > Orientation  (0-Auto, 1-Horizontal, 2-Vertical)"));
-		Params.push_back(ShaderParam("SCREEN_SCALE", -1, 4, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Screen > Scale  (-Down / 0-Auto / +Up)"));
-		Params.push_back(ShaderParam("NTSC_PROFILE", -1, 12, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC > Profile  (0-Off, 1-Separate Y/C, 2-Composite, 3-RF)"));
-		Params.push_back(ShaderParam("NTSC_QUALITY", -1, 16, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "NTSC > Quality  (1-Two Phase, 2-Three Phase & 3-Field Merge)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)");
+		AddParam("SCREEN_ORIENTATION", -1, 8, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Screen > Orientation  (0-Auto, 1-Horizontal, 2-Vertical)");
+		AddParam("SCREEN_SCALE", -1, 4, 4, -2.000000f, 2.000000f, 0.000000f, 0.050000f, "Screen > Scale  (-Down / 0-Auto / +Up)");
+		AddParam("NTSC_PROFILE", -1, 12, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC > Profile  (0-Off, 1-Separate Y/C, 2-Composite, 3-RF)");
+		AddParam("NTSC_QUALITY", -1, 16, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "NTSC > Quality  (1-Two Phase, 2-Three Phase & 3-Field Merge)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

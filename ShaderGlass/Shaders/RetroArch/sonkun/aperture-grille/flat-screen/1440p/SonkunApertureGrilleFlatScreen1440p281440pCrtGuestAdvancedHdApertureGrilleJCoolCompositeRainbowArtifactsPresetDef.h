@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 28-1440p-crt-guest-advanced-hd-aperture-grille-j-cool-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 28-j-cool-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1440p281440pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1440p281440pCrtGuestAdvancedHdApertureGrilleJCoolCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "28-1440p-crt-guest-advanced-hd-aperture-grille-j-cool-composite-rainbow-artifacts";
+		Name = "28-j-cool-composite-rainbow-artifacts";
 		Category = "sonkun/aperture-grille/flat-screen/1440p";
 	}
 

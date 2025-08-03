@@ -813,22 +813,22 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersLcdShaderLcdPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersLcdShaderLcdPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("cell_scale", -1, 52, 4, 1.000000f, 5.000000f, 1.000000f, 1.000000f, "LCD Cell Scale"));
-		Params.push_back(ShaderParam("triad_color_0_r", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Red Triad Color R"));
-		Params.push_back(ShaderParam("triad_color_0_g", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "LCD Red Triad Color G"));
-		Params.push_back(ShaderParam("triad_color_0_b", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Red Triad Color B"));
-		Params.push_back(ShaderParam("triad_color_1_r", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Green Triad Color R"));
-		Params.push_back(ShaderParam("triad_color_1_g", -1, 72, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Green Triad Color G"));
-		Params.push_back(ShaderParam("triad_color_1_b", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "LCD Green Triad Color B"));
-		Params.push_back(ShaderParam("triad_color_2_r", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "LCD Blue Triad Color R"));
-		Params.push_back(ShaderParam("triad_color_2_g", -1, 84, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Blue Triad Color G"));
-		Params.push_back(ShaderParam("triad_color_2_b", -1, 88, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Blue Triad Color B"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("cell_scale", -1, 52, 4, 1.000000f, 5.000000f, 1.000000f, 1.000000f, "LCD Cell Scale");
+		AddParam("triad_color_0_r", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Red Triad Color R");
+		AddParam("triad_color_0_g", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "LCD Red Triad Color G");
+		AddParam("triad_color_0_b", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Red Triad Color B");
+		AddParam("triad_color_1_r", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Green Triad Color R");
+		AddParam("triad_color_1_g", -1, 72, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Green Triad Color G");
+		AddParam("triad_color_1_b", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "LCD Green Triad Color B");
+		AddParam("triad_color_2_r", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 0.100000f, "LCD Blue Triad Color R");
+		AddParam("triad_color_2_g", -1, 84, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Blue Triad Color G");
+		AddParam("triad_color_2_b", -1, 88, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "LCD Blue Triad Color B");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

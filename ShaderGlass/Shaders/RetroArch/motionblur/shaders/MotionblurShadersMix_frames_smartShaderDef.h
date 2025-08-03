@@ -1019,14 +1019,14 @@ public:
 		FragmentLength = sizeof(RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMotionblurShadersMix_frames_smartShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DEFLICKER_EMPHASIS", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Deflicker Emphasis"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
-		Samplers.push_back(ShaderSampler("OriginalHistory2", 4));
-		Samplers.push_back(ShaderSampler("OriginalHistory3", 5));
-		Samplers.push_back(ShaderSampler("OriginalHistory4", 6));
-		Samplers.push_back(ShaderSampler("OriginalHistory5", 7));
+		AddParam("DEFLICKER_EMPHASIS", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Deflicker Emphasis");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("OriginalHistory1", 3);
+		AddSampler("OriginalHistory2", 4);
+		AddSampler("OriginalHistory3", 5);
+		AddSampler("OriginalHistory4", 6);
+		AddSampler("OriginalHistory5", 7);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

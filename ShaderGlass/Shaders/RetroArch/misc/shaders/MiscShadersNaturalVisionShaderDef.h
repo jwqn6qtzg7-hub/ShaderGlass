@@ -518,15 +518,15 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersNaturalVisionShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("GIN", -1, 32, 4, 0.000000f, 10.000000f, 2.200000f, 0.050000f, "NaturalVision Gamma In"));
-		Params.push_back(ShaderParam("GOUT", -1, 36, 4, 0.000000f, 10.000000f, 2.200000f, 0.050000f, "NaturalVision Gamma Out"));
-		Params.push_back(ShaderParam("Y", -1, 40, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Luminance"));
-		Params.push_back(ShaderParam("I", -1, 44, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Orange-Cyan"));
-		Params.push_back(ShaderParam("Q", -1, 48, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Magenta-Green"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("GIN", -1, 32, 4, 0.000000f, 10.000000f, 2.200000f, 0.050000f, "NaturalVision Gamma In");
+		AddParam("GOUT", -1, 36, 4, 0.000000f, 10.000000f, 2.200000f, 0.050000f, "NaturalVision Gamma Out");
+		AddParam("Y", -1, 40, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Luminance");
+		AddParam("I", -1, 44, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Orange-Cyan");
+		AddParam("Q", -1, 48, 4, 0.000000f, 10.000000f, 1.100000f, 0.010000f, "NaturalVision Magenta-Green");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

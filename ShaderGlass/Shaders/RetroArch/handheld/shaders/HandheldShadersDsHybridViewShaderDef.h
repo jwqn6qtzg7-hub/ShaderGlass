@@ -765,14 +765,14 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("ds_hybrid_view_refpassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("screen_toggle", -1, 32, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Large Screen Toggle"));
-		Params.push_back(ShaderParam("show_both_screens", -1, 36, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Show Both Small Screens"));
-		Params.push_back(ShaderParam("filter_small", -1, 40, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Filter Small Screens"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 3));
-		Samplers.push_back(ShaderSampler("ds_hybrid_view_refpass", 2));
+		AddParam("ds_hybrid_view_refpassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("screen_toggle", -1, 32, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Large Screen Toggle");
+		AddParam("show_both_screens", -1, 36, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Show Both Small Screens");
+		AddParam("filter_small", -1, 40, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Filter Small Screens");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 3);
+		AddSampler("ds_hybrid_view_refpass", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

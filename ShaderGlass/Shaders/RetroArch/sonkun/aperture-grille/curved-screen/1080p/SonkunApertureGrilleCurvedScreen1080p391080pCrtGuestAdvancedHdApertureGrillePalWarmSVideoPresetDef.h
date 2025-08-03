@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/1080p / 39-1080p-crt-guest-advanced-hd-aperture-grille-pal-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/1080p / 39-pal-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen1080p391080pCrtGuestAdvancedHdApertureGril
 public:
 	SonkunApertureGrilleCurvedScreen1080p391080pCrtGuestAdvancedHdApertureGrillePalWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "39-1080p-crt-guest-advanced-hd-aperture-grille-pal-warm-s-video";
+		Name = "39-pal-warm-s-video";
 		Category = "sonkun/aperture-grille/curved-screen/1080p";
 	}
 

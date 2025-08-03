@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/4k / 26-4k-crt-guest-advanced-hd-aperture-grille-j-cool-rf imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/4k / 26-j-cool-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen4k264kCrtGuestAdvancedHdApertureGrilleJCoolR
 public:
 	SonkunApertureGrilleFlatScreen4k264kCrtGuestAdvancedHdApertureGrilleJCoolRfPresetDef() : PresetDef{}
 	{
-		Name = "26-4k-crt-guest-advanced-hd-aperture-grille-j-cool-rf";
+		Name = "26-j-cool-rf";
 		Category = "sonkun/aperture-grille/flat-screen/4k";
 	}
 

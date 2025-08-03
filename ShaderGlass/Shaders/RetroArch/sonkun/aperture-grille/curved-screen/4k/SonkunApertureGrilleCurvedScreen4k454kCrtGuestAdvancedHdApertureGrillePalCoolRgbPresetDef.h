@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 45-4k-crt-guest-advanced-hd-aperture-grille-pal-cool-rgb imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 45-pal-cool-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen4k454kCrtGuestAdvancedHdApertureGrillePalC
 public:
 	SonkunApertureGrilleCurvedScreen4k454kCrtGuestAdvancedHdApertureGrillePalCoolRgbPresetDef() : PresetDef{}
 	{
-		Name = "45-4k-crt-guest-advanced-hd-aperture-grille-pal-cool-rgb";
+		Name = "45-pal-cool-rgb";
 		Category = "sonkun/aperture-grille/curved-screen/4k";
 	}
 

@@ -1673,22 +1673,22 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedNtscNtscPass3ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestAdvancedNtscNtscPass3ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("auto_res", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
-		Params.push_back(ShaderParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase | Mixed"));
-		Params.push_back(ShaderParam("ntsc_rainbow1", -1, 80, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC Coloring/Rainbow Effect (2-phase)"));
-		Params.push_back(ShaderParam("ntsc_sharp", -1, 60, 4, -10.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Sharpness (Adaptive)"));
-		Params.push_back(ShaderParam("ntsc_shape", -1, 72, 4, 0.500000f, 1.000000f, 0.800000f, 0.050000f, "NTSC Sharpness Shape"));
-		Params.push_back(ShaderParam("ntsc_charp", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 2-phase"));
-		Params.push_back(ShaderParam("ntsc_charp3", -1, 68, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 3-phase"));
-		Params.push_back(ShaderParam("ntsc_gamma", -1, 76, 4, 0.250000f, 2.500000f, 1.000000f, 0.025000f, "NTSC Filtering Gamma Correction"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("NPass1", 3));
-		Samplers.push_back(ShaderSampler("PrePass0", 4));
+		AddParam("auto_res", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode");
+		AddParam("ntsc_phase", -1, 52, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "NTSC Phase: Auto | 2 phase | 3 phase | Mixed");
+		AddParam("ntsc_rainbow1", -1, 80, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "NTSC Coloring/Rainbow Effect (2-phase)");
+		AddParam("ntsc_sharp", -1, 60, 4, -10.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Sharpness (Adaptive)");
+		AddParam("ntsc_shape", -1, 72, 4, 0.500000f, 1.000000f, 0.800000f, 0.050000f, "NTSC Sharpness Shape");
+		AddParam("ntsc_charp", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 2-phase");
+		AddParam("ntsc_charp3", -1, 68, 4, 0.000000f, 10.000000f, 0.000000f, 0.500000f, "NTSC Preserve 'Edge' Colors 3-phase");
+		AddParam("ntsc_gamma", -1, 76, 4, 0.250000f, 2.500000f, 1.000000f, 0.025000f, "NTSC Filtering Gamma Correction");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("NPass1", 3);
+		AddSampler("PrePass0", 4);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

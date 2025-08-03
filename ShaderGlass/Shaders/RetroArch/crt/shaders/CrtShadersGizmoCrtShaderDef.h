@@ -1299,20 +1299,20 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("CURVATURE_X", -1, 52, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Screen curvature - horizontal"));
-		Params.push_back(ShaderParam("CURVATURE_Y", -1, 56, 4, 0.000000f, 1.000000f, 0.150000f, 0.010000f, "Screen curvature - vertical"));
-		Params.push_back(ShaderParam("BRIGHTNESS", -1, 60, 4, 0.050000f, 1.000000f, 0.500000f, 0.050000f, "Scanline Intensity"));
-		Params.push_back(ShaderParam("HORIZONTAL_BLUR", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Horizontal Blur"));
-		Params.push_back(ShaderParam("VERTICAL_BLUR", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Blur"));
-		Params.push_back(ShaderParam("BLUR_OFFSET", -1, 72, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Blur Intensity"));
-		Params.push_back(ShaderParam("BGR_LCD_PATTERN", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "BGR output pattern"));
-		Params.push_back(ShaderParam("SHRINK", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Shrink screen"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("CURVATURE_X", -1, 52, 4, 0.000000f, 1.000000f, 0.100000f, 0.010000f, "Screen curvature - horizontal");
+		AddParam("CURVATURE_Y", -1, 56, 4, 0.000000f, 1.000000f, 0.150000f, 0.010000f, "Screen curvature - vertical");
+		AddParam("BRIGHTNESS", -1, 60, 4, 0.050000f, 1.000000f, 0.500000f, 0.050000f, "Scanline Intensity");
+		AddParam("HORIZONTAL_BLUR", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Horizontal Blur");
+		AddParam("VERTICAL_BLUR", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Blur");
+		AddParam("BLUR_OFFSET", -1, 72, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Blur Intensity");
+		AddParam("BGR_LCD_PATTERN", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "BGR output pattern");
+		AddParam("SHRINK", -1, 80, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Shrink screen");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

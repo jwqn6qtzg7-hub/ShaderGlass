@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/4k / 19-4k-crt-guest-advanced-hd-slot-mask-j-normal-s-video imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/4k / 19-j-normal-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen4k194kCrtGuestAdvancedHdSlotMaskJNormalSVideoPre
 public:
 	SonkunSlotMaskCurvedScreen4k194kCrtGuestAdvancedHdSlotMaskJNormalSVideoPresetDef() : PresetDef{}
 	{
-		Name = "19-4k-crt-guest-advanced-hd-slot-mask-j-normal-s-video";
+		Name = "19-j-normal-s-video";
 		Category = "sonkun/slot-mask/curved-screen/4k";
 	}
 

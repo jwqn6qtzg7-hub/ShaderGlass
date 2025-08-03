@@ -711,12 +711,12 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGlowGauss_vertShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGlowGauss_vertShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
-		Params.push_back(ShaderParam("BOOST", -1, 0, 4, 0.500000f, 1.500000f, 1.000000f, 0.020000f, "Color Boost"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("BOOST", -1, 0, 4, 0.500000f, 1.500000f, 1.000000f, 0.020000f, "Color Boost");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

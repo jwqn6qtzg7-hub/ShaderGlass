@@ -602,11 +602,11 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("ringAct", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Ringing On"));
-		Params.push_back(ShaderParam("ringDsp", -1, 4, 4, 0.000000f, 3.000000f, 3.000000f, 0.100000f, "Ringing Displace"));
-		Params.push_back(ShaderParam("ringInt", -1, 8, 4, 0.000000f, 10.000000f, 5.000000f, 0.500000f, "Ringing Intensity"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("ringAct", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Ringing On");
+		AddParam("ringDsp", -1, 4, 4, 0.000000f, 3.000000f, 3.000000f, 0.100000f, "Ringing Displace");
+		AddParam("ringInt", -1, 8, 4, 0.000000f, 10.000000f, 5.000000f, 0.500000f, "Ringing Intensity");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

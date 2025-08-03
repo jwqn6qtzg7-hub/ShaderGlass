@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/1440p / 20-1440p-crt-guest-advanced-hd-slot-mask-j-normal-rgb imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/1440p / 20-j-normal-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen1440p201440pCrtGuestAdvancedHdSlotMaskJNormalRgb
 public:
 	SonkunSlotMaskCurvedScreen1440p201440pCrtGuestAdvancedHdSlotMaskJNormalRgbPresetDef() : PresetDef{}
 	{
-		Name = "20-1440p-crt-guest-advanced-hd-slot-mask-j-normal-rgb";
+		Name = "20-j-normal-rgb";
 		Category = "sonkun/slot-mask/curved-screen/1440p";
 	}
 

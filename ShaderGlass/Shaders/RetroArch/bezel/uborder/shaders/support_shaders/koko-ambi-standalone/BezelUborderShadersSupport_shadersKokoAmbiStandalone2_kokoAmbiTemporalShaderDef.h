@@ -1786,22 +1786,22 @@ public:
 		FragmentLength = sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DO_AMBILIGHT", 0, 72, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FinalViewportSize", -1, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("AMBI_STEPS", 0, 88, 4, 5.000000f, 1000.000000f, 20.000000f, 5.000000f, "Slowness"));
-		Params.push_back(ShaderParam("AMBI_INT_OFFSET", 0, 68, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Led internalness"));
-		Params.push_back(ShaderParam("AMBI_POWER", 0, 80, 4, 0.000000f, 100.000000f, 0.400000f, 0.050000f, "Led power"));
-		Params.push_back(ShaderParam("AMBI_FALLOFF", 0, 76, 4, 0.100000f, 3.000000f, 0.400000f, 0.010000f, "Light Falloff"));
-		Params.push_back(ShaderParam("AMBI_STRETCH", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Widen lights"));
-		Params.push_back(ShaderParam("AMBI_GAMMA", 0, 84, 4, 0.100000f, 8.000000f, 1.300000f, 0.100000f, "Output Gamma"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MVP", -1, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 80, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 4));
-		Samplers.push_back(ShaderSampler("ambi_temporal_passFeedback", 1));
-		Samplers.push_back(ShaderSampler("avglum_passFeedback", 3));
-		Samplers.push_back(ShaderSampler("avglum_pass", 2));
+		AddParam("DO_AMBILIGHT", 0, 72, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FinalViewportSize", -1, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("AMBI_STEPS", 0, 88, 4, 5.000000f, 1000.000000f, 20.000000f, 5.000000f, "Slowness");
+		AddParam("AMBI_INT_OFFSET", 0, 68, 4, -1.000000f, 1.000000f, 0.000000f, 0.010000f, "Led internalness");
+		AddParam("AMBI_POWER", 0, 80, 4, 0.000000f, 100.000000f, 0.400000f, 0.050000f, "Led power");
+		AddParam("AMBI_FALLOFF", 0, 76, 4, 0.100000f, 3.000000f, 0.400000f, 0.010000f, "Light Falloff");
+		AddParam("AMBI_STRETCH", 0, 64, 4, 0.000000f, 1.000000f, 0.000000f, 0.010000f, "Widen lights");
+		AddParam("AMBI_GAMMA", 0, 84, 4, 0.100000f, 8.000000f, 1.300000f, 0.100000f, "Output Gamma");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("MVP", -1, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 80, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 4);
+		AddSampler("ambi_temporal_passFeedback", 1);
+		AddSampler("avglum_passFeedback", 3);
+		AddSampler("avglum_pass", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

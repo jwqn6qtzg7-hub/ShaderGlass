@@ -707,17 +707,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtYahLutShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtYahLutShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)"));
-		Params.push_back(ShaderParam("COLOR_PROFILE", -1, 4, 4, -1.000000f, 1.000000f, 0.000000f, 0.100000f, "Color > Profile  (-NTSC .. +Trinitron)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 128, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("SamplerLutNtsc", 3));
-		Samplers.push_back(ShaderSampler("SamplerLutTrinitron", 4));
+		AddParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)");
+		AddParam("COLOR_PROFILE", -1, 4, 4, -1.000000f, 1.000000f, 0.000000f, 0.100000f, "Color > Profile  (-NTSC .. +Trinitron)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 128, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("SamplerLutNtsc", 3);
+		AddSampler("SamplerLutTrinitron", 4);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

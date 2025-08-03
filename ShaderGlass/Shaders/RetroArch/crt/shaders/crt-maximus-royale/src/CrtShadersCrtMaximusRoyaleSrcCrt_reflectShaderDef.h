@@ -820,12 +820,12 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcCrt_reflectShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("Xscale", -1, 4, 4, 75.000000f, 150.000000f, 100.000000f, 0.100000f, "Horizontal Scale %"));
-		Params.push_back(ShaderParam("Yscale", -1, 8, 4, 75.000000f, 150.000000f, 100.000000f, 0.100000f, "Vertical Scale %"));
-		Params.push_back(ShaderParam("crtFrame", -1, 0, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "CRT Frame"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("maximus_refpass", 3));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("Xscale", -1, 4, 4, 75.000000f, 150.000000f, 100.000000f, 0.100000f, "Horizontal Scale %");
+		AddParam("Yscale", -1, 8, 4, 75.000000f, 150.000000f, 100.000000f, 0.100000f, "Vertical Scale %");
+		AddParam("crtFrame", -1, 0, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "CRT Frame");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("maximus_refpass", 3);
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

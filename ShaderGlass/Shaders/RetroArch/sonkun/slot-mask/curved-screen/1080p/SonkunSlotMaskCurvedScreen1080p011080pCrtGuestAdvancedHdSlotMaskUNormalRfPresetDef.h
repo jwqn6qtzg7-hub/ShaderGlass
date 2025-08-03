@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 01-1080p-crt-guest-advanced-hd-slot-mask-u-normal-rf imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 01-u-normal-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen1080p011080pCrtGuestAdvancedHdSlotMaskUNormalRfP
 public:
 	SonkunSlotMaskCurvedScreen1080p011080pCrtGuestAdvancedHdSlotMaskUNormalRfPresetDef() : PresetDef{}
 	{
-		Name = "01-1080p-crt-guest-advanced-hd-slot-mask-u-normal-rf";
+		Name = "01-u-normal-rf";
 		Category = "sonkun/slot-mask/curved-screen/1080p";
 	}
 

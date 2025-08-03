@@ -728,12 +728,12 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmAvgLumShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("lsmooth", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("AvgLumPassFeedback", 3));
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("lsmooth", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("AvgLumPassFeedback", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

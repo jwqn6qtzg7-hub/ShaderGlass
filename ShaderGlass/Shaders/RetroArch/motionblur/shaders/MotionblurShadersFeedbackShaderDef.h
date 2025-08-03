@@ -461,13 +461,13 @@ public:
 		FragmentLength = sizeof(RetroArchMotionblurShadersFeedbackShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMotionblurShadersFeedbackShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("mixfactor", -1, 0, 4, 0.000000f, 1.000000f, 0.750000f, 0.010000f, "Motionblur Fadeout"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("PassFeedback0", 3));
+		AddParam("mixfactor", -1, 0, 4, 0.000000f, 1.000000f, 0.750000f, 0.010000f, "Motionblur Fadeout");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("PassFeedback0", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

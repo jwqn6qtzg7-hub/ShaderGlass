@@ -1314,22 +1314,22 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersAdvanced_CRT_shader_whkrmrgks0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("cus", -1, 0, 4, 0.000000f, 1.000000f, 0.150000f, 0.010000f, "CRT curvature"));
-		Params.push_back(ShaderParam("vstr", -1, 4, 4, 0.000000f, 1.000000f, 0.050000f, 0.010000f, "Vignette strength"));
-		Params.push_back(ShaderParam("marginv", -1, 8, 4, 0.000000f, 0.100000f, 0.020000f, 0.005000f, "Display margin"));
-		Params.push_back(ShaderParam("dts", -1, 12, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phosper size"));
-		Params.push_back(ShaderParam("AAz", -1, 16, 4, 2.000000f, 256.000000f, 64.000000f, 1.000000f, "De-moire conv iteration"));
-		Params.push_back(ShaderParam("vex", -1, 20, 4, 0.000000f, 4.000000f, 2.000000f, 0.100000f, "De-moire conv size"));
-		Params.push_back(ShaderParam("capa", -1, 24, 4, 0.000000f, 4.000000f, 1.000000f, 0.100000f, "Horizontal convolution size"));
-		Params.push_back(ShaderParam("capaiter", -1, 28, 4, 1.000000f, 20.000000f, 5.000000f, 1.000000f, "Horizontal convolution iterations"));
-		Params.push_back(ShaderParam("capashape", -1, 32, 4, 1.000000f, 40.000000f, 3.000000f, 0.100000f, "Horizontal convololution kernel shape"));
-		Params.push_back(ShaderParam("scl", -1, 36, 4, 0.000000f, 1080.000000f, 240.000000f, 1.000000f, "Scnaline count, set 0 to match with input"));
-		Params.push_back(ShaderParam("gma", -1, 40, 4, 0.100000f, 4.000000f, 1.000000f, 0.100000f, "Gamma correction"));
-		Params.push_back(ShaderParam("sling", -1, 44, 4, 1.000000f, 2.000000f, 2.000000f, 0.100000f, "line bleed"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 1));
+		AddParam("cus", -1, 0, 4, 0.000000f, 1.000000f, 0.150000f, 0.010000f, "CRT curvature");
+		AddParam("vstr", -1, 4, 4, 0.000000f, 1.000000f, 0.050000f, 0.010000f, "Vignette strength");
+		AddParam("marginv", -1, 8, 4, 0.000000f, 0.100000f, 0.020000f, 0.005000f, "Display margin");
+		AddParam("dts", -1, 12, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phosper size");
+		AddParam("AAz", -1, 16, 4, 2.000000f, 256.000000f, 64.000000f, 1.000000f, "De-moire conv iteration");
+		AddParam("vex", -1, 20, 4, 0.000000f, 4.000000f, 2.000000f, 0.100000f, "De-moire conv size");
+		AddParam("capa", -1, 24, 4, 0.000000f, 4.000000f, 1.000000f, 0.100000f, "Horizontal convolution size");
+		AddParam("capaiter", -1, 28, 4, 1.000000f, 20.000000f, 5.000000f, 1.000000f, "Horizontal convolution iterations");
+		AddParam("capashape", -1, 32, 4, 1.000000f, 40.000000f, 3.000000f, 0.100000f, "Horizontal convololution kernel shape");
+		AddParam("scl", -1, 36, 4, 0.000000f, 1080.000000f, 240.000000f, 1.000000f, "Scnaline count, set 0 to match with input");
+		AddParam("gma", -1, 40, 4, 0.100000f, 4.000000f, 1.000000f, 0.100000f, "Gamma correction");
+		AddParam("sling", -1, 44, 4, 1.000000f, 2.000000f, 2.000000f, 0.100000f, "line bleed");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 1);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

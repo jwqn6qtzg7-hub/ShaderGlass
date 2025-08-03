@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/4k / 26-4k-crt-guest-advanced-hd-shadow-mask-j-cool-rf imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/4k / 26-j-cool-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen4k264kCrtGuestAdvancedHdShadowMaskJCoolRfPresetD
 public:
 	SonkunShadowMaskFlatScreen4k264kCrtGuestAdvancedHdShadowMaskJCoolRfPresetDef() : PresetDef{}
 	{
-		Name = "26-4k-crt-guest-advanced-hd-shadow-mask-j-cool-rf";
+		Name = "26-j-cool-rf";
 		Category = "sonkun/shadow-mask/flat-screen/4k";
 	}
 

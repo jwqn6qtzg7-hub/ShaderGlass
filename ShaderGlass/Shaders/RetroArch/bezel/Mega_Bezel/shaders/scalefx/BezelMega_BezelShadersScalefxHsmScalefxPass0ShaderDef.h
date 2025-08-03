@@ -670,15 +670,15 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersScalefxHsmScalefxPass0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("scalefx_pass0Size", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SFX_RAA", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("HSM_SCALEFX_ON", -1, 32, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "ScaleFx ON - Must Increase Core Res Sampling"));
-		Params.push_back(ShaderParam("SFX_CLR", -1, 36, 4, 0.010000f, 1.000000f, 0.430000f, 0.010000f, "ScaleFX Threshold"));
-		Params.push_back(ShaderParam("SFX_SAA", -1, 40, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "ScaleFX Filter AA"));
-		Params.push_back(ShaderParam("SFX_SCN", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "ScaleFX Filter Corners"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 1));
+		AddParam("scalefx_pass0Size", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SFX_RAA", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("HSM_SCALEFX_ON", -1, 32, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "ScaleFx ON - Must Increase Core Res Sampling");
+		AddParam("SFX_CLR", -1, 36, 4, 0.010000f, 1.000000f, 0.430000f, 0.010000f, "ScaleFX Threshold");
+		AddParam("SFX_SAA", -1, 40, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "ScaleFX Filter AA");
+		AddParam("SFX_SCN", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "ScaleFX Filter Corners");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 1);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

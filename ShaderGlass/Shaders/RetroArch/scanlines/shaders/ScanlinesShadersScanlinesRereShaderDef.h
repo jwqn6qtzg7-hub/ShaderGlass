@@ -766,18 +766,18 @@ public:
 		FragmentLength = sizeof(RetroArchScanlinesShadersScanlinesRereShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchScanlinesShadersScanlinesRereShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("thickness", -1, 52, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Scanline thickness"));
-		Params.push_back(ShaderParam("glow", -1, 56, 4, 0.000000f, 1.000000f, 0.750000f, 0.010000f, "Scanline glow"));
-		Params.push_back(ShaderParam("highlights", -1, 68, 4, 0.000000f, 1.000000f, 0.750000f, 0.010000f, "Scanline highlights"));
-		Params.push_back(ShaderParam("boost", -1, 72, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Luminance boost"));
-		Params.push_back(ShaderParam("sGamma", -1, 60, 4, 1.000000f, 3.000000f, 2.400000f, 0.010000f, "Source gamma"));
-		Params.push_back(ShaderParam("tGamma", -1, 64, 4, 1.000000f, 3.000000f, 2.200000f, 0.010000f, "Target gamma"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("thickness", -1, 52, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Scanline thickness");
+		AddParam("glow", -1, 56, 4, 0.000000f, 1.000000f, 0.750000f, 0.010000f, "Scanline glow");
+		AddParam("highlights", -1, 68, 4, 0.000000f, 1.000000f, 0.750000f, 0.010000f, "Scanline highlights");
+		AddParam("boost", -1, 72, 4, 0.000000f, 1.000000f, 0.250000f, 0.010000f, "Luminance boost");
+		AddParam("sGamma", -1, 60, 4, 1.000000f, 3.000000f, 2.400000f, 0.010000f, "Source gamma");
+		AddParam("tGamma", -1, 64, 4, 1.000000f, 3.000000f, 2.200000f, 0.010000f, "Target gamma");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

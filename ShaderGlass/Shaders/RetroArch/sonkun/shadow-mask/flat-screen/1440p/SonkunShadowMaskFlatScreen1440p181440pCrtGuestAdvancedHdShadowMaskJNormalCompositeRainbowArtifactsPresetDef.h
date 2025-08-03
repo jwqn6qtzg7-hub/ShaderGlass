@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/1440p / 18-1440p-crt-guest-advanced-hd-shadow-mask-j-normal-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/1440p / 18-j-normal-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen1440p181440pCrtGuestAdvancedHdShadowMaskJNormalC
 public:
 	SonkunShadowMaskFlatScreen1440p181440pCrtGuestAdvancedHdShadowMaskJNormalCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "18-1440p-crt-guest-advanced-hd-shadow-mask-j-normal-composite-rainbow-artifacts";
+		Name = "18-j-normal-composite-rainbow-artifacts";
 		Category = "sonkun/shadow-mask/flat-screen/1440p";
 	}
 

@@ -542,19 +542,19 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("PHOSPHOR_SCALE_X", -1, 52, 4, 1.000000f, 12.000000f, 2.000000f, 1.000000f, "Phosphor Scale X"));
-		Params.push_back(ShaderParam("PHOSPHOR_SCALE_Y", -1, 56, 4, 1.000000f, 12.000000f, 4.000000f, 1.000000f, "Phosphor Scale Y"));
-		Params.push_back(ShaderParam("phosphor_layout", -1, 60, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phosphor Layout"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("firstPass", 6));
-		Samplers.push_back(ShaderSampler("shadow", 3));
-		Samplers.push_back(ShaderSampler("aperture", 4));
-		Samplers.push_back(ShaderSampler("slot", 5));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("PHOSPHOR_SCALE_X", -1, 52, 4, 1.000000f, 12.000000f, 2.000000f, 1.000000f, "Phosphor Scale X");
+		AddParam("PHOSPHOR_SCALE_Y", -1, 56, 4, 1.000000f, 12.000000f, 4.000000f, 1.000000f, "Phosphor Scale Y");
+		AddParam("phosphor_layout", -1, 60, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Phosphor Layout");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("firstPass", 6);
+		AddSampler("shadow", 3);
+		AddSampler("aperture", 4);
+		AddSampler("slot", 5);
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

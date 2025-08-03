@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 19-1080p-crt-guest-advanced-hd-aperture-grille-j-normal-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 19-j-normal-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1080p191080pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1080p191080pCrtGuestAdvancedHdApertureGrilleJNormalSVideoPresetDef() : PresetDef{}
 	{
-		Name = "19-1080p-crt-guest-advanced-hd-aperture-grille-j-normal-s-video";
+		Name = "19-j-normal-s-video";
 		Category = "sonkun/aperture-grille/flat-screen/1080p";
 	}
 

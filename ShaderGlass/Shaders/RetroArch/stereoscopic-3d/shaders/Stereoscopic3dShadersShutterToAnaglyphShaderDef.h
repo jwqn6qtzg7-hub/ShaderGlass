@@ -644,16 +644,16 @@ public:
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersShutterToAnaglyphShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchStereoscopic3dShadersShutterToAnaglyphShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("flip_eye_toggle", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Flip Left/Right"));
-		Params.push_back(ShaderParam("green", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Green"));
-		Params.push_back(ShaderParam("blue", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Blue"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
+		AddParam("flip_eye_toggle", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Flip Left/Right");
+		AddParam("green", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Green");
+		AddParam("blue", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Blue");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("OriginalHistory1", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

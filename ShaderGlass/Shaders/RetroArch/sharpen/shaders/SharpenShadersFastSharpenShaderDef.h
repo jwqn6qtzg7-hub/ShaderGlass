@@ -624,15 +624,15 @@ public:
 		FragmentLength = sizeof(RetroArchSharpenShadersFastSharpenShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchSharpenShadersFastSharpenShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("SHARPEN", -1, 52, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Sharpen strength"));
-		Params.push_back(ShaderParam("CONTR", -1, 56, 4, 0.000000f, 0.250000f, 0.070000f, 0.010000f, "Ammount of sharpening"));
-		Params.push_back(ShaderParam("DETAILS", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "Details sharpened"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("SHARPEN", -1, 52, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Sharpen strength");
+		AddParam("CONTR", -1, 56, 4, 0.000000f, 0.250000f, 0.070000f, 0.010000f, "Ammount of sharpening");
+		AddParam("DETAILS", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "Details sharpened");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

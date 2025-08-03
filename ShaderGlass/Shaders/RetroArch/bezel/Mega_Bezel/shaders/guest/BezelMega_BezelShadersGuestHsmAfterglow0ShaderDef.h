@@ -555,13 +555,13 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmAfterglow0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("PR", -1, 16, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Red -- PR"));
-		Params.push_back(ShaderParam("PG", -1, 20, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Green -- PG"));
-		Params.push_back(ShaderParam("PB", -1, 24, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Blue -- PB"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("PreCRTPass", 2));
-		Samplers.push_back(ShaderSampler("AfterglowPassFeedback", 3));
+		AddParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("PR", -1, 16, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Red -- PR");
+		AddParam("PG", -1, 20, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Green -- PG");
+		AddParam("PB", -1, 24, 4, 0.000000f, 0.500000f, 0.320000f, 0.010000f, "Persistence Blue -- PB");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("PreCRTPass", 2);
+		AddSampler("AfterglowPassFeedback", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

@@ -837,16 +837,16 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("comb", -1, 0, 4, 0.000000f, 1.000000f, 0.800000f, 0.050000f, "Comb Filter Strength"));
-		Params.push_back(ShaderParam("ln_delay", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "NES/SNES Line Delay"));
-		Params.push_back(ShaderParam("d_crawl", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "NES/SNES Dot Crawl"));
-		Params.push_back(ShaderParam("sharp_pix", -1, 12, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sharper"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("comb", -1, 0, 4, 0.000000f, 1.000000f, 0.800000f, 0.050000f, "Comb Filter Strength");
+		AddParam("ln_delay", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "NES/SNES Line Delay");
+		AddParam("d_crawl", -1, 8, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "NES/SNES Dot Crawl");
+		AddParam("sharp_pix", -1, 12, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sharper");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

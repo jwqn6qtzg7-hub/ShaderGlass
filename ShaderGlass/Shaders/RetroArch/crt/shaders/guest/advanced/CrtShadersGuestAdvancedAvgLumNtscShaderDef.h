@@ -736,13 +736,13 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestAdvancedAvgLumNtscShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("lsmooth", -1, 32, 4, 0.500000f, 0.990000f, 0.700000f, 0.010000f, "Raster Bloom Effect Smoothing"));
-		Params.push_back(ShaderParam("sth", -1, 36, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("AvgLumPassFeedback", 3));
+		AddParam("lsmooth", -1, 32, 4, 0.500000f, 0.990000f, 0.700000f, 0.010000f, "Raster Bloom Effect Smoothing");
+		AddParam("sth", -1, 36, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 0, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("AvgLumPassFeedback", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

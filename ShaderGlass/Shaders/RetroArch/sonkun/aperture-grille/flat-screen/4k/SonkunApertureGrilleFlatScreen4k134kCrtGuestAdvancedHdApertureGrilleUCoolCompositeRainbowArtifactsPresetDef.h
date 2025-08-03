@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/4k / 13-4k-crt-guest-advanced-hd-aperture-grille-u-cool-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/4k / 13-u-cool-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen4k134kCrtGuestAdvancedHdApertureGrilleUCoolC
 public:
 	SonkunApertureGrilleFlatScreen4k134kCrtGuestAdvancedHdApertureGrilleUCoolCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "13-4k-crt-guest-advanced-hd-aperture-grille-u-cool-composite-rainbow-artifacts";
+		Name = "13-u-cool-composite-rainbow-artifacts";
 		Category = "sonkun/aperture-grille/flat-screen/4k";
 	}
 

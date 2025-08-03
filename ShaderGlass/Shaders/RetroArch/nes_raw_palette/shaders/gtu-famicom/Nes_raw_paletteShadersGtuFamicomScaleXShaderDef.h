@@ -866,16 +866,16 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersGtuFamicomScaleXShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("cropOverscan_x", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Crop Overscan X"));
-		Params.push_back(ShaderParam("signalResolutionY", -1, 56, 4, 20.000000f, 500.000000f, 200.000000f, 10.000000f, "Signal Res Y"));
-		Params.push_back(ShaderParam("signalResolutionI", -1, 60, 4, 20.000000f, 350.000000f, 125.000000f, 10.000000f, "Signal Res I"));
-		Params.push_back(ShaderParam("signalResolutionQ", -1, 64, 4, 20.000000f, 350.000000f, 125.000000f, 10.000000f, "Signal Res Q"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("cropOverscan_x", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Crop Overscan X");
+		AddParam("signalResolutionY", -1, 56, 4, 20.000000f, 500.000000f, 200.000000f, 10.000000f, "Signal Res Y");
+		AddParam("signalResolutionI", -1, 60, 4, 20.000000f, 350.000000f, 125.000000f, 10.000000f, "Signal Res I");
+		AddParam("signalResolutionQ", -1, 64, 4, 20.000000f, 350.000000f, 125.000000f, 10.000000f, "Signal Res Q");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

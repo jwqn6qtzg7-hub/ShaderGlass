@@ -1017,19 +1017,19 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersNesColorDecoderShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("nes_saturation", -1, 0, 4, 0.000000f, 5.000000f, 1.000000f, 0.050000f, "Saturation"));
-		Params.push_back(ShaderParam("nes_hue", -1, 4, 4, -360.000000f, 360.000000f, 0.000000f, 1.000000f, "Hue"));
-		Params.push_back(ShaderParam("nes_contrast", -1, 8, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Contrast"));
-		Params.push_back(ShaderParam("nes_brightness", -1, 12, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Brightness"));
-		Params.push_back(ShaderParam("nes_gamma", -1, 16, 4, 1.000000f, 2.500000f, 1.800000f, 0.050000f, "Gamma"));
-		Params.push_back(ShaderParam("nes_sony_matrix", -1, 20, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sony CXA2025AS US colors"));
-		Params.push_back(ShaderParam("nes_clip_method", -1, 24, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Palette clipping method"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("nes_saturation", -1, 0, 4, 0.000000f, 5.000000f, 1.000000f, 0.050000f, "Saturation");
+		AddParam("nes_hue", -1, 4, 4, -360.000000f, 360.000000f, 0.000000f, 1.000000f, "Hue");
+		AddParam("nes_contrast", -1, 8, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Contrast");
+		AddParam("nes_brightness", -1, 12, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Brightness");
+		AddParam("nes_gamma", -1, 16, 4, 1.000000f, 2.500000f, 1.800000f, 0.050000f, "Gamma");
+		AddParam("nes_sony_matrix", -1, 20, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Sony CXA2025AS US colors");
+		AddParam("nes_clip_method", -1, 24, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "Palette clipping method");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

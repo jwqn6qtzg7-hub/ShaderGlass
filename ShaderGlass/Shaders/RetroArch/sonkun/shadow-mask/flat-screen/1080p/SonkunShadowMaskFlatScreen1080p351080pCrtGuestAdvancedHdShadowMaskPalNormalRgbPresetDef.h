@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/1080p / 35-1080p-crt-guest-advanced-hd-shadow-mask-pal-normal-rgb imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/1080p / 35-pal-normal-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen1080p351080pCrtGuestAdvancedHdShadowMaskPalNorma
 public:
 	SonkunShadowMaskFlatScreen1080p351080pCrtGuestAdvancedHdShadowMaskPalNormalRgbPresetDef() : PresetDef{}
 	{
-		Name = "35-1080p-crt-guest-advanced-hd-shadow-mask-pal-normal-rgb";
+		Name = "35-pal-normal-rgb";
 		Category = "sonkun/shadow-mask/flat-screen/1080p";
 	}
 

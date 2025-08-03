@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/4k / 31-4k-crt-guest-advanced-hd-shadow-mask-pal-normal-rf imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/4k / 31-pal-normal-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen4k314kCrtGuestAdvancedHdShadowMaskPalNormalRfP
 public:
 	SonkunShadowMaskCurvedScreen4k314kCrtGuestAdvancedHdShadowMaskPalNormalRfPresetDef() : PresetDef{}
 	{
-		Name = "31-4k-crt-guest-advanced-hd-shadow-mask-pal-normal-rf";
+		Name = "31-pal-normal-rf";
 		Category = "sonkun/shadow-mask/curved-screen/4k";
 	}
 

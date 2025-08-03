@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 30-1080p-crt-guest-advanced-hd-slot-mask-j-cool-rgb imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 30-j-cool-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen1080p301080pCrtGuestAdvancedHdSlotMaskJCoolRgbPr
 public:
 	SonkunSlotMaskCurvedScreen1080p301080pCrtGuestAdvancedHdSlotMaskJCoolRgbPresetDef() : PresetDef{}
 	{
-		Name = "30-1080p-crt-guest-advanced-hd-slot-mask-j-cool-rgb";
+		Name = "30-j-cool-rgb";
 		Category = "sonkun/slot-mask/curved-screen/1080p";
 	}
 

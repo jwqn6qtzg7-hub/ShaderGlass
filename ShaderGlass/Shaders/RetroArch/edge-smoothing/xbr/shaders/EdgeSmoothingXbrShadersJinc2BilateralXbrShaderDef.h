@@ -1926,17 +1926,17 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingXbrShadersJinc2BilateralXbrShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingXbrShadersJinc2BilateralXbrShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("J2B_WA_BILATERAL", -1, 52, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Window A Param"));
-		Params.push_back(ShaderParam("J2B_WB_BILATERAL", -1, 56, 4, 0.000000f, 1.000000f, 0.880000f, 0.010000f, "Window B Param"));
-		Params.push_back(ShaderParam("J2B_AR_STR", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "Anti-Ringing Strength"));
-		Params.push_back(ShaderParam("J2B_STR", -1, 64, 4, 0.100000f, 1.500000f, 1.000000f, 0.050000f, "Bilateral Strength"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("XbrSource", 2));
-		Samplers.push_back(ShaderSampler("Source", 3));
+		AddParam("J2B_WA_BILATERAL", -1, 52, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Window A Param");
+		AddParam("J2B_WB_BILATERAL", -1, 56, 4, 0.000000f, 1.000000f, 0.880000f, 0.010000f, "Window B Param");
+		AddParam("J2B_AR_STR", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "Anti-Ringing Strength");
+		AddParam("J2B_STR", -1, 64, 4, 0.100000f, 1.500000f, 1.000000f, 0.050000f, "Bilateral Strength");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("XbrSource", 2);
+		AddSampler("Source", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

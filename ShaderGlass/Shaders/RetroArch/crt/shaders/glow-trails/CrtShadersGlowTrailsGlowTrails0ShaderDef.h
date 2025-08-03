@@ -498,15 +498,15 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("mixfactor", -1, 52, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Motionblur Fadeout"));
-		Params.push_back(ShaderParam("threshold", -1, 56, 4, 0.000000f, 1.000000f, 0.900000f, 0.010000f, "Brightness Threshold"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("Trails0Feedback", 3));
+		AddParam("mixfactor", -1, 52, 4, 0.000000f, 1.000000f, 0.500000f, 0.010000f, "Motionblur Fadeout");
+		AddParam("threshold", -1, 56, 4, 0.000000f, 1.000000f, 0.900000f, 0.010000f, "Brightness Threshold");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("Trails0Feedback", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

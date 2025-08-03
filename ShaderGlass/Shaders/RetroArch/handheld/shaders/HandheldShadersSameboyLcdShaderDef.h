@@ -971,14 +971,14 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersSameboyLcdShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersSameboyLcdShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("COLOR_LOW", -1, 0, 4, 0.000000f, 1.500000f, 0.800000f, 0.050000f, "Color Low"));
-		Params.push_back(ShaderParam("COLOR_HIGH", -1, 4, 4, 0.000000f, 1.500000f, 1.000000f, 0.050000f, "Color High"));
-		Params.push_back(ShaderParam("SCANLINE_DEPTH", -1, 8, 4, 0.000000f, 2.000000f, 0.100000f, 0.050000f, "Scanline Depth"));
-		Params.push_back(ShaderParam("MVP", 0, 48, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("COLOR_LOW", -1, 0, 4, 0.000000f, 1.500000f, 0.800000f, 0.050000f, "Color Low");
+		AddParam("COLOR_HIGH", -1, 4, 4, 0.000000f, 1.500000f, 1.000000f, 0.050000f, "Color High");
+		AddParam("SCANLINE_DEPTH", -1, 8, 4, 0.000000f, 2.000000f, 0.100000f, 0.050000f, "Scanline Depth");
+		AddParam("MVP", 0, 48, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

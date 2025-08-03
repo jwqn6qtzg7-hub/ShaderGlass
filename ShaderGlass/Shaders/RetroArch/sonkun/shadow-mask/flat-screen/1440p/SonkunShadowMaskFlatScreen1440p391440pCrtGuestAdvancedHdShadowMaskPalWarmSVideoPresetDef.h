@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/1440p / 39-1440p-crt-guest-advanced-hd-shadow-mask-pal-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/1440p / 39-pal-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen1440p391440pCrtGuestAdvancedHdShadowMaskPalWarmS
 public:
 	SonkunShadowMaskFlatScreen1440p391440pCrtGuestAdvancedHdShadowMaskPalWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "39-1440p-crt-guest-advanced-hd-shadow-mask-pal-warm-s-video";
+		Name = "39-pal-warm-s-video";
 		Category = "sonkun/shadow-mask/flat-screen/1440p";
 	}
 

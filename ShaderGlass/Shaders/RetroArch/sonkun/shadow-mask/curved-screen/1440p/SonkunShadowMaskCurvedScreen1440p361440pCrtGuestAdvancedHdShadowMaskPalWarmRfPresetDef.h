@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/1440p / 36-1440p-crt-guest-advanced-hd-shadow-mask-pal-warm-rf imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/1440p / 36-pal-warm-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen1440p361440pCrtGuestAdvancedHdShadowMaskPalWar
 public:
 	SonkunShadowMaskCurvedScreen1440p361440pCrtGuestAdvancedHdShadowMaskPalWarmRfPresetDef() : PresetDef{}
 	{
-		Name = "36-1440p-crt-guest-advanced-hd-shadow-mask-pal-warm-rf";
+		Name = "36-pal-warm-rf";
 		Category = "sonkun/shadow-mask/curved-screen/1440p";
 	}
 

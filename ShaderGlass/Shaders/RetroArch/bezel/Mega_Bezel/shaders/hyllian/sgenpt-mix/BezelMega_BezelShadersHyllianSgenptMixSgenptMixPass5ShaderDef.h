@@ -900,17 +900,17 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersHyllianSgenptMixSgenptMixPass5ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("VL_MITIG_NEIGHBRS", -1, 52, 4, 0.000000f, 4.000000f, 1.000000f, 1.000000f, "Vertical Lines - Mitigate Errors in Neighbors"));
-		Params.push_back(ShaderParam("UseGamma", -1, 64, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("VL_MITIG_LINES", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vertical Lines - Mitigate Errors in Regions"));
-		Params.push_back(ShaderParam("VL_ADJUST_VIEW", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Lines - Debug View"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("CB_Output", 3));
+		AddParam("VL_MITIG_NEIGHBRS", -1, 52, 4, 0.000000f, 4.000000f, 1.000000f, 1.000000f, "Vertical Lines - Mitigate Errors in Neighbors");
+		AddParam("UseGamma", -1, 64, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("VL_MITIG_LINES", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vertical Lines - Mitigate Errors in Regions");
+		AddParam("VL_ADJUST_VIEW", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Lines - Debug View");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("CB_Output", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

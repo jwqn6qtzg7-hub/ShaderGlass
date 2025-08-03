@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 25-1080p-crt-guest-advanced-hd-aperture-grille-j-warm-rgb imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 25-j-warm-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1080p251080pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1080p251080pCrtGuestAdvancedHdApertureGrilleJWarmRgbPresetDef() : PresetDef{}
 	{
-		Name = "25-1080p-crt-guest-advanced-hd-aperture-grille-j-warm-rgb";
+		Name = "25-j-warm-rgb";
 		Category = "sonkun/aperture-grille/flat-screen/1080p";
 	}
 

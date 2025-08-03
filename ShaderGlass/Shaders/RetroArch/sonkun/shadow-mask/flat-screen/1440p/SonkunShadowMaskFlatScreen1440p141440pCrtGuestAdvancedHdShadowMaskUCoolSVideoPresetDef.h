@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/1440p / 14-1440p-crt-guest-advanced-hd-shadow-mask-u-cool-s-video imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/1440p / 14-u-cool-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen1440p141440pCrtGuestAdvancedHdShadowMaskUCoolSVi
 public:
 	SonkunShadowMaskFlatScreen1440p141440pCrtGuestAdvancedHdShadowMaskUCoolSVideoPresetDef() : PresetDef{}
 	{
-		Name = "14-1440p-crt-guest-advanced-hd-shadow-mask-u-cool-s-video";
+		Name = "14-u-cool-s-video";
 		Category = "sonkun/shadow-mask/flat-screen/1440p";
 	}
 

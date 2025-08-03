@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 19-4k-crt-guest-advanced-hd-aperture-grille-j-normal-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 19-j-normal-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen4k194kCrtGuestAdvancedHdApertureGrilleJNor
 public:
 	SonkunApertureGrilleCurvedScreen4k194kCrtGuestAdvancedHdApertureGrilleJNormalSVideoPresetDef() : PresetDef{}
 	{
-		Name = "19-4k-crt-guest-advanced-hd-aperture-grille-j-normal-s-video";
+		Name = "19-j-normal-s-video";
 		Category = "sonkun/aperture-grille/curved-screen/4k";
 	}
 

@@ -638,15 +638,15 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestHdBloom_verticalShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FINE_BLOOM", -1, 60, 4, -1.000000f, 5.000000f, 1.000000f, 1.000000f, "Fine Bloom/Halation Sampling"));
-		Params.push_back(ShaderParam("SIZEVB", -1, 52, 4, 1.000000f, 50.000000f, 3.000000f, 1.000000f, "Vertical Bloom/Halation Radius"));
-		Params.push_back(ShaderParam("SIGMA_VB", -1, 56, 4, 0.250000f, 15.000000f, 0.600000f, 0.025000f, "Vertical Bloom/Halation Sigma"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("FINE_BLOOM", -1, 60, 4, -1.000000f, 5.000000f, 1.000000f, 1.000000f, "Fine Bloom/Halation Sampling");
+		AddParam("SIZEVB", -1, 52, 4, 1.000000f, 50.000000f, 3.000000f, 1.000000f, "Vertical Bloom/Halation Radius");
+		AddParam("SIGMA_VB", -1, 56, 4, 0.250000f, 15.000000f, 0.600000f, 0.025000f, "Vertical Bloom/Halation Sigma");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

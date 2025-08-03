@@ -428,10 +428,10 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass2ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcBGcolor_pass2ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("bgMode", -1, 0, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "BG Mode"));
-		Params.push_back(ShaderParam("ledMode", -1, 4, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Rear TV LED Mode"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("BGPASS1", 2));
+		AddParam("bgMode", -1, 0, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "BG Mode");
+		AddParam("ledMode", -1, 4, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Rear TV LED Mode");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("BGPASS1", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

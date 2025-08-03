@@ -656,17 +656,17 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronHdrPassShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronHdrPassShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
-		Params.push_back(ShaderParam("hcrt_hdr", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SDR | HDR"));
-		Params.push_back(ShaderParam("hcrt_colour_accurate", -1, 16, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Mask Accurate/Colour Accurate"));
-		Params.push_back(ShaderParam("hcrt_max_nits", -1, 4, 4, 0.000000f, 10000.000000f, 1000.000000f, 10.000000f, "HDR: Display's Peak Luminance"));
-		Params.push_back(ShaderParam("hcrt_paper_white_nits", -1, 8, 4, 0.000000f, 10000.000000f, 200.000000f, 10.000000f, "HDR: Display's Paper White Luminance"));
-		Params.push_back(ShaderParam("hcrt_expand_gamut", -1, 12, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "HDR: Original/Vivid"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("hcrt_hdr", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SDR | HDR");
+		AddParam("hcrt_colour_accurate", -1, 16, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Mask Accurate/Colour Accurate");
+		AddParam("hcrt_max_nits", -1, 4, 4, 0.000000f, 10000.000000f, 1000.000000f, 10.000000f, "HDR: Display's Peak Luminance");
+		AddParam("hcrt_paper_white_nits", -1, 8, 4, 0.000000f, 10000.000000f, 200.000000f, 10.000000f, "HDR: Display's Paper White Luminance");
+		AddParam("hcrt_expand_gamut", -1, 12, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "HDR: Original/Vivid");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

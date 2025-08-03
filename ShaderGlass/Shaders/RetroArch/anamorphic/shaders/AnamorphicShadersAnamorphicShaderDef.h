@@ -699,17 +699,17 @@ public:
 		FragmentLength = sizeof(RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchAnamorphicShadersAnamorphicShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("exc", -1, 48, 4, -10.000000f, 10.000000f, 0.000000f, 0.250000f, "orizontal correction hack (games where players stay at center)"));
-		Params.push_back(ShaderParam("exp_", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "border hack (hack for 2d games extra correction prepass)"));
-		Params.push_back(ShaderParam("vuc", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "vertical Upper resize hack (most important first pass)"));
-		Params.push_back(ShaderParam("vab", -1, 68, 4, 0.500000f, 1.000000f, 1.000000f, 0.010000f, "vertical Bottom resize hack (90-85 second pass)"));
-		Params.push_back(ShaderParam("upc", -1, 52, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Upper  vertical Crop"));
-		Params.push_back(ShaderParam("btc", -1, 56, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Bottom vertical Crop"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("exc", -1, 48, 4, -10.000000f, 10.000000f, 0.000000f, 0.250000f, "orizontal correction hack (games where players stay at center)");
+		AddParam("exp_", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "border hack (hack for 2d games extra correction prepass)");
+		AddParam("vuc", -1, 64, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "vertical Upper resize hack (most important first pass)");
+		AddParam("vab", -1, 68, 4, 0.500000f, 1.000000f, 1.000000f, 0.010000f, "vertical Bottom resize hack (90-85 second pass)");
+		AddParam("upc", -1, 52, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Upper  vertical Crop");
+		AddParam("btc", -1, 56, 4, 0.000000f, 10.000000f, 0.000000f, 0.250000f, "Bottom vertical Crop");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

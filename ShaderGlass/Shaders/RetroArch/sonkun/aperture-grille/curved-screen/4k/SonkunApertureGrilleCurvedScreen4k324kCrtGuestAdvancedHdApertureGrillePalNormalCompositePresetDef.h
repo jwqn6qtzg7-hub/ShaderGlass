@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 32-4k-crt-guest-advanced-hd-aperture-grille-pal-normal-composite imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 32-pal-normal-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen4k324kCrtGuestAdvancedHdApertureGrillePalN
 public:
 	SonkunApertureGrilleCurvedScreen4k324kCrtGuestAdvancedHdApertureGrillePalNormalCompositePresetDef() : PresetDef{}
 	{
-		Name = "32-4k-crt-guest-advanced-hd-aperture-grille-pal-normal-composite";
+		Name = "32-pal-normal-composite";
 		Category = "sonkun/aperture-grille/curved-screen/4k";
 	}
 

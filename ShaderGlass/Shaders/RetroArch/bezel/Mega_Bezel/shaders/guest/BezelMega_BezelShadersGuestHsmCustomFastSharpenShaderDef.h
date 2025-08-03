@@ -607,15 +607,15 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmCustomFastSharpenShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmCustomFastSharpenShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DerezedPassSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SHARPEN_ON", -1, 32, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "FSharpen - ON"));
-		Params.push_back(ShaderParam("CSHARPEN", -1, 36, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "FSharpen - Sharpen strength"));
-		Params.push_back(ShaderParam("CCONTR", -1, 40, 4, 0.000000f, 0.250000f, 0.050000f, 0.010000f, "FSharpen - Sharpen Contrast/Ringing"));
-		Params.push_back(ShaderParam("CDETAILS", -1, 44, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "FSharpen - Details sharpened"));
-		Params.push_back(ShaderParam("DEBLUR", -1, 48, 4, 1.000000f, 7.000000f, 1.000000f, 0.250000f, "FSharpen - Deblur Strength (For NTSC Only)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("DerezedPassSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SHARPEN_ON", -1, 32, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "FSharpen - ON");
+		AddParam("CSHARPEN", -1, 36, 4, 0.000000f, 5.000000f, 0.000000f, 0.100000f, "FSharpen - Sharpen strength");
+		AddParam("CCONTR", -1, 40, 4, 0.000000f, 0.250000f, 0.050000f, 0.010000f, "FSharpen - Sharpen Contrast/Ringing");
+		AddParam("CDETAILS", -1, 44, 4, 0.000000f, 1.000000f, 1.000000f, 0.050000f, "FSharpen - Details sharpened");
+		AddParam("DEBLUR", -1, 48, 4, 1.000000f, 7.000000f, 1.000000f, 0.250000f, "FSharpen - Deblur Strength (For NTSC Only)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

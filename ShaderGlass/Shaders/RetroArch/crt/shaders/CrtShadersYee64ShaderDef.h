@@ -1054,18 +1054,18 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersYee64ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersYee64ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("viewSizeHD", -1, 0, 4, 0.000000f, 2190.000000f, 720.000000f, 1.000000f, "Min Dimming Res"));
-		Params.push_back(ShaderParam("brightness", -1, 4, 4, 0.000000f, 5.000000f, 1.500000f, 0.100000f, "CRT Brightness"));
-		Params.push_back(ShaderParam("intensityR", -1, 8, 4, 0.000000f, 2.000000f, 1.200000f, 0.100000f, "Red Dimming Intensity"));
-		Params.push_back(ShaderParam("intensityG", -1, 12, 4, 0.000000f, 2.000000f, 0.900000f, 0.100000f, "Green Dimming Intensity"));
-		Params.push_back(ShaderParam("intensityB", -1, 16, 4, 0.000000f, 2.000000f, 0.900000f, 0.100000f, "Blue Dimming Intensity"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 48, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 80, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("viewSizeHD", -1, 0, 4, 0.000000f, 2190.000000f, 720.000000f, 1.000000f, "Min Dimming Res");
+		AddParam("brightness", -1, 4, 4, 0.000000f, 5.000000f, 1.500000f, 0.100000f, "CRT Brightness");
+		AddParam("intensityR", -1, 8, 4, 0.000000f, 2.000000f, 1.200000f, 0.100000f, "Red Dimming Intensity");
+		AddParam("intensityG", -1, 12, 4, 0.000000f, 2.000000f, 0.900000f, 0.100000f, "Green Dimming Intensity");
+		AddParam("intensityB", -1, 16, 4, 0.000000f, 2.000000f, 0.900000f, 0.100000f, "Blue Dimming Intensity");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 48, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 80, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

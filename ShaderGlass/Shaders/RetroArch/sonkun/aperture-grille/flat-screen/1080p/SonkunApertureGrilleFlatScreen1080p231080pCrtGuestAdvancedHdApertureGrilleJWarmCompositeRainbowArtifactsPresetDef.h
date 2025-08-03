@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 23-1080p-crt-guest-advanced-hd-aperture-grille-j-warm-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 23-j-warm-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1080p231080pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1080p231080pCrtGuestAdvancedHdApertureGrilleJWarmCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "23-1080p-crt-guest-advanced-hd-aperture-grille-j-warm-composite-rainbow-artifacts";
+		Name = "23-j-warm-composite-rainbow-artifacts";
 		Category = "sonkun/aperture-grille/flat-screen/1080p";
 	}
 

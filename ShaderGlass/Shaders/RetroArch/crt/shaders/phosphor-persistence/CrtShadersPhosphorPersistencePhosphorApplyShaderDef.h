@@ -539,17 +539,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("internal1Size", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("phosphor_power", -1, 0, 4, 0.500000f, 3.000000f, 1.200000f, 0.050000f, "Phosphor decay power"));
-		Params.push_back(ShaderParam("phosphor_amplitude", -1, 4, 4, 0.000000f, 0.200000f, 0.040000f, 0.010000f, "Phosphor persistence amplitude"));
-		Params.push_back(ShaderParam("MVP", 0, 96, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("PassFeedback1", 3));
+		AddParam("FinalViewportSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("internal1Size", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("phosphor_power", -1, 0, 4, 0.500000f, 3.000000f, 1.200000f, 0.050000f, "Phosphor decay power");
+		AddParam("phosphor_amplitude", -1, 4, 4, 0.000000f, 0.200000f, 0.040000f, 0.010000f, "Phosphor persistence amplitude");
+		AddParam("MVP", 0, 96, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("PassFeedback1", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

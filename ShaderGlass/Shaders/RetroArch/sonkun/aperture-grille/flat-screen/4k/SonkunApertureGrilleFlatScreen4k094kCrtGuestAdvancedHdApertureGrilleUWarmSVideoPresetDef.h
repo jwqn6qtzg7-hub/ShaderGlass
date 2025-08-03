@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/4k / 09-4k-crt-guest-advanced-hd-aperture-grille-u-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/4k / 09-u-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen4k094kCrtGuestAdvancedHdApertureGrilleUWarmS
 public:
 	SonkunApertureGrilleFlatScreen4k094kCrtGuestAdvancedHdApertureGrilleUWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "09-4k-crt-guest-advanced-hd-aperture-grille-u-warm-s-video";
+		Name = "09-u-warm-s-video";
 		Category = "sonkun/aperture-grille/flat-screen/4k";
 	}
 

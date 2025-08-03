@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 29-1440p-crt-guest-advanced-hd-aperture-grille-j-cool-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 29-j-cool-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1440p291440pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1440p291440pCrtGuestAdvancedHdApertureGrilleJCoolSVideoPresetDef() : PresetDef{}
 	{
-		Name = "29-1440p-crt-guest-advanced-hd-aperture-grille-j-cool-s-video";
+		Name = "29-j-cool-s-video";
 		Category = "sonkun/aperture-grille/flat-screen/1440p";
 	}
 

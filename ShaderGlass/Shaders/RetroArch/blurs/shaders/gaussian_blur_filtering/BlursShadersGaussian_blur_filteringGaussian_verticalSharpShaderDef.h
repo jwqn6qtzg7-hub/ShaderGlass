@@ -994,17 +994,17 @@ public:
 		FragmentLength = sizeof(RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalSharpShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBlursShadersGaussian_blur_filteringGaussian_verticalSharpShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("gbf_SIZEV", -1, 52, 4, 0.000000f, 40.000000f, 5.000000f, 1.000000f, "Vertical Blur Radius"));
-		Params.push_back(ShaderParam("gbf_SIGMA_V", -1, 56, 4, 0.100000f, 15.000000f, 0.700000f, 0.050000f, "Vertical Blur Sigma"));
-		Params.push_back(ShaderParam("gbf_VSHARP0", -1, 60, 4, 0.800000f, 20.000000f, 0.800000f, 0.200000f, "Vertical Sharpness Filter 'Range'"));
-		Params.push_back(ShaderParam("gbf_VSHAR", -1, 68, 4, 0.000000f, 2.000000f, 0.500000f, 0.050000f, "Sharpness Definition - Vertical"));
-		Params.push_back(ShaderParam("gbf_VAR", -1, 64, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Vertical Anti-Ringing"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("gbf_SIZEV", -1, 52, 4, 0.000000f, 40.000000f, 5.000000f, 1.000000f, "Vertical Blur Radius");
+		AddParam("gbf_SIGMA_V", -1, 56, 4, 0.100000f, 15.000000f, 0.700000f, 0.050000f, "Vertical Blur Sigma");
+		AddParam("gbf_VSHARP0", -1, 60, 4, 0.800000f, 20.000000f, 0.800000f, 0.200000f, "Vertical Sharpness Filter 'Range'");
+		AddParam("gbf_VSHAR", -1, 68, 4, 0.000000f, 2.000000f, 0.500000f, 0.050000f, "Sharpness Definition - Vertical");
+		AddParam("gbf_VAR", -1, 64, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Vertical Anti-Ringing");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

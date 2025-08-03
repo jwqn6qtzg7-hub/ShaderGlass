@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/1440p / 13-1440p-crt-guest-advanced-hd-shadow-mask-u-cool-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/1440p / 13-u-cool-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen1440p131440pCrtGuestAdvancedHdShadowMaskUCoolC
 public:
 	SonkunShadowMaskCurvedScreen1440p131440pCrtGuestAdvancedHdShadowMaskUCoolCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "13-1440p-crt-guest-advanced-hd-shadow-mask-u-cool-composite-rainbow-artifacts";
+		Name = "13-u-cool-composite-rainbow-artifacts";
 		Category = "sonkun/shadow-mask/curved-screen/1440p";
 	}
 

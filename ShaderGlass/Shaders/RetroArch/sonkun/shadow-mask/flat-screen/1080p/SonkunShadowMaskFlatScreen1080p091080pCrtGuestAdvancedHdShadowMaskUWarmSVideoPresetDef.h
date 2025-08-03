@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/1080p / 09-1080p-crt-guest-advanced-hd-shadow-mask-u-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/1080p / 09-u-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen1080p091080pCrtGuestAdvancedHdShadowMaskUWarmSVi
 public:
 	SonkunShadowMaskFlatScreen1080p091080pCrtGuestAdvancedHdShadowMaskUWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "09-1080p-crt-guest-advanced-hd-shadow-mask-u-warm-s-video";
+		Name = "09-u-warm-s-video";
 		Category = "sonkun/shadow-mask/flat-screen/1080p";
 	}
 

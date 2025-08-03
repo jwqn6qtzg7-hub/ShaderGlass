@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 33-1080p-crt-guest-advanced-hd-slot-mask-pal-normal-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 33-pal-normal-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen1080p331080pCrtGuestAdvancedHdSlotMaskPalNormalC
 public:
 	SonkunSlotMaskCurvedScreen1080p331080pCrtGuestAdvancedHdSlotMaskPalNormalCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "33-1080p-crt-guest-advanced-hd-slot-mask-pal-normal-composite-rainbow-artifacts";
+		Name = "33-pal-normal-composite-rainbow-artifacts";
 		Category = "sonkun/slot-mask/curved-screen/1080p";
 	}
 

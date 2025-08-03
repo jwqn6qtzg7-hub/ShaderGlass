@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/1440p / 44-1440p-crt-guest-advanced-hd-slot-mask-pal-cool-s-video imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/1440p / 44-pal-cool-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen1440p441440pCrtGuestAdvancedHdSlotMaskPalCoolSVide
 public:
 	SonkunSlotMaskFlatScreen1440p441440pCrtGuestAdvancedHdSlotMaskPalCoolSVideoPresetDef() : PresetDef{}
 	{
-		Name = "44-1440p-crt-guest-advanced-hd-slot-mask-pal-cool-s-video";
+		Name = "44-pal-cool-s-video";
 		Category = "sonkun/slot-mask/flat-screen/1440p";
 	}
 

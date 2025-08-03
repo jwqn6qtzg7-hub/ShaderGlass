@@ -1196,18 +1196,18 @@ public:
 		FragmentLength = sizeof(RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBlursShadersGizmoBlurShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("HORIZONTAL_BLUR", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Horizontal Blur"));
-		Params.push_back(ShaderParam("VERTICAL_BLUR", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Blur"));
-		Params.push_back(ShaderParam("BLUR_OFFSET", -1, 60, 4, -1.000000f, 1.000000f, 0.500000f, 0.050000f, "Blur Intensity"));
-		Params.push_back(ShaderParam("SUBPIXEL_SCALING", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Subpixel scaling"));
-		Params.push_back(ShaderParam("BGR_LCD_PATTERN", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "BGR output pattern"));
-		Params.push_back(ShaderParam("COLOUR_BLEEDING", -1, 72, 4, 0.000000f, 3.000000f, 0.000000f, 0.100000f, "Colour bleeding intensity"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("HORIZONTAL_BLUR", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Horizontal Blur");
+		AddParam("VERTICAL_BLUR", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Vertical Blur");
+		AddParam("BLUR_OFFSET", -1, 60, 4, -1.000000f, 1.000000f, 0.500000f, 0.050000f, "Blur Intensity");
+		AddParam("SUBPIXEL_SCALING", -1, 64, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Subpixel scaling");
+		AddParam("BGR_LCD_PATTERN", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "BGR output pattern");
+		AddParam("COLOUR_BLEEDING", -1, 72, 4, 0.000000f, 3.000000f, 0.000000f, 0.100000f, "Colour bleeding intensity");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

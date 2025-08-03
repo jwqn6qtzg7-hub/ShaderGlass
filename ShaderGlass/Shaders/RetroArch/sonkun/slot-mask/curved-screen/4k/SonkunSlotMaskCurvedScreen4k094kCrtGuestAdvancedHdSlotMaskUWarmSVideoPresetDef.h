@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/4k / 09-4k-crt-guest-advanced-hd-slot-mask-u-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/4k / 09-u-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen4k094kCrtGuestAdvancedHdSlotMaskUWarmSVideoPrese
 public:
 	SonkunSlotMaskCurvedScreen4k094kCrtGuestAdvancedHdSlotMaskUWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "09-4k-crt-guest-advanced-hd-slot-mask-u-warm-s-video";
+		Name = "09-u-warm-s-video";
 		Category = "sonkun/slot-mask/curved-screen/4k";
 	}
 

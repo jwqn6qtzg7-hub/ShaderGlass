@@ -841,16 +841,16 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcNtsc_pass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcNtsc_pass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("h2x", -1, 0, 4, 0.000000f, 2.000000f, 2.000000f, 1.000000f, "Horizontal Scale"));
-		Params.push_back(ShaderParam("CVBS_SVIDEO_RGB", -1, 4, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "CVBS - SVIDEO - RGB"));
-		Params.push_back(ShaderParam("CVBS_RES", -1, 8, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CVBS Intensity"));
-		Params.push_back(ShaderParam("CVBS_PHASE", -1, 12, 4, 2.000000f, 4.000000f, 3.000000f, 1.000000f, "CVBS Phase"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("h2x", -1, 0, 4, 0.000000f, 2.000000f, 2.000000f, 1.000000f, "Horizontal Scale");
+		AddParam("CVBS_SVIDEO_RGB", -1, 4, 4, 0.000000f, 2.000000f, 0.000000f, 1.000000f, "CVBS - SVIDEO - RGB");
+		AddParam("CVBS_RES", -1, 8, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "CVBS Intensity");
+		AddParam("CVBS_PHASE", -1, 12, 4, 2.000000f, 4.000000f, 3.000000f, 1.000000f, "CVBS Phase");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

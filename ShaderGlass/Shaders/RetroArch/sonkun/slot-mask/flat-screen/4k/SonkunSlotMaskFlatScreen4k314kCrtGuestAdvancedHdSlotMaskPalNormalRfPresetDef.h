@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/4k / 31-4k-crt-guest-advanced-hd-slot-mask-pal-normal-rf imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/4k / 31-pal-normal-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen4k314kCrtGuestAdvancedHdSlotMaskPalNormalRfPresetD
 public:
 	SonkunSlotMaskFlatScreen4k314kCrtGuestAdvancedHdSlotMaskPalNormalRfPresetDef() : PresetDef{}
 	{
-		Name = "31-4k-crt-guest-advanced-hd-slot-mask-pal-normal-rf";
+		Name = "31-pal-normal-rf";
 		Category = "sonkun/slot-mask/flat-screen/4k";
 	}
 

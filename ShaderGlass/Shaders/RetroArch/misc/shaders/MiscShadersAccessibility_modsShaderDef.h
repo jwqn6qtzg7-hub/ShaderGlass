@@ -628,18 +628,18 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersAccessibility_modsShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersAccessibility_modsShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("D_factor", -1, 64, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Accessibility Adjustment Strength"));
-		Params.push_back(ShaderParam("Protanopia", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Protanopia Correction Toggle"));
-		Params.push_back(ShaderParam("Deuteranopia", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Deuteranopia Correction Toggle"));
-		Params.push_back(ShaderParam("Tritanopia", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Tritanopia Correction Toggle"));
-		Params.push_back(ShaderParam("D_contrast", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Contrast Adjustment"));
-		Params.push_back(ShaderParam("D_brightness", -1, 72, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Brightness Adjustment"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("D_factor", -1, 64, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Accessibility Adjustment Strength");
+		AddParam("Protanopia", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Protanopia Correction Toggle");
+		AddParam("Deuteranopia", -1, 56, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Deuteranopia Correction Toggle");
+		AddParam("Tritanopia", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Tritanopia Correction Toggle");
+		AddParam("D_contrast", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Contrast Adjustment");
+		AddParam("D_brightness", -1, 72, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Brightness Adjustment");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

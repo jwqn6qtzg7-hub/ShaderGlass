@@ -1851,15 +1851,15 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersNtscBlastemShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersNtscBlastemShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("comb_str", -1, 52, 4, 0.000000f, 1.000000f, 0.800000f, 0.010000f, "Combing Filter Strength"));
-		Params.push_back(ShaderParam("gamma_corr", -1, 56, 4, 1.000000f, 4.000000f, 2.200000f, 0.050000f, "Gamma Correction (2.2 = passthru)"));
-		Params.push_back(ShaderParam("scan_toggle", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Scanline Toggle"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("comb_str", -1, 52, 4, 0.000000f, 1.000000f, 0.800000f, 0.010000f, "Combing Filter Strength");
+		AddParam("gamma_corr", -1, 56, 4, 1.000000f, 4.000000f, 2.200000f, 0.050000f, "Gamma Correction (2.2 = passthru)");
+		AddParam("scan_toggle", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Scanline Toggle");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

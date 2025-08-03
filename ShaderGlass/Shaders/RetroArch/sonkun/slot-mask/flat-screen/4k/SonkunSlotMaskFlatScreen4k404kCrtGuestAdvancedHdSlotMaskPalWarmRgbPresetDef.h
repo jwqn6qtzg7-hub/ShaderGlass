@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/4k / 40-4k-crt-guest-advanced-hd-slot-mask-pal-warm-rgb imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/4k / 40-pal-warm-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen4k404kCrtGuestAdvancedHdSlotMaskPalWarmRgbPresetDe
 public:
 	SonkunSlotMaskFlatScreen4k404kCrtGuestAdvancedHdSlotMaskPalWarmRgbPresetDef() : PresetDef{}
 	{
-		Name = "40-4k-crt-guest-advanced-hd-slot-mask-pal-warm-rgb";
+		Name = "40-pal-warm-rgb";
 		Category = "sonkun/slot-mask/flat-screen/4k";
 	}
 

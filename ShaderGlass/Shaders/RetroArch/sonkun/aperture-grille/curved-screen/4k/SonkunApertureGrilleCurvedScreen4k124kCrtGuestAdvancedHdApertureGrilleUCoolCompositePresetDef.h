@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 12-4k-crt-guest-advanced-hd-aperture-grille-u-cool-composite imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/4k / 12-u-cool-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen4k124kCrtGuestAdvancedHdApertureGrilleUCoo
 public:
 	SonkunApertureGrilleCurvedScreen4k124kCrtGuestAdvancedHdApertureGrilleUCoolCompositePresetDef() : PresetDef{}
 	{
-		Name = "12-4k-crt-guest-advanced-hd-aperture-grille-u-cool-composite";
+		Name = "12-u-cool-composite";
 		Category = "sonkun/aperture-grille/curved-screen/4k";
 	}
 

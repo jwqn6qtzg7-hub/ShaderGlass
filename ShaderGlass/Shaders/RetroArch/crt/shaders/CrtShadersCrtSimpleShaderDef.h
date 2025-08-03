@@ -874,19 +874,19 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSimpleShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtSimpleShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DISTORTION", -1, 52, 4, 0.000000f, 0.300000f, 0.120000f, 0.010000f, "Distortion"));
-		Params.push_back(ShaderParam("SCANLINE", -1, 56, 4, 0.200000f, 0.600000f, 0.300000f, 0.050000f, "Scanline Weight"));
-		Params.push_back(ShaderParam("DOWNSCALE", -1, 76, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "Scanlines Downscale"));
-		Params.push_back(ShaderParam("INPUTGAMMA", -1, 60, 4, 0.000000f, 4.000000f, 2.400000f, 0.050000f, "Input Gamma"));
-		Params.push_back(ShaderParam("OUTPUTGAMMA", -1, 64, 4, 0.000000f, 4.000000f, 2.200000f, 0.050000f, "Output Gamma"));
-		Params.push_back(ShaderParam("MASK", -1, 68, 4, 0.000000f, 1.000000f, 0.700000f, 0.050000f, "Mask Brightness"));
-		Params.push_back(ShaderParam("SIZE", -1, 72, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "Mask Size"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 1));
+		AddParam("DISTORTION", -1, 52, 4, 0.000000f, 0.300000f, 0.120000f, 0.010000f, "Distortion");
+		AddParam("SCANLINE", -1, 56, 4, 0.200000f, 0.600000f, 0.300000f, 0.050000f, "Scanline Weight");
+		AddParam("DOWNSCALE", -1, 76, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "Scanlines Downscale");
+		AddParam("INPUTGAMMA", -1, 60, 4, 0.000000f, 4.000000f, 2.400000f, 0.050000f, "Input Gamma");
+		AddParam("OUTPUTGAMMA", -1, 64, 4, 0.000000f, 4.000000f, 2.200000f, 0.050000f, "Output Gamma");
+		AddParam("MASK", -1, 68, 4, 0.000000f, 1.000000f, 0.700000f, 0.050000f, "Mask Brightness");
+		AddParam("SIZE", -1, 72, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "Mask Size");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 1);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

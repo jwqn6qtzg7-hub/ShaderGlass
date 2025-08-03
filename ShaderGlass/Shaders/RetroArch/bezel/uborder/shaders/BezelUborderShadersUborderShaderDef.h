@@ -650,17 +650,17 @@ public:
 		FragmentLength = sizeof(RetroArchBezelUborderShadersUborderShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelUborderShadersUborderShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("ub_border_top", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "On top: [ Frame | Border ]"));
-		Params.push_back(ShaderParam("border_scale", -1, 56, 4, 0.500000f, 5.000000f, 1.000000f, 0.002000f, "Border Scale"));
-		Params.push_back(ShaderParam("border_center_x", -1, 60, 4, -0.500000f, 0.500000f, 0.000000f, 0.001000f, "Border Center X"));
-		Params.push_back(ShaderParam("border_center_y", -1, 64, 4, -0.500000f, 0.500000f, 0.000000f, 0.001000f, "Border Center Y"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("ambi_temporal_pass", 3));
-		Samplers.push_back(ShaderSampler("CRTPass", 2));
+		AddParam("ub_border_top", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "On top: [ Frame | Border ]");
+		AddParam("border_scale", -1, 56, 4, 0.500000f, 5.000000f, 1.000000f, 0.002000f, "Border Scale");
+		AddParam("border_center_x", -1, 60, 4, -0.500000f, 0.500000f, 0.000000f, 0.001000f, "Border Center X");
+		AddParam("border_center_y", -1, 64, 4, -0.500000f, 0.500000f, 0.000000f, 0.001000f, "Border Center Y");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("ambi_temporal_pass", 3);
+		AddSampler("CRTPass", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

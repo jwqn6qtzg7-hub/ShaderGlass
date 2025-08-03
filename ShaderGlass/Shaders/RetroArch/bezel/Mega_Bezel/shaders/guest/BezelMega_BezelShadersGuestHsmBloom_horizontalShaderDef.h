@@ -641,12 +641,12 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestHsmBloom_horizontalShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestHsmBloom_horizontalShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FINE_BLOOM", -1, 24, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Fine Bloom/Halation Sampling"));
-		Params.push_back(ShaderParam("SIZEHB", -1, 16, 4, 1.000000f, 50.000000f, 3.000000f, 1.000000f, "Horizontal Bloom/Halation Radius -- SIZEHB"));
-		Params.push_back(ShaderParam("SIGMA_HB", -1, 20, 4, 0.250000f, 15.000000f, 0.750000f, 0.025000f, "Horizontal Bloom/Halation Sigma -- SIGMA_HB"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("LinearizePass", 2));
+		AddParam("DerezedPassSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FINE_BLOOM", -1, 24, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Fine Bloom/Halation Sampling");
+		AddParam("SIZEHB", -1, 16, 4, 1.000000f, 50.000000f, 3.000000f, 1.000000f, "Horizontal Bloom/Halation Radius -- SIZEHB");
+		AddParam("SIGMA_HB", -1, 20, 4, 0.250000f, 15.000000f, 0.750000f, 0.025000f, "Horizontal Bloom/Halation Sigma -- SIGMA_HB");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("LinearizePass", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

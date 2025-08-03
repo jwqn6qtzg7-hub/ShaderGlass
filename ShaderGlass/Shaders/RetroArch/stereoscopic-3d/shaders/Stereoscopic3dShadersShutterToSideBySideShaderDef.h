@@ -788,20 +788,20 @@ public:
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersShutterToSideBySideShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchStereoscopic3dShadersShutterToSideBySideShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("ZOOM", -1, 52, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Zoom"));
-		Params.push_back(ShaderParam("vert_pos", -1, 56, 4, -2.000000f, 2.000000f, 0.000000f, 0.010000f, "Vertical Modifier"));
-		Params.push_back(ShaderParam("horz_pos", -1, 60, 4, -2.000000f, 2.000000f, 0.000000f, 0.010000f, "Horizontal Modifier"));
-		Params.push_back(ShaderParam("separation", -1, 64, 4, -2.000000f, 2.000000f, 0.000000f, 0.010000f, "Eye Separation"));
-		Params.push_back(ShaderParam("flicker", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 0.250000f, "Hold Last Frame (reduce flicker)"));
-		Params.push_back(ShaderParam("height_mod", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Image Height"));
-		Params.push_back(ShaderParam("swap_eye", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Swap Eye Sequence"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
+		AddParam("ZOOM", -1, 52, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Zoom");
+		AddParam("vert_pos", -1, 56, 4, -2.000000f, 2.000000f, 0.000000f, 0.010000f, "Vertical Modifier");
+		AddParam("horz_pos", -1, 60, 4, -2.000000f, 2.000000f, 0.000000f, 0.010000f, "Horizontal Modifier");
+		AddParam("separation", -1, 64, 4, -2.000000f, 2.000000f, 0.000000f, 0.010000f, "Eye Separation");
+		AddParam("flicker", -1, 68, 4, 0.000000f, 1.000000f, 1.000000f, 0.250000f, "Hold Last Frame (reduce flicker)");
+		AddParam("height_mod", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Image Height");
+		AddParam("swap_eye", -1, 76, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Swap Eye Sequence");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("OriginalHistory1", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

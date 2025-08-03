@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/4k / 29-4k-crt-guest-advanced-hd-shadow-mask-j-cool-s-video imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/4k / 29-j-cool-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen4k294kCrtGuestAdvancedHdShadowMaskJCoolSVideoP
 public:
 	SonkunShadowMaskCurvedScreen4k294kCrtGuestAdvancedHdShadowMaskJCoolSVideoPresetDef() : PresetDef{}
 	{
-		Name = "29-4k-crt-guest-advanced-hd-shadow-mask-j-cool-s-video";
+		Name = "29-j-cool-s-video";
 		Category = "sonkun/shadow-mask/curved-screen/4k";
 	}
 

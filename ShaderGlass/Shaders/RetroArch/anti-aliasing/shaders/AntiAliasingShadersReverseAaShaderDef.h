@@ -676,11 +676,11 @@ public:
 		FragmentLength = sizeof(RetroArchAntiAliasingShadersReverseAaShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchAntiAliasingShadersReverseAaShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("REVERSEAA_SHARPNESS", -1, 32, 4, 0.000000f, 10.000000f, 2.000000f, 0.010000f, "ReverseAA Sharpness"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("REVERSEAA_SHARPNESS", -1, 32, 4, 0.000000f, 10.000000f, 2.000000f, 0.010000f, "ReverseAA Sharpness");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

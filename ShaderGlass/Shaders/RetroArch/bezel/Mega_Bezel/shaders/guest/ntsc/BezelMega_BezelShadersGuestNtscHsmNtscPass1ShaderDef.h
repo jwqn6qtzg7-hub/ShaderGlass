@@ -1363,21 +1363,21 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestNtscHsmNtscPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestNtscHsmNtscPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("quality", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 1.000000f, "INFO:  Fringe & Artifact Values: Svideo 0 | Composite 1 | RF 2"));
-		Params.push_back(ShaderParam("cust_artifacting", -1, 64, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "Artifacting Value"));
-		Params.push_back(ShaderParam("cust_fringing", -1, 60, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "Fringing Value"));
-		Params.push_back(ShaderParam("ntsc_fields", -1, 76, 4, -1.000000f, 1.000000f, -1.000000f, 1.000000f, "Merge Fields: Auto | NO | YES"));
-		Params.push_back(ShaderParam("ntsc_phase", -1, 80, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase | Mixed"));
-		Params.push_back(ShaderParam("ntsc_scale", -1, 72, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "Resolution Scaling"));
-		Params.push_back(ShaderParam("ntsc_sat", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Color Saturation"));
-		Params.push_back(ShaderParam("ntsc_bright", -1, 68, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "Brightness"));
-		Params.push_back(ShaderParam("ntsc_gamma", -1, 84, 4, 0.250000f, 2.000000f, 1.000000f, 0.025000f, "NTSC Filtering Gamma Correction"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("quality", -1, 52, 4, 0.000000f, 0.000000f, 0.000000f, 1.000000f, "INFO:  Fringe & Artifact Values: Svideo 0 | Composite 1 | RF 2");
+		AddParam("cust_artifacting", -1, 64, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "Artifacting Value");
+		AddParam("cust_fringing", -1, 60, 4, 0.000000f, 5.000000f, 1.000000f, 0.100000f, "Fringing Value");
+		AddParam("ntsc_fields", -1, 76, 4, -1.000000f, 1.000000f, -1.000000f, 1.000000f, "Merge Fields: Auto | NO | YES");
+		AddParam("ntsc_phase", -1, 80, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "Phase: Auto | 2 phase | 3 phase | Mixed");
+		AddParam("ntsc_scale", -1, 72, 4, 0.200000f, 2.500000f, 1.000000f, 0.025000f, "Resolution Scaling");
+		AddParam("ntsc_sat", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Color Saturation");
+		AddParam("ntsc_bright", -1, 68, 4, 0.000000f, 1.500000f, 1.000000f, 0.010000f, "Brightness");
+		AddParam("ntsc_gamma", -1, 84, 4, 0.250000f, 2.000000f, 1.000000f, 0.025000f, "NTSC Filtering Gamma Correction");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

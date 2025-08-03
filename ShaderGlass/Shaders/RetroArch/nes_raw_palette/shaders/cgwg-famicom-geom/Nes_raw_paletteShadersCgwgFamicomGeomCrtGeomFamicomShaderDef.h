@@ -2592,22 +2592,22 @@ public:
 		FragmentLength = sizeof(RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNes_raw_paletteShadersCgwgFamicomGeomCrtGeomFamicomShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("CURVATURE_toggle", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle"));
-		Params.push_back(ShaderParam("CRTgamma", -1, 56, 4, 1.000000f, 4.000000f, 2.400000f, 0.050000f, "CRT Gamma"));
-		Params.push_back(ShaderParam("overscan_x", -1, 60, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Overscan X"));
-		Params.push_back(ShaderParam("overscan_y", -1, 64, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Overscan Y"));
-		Params.push_back(ShaderParam("distance_cgwg", -1, 68, 4, 0.100000f, 5.000000f, 2.000000f, 0.100000f, "Viewing Distance"));
-		Params.push_back(ShaderParam("radius", -1, 72, 4, 0.100000f, 5.000000f, 2.000000f, 0.100000f, "Curvature Radius"));
-		Params.push_back(ShaderParam("tiltangle_x", -1, 76, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Tilt Angle X"));
-		Params.push_back(ShaderParam("tiltangle_y", -1, 80, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Tilt Angle Y"));
-		Params.push_back(ShaderParam("cornersize", -1, 84, 4, 0.000100f, 0.100000f, 0.020000f, 0.010000f, "Corner Size"));
-		Params.push_back(ShaderParam("cornersmooth", -1, 88, 4, 0.800000f, 2000.000000f, 800.000000f, 50.000000f, "Corner Smoothness"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("CURVATURE_toggle", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle");
+		AddParam("CRTgamma", -1, 56, 4, 1.000000f, 4.000000f, 2.400000f, 0.050000f, "CRT Gamma");
+		AddParam("overscan_x", -1, 60, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Overscan X");
+		AddParam("overscan_y", -1, 64, 4, 0.000000f, 2.000000f, 1.000000f, 0.010000f, "Overscan Y");
+		AddParam("distance_cgwg", -1, 68, 4, 0.100000f, 5.000000f, 2.000000f, 0.100000f, "Viewing Distance");
+		AddParam("radius", -1, 72, 4, 0.100000f, 5.000000f, 2.000000f, 0.100000f, "Curvature Radius");
+		AddParam("tiltangle_x", -1, 76, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Tilt Angle X");
+		AddParam("tiltangle_y", -1, 80, 4, -1.000000f, 1.000000f, 0.000000f, 0.050000f, "Tilt Angle Y");
+		AddParam("cornersize", -1, 84, 4, 0.000100f, 0.100000f, 0.020000f, 0.010000f, "Corner Size");
+		AddParam("cornersmooth", -1, 88, 4, 0.800000f, 2000.000000f, 800.000000f, 50.000000f, "Corner Smoothness");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

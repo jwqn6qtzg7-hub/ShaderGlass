@@ -874,19 +874,19 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("comb_filter", -1, 8, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "Chroma Comb. Filter Str."));
-		Params.push_back(ShaderParam("luma_rate", -1, 16, 4, 1.000000f, 4.000000f, 2.000000f, 1.000000f, "Luma/Chroma Analysis Rate (typical 2.0)"));
-		Params.push_back(ShaderParam("lpass", -1, 4, 4, 0.000000f, 1.000000f, 0.200000f, 0.010000f, "Luma Low Pass (sharpness)"));
-		Params.push_back(ShaderParam("mini_hue", -1, 20, 4, -6.300000f, 6.300000f, 0.000000f, 0.050000f, "Hue Shift"));
-		Params.push_back(ShaderParam("ntsc_sat", -1, 0, 4, 0.000000f, 6.000000f, 3.000000f, 0.050000f, "Saturation"));
-		Params.push_back(ShaderParam("ofq", -1, 12, 4, 0.000000f, 14.320000f, 3.579000f, 0.447300f, "Color Clock Frequency Mhz (typical 3.579)"));
-		Params.push_back(ShaderParam("snes_mode", -1, 24, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Snes mode"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("comb_filter", -1, 8, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "Chroma Comb. Filter Str.");
+		AddParam("luma_rate", -1, 16, 4, 1.000000f, 4.000000f, 2.000000f, 1.000000f, "Luma/Chroma Analysis Rate (typical 2.0)");
+		AddParam("lpass", -1, 4, 4, 0.000000f, 1.000000f, 0.200000f, 0.010000f, "Luma Low Pass (sharpness)");
+		AddParam("mini_hue", -1, 20, 4, -6.300000f, 6.300000f, 0.000000f, 0.050000f, "Hue Shift");
+		AddParam("ntsc_sat", -1, 0, 4, 0.000000f, 6.000000f, 3.000000f, 0.050000f, "Saturation");
+		AddParam("ofq", -1, 12, 4, 0.000000f, 14.320000f, 3.579000f, 0.447300f, "Color Clock Frequency Mhz (typical 3.579)");
+		AddParam("snes_mode", -1, 24, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Snes mode");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

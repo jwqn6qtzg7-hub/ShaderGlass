@@ -609,13 +609,13 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersColorGbaColorShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersColorGbaColorShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("mode", 0, 112, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Color Profile (1=sRGB, 2=DCI, 3=Rec2020)"));
-		Params.push_back(ShaderParam("darken_screen", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "External Darken Screen"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("mode", 0, 112, 4, 1.000000f, 3.000000f, 1.000000f, 1.000000f, "Color Profile (1=sRGB, 2=DCI, 3=Rec2020)");
+		AddParam("darken_screen", -1, 0, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "External Darken Screen");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

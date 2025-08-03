@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/1440p / 23-1440p-crt-guest-advanced-hd-slot-mask-j-warm-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/1440p / 23-j-warm-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen1440p231440pCrtGuestAdvancedHdSlotMaskJWarmComposi
 public:
 	SonkunSlotMaskFlatScreen1440p231440pCrtGuestAdvancedHdSlotMaskJWarmCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "23-1440p-crt-guest-advanced-hd-slot-mask-j-warm-composite-rainbow-artifacts";
+		Name = "23-j-warm-composite-rainbow-artifacts";
 		Category = "sonkun/slot-mask/flat-screen/1440p";
 	}
 

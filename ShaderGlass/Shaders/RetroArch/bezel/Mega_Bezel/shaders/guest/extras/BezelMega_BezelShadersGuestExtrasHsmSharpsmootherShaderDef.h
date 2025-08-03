@@ -1558,18 +1558,18 @@ public:
 		FragmentLength = sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmSharpsmootherShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBezelMega_BezelShadersGuestExtrasHsmSharpsmootherShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("SHARPSMOOTHER_ON", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SharpSmoother ON"));
-		Params.push_back(ShaderParam("max_w", -1, 52, 4, 0.000000f, 0.200000f, 0.050000f, 0.010000f, "Max filter weight"));
-		Params.push_back(ShaderParam("min_w", -1, 56, 4, -0.150000f, 0.050000f, 0.000000f, 0.010000f, "Min filter weight"));
-		Params.push_back(ShaderParam("smoot", -1, 60, 4, 0.000000f, 1.500000f, 0.400000f, 0.010000f, "Smoothing strength"));
-		Params.push_back(ShaderParam("lumad", -1, 64, 4, 0.100000f, 5.000000f, 0.500000f, 0.100000f, "Effects smoothing"));
-		Params.push_back(ShaderParam("mtric", -1, 68, 4, 0.100000f, 2.000000f, 0.300000f, 0.100000f, "Metric Used"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("SHARPSMOOTHER_ON", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SharpSmoother ON");
+		AddParam("max_w", -1, 52, 4, 0.000000f, 0.200000f, 0.050000f, 0.010000f, "Max filter weight");
+		AddParam("min_w", -1, 56, 4, -0.150000f, 0.050000f, 0.000000f, 0.010000f, "Min filter weight");
+		AddParam("smoot", -1, 60, 4, 0.000000f, 1.500000f, 0.400000f, 0.010000f, "Smoothing strength");
+		AddParam("lumad", -1, 64, 4, 0.100000f, 5.000000f, 0.500000f, 0.100000f, "Effects smoothing");
+		AddParam("mtric", -1, 68, 4, 0.100000f, 2.000000f, 0.300000f, 0.100000f, "Metric Used");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

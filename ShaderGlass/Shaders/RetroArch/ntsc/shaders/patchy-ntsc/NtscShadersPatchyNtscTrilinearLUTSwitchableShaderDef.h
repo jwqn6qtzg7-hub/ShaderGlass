@@ -1624,21 +1624,21 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersPatchyNtscTrilinearLUTSwitchableShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("lut_toggle", -1, 52, 4, 0.000000f, 4.000000f, 4.000000f, 1.000000f, "Gamut: sRGB, P22-80s, P22-90s, P22-J, Trinitron P22"));
-		Params.push_back(ShaderParam("lut_index", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "White point: SMPTE-C (D65) | NTSC-U (C) | NTSC-J (9300K+27MPCD)"));
-		Params.push_back(ShaderParam("lut_chroma_adapt", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "(For P22-J and Trinitron w/ NTSC-J) Chromatic Adaptation to D65"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT1", 3));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT5", 7));
-		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT6", 8));
-		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT2", 4));
-		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT3", 5));
-		Samplers.push_back(ShaderSampler("PhosphorSamplerLUT4", 6));
+		AddParam("lut_toggle", -1, 52, 4, 0.000000f, 4.000000f, 4.000000f, 1.000000f, "Gamut: sRGB, P22-80s, P22-90s, P22-J, Trinitron P22");
+		AddParam("lut_index", -1, 56, 4, 0.000000f, 2.000000f, 1.000000f, 1.000000f, "White point: SMPTE-C (D65) | NTSC-U (C) | NTSC-J (9300K+27MPCD)");
+		AddParam("lut_chroma_adapt", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "(For P22-J and Trinitron w/ NTSC-J) Chromatic Adaptation to D65");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("PhosphorSamplerLUT1", 3);
+		AddSampler("Source", 2);
+		AddSampler("PhosphorSamplerLUT5", 7);
+		AddSampler("PhosphorSamplerLUT6", 8);
+		AddSampler("PhosphorSamplerLUT2", 4);
+		AddSampler("PhosphorSamplerLUT3", 5);
+		AddSampler("PhosphorSamplerLUT4", 6);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

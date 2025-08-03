@@ -657,16 +657,16 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersColorLutGBALUTShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersColorLutGBALUTShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("LUT_selector_param", -1, 52, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "LUT Selector"));
-		Params.push_back(ShaderParam("darken_gamma", -1, 56, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "GBA Darken Screen"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("SamplerLUT1", 3));
-		Samplers.push_back(ShaderSampler("SamplerLUT2", 4));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("LUT_selector_param", -1, 52, 4, 1.000000f, 2.000000f, 1.000000f, 1.000000f, "LUT Selector");
+		AddParam("darken_gamma", -1, 56, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "GBA Darken Screen");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("SamplerLUT1", 3);
+		AddSampler("SamplerLUT2", 4);
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

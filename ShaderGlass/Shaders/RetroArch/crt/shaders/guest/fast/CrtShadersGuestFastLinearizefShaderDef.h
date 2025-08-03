@@ -872,19 +872,19 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestFastLinearizefShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestFastLinearizefShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("GAMMA_INPUT", -1, 52, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma Input"));
-		Params.push_back(ShaderParam("gamma_out", -1, 76, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma out"));
-		Params.push_back(ShaderParam("inter", -1, 56, 4, 0.000000f, 800.000000f, 400.000000f, 25.000000f, "Interlace Trigger Resolution :"));
-		Params.push_back(ShaderParam("interm", -1, 60, 4, 0.000000f, 5.000000f, 1.000000f, 1.000000f, "Interlace Mode: OFF, Normal 1-3, Interpolation 4-5"));
-		Params.push_back(ShaderParam("intres", -1, 72, 4, 0.000000f, 3.000000f, 0.000000f, 0.500000f, "Internal Resolution Y: 0.5...y-dowsample"));
-		Params.push_back(ShaderParam("inters", -1, 64, 4, 0.000000f, 0.500000f, 0.000000f, 0.050000f, "Interlacing Effect Smoothness"));
-		Params.push_back(ShaderParam("iscan", -1, 68, 4, 0.000000f, 1.000000f, 0.200000f, 0.050000f, "Interlacing Scanline Effect ('Laced brightness)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("GAMMA_INPUT", -1, 52, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma Input");
+		AddParam("gamma_out", -1, 76, 4, 1.000000f, 5.000000f, 2.400000f, 0.050000f, "Gamma out");
+		AddParam("inter", -1, 56, 4, 0.000000f, 800.000000f, 400.000000f, 25.000000f, "Interlace Trigger Resolution :");
+		AddParam("interm", -1, 60, 4, 0.000000f, 5.000000f, 1.000000f, 1.000000f, "Interlace Mode: OFF, Normal 1-3, Interpolation 4-5");
+		AddParam("intres", -1, 72, 4, 0.000000f, 3.000000f, 0.000000f, 0.500000f, "Internal Resolution Y: 0.5...y-dowsample");
+		AddParam("inters", -1, 64, 4, 0.000000f, 0.500000f, 0.000000f, 0.050000f, "Interlacing Effect Smoothness");
+		AddParam("iscan", -1, 68, 4, 0.000000f, 1.000000f, 0.200000f, 0.050000f, "Interlacing Scanline Effect ('Laced brightness)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

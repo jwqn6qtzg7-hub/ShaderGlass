@@ -1003,17 +1003,17 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtGeomMiniShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtGeomMiniShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("CURV", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT-Geom Curvature"));
-		Params.push_back(ShaderParam("scanlines", -1, 56, 4, 0.000000f, 0.500000f, 0.500000f, 0.050000f, "CRT-Geom Scanline Weight"));
-		Params.push_back(ShaderParam("MASK", -1, 60, 4, 0.000000f, 0.500000f, 0.200000f, 0.050000f, "CRT-Geom Dotmask Strength"));
-		Params.push_back(ShaderParam("INTERL", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT-Geom Interlacing Simulation"));
-		Params.push_back(ShaderParam("SAT", -1, 68, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "CRT-Geom Saturation"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 1));
+		AddParam("CURV", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT-Geom Curvature");
+		AddParam("scanlines", -1, 56, 4, 0.000000f, 0.500000f, 0.500000f, 0.050000f, "CRT-Geom Scanline Weight");
+		AddParam("MASK", -1, 60, 4, 0.000000f, 0.500000f, 0.200000f, 0.050000f, "CRT-Geom Dotmask Strength");
+		AddParam("INTERL", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT-Geom Interlacing Simulation");
+		AddParam("SAT", -1, 68, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "CRT-Geom Saturation");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 1);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

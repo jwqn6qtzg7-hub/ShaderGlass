@@ -1923,16 +1923,16 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtMaximusRoyaleSrcTv_reflectionShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("crtFrame", -1, 0, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "CRT Frame"));
-		Params.push_back(ShaderParam("crtReflection", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT Reflection"));
-		Params.push_back(ShaderParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("TVLIGHTS1", 4));
-		Samplers.push_back(ShaderSampler("TVLIGHTS3", 5));
-		Samplers.push_back(ShaderSampler("MONITORLIGHTS", 6));
-		Samplers.push_back(ShaderSampler("BORDER_REFLECTION", 7));
-		Samplers.push_back(ShaderSampler("Original", 3));
+		AddParam("crtFrame", -1, 0, 4, 1.000000f, 4.000000f, 1.000000f, 1.000000f, "CRT Frame");
+		AddParam("crtReflection", -1, 4, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "CRT Reflection");
+		AddParam("MVP", 0, 16, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("TVLIGHTS1", 4);
+		AddSampler("TVLIGHTS3", 5);
+		AddSampler("MONITORLIGHTS", 6);
+		AddSampler("BORDER_REFLECTION", 7);
+		AddSampler("Original", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

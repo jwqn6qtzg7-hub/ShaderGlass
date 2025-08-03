@@ -413,13 +413,13 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtSuperXbrThresholdShaderDefs::sFragmentHash;
 		Format = "R8G8B8A8_SRGB";
-		Params.push_back(ShaderParam("GLOW_WHITEPOINT", -1, 0, 4, 0.500000f, 1.100000f, 1.000000f, 0.020000f, "Glow Whitepoint"));
-		Params.push_back(ShaderParam("GLOW_ROLLOFF", -1, 4, 4, 1.200000f, 6.000000f, 3.000000f, 0.100000f, "Glow Rolloff"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("GLOW_WHITEPOINT", -1, 0, 4, 0.500000f, 1.100000f, 1.000000f, 0.020000f, "Glow Whitepoint");
+		AddParam("GLOW_ROLLOFF", -1, 4, 4, 1.200000f, 6.000000f, 3.000000f, 0.100000f, "Glow Rolloff");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

@@ -830,12 +830,12 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("curvature", -1, 32, 4, 0.000100f, 4.000000f, 2.000000f, 0.250000f, "Curvature"));
-		Params.push_back(ShaderParam("vignette", -1, 36, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Vignette"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 3));
+		AddParam("curvature", -1, 32, 4, 0.000100f, 4.000000f, 2.000000f, 0.250000f, "Curvature");
+		AddParam("vignette", -1, 36, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Vignette");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

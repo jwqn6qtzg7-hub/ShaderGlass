@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/1440p / 09-1440p-crt-guest-advanced-hd-aperture-grille-u-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/1440p / 09-u-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen1440p091440pCrtGuestAdvancedHdApertureGril
 public:
 	SonkunApertureGrilleCurvedScreen1440p091440pCrtGuestAdvancedHdApertureGrilleUWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "09-1440p-crt-guest-advanced-hd-aperture-grille-u-warm-s-video";
+		Name = "09-u-warm-s-video";
 		Category = "sonkun/aperture-grille/curved-screen/1440p";
 	}
 

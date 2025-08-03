@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/4k / 38-4k-crt-guest-advanced-hd-shadow-mask-pal-warm-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/4k / 38-pal-warm-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen4k384kCrtGuestAdvancedHdShadowMaskPalWarmCompo
 public:
 	SonkunShadowMaskCurvedScreen4k384kCrtGuestAdvancedHdShadowMaskPalWarmCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "38-4k-crt-guest-advanced-hd-shadow-mask-pal-warm-composite-rainbow-artifacts";
+		Name = "38-pal-warm-composite-rainbow-artifacts";
 		Category = "sonkun/shadow-mask/curved-screen/4k";
 	}
 

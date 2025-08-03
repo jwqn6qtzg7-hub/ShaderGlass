@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/1440p / 17-1440p-crt-guest-advanced-hd-shadow-mask-j-normal-composite imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/1440p / 17-j-normal-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen1440p171440pCrtGuestAdvancedHdShadowMaskJNorma
 public:
 	SonkunShadowMaskCurvedScreen1440p171440pCrtGuestAdvancedHdShadowMaskJNormalCompositePresetDef() : PresetDef{}
 	{
-		Name = "17-1440p-crt-guest-advanced-hd-shadow-mask-j-normal-composite";
+		Name = "17-j-normal-composite";
 		Category = "sonkun/shadow-mask/curved-screen/1440p";
 	}
 

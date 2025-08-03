@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/1440p / 10-1440p-crt-guest-advanced-hd-aperture-grille-u-warm-rgb imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/1440p / 10-u-warm-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen1440p101440pCrtGuestAdvancedHdApertureGril
 public:
 	SonkunApertureGrilleCurvedScreen1440p101440pCrtGuestAdvancedHdApertureGrilleUWarmRgbPresetDef() : PresetDef{}
 	{
-		Name = "10-1440p-crt-guest-advanced-hd-aperture-grille-u-warm-rgb";
+		Name = "10-u-warm-rgb";
 		Category = "sonkun/aperture-grille/curved-screen/1440p";
 	}
 

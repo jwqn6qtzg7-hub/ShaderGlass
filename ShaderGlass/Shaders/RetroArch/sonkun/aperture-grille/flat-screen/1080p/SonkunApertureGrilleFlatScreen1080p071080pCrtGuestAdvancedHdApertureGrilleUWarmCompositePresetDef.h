@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 07-1080p-crt-guest-advanced-hd-aperture-grille-u-warm-composite imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1080p / 07-u-warm-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1080p071080pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1080p071080pCrtGuestAdvancedHdApertureGrilleUWarmCompositePresetDef() : PresetDef{}
 	{
-		Name = "07-1080p-crt-guest-advanced-hd-aperture-grille-u-warm-composite";
+		Name = "07-u-warm-composite";
 		Category = "sonkun/aperture-grille/flat-screen/1080p";
 	}
 

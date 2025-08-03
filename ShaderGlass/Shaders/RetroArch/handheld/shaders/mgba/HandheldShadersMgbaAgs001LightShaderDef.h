@@ -525,15 +525,15 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersMgbaAgs001LightShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("reflectionBrightness", -1, 0, 4, 0.000000f, 1.000000f, 0.070000f, 0.010000f, "Reflection brightness"));
-		Params.push_back(ShaderParam("reflectionDistanceX", -1, 4, 4, -1.000000f, 1.000000f, 0.000000f, 0.005000f, "Reflection Distance X"));
-		Params.push_back(ShaderParam("reflectionDistanceY", -1, 8, 4, -1.000000f, 1.000000f, 0.025000f, 0.005000f, "Reflection Distance Y"));
-		Params.push_back(ShaderParam("lightBrightness", -1, 12, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "Light brightness"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("reflectionBrightness", -1, 0, 4, 0.000000f, 1.000000f, 0.070000f, 0.010000f, "Reflection brightness");
+		AddParam("reflectionDistanceX", -1, 4, 4, -1.000000f, 1.000000f, 0.000000f, 0.005000f, "Reflection Distance X");
+		AddParam("reflectionDistanceY", -1, 8, 4, -1.000000f, 1.000000f, 0.025000f, 0.005000f, "Reflection Distance Y");
+		AddParam("lightBrightness", -1, 12, 4, 0.000000f, 1.000000f, 1.000000f, 0.010000f, "Light brightness");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

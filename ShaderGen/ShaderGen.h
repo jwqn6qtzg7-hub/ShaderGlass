@@ -137,6 +137,15 @@ SourceShaderInfo getShaderInfo(const filesystem::path& slangInput, const string&
     replace(info.category, "koko-aio/Presets_HiresGames_Fast/Presets_Handhelds-ng", "koko-aio-HiresGames_Fast");
     replace(info.category, "koko-aio/Presets_HiresGames_Fast", "koko-aio-HiresGames_Fast");
     replace(info.category, "koko-aio/Presets-ng", "koko-aio-ng");
+    replace(info.shaderName, "1080p-crt-guest-advanced-hd-aperture-grille-", "");
+    replace(info.shaderName, "1440p-crt-guest-advanced-hd-aperture-grille-", "");
+    replace(info.shaderName, "4k-crt-guest-advanced-hd-aperture-grille-", "");
+    replace(info.shaderName, "1080p-crt-guest-advanced-hd-shadow-mask-", "");
+    replace(info.shaderName, "1440p-crt-guest-advanced-hd-shadow-mask-", "");
+    replace(info.shaderName, "4k-crt-guest-advanced-hd-shadow-mask-", "");
+    replace(info.shaderName, "1080p-crt-guest-advanced-hd-slot-mask-", "");
+    replace(info.shaderName, "1440p-crt-guest-advanced-hd-slot-mask-", "");
+    replace(info.shaderName, "4k-crt-guest-advanced-hd-slot-mask-", "");
 
     return info;
 }

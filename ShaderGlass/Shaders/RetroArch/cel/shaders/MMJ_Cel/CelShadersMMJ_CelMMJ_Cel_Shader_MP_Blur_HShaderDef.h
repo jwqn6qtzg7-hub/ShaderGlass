@@ -452,10 +452,10 @@ public:
 		FragmentLength = sizeof(RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("BlurWeightH", -1, 16, 4, 0.000000f, 16.000000f, 0.000000f, 1.000000f, "Blur Weight - Horizontal"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("BlurWeightH", -1, 16, 4, 0.000000f, 16.000000f, 0.000000f, 1.000000f, "Blur Weight - Horizontal");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

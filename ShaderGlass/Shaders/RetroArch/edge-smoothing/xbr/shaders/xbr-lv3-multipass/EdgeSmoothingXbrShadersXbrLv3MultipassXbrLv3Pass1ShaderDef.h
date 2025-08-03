@@ -1435,13 +1435,13 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingXbrShadersXbrLv3MultipassXbrLv3Pass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingXbrShadersXbrLv3MultipassXbrLv3Pass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("XBR_BLENDING", -1, 0, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "BLENDING [ NOBLEND | AA ]"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("XbrSource", 3));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("XBR_BLENDING", -1, 0, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "BLENDING [ NOBLEND | AA ]");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("XbrSource", 3);
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

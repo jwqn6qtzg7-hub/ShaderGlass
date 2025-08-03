@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 35-1440p-crt-guest-advanced-hd-aperture-grille-pal-normal-rgb imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 35-pal-normal-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1440p351440pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1440p351440pCrtGuestAdvancedHdApertureGrillePalNormalRgbPresetDef() : PresetDef{}
 	{
-		Name = "35-1440p-crt-guest-advanced-hd-aperture-grille-pal-normal-rgb";
+		Name = "35-pal-normal-rgb";
 		Category = "sonkun/aperture-grille/flat-screen/1440p";
 	}
 

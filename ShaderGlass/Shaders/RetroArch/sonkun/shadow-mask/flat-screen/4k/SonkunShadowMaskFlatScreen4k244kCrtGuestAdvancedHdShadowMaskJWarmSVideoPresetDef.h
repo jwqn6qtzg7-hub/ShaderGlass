@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/4k / 24-4k-crt-guest-advanced-hd-shadow-mask-j-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/4k / 24-j-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen4k244kCrtGuestAdvancedHdShadowMaskJWarmSVideoPre
 public:
 	SonkunShadowMaskFlatScreen4k244kCrtGuestAdvancedHdShadowMaskJWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "24-4k-crt-guest-advanced-hd-shadow-mask-j-warm-s-video";
+		Name = "24-j-warm-s-video";
 		Category = "sonkun/shadow-mask/flat-screen/4k";
 	}
 

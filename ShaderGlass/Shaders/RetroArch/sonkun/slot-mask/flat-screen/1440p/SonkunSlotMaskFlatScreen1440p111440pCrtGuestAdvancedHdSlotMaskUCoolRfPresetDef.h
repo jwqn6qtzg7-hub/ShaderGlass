@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/1440p / 11-1440p-crt-guest-advanced-hd-slot-mask-u-cool-rf imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/1440p / 11-u-cool-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen1440p111440pCrtGuestAdvancedHdSlotMaskUCoolRfPrese
 public:
 	SonkunSlotMaskFlatScreen1440p111440pCrtGuestAdvancedHdSlotMaskUCoolRfPresetDef() : PresetDef{}
 	{
-		Name = "11-1440p-crt-guest-advanced-hd-slot-mask-u-cool-rf";
+		Name = "11-u-cool-rf";
 		Category = "sonkun/slot-mask/flat-screen/1440p";
 	}
 

@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/1080p / 15-1080p-crt-guest-advanced-hd-shadow-mask-u-cool-rgb imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/1080p / 15-u-cool-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen1080p151080pCrtGuestAdvancedHdShadowMaskUCoolR
 public:
 	SonkunShadowMaskCurvedScreen1080p151080pCrtGuestAdvancedHdShadowMaskUCoolRgbPresetDef() : PresetDef{}
 	{
-		Name = "15-1080p-crt-guest-advanced-hd-shadow-mask-u-cool-rgb";
+		Name = "15-u-cool-rgb";
 		Category = "sonkun/shadow-mask/curved-screen/1080p";
 	}
 

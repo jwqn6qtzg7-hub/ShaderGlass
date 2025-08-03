@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/1080p / 24-1080p-crt-guest-advanced-hd-slot-mask-j-warm-s-video imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/1080p / 24-j-warm-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen1080p241080pCrtGuestAdvancedHdSlotMaskJWarmSVideoP
 public:
 	SonkunSlotMaskFlatScreen1080p241080pCrtGuestAdvancedHdSlotMaskJWarmSVideoPresetDef() : PresetDef{}
 	{
-		Name = "24-1080p-crt-guest-advanced-hd-slot-mask-j-warm-s-video";
+		Name = "24-j-warm-s-video";
 		Category = "sonkun/slot-mask/flat-screen/1080p";
 	}
 

@@ -712,19 +712,19 @@ public:
 		FragmentLength = sizeof(RetroArchMotionblurShadersBraidRewindShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMotionblurShadersBraidRewindShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameDirection", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("OriginalHistory7", 9));
-		Samplers.push_back(ShaderSampler("OriginalHistory6", 8));
-		Samplers.push_back(ShaderSampler("OriginalHistory5", 7));
-		Samplers.push_back(ShaderSampler("OriginalHistory4", 6));
-		Samplers.push_back(ShaderSampler("OriginalHistory3", 5));
-		Samplers.push_back(ShaderSampler("OriginalHistory2", 4));
-		Samplers.push_back(ShaderSampler("OriginalHistory1", 3));
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameDirection", 0, 112, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("OriginalHistory7", 9);
+		AddSampler("OriginalHistory6", 8);
+		AddSampler("OriginalHistory5", 7);
+		AddSampler("OriginalHistory4", 6);
+		AddSampler("OriginalHistory3", 5);
+		AddSampler("OriginalHistory2", 4);
+		AddSampler("OriginalHistory1", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

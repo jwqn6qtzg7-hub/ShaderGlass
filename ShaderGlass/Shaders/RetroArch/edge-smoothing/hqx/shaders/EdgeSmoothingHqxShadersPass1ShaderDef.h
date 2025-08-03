@@ -1159,12 +1159,12 @@ public:
 		FragmentLength = sizeof(RetroArchEdgeSmoothingHqxShadersPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchEdgeSmoothingHqxShadersPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("trY", -1, 16, 4, 0.000000f, 255.000000f, 48.000000f, 1.000000f, "Y Threshold"));
-		Params.push_back(ShaderParam("trU", -1, 20, 4, 0.000000f, 255.000000f, 7.000000f, 1.000000f, "U Threshold"));
-		Params.push_back(ShaderParam("trV", -1, 24, 4, 0.000000f, 255.000000f, 6.000000f, 1.000000f, "V Threshold"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("trY", -1, 16, 4, 0.000000f, 255.000000f, 48.000000f, 1.000000f, "Y Threshold");
+		AddParam("trU", -1, 20, 4, 0.000000f, 255.000000f, 7.000000f, 1.000000f, "U Threshold");
+		AddParam("trV", -1, 24, 4, 0.000000f, 255.000000f, 6.000000f, 1.000000f, "V Threshold");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

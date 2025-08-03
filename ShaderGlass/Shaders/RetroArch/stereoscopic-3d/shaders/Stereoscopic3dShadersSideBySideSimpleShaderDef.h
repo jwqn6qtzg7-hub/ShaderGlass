@@ -767,21 +767,21 @@ public:
 		FragmentLength = sizeof(RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchStereoscopic3dShadersSideBySideSimpleShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("eye_sep", -1, 52, 4, -1.000000f, 5.000000f, 0.300000f, 0.050000f, "Eye Separation"));
-		Params.push_back(ShaderParam("y_loc", -1, 56, 4, -1.000000f, 1.000000f, 0.250000f, 0.010000f, "Vertical Placement"));
-		Params.push_back(ShaderParam("BOTH", -1, 60, 4, -2.000000f, 2.000000f, 0.510000f, 0.005000f, "Horizontal Placement"));
-		Params.push_back(ShaderParam("ana_zoom", -1, 64, 4, -2.000000f, 2.000000f, 0.750000f, 0.050000f, "Zoom"));
-		Params.push_back(ShaderParam("WIDTH", -1, 68, 4, 1.000000f, 7.000000f, 3.050000f, 0.050000f, "Side-by-Side Image Width"));
-		Params.push_back(ShaderParam("HEIGHT", -1, 72, 4, 1.000000f, 5.000000f, 2.000000f, 0.100000f, "Side-by-Side Image Height"));
-		Params.push_back(ShaderParam("warpX", -1, 76, 4, 0.000000f, 0.500000f, 0.100000f, 0.050000f, "Lens Warp Correction X"));
-		Params.push_back(ShaderParam("warpY", -1, 80, 4, 0.000000f, 0.500000f, 0.100000f, 0.050000f, "Lens Warp Correction Y"));
-		Params.push_back(ShaderParam("pulfrich", -1, 84, 4, 0.000000f, 0.500000f, 0.000000f, 0.250000f, "Pulfrich Effect"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("eye_sep", -1, 52, 4, -1.000000f, 5.000000f, 0.300000f, 0.050000f, "Eye Separation");
+		AddParam("y_loc", -1, 56, 4, -1.000000f, 1.000000f, 0.250000f, 0.010000f, "Vertical Placement");
+		AddParam("BOTH", -1, 60, 4, -2.000000f, 2.000000f, 0.510000f, 0.005000f, "Horizontal Placement");
+		AddParam("ana_zoom", -1, 64, 4, -2.000000f, 2.000000f, 0.750000f, 0.050000f, "Zoom");
+		AddParam("WIDTH", -1, 68, 4, 1.000000f, 7.000000f, 3.050000f, 0.050000f, "Side-by-Side Image Width");
+		AddParam("HEIGHT", -1, 72, 4, 1.000000f, 5.000000f, 2.000000f, 0.100000f, "Side-by-Side Image Height");
+		AddParam("warpX", -1, 76, 4, 0.000000f, 0.500000f, 0.100000f, 0.050000f, "Lens Warp Correction X");
+		AddParam("warpY", -1, 80, 4, 0.000000f, 0.500000f, 0.100000f, 0.050000f, "Lens Warp Correction Y");
+		AddParam("pulfrich", -1, 84, 4, 0.000000f, 0.500000f, 0.000000f, 0.250000f, "Pulfrich Effect");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

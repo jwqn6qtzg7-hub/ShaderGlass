@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/4k / 27-4k-crt-guest-advanced-hd-slot-mask-j-cool-composite imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/4k / 27-j-cool-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen4k274kCrtGuestAdvancedHdSlotMaskJCoolCompositePres
 public:
 	SonkunSlotMaskFlatScreen4k274kCrtGuestAdvancedHdSlotMaskJCoolCompositePresetDef() : PresetDef{}
 	{
-		Name = "27-4k-crt-guest-advanced-hd-slot-mask-j-cool-composite";
+		Name = "27-j-cool-composite";
 		Category = "sonkun/slot-mask/flat-screen/4k";
 	}
 

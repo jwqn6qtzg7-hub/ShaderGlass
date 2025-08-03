@@ -1842,20 +1842,20 @@ public:
 		FragmentLength = sizeof(RetroArchBorderShadersAutocropKokoAutocrop1_computeShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBorderShadersAutocropKokoAutocrop1_computeShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("AUTOCROP_MAX", 0, 64, 4, 0.000000f, 0.500000f, 25.000000f, 0.010000f, "Autocrop: maximum amount"));
-		Params.push_back(ShaderParam("AUTOCROP_MIN", 0, 68, 4, 0.000000f, 10.000000f, 1.000000f, 1.000000f, "Number of mandatory lines to crop"));
-		Params.push_back(ShaderParam("AUTOCROP_SAMPLES", 0, 72, 4, 0.000000f, 300.000000f, 20.000000f, 1.000000f, "Samples per frame (faster response, higher gpu use)"));
-		Params.push_back(ShaderParam("AUTOCROP_SAMPLE_SIZE", 0, 76, 4, 0.000000f, 5.000000f, 2.000000f, 1.000000f, "Sample size (big speedup, less accurate)"));
-		Params.push_back(ShaderParam("AUTOCROP_STEADINESS", 0, 84, 4, 0.000000f, 0.500000f, 0.200000f, 0.010000f, "Scene change treshold (0 = continuous cropping)"));
-		Params.push_back(ShaderParam("AUTOCROP_TRANSITION_SPEED", 0, 80, 4, 0.050000f, 1.000000f, 0.100000f, 0.050000f, "Transition speed"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("autocrop_precut", 2));
-		Samplers.push_back(ShaderSampler("autocrop_computeFeedback", 4));
-		Samplers.push_back(ShaderSampler("autocrop_precutFeedback", 3));
+		AddParam("AUTOCROP_MAX", 0, 64, 4, 0.000000f, 0.500000f, 25.000000f, 0.010000f, "Autocrop: maximum amount");
+		AddParam("AUTOCROP_MIN", 0, 68, 4, 0.000000f, 10.000000f, 1.000000f, 1.000000f, "Number of mandatory lines to crop");
+		AddParam("AUTOCROP_SAMPLES", 0, 72, 4, 0.000000f, 300.000000f, 20.000000f, 1.000000f, "Samples per frame (faster response, higher gpu use)");
+		AddParam("AUTOCROP_SAMPLE_SIZE", 0, 76, 4, 0.000000f, 5.000000f, 2.000000f, 1.000000f, "Sample size (big speedup, less accurate)");
+		AddParam("AUTOCROP_STEADINESS", 0, 84, 4, 0.000000f, 0.500000f, 0.200000f, 0.010000f, "Scene change treshold (0 = continuous cropping)");
+		AddParam("AUTOCROP_TRANSITION_SPEED", 0, 80, 4, 0.050000f, 1.000000f, 0.100000f, 0.050000f, "Transition speed");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("autocrop_precut", 2);
+		AddSampler("autocrop_computeFeedback", 4);
+		AddSampler("autocrop_precutFeedback", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

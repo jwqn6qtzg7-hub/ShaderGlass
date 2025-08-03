@@ -966,15 +966,15 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersDotmaskShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersDotmaskShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("DOTMASK_STRENGTH", 0, 112, 4, 0.000000f, 1.000000f, 0.300000f, 0.010000f, "CGWG Dot Mask Strength"));
-		Params.push_back(ShaderParam("maskDark", 0, 116, 4, 0.000000f, 2.000000f, 0.500000f, 0.100000f, "Lottes maskDark"));
-		Params.push_back(ShaderParam("maskLight", 0, 120, 4, 0.000000f, 2.000000f, 1.500000f, 0.100000f, "Lottes maskLight"));
-		Params.push_back(ShaderParam("shadowMask", 0, 124, 4, 0.000000f, 5.000000f, 3.000000f, 1.000000f, "Mask Style"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("DOTMASK_STRENGTH", 0, 112, 4, 0.000000f, 1.000000f, 0.300000f, 0.010000f, "CGWG Dot Mask Strength");
+		AddParam("maskDark", 0, 116, 4, 0.000000f, 2.000000f, 0.500000f, 0.100000f, "Lottes maskDark");
+		AddParam("maskLight", 0, 120, 4, 0.000000f, 2.000000f, 1.500000f, 0.100000f, "Lottes maskLight");
+		AddParam("shadowMask", 0, 124, 4, 0.000000f, 5.000000f, 3.000000f, 1.000000f, "Mask Style");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 07-1080p-crt-guest-advanced-hd-slot-mask-u-warm-composite imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/1080p / 07-u-warm-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen1080p071080pCrtGuestAdvancedHdSlotMaskUWarmCompo
 public:
 	SonkunSlotMaskCurvedScreen1080p071080pCrtGuestAdvancedHdSlotMaskUWarmCompositePresetDef() : PresetDef{}
 	{
-		Name = "07-1080p-crt-guest-advanced-hd-slot-mask-u-warm-composite";
+		Name = "07-u-warm-composite";
 		Category = "sonkun/slot-mask/curved-screen/1080p";
 	}
 

@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/curved-screen/4k / 41-4k-crt-guest-advanced-hd-slot-mask-pal-cool-rf imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/curved-screen/4k / 41-pal-cool-rf imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskCurvedScreen4k414kCrtGuestAdvancedHdSlotMaskPalCoolRfPresetD
 public:
 	SonkunSlotMaskCurvedScreen4k414kCrtGuestAdvancedHdSlotMaskPalCoolRfPresetDef() : PresetDef{}
 	{
-		Name = "41-4k-crt-guest-advanced-hd-slot-mask-pal-cool-rf";
+		Name = "41-pal-cool-rf";
 		Category = "sonkun/slot-mask/curved-screen/4k";
 	}
 

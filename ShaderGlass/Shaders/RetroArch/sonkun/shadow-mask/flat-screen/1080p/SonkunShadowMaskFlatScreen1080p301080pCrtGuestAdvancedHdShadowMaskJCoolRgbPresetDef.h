@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/flat-screen/1080p / 30-1080p-crt-guest-advanced-hd-shadow-mask-j-cool-rgb imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/flat-screen/1080p / 30-j-cool-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskFlatScreen1080p301080pCrtGuestAdvancedHdShadowMaskJCoolRgb
 public:
 	SonkunShadowMaskFlatScreen1080p301080pCrtGuestAdvancedHdShadowMaskJCoolRgbPresetDef() : PresetDef{}
 	{
-		Name = "30-1080p-crt-guest-advanced-hd-shadow-mask-j-cool-rgb";
+		Name = "30-j-cool-rgb";
 		Category = "sonkun/shadow-mask/flat-screen/1080p";
 	}
 

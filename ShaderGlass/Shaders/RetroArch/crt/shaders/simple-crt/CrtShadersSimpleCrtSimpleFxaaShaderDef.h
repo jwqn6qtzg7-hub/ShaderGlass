@@ -1257,18 +1257,18 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("FXAA_EDGE_THRESHOLD", -1, 52, 4, 2.000000f, 8.000000f, 4.000000f, 1.000000f, "[FXAA] Edge threshold"));
-		Params.push_back(ShaderParam("FXAA_EDGE_THRESHOLD_MIN", -1, 56, 4, 8.000000f, 32.000000f, 16.000000f, 4.000000f, "[FXAA] Edge threshold min"));
-		Params.push_back(ShaderParam("FXAA_SEARCH_STEPS", -1, 60, 4, 8.000000f, 32.000000f, 8.000000f, 4.000000f, "[FXAA] Search steps"));
-		Params.push_back(ShaderParam("FXAA_SEARCH_THRESHOLD", -1, 64, 4, 2.000000f, 8.000000f, 8.000000f, 1.000000f, "[FXAA] Search threshold"));
-		Params.push_back(ShaderParam("FXAA_SUBPIX_TRIM", -1, 68, 4, 2.000000f, 8.000000f, 2.000000f, 1.000000f, "[FXAA] Sub-pixel trim"));
-		Params.push_back(ShaderParam("FXAA_SUBPIX_CAP", -1, 72, 4, 0.100000f, 0.900000f, 0.100000f, 0.100000f, "[FXAA] Sub-pixel cap"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("FXAA_EDGE_THRESHOLD", -1, 52, 4, 2.000000f, 8.000000f, 4.000000f, 1.000000f, "[FXAA] Edge threshold");
+		AddParam("FXAA_EDGE_THRESHOLD_MIN", -1, 56, 4, 8.000000f, 32.000000f, 16.000000f, 4.000000f, "[FXAA] Edge threshold min");
+		AddParam("FXAA_SEARCH_STEPS", -1, 60, 4, 8.000000f, 32.000000f, 8.000000f, 4.000000f, "[FXAA] Search steps");
+		AddParam("FXAA_SEARCH_THRESHOLD", -1, 64, 4, 2.000000f, 8.000000f, 8.000000f, 1.000000f, "[FXAA] Search threshold");
+		AddParam("FXAA_SUBPIX_TRIM", -1, 68, 4, 2.000000f, 8.000000f, 2.000000f, 1.000000f, "[FXAA] Sub-pixel trim");
+		AddParam("FXAA_SUBPIX_CAP", -1, 72, 4, 0.100000f, 0.900000f, 0.100000f, 0.100000f, "[FXAA] Sub-pixel cap");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

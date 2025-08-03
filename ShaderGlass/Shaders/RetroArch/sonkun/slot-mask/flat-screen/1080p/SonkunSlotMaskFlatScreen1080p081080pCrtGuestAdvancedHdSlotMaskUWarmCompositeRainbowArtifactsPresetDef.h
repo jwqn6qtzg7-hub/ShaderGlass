@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/1080p / 08-1080p-crt-guest-advanced-hd-slot-mask-u-warm-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/1080p / 08-u-warm-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen1080p081080pCrtGuestAdvancedHdSlotMaskUWarmComposi
 public:
 	SonkunSlotMaskFlatScreen1080p081080pCrtGuestAdvancedHdSlotMaskUWarmCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "08-1080p-crt-guest-advanced-hd-slot-mask-u-warm-composite-rainbow-artifacts";
+		Name = "08-u-warm-composite-rainbow-artifacts";
 		Category = "sonkun/slot-mask/flat-screen/1080p";
 	}
 

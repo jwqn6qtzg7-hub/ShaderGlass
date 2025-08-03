@@ -5705,22 +5705,22 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersMetacrtBufCShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersMetacrtBufCShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("cam_spot", -1, 52, 4, -1.000000f, 9.000000f, 0.000000f, 1.000000f, "Cam Loc (0 = Custom, -1 = cycle)"));
-		Params.push_back(ShaderParam("noise_intensity", -1, 56, 4, 0.000000f, 0.500000f, 0.030000f, 0.010000f, "Noise Intensity"));
-		Params.push_back(ShaderParam("cam_angle_y", -1, 72, 4, -0.500000f, 0.500000f, 0.240000f, 0.010000f, "Tilt Cam Y"));
-		Params.push_back(ShaderParam("cam_angle_x", -1, 76, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Turn Cam X"));
-		Params.push_back(ShaderParam("cam_zoom", -1, 68, 4, -2.000000f, 2.000000f, -0.915000f, 0.050000f, "Custom Cam Zoom"));
-		Params.push_back(ShaderParam("cam_loc_y", -1, 60, 4, 0.000100f, 1.000000f, 0.250000f, 0.010000f, "Rotate World Y Axis"));
-		Params.push_back(ShaderParam("cam_loc_x", -1, 64, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Rotate World X Axis"));
-		Params.push_back(ShaderParam("cam_fov", -1, 80, 4, 0.000000f, 100.000000f, 10.000000f, 1.000000f, "Custom Cam FOV"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("table", 4));
-		Samplers.push_back(ShaderSampler("cubeMap", 3));
+		AddParam("cam_spot", -1, 52, 4, -1.000000f, 9.000000f, 0.000000f, 1.000000f, "Cam Loc (0 = Custom, -1 = cycle)");
+		AddParam("noise_intensity", -1, 56, 4, 0.000000f, 0.500000f, 0.030000f, 0.010000f, "Noise Intensity");
+		AddParam("cam_angle_y", -1, 72, 4, -0.500000f, 0.500000f, 0.240000f, 0.010000f, "Tilt Cam Y");
+		AddParam("cam_angle_x", -1, 76, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Turn Cam X");
+		AddParam("cam_zoom", -1, 68, 4, -2.000000f, 2.000000f, -0.915000f, 0.050000f, "Custom Cam Zoom");
+		AddParam("cam_loc_y", -1, 60, 4, 0.000100f, 1.000000f, 0.250000f, 0.010000f, "Rotate World Y Axis");
+		AddParam("cam_loc_x", -1, 64, 4, -0.500000f, 0.500000f, 0.000000f, 0.010000f, "Rotate World X Axis");
+		AddParam("cam_fov", -1, 80, 4, 0.000000f, 100.000000f, 10.000000f, 1.000000f, "Custom Cam FOV");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("table", 4);
+		AddSampler("cubeMap", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

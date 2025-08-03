@@ -1954,17 +1954,17 @@ public:
 		FragmentLength = sizeof(RetroArchFilmShadersFilmGrainShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchFilmShadersFilmGrainShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("GRAIN_AMOUNT", -1, 52, 4, 0.010000f, 0.200000f, 0.020000f, 0.010000f, "Grain amount"));
-		Params.push_back(ShaderParam("COLOR_AMOUNT", -1, 56, 4, 0.000000f, 1.000000f, 0.600000f, 0.100000f, "Color amount"));
-		Params.push_back(ShaderParam("GRAIN_SIZE", -1, 60, 4, 1.500000f, 2.500000f, 1.600000f, 0.100000f, "Grain particle size"));
-		Params.push_back(ShaderParam("LUM_AMOUNT", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "Luminance amount"));
-		Params.push_back(ShaderParam("COLORED", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Use colored noise"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("GRAIN_AMOUNT", -1, 52, 4, 0.010000f, 0.200000f, 0.020000f, 0.010000f, "Grain amount");
+		AddParam("COLOR_AMOUNT", -1, 56, 4, 0.000000f, 1.000000f, 0.600000f, 0.100000f, "Color amount");
+		AddParam("GRAIN_SIZE", -1, 60, 4, 1.500000f, 2.500000f, 1.600000f, 0.100000f, "Grain particle size");
+		AddParam("LUM_AMOUNT", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 0.100000f, "Luminance amount");
+		AddParam("COLORED", -1, 68, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Use colored noise");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

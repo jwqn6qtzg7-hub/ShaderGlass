@@ -776,14 +776,14 @@ public:
 		FragmentLength = sizeof(RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchNtscShadersMaisterNtscGaussPassShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("NTSC_CRT_GAMMA", -1, 52, 4, 0.000000f, 10.000000f, 2.500000f, 0.100000f, "NTSC CRT Gamma"));
-		Params.push_back(ShaderParam("NTSC_DISPLAY_GAMMA", -1, 56, 4, 0.000000f, 10.000000f, 2.100000f, 0.100000f, "NTSC Display Gamma"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("NTSC_CRT_GAMMA", -1, 52, 4, 0.000000f, 10.000000f, 2.500000f, 0.100000f, "NTSC CRT Gamma");
+		AddParam("NTSC_DISPLAY_GAMMA", -1, 56, 4, 0.000000f, 10.000000f, 2.100000f, 0.100000f, "NTSC Display Gamma");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/slot-mask/flat-screen/1080p / 35-1080p-crt-guest-advanced-hd-slot-mask-pal-normal-rgb imported from Sonkun:
+ShaderGlass preset sonkun/slot-mask/flat-screen/1080p / 35-pal-normal-rgb imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunSlotMaskFlatScreen1080p351080pCrtGuestAdvancedHdSlotMaskPalNormalRgb
 public:
 	SonkunSlotMaskFlatScreen1080p351080pCrtGuestAdvancedHdSlotMaskPalNormalRgbPresetDef() : PresetDef{}
 	{
-		Name = "35-1080p-crt-guest-advanced-hd-slot-mask-pal-normal-rgb";
+		Name = "35-pal-normal-rgb";
 		Category = "sonkun/slot-mask/flat-screen/1080p";
 	}
 

@@ -778,12 +778,12 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass2ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldConsoleBorderShaderFilesGbPass2ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("shadow_blur1", -1, 48, 4, 0.000000f, 5.000000f, 2.000000f, 0.100000f, "Shadow Blur 1"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("shadow_blur1", -1, 48, 4, 0.000000f, 5.000000f, 2.000000f, 0.100000f, "Shadow Blur 1");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

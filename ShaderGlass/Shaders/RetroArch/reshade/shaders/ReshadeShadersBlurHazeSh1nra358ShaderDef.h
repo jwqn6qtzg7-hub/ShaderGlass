@@ -673,17 +673,17 @@ public:
 		FragmentLength = sizeof(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("GaussStrength", -1, 52, 4, 0.000000f, 1.000000f, 0.300000f, 0.010000f, "Gauss Strength"));
-		Params.push_back(ShaderParam("BloomStrength", -1, 56, 4, 0.000000f, 1.000000f, 0.330000f, 0.005000f, "Bloom Strength"));
-		Params.push_back(ShaderParam("SW", -1, 60, 4, 1.000000f, 4.000000f, 2.000000f, 0.250000f, "Haze Width"));
-		Params.push_back(ShaderParam("BRIGHT", -1, 64, 4, 0.300000f, 0.600000f, 0.500000f, 0.010000f, "Brightness adjust"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("scanpass", 3));
+		AddParam("GaussStrength", -1, 52, 4, 0.000000f, 1.000000f, 0.300000f, 0.010000f, "Gauss Strength");
+		AddParam("BloomStrength", -1, 56, 4, 0.000000f, 1.000000f, 0.330000f, 0.005000f, "Bloom Strength");
+		AddParam("SW", -1, 60, 4, 1.000000f, 4.000000f, 2.000000f, 0.250000f, "Haze Width");
+		AddParam("BRIGHT", -1, 64, 4, 0.300000f, 0.600000f, 0.500000f, 0.010000f, "Brightness adjust");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("scanpass", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

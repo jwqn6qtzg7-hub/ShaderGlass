@@ -498,11 +498,11 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtSlangtestScanlineShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtSlangtestScanlineShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("OUT_GAMMA", -1, 16, 4, 1.800000f, 2.400000f, 2.200000f, 0.000000f, "Monitor Output Gamma"));
-		Params.push_back(ShaderParam("BOOST", -1, 20, 4, 0.200000f, 2.000000f, 1.000000f, 0.020000f, "Color Boost"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("OUT_GAMMA", -1, 16, 4, 1.800000f, 2.400000f, 2.200000f, 0.000000f, "Monitor Output Gamma");
+		AddParam("BOOST", -1, 20, 4, 0.200000f, 2.000000f, 1.000000f, 0.020000f, "Color Boost");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

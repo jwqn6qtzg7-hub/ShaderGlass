@@ -486,15 +486,15 @@ public:
 		FragmentLength = sizeof(RetroArchMiscShadersInterlacingShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchMiscShadersInterlacingShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("percent", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Interlacing Scanline Bright %"));
-		Params.push_back(ShaderParam("enable_480i", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Enable 480i Mode"));
-		Params.push_back(ShaderParam("top_field_first", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Top Field First Enable"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("percent", -1, 52, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Interlacing Scanline Bright %");
+		AddParam("enable_480i", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Enable 480i Mode");
+		AddParam("top_field_first", -1, 60, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Top Field First Enable");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

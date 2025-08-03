@@ -1059,21 +1059,21 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersGuestAdvancedCrtGuestAdvancedNtscPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersGuestAdvancedCrtGuestAdvancedNtscPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("internal_res", -1, 76, 4, 0.500000f, 8.000000f, 1.000000f, 0.100000f, "Internal Resolution"));
-		Params.push_back(ShaderParam("auto_res", -1, 84, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode"));
-		Params.push_back(ShaderParam("HSHARPNESS", -1, 56, 4, 1.000000f, 8.000000f, 1.600000f, 0.050000f, "Horizontal Filter Range"));
-		Params.push_back(ShaderParam("SIGMA_HOR", -1, 52, 4, 0.100000f, 7.000000f, 0.800000f, 0.025000f, "Horizontal Blur Sigma"));
-		Params.push_back(ShaderParam("S_SHARP", -1, 60, 4, 0.000000f, 3.000000f, 1.100000f, 0.050000f, "Substractive Sharpness"));
-		Params.push_back(ShaderParam("HSHARP", -1, 68, 4, 0.000000f, 2.000000f, 1.200000f, 0.100000f, "Sharpness Definition"));
-		Params.push_back(ShaderParam("MAXS", -1, 80, 4, 0.000000f, 0.300000f, 0.180000f, 0.010000f, "Maximum Sharpness"));
-		Params.push_back(ShaderParam("HARNG", -1, 64, 4, 0.000000f, 4.000000f, 0.300000f, 0.050000f, "Substractive Sharpness Ringing"));
-		Params.push_back(ShaderParam("spike", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Scanline Spike Removal"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("LinearizePass", 2));
+		AddParam("internal_res", -1, 76, 4, 0.500000f, 8.000000f, 1.000000f, 0.100000f, "Internal Resolution");
+		AddParam("auto_res", -1, 84, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "SNES/Amiga Hi-Res Auto Mode");
+		AddParam("HSHARPNESS", -1, 56, 4, 1.000000f, 8.000000f, 1.600000f, 0.050000f, "Horizontal Filter Range");
+		AddParam("SIGMA_HOR", -1, 52, 4, 0.100000f, 7.000000f, 0.800000f, 0.025000f, "Horizontal Blur Sigma");
+		AddParam("S_SHARP", -1, 60, 4, 0.000000f, 3.000000f, 1.100000f, 0.050000f, "Substractive Sharpness");
+		AddParam("HSHARP", -1, 68, 4, 0.000000f, 2.000000f, 1.200000f, 0.100000f, "Sharpness Definition");
+		AddParam("MAXS", -1, 80, 4, 0.000000f, 0.300000f, 0.180000f, 0.010000f, "Maximum Sharpness");
+		AddParam("HARNG", -1, 64, 4, 0.000000f, 4.000000f, 0.300000f, 0.050000f, "Substractive Sharpness Ringing");
+		AddParam("spike", -1, 72, 4, 0.000000f, 2.000000f, 1.000000f, 0.100000f, "Scanline Spike Removal");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("LinearizePass", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

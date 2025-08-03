@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/curved-screen/1440p / 23-1440p-crt-guest-advanced-hd-aperture-grille-j-warm-composite-rainbow-artifacts imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/curved-screen/1440p / 23-j-warm-composite-rainbow-artifacts imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleCurvedScreen1440p231440pCrtGuestAdvancedHdApertureGril
 public:
 	SonkunApertureGrilleCurvedScreen1440p231440pCrtGuestAdvancedHdApertureGrilleJWarmCompositeRainbowArtifactsPresetDef() : PresetDef{}
 	{
-		Name = "23-1440p-crt-guest-advanced-hd-aperture-grille-j-warm-composite-rainbow-artifacts";
+		Name = "23-j-warm-composite-rainbow-artifacts";
 		Category = "sonkun/aperture-grille/curved-screen/1440p";
 	}
 

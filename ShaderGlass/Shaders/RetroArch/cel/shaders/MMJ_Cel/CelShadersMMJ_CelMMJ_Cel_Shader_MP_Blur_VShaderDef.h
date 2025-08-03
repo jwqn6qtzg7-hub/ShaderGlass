@@ -466,11 +466,11 @@ public:
 		FragmentLength = sizeof(RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_VShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_VShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MMJ_BlurPass_HSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("BlurWeightV", -1, 32, 4, 0.000000f, 16.000000f, 0.000000f, 1.000000f, "Blur Weight - Vertical"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("MMJ_BlurPass_H", 2));
+		AddParam("MMJ_BlurPass_HSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("BlurWeightV", -1, 32, 4, 0.000000f, 16.000000f, 0.000000f, 1.000000f, "Blur Weight - Vertical");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("MMJ_BlurPass_H", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

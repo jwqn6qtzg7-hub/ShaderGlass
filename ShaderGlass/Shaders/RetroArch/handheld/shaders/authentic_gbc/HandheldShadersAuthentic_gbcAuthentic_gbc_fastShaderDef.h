@@ -1812,15 +1812,15 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersAuthentic_gbcAuthentic_gbc_fastShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersAuthentic_gbcAuthentic_gbc_fastShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("Rotation", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("AUTH_GBC_BRIG", -1, 36, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "Add brightness"));
-		Params.push_back(ShaderParam("AUTH_GBC_BLUR", -1, 40, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Anti-banding smoothing"));
-		Params.push_back(ShaderParam("AUTH_GBC_SUBPX", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Enable subpixel rendering"));
-		Params.push_back(ShaderParam("AUTH_GBC_SUBPX_ORIENTATION", -1, 48, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Subpixel layout (0=RGB, 1=RGB vert., 2=BGR, 3=BGR vert.)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("Rotation", -1, 32, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("AUTH_GBC_BRIG", -1, 36, 4, 0.000000f, 1.000000f, 0.600000f, 0.050000f, "Add brightness");
+		AddParam("AUTH_GBC_BLUR", -1, 40, 4, 0.000000f, 1.000000f, 0.300000f, 0.050000f, "Anti-banding smoothing");
+		AddParam("AUTH_GBC_SUBPX", -1, 44, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Enable subpixel rendering");
+		AddParam("AUTH_GBC_SUBPX_ORIENTATION", -1, 48, 4, 0.000000f, 3.000000f, 0.000000f, 1.000000f, "Subpixel layout (0=RGB, 1=RGB vert., 2=BGR, 3=BGR vert.)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

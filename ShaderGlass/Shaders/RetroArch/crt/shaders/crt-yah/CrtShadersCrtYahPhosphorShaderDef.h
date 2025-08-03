@@ -944,18 +944,18 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtYahPhosphorShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtYahPhosphorShaderDefs::sFragmentHash;
 		Format = "R16G16B16A16_SFLOAT";
-		Params.push_back(ShaderParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameTimeDelta", 0, 132, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)"));
-		Params.push_back(ShaderParam("PHOSPHOR_AMOUNT", -1, 4, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Phosphor > Amount  (0-None .. 1-Full)"));
-		Params.push_back(ShaderParam("PHOSPHOR_DECAY", -1, 8, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Phosphor > Decay  (0-Slow .. 1-Fast)"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", 0, 128, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
-		Samplers.push_back(ShaderSampler("PhosphorPassFeedback", 3));
+		AddParam("FinalViewportSize", 0, 112, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameTimeDelta", 0, 132, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("GLOBAL_MASTER", -1, 0, 4, 0.000000f, 2.000000f, 1.000000f, 0.050000f, "Global > Master  (0-None .. 1-Full / 2-More)");
+		AddParam("PHOSPHOR_AMOUNT", -1, 4, 4, 0.000000f, 1.000000f, 0.000000f, 0.050000f, "Phosphor > Amount  (0-None .. 1-Full)");
+		AddParam("PHOSPHOR_DECAY", -1, 8, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Phosphor > Decay  (0-Slow .. 1-Fast)");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", 0, 80, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", 0, 64, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", 0, 96, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", 0, 128, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
+		AddSampler("PhosphorPassFeedback", 3);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

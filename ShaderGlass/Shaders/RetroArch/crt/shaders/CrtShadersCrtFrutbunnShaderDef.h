@@ -795,18 +795,18 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("CURVATURE", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle"));
-		Params.push_back(ShaderParam("SCANLINES", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Scanlines Toggle"));
-		Params.push_back(ShaderParam("CURVED_SCANLINES", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Scanline Curve Toggle"));
-		Params.push_back(ShaderParam("LIGHT", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vignetting Toggle"));
-		Params.push_back(ShaderParam("light", -1, 68, 4, 0.000000f, 20.000000f, 9.000000f, 1.000000f, "Vignetting Strength"));
-		Params.push_back(ShaderParam("blur", -1, 72, 4, 0.000000f, 8.000000f, 1.000000f, 0.050000f, "Blur Strength"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("CURVATURE", -1, 52, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Curvature Toggle");
+		AddParam("SCANLINES", -1, 56, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Scanlines Toggle");
+		AddParam("CURVED_SCANLINES", -1, 60, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Scanline Curve Toggle");
+		AddParam("LIGHT", -1, 64, 4, 0.000000f, 1.000000f, 1.000000f, 1.000000f, "Vignetting Toggle");
+		AddParam("light", -1, 68, 4, 0.000000f, 20.000000f, 9.000000f, 1.000000f, "Vignetting Strength");
+		AddParam("blur", -1, 72, 4, 0.000000f, 8.000000f, 1.000000f, 0.050000f, "Blur Strength");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */

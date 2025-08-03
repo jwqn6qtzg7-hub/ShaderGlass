@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/shadow-mask/curved-screen/1080p / 02-1080p-crt-guest-advanced-hd-shadow-mask-u-normal-composite imported from Sonkun:
+ShaderGlass preset sonkun/shadow-mask/curved-screen/1080p / 02-u-normal-composite imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunShadowMaskCurvedScreen1080p021080pCrtGuestAdvancedHdShadowMaskUNorma
 public:
 	SonkunShadowMaskCurvedScreen1080p021080pCrtGuestAdvancedHdShadowMaskUNormalCompositePresetDef() : PresetDef{}
 	{
-		Name = "02-1080p-crt-guest-advanced-hd-shadow-mask-u-normal-composite";
+		Name = "02-u-normal-composite";
 		Category = "sonkun/shadow-mask/curved-screen/1080p";
 	}
 

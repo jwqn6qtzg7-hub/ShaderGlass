@@ -1,5 +1,5 @@
 /*
-ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 04-1440p-crt-guest-advanced-hd-aperture-grille-u-normal-s-video imported from Sonkun:
+ShaderGlass preset sonkun/aperture-grille/flat-screen/1440p / 04-u-normal-s-video imported from Sonkun:
 https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
@@ -14,7 +14,7 @@ class SonkunApertureGrilleFlatScreen1440p041440pCrtGuestAdvancedHdApertureGrille
 public:
 	SonkunApertureGrilleFlatScreen1440p041440pCrtGuestAdvancedHdApertureGrilleUNormalSVideoPresetDef() : PresetDef{}
 	{
-		Name = "04-1440p-crt-guest-advanced-hd-aperture-grille-u-normal-s-video";
+		Name = "04-u-normal-s-video";
 		Category = "sonkun/aperture-grille/flat-screen/1440p";
 	}
 

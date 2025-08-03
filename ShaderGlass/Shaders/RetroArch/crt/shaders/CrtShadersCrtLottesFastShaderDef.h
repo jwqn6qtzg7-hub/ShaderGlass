@@ -1877,20 +1877,20 @@ public:
 		FragmentLength = sizeof(RetroArchCrtShadersCrtLottesFastShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchCrtShadersCrtLottesFastShaderDefs::sFragmentHash;
 		Format = "";
-		Params.push_back(ShaderParam("MASK", -1, 52, 4, 0.000000f, 3.000000f, 1.000000f, 1.000000f, "Mask Type"));
-		Params.push_back(ShaderParam("MASK_INTENSITY", -1, 56, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Mask Intensity"));
-		Params.push_back(ShaderParam("SCANLINE_THINNESS", -1, 60, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Scanline Intensity"));
-		Params.push_back(ShaderParam("SCAN_BLUR", -1, 64, 4, 1.000000f, 3.000000f, 2.500000f, 0.100000f, "Sharpness"));
-		Params.push_back(ShaderParam("CURVATURE", -1, 68, 4, 0.000000f, 0.250000f, 0.020000f, 0.010000f, "Curvature"));
-		Params.push_back(ShaderParam("TRINITRON_CURVE", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Trinitron-style Curve"));
-		Params.push_back(ShaderParam("CORNER", -1, 76, 4, 0.000000f, 11.000000f, 3.000000f, 1.000000f, "Corner Round"));
-		Params.push_back(ShaderParam("CRT_GAMMA", -1, 80, 4, 0.000000f, 51.000000f, 2.400000f, 0.100000f, "CRT Gamma"));
-		Params.push_back(ShaderParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Params.push_back(ShaderParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, ""));
-		Samplers.push_back(ShaderSampler("Source", 2));
+		AddParam("MASK", -1, 52, 4, 0.000000f, 3.000000f, 1.000000f, 1.000000f, "Mask Type");
+		AddParam("MASK_INTENSITY", -1, 56, 4, 0.000000f, 1.000000f, 0.500000f, 0.050000f, "Mask Intensity");
+		AddParam("SCANLINE_THINNESS", -1, 60, 4, 0.000000f, 1.000000f, 0.500000f, 0.100000f, "Scanline Intensity");
+		AddParam("SCAN_BLUR", -1, 64, 4, 1.000000f, 3.000000f, 2.500000f, 0.100000f, "Sharpness");
+		AddParam("CURVATURE", -1, 68, 4, 0.000000f, 0.250000f, 0.020000f, 0.010000f, "Curvature");
+		AddParam("TRINITRON_CURVE", -1, 72, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Trinitron-style Curve");
+		AddParam("CORNER", -1, 76, 4, 0.000000f, 11.000000f, 3.000000f, 1.000000f, "Corner Round");
+		AddParam("CRT_GAMMA", -1, 80, 4, 0.000000f, 51.000000f, 2.400000f, 0.100000f, "CRT Gamma");
+		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("SourceSize", -1, 0, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
+		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;
 */
