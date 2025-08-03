@@ -10,14 +10,14 @@ GNU General Public License v3.0
 #include "resource.h"
 #include "ParamsWindow.h"
 
-constexpr int STATIC_WIDTH  = 350;
+constexpr int STATIC_WIDTH  = 300;
 constexpr int STATIC_HEIGHT = 40;
 constexpr int BUTTON_WIDTH  = 100;
 constexpr int BUTTON_HEIGHT = 25;
 constexpr int BUTTON_TOP    = 20;
 constexpr int PARAMS_TOP    = 75;
 constexpr int PARAM_HEIGHT  = 40;
-constexpr int WINDOW_WIDTH  = 720;
+constexpr int WINDOW_WIDTH  = 670;
 constexpr int WINDOW_HEIGHT = 600;
 constexpr int TRACK_WIDTH   = 200;
 constexpr int TRACK_HEIGHT  = 30;
