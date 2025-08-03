@@ -18,7 +18,7 @@ public:
 		Category = "ntsc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(NtscShadersNtscSimpleTiny_ntscShaderDef());
          	ShaderDefs.push_back(NtscShadersNtscSimpleKaizerLpSmallShaderDef());
 	}

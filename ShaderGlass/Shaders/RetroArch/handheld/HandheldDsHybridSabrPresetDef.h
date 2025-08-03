@@ -18,7 +18,7 @@ public:
 		Category = "handheld";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "ds_hybrid_view_refpass")
 .Param("scale_type", "viewport"));

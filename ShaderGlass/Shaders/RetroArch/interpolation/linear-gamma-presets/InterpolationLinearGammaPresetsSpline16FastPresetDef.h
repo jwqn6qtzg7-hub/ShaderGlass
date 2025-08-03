@@ -18,7 +18,7 @@ public:
 		Category = "interpolation/linear-gamma-presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersSplineSpline16YShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

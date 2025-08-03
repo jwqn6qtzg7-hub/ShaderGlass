@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersSimple_color_controlsShaderDef()
 .Param("scale_type", "source"));
 	}

@@ -18,7 +18,7 @@ public:
 		Category = "pixel-art-scaling";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PixelArtScalingShadersPixel_aaTo_lin_fastShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "source")

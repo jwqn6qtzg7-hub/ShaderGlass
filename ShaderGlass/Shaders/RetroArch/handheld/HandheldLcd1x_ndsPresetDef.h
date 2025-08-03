@@ -18,7 +18,7 @@ public:
 		Category = "handheld";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersLcd1x_ndsShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

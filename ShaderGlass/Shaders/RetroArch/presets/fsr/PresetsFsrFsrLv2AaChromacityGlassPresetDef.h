@@ -18,7 +18,7 @@ public:
 		Category = "presets/fsr";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingFsrShadersFsrPass0ShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")

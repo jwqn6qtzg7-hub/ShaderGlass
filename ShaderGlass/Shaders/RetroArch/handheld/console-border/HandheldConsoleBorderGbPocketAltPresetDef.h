@@ -18,7 +18,7 @@ public:
 		Category = "handheld/console-border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldConsoleBorderShaderFilesGbPass0ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1")

@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/scalefx";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "scalefx_old_refpass"));
          	ShaderDefs.push_back(EdgeSmoothingScalefxShadersOldScalefxPass0ShaderDef()

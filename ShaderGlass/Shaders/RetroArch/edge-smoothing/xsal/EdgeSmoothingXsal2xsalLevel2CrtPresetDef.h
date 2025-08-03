@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/xsal";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingXsalShaders2xsalLevel2ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "2.0")

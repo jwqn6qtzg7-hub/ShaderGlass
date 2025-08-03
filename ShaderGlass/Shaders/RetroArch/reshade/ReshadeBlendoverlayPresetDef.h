@@ -18,7 +18,7 @@ public:
 		Category = "reshade";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersBlendoverlayBlendoverlayShaderDef()
 .Param("scale_type", "viewport"));
             TextureDefs.push_back(ReshadeShadersBlendoverlayGrayscale_slotmaskTextureDef()

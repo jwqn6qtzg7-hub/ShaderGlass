@@ -18,7 +18,7 @@ public:
 		Category = "blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BlursShadersGaussian_blur_filteringGaussianShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type_x", "viewport")

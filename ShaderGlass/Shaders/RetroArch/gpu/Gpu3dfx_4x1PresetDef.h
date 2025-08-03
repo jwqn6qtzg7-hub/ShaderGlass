@@ -18,7 +18,7 @@ public:
 		Category = "gpu";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(GpuShaders3dfx3dfx_pass_0ShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type_x", "source")

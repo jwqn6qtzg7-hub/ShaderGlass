@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersBSpline4TapsShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type_x", "viewport")

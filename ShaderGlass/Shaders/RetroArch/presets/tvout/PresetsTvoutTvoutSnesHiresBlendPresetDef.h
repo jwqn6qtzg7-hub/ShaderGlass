@@ -18,7 +18,7 @@ public:
 		Category = "presets/tvout";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersSnesHiresBlendShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

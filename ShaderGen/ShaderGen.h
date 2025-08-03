@@ -45,6 +45,7 @@ const char* _spirvExe = "spirv-cross.exe";
 
 const char*      _raUrl = "https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/";
 const char*      _mbUrl = "https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/Mega_Bezel";
+const char*      _skUrl = "https://forums.libretro.com/t/new-sonkun-crt-guest-advanced-hd-presets-thread/39091";
 const char*      _rcUrl = "https://github.com/RetroCrisis/Retro-Crisis-GDV-NTSC";
 bool             _force = false;
 bool             _tools = false;

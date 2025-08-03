@@ -18,7 +18,7 @@ public:
 		Category = "reshade";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersLUTLUTShaderDef()
 .Param("scale_type", "viewport"));
          	ShaderDefs.push_back(MiscShadersCmykHalftoneDotShaderDef()

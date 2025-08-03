@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersBicubicCatmullRom3TapsYShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")

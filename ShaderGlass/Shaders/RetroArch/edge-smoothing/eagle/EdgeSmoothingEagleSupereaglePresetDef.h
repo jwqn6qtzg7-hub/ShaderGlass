@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/eagle";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingEagleShadersSupereagleShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

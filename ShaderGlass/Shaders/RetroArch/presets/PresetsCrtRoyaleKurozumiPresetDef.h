@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersGradeShaderDef()
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")

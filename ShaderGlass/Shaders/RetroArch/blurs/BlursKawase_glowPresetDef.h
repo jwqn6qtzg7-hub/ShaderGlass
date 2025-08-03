@@ -18,7 +18,7 @@ public:
 		Category = "blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "Reference")
 .Param("scale_type", "source"));

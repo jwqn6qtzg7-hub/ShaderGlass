@@ -18,7 +18,7 @@ public:
 		Category = "vhs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(VhsShadersVhs_mpalkoVhs_mpalko_pass0ShaderDef()
 .Param("alias", "Pass1")
 .Param("filter_linear", "true")

@@ -18,7 +18,7 @@ public:
 		Category = "interpolation/linear-gamma-presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersBicubicBSplineYShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

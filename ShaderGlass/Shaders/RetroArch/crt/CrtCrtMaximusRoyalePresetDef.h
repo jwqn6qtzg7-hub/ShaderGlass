@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "maximus_refpass"));
          	ShaderDefs.push_back(CrtShadersCrtMaximusRoyaleSrcHorizontal_ringingShaderDef()

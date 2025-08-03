@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersChromaticityShaderDef()
 .Param("filter_linear", "false"));
 	}

@@ -18,7 +18,7 @@ public:
 		Category = "presets/crt-plus-signal";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "artifact_colors_refpass")
 .Param("scale_type_x", "absolute")

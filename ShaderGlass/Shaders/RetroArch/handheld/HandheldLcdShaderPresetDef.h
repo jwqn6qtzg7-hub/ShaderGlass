@@ -18,7 +18,7 @@ public:
 		Category = "handheld";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersLcdShaderLcdPass0ShaderDef()
 .Param("alias", "PASS1")
 .Param("filter_linear", "false")

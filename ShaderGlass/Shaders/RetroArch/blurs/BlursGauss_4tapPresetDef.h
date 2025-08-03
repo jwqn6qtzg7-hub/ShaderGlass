@@ -18,7 +18,7 @@ public:
 		Category = "blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BlursShadersGauss_4tapGauss_2tap_hShaderDef()
 .Param("filter_linear", "true")
 .Param("scale", "1.0")

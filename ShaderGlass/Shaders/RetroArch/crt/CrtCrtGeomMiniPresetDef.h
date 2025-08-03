@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtConsumerLinearizeShaderDef());
          	ShaderDefs.push_back(CrtShadersCrtGeomMiniShaderDef()
 .Param("filter_linear", "true")

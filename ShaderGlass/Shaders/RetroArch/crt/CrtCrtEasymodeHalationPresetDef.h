@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtEasymodeHalationLinearizeShaderDef()
 .Param("alias", "ORIG_LINEARIZED")
 .Param("filter_linear", "false")

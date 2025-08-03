@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCathodeRetroCathodeRetroUtilCopyShaderDef()
 .Param("alias", "g_sourceTexture")
 .Param("filter_linear", "true"));

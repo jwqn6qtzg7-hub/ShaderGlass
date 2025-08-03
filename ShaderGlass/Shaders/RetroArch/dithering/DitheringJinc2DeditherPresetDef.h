@@ -18,7 +18,7 @@ public:
 		Category = "dithering";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DitheringShadersJinc2DeditherShaderDef()
 .Param("scale", "1.0")
 .Param("scale_type", "source"));

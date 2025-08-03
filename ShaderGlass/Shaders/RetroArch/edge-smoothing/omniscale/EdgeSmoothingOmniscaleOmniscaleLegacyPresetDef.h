@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/omniscale";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/scalenx";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingScalenxShadersScale2xSFXShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "source")

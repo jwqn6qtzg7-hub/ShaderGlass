@@ -18,7 +18,7 @@ public:
 		Category = "vhs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(VhsShadersVhsShaderDef()
 .Param("filter_linear", "true"));
          	ShaderDefs.push_back(VhsShadersRewindShaderDef()

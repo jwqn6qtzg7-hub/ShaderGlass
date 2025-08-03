@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersHyllianSupportMultiLUTLinearFastShaderDef()
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")

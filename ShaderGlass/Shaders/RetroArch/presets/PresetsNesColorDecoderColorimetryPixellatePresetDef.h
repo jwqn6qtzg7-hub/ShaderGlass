@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(Nes_raw_paletteShadersNesColorDecoderShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.000000")

@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersConvergenceShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "source"));

@@ -18,7 +18,7 @@ public:
 		Category = "presets/crt-ntsc-sharp";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersNtscColorsShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

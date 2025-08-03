@@ -18,7 +18,7 @@ public:
 		Category = "border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BorderShadersImgborderShaderDef()
 .Param("scale_type", "viewport"));
             TextureDefs.push_back(BorderTexturesPvmTextureDef()

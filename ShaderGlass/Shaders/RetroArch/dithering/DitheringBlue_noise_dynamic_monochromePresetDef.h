@@ -18,7 +18,7 @@ public:
 		Category = "dithering";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DitheringShadersBlue_noise_dynamicShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

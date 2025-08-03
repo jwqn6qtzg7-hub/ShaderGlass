@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersImg_modShaderDef()
 .Param("scale_type", "viewport"));
             TextureDefs.push_back(ReshadeShadersLUT16TextureDef()

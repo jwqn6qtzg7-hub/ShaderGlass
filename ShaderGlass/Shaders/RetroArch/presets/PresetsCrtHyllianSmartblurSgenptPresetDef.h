@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DitheringShadersSgenptMixShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

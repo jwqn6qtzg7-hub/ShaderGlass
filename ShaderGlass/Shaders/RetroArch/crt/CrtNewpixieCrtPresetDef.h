@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersNewpixieAccumulateShaderDef()
 .Param("alias", "accum1")
 .Param("filter_linear", "true")

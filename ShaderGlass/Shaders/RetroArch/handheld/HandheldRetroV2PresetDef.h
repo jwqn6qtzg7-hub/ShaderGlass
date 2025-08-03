@@ -18,7 +18,7 @@ public:
 		Category = "handheld";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersRetroV2ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersGtuV050Pass1ShaderDef()
 .Param("float_framebuffer", "true")
 .Param("scale", "1.0")

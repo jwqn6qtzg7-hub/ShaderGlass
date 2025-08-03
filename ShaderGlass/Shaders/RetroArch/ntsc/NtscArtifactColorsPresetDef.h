@@ -18,7 +18,7 @@ public:
 		Category = "ntsc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "artifact_colors_refpass"));
          	ShaderDefs.push_back(StockStockShaderDef()

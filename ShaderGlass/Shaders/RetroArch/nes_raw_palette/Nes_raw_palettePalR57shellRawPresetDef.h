@@ -18,7 +18,7 @@ public:
 		Category = "nes_raw_palette";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PalShadersPalR57shellShaderDef()
 .Param("alias", "ORIG_LINEARIZED")
 .Param("filter_linear", "false")

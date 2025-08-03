@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtBlurPiShaderDef()
 .Param("alias", "PASS0")
 .Param("filter_linear", "true")

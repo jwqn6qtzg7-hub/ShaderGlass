@@ -18,7 +18,7 @@ public:
 		Category = "ntsc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("scale_type_x", "absolute")
 .Param("scale_x", "640.0"));

@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersMame_hlslShadersMame_ntsc_encodeShaderDef()
 .Param("filter_linear", "true")
 .Param("scale", "1.0")

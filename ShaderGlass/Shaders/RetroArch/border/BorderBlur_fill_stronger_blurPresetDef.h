@@ -18,7 +18,7 @@ public:
 		Category = "border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BlursShadersKawaseLinearizeShaderDef()
 .Param("alias", "Input")
 .Param("float_framebuffer", "true")

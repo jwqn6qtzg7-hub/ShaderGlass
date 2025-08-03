@@ -18,7 +18,7 @@ public:
 		Category = "sharpen";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(SharpenShadersAnime4kAnime4kComputeLumShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

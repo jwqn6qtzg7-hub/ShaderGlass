@@ -18,7 +18,7 @@ public:
 		Category = "film";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(FilmShadersFilmGrainShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "source"));

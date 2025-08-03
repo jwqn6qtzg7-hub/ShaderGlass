@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersTorridgristleScanlineInterpolationShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "source"));

@@ -18,7 +18,7 @@ public:
 		Category = "presets/downsample";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DownsampleShadersDrezGSharp_resamplerShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersBicubicShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

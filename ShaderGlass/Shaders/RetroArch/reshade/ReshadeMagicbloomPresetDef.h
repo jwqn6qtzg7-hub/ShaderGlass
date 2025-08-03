@@ -18,7 +18,7 @@ public:
 		Category = "reshade";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "PreBloomPass")
 .Param("filter_linear", "false")

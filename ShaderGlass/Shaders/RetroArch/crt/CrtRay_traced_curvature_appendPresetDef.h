@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersRt_curvatureRt_curvatureShaderDef()
 .Param("filter_linear", "true")
 .Param("mipmap_input", "true")

@@ -18,7 +18,7 @@ public:
 		Category = "bezel/koko-aio";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BezelKokoAioShadersNgColortools_and_ntsc_passShaderDef()
 .Param("alias", "colortools_and_ntsc_pass")
 .Param("filter_linear", "true")

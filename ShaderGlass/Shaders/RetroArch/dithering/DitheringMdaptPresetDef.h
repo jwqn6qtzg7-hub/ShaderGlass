@@ -18,7 +18,7 @@ public:
 		Category = "dithering";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "mdapt_refpass"));
          	ShaderDefs.push_back(DitheringShadersMdaptPassesMdaptPass0ShaderDef()

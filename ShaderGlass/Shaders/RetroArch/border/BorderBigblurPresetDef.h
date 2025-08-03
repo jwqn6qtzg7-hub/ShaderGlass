@@ -18,7 +18,7 @@ public:
 		Category = "border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "Reference"));
          	ShaderDefs.push_back(BlursShadersKawaseLinearizeShaderDef()

@@ -18,7 +18,7 @@ public:
 		Category = "ntsc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(NtscShadersPatchyNtscPatchyNtscEncodeYCShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

@@ -18,7 +18,7 @@ public:
 		Category = "presets/crt-royale-fast/4k";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(FilmShadersFilmGrainShaderDef()
 .Param("alias", "PrePass0")
 .Param("filter_linear", "false"));

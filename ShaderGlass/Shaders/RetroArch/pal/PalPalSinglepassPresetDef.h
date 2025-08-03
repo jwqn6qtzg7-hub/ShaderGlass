@@ -18,7 +18,7 @@ public:
 		Category = "pal";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PalShadersPalSinglepassShaderDef()
 .Param("scale_type", "source"));
 	}

@@ -18,7 +18,7 @@ public:
 		Category = "reshade";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersNormalsDisplacementNormalsDisplacementShaderDef()
 .Param("scale_type", "viewport"));
             TextureDefs.push_back(ReshadeShadersNormalsDisplacementCurveNormalsTextureDef()

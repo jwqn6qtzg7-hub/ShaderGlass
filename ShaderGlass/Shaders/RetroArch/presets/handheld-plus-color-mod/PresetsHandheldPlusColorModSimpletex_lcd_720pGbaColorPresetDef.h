@@ -18,7 +18,7 @@ public:
 		Category = "presets/handheld-plus-color-mod";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersSimpletex_lcdSimpletex_lcd_720pGbaColorShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")

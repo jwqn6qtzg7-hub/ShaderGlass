@@ -18,7 +18,7 @@ public:
 		Category = "presets/crt-plus-signal";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtConsumerShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")

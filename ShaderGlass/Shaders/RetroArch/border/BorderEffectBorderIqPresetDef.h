@@ -18,7 +18,7 @@ public:
 		Category = "border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BorderShadersEffectBorderIqShaderDef()
 .Param("alias", "BORDERS")
 .Param("filter_linear", "false")

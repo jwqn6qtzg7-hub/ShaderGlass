@@ -18,7 +18,7 @@ public:
 		Category = "reshade";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersLUTLUTShaderDef()
 .Param("scale_type", "source"));
             TextureDefs.push_back(ReshadeShadersLUT16TextureDef()

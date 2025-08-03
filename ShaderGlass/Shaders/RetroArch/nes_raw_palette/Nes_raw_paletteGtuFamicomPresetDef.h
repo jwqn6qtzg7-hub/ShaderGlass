@@ -18,7 +18,7 @@ public:
 		Category = "nes_raw_palette";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(Nes_raw_paletteShadersGtuFamicomDAC_LUTShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

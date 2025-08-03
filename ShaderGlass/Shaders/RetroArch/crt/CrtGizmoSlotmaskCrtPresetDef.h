@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersGizmoSlotmaskCrtShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")

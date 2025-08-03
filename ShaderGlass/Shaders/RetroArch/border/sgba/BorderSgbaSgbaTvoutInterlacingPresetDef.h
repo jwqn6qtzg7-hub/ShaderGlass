@@ -18,7 +18,7 @@ public:
 		Category = "border/sgba";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BorderShadersImgborderSgbaShaderDef()
 .Param("scale_type_x", "absolute")
 .Param("scale_type_y", "absolute")

@@ -18,7 +18,7 @@ public:
 		Category = "bezel/uborder";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BezelUborderShadersContent_bezel_shadersCrtNobodyBezelReflectionsShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")

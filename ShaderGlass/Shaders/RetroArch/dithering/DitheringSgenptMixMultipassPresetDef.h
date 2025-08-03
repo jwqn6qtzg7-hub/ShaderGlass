@@ -18,7 +18,7 @@ public:
 		Category = "dithering";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DitheringShadersSgenptMixLinearizeShaderDef()
 .Param("alias", "LinearGamma")
 .Param("filter_linear", "false")

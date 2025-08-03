@@ -18,7 +18,7 @@ public:
 		Category = "border/sgb";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersColorGbcColorShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

@@ -18,7 +18,7 @@ public:
 		Category = "anti-aliasing";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "SMAA_Input")
 .Param("filter_linear", "false")

@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/nnedi3";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingNnedi3ShadersRgbToYuvShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "source")

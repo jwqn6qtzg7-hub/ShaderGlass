@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "refpass")
 .Param("filter_linear", "false")

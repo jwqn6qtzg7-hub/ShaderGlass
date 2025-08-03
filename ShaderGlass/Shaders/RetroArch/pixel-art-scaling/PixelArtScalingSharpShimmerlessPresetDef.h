@@ -18,7 +18,7 @@ public:
 		Category = "pixel-art-scaling";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PixelArtScalingShadersSharpShimmerlessShaderDef()
 .Param("filter_linear", "true"));
 	}

@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersImageAdjustmentShaderDef()
 .Param("alias", "PASS1")
 .Param("wrap_mode", "mirrored_repeat"));

@@ -18,7 +18,7 @@ public:
 		Category = "presets/handheld-plus-color-mod";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersColorNdsColorShaderDef()
 .Param("filter_linear", "false"));
          	ShaderDefs.push_back(HandheldShadersRetroV3ShaderDef()

@@ -18,7 +18,7 @@ public:
 		Category = "dithering";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DitheringShadersCheckerboardDeditherLinearizeShaderDef()
 .Param("alias", "LinearGamma")
 .Param("filter_linear", "false")

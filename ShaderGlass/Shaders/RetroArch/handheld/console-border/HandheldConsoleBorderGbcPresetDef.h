@@ -18,7 +18,7 @@ public:
 		Category = "handheld/console-border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MotionblurShadersFeedbackShaderDef()
 .Param("filter_linear", "false"));
          	ShaderDefs.push_back(HandheldShadersColorGbcColorShaderDef()

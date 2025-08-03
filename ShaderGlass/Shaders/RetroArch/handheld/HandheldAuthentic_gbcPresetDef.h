@@ -18,7 +18,7 @@ public:
 		Category = "handheld";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersAuthentic_gbcTo_linShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

@@ -18,7 +18,7 @@ public:
 		Category = "cel";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CelShadersAdvcartoonShaderDef()
 .Param("filter_linear", "false"));
 	}

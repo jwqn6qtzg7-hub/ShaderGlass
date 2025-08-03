@@ -18,7 +18,7 @@ public:
 		Category = "anamorphic";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(AnamorphicShadersAnamorphicShaderDef()
 .Param("filter_linear", "true"));
 	}

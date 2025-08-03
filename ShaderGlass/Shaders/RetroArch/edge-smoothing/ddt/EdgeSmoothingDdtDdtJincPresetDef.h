@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/ddt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingDdtShadersDdtJincShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

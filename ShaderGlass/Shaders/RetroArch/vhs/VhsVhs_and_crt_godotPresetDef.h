@@ -18,7 +18,7 @@ public:
 		Category = "vhs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(VhsShadersVhs_and_crt_godotShaderDef()
 .Param("filter_linear", "true")
 .Param("scale", "1.0")

@@ -18,7 +18,7 @@ public:
 		Category = "sharpen";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "diff_refpass"));
          	ShaderDefs.push_back(StockStockShaderDef()

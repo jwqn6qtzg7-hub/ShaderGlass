@@ -18,7 +18,7 @@ public:
 		Category = "retro-crisis/720p-Steam-Deck";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersGuestAdvancedStockShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

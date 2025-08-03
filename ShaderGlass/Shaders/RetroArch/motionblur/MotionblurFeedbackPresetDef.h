@@ -18,7 +18,7 @@ public:
 		Category = "motionblur";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MotionblurShadersFeedbackShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

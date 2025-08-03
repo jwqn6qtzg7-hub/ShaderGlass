@@ -18,7 +18,7 @@ public:
 		Category = "dithering";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DitheringShadersGSharp_resamplerShaderDef()
 .Param("scale", "1.0")
 .Param("scale_type", "source"));

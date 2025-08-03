@@ -18,7 +18,7 @@ public:
 		Category = "denoisers";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DenoisersShadersMedian_3x3ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

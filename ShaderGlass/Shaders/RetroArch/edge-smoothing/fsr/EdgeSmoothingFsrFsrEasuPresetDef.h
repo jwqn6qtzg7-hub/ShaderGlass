@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/fsr";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingFsrShadersFsrPass0ShaderDef()
 .Param("alias", "FSR_EASU")
 .Param("filter_linear", "true")

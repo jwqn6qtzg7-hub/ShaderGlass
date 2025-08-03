@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersSupportCheckerboardInvertedShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

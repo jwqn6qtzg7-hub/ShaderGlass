@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersGeomDeluxePhosphor_applyShaderDef()
 .Param("alias", "internal1"));
          	ShaderDefs.push_back(CrtShadersGeomDeluxePhosphor_updateShaderDef()

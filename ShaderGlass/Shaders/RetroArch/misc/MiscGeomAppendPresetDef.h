@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersGeomShaderDef()
 .Param("filter_linear", "true")
 .Param("mipmap_input", "true")

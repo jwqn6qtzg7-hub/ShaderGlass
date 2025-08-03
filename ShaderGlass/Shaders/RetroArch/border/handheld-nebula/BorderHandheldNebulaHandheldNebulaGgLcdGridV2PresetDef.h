@@ -18,7 +18,7 @@ public:
 		Category = "border/handheld-nebula";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BorderShadersImgborderShaderDef()
 .Param("scale_type_x", "absolute")
 .Param("scale_type_y", "absolute")

@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/xbrz";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "xbrz_fs_refpass"));
          	ShaderDefs.push_back(EdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass0ShaderDef()

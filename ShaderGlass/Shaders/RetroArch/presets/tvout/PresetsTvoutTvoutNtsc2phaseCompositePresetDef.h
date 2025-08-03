@@ -18,7 +18,7 @@ public:
 		Category = "presets/tvout";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(NtscShadersMaisterNtscPass1Composite2phaseShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

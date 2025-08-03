@@ -18,7 +18,7 @@ public:
 		Category = "pixel-art-scaling";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PixelArtScalingShadersCleanEdgeRotateShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

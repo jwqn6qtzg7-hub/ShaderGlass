@@ -18,7 +18,7 @@ public:
 		Category = "ntsc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(NtscShadersNtscSimpleNtscMiniShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type_x", "source")

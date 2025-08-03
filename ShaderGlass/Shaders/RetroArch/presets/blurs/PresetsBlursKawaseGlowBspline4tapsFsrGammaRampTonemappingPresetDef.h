@@ -18,7 +18,7 @@ public:
 		Category = "presets/blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "Reference")
 .Param("float_framebuffer", "false")

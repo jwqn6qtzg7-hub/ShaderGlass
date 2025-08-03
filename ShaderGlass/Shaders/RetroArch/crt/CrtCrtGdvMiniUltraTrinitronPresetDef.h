@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtGdvMiniUltraShaderDef()
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")

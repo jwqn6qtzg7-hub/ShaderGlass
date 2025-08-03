@@ -18,7 +18,7 @@ public:
 		Category = "film";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersLUTLUTShaderDef());
          	ShaderDefs.push_back(FilmShadersFilm_noiseShaderDef()
 .Param("scale_type", "viewport"));

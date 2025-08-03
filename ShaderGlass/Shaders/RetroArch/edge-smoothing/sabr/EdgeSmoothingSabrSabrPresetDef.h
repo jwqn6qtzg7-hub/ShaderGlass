@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/sabr";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingSabrShadersSabrV30ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

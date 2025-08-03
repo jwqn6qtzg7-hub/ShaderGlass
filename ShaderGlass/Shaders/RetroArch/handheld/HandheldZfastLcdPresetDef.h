@@ -18,7 +18,7 @@ public:
 		Category = "handheld";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersZfast_lcdShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "viewport"));

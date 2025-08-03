@@ -18,7 +18,7 @@ public:
 		Category = "denoisers";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DenoisersShadersFastBilateralShaderDef()
 .Param("alias", "XbrSource")
 .Param("filter_linear", "false")

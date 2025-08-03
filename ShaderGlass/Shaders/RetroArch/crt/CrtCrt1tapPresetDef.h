@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrt1tapShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")

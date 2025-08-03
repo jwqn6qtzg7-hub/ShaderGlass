@@ -18,7 +18,7 @@ public:
 		Category = "border/gameboy-player";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BorderShadersImgborderGbpShaderDef()
 .Param("scale_type_x", "absolute")
 .Param("scale_type_y", "absolute")

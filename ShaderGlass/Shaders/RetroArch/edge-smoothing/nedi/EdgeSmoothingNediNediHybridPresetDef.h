@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/nedi";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingNediShadersNediHybridPass0ShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "false")

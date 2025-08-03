@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersLanczos25TapsShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "viewport")

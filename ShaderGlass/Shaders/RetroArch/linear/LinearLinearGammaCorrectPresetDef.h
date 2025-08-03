@@ -18,7 +18,7 @@ public:
 		Category = "linear";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(LinearLinearizeShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

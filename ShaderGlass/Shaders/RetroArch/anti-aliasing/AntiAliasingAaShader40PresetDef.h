@@ -18,7 +18,7 @@ public:
 		Category = "anti-aliasing";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(AntiAliasingShadersAaShader40ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

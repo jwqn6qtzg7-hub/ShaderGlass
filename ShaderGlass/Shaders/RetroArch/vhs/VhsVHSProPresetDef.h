@@ -18,7 +18,7 @@ public:
 		Category = "vhs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(VhsShadersVHSProVHSPro_ThirdShaderDef()
 .Param("alias", "third")
 .Param("filter_linear", "true")

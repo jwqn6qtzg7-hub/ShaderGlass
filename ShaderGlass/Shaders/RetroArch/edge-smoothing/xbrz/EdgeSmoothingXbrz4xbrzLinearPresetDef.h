@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/xbrz";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingXbrzShaders4xbrzShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "4.0")

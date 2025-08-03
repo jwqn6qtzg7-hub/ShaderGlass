@@ -18,7 +18,7 @@ public:
 		Category = "deblur";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(DeblurShadersDeblurShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

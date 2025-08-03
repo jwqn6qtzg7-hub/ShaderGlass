@@ -18,7 +18,7 @@ public:
 		Category = "presets/blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BlursShadersGizmoBlurShaderDef()
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "false")

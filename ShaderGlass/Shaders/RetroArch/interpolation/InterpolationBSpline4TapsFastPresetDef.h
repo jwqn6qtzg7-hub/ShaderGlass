@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersBicubicBSpline2TapsYShaderDef()
 .Param("filter_linear", "true")
 .Param("scale", "1.0")

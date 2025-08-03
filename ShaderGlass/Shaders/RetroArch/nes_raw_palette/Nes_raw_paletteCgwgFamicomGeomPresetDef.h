@@ -18,7 +18,7 @@ public:
 		Category = "nes_raw_palette";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(Nes_raw_paletteShadersCgwgFamicomGeomCompositeEncodeShaderDef()
 .Param("alias", "encode_pass")
 .Param("filter_linear", "false")

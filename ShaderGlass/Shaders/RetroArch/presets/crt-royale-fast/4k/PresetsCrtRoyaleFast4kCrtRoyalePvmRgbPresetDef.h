@@ -18,7 +18,7 @@ public:
 		Category = "presets/crt-royale-fast/4k";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtRoyaleSrcFastCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDef()
 .Param("alias", "ORIG_LINEARIZED")
 .Param("filter_linear", "false")

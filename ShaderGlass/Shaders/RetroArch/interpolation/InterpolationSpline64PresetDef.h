@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersSplineSpline64XShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

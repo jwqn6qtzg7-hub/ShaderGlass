@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersBeadShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

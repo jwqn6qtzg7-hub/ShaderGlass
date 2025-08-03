@@ -18,7 +18,7 @@ public:
 		Category = "bezel";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BezelMega_BezelShadersGuestExtrasHsmDrezNoneShaderDef()
 .Param("alias", "DerezedPass")
 .Param("filter_linear", "false")

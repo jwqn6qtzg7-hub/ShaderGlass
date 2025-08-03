@@ -18,7 +18,7 @@ public:
 		Category = "reshade/handheld-color-LUTs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersLUTLUTShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type_x", "source")

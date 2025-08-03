@@ -18,7 +18,7 @@ public:
 		Category = "presets/tvout-interlacing";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(NtscShadersMaisterNtscPass1Svideo3phaseShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

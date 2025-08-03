@@ -18,7 +18,7 @@ public:
 		Category = "presets/blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BlursShadersSmartBlurShaderDef()
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")

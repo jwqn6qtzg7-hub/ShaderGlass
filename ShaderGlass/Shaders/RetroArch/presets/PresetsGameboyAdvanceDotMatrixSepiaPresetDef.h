@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersGameboyShaderFilesGbPass0ShaderDef()
 .Param("alias", "PASS0")
 .Param("filter_linear", "false")

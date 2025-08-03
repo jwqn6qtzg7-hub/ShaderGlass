@@ -18,7 +18,7 @@ public:
 		Category = "presets/crt-plus-signal";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PalShadersPalR57shellShaderDef()
 .Param("filter_linear", "false")
 .Param("frame_count_mod", "2")

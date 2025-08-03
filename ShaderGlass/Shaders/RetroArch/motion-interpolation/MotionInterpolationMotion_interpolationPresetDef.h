@@ -18,7 +18,7 @@ public:
 		Category = "motion-interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MotionInterpolationShadersMotion_interpolationMotion_interpolation_pass0ShaderDef()
 .Param("alias", "Pass0")
 .Param("filter_linear", "true")

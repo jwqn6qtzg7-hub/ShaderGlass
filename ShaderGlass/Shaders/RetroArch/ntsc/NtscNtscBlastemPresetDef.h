@@ -18,7 +18,7 @@ public:
 		Category = "ntsc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(NtscShadersNtscBlastemShaderDef()
 .Param("scale", "1.0")
 .Param("scale_type", "source"));

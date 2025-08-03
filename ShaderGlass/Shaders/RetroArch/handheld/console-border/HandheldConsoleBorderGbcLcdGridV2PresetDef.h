@@ -18,7 +18,7 @@ public:
 		Category = "handheld/console-border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MotionblurShadersResponseTimeShaderDef()
 .Param("filter_linear", "false"));
          	ShaderDefs.push_back(HandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDef()

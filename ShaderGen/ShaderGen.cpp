@@ -567,6 +567,11 @@ void populatePresetTemplate(
                 outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from MegaBezel:" << endl;
                 outfile << _mbUrl << endl;
             }
+            else if(info.className.find("Sonkun") != string::npos)
+            {
+                outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from Sonkun:" << endl;
+                outfile << _skUrl << endl;
+            }
             else
             {
                 outfile << "ShaderGlass preset " << info.category << " / " << info.shaderName << " imported from " << _libName << ":" << endl;

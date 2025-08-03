@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtLottesFastShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "viewport"));

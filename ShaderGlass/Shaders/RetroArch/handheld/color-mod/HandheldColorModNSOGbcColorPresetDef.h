@@ -18,7 +18,7 @@ public:
 		Category = "handheld/color-mod";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersColorNSOGbcColorShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

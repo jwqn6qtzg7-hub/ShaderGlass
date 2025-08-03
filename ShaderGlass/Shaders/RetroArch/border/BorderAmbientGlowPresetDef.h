@@ -18,7 +18,7 @@ public:
 		Category = "border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MotionblurShadersFeedbackShaderDef()
 .Param("filter_linear", "true"));
          	ShaderDefs.push_back(BorderShadersAmbientGlowShaderDef()

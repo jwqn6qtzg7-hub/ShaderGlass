@@ -18,7 +18,7 @@ public:
 		Category = "stereoscopic-3d";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(Stereoscopic3dShadersSideBySideSimpleShaderDef()
 .Param("scale_type", "viewport"));
 	}

@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersGradeShaderDef()
 .Param("scale_type", "source"));
             TextureDefs.push_back(ReshadeShadersLUT32TextureDef()

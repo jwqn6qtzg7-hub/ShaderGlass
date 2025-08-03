@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtResswitchGlitchKokoShaderDef()
 .Param("scale_type", "source")
 .Param("wrap_mode", "clamp_to_border"));

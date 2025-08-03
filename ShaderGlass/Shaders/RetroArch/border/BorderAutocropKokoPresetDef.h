@@ -18,7 +18,7 @@ public:
 		Category = "border";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BorderShadersAutocropKokoAutocrop0_precutShaderDef()
 .Param("alias", "autocrop_precut")
 .Param("filter_linear", "false")

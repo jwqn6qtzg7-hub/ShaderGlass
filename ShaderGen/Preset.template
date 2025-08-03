@@ -15,7 +15,7 @@ public:
 		Category = "%PRESET_CATEGORY%";
 	}
 
-	virtual void Build() {
+	void Build() {
 %SHADERS%	ShaderDefs.push_back(%SHADER_NAME%ShaderDef()%PRESET_PARAMS%);
 %TEXTURES%  TextureDefs.push_back(%TEXTURE_NAME%TextureDef()%TEXTURE_PARAMS%);
 %OVERRIDES% OverrideParam("%OVERRIDE_NAME%", (float)%OVERRIDE_VALUE%);

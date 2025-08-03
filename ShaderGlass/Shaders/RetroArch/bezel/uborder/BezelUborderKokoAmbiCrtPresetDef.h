@@ -18,7 +18,7 @@ public:
 		Category = "bezel/uborder";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDef()
 .Param("filter_linear", "true")
 .Param("mipmap_input", "true")

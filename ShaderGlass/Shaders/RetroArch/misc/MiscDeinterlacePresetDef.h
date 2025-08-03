@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersDeinterlaceShaderDef()
 .Param("scale_type", "source"));
 	}

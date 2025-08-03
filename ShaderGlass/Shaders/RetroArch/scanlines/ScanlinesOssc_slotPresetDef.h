@@ -18,7 +18,7 @@ public:
 		Category = "scanlines";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersSimple_color_controlsShaderDef()
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")

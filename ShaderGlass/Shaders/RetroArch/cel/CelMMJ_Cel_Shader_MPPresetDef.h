@@ -18,7 +18,7 @@ public:
 		Category = "cel";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "MMJ_MP_refpass"));
          	ShaderDefs.push_back(CelShadersMMJ_CelMMJ_Cel_Shader_MP_Blur_HShaderDef()

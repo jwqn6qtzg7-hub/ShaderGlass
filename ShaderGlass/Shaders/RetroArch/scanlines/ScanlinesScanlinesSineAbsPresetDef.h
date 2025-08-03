@@ -18,7 +18,7 @@ public:
 		Category = "scanlines";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ScanlinesShadersScanlinesSineAbsShaderDef()
 .Param("scale_type", "viewport"));
 	}

@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "glow_trails_refpass"));
          	ShaderDefs.push_back(CrtShadersGlowTrailsGlowTrails0ShaderDef()

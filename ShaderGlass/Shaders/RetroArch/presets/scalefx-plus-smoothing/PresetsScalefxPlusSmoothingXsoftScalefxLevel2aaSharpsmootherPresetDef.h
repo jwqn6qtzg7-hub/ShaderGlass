@@ -18,7 +18,7 @@ public:
 		Category = "presets/scalefx-plus-smoothing";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersJinc2ShaderDef()
 .Param("alias", "refpass")
 .Param("filter_linear", "false")

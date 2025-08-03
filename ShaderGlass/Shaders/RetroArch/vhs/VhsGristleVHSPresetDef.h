@@ -18,7 +18,7 @@ public:
 		Category = "vhs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "gristleVHS_refpass"));
          	ShaderDefs.push_back(VhsShadersGristleVHSHorizontalSoftenShaderDef()

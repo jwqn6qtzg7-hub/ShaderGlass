@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtsimCompositeShaderDef()
 .Param("filter_linear", "false"));
          	ShaderDefs.push_back(CrtShadersCrtsimScreenShaderDef()

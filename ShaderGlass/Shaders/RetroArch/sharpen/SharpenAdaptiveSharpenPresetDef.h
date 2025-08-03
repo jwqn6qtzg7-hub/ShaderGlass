@@ -18,7 +18,7 @@ public:
 		Category = "sharpen";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(SharpenShadersAdaptiveSharpenShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "source"));

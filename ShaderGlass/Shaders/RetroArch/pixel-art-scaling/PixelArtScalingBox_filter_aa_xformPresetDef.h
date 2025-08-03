@@ -18,7 +18,7 @@ public:
 		Category = "pixel-art-scaling";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PixelArtScalingShadersBox_filter_aaBox_filter_aa_xformShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "viewport"));

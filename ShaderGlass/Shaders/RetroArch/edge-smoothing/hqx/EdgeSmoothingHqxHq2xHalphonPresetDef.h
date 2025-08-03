@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/hqx";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "hqx_refpass"));
          	ShaderDefs.push_back(EdgeSmoothingHqxShadersHq2xHalphonShaderDef()

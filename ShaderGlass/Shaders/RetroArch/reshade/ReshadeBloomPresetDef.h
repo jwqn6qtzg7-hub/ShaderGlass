@@ -18,7 +18,7 @@ public:
 		Category = "reshade";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(ReshadeShadersBloomBloomPass0ShaderDef()
 .Param("alias", "SamplerBloom1")
 .Param("float_framebuffer", "true"));

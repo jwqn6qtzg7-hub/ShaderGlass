@@ -18,7 +18,7 @@ public:
 		Category = "border/gameboy-player";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(HandheldShadersColorGbaColorShaderDef()
 .Param("scale", "1.000")
 .Param("scale_type", "source"));

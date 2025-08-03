@@ -18,7 +18,7 @@ public:
 		Category = "misc";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersTestPatternTestPatternPrependShaderDef()
 .Param("filter_linear", "false"));
             TextureDefs.push_back(MiscShadersTestPatternAll_palettesTextureDef()

@@ -18,7 +18,7 @@ public:
 		Category = "blurs";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(BlursShadersKawaseLinearizeShaderDef()
 .Param("scale_type", "source")
 .Param("srgb_framebuffer", "true"));

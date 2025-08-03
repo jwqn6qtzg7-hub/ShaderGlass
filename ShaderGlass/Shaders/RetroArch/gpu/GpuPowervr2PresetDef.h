@@ -18,7 +18,7 @@ public:
 		Category = "gpu";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(GpuShadersPowervr2ShaderDef());
 	}
 };

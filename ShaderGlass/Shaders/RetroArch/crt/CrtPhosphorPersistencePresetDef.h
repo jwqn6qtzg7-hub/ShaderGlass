@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersPhosphorPersistencePhosphorApplyShaderDef()
 .Param("alias", "internal1")
 .Param("filter_linear", "false")

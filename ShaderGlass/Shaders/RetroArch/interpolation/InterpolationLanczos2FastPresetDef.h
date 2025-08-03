@@ -18,7 +18,7 @@ public:
 		Category = "interpolation";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(InterpolationShadersLanczosLanczos2YShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

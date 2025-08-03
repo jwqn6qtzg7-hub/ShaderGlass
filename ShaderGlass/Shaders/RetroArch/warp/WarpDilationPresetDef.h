@@ -18,7 +18,7 @@ public:
 		Category = "warp";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(WarpShadersDilationShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")

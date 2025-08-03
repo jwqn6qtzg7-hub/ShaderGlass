@@ -18,7 +18,7 @@ public:
 		Category = "edge-smoothing/scalehq";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingScalehqShaders4xScaleHQShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type", "source")

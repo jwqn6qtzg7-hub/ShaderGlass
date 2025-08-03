@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersFakeCrtGeomShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "viewport"));

@@ -18,7 +18,7 @@ public:
 		Category = "pixel-art-scaling";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PixelArtScalingShadersGridBlendHybridShaderDef()
 .Param("filter_linear", "true")
 .Param("scale_type", "viewport"));

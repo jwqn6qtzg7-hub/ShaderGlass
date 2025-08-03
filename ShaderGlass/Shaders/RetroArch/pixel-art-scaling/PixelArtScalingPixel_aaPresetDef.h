@@ -18,7 +18,7 @@ public:
 		Category = "pixel-art-scaling";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(PixelArtScalingShadersPixel_aaTo_linShaderDef()
 .Param("filter_linear", "false")
 .Param("float_framebuffer", "true")

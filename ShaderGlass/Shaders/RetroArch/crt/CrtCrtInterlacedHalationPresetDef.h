@@ -18,7 +18,7 @@ public:
 		Category = "crt";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "crt_interlaced_halation_refpass"));
          	ShaderDefs.push_back(CrtShadersCrtInterlacedHalationCrtInterlacedHalationPass0ShaderDef()

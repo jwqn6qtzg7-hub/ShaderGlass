@@ -18,7 +18,7 @@ public:
 		Category = "presets/tvout-interlacing";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(CrtShadersTvoutTweaksShaderDef()
 .Param("scale_type_x", "viewport")
 .Param("scale_type_y", "source")

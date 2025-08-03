@@ -18,7 +18,7 @@ public:
 		Category = "presets";
 	}
 
-	virtual void Build() {
+	void Build() {
          	ShaderDefs.push_back(MiscShadersSimple_color_controlsShaderDef()
 .Param("filter_linear", "false")
 .Param("scale_type_x", "source")
