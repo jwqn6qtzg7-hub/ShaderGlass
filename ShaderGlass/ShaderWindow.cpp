@@ -471,10 +471,6 @@ void ShaderWindow::StartImage(bool autoScale, int pixelSize)
     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
 
     // if we are *switching* to file mode, default pixel size and freescale
-    if(pixelSize)
-    {
-        SendMessage(m_mainWindow, WM_COMMAND, pixelSize, 0);
-    }
     if(autoScale && !ScaleLocked())
     {
         // set starting scale to fit within current window size
@@ -488,6 +484,10 @@ void ShaderWindow::StartImage(bool autoScale, int pixelSize)
 
         m_captureOptions.outputScale = (float)defaultScale;
         SetFreeScale();
+    }
+    if(pixelSize)
+    {
+        SendMessage(m_mainWindow, WM_COMMAND, pixelSize, 0);
     }
 
     if(!HasCaptureAPI() && !m_captureManager.IsActive())
@@ -1765,7 +1765,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
 #endif
             break;
         case ID_HELP_README:
-            ShellExecute(0, 0, L"https://github.com/mausimus/ShaderGlass/blob/master/README.md", 0, 0, SW_SHOW);
+            ShellExecute(0, 0, L"https://mausimus.github.io/ShaderGlass/MANUAL.html", 0, 0, SW_SHOW);
             break;
         case ID_HELP_FREQUENTLYASKEDQUESTIONS:
             ShellExecute(0, 0, L"https://github.com/mausimus/ShaderGlass/blob/master/FAQ.md", 0, 0, SW_SHOW);

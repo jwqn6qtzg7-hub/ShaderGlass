@@ -1,23 +1,23 @@
 
 <html>
 <head>
-    <title>ShaderGlass Manual v1.1</title>
+    <title>ShaderGlass Manual v1.2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 </head>
 <body>
     <div id='content'>
-        <h2 id="shaderglass">ShaderGlass v1.1</h2>
+        <h2 id="shaderglass">ShaderGlass v1.2</h2>
         <p>Overlay for running GPU shaders on top of Windows desktop</p>
         <p style="font-size: 12px;">
-            Copyright (c) 2021-2025 mausimus (<a href="https://mausimus.net">mausimus.net</a>)<br />
+            Copyright (c) 2021-2025 mausimus (<a href="https://mausimus.net" target="_blank">mausimus.net</a>)<br />
             Distributed under GNU General Public License v3.0
         </p>
         <p>&nbsp;</p>
         <h3 id="features">Features</h3>
         <ul>
             <li>applies shader effects on top of desktop, in a floating window or full-screen</li>
-            <li>built-in <a href="https://github.com/libretro/RetroArch">RetroArch</a> shader library (1200+ shaders!) covering:</li>
+            <li>built-in <a href="https://github.com/libretro/RetroArch" target="_blank">RetroArch</a> shader library (1200+ shaders!) covering:</li>
             <ul>
                 <li>CRT monitor simulation</li>
                 <li>image upscaling</li>
@@ -27,21 +27,22 @@
             <li>works with most emulators, retro platforms and pixel art editors including:</li>
             <ul>
                 <li>
-                    <a href="https://www.dosbox.com/">DOSBox</a>, <a href="https://github.com/FrodeSolheim/fs-uae">FS-UAE</a>, <a href="http://www.virtualdub.org/altirra.html">Altirra</a>,
-                    <a href="https://github.com/scummvm/scummvm">ScummVM</a>, <a href="https://github.com/adventuregamestudio/ags">AGS</a>, <a href="https://sf.net/projects/vice-emu">VICE</a>, <a href="https://www.aseprite.org/">Aseprite</a> etc.
+                    <a href="https://www.dosbox.com/" target="_blank">DOSBox</a>, <a href="https://github.com/FrodeSolheim/fs-uae" target="_blank">FS-UAE</a>, <a href="http://www.virtualdub.org/altirra.html" target="_blank">Altirra</a>,
+                    <a href="https://github.com/scummvm/scummvm" target="_blank">ScummVM</a>, <a href="https://github.com/adventuregamestudio/ags" target="_blank">AGS</a>, <a href="https://sf.net/projects/vice-emu" target="_blank">VICE</a>, <a href="https://www.aseprite.org/" target="_blank">Aseprite</a> etc.
                 </li>
             </ul>
             <li>excellent companion for pixel art showing shaded and/or aspect-ratio corrected preview</li>
             <li>you can even use it on top of YouTube, Twitch or modern games</li>
-            <li>saving and loading profiles</li>
-            <li>import of external .slangp/.slang shaders</li>
+            <li>allows capture from a USB source (webcam or capture card)</li>
+            <li>saving and loading profiles and custom shaders</li>
             <li>high customizability with various options, operating modes and shader parameters</li>
             <li>can be captured by OBS (using Game Capture source)</li>
         </ul>
         <p><br /></p>
         <h3 id="download">Download</h3>
-        <p>GitHub: <a href="https://github.com/mausimus/ShaderGlass">https://github.com/mausimus/ShaderGlass</a></p>
-        <p>Itch: <a href="https://mausimus.itch.io/shaderglass">https://mausimus.itch.io/shaderglass</a></p>
+        <p>GitHub: <a href="https://github.com/mausimus/ShaderGlass" target="_blank">https://github.com/mausimus/ShaderGlass</a></p>
+        <p>Itch: <a href="https://mausimus.itch.io/shaderglass" target="_blank">https://mausimus.itch.io/shaderglass</a></p>
+        <p>Steam: <a href="https://store.steampowered.com/app/3613770/ShaderGlass/" target="_blank">https://store.steampowered.com/app/3613770/ShaderGlass/</a></p>
         <p><br /></p>
         <h3 id="requirements">Requirements</h3>
         <ul>
@@ -55,8 +56,12 @@
         <p>Currently supported options are:</p>
         <h4 id="processing">Processing</h4>
         <ul>
-            <li><p><strong>Enable Global Hotkeys</strong> - toggle use of global hotkeys (if they conflict with another app)</p></li>
-            <li><p><strong>Show Menu</strong> - toggle menu bar ('m')</p></li>
+            <li><p><strong>Global Hotkeys</strong></p></li>
+            <ul>
+                <li><strong>Enable</strong> - toggle use of global hotkeys (if they conflict with another app)</li>
+                <li><strong>...</strong> - set global hotkey for each of the possible actions</li>
+            </ul>
+            <li><p><strong>Toggle Menu</strong> - toggle menu bar ('m' or global hotkey); this will also work in fullscreen</p></li>
             <li><p><strong>Remember Position</strong> - remember previous window position and size on startup</p></li>
             <li><p><strong>GPU</strong> - shows the GPU which Windows assigned to ShaderGlass (read-only)</p></li>
             <li><p><strong>FPS</strong> - by default ShaderGlass runs at V-Sync, you can reduce GPU load by lowering the frame rate (for pixel art etc.)</p></li>
@@ -66,6 +71,7 @@
                 <li><p><strong>Use Flip Mode</strong> - uses DXGI Flip Presentation mode (as opposed to BitBlt) which is faster but a little unstable (especially on Windows 10)</p></li>
                 <li><p><strong>Allow Tearing</strong> - removes explicit V-Sync, required for VRR to work</p></li>
                 <li><p><strong>Max Capture Rate</strong> - remove capture frame limit of WGC, only supported since Windows 11 24H2</p></li>
+                <li><p><strong>Use HDR</strong> - use HDR-compatible RGBAf capture and display formats (experimental)</p></li>
             </ul>
             <li><p><strong>Load/Save/Recent Profiles</strong> - you can save ShaderGlass' configuration into a profile file and load later</p></li>
             <li><p><strong>Set as default/Remove default</strong> - make current settings the default when starting up</p></li>
@@ -76,10 +82,10 @@
             <ul><li><p><strong>Lock Current Area</strong> - always capture current area even if ShaderGlass window is moved</p></li></ul>
             <li><p><strong>Window</strong> - captures the selected window, defaults to Clone mode</p></li>
             <ul>
-                <li><p><strong>Rescan</strong> - refresh the list of open windows</p></li>
                 <li><p><strong>Crop</strong> - remove border around captured window, if your emulator has a toolbar for example</p></li>
             </ul>
-            <li><p><strong>File</strong> - load a .png or .jpg file as input</p></li>
+            <li><p><strong>Device</strong> - captures an external/USB device (webcam or capture card)</p></li>
+            <li><p><strong>File</strong> - load a .png/.jpg/.gif file as input</p></li>
             <li><p><strong>Pixel Size</strong> - indicates the size of input pixels (pre-scaling), i.e. if you run a game in x3 scaling mode set this to x3 as well so that ShaderGlass can tell the original resolution</p></li>
             <ul>
                 <li>
@@ -89,10 +95,16 @@
                     </p>
                 </li>
             </ul>
-            <li><p><strong>Capture Cursor</strong> - whether to include mouse cursor in capture</p></li>
+            <li>
+                <div class="break"></div>
+                <p>
+                    <strong>Capture Cursor</strong> - whether to include mouse cursor in capture; this will not work 100% of the time unfortunately, it will only hide system cursors but not custom cursors some games set;
+                    see FAQ for workarounds
+                </p>
+            </li>
             <li><p><strong>Remove Yellow Border</strong> - disables yellow frame around captured area (forced security feature); currently only supported on Windows 11</p></li>
         </ul>
-        <h4 id="output" style="page-break-before: always;">Output</h4>
+        <h4 id="output">Output</h4>
         <ul>
             <li><p><strong>Mode</strong> - overrides default mode for the input type:</p></li>
             <ul>
@@ -122,7 +134,7 @@
             </li>
             <li><p><strong>Take Snapshot</strong> - export current image in .png format</p></li>
         </ul>
-        <h4 id="shader">Shader</h4>
+        <h4 id="shader" style="page-break-before: always;">Shader</h4>
         <ul>
             <li><p><strong>Choose from Library</strong> - open Shader Browser to switch the current shader:</p></li>
             <ul>
@@ -137,11 +149,11 @@
             <li><p><strong>Import custom</strong> - load and compile an external .slangp/.slang shader</p></li>
             <li><p><strong>Parameters</strong> - show and modify active shader's parameters</p></li>
         </ul>
-        <p style="page-break-before: always;">&nbsp;</p>
         <p>
             You can save and load profile files which will store all the options. It's also possible to pass profile file path on the command
             line and ShaderGlass will load it on startup.
         </p>
+        <p>If you associate ShaderGlass with .sgp extension in Windows (double-click .sgp file and choose ShaderGlass) you will be able to start it up by double-clicking a profile file.</p>
         <p><br /></p>
         <h2 id="command-line">Command Line</h2>
 <pre><code><span>ShaderGlass.exe [-p|--paused]</span> <span>[-f|--fullscreen]</span> <span>[profile.sgp]</span>
@@ -166,6 +178,7 @@
             try to match Input Pixel Size setting with your input's size to achieve that.
         </p>
         <p><br /></p>
+        <div class="break"></div>
         <h2 id="parameters">Parameters</h2>
         <p>
             All shaders start using default Parameters as defined by their authors, but you can also tweak them using
@@ -178,7 +191,14 @@
             ShaderGlass window will remain topmost so just position it over the
             game window and Alt-Tab to the game to have mouse and focus captured.
         </p>
-        <h3 id="scummvm" style="page-break-before: always;">ScummVM</h3>
+        <h3 id="dosbox">DOSBox</h3>
+        <p>
+            DOSBox often defaults to exclusive fullscreen - for best results, run it in Windowed or Borderless Fullscreen.
+        </p>
+        <p>
+            You may also find mouse input doesn't work correctly with DOSBox. To remedy, tick Output -> Window -> Click-through in ShaderGlass.
+        </p>
+        <h3 id="scummvm">ScummVM</h3>
         <p>
             ScummVM doesn't capture mouse cursor by default so for best results follow below steps:
             <ol>
@@ -194,10 +214,11 @@
             and/or aspect ratio correction in ShaderGlass and enjoy the game.
         </p>
         <p><br /></p>
+        <div class="break"></div>
         <h2 id="parameters">Importing Custom Shaders</h2>
         <p>
             ShaderGlass comes with a large built-in library of shaders, but you can also import custom ones
-            written in <a href="https://github.com/libretro/slang-shaders/blob/master/README.md">RetroArch shader system</a>.
+            written in <a href="https://github.com/libretro/slang-shaders/blob/master/README.md" target="_blank">RetroArch shader system</a>.
             It accepts both individual shaders (<i>.slang</i>) and multi-pass presets (<i>.slangp</i>).
         </p>
         <p>
@@ -216,7 +237,7 @@
             ShaderGlass lets you easily experiment with your own shaders! <i>CustomShader.slang</i> is a minimal example
             of a shader that swaps color channels and applies a boost, meant as an example from which you could
             start writing your own shaders and have them applied to your desktop. Check out
-            <a href="https://github.com/libretro/slang-shaders">RetroArch shader repository</a> for tons of examples.
+            <a href="https://github.com/libretro/slang-shaders" target="_blank">RetroArch shader repository</a> for tons of examples.
         </p>
 
         <h3>Modifying RetroArch shaders</h3>
@@ -255,17 +276,49 @@
         <p>For maximum sharpness set Input -&gt; Pixel Size -&gt; x1 but note that a lot of shaders expect pixelated input so set this option accordingly to each scenario.</p>
         <h3 id="-i-dont-see-my-favourite-retroarch-shader">&gt; I don't see my favourite RetroArch shader</h3>
         <p>
-            ShaderGlass includes majority of RetroArch repository at time of release, but some shaders had to be excluded because of features SG doesn't yet support (for example HDR).<br />
+            ShaderGlass includes majority of RetroArch repository at time of release, but some shaders had to be excluded because of features SG doesn't yet support.
+            Differences versus upstream RetroArch shader repository are tracked <a href="https://github.com/mausimus/slang-shaders/pull/1" target="_blank">in this PR</a>.
         </p>
-        <h3 id="-shaderglass-cant-capture-some-windows">&gt; ShaderGlass can't capture some windows</h3>
+        <h3 id="-shaderglass-cant-capture-some-windows" style="page-break-before: always;">&gt; ShaderGlass can't capture some windows</h3>
         <p>Unfortunately some old-style rendering windows are not supported by modern Windows Capture API. Please use Desktop mode to capture those.</p>
+        <h3 id="-mouse-cursor">&gt; Mouse cursor isn't properly captured (duplicate and/or wrong image)</h3>
+        <p>
+            This is the case when a Windows-native game sets a custom cursor shape; ShaderGlass cannot override such cursors so they will remain visible. There are two possible workarounds:
+            <ul>
+                <li>
+                    Use Window Clone mode - if you have another display, run your game in a window on that display and ShaderGlass on another display.
+                    <ol>
+                        <li>
+                            Use Input -> Window with Capture Cursor enabled, and move mouse over to the game window, while watching the result in ShaderGlass window.
+
+                        </li>
+                    </ol>
+                <li>
+                    Use a Virtual Display - install an open-source virtual monitor driver and run the game on there; then in ShaderGlass use Display Clone mode to see the game with mouse cursor properly captured:
+                    <ol>
+                        <li>Download and install <a href="https://github.com/VirtualDrivers/Virtual-Display-Driver" target="_blank">Virtual Display Driver</a></li>
+                        <li>Configure the virtual display to the same resolution and refresh rate as your main display using Windows Display Settings</li>
+                        <li>Start up your game in borderless fullscreen and use Win+Shift+Arrow keys to position it on the virtual display</li>
+                        <li>Set Input -> Desktop to the virtual display in ShaderGlass</li>
+                        <li>Set Output -> Mode -> Clone in ShaderGlass</li>
+                        <li>Make sure Capture Cursor is ticked</li>
+                        <li>Go to Fullscreen in ShaderGlass (Ctrl+Shift+G)</li>
+                        <li>Move mouse over to the virtual display and play the game</li>
+                    </ol>
+                    Virtual Display Driver can also be used to capture popup windows like menus or notifications that normally ShaderGlass cannot get in front of.
+                </li>
+            </ul>
+        </p>
+        <h3 id="-mouse-cursor">&gt; A different issue...</h3>
+        <p>
+            Check <a href="https://github.com/mausimus/ShaderGlass/issues?q=is%3Aissue" target="_blank">Issues section on GitHub</a> for known problems and workarounds.
         <p><br /></p>
         <h2 id="notices">Notices</h2>
         <ul>
-            <li><p>ShaderGlass application is provided under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a></p></li>
+            <li><p>ShaderGlass application is provided under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a></p></li>
             <li>
                 <p>
-                    Includes precompiled shaders from <a href="https://github.com/libretro/slang-shaders">libretro/RetroArch shader repository</a>.<br />
+                    Includes precompiled shaders from <a href="https://github.com/libretro/slang-shaders" target="_blank">libretro/RetroArch shader repository</a>.<br />
                     Please refer to copyright notes within shader code for detailed copyright and license information about each shader.
                 </p>
             </li>
@@ -275,10 +328,23 @@
     </div>
     <style type='text/css'>
 
-        @page {
-            size: auto; /* auto is the initial value */
-            /* this affects the margin in the printer settings */
-            margin: 50mm 50mm 50mm 50mm;
+        @media print {
+            @page {
+                size: auto; /* auto is the initial value */
+                /* this affects the margin in the printer settings */
+                margin: 50mm 50mm 50mm 50mm;
+            }
+
+            .break {
+                page-break-before: always;
+                height: 20px;
+            }
+        }
+
+        @media screen {
+            .break {
+                display: none;
+            }
         }
 
         body {
@@ -292,6 +358,8 @@
             font-feature-settings: "kern" 1;
             font-kerning: normal;
             padding: 30px;
+            max-width: 960px;
+            margin: 0 auto;
         }
 
         @media only screen and (max-width: 600px) {
@@ -331,11 +399,11 @@
         }
 
             a:visited {
-                color: #0366d6;
+                color: #d19a66;
             }
 
             a:hover {
-                color: #0366d6;
+                color: #d19a66;
                 text-decoration: underline;
             }
 
@@ -444,15 +512,14 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         }
 
-        a:visited {
-            color: #0366d6;
-        }
-
         h1,
         h2,
         h3 {
-            border-bottom: 1px solid #aaacaf;
             color: #eee;
+        }
+
+        h2 {
+            border-bottom: 1px solid #aaacaf;
         }
 
         code > * {
