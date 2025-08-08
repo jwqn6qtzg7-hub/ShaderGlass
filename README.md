@@ -33,6 +33,7 @@ Latest stable release (v1.2.0, 9 Aug 2025):
 * device capture input (webcam/capture card)
 * hide original mouse cursor when "Capture Cursor" is enabled
 * ability to edit global hotkeys + more of them
+* added Sonkun's presets
 * minor fixes
 
 https://github.com/mausimus/ShaderGlass/releases/download/v1.2.0/ShaderGlass-1.2.0-win-x64.zip
