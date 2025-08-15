@@ -44,12 +44,13 @@ https://github.com/mausimus/ShaderGlass/releases/download/v1.2.0/ShaderGlass-1.2
 
 [![ShaderGlass on Steam](images/steam.png)](https://store.steampowered.com/app/3613770/ShaderGlass/)
 
+<br/>
+
 Join testing of BFI (Black Frame Insertion) and Blur Busters' CRT Beam Simulator shaders here:
+
 [ShaderGlass-bfi-alpha2](https://github.com/mausimus/ShaderGlass/discussions/200)
 
 [Betas and older versions available here](https://github.com/mausimus/ShaderGlass/releases)
-
-Follow [ShaderGlass on itch.io](https://mausimus.itch.io/shaderglass) for latest updates.
 
 <br/>
 
