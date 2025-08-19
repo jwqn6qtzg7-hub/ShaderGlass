@@ -46,123 +46,138 @@ std::vector<CaptureDevice> DeviceCapture::GetCaptureDevices()
     IMFActivate**                 devices    = NULL;
     BOOL                          selected   = FALSE;
 
-    Init();
-
-    THROW(MFCreateAttributes(attributes.put(), 1));
-    THROW(attributes->SetGUID(MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID));
-    THROW(MFEnumDeviceSources(attributes.get(), &devices, &numDevices));
-    if(numDevices == 0)
-        return result;
-
     try
     {
+        Init();
+
+        THROW(MFCreateAttributes(attributes.put(), 1));
+        THROW(attributes->SetGUID(MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID));
+        THROW(MFEnumDeviceSources(attributes.get(), &devices, &numDevices));
+        if(numDevices == 0)
+            return result;
+
         for(unsigned deviceNo = 0; deviceNo < numDevices && deviceNo < MAX_CAPTURE_DEVICES; deviceNo++)
         {
-            winrt::com_ptr<IMFMediaSource>            mediaSource;
-            winrt::com_ptr<IMFPresentationDescriptor> presentationDescriptor;
-            winrt::com_ptr<IMFStreamDescriptor>       streamDescriptor;
-            winrt::com_ptr<IMFMediaTypeHandler>       mediaTypeHandler;
-            winrt::com_ptr<IMFMediaType>              mediaType;
-
-            THROW(devices[deviceNo]->ActivateObject(__uuidof(IMFMediaSource), reinterpret_cast<void**>(mediaSource.put())));
-            THROW(mediaSource->CreatePresentationDescriptor(presentationDescriptor.put()));
-            THROW(presentationDescriptor->GetStreamDescriptorByIndex(STREAM_NO, &selected, streamDescriptor.put()));
-            if(!selected)
-                throw std::runtime_error("Stream not selected");
-
-            wchar_t deviceName[MAX_DEVICE_NAME];
-            UINT32  deviceNameLen = MAX_DEVICE_NAME;
-            devices[deviceNo]->GetString(MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, deviceName, MAX_DEVICE_NAME, &deviceNameLen);
-
-            CaptureDevice cdi {.no = deviceNo, .name = std::wstring(deviceName)};
-
-            DWORD mediaTypeCount;
-            THROW(streamDescriptor->GetMediaTypeHandler(mediaTypeHandler.put()));
-            THROW(mediaTypeHandler->GetMediaTypeCount(&mediaTypeCount));
-
-            std::map<unsigned, CaptureFormat> bestFormatByBucket;
-
-            for(unsigned formatNo = 0; formatNo < mediaTypeCount; formatNo++)
+            try
             {
-                THROW(mediaTypeHandler->GetMediaTypeByIndex(formatNo, mediaType.put()));
+                winrt::com_ptr<IMFMediaSource>            mediaSource;
+                winrt::com_ptr<IMFPresentationDescriptor> presentationDescriptor;
+                winrt::com_ptr<IMFStreamDescriptor>       streamDescriptor;
+                winrt::com_ptr<IMFMediaTypeHandler>       mediaTypeHandler;
+                winrt::com_ptr<IMFMediaType>              mediaType;
 
-                GUID format;
-                THROW(mediaType->GetGUID(MF_MT_SUBTYPE, &format));
-                char formatCode[5];
-                formatCode[0] = (format.Data1) & 127;
-                formatCode[1] = (format.Data1 >> 8) & 127;
-                formatCode[2] = (format.Data1 >> 16) & 127;
-                formatCode[3] = (format.Data1 >> 24) & 127;
-                formatCode[4] = 0;
+                THROW(devices[deviceNo]->ActivateObject(__uuidof(IMFMediaSource), reinterpret_cast<void**>(mediaSource.put())));
+                THROW(mediaSource->CreatePresentationDescriptor(presentationDescriptor.put()));
+                THROW(presentationDescriptor->GetStreamDescriptorByIndex(STREAM_NO, &selected, streamDescriptor.put()));
+                if(!selected)
+                    throw std::runtime_error("Stream not selected");
 
-                UINT32 w, h;
-                THROW(MFGetAttributeSize(mediaType.get(), MF_MT_FRAME_SIZE, &w, &h));
+                wchar_t deviceName[MAX_DEVICE_NAME];
+                UINT32  deviceNameLen = MAX_DEVICE_NAME;
+                devices[deviceNo]->GetString(MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, deviceName, MAX_DEVICE_NAME, &deviceNameLen);
 
-                UINT32 num, denum;
-                THROW(MFGetAttributeRatio(mediaType.get(), MF_MT_FRAME_RATE, &num, &denum));
-                float fps = denum != 0 ? num / (float)denum : 0.0f;
+                CaptureDevice cdi {.no = deviceNo, .name = std::wstring(deviceName)};
 
-                if(fps > 75)
-                    continue;
+                DWORD mediaTypeCount;
+                THROW(streamDescriptor->GetMediaTypeHandler(mediaTypeHandler.put()));
+                THROW(mediaTypeHandler->GetMediaTypeCount(&mediaTypeCount));
 
-                wchar_t formatName[MAX_DEVICE_NAME];
-                //_snwprintf_s(formatName, MAX_DEVICE_NAME, L"%dx%d %.2f fps (%S)\n", w, h, fps, formatCode);
-                _snwprintf_s(formatName, MAX_DEVICE_NAME, L"%dx%d @ %.2f fps", w, h, fps);
+                std::map<unsigned, CaptureFormat> bestFormatByBucket;
 
-                char formatId[MAX_DEVICE_NAME];
-                snprintf(formatId, MAX_DEVICE_NAME, "%u:%u:%lu:%u:%u", w, h, format.Data1, num, denum);
-
-                int  priority      = 1;
-                auto knownPriority = FormatPriorities.find(format.Data1);
-                if(knownPriority != FormatPriorities.end())
-                    priority = knownPriority->second;
-
-                auto newFormat = CaptureFormat {.no = formatNo, .name = std::wstring(formatName), .id = std::string(formatId), .wh = w * h, .fps = fps, .priority = priority};
-
-                unsigned bucket         = (w << 16) + h;
-                auto     existingBucket = bestFormatByBucket.find(bucket);
-                if(existingBucket != bestFormatByBucket.end())
+                for(unsigned formatNo = 0; formatNo < mediaTypeCount; formatNo++)
                 {
-                    // check if this better
-                    auto replace        = false;
-                    auto existingFormat = existingBucket->second;
-                    if(fps > existingFormat.fps)
-                        replace = true;
-                    else if(fps == existingFormat.fps && priority > existingFormat.priority)
-                        replace = true;
-
-                    if(replace)
+                    try
                     {
-                        bestFormatByBucket[bucket] = newFormat;
+                        THROW(mediaTypeHandler->GetMediaTypeByIndex(formatNo, mediaType.put()));
+
+                        GUID format;
+                        THROW(mediaType->GetGUID(MF_MT_SUBTYPE, &format));
+                        char formatCode[5];
+                        formatCode[0] = (format.Data1) & 127;
+                        formatCode[1] = (format.Data1 >> 8) & 127;
+                        formatCode[2] = (format.Data1 >> 16) & 127;
+                        formatCode[3] = (format.Data1 >> 24) & 127;
+                        formatCode[4] = 0;
+
+                        UINT32 w, h;
+                        THROW(MFGetAttributeSize(mediaType.get(), MF_MT_FRAME_SIZE, &w, &h));
+
+                        UINT32 num, denum;
+                        THROW(MFGetAttributeRatio(mediaType.get(), MF_MT_FRAME_RATE, &num, &denum));
+                        float fps = denum != 0 ? num / (float)denum : 0.0f;
+
+                        if(fps > 75)
+                            continue;
+
+                        wchar_t formatName[MAX_DEVICE_NAME];
+                        //_snwprintf_s(formatName, MAX_DEVICE_NAME, L"%dx%d %.2f fps (%S)\n", w, h, fps, formatCode);
+                        _snwprintf_s(formatName, MAX_DEVICE_NAME, L"%dx%d @ %.2f fps", w, h, fps);
+
+                        char formatId[MAX_DEVICE_NAME];
+                        snprintf(formatId, MAX_DEVICE_NAME, "%u:%u:%lu:%u:%u", w, h, format.Data1, num, denum);
+
+                        int  priority      = 1;
+                        auto knownPriority = FormatPriorities.find(format.Data1);
+                        if(knownPriority != FormatPriorities.end())
+                            priority = knownPriority->second;
+
+                        auto newFormat =
+                            CaptureFormat {.no = formatNo, .name = std::wstring(formatName), .id = std::string(formatId), .wh = w * h, .fps = fps, .priority = priority};
+
+                        unsigned bucket         = (w << 16) + h;
+                        auto     existingBucket = bestFormatByBucket.find(bucket);
+                        if(existingBucket != bestFormatByBucket.end())
+                        {
+                            // check if this better
+                            auto replace        = false;
+                            auto existingFormat = existingBucket->second;
+                            if(fps > existingFormat.fps)
+                                replace = true;
+                            else if(fps == existingFormat.fps && priority > existingFormat.priority)
+                                replace = true;
+
+                            if(replace)
+                            {
+                                bestFormatByBucket[bucket] = newFormat;
+                            }
+                        }
+                        else
+                        {
+                            bestFormatByBucket[bucket] = newFormat;
+                        }
+                    }
+                    catch(std::exception&)
+                    {
+                        // ignore bad format
                     }
                 }
-                else
+
+                for(auto& b : bestFormatByBucket)
                 {
-                    bestFormatByBucket[bucket] = newFormat;
+                    cdi.formats.emplace_back(b.second);
                 }
-            }
 
-            for(auto& b : bestFormatByBucket)
+                std::sort(cdi.formats.begin(), cdi.formats.end(), [](const CaptureFormat& a, const CaptureFormat& b) { return a.wh > b.wh; });
+
+                if(cdi.formats.size() > MAX_CAPTURE_FORMATS)
+                {
+                    cdi.formats.resize(MAX_CAPTURE_FORMATS);
+                }
+
+                result.emplace_back(cdi);
+            }
+            catch(std::exception&)
             {
-                cdi.formats.emplace_back(b.second);
+                // ignore bad device
             }
-
-            std::sort(cdi.formats.begin(), cdi.formats.end(), [](const CaptureFormat& a, const CaptureFormat& b) { return a.wh > b.wh; });
-
-            if(cdi.formats.size() > MAX_CAPTURE_FORMATS)
-            {
-                cdi.formats.resize(MAX_CAPTURE_FORMATS);
-            }
-
-            result.emplace_back(cdi);
         }
     }
     catch(std::exception&)
     {
         for(UINT32 i = 0; i < numDevices; i++)
             devices[i]->Release();
-        CoTaskMemFree(devices);
-        throw;
+        if(devices)
+            CoTaskMemFree(devices);
     }
 
     return result;
