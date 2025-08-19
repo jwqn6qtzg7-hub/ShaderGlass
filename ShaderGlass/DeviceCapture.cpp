@@ -18,13 +18,11 @@ static HRESULT hr;
 
 constexpr unsigned STREAM_NO = 0;
 
-const std::map<unsigned long, int> FormatPriorities {
-    {842094158, 3}, // NV12
-    {1196444237, 0}, // MJPG
-    {844715353, 2}, // YUY2
-    {875967048, 0}, // H264
-    {20, 1}}
-; // RGB
+const std::map<unsigned long, int> FormatPriorities {{842094158, 3}, // NV12
+                                                     {1196444237, 0}, // MJPG
+                                                     {844715353, 2}, // YUY2
+                                                     {875967048, 0}, // H264
+                                                     {20, 1}}; // RGB
 
 DeviceCapture::DeviceCapture() { }
 
@@ -65,8 +63,11 @@ std::vector<CaptureDevice> DeviceCapture::GetCaptureDevices()
                 winrt::com_ptr<IMFStreamDescriptor>       streamDescriptor;
                 winrt::com_ptr<IMFMediaTypeHandler>       mediaTypeHandler;
                 winrt::com_ptr<IMFMediaType>              mediaType;
+                LPWSTR                                    symlink;
+                UINT32                                    slen;
 
                 THROW(devices[deviceNo]->ActivateObject(__uuidof(IMFMediaSource), reinterpret_cast<void**>(mediaSource.put())));
+                THROW(devices[deviceNo]->GetAllocatedString(MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK, &symlink, &slen));
                 THROW(mediaSource->CreatePresentationDescriptor(presentationDescriptor.put()));
                 THROW(presentationDescriptor->GetStreamDescriptorByIndex(STREAM_NO, &selected, streamDescriptor.put()));
                 if(!selected)
@@ -76,7 +77,7 @@ std::vector<CaptureDevice> DeviceCapture::GetCaptureDevices()
                 UINT32  deviceNameLen = MAX_DEVICE_NAME;
                 devices[deviceNo]->GetString(MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME, deviceName, MAX_DEVICE_NAME, &deviceNameLen);
 
-                CaptureDevice cdi {.no = deviceNo, .name = std::wstring(deviceName)};
+                CaptureDevice cdi {.no = deviceNo, .name = std::wstring(deviceName), .symlink = symlink };
 
                 DWORD mediaTypeCount;
                 THROW(streamDescriptor->GetMediaTypeHandler(mediaTypeHandler.put()));
@@ -220,11 +221,11 @@ bool DeviceCapture::Poll()
     return false;
 }
 
-void DeviceCapture::Start(winrt::com_ptr<ID3D11Device> d3dDevice, int deviceNo, int formatNo)
+void DeviceCapture::Start(winrt::com_ptr<ID3D11Device> d3dDevice, LPWSTR symlink, int formatNo)
 {
     Init();
 
-    CreateMediaSource(deviceNo, STREAM_NO, formatNo);
+    CreateMediaSource(symlink, STREAM_NO, formatNo);
     CreateSourceReader();
     SetMediaType();
     CreateSampleAllocator(d3dDevice);
@@ -255,7 +256,7 @@ void DeviceCapture::CreateSourceReader()
     THROW(MFCreateSourceReaderFromMediaSource(m_mediaSource.get(), attributes.get(), m_sourceReader.put()));
 }
 
-void DeviceCapture::CreateMediaSource(unsigned deviceNo, unsigned streamNo, unsigned mediaNo)
+void DeviceCapture::CreateMediaSource(LPWSTR symlink, unsigned streamNo, unsigned mediaNo)
 {
     winrt::com_ptr<IMFAttributes>             attributes;
     winrt::com_ptr<IMFPresentationDescriptor> presentationDescriptor;
@@ -268,13 +269,11 @@ void DeviceCapture::CreateMediaSource(unsigned deviceNo, unsigned streamNo, unsi
 
     THROW(MFCreateAttributes(attributes.put(), 1));
     THROW(attributes->SetGUID(MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE, MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID));
-    THROW(MFEnumDeviceSources(attributes.get(), &devices, &numDevices));
-    if(numDevices == 0 || numDevices <= deviceNo)
-        throw std::runtime_error("Device not found");
+    THROW(attributes->SetString(MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK, symlink));
 
     try
     {
-        THROW(devices[deviceNo]->ActivateObject(__uuidof(IMFMediaSource), reinterpret_cast<void**>(m_mediaSource.put())));
+        THROW(MFCreateDeviceSource(attributes.get(), m_mediaSource.put()));
         THROW(m_mediaSource->CreatePresentationDescriptor(presentationDescriptor.put()));
         THROW(presentationDescriptor->GetStreamDescriptorByIndex(streamNo, &selected, streamDescriptor.put()));
         if(!selected)

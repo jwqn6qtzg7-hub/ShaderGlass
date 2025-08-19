@@ -16,7 +16,7 @@ public:
     DeviceCapture();
 
     std::vector<CaptureDevice>      GetCaptureDevices();
-    void                            Start(winrt::com_ptr<ID3D11Device> d3dDevice, int deviceNo, int formatNo);
+    void                            Start(winrt::com_ptr<ID3D11Device> d3dDevice, LPWSTR symlink, int formatNo);
     void                            Stop();
     bool                            WaitForNextFrame();
     bool                            Poll();
@@ -26,7 +26,7 @@ public:
 
 private:
     void Init();
-    void CreateMediaSource(unsigned deviceNo, unsigned streamNo, unsigned mediaNo);
+    void CreateMediaSource(LPWSTR symlink, unsigned streamNo, unsigned mediaNo);
     void CreateSourceReader();
     void SetMediaType();
     void CreateSampleAllocator(winrt::com_ptr<ID3D11Device>);

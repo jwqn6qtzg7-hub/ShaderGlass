@@ -100,6 +100,7 @@ struct CaptureDevice
 {
     unsigned     no;
     std::wstring name;
+    LPWSTR       symlink;
 
     std::vector<CaptureFormat> formats;
 };
