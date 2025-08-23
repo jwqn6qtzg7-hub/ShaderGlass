@@ -46,6 +46,8 @@ https://github.com/mausimus/ShaderGlass/releases/download/v1.2.1/ShaderGlass-1.2
 
 <br/>
 
+Join testing of BFI (Black Frame Insertion) and Blur Busters' CRT Beam Simulator shaders [here.](https://github.com/mausimus/ShaderGlass/discussions/202)
+
 [Betas and older versions available here](https://github.com/mausimus/ShaderGlass/releases)
 
 <br/>
