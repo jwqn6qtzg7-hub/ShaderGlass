@@ -41,6 +41,10 @@ https://github.com/mausimus/ShaderGlass/releases/download/v1.2.2/ShaderGlass-1.2
 
 <br/>
 
+[![Buy me a coffee!](images/ko-fi.png)](https://ko-fi.com/mausimus)
+
+<br/>
+
 ### Get it on Steam!
 
 [![ShaderGlass on Steam](images/steam.png)](https://store.steampowered.com/app/3613770/ShaderGlass/)
