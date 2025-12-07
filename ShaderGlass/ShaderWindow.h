@@ -86,7 +86,7 @@ private:
     std::vector<std::wstring>     m_recentImports;
     std::map<UINT, HotkeyInfo>    m_hotkeys;
     std::filesystem::path         m_importPath;
-    bool                          m_forceStart;
+    volatile bool                 m_forceStart {false};
 
     bool         LoadProfile(const std::wstring& fileName);
     void         LoadProfile();
