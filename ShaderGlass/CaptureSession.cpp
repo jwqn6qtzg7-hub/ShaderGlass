@@ -53,6 +53,8 @@ CaptureSession::CaptureSession(winrt::IDirect3DDevice const&     device,
             // max 250Hz?
             const auto minInterval = maxCaptureRate ? std::chrono::milliseconds(4) : std::chrono::milliseconds(15);
             m_session.MinUpdateInterval(winrt::Windows::Foundation::TimeSpan(minInterval));
+            if(maxCaptureRate)
+                m_session.MinUpdateInterval(winrt::Windows::Foundation::TimeSpan(0));
         }
         catch(...)
         { }
