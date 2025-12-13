@@ -29,7 +29,7 @@ Check out [Online Manual](https://mausimus.github.io/ShaderGlass/MANUAL.html) fo
 
 ### Download
 
-Latest stable release (v1.2.x, 7 Dec 2025):
+Latest stable release (v1.2.x, 12 Dec 2025):
 * device capture input (webcam/capture card)
 * hide original mouse cursor when "Capture Cursor" is enabled
 * ability to edit global hotkeys + more of them
@@ -38,7 +38,7 @@ Latest stable release (v1.2.x, 7 Dec 2025):
 * (1.2.2) fix for browser video blanking out when inactive
 * (1.2.3) minor fixes
 
-https://github.com/mausimus/ShaderGlass/releases/download/v1.2.3/ShaderGlass-1.2.3-win-x64.zip
+https://github.com/mausimus/ShaderGlass/releases/download/v1.2.3/ShaderGlass-1.2.3.1-win-x64.zip
 
 <br/>
 
