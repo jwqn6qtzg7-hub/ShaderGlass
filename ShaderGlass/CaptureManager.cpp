@@ -104,7 +104,6 @@ bool CaptureManager::StartSession()
     }
 
     auto dxgiDevice = m_d3dDevice.as<IDXGIDevice>();
-    auto device     = HasCaptureAPI() ? CreateDirect3DDevice(dxgiDevice.get()) : nullptr;
 
     // get GPU name
     {
@@ -126,7 +125,7 @@ bool CaptureManager::StartSession()
     winrt::Windows::Graphics::Capture::GraphicsCaptureItem captureItem {nullptr};
 
     auto isCaptureAPI = !m_options.imageFile.size() && m_options.deviceFormatNo == 0;
-    if(isCaptureAPI)
+    if(isCaptureAPI && HasCaptureAPI())
     {
         try
         {
@@ -181,7 +180,7 @@ bool CaptureManager::StartSession()
         m_options.imageWidth  = desc.Width;
         m_options.imageHeight = desc.Height;
 
-        m_session = make_unique<CaptureSession>(device, inputTexture, *m_shaderGlass, m_frameEvent);
+        m_session = make_unique<CaptureSession>(inputTexture, *m_shaderGlass, m_frameEvent);
         UpdatePixelSize();
     }
     else if(m_options.deviceFormatNo)
@@ -200,7 +199,7 @@ bool CaptureManager::StartSession()
         m_options.imageWidth  = desc.Width;
         m_options.imageHeight = desc.Height;
 
-        m_session = make_unique<CaptureSession>(device, inputTexture, *m_shaderGlass, m_frameEvent);
+        m_session = make_unique<CaptureSession>(inputTexture, *m_shaderGlass, m_frameEvent);
         UpdatePixelSize();
     }
     else
@@ -208,7 +207,8 @@ bool CaptureManager::StartSession()
         winrt::Windows::Graphics::DirectX::DirectXPixelFormat pixelFormat = m_options.useHDR ? winrt::Windows::Graphics::DirectX::DirectXPixelFormat::R16G16B16A16Float
                                                                                              : winrt::Windows::Graphics::DirectX::DirectXPixelFormat::B8G8R8A8UIntNormalized;
 
-        m_session = make_unique<CaptureSession>(device, captureItem, pixelFormat, *m_shaderGlass, m_options.maxCaptureRate, m_frameEvent);
+        m_session = make_unique<CaptureSession>(
+            m_d3dDevice, captureItem, m_options.captureWindow, m_options.outputWindow, pixelFormat, *m_shaderGlass, m_options.maxCaptureRate, m_frameEvent);
     }
 
     m_active = true;
@@ -317,6 +317,30 @@ void CaptureManager::ProcessFrame()
     }
     catch(...)
     { }
+}
+
+bool CaptureManager::WaitingOnFirstFrame()
+{
+    if(m_options.captureWindow == HWND_BROADCAST)
+    {
+        LONG w = 0, h = 0;
+        GetCaptureSize(w, h);
+        return w == 0 && h == 0;
+    }
+    return false;
+}
+
+void CaptureManager::GetCaptureSize(LONG& width, LONG& height)
+{
+    if(m_session.get())
+    {
+        m_session->GetContentSize(width, height);
+    }
+    else
+    {
+        width  = 0;
+        height = 0;
+    }
 }
 
 void CaptureManager::StopSession()

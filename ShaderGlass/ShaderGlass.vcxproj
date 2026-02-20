@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BrowserWindow.h" />
+    <ClInclude Include="CaptureLib.h" />
     <ClInclude Include="CompileWindow.h" />
     <ClInclude Include="CropDialog.h" />
     <ClInclude Include="CursorEmulator.h" />
@@ -211,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BrowserWindow.cpp" />
+    <ClCompile Include="CaptureLib.cpp" />
     <ClCompile Include="CaptureManager.cpp" />
     <ClCompile Include="CaptureSession.cpp" />
     <ClCompile Include="CompileWindow.cpp" />

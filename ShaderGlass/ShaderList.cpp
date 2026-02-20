@@ -18,5 +18,5 @@ std::vector<PresetDef*> RetroArchPresetList = RetroArch::PresetList;
 
 std::vector<CachedShader> RetroArchCachedShaders()
 {
-	return RetroArch::CachedShaders();
+    return RetroArch::CachedShaders();
 }
