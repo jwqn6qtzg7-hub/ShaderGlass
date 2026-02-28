@@ -2518,7 +2518,7 @@ bool ShaderWindow::Create(_In_ HINSTANCE hInstance, _In_ int nCmdShow)
             if(HasCaptureLib())
             {
                 ScanWindows();
-                SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_WINDOW(0), 0);
+                //SendMessage(m_mainWindow, WM_COMMAND, WM_CAPTURE_WINDOW(0), 0);
             }
             else
             {
