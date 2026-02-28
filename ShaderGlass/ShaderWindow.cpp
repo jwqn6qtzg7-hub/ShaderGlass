@@ -931,7 +931,7 @@ void ShaderWindow::BuildInputMenu()
     m_displayMenu = GetSubMenu(m_inputMenu, 0);
     m_windowMenu  = GetSubMenu(m_inputMenu, 1);
     RemoveMenu(m_windowMenu, 0, MF_BYPOSITION);
-    m_deviceMenu  = GetSubMenu(m_inputMenu, 2);
+    m_deviceMenu = GetSubMenu(m_inputMenu, 2);
 }
 
 void ShaderWindow::BuildOutputMenu()
@@ -2111,7 +2111,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
         switch(wParam)
         {
         case SIZE_MINIMIZED:
-            if(m_captureManager.IsActive())
+            if(m_captureManager.IsActive() && !(m_captureOptions.captureWindow && !HasCaptureAPI() && HasCaptureLib()))
             {
                 m_captureOptions.paused = true;
                 m_captureManager.StopSession();
