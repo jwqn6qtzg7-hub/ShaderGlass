@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset presets / crt-lottes-multipass-interlaced-glow imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/presets/crt-lottes-multipass-interlaced-glow.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/presets/crt-lottes-multipass-interlaced-glow.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -21,7 +21,7 @@ public:
 	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("alias", "glow_trails_refpass"));
-         	ShaderDefs.push_back(CrtShadersGlowTrailsGlowTrails0ShaderDef()
+         	ShaderDefs.push_back(CrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDef()
 .Param("alias", "Trails0")
 .Param("filter_linear", "false")
 .Param("scale", "1.0")
@@ -37,7 +37,7 @@ public:
 .Param("scale", "1.0")
 .Param("scale_type", "source")
 .Param("srgb_framebuffer", "true"));
-         	ShaderDefs.push_back(CrtShadersGlowTrailsGlowTrails1ShaderDef());
+         	ShaderDefs.push_back(CrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDef());
          	ShaderDefs.push_back(CrtShadersCrtRoyaleSrcCrtRoyaleFirstPassLinearizeCrtGammaBobFieldsShaderDef()
 .Param("alias", "ORIG_LINEARIZED")
 .Param("srgb_framebuffer", "true"));

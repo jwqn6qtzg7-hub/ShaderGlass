@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / GameboyMono-Overlay-Taller imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets_Handhelds-ng/GameboyMono-Overlay-Taller.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets_Handhelds-ng/GameboyMono-Overlay-Taller.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -61,7 +61,7 @@ public:
 .Param("float_framebuffer", "true")
 .Param("scale", "1.0")
 .Param("scale_type", "source")
-.Param("wrap_mode", "clamp_to_border"));
+.Param("wrap_mode", "mirrored_repeat"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHaloShaderDef()
 .Param("alias", "halo_pass")
 .Param("filter_linear", "true")
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -167,6 +168,9 @@ public:
             OverrideParam("pixel", (float)1.000000);
             OverrideParam("only", (float)2.000000);
             OverrideParam("ADAPTIVE_BLACK", (float)0.000000);
+            OverrideParam("AMBI_FALLOFF", (float)0.400000);
+            OverrideParam("AMBI_POWER", (float)1.000000);
+            OverrideParam("AMBI_STRETCH", (float)0.300000);
             OverrideParam("ASPECT_X", (float)-5.000000);
             OverrideParam("BG_IMAGE_OFFX", (float)0.000000);
             OverrideParam("BG_IMAGE_OFFY", (float)-0.115000);

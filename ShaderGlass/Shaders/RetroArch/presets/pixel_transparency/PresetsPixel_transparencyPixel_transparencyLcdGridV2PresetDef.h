@@ -1,0 +1,45 @@
+/*
+ShaderGlass preset presets/pixel_transparency / pixel_transparency-lcd-grid-v2 imported from RetroArch:
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/presets/pixel_transparency/pixel_transparency-lcd-grid-v2.slangp
+See original file for credits and usage license. 
+This file is auto-generated, do not modify directly.
+*/
+
+#pragma once
+
+namespace RetroArch
+{
+class PresetsPixel_transparencyPixel_transparencyLcdGridV2PresetDef : public PresetDef
+{
+public:
+	PresetsPixel_transparencyPixel_transparencyLcdGridV2PresetDef() : PresetDef{}
+	{
+		Name = "pixel_transparency-lcd-grid-v2";
+		Category = "presets/pixel_transparency";
+	}
+
+	void Build() {
+         	ShaderDefs.push_back(HandheldShadersLcdCgwgLcdGridV2ShaderDef()
+.Param("filter_linear", "false")
+.Param("scale", "1.0")
+.Param("scale_type", "viewport"));
+         	ShaderDefs.push_back(HandheldShadersPixel_transparencyShaderDef()
+.Param("filter_linear", "false")
+.Param("scale_type", "viewport"));
+            OverrideParam("BGR", (float)0.000000);
+            OverrideParam("BSUBPIX_B", (float)0.750000);
+            OverrideParam("BSUBPIX_G", (float)0.000000);
+            OverrideParam("BSUBPIX_R", (float)0.000000);
+            OverrideParam("GSUBPIX_B", (float)0.000000);
+            OverrideParam("GSUBPIX_G", (float)0.750000);
+            OverrideParam("GSUBPIX_R", (float)0.000000);
+            OverrideParam("RSUBPIX_B", (float)0.000000);
+            OverrideParam("RSUBPIX_G", (float)0.000000);
+            OverrideParam("RSUBPIX_R", (float)0.750000);
+            OverrideParam("ambient", (float)0.000000);
+            OverrideParam("blacklevel", (float)0.000000);
+            OverrideParam("gain", (float)1.500000);
+            OverrideParam("gamma", (float)2.200000);
+	}
+};
+}

@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader edge-smoothing/nnedi3/shaders\yuv-to-rgb-4x imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/edge-smoothing/nnedi3/shaders/yuv-to-rgb-4x.slang
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/edge-smoothing/nnedi3/shaders/yuv-to-rgb-4x.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -184,10 +184,10 @@ static const BYTE sVertexByteCode[] =
 
 static const BYTE sFragmentByteCode[] =
 {
-68,88,66,67,224,40,
-8,196,26,73,101,164,
-205,116,200,186,196,52,
-100,8,1,0,0,0,
+68,88,66,67,73,195,
+98,229,194,182,250,32,
+40,153,218,145,103,70,
+210,208,1,0,0,0,
 200,3,0,0,5,0,
 0,0,52,0,0,0,
 88,1,0,0,140,1,
@@ -198,7 +198,7 @@ static const BYTE sFragmentByteCode[] =
 0,0,4,0,0,0,
 60,0,0,0,0,5,
 255,255,0,129,0,0,
-244,0,0,0,82,68,
+242,0,0,0,82,68,
 49,49,60,0,0,0,
 24,0,0,0,32,0,
 0,0,40,0,0,0,
@@ -214,13 +214,13 @@ static const BYTE sFragmentByteCode[] =
 0,0,0,0,0,0,
 0,0,0,0,3,0,
 0,0,1,0,0,0,
-1,0,0,0,225,0,
+1,0,0,0,224,0,
 0,0,2,0,0,0,
 5,0,0,0,4,0,
 0,0,255,255,255,255,
 2,0,0,0,1,0,
 0,0,13,0,0,0,
-232,0,0,0,2,0,
+231,0,0,0,2,0,
 0,0,5,0,0,0,
 4,0,0,0,255,255,
 255,255,3,0,0,0,
@@ -228,20 +228,20 @@ static const BYTE sFragmentByteCode[] =
 0,0,95,83,111,117,
 114,99,101,95,115,97,
 109,112,108,101,114,0,
-95,80,97,115,115,79,
-117,116,112,117,116,54,
-95,115,97,109,112,108,
-101,114,0,83,111,117,
-114,99,101,0,80,97,
-115,115,79,117,116,112,
-117,116,54,0,77,105,
-99,114,111,115,111,102,
-116,32,40,82,41,32,
-72,76,83,76,32,83,
-104,97,100,101,114,32,
-67,111,109,112,105,108,
-101,114,32,49,48,46,
-49,0,73,83,71,78,
+95,110,110,101,100,105,
+80,97,115,115,54,95,
+115,97,109,112,108,101,
+114,0,83,111,117,114,
+99,101,0,110,110,101,
+100,105,80,97,115,115,
+54,0,77,105,99,114,
+111,115,111,102,116,32,
+40,82,41,32,72,76,
+83,76,32,83,104,97,
+100,101,114,32,67,111,
+109,112,105,108,101,114,
+32,49,48,46,49,0,
+171,171,73,83,71,78,
 44,0,0,0,1,0,
 0,0,8,0,0,0,
 32,0,0,0,0,0,
@@ -358,8 +358,8 @@ static const uint32_t sVertexHash[] =
 
 static const uint32_t sFragmentHash[] =
 {
-0x7616adfd,0xb2e2797d,0x5d75b88c,0x966c2596,0xf38263b7,0xf6063434,
-0x9d7b579e,0x4cc461f4
+0xf2d39ec1,0xaec64164,0x89c6e1d9,0x2683475f,0xf1db267d,0xfa747e51,
+0x16f0c5c5,0x6d8e10c5
 };
 
 }
@@ -384,7 +384,7 @@ public:
 		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
 		AddParam("OutputSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
 		AddParam("FrameCount", -1, 48, 4, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
-		AddSampler("PassOutput6", 3);
+		AddSampler("nnediPass6", 3);
 		AddSampler("Source", 2);
 /*
 VertexSource = %*VERTEX_SOURCE*%;

@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset crt / crt-yah imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/crt/crt-yah.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/crt/crt-yah.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -21,7 +21,7 @@ public:
 	void Build() {
          	ShaderDefs.push_back(CrtShadersCrtYahNtscPass1ShaderDef()
 .Param("alias", "NtscPass1")
-.Param("filter_linear", "true")
+.Param("filter_linear", "false")
 .Param("float_framebuffer", "true")
 .Param("scale_type_x", "source")
 .Param("scale_type_y", "source")

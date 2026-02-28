@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / GameboyColor-Overlay-Taller imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets_Handhelds-ng/GameboyColor-Overlay-Taller.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets_Handhelds-ng/GameboyColor-Overlay-Taller.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -202,7 +203,7 @@ public:
             OverrideParam("GAME_GEOM_ZOOM", (float)1.000000);
             OverrideParam("GAMMA_OUT", (float)0.500000);
             OverrideParam("GEOM_CORNER_SIZE", (float)0.010000);
-            OverrideParam("GEOM_CORNER_SMOOTH", (float)200.000000);
+            OverrideParam("GEOM_CORNER_SMOOTH", (float)210.000000);
             OverrideParam("GLOBAL_OFFX", (float)-0.000000);
             OverrideParam("GLOBAL_OFFY", (float)-0.160000);
             OverrideParam("GLOBAL_ZOOM", (float)0.435499);

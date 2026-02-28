@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset presets/crt-plus-signal / ntsc-phosphorlut imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/presets/crt-plus-signal/ntsc-phosphorlut.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/presets/crt-plus-signal/ntsc-phosphorlut.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -40,7 +40,7 @@ public:
 .Param("scale_type", "source")
 .Param("scale_x", "1.0")
 .Param("scale_y", "1.0"));
-         	ShaderDefs.push_back(CrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDef()
+         	ShaderDefs.push_back(CrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDef()
 .Param("alias", "firstPass")
 .Param("filter_linear", "false")
 .Param("scale", "2.0")
@@ -58,20 +58,20 @@ public:
 .Param("scale", "1.0")
 .Param("scale_type", "source")
 .Param("srgb_framebuffer", "true"));
-         	ShaderDefs.push_back(CrtShadersPhosphorlutPhosphorlutPass0ShaderDef()
+         	ShaderDefs.push_back(CrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDef()
 .Param("alias", "phosphorPass")
 .Param("filter_linear", "true")
 .Param("scale_type", "source")
 .Param("scale_x", "4.0")
 .Param("scale_y", "2.0")
 .Param("srgb_framebuffer", "true"));
-         	ShaderDefs.push_back(CrtShadersPhosphorlutPhosphorlutPass1ShaderDef()
+         	ShaderDefs.push_back(CrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDef()
 .Param("filter_linear", "true"));
-            TextureDefs.push_back(CrtShadersPhosphorlutLutsShadowmaskTextureDef()
+            TextureDefs.push_back(CrtCrtEffectsShadersPhosphorlutLutsShadowmaskTextureDef()
 .Param("name", "shadow"));
-            TextureDefs.push_back(CrtShadersPhosphorlutLutsApertureGrilleTextureDef()
+            TextureDefs.push_back(CrtCrtEffectsShadersPhosphorlutLutsApertureGrilleTextureDef()
 .Param("name", "aperture"));
-            TextureDefs.push_back(CrtShadersPhosphorlutLutsSlotmaskTextureDef()
+            TextureDefs.push_back(CrtCrtEffectsShadersPhosphorlutLutsSlotmaskTextureDef()
 .Param("name", "slot"));
             OverrideParam("PHOSPHOR_SCALE_X", (float)4.000000);
             OverrideParam("diffusion", (float)0.600000);

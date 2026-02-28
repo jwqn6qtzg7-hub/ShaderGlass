@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset ntsc / ntsc-simple imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/ntsc/ntsc-simple.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/ntsc/ntsc-simple.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -21,24 +21,8 @@ public:
 	void Build() {
          	ShaderDefs.push_back(StockStockShaderDef()
 .Param("scale_type_x", "source")
-.Param("scale_type_y", "source")
-.Param("scale_x", "4.000000")
-.Param("scale_y", "1.000000"));
-         	ShaderDefs.push_back(NtscShadersNtscSimpleNtscSimple1ShaderDef()
-.Param("scale_type_x", "source")
-.Param("scale_type_y", "source")
-.Param("scale_x", "1.000000")
-.Param("scale_y", "1.000000"));
-         	ShaderDefs.push_back(NtscShadersNtscSimpleNtscSimple2ShaderDef()
-.Param("scale_type_x", "source")
-.Param("scale_type_y", "source")
-.Param("scale_x", "0.500000")
-.Param("scale_y", "1.000000"));
-         	ShaderDefs.push_back(NtscShadersNtscSimpleKaizerLpSmallShaderDef()
-.Param("scale_type_x", "source")
-.Param("scale_type_y", "source")
-.Param("scale_x", "1.000000")
-.Param("scale_y", "1.000000"));
+.Param("scale_x", "2.000000"));
+         	ShaderDefs.push_back(NtscShadersNtscSimpleNtsc_simpleShaderDef());
             OverrideParam("feedback_pass", (float)0.000000);
 	}
 };

@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / GameGear-Overlay imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets_Handhelds-ng/GameGear-Overlay.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets_Handhelds-ng/GameGear-Overlay.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -178,6 +179,7 @@ public:
             OverrideParam("BG_IMAGE_OFFY", (float)-0.111000);
             OverrideParam("BG_IMAGE_WRAP_MODE", (float)1.000000);
             OverrideParam("BG_IMAGE_ZOOM", (float)1.200485);
+            OverrideParam("CONTRAST", (float)-0.100000);
             OverrideParam("DOT_M_MBLUR_STR", (float)0.400000);
             OverrideParam("DO_AMBILIGHT", (float)1.000000);
             OverrideParam("DO_BG_IMAGE", (float)1.000000);
@@ -201,7 +203,7 @@ public:
             OverrideParam("GLOBAL_OFFY", (float)-0.046500);
             OverrideParam("GLOBAL_ZOOM", (float)0.533001);
             OverrideParam("IN_GLOW_H", (float)-1.000001);
-            OverrideParam("IN_GLOW_POWER", (float)1.200000);
+            OverrideParam("IN_GLOW_POWER", (float)1.600000);
             OverrideParam("IN_GLOW_SPREAD", (float)4.000000);
             OverrideParam("IN_GLOW_W", (float)-1.000001);
             OverrideParam("IN_GLOW_WARPSHARP_GAMMA", (float)0.200000);
@@ -211,10 +213,10 @@ public:
             OverrideParam("PIXELGRID_GAMMA_H", (float)1.000000);
             OverrideParam("PIXELGRID_GAMMA_W", (float)5.100000);
             OverrideParam("PIXELGRID_H_PRST", (float)5.000000);
-            OverrideParam("PIXELGRID_MAX_H", (float)0.500000);
-            OverrideParam("PIXELGRID_MAX_W", (float)0.900000);
-            OverrideParam("PIXELGRID_MIN_H", (float)0.500000);
-            OverrideParam("PIXELGRID_MIN_W", (float)0.700000);
+            OverrideParam("PIXELGRID_MAX_H", (float)0.400000);
+            OverrideParam("PIXELGRID_MAX_W", (float)0.600000);
+            OverrideParam("PIXELGRID_MIN_H", (float)0.400000);
+            OverrideParam("PIXELGRID_MIN_W", (float)0.400000);
             OverrideParam("PIXELGRID_NO_INTERBLEED_H", (float)2.000000);
             OverrideParam("PIXELGRID_SIZE_W", (float)0.000000);
             OverrideParam("PIXELGRID_Y_MASK", (float)0.000000);
@@ -230,7 +232,7 @@ public:
             OverrideParam("S_POSITION_Y", (float)2.000000);
             OverrideParam("S_POWER", (float)0.300000);
             OverrideParam("S_SIZE", (float)2.500000);
-            OverrideParam("TEMPERATURE", (float)7200.000000);
+            OverrideParam("TEMPERATURE", (float)6500.000000);
             OverrideParam("V_SIZE", (float)0.820000);
 	}
 };

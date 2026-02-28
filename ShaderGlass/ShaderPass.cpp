@@ -65,6 +65,7 @@ void ShaderPass::Initialize(winrt::com_ptr<ID3D11Device> device, winrt::com_ptr<
         samplerDesc.AddressU       = D3D11_TEXTURE_ADDRESS_BORDER;
         samplerDesc.AddressV       = D3D11_TEXTURE_ADDRESS_BORDER;
         samplerDesc.AddressW       = D3D11_TEXTURE_ADDRESS_BORDER;
+        samplerDesc.MaxLOD         = D3D11_FLOAT32_MAX;
         samplerDesc.BorderColor[0] = 0.0f;
         samplerDesc.BorderColor[1] = 0.0f;
         samplerDesc.BorderColor[2] = 0.0f;

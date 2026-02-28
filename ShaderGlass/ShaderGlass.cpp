@@ -773,6 +773,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
                 if(!shaderPass.m_shader.m_alias.empty())
                 {
                     m_textureSizes.insert(std::make_pair(shaderPass.m_shader.m_alias, float4 {(float)outputWidth, (float)outputHeight, 1.0f / outputWidth, 1.0f / outputHeight}));
+                    m_textureSizes.insert(std::make_pair(shaderPass.m_shader.m_alias + "Feedback", float4 {(float)outputWidth, (float)outputHeight, 1.0f / outputWidth, 1.0f / outputHeight}));
                 }
                 sourceWidth  = outputWidth;
                 sourceHeight = outputHeight;

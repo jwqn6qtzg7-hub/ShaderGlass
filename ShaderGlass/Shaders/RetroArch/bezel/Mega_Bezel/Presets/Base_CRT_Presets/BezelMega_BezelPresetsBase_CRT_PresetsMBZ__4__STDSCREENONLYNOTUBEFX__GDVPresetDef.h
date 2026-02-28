@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/Mega_Bezel_Base / MBZ__4__STD-SCREEN-ONLY-NO-TUBE-FX__GDV imported from MegaBezel:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/Mega_Bezel
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/Mega_Bezel
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

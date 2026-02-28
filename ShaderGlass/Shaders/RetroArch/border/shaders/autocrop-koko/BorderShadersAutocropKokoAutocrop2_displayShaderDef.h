@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader border/shaders/autocrop-koko\autocrop2_display imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/border/shaders/autocrop-koko/autocrop2_display.slang
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/border/shaders/autocrop-koko/autocrop2_display.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
@@ -576,7 +576,7 @@ public:
 		FragmentLength = sizeof(RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchBorderShadersAutocropKokoAutocrop2_displayShaderDefs::sFragmentHash;
 		Format = "";
-		AddParam("AUTOCROP_MAX", 0, 64, 4, 0.000000f, 0.500000f, 25.000000f, 0.010000f, "Autocrop: maximum amount");
+		AddParam("AUTOCROP_MAX", 0, 64, 4, 0.000000f, 0.500000f, 0.250000f, 0.010000f, "Autocrop: maximum amount");
 		AddParam("AUTOCROP_MIN", 0, 68, 4, 0.000000f, 10.000000f, 1.000000f, 1.000000f, "Number of mandatory lines to crop");
 		AddParam("AUTOCROP_SAMPLES", 0, 72, 4, 0.000000f, 300.000000f, 20.000000f, 1.000000f, "Samples per frame (faster response, higher gpu use)");
 		AddParam("AUTOCROP_SAMPLE_SIZE", 0, 76, 4, 0.000000f, 5.000000f, 2.000000f, 1.000000f, "Sample size (big speedup, less accurate)");

@@ -1,14 +1,33 @@
 /*
 ShaderGlass shader handheld/shaders/gameboy/shader-files\gb-pass2 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/shaders/gameboy/shader-files/gb-pass2.slang
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/handheld/shaders/gameboy/shader-files/gb-pass2.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
-///////////////////////////////////////////////////////////////////////////
-//                                                                       //
-// Gameboy Classic Shader v0.2.2                                         //
+/////////////////////////////////////////////////////////////////////////
+//    _________    __  _________   ____  ______  __                      //
+//   / ____/   |  /  |/  / ____/  / __ )/ __ \ \/ /                      //
+//  / / __/ /| | / /|_/ / __/    / __  / / / /\  /                       //
+// / /_/ / ___ |/ /  / / /___   / /_/ / /_/ / / /                        //
+// \____/_/  |_/_/  /_/_____/  /_____/\____/ /_/                         //
+//  ==================== DOT MATRIX SHADER v1.1                          //
 //                                                                       //
 // Copyright (C) 2013 Harlequin : unknown92835@gmail.com                 //
+// Copyright (C) 2024-2025 Matt Akins                                    //
+//                                                                       //
+// 2/6/24 - Modified to support color output by mattakins                //
+// 9/30/25 - v1.0 by mattakins                                           //
+//   • Fullscreen mode scales dot matrix effect to any screen size       //
+//   • Swap between display modes (full / max integer / scale factor)    //
+//   • Built-in palette presets while maintaining image pallete support  //
+//   • Drop shadow ON / OFF toggle                                       //
+//   • Simple vs perceptual pixel brightness calculation modes           //
+//   • Performance optimizations (vertex pre-calc, early-exit)           //
+//   • Parameter reorganization for ease of use                          //
+//   • Fixed issue with artifacts sometimes appearing in border          //
+// 10/25/25 - v1.1 by mattakins                                          //
+//   • Fixed fullscreen mode right and bottom border bug                 //
+//   • Improved brightness compensation for fullscreen pixel parameters  //
 //                                                                       //
 // This program is free software: you can redistribute it and/or modify  //
 // it under the terms of the GNU General Public License as published by  //
@@ -23,7 +42,16 @@ This file is auto-generated, do not modify directly.
 // You should have received a copy of the GNU General Public License     //
 // along with this program.  If not, see <http://www.gnu.org/licenses/>. //
 //                                                                       //
-///////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// gb-pass2 - Horizontal Gaussian blur                                 //
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// Vertex shader                                                       //
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// Fragment shader                                                     //
+/////////////////////////////////////////////////////////////////////////
 // Define offsets and weights - change this for both the X and Y passes if you change the sigma value or number of texels sampled
 // Sample the current fragment and apply its weight
 // Iterate across the offsets in both directions sampling texels

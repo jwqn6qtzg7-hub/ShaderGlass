@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader pal/shaders\pal-r57shell-moire-only imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/pal/shaders/pal-r57shell-moire-only.slang
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/pal/shaders/pal-r57shell-moire-only.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 

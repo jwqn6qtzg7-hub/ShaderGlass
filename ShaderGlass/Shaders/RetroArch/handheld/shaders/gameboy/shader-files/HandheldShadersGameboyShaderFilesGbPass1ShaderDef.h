@@ -1,21 +1,33 @@
 /*
 ShaderGlass shader handheld/shaders/gameboy/shader-files\gb-pass1 imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/shaders/gameboy/shader-files/gb-pass1.slang
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/handheld/shaders/gameboy/shader-files/gb-pass1.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 
-////////////////////////////////////////////////////////////////////////////////
-// Config                                                                     //
-////////////////////////////////////////////////////////////////////////////////
-// 0 - only the space between dots is blending
-// 1 - all texels are blended
- TODO/FIXME - When set to zero, frame will be a solid green color 
-// The amount of alpha swapped between neighboring texels
-///////////////////////////////////////////////////////////////////////////
-//                                                                       //
-// Gameboy Classic Shader v0.2.2                                         //
+/////////////////////////////////////////////////////////////////////////
+//    _________    __  _________   ____  ______  __                      //
+//   / ____/   |  /  |/  / ____/  / __ )/ __ \ \/ /                      //
+//  / / __/ /| | / /|_/ / __/    / __  / / / /\  /                       //
+// / /_/ / ___ |/ /  / / /___   / /_/ / /_/ / / /                        //
+// \____/_/  |_/_/  /_/_____/  /_____/\____/ /_/                         //
+//  ==================== DOT MATRIX SHADER v1.1                          //
 //                                                                       //
 // Copyright (C) 2013 Harlequin : unknown92835@gmail.com                 //
+// Copyright (C) 2024-2025 Matt Akins                                    //
+//                                                                       //
+// 2/6/24 - Modified to support color output by mattakins                //
+// 9/30/25 - v1.0 by mattakins                                           //
+//   • Fullscreen mode scales dot matrix effect to any screen size       //
+//   • Swap between display modes (full / max integer / scale factor)    //
+//   • Built-in palette presets while maintaining image pallete support  //
+//   • Drop shadow ON / OFF toggle                                       //
+//   • Simple vs perceptual pixel brightness calculation modes           //
+//   • Performance optimizations (vertex pre-calc, early-exit)           //
+//   • Parameter reorganization for ease of use                          //
+//   • Fixed issue with artifacts sometimes appearing in border          //
+// 10/25/25 - v1.1 by mattakins                                          //
+//   • Fixed fullscreen mode right and bottom border bug                 //
+//   • Improved brightness compensation for fullscreen pixel parameters  //
 //                                                                       //
 // This program is free software: you can redistribute it and/or modify  //
 // it under the terms of the GNU General Public License as published by  //
@@ -30,16 +42,28 @@ This file is auto-generated, do not modify directly.
 // You should have received a copy of the GNU General Public License     //
 // along with this program.  If not, see <http://www.gnu.org/licenses/>. //
 //                                                                       //
-///////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// Vertex shader                                                              //
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// Fragment shader                                                            //
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// Fragment definitions                                                       //
-////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// gb-pass1 - Alpha blending for adjacent pixels                       //
+/////////////////////////////////////////////////////////////////////////
+// GAME BOY DOT MATRIX SHADER v1.1 - Shared Parameters
+// Display mode
+// Color & Palette
+// Pixel transparency
+// Pixel blending
+// Fullscreen pixel appearance
+// LCD effects
+// Drop shadows
+// Screen positioning
+/////////////////////////////////////////////////////////////////////////
+// Vertex shader                                                       //
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// Fragment shader                                                     //
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// Fragment definitions                                                //
+/////////////////////////////////////////////////////////////////////////
 // A simple blur technique that softens harsh color transitions
 // Specialized to only blur alpha values and limited to only blurring texels
 // lying in the spaces between two or more texels
@@ -788,8 +812,8 @@ public:
 		FragmentLength = sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sFragmentByteCode);
 		FragmentHash = RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sFragmentHash;
 		Format = "";
-		AddParam("blending_mode", -1, 48, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "Blending Mode");
-		AddParam("adjacent_texel_alpha_blending", -1, 52, 4, 0.000000f, 1.000000f, 0.175500f, 0.050000f, "Neighbor Blending");
+		AddParam("blending_mode", -1, 48, 4, 0.000000f, 1.000000f, 0.000000f, 1.000000f, "== Pixel blending mode == (0=Blend gaps, 1=Blend all)");
+		AddParam("adjacent_texel_alpha_blending", -1, 52, 4, 0.000000f, 1.000000f, 0.175500f, 0.050000f, "Blend amount");
 		AddParam("MVP", 0, 0, 64, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
 		AddParam("SourceSize", -1, 32, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");
 		AddParam("OriginalSize", -1, 16, 16, 0.000000f, 0.000000f, 0.000000f, 0.000000f, "");

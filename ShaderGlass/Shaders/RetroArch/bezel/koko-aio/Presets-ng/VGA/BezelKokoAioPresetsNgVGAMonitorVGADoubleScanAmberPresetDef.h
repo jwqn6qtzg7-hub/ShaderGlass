@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / Monitor-VGA-DoubleScan-Amber imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets-ng/VGA/Monitor-VGA-DoubleScan-Amber.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets-ng/VGA/Monitor-VGA-DoubleScan-Amber.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -186,7 +187,6 @@ public:
             OverrideParam("BEZEL_ROUGHNESS", (float)2.000000);
             OverrideParam("BEZEL_SPCL_STRENGTH", (float)0.300000);
             OverrideParam("BLOOM_EYE_ADPT_SRT", (float)0.000000);
-            OverrideParam("BLOOM_EYE_INERTIA", (float)10.000000);
             OverrideParam("BLOOM_GAMMA", (float)2.000000);
             OverrideParam("BLOOM_GAMMA_OUT", (float)0.500000);
             OverrideParam("BLOOM_MIX", (float)0.110000);
@@ -200,11 +200,11 @@ public:
             OverrideParam("COLOR_MONO_HUE_BIAS", (float)0.010000);
             OverrideParam("CONTRAST", (float)-0.020000);
             OverrideParam("DECON_BX", (float)0.000000);
-            OverrideParam("DECON_BY", (float)1.000000);
+            OverrideParam("DECON_BY", (float)1.600000);
             OverrideParam("DECON_GX", (float)0.000000);
             OverrideParam("DECON_GY", (float)0.000000);
             OverrideParam("DECON_RX", (float)0.000000);
-            OverrideParam("DECON_RY", (float)-1.000000);
+            OverrideParam("DECON_RY", (float)-1.600000);
             OverrideParam("DO_AMBILIGHT", (float)1.000000);
             OverrideParam("DO_BEZEL", (float)1.000000);
             OverrideParam("DO_BLOOM", (float)1.000000);
@@ -264,17 +264,15 @@ public:
             OverrideParam("PIXELGRID_Y_MASK_SHIFT", (float)0.150000);
             OverrideParam("PIXELGRID_Y_MASK_STEEP", (float)1.000000);
             OverrideParam("PIXELGRID_Y_SPARK", (float)1.000000);
-            OverrideParam("PPERSISTENCE_END", (float)0.500000);
+            OverrideParam("PPERSISTENCE_END", (float)0.800000);
             OverrideParam("PPERSISTENCE_START", (float)0.900000);
-            OverrideParam("SHIFT_B", (float)20.000000);
-            OverrideParam("SHIFT_G", (float)0.000000);
-            OverrideParam("SHIFT_R", (float)-20.000000);
             OverrideParam("S_POSITION_X", (float)-0.500000);
             OverrideParam("S_POSITION_Y", (float)0.500000);
             OverrideParam("S_POWER", (float)0.097000);
             OverrideParam("S_SIZE", (float)1.000000);
             OverrideParam("TEMPERATURE", (float)6500.000000);
             OverrideParam("V_POWER", (float)1.000000);
+            OverrideParam("V_SHAPE", (float)0.800000);
             OverrideParam("V_SIZE", (float)1.000000);
 	}
 };

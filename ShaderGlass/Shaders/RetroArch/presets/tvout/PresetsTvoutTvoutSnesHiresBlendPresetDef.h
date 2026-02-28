@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset presets/tvout / tvout+snes-hires-blend imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/presets/tvout/tvout+snes-hires-blend.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/presets/tvout/tvout+snes-hires-blend.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -19,7 +19,7 @@ public:
 	}
 
 	void Build() {
-         	ShaderDefs.push_back(CrtShadersSnesHiresBlendShaderDef()
+         	ShaderDefs.push_back(CrtCrtEffectsShadersSnesHiresBlendShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1.0")
 .Param("scale_type", "source"));

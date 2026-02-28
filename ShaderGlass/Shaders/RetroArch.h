@@ -146,11 +146,6 @@
 #include "RetroArch\bezel\Mega_Bezel\shaders\megatron\BezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\base\BezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\extras\BezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDef.h"
-#include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDef.h"
-#include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDef.h"
-#include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDef.h"
-#include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDef.h"
-#include "RetroArch\bezel\Mega_Bezel\shaders\hyllian\crt-super-xbr\BezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\support_shaders\koko-ambi-standalone\BezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\support_shaders\koko-ambi-standalone\BezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDef.h"
 #include "RetroArch\bezel\uborder\shaders\support_shaders\koko-ambi-standalone\BezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDef.h"
@@ -221,7 +216,7 @@
 #include "RetroArch\handheld\shaders\color\HandheldShadersColorGbaColorShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersTvoutTweaksShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersImageAdjustmentShaderDef.h"
-#include "RetroArch\misc\shaders\MiscShadersInterlacingShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\DeinterlacingShadersReinterlacingShaderDef.h"
 #include "RetroArch\auto-box\AutoBoxBoxCenterShaderDef.h"
 #include "RetroArch\border\shaders\BorderShadersImgborderShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtConsumerShaderDef.h"
@@ -251,15 +246,57 @@
 #include "RetroArch\crt\shaders\CrtShadersCrt1tapShaderDef.h"
 #include "RetroArch\sharpen\shaders\SharpenShadersRcasShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtApertureShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansLinearizeShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansScanlines_fast_horizontalShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansScanlines_fast_verticalShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansTransformShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansFilterShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansCalculate_widthsShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansScanlines_cubicShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansCubic_downsampleShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansBlur_horizontalShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansBlur_verticalShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansBilinear_upsampleShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansComposite_outputShaderDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansScanlines_analyticalShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtBlurPiShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtCaligariShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtCgwgFastShaderDef.h"
+#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerLinearShaderDef.h"
+#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerNtsc_module_XLShaderDef.h"
+#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerCrtConsumer1wShaderDef.h"
+#include "RetroArch\interpolation\shaders\InterpolationShadersLanczos16ARShaderDef.h"
+#include "RetroArch\crt\shaders\CreativeForce\CrtShadersCreativeForceCrtCreativeForceArcadeShaderDef.h"
+#include "RetroArch\crt\shaders\CreativeForce\CrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDef.h"
+#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerLinearizeShaderDef.h"
+#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerReflect_blurShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtCyclonShaderDef.h"
 #include "RetroArch\crt\shaders\crt-easymode-halation\CrtShadersCrtEasymodeHalationLinearizeShaderDef.h"
 #include "RetroArch\crt\shaders\crt-easymode-halation\CrtShadersCrtEasymodeHalationBlur_horizShaderDef.h"
 #include "RetroArch\crt\shaders\crt-easymode-halation\CrtShadersCrtEasymodeHalationBlur_vertShaderDef.h"
 #include "RetroArch\crt\shaders\crt-easymode-halation\CrtShadersCrtEasymodeHalationThresholdShaderDef.h"
 #include "RetroArch\crt\shaders\crt-easymode-halation\CrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\CrtCrtEffectsShadersAnalogServiceMenuShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\crt-black-crush-koko\CrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\crt-black-crush-koko\CrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\CrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\glow-trails\CrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\glow-trails\CrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphor-persistence\CrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphor-persistence\CrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphor-persistence\CrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphorlut\CrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDef.h"
+#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur5fastVerticalShaderDef.h"
+#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur5fastHorizontalShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphorlut\CrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphorlut\CrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDef.h"
+#include "RetroArch\crt\shaders\guest\hd\CrtShadersGuestHdStockShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\raster_bloom\CrtCrtEffectsShadersRaster_bloomAvgLumShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\raster_bloom\CrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\rt_curvature\CrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDef.h"
+#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur43fastVerticalShaderDef.h"
+#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur43fastHorizontalShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\glow-trails\CrtCrtEffectsShadersGlowTrailsCombineShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtFrutbunnShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtGdvMiniUltraShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtGdvMiniShaderDef.h"
@@ -268,7 +305,6 @@
 #include "RetroArch\crt\shaders\geom-deluxe\CrtShadersGeomDeluxeGaussxShaderDef.h"
 #include "RetroArch\crt\shaders\geom-deluxe\CrtShadersGeomDeluxeGaussyShaderDef.h"
 #include "RetroArch\crt\shaders\geom-deluxe\CrtShadersGeomDeluxeCrtGeomDeluxeShaderDef.h"
-#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerLinearizeShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersCrtGeomMiniShaderDef.h"
 #include "RetroArch\crt\shaders\guest\fast\CrtShadersGuestFastStockShaderDef.h"
 #include "RetroArch\crt\shaders\guest\fast\CrtShadersGuestFastPreShadersShaderDef.h"
@@ -283,7 +319,6 @@
 #include "RetroArch\crt\shaders\guest\fast\CrtShadersGuestFastLinearizefShaderDef.h"
 #include "RetroArch\crt\shaders\guest\fast\CrtShadersGuestFastCrtGuestAdvancedPass1fShaderDef.h"
 #include "RetroArch\crt\shaders\guest\fast\CrtShadersGuestFastCrtGuestAdvancedPass2fShaderDef.h"
-#include "RetroArch\crt\shaders\guest\hd\CrtShadersGuestHdStockShaderDef.h"
 #include "RetroArch\crt\shaders\guest\hd\CrtShadersGuestHdAfterglow0ShaderDef.h"
 #include "RetroArch\crt\shaders\guest\hd\CrtShadersGuestHdPreShadersAfterglowShaderDef.h"
 #include "RetroArch\crt\shaders\guest\hd\CrtShadersGuestHdLinearizeHdShaderDef.h"
@@ -350,7 +385,6 @@
 #include "RetroArch\crt\shaders\CrtShadersCrtPocketShaderDef.h"
 #include "RetroArch\crt\shaders\crt-potato\shader-files\CrtShadersCrtPotatoShaderFilesUltra_potatoShaderDef.h"
 #include "RetroArch\crt\shaders\crt-potato\shader-files\CrtShadersCrtPotatoShaderFilesCrtPotatoShaderDef.h"
-#include "RetroArch\crt\shaders\CrtShadersCrtResswitchGlitchKokoShaderDef.h"
 #include "RetroArch\crt\shaders\crt-royale\src\CrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDef.h"
 #include "RetroArch\crt\shaders\crt-royale\src\CrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDef.h"
 #include "RetroArch\crt\shaders\crt-royale\src\CrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDef.h"
@@ -421,8 +455,6 @@
 #include "RetroArch\crt\shaders\CrtShadersFakelottesShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersGizmoCrtShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersGizmoSlotmaskCrtShaderDef.h"
-#include "RetroArch\crt\shaders\glow-trails\CrtShadersGlowTrailsGlowTrails0ShaderDef.h"
-#include "RetroArch\crt\shaders\glow-trails\CrtShadersGlowTrailsGlowTrails1ShaderDef.h"
 #include "RetroArch\crt\shaders\GritsScanlines\CrtShadersGritsScanlinesGritsScanlinesShaderDef.h"
 #include "RetroArch\crt\shaders\gtu-v050\CrtShadersGtuV050Pass1ShaderDef.h"
 #include "RetroArch\crt\shaders\gtu-v050\CrtShadersGtuV050Pass2ShaderDef.h"
@@ -446,31 +478,32 @@
 #include "RetroArch\crt\shaders\newpixie\CrtShadersNewpixieBlur_vertShaderDef.h"
 #include "RetroArch\crt\shaders\newpixie\CrtShadersNewpixieNewpixieCrtShaderDef.h"
 #include "RetroArch\crt\shaders\newpixie-mini\CrtShadersNewpixieMiniNewpixieMiniShaderDef.h"
-#include "RetroArch\crt\shaders\phosphor-persistence\CrtShadersPhosphorPersistencePhosphorApplyShaderDef.h"
-#include "RetroArch\crt\shaders\phosphor-persistence\CrtShadersPhosphorPersistencePhosphorUpdateShaderDef.h"
-#include "RetroArch\crt\shaders\phosphor-persistence\CrtShadersPhosphorPersistencePassthroughShaderDef.h"
-#include "RetroArch\crt\shaders\phosphorlut\CrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDef.h"
-#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur5fastVerticalShaderDef.h"
-#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur5fastHorizontalShaderDef.h"
-#include "RetroArch\crt\shaders\phosphorlut\CrtShadersPhosphorlutPhosphorlutPass0ShaderDef.h"
-#include "RetroArch\crt\shaders\phosphorlut\CrtShadersPhosphorlutPhosphorlutPass1ShaderDef.h"
-#include "RetroArch\crt\shaders\rt_curvature\CrtShadersRt_curvatureRt_curvatureShaderDef.h"
 #include "RetroArch\crt\shaders\simple-crt\CrtShadersSimpleCrtSimpleFxaaShaderDef.h"
 #include "RetroArch\crt\shaders\simple-crt\CrtShadersSimpleCrtSimpleColorCorrectionShaderDef.h"
 #include "RetroArch\crt\shaders\simple-crt\CrtShadersSimpleCrtSimpleCrtShaderDef.h"
-#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur43fastVerticalShaderDef.h"
-#include "RetroArch\blurs\shaders\royale\BlursShadersRoyaleBlur43fastHorizontalShaderDef.h"
-#include "RetroArch\crt\shaders\glow-trails\CrtShadersGlowTrailsCombineShaderDef.h"
 #include "RetroArch\crt\shaders\vt220\CrtShadersVt220Vt220ShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersYee64ShaderDef.h"
 #include "RetroArch\crt\shaders\CrtShadersYeetronShaderDef.h"
 #include "RetroArch\crt\shaders\zfast_crt\CrtShadersZfast_crtZfast_crt_compositeShaderDef.h"
 #include "RetroArch\crt\shaders\zfast_crt\CrtShadersZfast_crtZfast_crt_curvatureShaderDef.h"
+#include "RetroArch\crt\shaders\zfast_crt\CrtShadersZfast_crtZfast_crt_geo_svideoShaderDef.h"
 #include "RetroArch\crt\shaders\zfast_crt\CrtShadersZfast_crtZfast_crt_geoShaderDef.h"
 #include "RetroArch\crt\shaders\zfast_crt\CrtShadersZfast_crtZfast_crt_coarsemaskShaderDef.h"
 #include "RetroArch\crt\shaders\zfast_crt\CrtShadersZfast_crtZfast_crt_finemaskShaderDef.h"
 #include "RetroArch\deblur\shaders\DeblurShadersDeblurLumaShaderDef.h"
 #include "RetroArch\deblur\shaders\DeblurShadersDeblurShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\DeinterlacingShadersBobDeinterlacingShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\DeinterlacingShadersDeinterlaceShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\DeinterlacingShadersGtuPass1DeinterlacedShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\DeinterlacingShadersInterpolationDeinterlacerShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\DeinterlacingShadersMotionAdaptiveDeinterlacingShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\nnedi3-deinterlacing\DeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDef.h"
+#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDef.h"
+#include "RetroArch\deinterlacing\shaders\nnedi3-deinterlacing\DeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDef.h"
+#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDef.h"
+#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDef.h"
+#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDef.h"
+#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDef.h"
 #include "RetroArch\denoisers\shaders\DenoisersShadersBilateralHorizontalShaderDef.h"
 #include "RetroArch\denoisers\shaders\DenoisersShadersBilateralVerticalShaderDef.h"
 #include "RetroArch\denoisers\shaders\DenoisersShadersBilateralShaderDef.h"
@@ -551,15 +584,12 @@
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDef.h"
-#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDef.h"
-#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDef.h"
-#include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDef.h"
 #include "RetroArch\edge-smoothing\nnedi3\shaders\EdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDef.h"
 #include "RetroArch\edge-smoothing\omniscale\shaders\EdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDef.h"
 #include "RetroArch\edge-smoothing\omniscale\shaders\EdgeSmoothingOmniscaleShadersOmniscaleShaderDef.h"
@@ -581,6 +611,7 @@
 #include "RetroArch\edge-smoothing\scalehq\shaders\EdgeSmoothingScalehqShaders2xScaleHQShaderDef.h"
 #include "RetroArch\edge-smoothing\scalehq\shaders\EdgeSmoothingScalehqShaders4xScaleHQShaderDef.h"
 #include "RetroArch\edge-smoothing\scalenx\shaders\EdgeSmoothingScalenxShadersEpxShaderDef.h"
+#include "RetroArch\edge-smoothing\scalenx\shaders\EdgeSmoothingScalenxShadersMmpxExShaderDef.h"
 #include "RetroArch\edge-smoothing\scalenx\shaders\EdgeSmoothingScalenxShadersMmpxShaderDef.h"
 #include "RetroArch\edge-smoothing\scalenx\shaders\EdgeSmoothingScalenxShadersScale2xShaderDef.h"
 #include "RetroArch\edge-smoothing\scalenx\shaders\EdgeSmoothingScalenxShadersScale2xplusShaderDef.h"
@@ -608,7 +639,7 @@
 #include "RetroArch\edge-smoothing\xbrz\shaders\xbrz-freescale-multipass\EdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDef.h"
 #include "RetroArch\edge-smoothing\xbrz\shaders\EdgeSmoothingXbrzShadersXbrzFreescaleShaderDef.h"
 #include "RetroArch\edge-smoothing\xsal\shaders\EdgeSmoothingXsalShaders2xsalLevel2ShaderDef.h"
-#include "RetroArch\crt\shaders\CrtShadersDotmaskShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\CrtCrtEffectsShadersDotmaskShaderDef.h"
 #include "RetroArch\edge-smoothing\xsal\shaders\EdgeSmoothingXsalShaders2xsalShaderDef.h"
 #include "RetroArch\edge-smoothing\xsal\shaders\EdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDef.h"
 #include "RetroArch\edge-smoothing\xsal\shaders\EdgeSmoothingXsalShaders2xsalLevel2HqShaderDef.h"
@@ -651,16 +682,17 @@
 #include "RetroArch\handheld\console-border\shader-files\HandheldConsoleBorderShaderFilesGbPass3ShaderDef.h"
 #include "RetroArch\handheld\console-border\shader-files\HandheldConsoleBorderShaderFilesGbPass4ShaderDef.h"
 #include "RetroArch\handheld\console-border\shader-files\HandheldConsoleBorderShaderFilesGbPass5ShaderDef.h"
+#include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass0ShaderDef.h"
 #include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass1ShaderDef.h"
 #include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass2ShaderDef.h"
 #include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass3ShaderDef.h"
 #include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass4ShaderDef.h"
+#include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass5ShaderDef.h"
 #include "RetroArch\motionblur\shaders\MotionblurShadersResponseTimeShaderDef.h"
 #include "RetroArch\handheld\console-border\shader-files\HandheldConsoleBorderShaderFilesBorderAutoScaleShaderDef.h"
 #include "RetroArch\handheld\console-border\shader-files\lcd-cgwg\HandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDef.h"
 #include "RetroArch\handheld\console-border\shader-files\lcd-cgwg\HandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDef.h"
 #include "RetroArch\handheld\shaders\HandheldShadersDsHybridViewShaderDef.h"
-#include "RetroArch\handheld\shaders\gameboy\shader-files\HandheldShadersGameboyShaderFilesGbPass0ShaderDef.h"
 #include "RetroArch\handheld\shaders\gb-palette\HandheldShadersGbPaletteGbPaletteShaderDef.h"
 #include "RetroArch\handheld\shaders\color\HandheldShadersColorGbcDevShaderDef.h"
 #include "RetroArch\handheld\shaders\lcd-cgwg\HandheldShadersLcdCgwgLcdGridShaderDef.h"
@@ -672,6 +704,7 @@
 #include "RetroArch\handheld\shaders\HandheldShadersLcd1x_ndsShaderDef.h"
 #include "RetroArch\handheld\shaders\HandheldShadersLcd1x_pspShaderDef.h"
 #include "RetroArch\handheld\shaders\HandheldShadersLcd3xShaderDef.h"
+#include "RetroArch\handheld\shaders\HandheldShadersPixel_transparencyShaderDef.h"
 #include "RetroArch\handheld\shaders\HandheldShadersRetroTilesShaderDef.h"
 #include "RetroArch\handheld\shaders\HandheldShadersRetroV2ShaderDef.h"
 #include "RetroArch\handheld\shaders\HandheldShadersRetroV3ShaderDef.h"
@@ -733,7 +766,6 @@
 #include "RetroArch\misc\shaders\MiscShadersAntiFlickerShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersAsciiShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersBeadShaderDef.h"
-#include "RetroArch\misc\shaders\MiscShadersBobDeinterlacingShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersChromaShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersChromaticityShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersCmykHalftoneDotShaderDef.h"
@@ -742,7 +774,6 @@
 #include "RetroArch\misc\shaders\MiscShadersColorimetryShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersConvergenceShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersDebandShaderDef.h"
-#include "RetroArch\misc\shaders\MiscShadersDeinterlaceShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersEdgeDetectShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersEgaShaderDef.h"
 #include "RetroArch\misc\shaders\MiscShadersGeomShaderDef.h"
@@ -813,9 +844,7 @@
 #include "RetroArch\ntsc\shaders\ntsc-adaptive-tate\NtscShadersNtscAdaptiveTateNtscTatePass2ShaderDef.h"
 #include "RetroArch\ntsc\shaders\NtscShadersNtscBlastemShaderDef.h"
 #include "RetroArch\ntsc\shaders\ntsc-simple\NtscShadersNtscSimpleNtscMiniShaderDef.h"
-#include "RetroArch\ntsc\shaders\ntsc-simple\NtscShadersNtscSimpleNtscSimple1ShaderDef.h"
-#include "RetroArch\ntsc\shaders\ntsc-simple\NtscShadersNtscSimpleNtscSimple2ShaderDef.h"
-#include "RetroArch\ntsc\shaders\ntsc-simple\NtscShadersNtscSimpleKaizerLpSmallShaderDef.h"
+#include "RetroArch\ntsc\shaders\ntsc-simple\NtscShadersNtscSimpleNtsc_simpleShaderDef.h"
 #include "RetroArch\ntsc\shaders\NtscShadersNtscXotShaderDef.h"
 #include "RetroArch\ntsc\shaders\ntsc-simple\NtscShadersNtscSimpleTiny_ntscShaderDef.h"
 #include "RetroArch\pal\shaders\PalShadersPalR57shellMoireOnlyShaderDef.h"
@@ -848,6 +877,7 @@
 #include "RetroArch\crt\shaders\crt-lottes-multipass\CrtShadersCrtLottesMultipassBloompassGlowShaderDef.h"
 #include "RetroArch\warp\shaders\WarpShadersSmartMorphShaderDef.h"
 #include "RetroArch\ntsc\shaders\maister\NtscShadersMaisterNtscPass23phaseLinearShaderDef.h"
+#include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerNtsc_moduleShaderDef.h"
 #include "RetroArch\downsample\shaders\DownsampleShadersDrezGSharp_resamplerShaderDef.h"
 #include "RetroArch\handheld\shaders\simpletex_lcd\HandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDef.h"
 #include "RetroArch\handheld\shaders\simpletex_lcd\HandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDef.h"
@@ -862,7 +892,7 @@
 #include "RetroArch\blurs\shaders\BlursShadersBlurGaussHShaderDef.h"
 #include "RetroArch\blurs\shaders\BlursShadersBlurGaussVShaderDef.h"
 #include "RetroArch\reshade\shaders\ReshadeShadersBlurHazeSh1nra358ShaderDef.h"
-#include "RetroArch\crt\shaders\CrtShadersSnesHiresBlendShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\CrtCrtEffectsShadersSnesHiresBlendShaderDef.h"
 #include "RetroArch\edge-smoothing\xsal\shaders\EdgeSmoothingXsalShaders2xsalLevel2XbrShaderDef.h"
 #include "RetroArch\reshade\shaders\ReshadeShadersFilmGrainShaderDef.h"
 #include "RetroArch\reshade\shaders\magicbloom\ReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDef.h"
@@ -879,7 +909,7 @@
 #include "RetroArch\reshade\shaders\NormalsDisplacement\ReshadeShadersNormalsDisplacementNormalsDisplacementShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersIntegerScalingScanlinesShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersOsscShaderDef.h"
-#include "RetroArch\crt\shaders\CrtShadersSlotmaskShaderDef.h"
+#include "RetroArch\crt\crt-effects\shaders\CrtCrtEffectsShadersSlotmaskShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersResIndependentScanlinesShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersScanlineFractShaderDef.h"
 #include "RetroArch\scanlines\shaders\ScanlinesShadersScanlinesRereShaderDef.h"
@@ -894,6 +924,7 @@
 #include "RetroArch\sharpen\shaders\SharpenShadersSuperResExShaderDef.h"
 #include "RetroArch\misc\shaders\deposterize\MiscShadersDeposterizeDeposterizePass0ShaderDef.h"
 #include "RetroArch\misc\shaders\deposterize\MiscShadersDeposterizeDeposterizePass1ShaderDef.h"
+#include "RetroArch\crt\shaders\CrtShadersCrtResswitchGlitchKokoShaderDef.h"
 #include "RetroArch\crt\shaders\guest\advanced\grade\CrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDef.h"
 #include "RetroArch\stereoscopic-3d\shaders\Stereoscopic3dShadersAnaglyphToInterlacedShaderDef.h"
 #include "RetroArch\stereoscopic-3d\shaders\Stereoscopic3dShadersAnaglyphToSideBySideShaderDef.h"
@@ -937,6 +968,7 @@
 #include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGbmTextureDef.h"
 #include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGbpTextureDef.h"
 #include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysGamegearTextureDef.h"
+#include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysLynxTextureDef.h"
 #include "RetroArch\bezel\koko-aio\textures\overlays\BezelKokoAioTexturesOverlaysPspE1000TextureDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\lut\BezelMega_BezelShadersGuestLutTrinitronLutTextureDef.h"
 #include "RetroArch\bezel\Mega_Bezel\shaders\guest\lut\BezelMega_BezelShadersGuestLutInvTrinitronLutTextureDef.h"
@@ -974,7 +1006,11 @@
 #include "RetroArch\border\textures\BorderTexturesPvmTextureDef.h"
 #include "RetroArch\border\sgb\BorderSgbSgbTextureDef.h"
 #include "RetroArch\border\sgba\BorderSgbaSgbaTextureDef.h"
+#include "RetroArch\crt\shaders\crt-beans\CrtShadersCrtBeansBlue_noiseTextureDef.h"
 #include "RetroArch\crt\shaders\crt-consumer\CrtShadersCrtConsumerBezelTextureDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphorlut\luts\CrtCrtEffectsShadersPhosphorlutLutsShadowmaskTextureDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphorlut\luts\CrtCrtEffectsShadersPhosphorlutLutsApertureGrilleTextureDef.h"
+#include "RetroArch\crt\crt-effects\shaders\phosphorlut\luts\CrtCrtEffectsShadersPhosphorlutLutsSlotmaskTextureDef.h"
 #include "RetroArch\crt\shaders\geom-deluxe\masks\CrtShadersGeomDeluxeMasksAperture_2_4_rgbTextureDef.h"
 #include "RetroArch\crt\shaders\geom-deluxe\masks\CrtShadersGeomDeluxeMasksSlot_2_5x4_bgrTextureDef.h"
 #include "RetroArch\crt\shaders\geom-deluxe\masks\CrtShadersGeomDeluxeMasksDelta_2_4x1_rgbTextureDef.h"
@@ -1028,9 +1064,6 @@
 #include "RetroArch\crt\shaders\metacrt\CrtShadersMetacrtBasilicaTextureDef.h"
 #include "RetroArch\crt\shaders\metacrt\CrtShadersMetacrtWoodgrainTextureDef.h"
 #include "RetroArch\crt\shaders\newpixie\CrtShadersNewpixieCrtframeTextureDef.h"
-#include "RetroArch\crt\shaders\phosphorlut\luts\CrtShadersPhosphorlutLutsShadowmaskTextureDef.h"
-#include "RetroArch\crt\shaders\phosphorlut\luts\CrtShadersPhosphorlutLutsApertureGrilleTextureDef.h"
-#include "RetroArch\crt\shaders\phosphorlut\luts\CrtShadersPhosphorlutLutsSlotmaskTextureDef.h"
 #include "RetroArch\dithering\shaders\blue-noise\DitheringShadersBlueNoiseLDR_RGB1_0TextureDef.h"
 #include "RetroArch\edge-smoothing\hqx\resources\EdgeSmoothingHqxResourcesHq2xTextureDef.h"
 #include "RetroArch\edge-smoothing\hqx\resources\EdgeSmoothingHqxResourcesHq3xTextureDef.h"
@@ -1060,11 +1093,12 @@
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesPocketPaletteTextureDef.h"
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesPocketBackgroundTextureDef.h"
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesGbaBorderSquare4xTextureDef.h"
+#include "RetroArch\handheld\shaders\gameboy\resources\sample-palettes\HandheldShadersGameboyResourcesSamplePalettesBWPaletteTextureDef.h"
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesColorBorderSquare4xTextureDef.h"
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesGgBorderSquare4xTextureDef.h"
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesNgpcBorderSquare4xTextureDef.h"
 #include "RetroArch\handheld\console-border\resources\HandheldConsoleBorderResourcesPspBorderTextureDef.h"
-#include "RetroArch\handheld\shaders\gameboy\resources\sample-palettes\HandheldShadersGameboyResourcesSamplePalettesBWPaletteTextureDef.h"
+#include "RetroArch\handheld\shaders\gameboy\resources\sample-palettes\HandheldShadersGameboyResourcesSamplePalettesGblightPalette3TextureDef.h"
 #include "RetroArch\handheld\shaders\gameboy\resources\sample-palettes\HandheldShadersGameboyResourcesSamplePalettesGbpPaletteHighContrastTextureDef.h"
 #include "RetroArch\handheld\shaders\gameboy\resources\HandheldShadersGameboyResourcesPaletteTextureDef.h"
 #include "RetroArch\handheld\shaders\gameboy\resources\HandheldShadersGameboyResourcesBackgroundTextureDef.h"
@@ -1172,16 +1206,17 @@
 #include "RetroArch\anti-aliasing\AntiAliasingSmaaLinearPresetDef.h"
 #include "RetroArch\anti-aliasing\AntiAliasingSmaaSharpenPresetDef.h"
 #include "RetroArch\anti-aliasing\AntiAliasingSmaaPresetDef.h"
+#include "RetroArch\bezel\koko-aio\BezelKokoAioKokoAioNgDMGPresetDef.h"
 #include "RetroArch\bezel\koko-aio\BezelKokoAioKokoAioNgPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgBasePresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorAmbilightImmersivePresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorBalancedPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorCrtRegalePresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFor_1440pMin_HiNitsPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFor_HigherNitsPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFXAA_sharpAperturegrillePresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFXAA_sharpCore_SlotMaskPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorFXAA_sharpScreen_SlotMaskPresetDef.h"
-#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorNew_aperturegrille_gmPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorNew_slotmask_gmPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorNew_slotmask_rgbPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskAperturegrilleOvermaskPresetDef.h"
@@ -1192,9 +1227,11 @@
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_TallerPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_BrighterPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_BrightestPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_HmaskShadowMaskPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorScreen_Hmask_OverlappedOldpainlessPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorSlotmaskTVL410PresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets-ng\BezelKokoAioPresetsNgMonitorSlotmaskTVL500For_1080pPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\TV\BezelKokoAioPresetsNgTVTvNTSC_GenericAA_sharpSelectivePresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\TV\BezelKokoAioPresetsNgTVTvNTSC_MegadriveAA_sharpSelectivePresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\VectorGFX\BezelKokoAioPresetsNgVectorGFXVector_neon_4_mame2003plus_defaultsPresetDef.h"
@@ -1204,6 +1241,7 @@
 #include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanShadowMaskPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanXBRPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets-ng\VGA\BezelKokoAioPresetsNgVGAMonitorVGADoubleScanPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgDotsSharp_43PresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgDots_11PresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgDots_43PresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyAdvanceOverlayNightPresetDef.h"
@@ -1222,7 +1260,11 @@
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameboyPocketPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameGearOverlayNightPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameGearOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGameGearPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgGenericHandheldRGBPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgLynxOverlayNightPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgLynxOverlayPresetDef.h"
+#include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgLynxPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigY_flipPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigPresetDef.h"
 #include "RetroArch\bezel\koko-aio\Presets_Handhelds-ng\BezelKokoAioPresets_HandheldsNgPSPOverlayNightSmallY_flipPresetDef.h"
@@ -1425,14 +1467,31 @@
 #include "RetroArch\crt\CrtCrt1tapBloom_fastPresetDef.h"
 #include "RetroArch\crt\CrtCrt1tapPresetDef.h"
 #include "RetroArch\crt\CrtCrtAperturePresetDef.h"
+#include "RetroArch\crt\CrtCrtBeansFastPresetDef.h"
+#include "RetroArch\crt\CrtCrtBeansRgbPresetDef.h"
+#include "RetroArch\crt\CrtCrtBeansVgaPresetDef.h"
 #include "RetroArch\crt\CrtCrtBlurPiSharpPresetDef.h"
 #include "RetroArch\crt\CrtCrtBlurPiSoftPresetDef.h"
 #include "RetroArch\crt\CrtCrtCaligariPresetDef.h"
 #include "RetroArch\crt\CrtCrtCgwgFastPresetDef.h"
+#include "RetroArch\crt\CrtCrtConsumer1wNtscXLPresetDef.h"
 #include "RetroArch\crt\CrtCrtConsumerPresetDef.h"
+#include "RetroArch\crt\CrtCrtCreativeForceArcadePresetDef.h"
+#include "RetroArch\crt\CrtCrtCreativeForceSharpSmoothPresetDef.h"
 #include "RetroArch\crt\CrtCrtCyclonPresetDef.h"
 #include "RetroArch\crt\CrtCrtEasymodeHalationPresetDef.h"
 #include "RetroArch\crt\CrtCrtEasymodePresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsAnalogServiceMenuPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsCrtBlack_crushKokoPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsCrtResswitchGlitchKokoPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsGlow_trailsPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsPhosphorPersistencePresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsPhosphorlutPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsRaster_bloomPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsRay_traced_curvaturePresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsRay_traced_curvature_appendPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsVectorGlowAltRenderPresetDef.h"
+#include "RetroArch\crt\crt-effects\CrtCrtEffectsVectorGlowPresetDef.h"
 #include "RetroArch\crt\CrtCrtFrutbunnPresetDef.h"
 #include "RetroArch\crt\CrtCrtGdvMiniUltraTrinitronPresetDef.h"
 #include "RetroArch\crt\CrtCrtGdvMiniPresetDef.h"
@@ -1467,7 +1526,6 @@
 #include "RetroArch\crt\CrtCrtPotatoBVMPresetDef.h"
 #include "RetroArch\crt\CrtCrtPotatoCoolPresetDef.h"
 #include "RetroArch\crt\CrtCrtPotatoWarmPresetDef.h"
-#include "RetroArch\crt\CrtCrtResswitchGlitchKokoPresetDef.h"
 #include "RetroArch\crt\CrtCrtRoyaleFakeBloomIntelPresetDef.h"
 #include "RetroArch\crt\CrtCrtRoyaleFakeBloomPresetDef.h"
 #include "RetroArch\crt\CrtCrtRoyaleFastPresetDef.h"
@@ -1493,32 +1551,37 @@
 #include "RetroArch\crt\CrtFakelottesPresetDef.h"
 #include "RetroArch\crt\CrtGizmoCrtPresetDef.h"
 #include "RetroArch\crt\CrtGizmoSlotmaskCrtPresetDef.h"
-#include "RetroArch\crt\CrtGlow_trailsPresetDef.h"
 #include "RetroArch\crt\CrtGritsScanlinesPresetDef.h"
 #include "RetroArch\crt\CrtGtuV050PresetDef.h"
 #include "RetroArch\crt\CrtMame_hlslPresetDef.h"
 #include "RetroArch\crt\CrtMetacrtPresetDef.h"
 #include "RetroArch\crt\CrtNewpixieCrtPresetDef.h"
 #include "RetroArch\crt\CrtNewpixieMiniPresetDef.h"
-#include "RetroArch\crt\CrtPhosphorPersistencePresetDef.h"
-#include "RetroArch\crt\CrtPhosphorlutPresetDef.h"
-#include "RetroArch\crt\CrtRay_traced_curvaturePresetDef.h"
-#include "RetroArch\crt\CrtRay_traced_curvature_appendPresetDef.h"
 #include "RetroArch\crt\CrtSimpleCrtFxaaPresetDef.h"
 #include "RetroArch\crt\CrtSimpleCrtPresetDef.h"
 #include "RetroArch\crt\CrtTvoutTweaksPresetDef.h"
-#include "RetroArch\crt\CrtVectorGlowAltRenderPresetDef.h"
-#include "RetroArch\crt\CrtVectorGlowPresetDef.h"
 #include "RetroArch\crt\CrtVt220PresetDef.h"
 #include "RetroArch\crt\CrtYee64PresetDef.h"
 #include "RetroArch\crt\CrtYeetronPresetDef.h"
 #include "RetroArch\crt\CrtZfastCrtCompositePresetDef.h"
 #include "RetroArch\crt\CrtZfastCrtCurvaturePresetDef.h"
+#include "RetroArch\crt\CrtZfastCrtGeoSvideoPresetDef.h"
 #include "RetroArch\crt\CrtZfastCrtGeoPresetDef.h"
 #include "RetroArch\crt\CrtZfastCrtHdmaskPresetDef.h"
 #include "RetroArch\crt\CrtZfastCrtPresetDef.h"
 #include "RetroArch\deblur\DeblurDeblurLumaPresetDef.h"
 #include "RetroArch\deblur\DeblurDeblurPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingBobDeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingDeinterlacePresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingGtuV050DeinterlacedPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingInterpolationDeinterlacerPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingMotionAdaptiveDeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingNnedi3Nns128DeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingNnedi3Nns16DeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingNnedi3Nns256DeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingNnedi3Nns32DeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingNnedi3Nns64DeinterlacingPresetDef.h"
+#include "RetroArch\deinterlacing\DeinterlacingReinterlacingPresetDef.h"
 #include "RetroArch\denoisers\DenoisersBilateral2pPresetDef.h"
 #include "RetroArch\denoisers\DenoisersBilateralPresetDef.h"
 #include "RetroArch\denoisers\DenoisersCrtFastBilateralSuperXbrPresetDef.h"
@@ -1593,6 +1656,7 @@
 #include "RetroArch\edge-smoothing\scalehq\EdgeSmoothingScalehq2xScaleHQPresetDef.h"
 #include "RetroArch\edge-smoothing\scalehq\EdgeSmoothingScalehq4xScaleHQPresetDef.h"
 #include "RetroArch\edge-smoothing\scalenx\EdgeSmoothingScalenxEpxPresetDef.h"
+#include "RetroArch\edge-smoothing\scalenx\EdgeSmoothingScalenxMmpxExPresetDef.h"
 #include "RetroArch\edge-smoothing\scalenx\EdgeSmoothingScalenxMmpxPresetDef.h"
 #include "RetroArch\edge-smoothing\scalenx\EdgeSmoothingScalenxScale2xPresetDef.h"
 #include "RetroArch\edge-smoothing\scalenx\EdgeSmoothingScalenxScale2xplusPresetDef.h"
@@ -1648,8 +1712,10 @@
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbPocketPresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbaAgb001ColorMotionblurPresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbaAgs001ColorMotionblurPresetDef.h"
+#include "RetroArch\handheld\console-border\HandheldConsoleBorderGbaDmgPresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbaLcdGridV2PresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbaPresetDef.h"
+#include "RetroArch\handheld\console-border\HandheldConsoleBorderGbcDmgPresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbcLcdGridV2PresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGbcPresetDef.h"
 #include "RetroArch\handheld\console-border\HandheldConsoleBorderGgPresetDef.h"
@@ -1678,6 +1744,7 @@
 #include "RetroArch\handheld\HandheldLcd1x_ndsPresetDef.h"
 #include "RetroArch\handheld\HandheldLcd1x_pspPresetDef.h"
 #include "RetroArch\handheld\HandheldLcd3xPresetDef.h"
+#include "RetroArch\handheld\HandheldPixel_transparencyPresetDef.h"
 #include "RetroArch\handheld\HandheldRetroTilesPresetDef.h"
 #include "RetroArch\handheld\HandheldRetroV2PresetDef.h"
 #include "RetroArch\handheld\HandheldRetroV3PresetDef.h"
@@ -1705,6 +1772,7 @@
 #include "RetroArch\interpolation\InterpolationJinc2SharpPresetDef.h"
 #include "RetroArch\interpolation\InterpolationJinc2SharperPresetDef.h"
 #include "RetroArch\interpolation\InterpolationJinc2PresetDef.h"
+#include "RetroArch\interpolation\InterpolationLanczos16ARPresetDef.h"
 #include "RetroArch\interpolation\InterpolationLanczos25TapsPresetDef.h"
 #include "RetroArch\interpolation\InterpolationLanczos26TapsFastPresetDef.h"
 #include "RetroArch\interpolation\InterpolationLanczos2FastPresetDef.h"
@@ -1732,7 +1800,6 @@
 #include "RetroArch\misc\MiscAntiFlickerPresetDef.h"
 #include "RetroArch\misc\MiscAsciiPresetDef.h"
 #include "RetroArch\misc\MiscBeadPresetDef.h"
-#include "RetroArch\misc\MiscBobDeinterlacingPresetDef.h"
 #include "RetroArch\misc\MiscChromaPresetDef.h"
 #include "RetroArch\misc\MiscChromaticityPresetDef.h"
 #include "RetroArch\misc\MiscCmykHalftoneDotPresetDef.h"
@@ -1741,7 +1808,6 @@
 #include "RetroArch\misc\MiscColorimetryPresetDef.h"
 #include "RetroArch\misc\MiscConvergencePresetDef.h"
 #include "RetroArch\misc\MiscDebandPresetDef.h"
-#include "RetroArch\misc\MiscDeinterlacePresetDef.h"
 #include "RetroArch\misc\MiscEdgeDetectPresetDef.h"
 #include "RetroArch\misc\MiscEgaPresetDef.h"
 #include "RetroArch\misc\MiscGeomAppendPresetDef.h"
@@ -1752,7 +1818,6 @@
 #include "RetroArch\misc\MiscHalf_resPresetDef.h"
 #include "RetroArch\misc\MiscImageAdjustmentPresetDef.h"
 #include "RetroArch\misc\MiscImg_modPresetDef.h"
-#include "RetroArch\misc\MiscInterlacingPresetDef.h"
 #include "RetroArch\misc\MiscNaturalVisionPresetDef.h"
 #include "RetroArch\misc\MiscNightModePresetDef.h"
 #include "RetroArch\misc\MiscNtscColorsPresetDef.h"
@@ -1864,6 +1929,7 @@
 #include "RetroArch\presets\crt-ntsc-sharp\PresetsCrtNtscSharpTateSvideoNtsc_x6GlowPresetDef.h"
 #include "RetroArch\presets\crt-ntsc-sharp\PresetsCrtNtscSharpTateSvideoNtsc_x6PresetDef.h"
 #include "RetroArch\presets\crt-plus-signal\PresetsCrtPlusSignalC64MonitorPresetDef.h"
+#include "RetroArch\presets\crt-plus-signal\PresetsCrtPlusSignalCrtBeansSVideoPresetDef.h"
 #include "RetroArch\presets\crt-plus-signal\PresetsCrtPlusSignalCrtGeomDeluxeNtscAdaptivePresetDef.h"
 #include "RetroArch\presets\crt-plus-signal\PresetsCrtPlusSignalCrtRoyaleFastNtscCompositePresetDef.h"
 #include "RetroArch\presets\crt-plus-signal\PresetsCrtPlusSignalCrtRoyaleNtscCompositePresetDef.h"
@@ -2011,6 +2077,12 @@
 #include "RetroArch\presets\PresetsNediPowervrSharpenPresetDef.h"
 #include "RetroArch\presets\PresetsNesColorDecoderColorimetryPixellatePresetDef.h"
 #include "RetroArch\presets\PresetsNesColorDecoderPixellatePresetDef.h"
+#include "RetroArch\presets\pixel_transparency\PresetsPixel_transparencyPixel_transparencyAuthentic_gbc_fastPresetDef.h"
+#include "RetroArch\presets\pixel_transparency\PresetsPixel_transparencyPixel_transparencyLcdGridV2PresetDef.h"
+#include "RetroArch\presets\pixel_transparency\PresetsPixel_transparencyPixel_transparencyLcd1xPresetDef.h"
+#include "RetroArch\presets\pixel_transparency\PresetsPixel_transparencyPixel_transparencyLcd3xPresetDef.h"
+#include "RetroArch\presets\pixel_transparency\PresetsPixel_transparencyPixel_transparencySimpletex_lcdPresetDef.h"
+#include "RetroArch\presets\pixel_transparency\PresetsPixel_transparencyPixel_transparencyZfast_lcdPresetDef.h"
 #include "RetroArch\presets\scalefx-plus-smoothing\PresetsScalefxPlusSmoothingScalefxRAAAaFastPresetDef.h"
 #include "RetroArch\presets\scalefx-plus-smoothing\PresetsScalefxPlusSmoothingScalefxRAAAaPresetDef.h"
 #include "RetroArch\presets\scalefx-plus-smoothing\PresetsScalefxPlusSmoothingScalefxAaFastPresetDef.h"
@@ -2104,6 +2176,7 @@
 #include "RetroArch\reshade\ReshadeLutPresetDef.h"
 #include "RetroArch\reshade\ReshadeMagicbloomPresetDef.h"
 #include "RetroArch\reshade\ReshadeNormalsDisplacementPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2121,6 +2194,8 @@
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCNESDirtyPresetDef.h"
@@ -2136,6 +2211,8 @@
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSGBDirtyPresetDef.h"
@@ -2143,6 +2220,7 @@
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Curved\RetroCrisis1080pCurvedRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2160,6 +2238,8 @@
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCNESDirtyPresetDef.h"
@@ -2175,6 +2255,8 @@
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSGBDirtyPresetDef.h"
@@ -2182,6 +2264,7 @@
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1080p Flat\RetroCrisis1080pFlatRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2199,6 +2282,8 @@
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCNESDirtyPresetDef.h"
@@ -2214,6 +2299,8 @@
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSGBDirtyPresetDef.h"
@@ -2221,6 +2308,7 @@
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Curved\RetroCrisis1440pCurvedRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2238,6 +2326,8 @@
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCNESDirtyPresetDef.h"
@@ -2253,6 +2343,8 @@
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSGBDirtyPresetDef.h"
@@ -2260,6 +2352,7 @@
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESRF100PresetDef.h"
 #include "RetroArch\retro-crisis\1440p Flat\RetroCrisis1440pFlatRCGDVNTSCSNESRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2277,6 +2370,8 @@
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCNESDirtyPresetDef.h"
@@ -2292,6 +2387,8 @@
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCSGBDirtyPresetDef.h"
@@ -2305,6 +2402,7 @@
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS360pCurvedPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS480pCurvedPresetDef.h"
 #include "RetroArch\retro-crisis\4K Curved\RetroCrisis4KCurvedRCGDVNTSCVHS720pCurvedPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2322,6 +2420,8 @@
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCNESDirtyPresetDef.h"
@@ -2337,6 +2437,8 @@
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCSGBDirtyPresetDef.h"
@@ -2350,6 +2452,7 @@
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS360pPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS480pPresetDef.h"
 #include "RetroArch\retro-crisis\4K Flat\RetroCrisis4KFlatRCGDVNTSCVHS720pPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSC2600PresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCArcadeCleanPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCArcadeDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCArcadeRGBPresetDef.h"
@@ -2367,6 +2470,8 @@
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveRF100PresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveRGB100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMSXCleanPresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCMSXDirtyPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCN64PresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCNESCleanPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCNESDirtyPresetDef.h"
@@ -2382,6 +2487,8 @@
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPS2CleanPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPS2DirtyPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCPS2PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSaturnRF100PresetDef.h"
+#include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSaturnRGB100PresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSaturnPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSGBCleanPresetDef.h"
 #include "RetroArch\retro-crisis\720p Steam Deck\RetroCrisis720pSteamDeckRCGDVNTSCSGBDirtyPresetDef.h"
@@ -3250,16 +3357,17 @@ new AntiAliasingReverseAaPresetDef(),
 new AntiAliasingSmaaLinearPresetDef(),
 new AntiAliasingSmaaSharpenPresetDef(),
 new AntiAliasingSmaaPresetDef(),
+new BezelKokoAioKokoAioNgDMGPresetDef(),
 new BezelKokoAioKokoAioNgPresetDef(),
 new BezelKokoAioPresetsNgBasePresetDef(),
 new BezelKokoAioPresetsNgMonitorAmbilightImmersivePresetDef(),
 new BezelKokoAioPresetsNgMonitorBalancedPresetDef(),
+new BezelKokoAioPresetsNgMonitorCrtRegalePresetDef(),
 new BezelKokoAioPresetsNgMonitorFor_1440pMin_HiNitsPresetDef(),
 new BezelKokoAioPresetsNgMonitorFor_HigherNitsPresetDef(),
 new BezelKokoAioPresetsNgMonitorFXAA_sharpAperturegrillePresetDef(),
 new BezelKokoAioPresetsNgMonitorFXAA_sharpCore_SlotMaskPresetDef(),
 new BezelKokoAioPresetsNgMonitorFXAA_sharpScreen_SlotMaskPresetDef(),
-new BezelKokoAioPresetsNgMonitorNew_aperturegrille_gmPresetDef(),
 new BezelKokoAioPresetsNgMonitorNew_slotmask_gmPresetDef(),
 new BezelKokoAioPresetsNgMonitorNew_slotmask_rgbPresetDef(),
 new BezelKokoAioPresetsNgMonitorScreen_HmaskAperturegrilleOvermaskPresetDef(),
@@ -3270,9 +3378,11 @@ new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskChameleonPresetDef(),
 new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMaskPresetDef(),
 new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_TallerPresetDef(),
 new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_BrighterPresetDef(),
+new BezelKokoAioPresetsNgMonitorScreen_HmaskScreen_SlotMask_Taller_BrightestPresetDef(),
 new BezelKokoAioPresetsNgMonitorScreen_HmaskShadowMaskPresetDef(),
 new BezelKokoAioPresetsNgMonitorScreen_Hmask_OverlappedOldpainlessPresetDef(),
 new BezelKokoAioPresetsNgMonitorSlotmaskTVL410PresetDef(),
+new BezelKokoAioPresetsNgMonitorSlotmaskTVL500For_1080pPresetDef(),
 new BezelKokoAioPresetsNgTVTvNTSC_GenericAA_sharpSelectivePresetDef(),
 new BezelKokoAioPresetsNgTVTvNTSC_MegadriveAA_sharpSelectivePresetDef(),
 new BezelKokoAioPresetsNgVectorGFXVector_neon_4_mame2003plus_defaultsPresetDef(),
@@ -3282,6 +3392,7 @@ new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanGreenPresetDef(),
 new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanShadowMaskPresetDef(),
 new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanXBRPresetDef(),
 new BezelKokoAioPresetsNgVGAMonitorVGADoubleScanPresetDef(),
+new BezelKokoAioPresets_HandheldsNgDotsSharp_43PresetDef(),
 new BezelKokoAioPresets_HandheldsNgDots_11PresetDef(),
 new BezelKokoAioPresets_HandheldsNgDots_43PresetDef(),
 new BezelKokoAioPresets_HandheldsNgGameboyAdvanceOverlayNightPresetDef(),
@@ -3300,7 +3411,11 @@ new BezelKokoAioPresets_HandheldsNgGameboyPocketOverlayPresetDef(),
 new BezelKokoAioPresets_HandheldsNgGameboyPocketPresetDef(),
 new BezelKokoAioPresets_HandheldsNgGameGearOverlayNightPresetDef(),
 new BezelKokoAioPresets_HandheldsNgGameGearOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgGameGearPresetDef(),
 new BezelKokoAioPresets_HandheldsNgGenericHandheldRGBPresetDef(),
+new BezelKokoAioPresets_HandheldsNgLynxOverlayNightPresetDef(),
+new BezelKokoAioPresets_HandheldsNgLynxOverlayPresetDef(),
+new BezelKokoAioPresets_HandheldsNgLynxPresetDef(),
 new BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigY_flipPresetDef(),
 new BezelKokoAioPresets_HandheldsNgPSPOverlayNightBigPresetDef(),
 new BezelKokoAioPresets_HandheldsNgPSPOverlayNightSmallY_flipPresetDef(),
@@ -3503,14 +3618,31 @@ new CrtCrt1tapBloomPresetDef(),
 new CrtCrt1tapBloom_fastPresetDef(),
 new CrtCrt1tapPresetDef(),
 new CrtCrtAperturePresetDef(),
+new CrtCrtBeansFastPresetDef(),
+new CrtCrtBeansRgbPresetDef(),
+new CrtCrtBeansVgaPresetDef(),
 new CrtCrtBlurPiSharpPresetDef(),
 new CrtCrtBlurPiSoftPresetDef(),
 new CrtCrtCaligariPresetDef(),
 new CrtCrtCgwgFastPresetDef(),
+new CrtCrtConsumer1wNtscXLPresetDef(),
 new CrtCrtConsumerPresetDef(),
+new CrtCrtCreativeForceArcadePresetDef(),
+new CrtCrtCreativeForceSharpSmoothPresetDef(),
 new CrtCrtCyclonPresetDef(),
 new CrtCrtEasymodeHalationPresetDef(),
 new CrtCrtEasymodePresetDef(),
+new CrtCrtEffectsAnalogServiceMenuPresetDef(),
+new CrtCrtEffectsCrtBlack_crushKokoPresetDef(),
+new CrtCrtEffectsCrtResswitchGlitchKokoPresetDef(),
+new CrtCrtEffectsGlow_trailsPresetDef(),
+new CrtCrtEffectsPhosphorPersistencePresetDef(),
+new CrtCrtEffectsPhosphorlutPresetDef(),
+new CrtCrtEffectsRaster_bloomPresetDef(),
+new CrtCrtEffectsRay_traced_curvaturePresetDef(),
+new CrtCrtEffectsRay_traced_curvature_appendPresetDef(),
+new CrtCrtEffectsVectorGlowAltRenderPresetDef(),
+new CrtCrtEffectsVectorGlowPresetDef(),
 new CrtCrtFrutbunnPresetDef(),
 new CrtCrtGdvMiniUltraTrinitronPresetDef(),
 new CrtCrtGdvMiniPresetDef(),
@@ -3545,7 +3677,6 @@ new CrtCrtPocketPresetDef(),
 new CrtCrtPotatoBVMPresetDef(),
 new CrtCrtPotatoCoolPresetDef(),
 new CrtCrtPotatoWarmPresetDef(),
-new CrtCrtResswitchGlitchKokoPresetDef(),
 new CrtCrtRoyaleFakeBloomIntelPresetDef(),
 new CrtCrtRoyaleFakeBloomPresetDef(),
 new CrtCrtRoyaleFastPresetDef(),
@@ -3571,32 +3702,37 @@ new CrtFakeCrtGeomPresetDef(),
 new CrtFakelottesPresetDef(),
 new CrtGizmoCrtPresetDef(),
 new CrtGizmoSlotmaskCrtPresetDef(),
-new CrtGlow_trailsPresetDef(),
 new CrtGritsScanlinesPresetDef(),
 new CrtGtuV050PresetDef(),
 new CrtMame_hlslPresetDef(),
 new CrtMetacrtPresetDef(),
 new CrtNewpixieCrtPresetDef(),
 new CrtNewpixieMiniPresetDef(),
-new CrtPhosphorPersistencePresetDef(),
-new CrtPhosphorlutPresetDef(),
-new CrtRay_traced_curvaturePresetDef(),
-new CrtRay_traced_curvature_appendPresetDef(),
 new CrtSimpleCrtFxaaPresetDef(),
 new CrtSimpleCrtPresetDef(),
 new CrtTvoutTweaksPresetDef(),
-new CrtVectorGlowAltRenderPresetDef(),
-new CrtVectorGlowPresetDef(),
 new CrtVt220PresetDef(),
 new CrtYee64PresetDef(),
 new CrtYeetronPresetDef(),
 new CrtZfastCrtCompositePresetDef(),
 new CrtZfastCrtCurvaturePresetDef(),
+new CrtZfastCrtGeoSvideoPresetDef(),
 new CrtZfastCrtGeoPresetDef(),
 new CrtZfastCrtHdmaskPresetDef(),
 new CrtZfastCrtPresetDef(),
 new DeblurDeblurLumaPresetDef(),
 new DeblurDeblurPresetDef(),
+new DeinterlacingBobDeinterlacingPresetDef(),
+new DeinterlacingDeinterlacePresetDef(),
+new DeinterlacingGtuV050DeinterlacedPresetDef(),
+new DeinterlacingInterpolationDeinterlacerPresetDef(),
+new DeinterlacingMotionAdaptiveDeinterlacingPresetDef(),
+new DeinterlacingNnedi3Nns128DeinterlacingPresetDef(),
+new DeinterlacingNnedi3Nns16DeinterlacingPresetDef(),
+new DeinterlacingNnedi3Nns256DeinterlacingPresetDef(),
+new DeinterlacingNnedi3Nns32DeinterlacingPresetDef(),
+new DeinterlacingNnedi3Nns64DeinterlacingPresetDef(),
+new DeinterlacingReinterlacingPresetDef(),
 new DenoisersBilateral2pPresetDef(),
 new DenoisersBilateralPresetDef(),
 new DenoisersCrtFastBilateralSuperXbrPresetDef(),
@@ -3671,6 +3807,7 @@ new EdgeSmoothingScalefxScalefxPresetDef(),
 new EdgeSmoothingScalehq2xScaleHQPresetDef(),
 new EdgeSmoothingScalehq4xScaleHQPresetDef(),
 new EdgeSmoothingScalenxEpxPresetDef(),
+new EdgeSmoothingScalenxMmpxExPresetDef(),
 new EdgeSmoothingScalenxMmpxPresetDef(),
 new EdgeSmoothingScalenxScale2xPresetDef(),
 new EdgeSmoothingScalenxScale2xplusPresetDef(),
@@ -3726,8 +3863,10 @@ new HandheldConsoleBorderGbPocketAltPresetDef(),
 new HandheldConsoleBorderGbPocketPresetDef(),
 new HandheldConsoleBorderGbaAgb001ColorMotionblurPresetDef(),
 new HandheldConsoleBorderGbaAgs001ColorMotionblurPresetDef(),
+new HandheldConsoleBorderGbaDmgPresetDef(),
 new HandheldConsoleBorderGbaLcdGridV2PresetDef(),
 new HandheldConsoleBorderGbaPresetDef(),
+new HandheldConsoleBorderGbcDmgPresetDef(),
 new HandheldConsoleBorderGbcLcdGridV2PresetDef(),
 new HandheldConsoleBorderGbcPresetDef(),
 new HandheldConsoleBorderGgPresetDef(),
@@ -3756,6 +3895,7 @@ new HandheldLcd1xPresetDef(),
 new HandheldLcd1x_ndsPresetDef(),
 new HandheldLcd1x_pspPresetDef(),
 new HandheldLcd3xPresetDef(),
+new HandheldPixel_transparencyPresetDef(),
 new HandheldRetroTilesPresetDef(),
 new HandheldRetroV2PresetDef(),
 new HandheldRetroV3PresetDef(),
@@ -3783,6 +3923,7 @@ new InterpolationHermitePresetDef(),
 new InterpolationJinc2SharpPresetDef(),
 new InterpolationJinc2SharperPresetDef(),
 new InterpolationJinc2PresetDef(),
+new InterpolationLanczos16ARPresetDef(),
 new InterpolationLanczos25TapsPresetDef(),
 new InterpolationLanczos26TapsFastPresetDef(),
 new InterpolationLanczos2FastPresetDef(),
@@ -3810,7 +3951,6 @@ new MiscAccessibility_modsPresetDef(),
 new MiscAntiFlickerPresetDef(),
 new MiscAsciiPresetDef(),
 new MiscBeadPresetDef(),
-new MiscBobDeinterlacingPresetDef(),
 new MiscChromaPresetDef(),
 new MiscChromaticityPresetDef(),
 new MiscCmykHalftoneDotPresetDef(),
@@ -3819,7 +3959,6 @@ new MiscColorManglerPresetDef(),
 new MiscColorimetryPresetDef(),
 new MiscConvergencePresetDef(),
 new MiscDebandPresetDef(),
-new MiscDeinterlacePresetDef(),
 new MiscEdgeDetectPresetDef(),
 new MiscEgaPresetDef(),
 new MiscGeomAppendPresetDef(),
@@ -3830,7 +3969,6 @@ new MiscGradePresetDef(),
 new MiscHalf_resPresetDef(),
 new MiscImageAdjustmentPresetDef(),
 new MiscImg_modPresetDef(),
-new MiscInterlacingPresetDef(),
 new MiscNaturalVisionPresetDef(),
 new MiscNightModePresetDef(),
 new MiscNtscColorsPresetDef(),
@@ -3942,6 +4080,7 @@ new PresetsCrtNtscSharpTateSvideoNtsc_x5PresetDef(),
 new PresetsCrtNtscSharpTateSvideoNtsc_x6GlowPresetDef(),
 new PresetsCrtNtscSharpTateSvideoNtsc_x6PresetDef(),
 new PresetsCrtPlusSignalC64MonitorPresetDef(),
+new PresetsCrtPlusSignalCrtBeansSVideoPresetDef(),
 new PresetsCrtPlusSignalCrtGeomDeluxeNtscAdaptivePresetDef(),
 new PresetsCrtPlusSignalCrtRoyaleFastNtscCompositePresetDef(),
 new PresetsCrtPlusSignalCrtRoyaleNtscCompositePresetDef(),
@@ -4089,6 +4228,12 @@ new PresetsMdaptFastBilateralSuper4xbrScanlinesPresetDef(),
 new PresetsNediPowervrSharpenPresetDef(),
 new PresetsNesColorDecoderColorimetryPixellatePresetDef(),
 new PresetsNesColorDecoderPixellatePresetDef(),
+new PresetsPixel_transparencyPixel_transparencyAuthentic_gbc_fastPresetDef(),
+new PresetsPixel_transparencyPixel_transparencyLcdGridV2PresetDef(),
+new PresetsPixel_transparencyPixel_transparencyLcd1xPresetDef(),
+new PresetsPixel_transparencyPixel_transparencyLcd3xPresetDef(),
+new PresetsPixel_transparencyPixel_transparencySimpletex_lcdPresetDef(),
+new PresetsPixel_transparencyPixel_transparencyZfast_lcdPresetDef(),
 new PresetsScalefxPlusSmoothingScalefxRAAAaFastPresetDef(),
 new PresetsScalefxPlusSmoothingScalefxRAAAaPresetDef(),
 new PresetsScalefxPlusSmoothingScalefxAaFastPresetDef(),
@@ -4182,6 +4327,7 @@ new ReshadeHandheldColorLUTsVBAColorspacePresetDef(),
 new ReshadeLutPresetDef(),
 new ReshadeMagicbloomPresetDef(),
 new ReshadeNormalsDisplacementPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSC2600PresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCArcadeRGBPresetDef(),
@@ -4199,6 +4345,8 @@ new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCN64PresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCNESDirtyPresetDef(),
@@ -4214,6 +4362,8 @@ new RetroCrisis1080pCurvedRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis1080pCurvedRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCSGBDirtyPresetDef(),
@@ -4221,6 +4371,7 @@ new RetroCrisis1080pCurvedRCGDVNTSCSNESCleanPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCSNESDirtyPresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCSNESRF100PresetDef(),
 new RetroCrisis1080pCurvedRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSC2600PresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCArcadeRGBPresetDef(),
@@ -4238,6 +4389,8 @@ new RetroCrisis1080pFlatRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCN64PresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCNESDirtyPresetDef(),
@@ -4253,6 +4406,8 @@ new RetroCrisis1080pFlatRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis1080pFlatRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCSGBDirtyPresetDef(),
@@ -4260,6 +4415,7 @@ new RetroCrisis1080pFlatRCGDVNTSCSNESCleanPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCSNESDirtyPresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCSNESRF100PresetDef(),
 new RetroCrisis1080pFlatRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSC2600PresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCArcadeRGBPresetDef(),
@@ -4277,6 +4433,8 @@ new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCN64PresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCNESDirtyPresetDef(),
@@ -4292,6 +4450,8 @@ new RetroCrisis1440pCurvedRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis1440pCurvedRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCSGBDirtyPresetDef(),
@@ -4299,6 +4459,7 @@ new RetroCrisis1440pCurvedRCGDVNTSCSNESCleanPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCSNESDirtyPresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCSNESRF100PresetDef(),
 new RetroCrisis1440pCurvedRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSC2600PresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCArcadeRGBPresetDef(),
@@ -4316,6 +4477,8 @@ new RetroCrisis1440pFlatRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCN64PresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCNESDirtyPresetDef(),
@@ -4331,6 +4494,8 @@ new RetroCrisis1440pFlatRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCPS2PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis1440pFlatRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCSGBDirtyPresetDef(),
@@ -4338,6 +4503,7 @@ new RetroCrisis1440pFlatRCGDVNTSCSNESCleanPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCSNESDirtyPresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCSNESRF100PresetDef(),
 new RetroCrisis1440pFlatRCGDVNTSCSNESRGB100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSC2600PresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCArcadeRGBPresetDef(),
@@ -4355,6 +4521,8 @@ new RetroCrisis4KCurvedRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCN64PresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCNESDirtyPresetDef(),
@@ -4370,6 +4538,8 @@ new RetroCrisis4KCurvedRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCPS2PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis4KCurvedRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCSGBDirtyPresetDef(),
@@ -4383,6 +4553,7 @@ new RetroCrisis4KCurvedRCGDVNTSCVHS240pCurvedPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCVHS360pCurvedPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCVHS480pCurvedPresetDef(),
 new RetroCrisis4KCurvedRCGDVNTSCVHS720pCurvedPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSC2600PresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCArcadeRGBPresetDef(),
@@ -4400,6 +4571,8 @@ new RetroCrisis4KFlatRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCN64PresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCNESDirtyPresetDef(),
@@ -4415,6 +4588,8 @@ new RetroCrisis4KFlatRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCPS2PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis4KFlatRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCSGBDirtyPresetDef(),
@@ -4428,6 +4603,7 @@ new RetroCrisis4KFlatRCGDVNTSCVHS240pPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCVHS360pPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCVHS480pPresetDef(),
 new RetroCrisis4KFlatRCGDVNTSCVHS720pPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSC2600PresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCArcadeCleanPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCArcadeDirtyPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCArcadeRGBPresetDef(),
@@ -4445,6 +4621,8 @@ new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveCleanPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveDirtyPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveRF100PresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCMegaDriveRGB100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMSXCleanPresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCMSXDirtyPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCN64PresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCNESCleanPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCNESDirtyPresetDef(),
@@ -4460,6 +4638,8 @@ new RetroCrisis720pSteamDeckRCGDVNTSCPlayStationRGB100480iPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCPS2CleanPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCPS2DirtyPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCPS2PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSaturnRF100PresetDef(),
+new RetroCrisis720pSteamDeckRCGDVNTSCSaturnRGB100PresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCSaturnPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCSGBCleanPresetDef(),
 new RetroCrisis720pSteamDeckRCGDVNTSCSGBDirtyPresetDef(),
@@ -5464,11 +5644,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersMegatronCrtSonyMegatronPotatoShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersBasePostCrtPrepPotatoMegatronShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersGuestExtrasHsmScreenScaleGSharp_resamplerPotatoShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrLinearizeShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrCrtHyllianSincCurvatureShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrThresholdShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_horizShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDefs::sVertexHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDefs::sVertexByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDefs::sFragmentHash, RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelMega_BezelShadersHyllianCrtSuperXbrBlur_vertShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDefs::sVertexHash, RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDefs::sVertexByteCode, sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDefs::sFragmentHash, RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone0_kokoAmbiStockShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sVertexHash, RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sVertexByteCode, sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sFragmentHash, RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone1_kokoAmbiAvglumShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sVertexHash, RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sVertexByteCode, sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentHash, RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentByteCode, sizeof(RetroArchBezelUborderShadersSupport_shadersKokoAmbiStandalone2_kokoAmbiTemporalShaderDefs::sFragmentByteCode));
@@ -5539,7 +5714,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchHandheldShadersColorGbaColorShaderDefs::sVertexHash, RetroArchHandheldShadersColorGbaColorShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersColorGbaColorShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersColorGbaColorShaderDefs::sFragmentHash, RetroArchHandheldShadersColorGbaColorShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersColorGbaColorShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersTvoutTweaksShaderDefs::sVertexHash, RetroArchCrtShadersTvoutTweaksShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersTvoutTweaksShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentHash, RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersTvoutTweaksShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersImageAdjustmentShaderDefs::sVertexHash, RetroArchMiscShadersImageAdjustmentShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersImageAdjustmentShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersImageAdjustmentShaderDefs::sFragmentHash, RetroArchMiscShadersImageAdjustmentShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersImageAdjustmentShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchMiscShadersInterlacingShaderDefs::sVertexHash, RetroArchMiscShadersInterlacingShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersInterlacingShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersInterlacingShaderDefs::sFragmentHash, RetroArchMiscShadersInterlacingShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersInterlacingShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersReinterlacingShaderDefs::sVertexHash, RetroArchDeinterlacingShadersReinterlacingShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersReinterlacingShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersReinterlacingShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersReinterlacingShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersReinterlacingShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchAutoBoxBoxCenterShaderDefs::sVertexHash, RetroArchAutoBoxBoxCenterShaderDefs::sVertexByteCode, sizeof(RetroArchAutoBoxBoxCenterShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchAutoBoxBoxCenterShaderDefs::sFragmentHash, RetroArchAutoBoxBoxCenterShaderDefs::sFragmentByteCode, sizeof(RetroArchAutoBoxBoxCenterShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBorderShadersImgborderShaderDefs::sVertexHash, RetroArchBorderShadersImgborderShaderDefs::sVertexByteCode, sizeof(RetroArchBorderShadersImgborderShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBorderShadersImgborderShaderDefs::sFragmentHash, RetroArchBorderShadersImgborderShaderDefs::sFragmentByteCode, sizeof(RetroArchBorderShadersImgborderShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtConsumerShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerShaderDefs::sFragmentByteCode));
@@ -5569,15 +5744,57 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersCrt1tapShaderDefs::sVertexHash, RetroArchCrtShadersCrt1tapShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrt1tapShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrt1tapShaderDefs::sFragmentHash, RetroArchCrtShadersCrt1tapShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrt1tapShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchSharpenShadersRcasShaderDefs::sVertexHash, RetroArchSharpenShadersRcasShaderDefs::sVertexByteCode, sizeof(RetroArchSharpenShadersRcasShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchSharpenShadersRcasShaderDefs::sFragmentHash, RetroArchSharpenShadersRcasShaderDefs::sFragmentByteCode, sizeof(RetroArchSharpenShadersRcasShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtApertureShaderDefs::sVertexHash, RetroArchCrtShadersCrtApertureShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtApertureShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtApertureShaderDefs::sFragmentHash, RetroArchCrtShadersCrtApertureShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtApertureShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansLinearizeShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansLinearizeShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansLinearizeShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_fast_horizontalShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansScanlines_fast_horizontalShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_fast_horizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_fast_horizontalShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansScanlines_fast_horizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_fast_horizontalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_fast_verticalShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansScanlines_fast_verticalShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_fast_verticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_fast_verticalShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansScanlines_fast_verticalShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_fast_verticalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansTransformShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansTransformShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansTransformShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansTransformShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansTransformShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansTransformShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansFilterShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansFilterShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansFilterShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansFilterShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansFilterShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansFilterShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansCalculate_widthsShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansCalculate_widthsShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansCalculate_widthsShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansCalculate_widthsShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansCalculate_widthsShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansCalculate_widthsShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_cubicShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansScanlines_cubicShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_cubicShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_cubicShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansScanlines_cubicShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_cubicShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansCubic_downsampleShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansCubic_downsampleShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansCubic_downsampleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansCubic_downsampleShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansCubic_downsampleShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansCubic_downsampleShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansBlur_horizontalShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansBlur_horizontalShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansBlur_horizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansBlur_horizontalShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansBlur_horizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansBlur_horizontalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansBlur_verticalShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansBlur_verticalShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansBlur_verticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansBlur_verticalShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansBlur_verticalShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansBlur_verticalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansBilinear_upsampleShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansBilinear_upsampleShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansBilinear_upsampleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansBilinear_upsampleShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansBilinear_upsampleShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansBilinear_upsampleShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansComposite_outputShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansComposite_outputShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansComposite_outputShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansComposite_outputShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansComposite_outputShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansComposite_outputShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_analyticalShaderDefs::sVertexHash, RetroArchCrtShadersCrtBeansScanlines_analyticalShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_analyticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBeansScanlines_analyticalShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBeansScanlines_analyticalShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBeansScanlines_analyticalShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtBlurPiShaderDefs::sVertexHash, RetroArchCrtShadersCrtBlurPiShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtBlurPiShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtBlurPiShaderDefs::sFragmentHash, RetroArchCrtShadersCrtBlurPiShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtBlurPiShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtCaligariShaderDefs::sVertexHash, RetroArchCrtShadersCrtCaligariShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtCaligariShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentHash, RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtCaligariShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtCgwgFastShaderDefs::sVertexHash, RetroArchCrtShadersCrtCgwgFastShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtCgwgFastShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentHash, RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtCgwgFastShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtConsumerLinearShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerLinearShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerLinearShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerLinearShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerLinearShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerLinearShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtConsumerNtsc_module_XLShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerNtsc_module_XLShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerNtsc_module_XLShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerNtsc_module_XLShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerNtsc_module_XLShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerNtsc_module_XLShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtConsumerCrtConsumer1wShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerCrtConsumer1wShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerCrtConsumer1wShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerCrtConsumer1wShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerCrtConsumer1wShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerCrtConsumer1wShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchInterpolationShadersLanczos16ARShaderDefs::sVertexHash, RetroArchInterpolationShadersLanczos16ARShaderDefs::sVertexByteCode, sizeof(RetroArchInterpolationShadersLanczos16ARShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchInterpolationShadersLanczos16ARShaderDefs::sFragmentHash, RetroArchInterpolationShadersLanczos16ARShaderDefs::sFragmentByteCode, sizeof(RetroArchInterpolationShadersLanczos16ARShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCreativeForceCrtCreativeForceArcadeShaderDefs::sVertexHash, RetroArchCrtShadersCreativeForceCrtCreativeForceArcadeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCreativeForceCrtCreativeForceArcadeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCreativeForceCrtCreativeForceArcadeShaderDefs::sFragmentHash, RetroArchCrtShadersCreativeForceCrtCreativeForceArcadeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCreativeForceCrtCreativeForceArcadeShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDefs::sVertexHash, RetroArchCrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDefs::sFragmentHash, RetroArchCrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCreativeForceCrtCreativeForceSharpSmoothShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtConsumerReflect_blurShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerReflect_blurShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerReflect_blurShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerReflect_blurShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerReflect_blurShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerReflect_blurShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtCyclonShaderDefs::sVertexHash, RetroArchCrtShadersCrtCyclonShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtCyclonShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentHash, RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtCyclonShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationLinearizeShaderDefs::sVertexHash, RetroArchCrtShadersCrtEasymodeHalationLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationLinearizeShaderDefs::sFragmentHash, RetroArchCrtShadersCrtEasymodeHalationLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationLinearizeShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sVertexHash, RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sFragmentHash, RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationBlur_horizShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationBlur_vertShaderDefs::sVertexHash, RetroArchCrtShadersCrtEasymodeHalationBlur_vertShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationBlur_vertShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationBlur_vertShaderDefs::sFragmentHash, RetroArchCrtShadersCrtEasymodeHalationBlur_vertShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationBlur_vertShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationThresholdShaderDefs::sVertexHash, RetroArchCrtShadersCrtEasymodeHalationThresholdShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationThresholdShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationThresholdShaderDefs::sFragmentHash, RetroArchCrtShadersCrtEasymodeHalationThresholdShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationThresholdShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sVertexHash, RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sFragmentHash, RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtEasymodeHalationCrtEasymodeHalationShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersAnalogServiceMenuShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersAnalogServiceMenuShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersAnalogServiceMenuShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersAnalogServiceMenuShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersAnalogServiceMenuShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersAnalogServiceMenuShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crush_avglumKokoShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersCrtBlackCrushKokoCrtBlack_crushKokoShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorPersistencePassthroughShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersPhosphorlutPhosphorlutPass1ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersGuestHdStockShaderDefs::sVertexHash, RetroArchCrtShadersGuestHdStockShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestHdStockShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestHdStockShaderDefs::sFragmentHash, RetroArchCrtShadersGuestHdStockShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestHdStockShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersRaster_bloomAvgLumShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersRaster_bloomAvgLumShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersRaster_bloomAvgLumShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersRaster_bloomAvgLumShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersRaster_bloomAvgLumShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersRaster_bloomAvgLumShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersRaster_bloomRaster_bloomShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersRt_curvatureRt_curvatureShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersGlowTrailsCombineShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersGlowTrailsCombineShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersGlowTrailsCombineShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersGlowTrailsCombineShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersGlowTrailsCombineShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersGlowTrailsCombineShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtFrutbunnShaderDefs::sVertexHash, RetroArchCrtShadersCrtFrutbunnShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtFrutbunnShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentHash, RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtFrutbunnShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sVertexHash, RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentHash, RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtGdvMiniUltraShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtGdvMiniShaderDefs::sVertexHash, RetroArchCrtShadersCrtGdvMiniShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtGdvMiniShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtGdvMiniShaderDefs::sFragmentHash, RetroArchCrtShadersCrtGdvMiniShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtGdvMiniShaderDefs::sFragmentByteCode));
@@ -5586,7 +5803,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sVertexHash, RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sFragmentHash, RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGeomDeluxeGaussxShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGeomDeluxeGaussyShaderDefs::sVertexHash, RetroArchCrtShadersGeomDeluxeGaussyShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGeomDeluxeGaussyShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGeomDeluxeGaussyShaderDefs::sFragmentHash, RetroArchCrtShadersGeomDeluxeGaussyShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGeomDeluxeGaussyShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sVertexHash, RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sFragmentHash, RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGeomDeluxeCrtGeomDeluxeShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerLinearizeShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtGeomMiniShaderDefs::sVertexHash, RetroArchCrtShadersCrtGeomMiniShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtGeomMiniShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtGeomMiniShaderDefs::sFragmentHash, RetroArchCrtShadersCrtGeomMiniShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtGeomMiniShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestFastStockShaderDefs::sVertexHash, RetroArchCrtShadersGuestFastStockShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestFastStockShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestFastStockShaderDefs::sFragmentHash, RetroArchCrtShadersGuestFastStockShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestFastStockShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestFastPreShadersShaderDefs::sVertexHash, RetroArchCrtShadersGuestFastPreShadersShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestFastPreShadersShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestFastPreShadersShaderDefs::sFragmentHash, RetroArchCrtShadersGuestFastPreShadersShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestFastPreShadersShaderDefs::sFragmentByteCode));
@@ -5601,7 +5817,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersGuestFastLinearizefShaderDefs::sVertexHash, RetroArchCrtShadersGuestFastLinearizefShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestFastLinearizefShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestFastLinearizefShaderDefs::sFragmentHash, RetroArchCrtShadersGuestFastLinearizefShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestFastLinearizefShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sVertexHash, RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sFragmentHash, RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass1fShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass2fShaderDefs::sVertexHash, RetroArchCrtShadersGuestFastCrtGuestAdvancedPass2fShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass2fShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass2fShaderDefs::sFragmentHash, RetroArchCrtShadersGuestFastCrtGuestAdvancedPass2fShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestFastCrtGuestAdvancedPass2fShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersGuestHdStockShaderDefs::sVertexHash, RetroArchCrtShadersGuestHdStockShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestHdStockShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestHdStockShaderDefs::sFragmentHash, RetroArchCrtShadersGuestHdStockShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestHdStockShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestHdAfterglow0ShaderDefs::sVertexHash, RetroArchCrtShadersGuestHdAfterglow0ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestHdAfterglow0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestHdAfterglow0ShaderDefs::sFragmentHash, RetroArchCrtShadersGuestHdAfterglow0ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestHdAfterglow0ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestHdPreShadersAfterglowShaderDefs::sVertexHash, RetroArchCrtShadersGuestHdPreShadersAfterglowShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestHdPreShadersAfterglowShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestHdPreShadersAfterglowShaderDefs::sFragmentHash, RetroArchCrtShadersGuestHdPreShadersAfterglowShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestHdPreShadersAfterglowShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestHdLinearizeHdShaderDefs::sVertexHash, RetroArchCrtShadersGuestHdLinearizeHdShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestHdLinearizeHdShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestHdLinearizeHdShaderDefs::sFragmentHash, RetroArchCrtShadersGuestHdLinearizeHdShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestHdLinearizeHdShaderDefs::sFragmentByteCode));
@@ -5668,7 +5883,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersCrtPocketShaderDefs::sVertexHash, RetroArchCrtShadersCrtPocketShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtPocketShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtPocketShaderDefs::sFragmentHash, RetroArchCrtShadersCrtPocketShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtPocketShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sVertexHash, RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sFragmentHash, RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtPotatoShaderFilesUltra_potatoShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtPotatoShaderFilesCrtPotatoShaderDefs::sVertexHash, RetroArchCrtShadersCrtPotatoShaderFilesCrtPotatoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtPotatoShaderFilesCrtPotatoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtPotatoShaderFilesCrtPotatoShaderDefs::sFragmentHash, RetroArchCrtShadersCrtPotatoShaderFilesCrtPotatoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtPotatoShaderFilesCrtPotatoShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexHash, RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentHash, RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDefs::sVertexHash, RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDefs::sFragmentHash, RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleBloomApproxFakeBloomIntelShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sVertexHash, RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sFragmentHash, RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleScanlinesHorizontalApplyMaskFakeBloomIntelShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sVertexHash, RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sFragmentHash, RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtRoyaleSrcCrtRoyaleGeometryAaLastPassIntelShaderDefs::sFragmentByteCode));
@@ -5739,8 +5953,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersFakelottesShaderDefs::sVertexHash, RetroArchCrtShadersFakelottesShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersFakelottesShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersFakelottesShaderDefs::sFragmentHash, RetroArchCrtShadersFakelottesShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersFakelottesShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGizmoCrtShaderDefs::sVertexHash, RetroArchCrtShadersGizmoCrtShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGizmoCrtShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentHash, RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGizmoCrtShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGizmoSlotmaskCrtShaderDefs::sVertexHash, RetroArchCrtShadersGizmoSlotmaskCrtShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGizmoSlotmaskCrtShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGizmoSlotmaskCrtShaderDefs::sFragmentHash, RetroArchCrtShadersGizmoSlotmaskCrtShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGizmoSlotmaskCrtShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sVertexHash, RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentHash, RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGlowTrailsGlowTrails0ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sVertexHash, RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentHash, RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGlowTrailsGlowTrails1ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGritsScanlinesGritsScanlinesShaderDefs::sVertexHash, RetroArchCrtShadersGritsScanlinesGritsScanlinesShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGritsScanlinesGritsScanlinesShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGritsScanlinesGritsScanlinesShaderDefs::sFragmentHash, RetroArchCrtShadersGritsScanlinesGritsScanlinesShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGritsScanlinesGritsScanlinesShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGtuV050Pass1ShaderDefs::sVertexHash, RetroArchCrtShadersGtuV050Pass1ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGtuV050Pass1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGtuV050Pass1ShaderDefs::sFragmentHash, RetroArchCrtShadersGtuV050Pass1ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGtuV050Pass1ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGtuV050Pass2ShaderDefs::sVertexHash, RetroArchCrtShadersGtuV050Pass2ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGtuV050Pass2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGtuV050Pass2ShaderDefs::sFragmentHash, RetroArchCrtShadersGtuV050Pass2ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGtuV050Pass2ShaderDefs::sFragmentByteCode));
@@ -5764,31 +5976,32 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sVertexHash, RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sFragmentHash, RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersNewpixieBlur_vertShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sVertexHash, RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sFragmentHash, RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersNewpixieNewpixieCrtShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sVertexHash, RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sFragmentHash, RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersNewpixieMiniNewpixieMiniShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sVertexHash, RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentHash, RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersPhosphorPersistencePhosphorApplyShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sVertexHash, RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentHash, RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersPhosphorPersistencePhosphorUpdateShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersPhosphorPersistencePassthroughShaderDefs::sVertexHash, RetroArchCrtShadersPhosphorPersistencePassthroughShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersPhosphorPersistencePassthroughShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersPhosphorPersistencePassthroughShaderDefs::sFragmentHash, RetroArchCrtShadersPhosphorPersistencePassthroughShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersPhosphorPersistencePassthroughShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sVertexHash, RetroArchCrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sFragmentHash, RetroArchCrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersPhosphorlutScanlinesInterlaceLinearizeShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastVerticalShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur5fastHorizontalShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexHash, RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentHash, RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass0ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersPhosphorlutPhosphorlutPass1ShaderDefs::sVertexHash, RetroArchCrtShadersPhosphorlutPhosphorlutPass1ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersPhosphorlutPhosphorlutPass1ShaderDefs::sFragmentHash, RetroArchCrtShadersPhosphorlutPhosphorlutPass1ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersPhosphorlutPhosphorlutPass1ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sVertexHash, RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sFragmentHash, RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersRt_curvatureRt_curvatureShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sVertexHash, RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sFragmentHash, RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersSimpleCrtSimpleFxaaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersSimpleCrtSimpleColorCorrectionShaderDefs::sVertexHash, RetroArchCrtShadersSimpleCrtSimpleColorCorrectionShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersSimpleCrtSimpleColorCorrectionShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersSimpleCrtSimpleColorCorrectionShaderDefs::sFragmentHash, RetroArchCrtShadersSimpleCrtSimpleColorCorrectionShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersSimpleCrtSimpleColorCorrectionShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersSimpleCrtSimpleCrtShaderDefs::sVertexHash, RetroArchCrtShadersSimpleCrtSimpleCrtShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersSimpleCrtSimpleCrtShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersSimpleCrtSimpleCrtShaderDefs::sFragmentHash, RetroArchCrtShadersSimpleCrtSimpleCrtShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersSimpleCrtSimpleCrtShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastVerticalShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexHash, RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentHash, RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersRoyaleBlur43fastHorizontalShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersGlowTrailsCombineShaderDefs::sVertexHash, RetroArchCrtShadersGlowTrailsCombineShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGlowTrailsCombineShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGlowTrailsCombineShaderDefs::sFragmentHash, RetroArchCrtShadersGlowTrailsCombineShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGlowTrailsCombineShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersVt220Vt220ShaderDefs::sVertexHash, RetroArchCrtShadersVt220Vt220ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersVt220Vt220ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentHash, RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersVt220Vt220ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersYee64ShaderDefs::sVertexHash, RetroArchCrtShadersYee64ShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersYee64ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersYee64ShaderDefs::sFragmentHash, RetroArchCrtShadersYee64ShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersYee64ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersYeetronShaderDefs::sVertexHash, RetroArchCrtShadersYeetronShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersYeetronShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersYeetronShaderDefs::sFragmentHash, RetroArchCrtShadersYeetronShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersYeetronShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sVertexHash, RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentHash, RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_compositeShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_curvatureShaderDefs::sVertexHash, RetroArchCrtShadersZfast_crtZfast_crt_curvatureShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_curvatureShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_curvatureShaderDefs::sFragmentHash, RetroArchCrtShadersZfast_crtZfast_crt_curvatureShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_curvatureShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_geo_svideoShaderDefs::sVertexHash, RetroArchCrtShadersZfast_crtZfast_crt_geo_svideoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_geo_svideoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_geo_svideoShaderDefs::sFragmentHash, RetroArchCrtShadersZfast_crtZfast_crt_geo_svideoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_geo_svideoShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sVertexHash, RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sFragmentHash, RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_geoShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_coarsemaskShaderDefs::sVertexHash, RetroArchCrtShadersZfast_crtZfast_crt_coarsemaskShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_coarsemaskShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_coarsemaskShaderDefs::sFragmentHash, RetroArchCrtShadersZfast_crtZfast_crt_coarsemaskShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_coarsemaskShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sVertexHash, RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sFragmentHash, RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersZfast_crtZfast_crt_finemaskShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchDeblurShadersDeblurLumaShaderDefs::sVertexHash, RetroArchDeblurShadersDeblurLumaShaderDefs::sVertexByteCode, sizeof(RetroArchDeblurShadersDeblurLumaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeblurShadersDeblurLumaShaderDefs::sFragmentHash, RetroArchDeblurShadersDeblurLumaShaderDefs::sFragmentByteCode, sizeof(RetroArchDeblurShadersDeblurLumaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchDeblurShadersDeblurShaderDefs::sVertexHash, RetroArchDeblurShadersDeblurShaderDefs::sVertexByteCode, sizeof(RetroArchDeblurShadersDeblurShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeblurShadersDeblurShaderDefs::sFragmentHash, RetroArchDeblurShadersDeblurShaderDefs::sFragmentByteCode, sizeof(RetroArchDeblurShadersDeblurShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersBobDeinterlacingShaderDefs::sVertexHash, RetroArchDeinterlacingShadersBobDeinterlacingShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersBobDeinterlacingShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersBobDeinterlacingShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersBobDeinterlacingShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersBobDeinterlacingShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersDeinterlaceShaderDefs::sVertexHash, RetroArchDeinterlacingShadersDeinterlaceShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersDeinterlaceShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersDeinterlaceShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersDeinterlaceShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersDeinterlaceShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersGtuPass1DeinterlacedShaderDefs::sVertexHash, RetroArchDeinterlacingShadersGtuPass1DeinterlacedShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersGtuPass1DeinterlacedShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersGtuPass1DeinterlacedShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersGtuPass1DeinterlacedShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersGtuPass1DeinterlacedShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersInterpolationDeinterlacerShaderDefs::sVertexHash, RetroArchDeinterlacingShadersInterpolationDeinterlacerShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersInterpolationDeinterlacerShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersInterpolationDeinterlacerShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersInterpolationDeinterlacerShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersInterpolationDeinterlacerShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersMotionAdaptiveDeinterlacingShaderDefs::sVertexHash, RetroArchDeinterlacingShadersMotionAdaptiveDeinterlacingShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersMotionAdaptiveDeinterlacingShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersMotionAdaptiveDeinterlacingShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersMotionAdaptiveDeinterlacingShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersMotionAdaptiveDeinterlacingShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDefs::sVertexHash, RetroArchDeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersNnedi3DeinterlacingBobDeinterlacingLiteShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns128Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchDeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDefs::sVertexHash, RetroArchDeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDefs::sVertexByteCode, sizeof(RetroArchDeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDefs::sFragmentHash, RetroArchDeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDefs::sFragmentByteCode, sizeof(RetroArchDeinterlacingShadersNnedi3DeinterlacingNnedi3DeintPass2ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns256Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchDenoisersShadersBilateralHorizontalShaderDefs::sVertexHash, RetroArchDenoisersShadersBilateralHorizontalShaderDefs::sVertexByteCode, sizeof(RetroArchDenoisersShadersBilateralHorizontalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDenoisersShadersBilateralHorizontalShaderDefs::sFragmentHash, RetroArchDenoisersShadersBilateralHorizontalShaderDefs::sFragmentByteCode, sizeof(RetroArchDenoisersShadersBilateralHorizontalShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchDenoisersShadersBilateralVerticalShaderDefs::sVertexHash, RetroArchDenoisersShadersBilateralVerticalShaderDefs::sVertexByteCode, sizeof(RetroArchDenoisersShadersBilateralVerticalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDenoisersShadersBilateralVerticalShaderDefs::sFragmentHash, RetroArchDenoisersShadersBilateralVerticalShaderDefs::sFragmentByteCode, sizeof(RetroArchDenoisersShadersBilateralVerticalShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchDenoisersShadersBilateralShaderDefs::sVertexHash, RetroArchDenoisersShadersBilateralShaderDefs::sVertexByteCode, sizeof(RetroArchDenoisersShadersBilateralShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDenoisersShadersBilateralShaderDefs::sFragmentHash, RetroArchDenoisersShadersBilateralShaderDefs::sFragmentByteCode, sizeof(RetroArchDenoisersShadersBilateralShaderDefs::sFragmentByteCode));
@@ -5869,15 +6082,12 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2CshiftLumaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput0ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb2xShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersYuvToRgb4xShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass1LumaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns32Win8x4Pass2LumaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersJinc2OnPassoutput3ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass1RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDefs::sVertexHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDefs::sFragmentHash, RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingNnedi3ShadersNnedi3Nns64Win8x4Pass2RgbShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDefs::sVertexHash, RetroArchEdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDefs::sFragmentHash, RetroArchEdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleLegacyShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sVertexHash, RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sFragmentHash, RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingOmniscaleShadersOmniscaleShaderDefs::sFragmentByteCode));
@@ -5899,6 +6109,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchEdgeSmoothingScalehqShaders2xScaleHQShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalehqShaders2xScaleHQShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalehqShaders2xScaleHQShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalehqShaders2xScaleHQShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalehqShaders2xScaleHQShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalehqShaders2xScaleHQShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingScalehqShaders4xScaleHQShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalehqShaders4xScaleHQShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalehqShaders4xScaleHQShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalehqShaders4xScaleHQShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalehqShaders4xScaleHQShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalehqShaders4xScaleHQShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersEpxShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalenxShadersEpxShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersEpxShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersEpxShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalenxShadersEpxShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersEpxShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersMmpxExShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalenxShadersMmpxExShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersMmpxExShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersMmpxExShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalenxShadersMmpxExShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersMmpxExShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersMmpxShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalenxShadersMmpxShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersMmpxShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersMmpxShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalenxShadersMmpxShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersMmpxShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersScale2xShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalenxShadersScale2xShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersScale2xShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersScale2xShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalenxShadersScale2xShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersScale2xShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersScale2xplusShaderDefs::sVertexHash, RetroArchEdgeSmoothingScalenxShadersScale2xplusShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersScale2xplusShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingScalenxShadersScale2xplusShaderDefs::sFragmentHash, RetroArchEdgeSmoothingScalenxShadersScale2xplusShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingScalenxShadersScale2xplusShaderDefs::sFragmentByteCode));
@@ -5926,7 +6137,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDefs::sVertexHash, RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleMultipassXbrzFreescalePass1ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleShaderDefs::sVertexHash, RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXbrzShadersXbrzFreescaleShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2ShaderDefs::sVertexHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2ShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2ShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2ShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersDotmaskShaderDefs::sVertexHash, RetroArchCrtShadersDotmaskShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersDotmaskShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersDotmaskShaderDefs::sFragmentHash, RetroArchCrtShadersDotmaskShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersDotmaskShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersDotmaskShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersDotmaskShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersDotmaskShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersDotmaskShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersDotmaskShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersDotmaskShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalShaderDefs::sVertexHash, RetroArchEdgeSmoothingXsalShaders2xsalShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXsalShaders2xsalShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDefs::sVertexHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2Pass2ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2HqShaderDefs::sVertexHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2HqShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2HqShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2HqShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2HqShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2HqShaderDefs::sFragmentByteCode));
@@ -5969,16 +6180,17 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesGbPass3ShaderDefs::sVertexHash, RetroArchHandheldConsoleBorderShaderFilesGbPass3ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass3ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesGbPass3ShaderDefs::sFragmentHash, RetroArchHandheldConsoleBorderShaderFilesGbPass3ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass3ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sVertexHash, RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentHash, RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass4ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesGbPass5ShaderDefs::sVertexHash, RetroArchHandheldConsoleBorderShaderFilesGbPass5ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass5ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesGbPass5ShaderDefs::sFragmentHash, RetroArchHandheldConsoleBorderShaderFilesGbPass5ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesGbPass5ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass1ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass2ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass2ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass2ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass2ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass2ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass3ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass3ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass3ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass3ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass3ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass3ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass4ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass4ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass4ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass4ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass4ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass4ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass5ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass5ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass5ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass5ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass5ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass5ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMotionblurShadersResponseTimeShaderDefs::sVertexHash, RetroArchMotionblurShadersResponseTimeShaderDefs::sVertexByteCode, sizeof(RetroArchMotionblurShadersResponseTimeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMotionblurShadersResponseTimeShaderDefs::sFragmentHash, RetroArchMotionblurShadersResponseTimeShaderDefs::sFragmentByteCode, sizeof(RetroArchMotionblurShadersResponseTimeShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sVertexHash, RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sFragmentHash, RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesBorderAutoScaleShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDefs::sVertexHash, RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDefs::sFragmentHash, RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridV2ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDefs::sVertexHash, RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDefs::sFragmentHash, RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldConsoleBorderShaderFilesLcdCgwgLcdGridShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersDsHybridViewShaderDefs::sVertexHash, RetroArchHandheldShadersDsHybridViewShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersDsHybridViewShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentHash, RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersDsHybridViewShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sVertexHash, RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentHash, RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGameboyShaderFilesGbPass0ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sVertexHash, RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sFragmentHash, RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersGbPaletteGbPaletteShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersColorGbcDevShaderDefs::sVertexHash, RetroArchHandheldShadersColorGbcDevShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersColorGbcDevShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersColorGbcDevShaderDefs::sFragmentHash, RetroArchHandheldShadersColorGbcDevShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersColorGbcDevShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersLcdCgwgLcdGridShaderDefs::sVertexHash, RetroArchHandheldShadersLcdCgwgLcdGridShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersLcdCgwgLcdGridShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersLcdCgwgLcdGridShaderDefs::sFragmentHash, RetroArchHandheldShadersLcdCgwgLcdGridShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersLcdCgwgLcdGridShaderDefs::sFragmentByteCode));
@@ -5990,6 +6202,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchHandheldShadersLcd1x_ndsShaderDefs::sVertexHash, RetroArchHandheldShadersLcd1x_ndsShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersLcd1x_ndsShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersLcd1x_ndsShaderDefs::sFragmentHash, RetroArchHandheldShadersLcd1x_ndsShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersLcd1x_ndsShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersLcd1x_pspShaderDefs::sVertexHash, RetroArchHandheldShadersLcd1x_pspShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersLcd1x_pspShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersLcd1x_pspShaderDefs::sFragmentHash, RetroArchHandheldShadersLcd1x_pspShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersLcd1x_pspShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersLcd3xShaderDefs::sVertexHash, RetroArchHandheldShadersLcd3xShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersLcd3xShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersLcd3xShaderDefs::sFragmentHash, RetroArchHandheldShadersLcd3xShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersLcd3xShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchHandheldShadersPixel_transparencyShaderDefs::sVertexHash, RetroArchHandheldShadersPixel_transparencyShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersPixel_transparencyShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersPixel_transparencyShaderDefs::sFragmentHash, RetroArchHandheldShadersPixel_transparencyShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersPixel_transparencyShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersRetroTilesShaderDefs::sVertexHash, RetroArchHandheldShadersRetroTilesShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersRetroTilesShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersRetroTilesShaderDefs::sFragmentHash, RetroArchHandheldShadersRetroTilesShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersRetroTilesShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersRetroV2ShaderDefs::sVertexHash, RetroArchHandheldShadersRetroV2ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersRetroV2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersRetroV2ShaderDefs::sFragmentHash, RetroArchHandheldShadersRetroV2ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersRetroV2ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersRetroV3ShaderDefs::sVertexHash, RetroArchHandheldShadersRetroV3ShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersRetroV3ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersRetroV3ShaderDefs::sFragmentHash, RetroArchHandheldShadersRetroV3ShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersRetroV3ShaderDefs::sFragmentByteCode));
@@ -6051,7 +6264,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchMiscShadersAntiFlickerShaderDefs::sVertexHash, RetroArchMiscShadersAntiFlickerShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersAntiFlickerShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersAntiFlickerShaderDefs::sFragmentHash, RetroArchMiscShadersAntiFlickerShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersAntiFlickerShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersAsciiShaderDefs::sVertexHash, RetroArchMiscShadersAsciiShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersAsciiShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersAsciiShaderDefs::sFragmentHash, RetroArchMiscShadersAsciiShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersAsciiShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersBeadShaderDefs::sVertexHash, RetroArchMiscShadersBeadShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersBeadShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersBeadShaderDefs::sFragmentHash, RetroArchMiscShadersBeadShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersBeadShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchMiscShadersBobDeinterlacingShaderDefs::sVertexHash, RetroArchMiscShadersBobDeinterlacingShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersBobDeinterlacingShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersBobDeinterlacingShaderDefs::sFragmentHash, RetroArchMiscShadersBobDeinterlacingShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersBobDeinterlacingShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersChromaShaderDefs::sVertexHash, RetroArchMiscShadersChromaShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersChromaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersChromaShaderDefs::sFragmentHash, RetroArchMiscShadersChromaShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersChromaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersChromaticityShaderDefs::sVertexHash, RetroArchMiscShadersChromaticityShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersChromaticityShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersChromaticityShaderDefs::sFragmentHash, RetroArchMiscShadersChromaticityShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersChromaticityShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersCmykHalftoneDotShaderDefs::sVertexHash, RetroArchMiscShadersCmykHalftoneDotShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersCmykHalftoneDotShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersCmykHalftoneDotShaderDefs::sFragmentHash, RetroArchMiscShadersCmykHalftoneDotShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersCmykHalftoneDotShaderDefs::sFragmentByteCode));
@@ -6060,7 +6272,6 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchMiscShadersColorimetryShaderDefs::sVertexHash, RetroArchMiscShadersColorimetryShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersColorimetryShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersColorimetryShaderDefs::sFragmentHash, RetroArchMiscShadersColorimetryShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersColorimetryShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersConvergenceShaderDefs::sVertexHash, RetroArchMiscShadersConvergenceShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersConvergenceShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersConvergenceShaderDefs::sFragmentHash, RetroArchMiscShadersConvergenceShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersConvergenceShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersDebandShaderDefs::sVertexHash, RetroArchMiscShadersDebandShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersDebandShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersDebandShaderDefs::sFragmentHash, RetroArchMiscShadersDebandShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersDebandShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchMiscShadersDeinterlaceShaderDefs::sVertexHash, RetroArchMiscShadersDeinterlaceShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersDeinterlaceShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersDeinterlaceShaderDefs::sFragmentHash, RetroArchMiscShadersDeinterlaceShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersDeinterlaceShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersEdgeDetectShaderDefs::sVertexHash, RetroArchMiscShadersEdgeDetectShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersEdgeDetectShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersEdgeDetectShaderDefs::sFragmentHash, RetroArchMiscShadersEdgeDetectShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersEdgeDetectShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersEgaShaderDefs::sVertexHash, RetroArchMiscShadersEgaShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersEgaShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersEgaShaderDefs::sFragmentHash, RetroArchMiscShadersEgaShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersEgaShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersGeomShaderDefs::sVertexHash, RetroArchMiscShadersGeomShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersGeomShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersGeomShaderDefs::sFragmentHash, RetroArchMiscShadersGeomShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersGeomShaderDefs::sFragmentByteCode));
@@ -6131,9 +6342,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchNtscShadersNtscAdaptiveTateNtscTatePass2ShaderDefs::sVertexHash, RetroArchNtscShadersNtscAdaptiveTateNtscTatePass2ShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscAdaptiveTateNtscTatePass2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscAdaptiveTateNtscTatePass2ShaderDefs::sFragmentHash, RetroArchNtscShadersNtscAdaptiveTateNtscTatePass2ShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscAdaptiveTateNtscTatePass2ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchNtscShadersNtscBlastemShaderDefs::sVertexHash, RetroArchNtscShadersNtscBlastemShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscBlastemShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscBlastemShaderDefs::sFragmentHash, RetroArchNtscShadersNtscBlastemShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscBlastemShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sVertexHash, RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sFragmentHash, RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtscMiniShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sVertexHash, RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sFragmentHash, RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtscSimple1ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchNtscShadersNtscSimpleNtscSimple2ShaderDefs::sVertexHash, RetroArchNtscShadersNtscSimpleNtscSimple2ShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtscSimple2ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscSimpleNtscSimple2ShaderDefs::sFragmentHash, RetroArchNtscShadersNtscSimpleNtscSimple2ShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtscSimple2ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sVertexHash, RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sFragmentHash, RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscSimpleKaizerLpSmallShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchNtscShadersNtscSimpleNtsc_simpleShaderDefs::sVertexHash, RetroArchNtscShadersNtscSimpleNtsc_simpleShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtsc_simpleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscSimpleNtsc_simpleShaderDefs::sFragmentHash, RetroArchNtscShadersNtscSimpleNtsc_simpleShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscSimpleNtsc_simpleShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchNtscShadersNtscXotShaderDefs::sVertexHash, RetroArchNtscShadersNtscXotShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscXotShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscXotShaderDefs::sFragmentHash, RetroArchNtscShadersNtscXotShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscXotShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sVertexHash, RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sFragmentHash, RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersNtscSimpleTiny_ntscShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sVertexHash, RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sVertexByteCode, sizeof(RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sFragmentHash, RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sFragmentByteCode, sizeof(RetroArchPalShadersPalR57shellMoireOnlyShaderDefs::sFragmentByteCode));
@@ -6166,6 +6375,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sVertexHash, RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sFragmentHash, RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtLottesMultipassBloompassGlowShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchWarpShadersSmartMorphShaderDefs::sVertexHash, RetroArchWarpShadersSmartMorphShaderDefs::sVertexByteCode, sizeof(RetroArchWarpShadersSmartMorphShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchWarpShadersSmartMorphShaderDefs::sFragmentHash, RetroArchWarpShadersSmartMorphShaderDefs::sFragmentByteCode, sizeof(RetroArchWarpShadersSmartMorphShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchNtscShadersMaisterNtscPass23phaseLinearShaderDefs::sVertexHash, RetroArchNtscShadersMaisterNtscPass23phaseLinearShaderDefs::sVertexByteCode, sizeof(RetroArchNtscShadersMaisterNtscPass23phaseLinearShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchNtscShadersMaisterNtscPass23phaseLinearShaderDefs::sFragmentHash, RetroArchNtscShadersMaisterNtscPass23phaseLinearShaderDefs::sFragmentByteCode, sizeof(RetroArchNtscShadersMaisterNtscPass23phaseLinearShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtConsumerNtsc_moduleShaderDefs::sVertexHash, RetroArchCrtShadersCrtConsumerNtsc_moduleShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtConsumerNtsc_moduleShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtConsumerNtsc_moduleShaderDefs::sFragmentHash, RetroArchCrtShadersCrtConsumerNtsc_moduleShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtConsumerNtsc_moduleShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sVertexHash, RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sVertexByteCode, sizeof(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentHash, RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentByteCode, sizeof(RetroArchDownsampleShadersDrezGSharp_resamplerShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sVertexHash, RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sFragmentHash, RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColor4kShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDefs::sVertexHash, RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDefs::sVertexByteCode, sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDefs::sFragmentHash, RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDefs::sFragmentByteCode, sizeof(RetroArchHandheldShadersSimpletex_lcdSimpletex_lcdGbaColorShaderDefs::sFragmentByteCode));
@@ -6180,7 +6390,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchBlursShadersBlurGaussHShaderDefs::sVertexHash, RetroArchBlursShadersBlurGaussHShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersBlurGaussHShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersBlurGaussHShaderDefs::sFragmentHash, RetroArchBlursShadersBlurGaussHShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersBlurGaussHShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchBlursShadersBlurGaussVShaderDefs::sVertexHash, RetroArchBlursShadersBlurGaussVShaderDefs::sVertexByteCode, sizeof(RetroArchBlursShadersBlurGaussVShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchBlursShadersBlurGaussVShaderDefs::sFragmentHash, RetroArchBlursShadersBlurGaussVShaderDefs::sFragmentByteCode, sizeof(RetroArchBlursShadersBlurGaussVShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sVertexHash, RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sVertexByteCode, sizeof(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentHash, RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentByteCode, sizeof(RetroArchReshadeShadersBlurHazeSh1nra358ShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersSnesHiresBlendShaderDefs::sVertexHash, RetroArchCrtShadersSnesHiresBlendShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersSnesHiresBlendShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersSnesHiresBlendShaderDefs::sFragmentHash, RetroArchCrtShadersSnesHiresBlendShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersSnesHiresBlendShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersSnesHiresBlendShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersSnesHiresBlendShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersSnesHiresBlendShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersSnesHiresBlendShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersSnesHiresBlendShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersSnesHiresBlendShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2XbrShaderDefs::sVertexHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2XbrShaderDefs::sVertexByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2XbrShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchEdgeSmoothingXsalShaders2xsalLevel2XbrShaderDefs::sFragmentHash, RetroArchEdgeSmoothingXsalShaders2xsalLevel2XbrShaderDefs::sFragmentByteCode, sizeof(RetroArchEdgeSmoothingXsalShaders2xsalLevel2XbrShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchReshadeShadersFilmGrainShaderDefs::sVertexHash, RetroArchReshadeShadersFilmGrainShaderDefs::sVertexByteCode, sizeof(RetroArchReshadeShadersFilmGrainShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchReshadeShadersFilmGrainShaderDefs::sFragmentHash, RetroArchReshadeShadersFilmGrainShaderDefs::sFragmentByteCode, sizeof(RetroArchReshadeShadersFilmGrainShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDefs::sVertexHash, RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDefs::sVertexByteCode, sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDefs::sFragmentHash, RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDefs::sFragmentByteCode, sizeof(RetroArchReshadeShadersMagicbloomMagicbloom_blur_pass_1ShaderDefs::sFragmentByteCode));
@@ -6197,7 +6407,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchReshadeShadersNormalsDisplacementNormalsDisplacementShaderDefs::sVertexHash, RetroArchReshadeShadersNormalsDisplacementNormalsDisplacementShaderDefs::sVertexByteCode, sizeof(RetroArchReshadeShadersNormalsDisplacementNormalsDisplacementShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchReshadeShadersNormalsDisplacementNormalsDisplacementShaderDefs::sFragmentHash, RetroArchReshadeShadersNormalsDisplacementNormalsDisplacementShaderDefs::sFragmentByteCode, sizeof(RetroArchReshadeShadersNormalsDisplacementNormalsDisplacementShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchScanlinesShadersIntegerScalingScanlinesShaderDefs::sVertexHash, RetroArchScanlinesShadersIntegerScalingScanlinesShaderDefs::sVertexByteCode, sizeof(RetroArchScanlinesShadersIntegerScalingScanlinesShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchScanlinesShadersIntegerScalingScanlinesShaderDefs::sFragmentHash, RetroArchScanlinesShadersIntegerScalingScanlinesShaderDefs::sFragmentByteCode, sizeof(RetroArchScanlinesShadersIntegerScalingScanlinesShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchScanlinesShadersOsscShaderDefs::sVertexHash, RetroArchScanlinesShadersOsscShaderDefs::sVertexByteCode, sizeof(RetroArchScanlinesShadersOsscShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchScanlinesShadersOsscShaderDefs::sFragmentHash, RetroArchScanlinesShadersOsscShaderDefs::sFragmentByteCode, sizeof(RetroArchScanlinesShadersOsscShaderDefs::sFragmentByteCode));
- cached.emplace_back(RetroArchCrtShadersSlotmaskShaderDefs::sVertexHash, RetroArchCrtShadersSlotmaskShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersSlotmaskShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersSlotmaskShaderDefs::sFragmentHash, RetroArchCrtShadersSlotmaskShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersSlotmaskShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtCrtEffectsShadersSlotmaskShaderDefs::sVertexHash, RetroArchCrtCrtEffectsShadersSlotmaskShaderDefs::sVertexByteCode, sizeof(RetroArchCrtCrtEffectsShadersSlotmaskShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtCrtEffectsShadersSlotmaskShaderDefs::sFragmentHash, RetroArchCrtCrtEffectsShadersSlotmaskShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtCrtEffectsShadersSlotmaskShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sVertexHash, RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sVertexByteCode, sizeof(RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sFragmentHash, RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sFragmentByteCode, sizeof(RetroArchScanlinesShadersResIndependentScanlinesShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchScanlinesShadersScanlineFractShaderDefs::sVertexHash, RetroArchScanlinesShadersScanlineFractShaderDefs::sVertexByteCode, sizeof(RetroArchScanlinesShadersScanlineFractShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchScanlinesShadersScanlineFractShaderDefs::sFragmentHash, RetroArchScanlinesShadersScanlineFractShaderDefs::sFragmentByteCode, sizeof(RetroArchScanlinesShadersScanlineFractShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchScanlinesShadersScanlinesRereShaderDefs::sVertexHash, RetroArchScanlinesShadersScanlinesRereShaderDefs::sVertexByteCode, sizeof(RetroArchScanlinesShadersScanlinesRereShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchScanlinesShadersScanlinesRereShaderDefs::sFragmentHash, RetroArchScanlinesShadersScanlinesRereShaderDefs::sFragmentByteCode, sizeof(RetroArchScanlinesShadersScanlinesRereShaderDefs::sFragmentByteCode));
@@ -6212,6 +6422,7 @@ std::vector<CachedShader> CachedShaders() {
  cached.emplace_back(RetroArchSharpenShadersSuperResExShaderDefs::sVertexHash, RetroArchSharpenShadersSuperResExShaderDefs::sVertexByteCode, sizeof(RetroArchSharpenShadersSuperResExShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchSharpenShadersSuperResExShaderDefs::sFragmentHash, RetroArchSharpenShadersSuperResExShaderDefs::sFragmentByteCode, sizeof(RetroArchSharpenShadersSuperResExShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersDeposterizeDeposterizePass0ShaderDefs::sVertexHash, RetroArchMiscShadersDeposterizeDeposterizePass0ShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersDeposterizeDeposterizePass0ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersDeposterizeDeposterizePass0ShaderDefs::sFragmentHash, RetroArchMiscShadersDeposterizeDeposterizePass0ShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersDeposterizeDeposterizePass0ShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchMiscShadersDeposterizeDeposterizePass1ShaderDefs::sVertexHash, RetroArchMiscShadersDeposterizeDeposterizePass1ShaderDefs::sVertexByteCode, sizeof(RetroArchMiscShadersDeposterizeDeposterizePass1ShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchMiscShadersDeposterizeDeposterizePass1ShaderDefs::sFragmentHash, RetroArchMiscShadersDeposterizeDeposterizePass1ShaderDefs::sFragmentByteCode, sizeof(RetroArchMiscShadersDeposterizeDeposterizePass1ShaderDefs::sFragmentByteCode));
+ cached.emplace_back(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexHash, RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentHash, RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersCrtResswitchGlitchKokoShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchCrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDefs::sVertexHash, RetroArchCrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDefs::sVertexByteCode, sizeof(RetroArchCrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchCrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDefs::sFragmentHash, RetroArchCrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDefs::sFragmentByteCode, sizeof(RetroArchCrtShadersGuestAdvancedGradePreShadersAfterglowGradeShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchStereoscopic3dShadersAnaglyphToInterlacedShaderDefs::sVertexHash, RetroArchStereoscopic3dShadersAnaglyphToInterlacedShaderDefs::sVertexByteCode, sizeof(RetroArchStereoscopic3dShadersAnaglyphToInterlacedShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchStereoscopic3dShadersAnaglyphToInterlacedShaderDefs::sFragmentHash, RetroArchStereoscopic3dShadersAnaglyphToInterlacedShaderDefs::sFragmentByteCode, sizeof(RetroArchStereoscopic3dShadersAnaglyphToInterlacedShaderDefs::sFragmentByteCode));
  cached.emplace_back(RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sVertexHash, RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sVertexByteCode, sizeof(RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sVertexByteCode)); cached.emplace_back(RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sFragmentHash, RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sFragmentByteCode, sizeof(RetroArchStereoscopic3dShadersAnaglyphToSideBySideShaderDefs::sFragmentByteCode));

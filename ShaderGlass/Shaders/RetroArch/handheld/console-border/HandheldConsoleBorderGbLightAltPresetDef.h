@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset handheld/console-border / gb-light-alt imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/console-border/gb-light-alt.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/handheld/console-border/gb-light-alt.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -19,7 +19,7 @@ public:
 	}
 
 	void Build() {
-         	ShaderDefs.push_back(HandheldConsoleBorderShaderFilesGbPass0ShaderDef()
+         	ShaderDefs.push_back(HandheldShadersGameboyShaderFilesGbPass0ShaderDef()
 .Param("filter_linear", "false")
 .Param("scale", "1")
 .Param("scale_type", "viewport"));
@@ -39,7 +39,7 @@ public:
 .Param("filter_linear", "false")
 .Param("scale", "1")
 .Param("scale_type", "source"));
-         	ShaderDefs.push_back(HandheldConsoleBorderShaderFilesGbPass5ShaderDef()
+         	ShaderDefs.push_back(HandheldShadersGameboyShaderFilesGbPass5ShaderDef()
 .Param("filter_linear", "true")
 .Param("scale", "1")
 .Param("scale_type", "source"));
@@ -54,6 +54,7 @@ public:
 .Param("name", "BORDER"));
             OverrideParam("blending_mode", (float)0.000000);
             OverrideParam("grey_balance", (float)3.000000);
+            OverrideParam("integer_mode", (float)2.000000);
             OverrideParam("response_time", (float)0.444000);
             OverrideParam("screen_light", (float)1.400000);
             OverrideParam("video_scale", (float)4.000000);

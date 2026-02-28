@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / GameboyAdvance imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets_Handhelds-ng/GameboyAdvance.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets_Handhelds-ng/GameboyAdvance.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -177,7 +178,7 @@ public:
             OverrideParam("BG_IMAGE_WRAP_MODE", (float)1.000000);
             OverrideParam("BG_IMAGE_ZOOM", (float)1.018000);
             OverrideParam("DOT_M_MBLUR_STR", (float)0.200000);
-            OverrideParam("DO_AMBILIGHT", (float)0.000000);
+            OverrideParam("DO_AMBILIGHT", (float)1.000000);
             OverrideParam("DO_BG_IMAGE", (float)0.000000);
             OverrideParam("DO_BLOOM", (float)0.000000);
             OverrideParam("DO_CCORRECTION", (float)1.000000);

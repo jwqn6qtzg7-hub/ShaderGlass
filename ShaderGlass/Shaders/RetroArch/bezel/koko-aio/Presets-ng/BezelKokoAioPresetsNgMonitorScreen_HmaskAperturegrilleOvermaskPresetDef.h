@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / Monitor-Screen_Hmask-Aperturegrille-Overmask imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets-ng/Monitor-Screen_Hmask-Aperturegrille-Overmask.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets-ng/Monitor-Screen_Hmask-Aperturegrille-Overmask.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -170,14 +171,20 @@ public:
             OverrideParam("AMBI_OVER_BEZEL", (float)0.200000);
             OverrideParam("AMBI_POWER", (float)1.800000);
             OverrideParam("AMBI_STEPS", (float)60.000000);
-            OverrideParam("BEZEL_DIFFUSION_STR", (float)0.150000);
+            OverrideParam("BEZEL_B", (float)-0.310000);
+            OverrideParam("BEZEL_CON", (float)1.300000);
+            OverrideParam("BEZEL_DIFFUSION_STR", (float)0.170000);
             OverrideParam("BEZEL_FRAME_ZOOM", (float)0.179000);
-            OverrideParam("BEZEL_REFL_STRENGTH", (float)0.370000);
+            OverrideParam("BEZEL_G", (float)-0.310000);
+            OverrideParam("BEZEL_R", (float)-0.310000);
+            OverrideParam("BEZEL_REFL_STRENGTH", (float)0.330000);
             OverrideParam("BEZEL_REFL_ZOOM", (float)1.000000);
-            OverrideParam("BEZEL_RFL_BLR_SHD", (float)-0.200000);
+            OverrideParam("BEZEL_RFL_BLR_SHD", (float)-0.500000);
+            OverrideParam("BEZEL_RFL_CONTRAST", (float)0.850000);
             OverrideParam("BEZEL_RFL_OFFSET", (float)0.001000);
+            OverrideParam("BEZEL_ROUGHNESS", (float)2.000000);
+            OverrideParam("BEZEL_SPCL_STRENGTH", (float)0.350000);
             OverrideParam("BLOOM_EYE_ADPT_SRT", (float)0.600000);
-            OverrideParam("BLOOM_EYE_INERTIA", (float)750.000000);
             OverrideParam("BLOOM_GAMMA", (float)8.000000);
             OverrideParam("BLOOM_GAMMA_OUT", (float)1.200000);
             OverrideParam("BLOOM_MIX", (float)0.400000);
@@ -186,11 +193,11 @@ public:
             OverrideParam("BLOOM_QUALITY", (float)1.000000);
             OverrideParam("BLOOM_SIZE", (float)4.000000);
             OverrideParam("DECON_BX", (float)0.000000);
-            OverrideParam("DECON_BY", (float)1.000000);
+            OverrideParam("DECON_BY", (float)1.600000);
             OverrideParam("DECON_GX", (float)0.000000);
             OverrideParam("DECON_GY", (float)0.000000);
             OverrideParam("DECON_RX", (float)0.000000);
-            OverrideParam("DECON_RY", (float)-1.000000);
+            OverrideParam("DECON_RY", (float)-1.600000);
             OverrideParam("DO_AMBILIGHT", (float)1.000000);
             OverrideParam("DO_BEZEL", (float)1.000000);
             OverrideParam("DO_BLOOM", (float)1.000000);
@@ -244,15 +251,13 @@ public:
             OverrideParam("PIXELGRID_Y_MASK_SHIFT", (float)0.150000);
             OverrideParam("PIXELGRID_Y_MASK_STEEP", (float)1.000000);
             OverrideParam("PIXELGRID_Y_SPARK", (float)1.000000);
-            OverrideParam("SHIFT_B", (float)20.000000);
-            OverrideParam("SHIFT_G", (float)0.000000);
-            OverrideParam("SHIFT_R", (float)-20.000000);
             OverrideParam("S_POSITION_X", (float)-0.500000);
             OverrideParam("S_POSITION_Y", (float)0.500000);
             OverrideParam("S_POWER", (float)0.067000);
             OverrideParam("S_SIZE", (float)0.360000);
             OverrideParam("TEMPERATURE", (float)7200.000000);
             OverrideParam("V_POWER", (float)1.000000);
+            OverrideParam("V_SHAPE", (float)0.800000);
             OverrideParam("V_SIZE", (float)1.080000);
 	}
 };

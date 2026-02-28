@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset presets/tvout-interlacing / tvout+ntsc-256px-svideo+interlacing imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/presets/tvout+interlacing/tvout+ntsc-256px-svideo+interlacing.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/presets/tvout+interlacing/tvout+ntsc-256px-svideo+interlacing.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -43,7 +43,7 @@ public:
 .Param("scale_y", "1.000000"));
          	ShaderDefs.push_back(MiscShadersImageAdjustmentShaderDef()
 .Param("float_framebuffer", "false"));
-         	ShaderDefs.push_back(MiscShadersInterlacingShaderDef());
+         	ShaderDefs.push_back(DeinterlacingShadersReinterlacingShaderDef());
             OverrideParam("B", (float)1.000000);
             OverrideParam("G", (float)1.000000);
             OverrideParam("R", (float)1.000000);

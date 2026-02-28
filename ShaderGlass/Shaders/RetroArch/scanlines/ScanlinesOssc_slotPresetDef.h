@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset scanlines / ossc_slot imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/scanlines/ossc_slot.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/scanlines/ossc_slot.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -53,7 +53,7 @@ public:
 .Param("scale_y", "1.000000")
 .Param("srgb_framebuffer", "false")
 .Param("wrap_mode", "clamp_to_border"));
-         	ShaderDefs.push_back(CrtShadersSlotmaskShaderDef()
+         	ShaderDefs.push_back(CrtCrtEffectsShadersSlotmaskShaderDef()
 .Param("float_framebuffer", "false")
 .Param("mipmap_input", "false")
 .Param("srgb_framebuffer", "false")

@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset edge-smoothing/nnedi3 / nnedi3-nns16-2x-luma imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/edge-smoothing/nnedi3/nnedi3-nns16-2x-luma.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/edge-smoothing/nnedi3/nnedi3-nns16-2x-luma.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -20,6 +20,7 @@ public:
 
 	void Build() {
          	ShaderDefs.push_back(EdgeSmoothingNnedi3ShadersRgbToYuvShaderDef()
+.Param("alias", "nnediPass0")
 .Param("filter_linear", "false")
 .Param("scale_type", "source")
 .Param("scale_x", "1.0")
@@ -32,6 +33,7 @@ public:
 .Param("scale_y", "2.0")
 .Param("wrap_mode", "clamp_to_edge"));
          	ShaderDefs.push_back(EdgeSmoothingNnedi3ShadersNnedi3Nns16Win8x4Pass2LumaShaderDef()
+.Param("alias", "nnediPass3")
 .Param("filter_linear", "false")
 .Param("scale_type", "source")
 .Param("scale_x", "2.0")

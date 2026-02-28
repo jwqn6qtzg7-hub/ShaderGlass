@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / GameboyPocket-Overlay-Taller imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets_Handhelds-ng/GameboyPocket-Overlay-Taller.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets_Handhelds-ng/GameboyPocket-Overlay-Taller.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -61,7 +61,7 @@ public:
 .Param("float_framebuffer", "true")
 .Param("scale", "1.0")
 .Param("scale_type", "source")
-.Param("wrap_mode", "clamp_to_border"));
+.Param("wrap_mode", "mirrored_repeat"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHaloShaderDef()
 .Param("alias", "halo_pass")
 .Param("filter_linear", "true")
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -171,7 +172,9 @@ public:
             OverrideParam("AMBI_POWER", (float)1.000000);
             OverrideParam("AMBI_STRETCH", (float)0.300000);
             OverrideParam("ASPECT_X", (float)-5.000000);
+            OverrideParam("BG_IMAGE_OFFX", (float)0.000000);
             OverrideParam("BG_IMAGE_OFFY", (float)-0.115000);
+            OverrideParam("BG_IMAGE_OVER", (float)0.000000);
             OverrideParam("BG_IMAGE_WRAP_MODE", (float)1.000000);
             OverrideParam("BG_IMAGE_ZOOM", (float)1.368502);
             OverrideParam("BRIGHTNESS", (float)-0.100000);
@@ -188,6 +191,7 @@ public:
             OverrideParam("DOT_M_MBLUR_STR", (float)0.450000);
             OverrideParam("DOT_M_SHADOW_OFF", (float)1.000000);
             OverrideParam("DOT_M_SHADOW_STR", (float)0.750000);
+            OverrideParam("DO_AMBILIGHT", (float)0.000000);
             OverrideParam("DO_BEZEL", (float)0.000000);
             OverrideParam("DO_BG_IMAGE", (float)1.000000);
             OverrideParam("DO_BLOOM", (float)0.000000);
@@ -199,14 +203,13 @@ public:
             OverrideParam("DO_GLOBAL_SHZO", (float)1.000000);
             OverrideParam("DO_HALO", (float)0.000000);
             OverrideParam("DO_IN_GLOW", (float)1.000000);
-            OverrideParam("DO_SCANLINES", (float)0.000000);
+            OverrideParam("DO_PIXELGRID", (float)0.000000);
             OverrideParam("DO_SHIFT_RGB", (float)0.000000);
             OverrideParam("DO_SPOT", (float)1.000000);
             OverrideParam("DO_VIGNETTE", (float)1.000000);
-            OverrideParam("DO_VMASK_AND_DARKLINES", (float)0.000000);
             OverrideParam("GAMMA_OUT", (float)0.500000);
-            OverrideParam("GEOM_CORNER_SIZE", (float)0.010000);
-            OverrideParam("GEOM_CORNER_SMOOTH", (float)800.000000);
+            OverrideParam("GEOM_CORNER_SIZE", (float)0.005000);
+            OverrideParam("GEOM_CORNER_SMOOTH", (float)500.000000);
             OverrideParam("GLOBAL_OFFX", (float)0.002500);
             OverrideParam("GLOBAL_OFFY", (float)-0.187999);
             OverrideParam("GLOBAL_ZOOM", (float)0.461998);
@@ -217,11 +220,12 @@ public:
             OverrideParam("IN_GLOW_WARPSHARP_Y", (float)0.000000);
             OverrideParam("RESSWITCH_GLITCH_SIZE", (float)0.000000);
             OverrideParam("SATURATION", (float)0.240000);
-            OverrideParam("S_POSITION_X", (float)-0.450000);
-            OverrideParam("S_POSITION_Y", (float)0.500000);
-            OverrideParam("S_SIZE", (float)1.000000);
-            OverrideParam("V_POWER", (float)1.170000);
-            OverrideParam("V_SIZE", (float)1.000000);
+            OverrideParam("S_POSITION_X", (float)0.250000);
+            OverrideParam("S_POSITION_Y", (float)0.300000);
+            OverrideParam("S_POWER", (float)0.130000);
+            OverrideParam("S_SIZE", (float)0.920000);
+            OverrideParam("V_POWER", (float)1.000000);
+            OverrideParam("V_SIZE", (float)1.820000);
 	}
 };
 }

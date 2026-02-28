@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset presets/blurs / dual-bloom-filter-aa-lv2-fsr-gamma-ramp imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/presets/blurs/dual-bloom-filter-aa-lv2-fsr-gamma-ramp.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/presets/blurs/dual-bloom-filter-aa-lv2-fsr-gamma-ramp.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */

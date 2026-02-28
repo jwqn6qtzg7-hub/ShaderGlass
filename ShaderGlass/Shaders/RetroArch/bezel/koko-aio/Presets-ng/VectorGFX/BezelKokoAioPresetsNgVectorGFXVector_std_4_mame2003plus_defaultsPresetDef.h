@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset bezel/koko-aio / Vector_std_4_mame2003plus_defaults imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/bezel/koko-aio/Presets-ng/VectorGFX/Vector_std_4_mame2003plus_defaults.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/bezel/koko-aio/Presets-ng/VectorGFX/Vector_std_4_mame2003plus_defaults.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -118,8 +118,9 @@ public:
 .Param("alias", "ambi_temporal_pass")
 .Param("filter_linear", "true")
 .Param("float_framebuffer", "true")
-.Param("scale", "0.05")
-.Param("scale_type", "viewport")
+.Param("scale_type", "absolute")
+.Param("scale_x", "96")
+.Param("scale_y", "64")
 .Param("wrap_mode", "clamp_to_border"));
          	ShaderDefs.push_back(BezelKokoAioShadersNgHelper_passShaderDef()
 .Param("alias", "helper_pass")
@@ -186,7 +187,6 @@ public:
             OverrideParam("BEZEL_ROUGHNESS", (float)5.000000);
             OverrideParam("BEZEL_SPCL_STRENGTH", (float)2.000001);
             OverrideParam("BLOOM_EYE_ADPT_SRT", (float)0.000000);
-            OverrideParam("BLOOM_EYE_INERTIA", (float)10.000000);
             OverrideParam("BLOOM_GAMMA", (float)2.000000);
             OverrideParam("BLOOM_MIX", (float)0.200001);
             OverrideParam("BLOOM_OVER_WHITE", (float)0.000000);
@@ -224,6 +224,7 @@ public:
             OverrideParam("S_SIZE", (float)1.399999);
             OverrideParam("TATE", (float)0.000000);
             OverrideParam("TEMPERATURE", (float)6500.000000);
+            OverrideParam("V_SHAPE", (float)0.800000);
             OverrideParam("V_SIZE", (float)1.000001);
 	}
 };

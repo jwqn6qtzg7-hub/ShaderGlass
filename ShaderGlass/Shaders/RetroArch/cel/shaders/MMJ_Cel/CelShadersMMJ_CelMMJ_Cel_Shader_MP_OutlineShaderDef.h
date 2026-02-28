@@ -1,6 +1,6 @@
 /*
 ShaderGlass shader cel/shaders/MMJ_Cel\MMJ_Cel_Shader_MP_Outline imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/cel/shaders/MMJ_Cel/MMJ_Cel_Shader_MP_Outline.slang
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/cel/shaders/MMJ_Cel/MMJ_Cel_Shader_MP_Outline.slang
 See original file for full credits and usage license with excerpts below. 
 This file is auto-generated, do not modify directly.
 

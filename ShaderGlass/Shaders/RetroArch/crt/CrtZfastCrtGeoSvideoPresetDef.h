@@ -1,0 +1,30 @@
+/*
+ShaderGlass preset crt / zfast-crt-geo-svideo imported from RetroArch:
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/crt/zfast-crt-geo-svideo.slangp
+See original file for credits and usage license. 
+This file is auto-generated, do not modify directly.
+*/
+
+#pragma once
+
+namespace RetroArch
+{
+class CrtZfastCrtGeoSvideoPresetDef : public PresetDef
+{
+public:
+	CrtZfastCrtGeoSvideoPresetDef() : PresetDef{}
+	{
+		Name = "zfast-crt-geo-svideo";
+		Category = "crt";
+	}
+
+	void Build() {
+         	ShaderDefs.push_back(CrtShadersZfast_crtZfast_crt_geo_svideoShaderDef()
+.Param("filter_linear", "true")
+.Param("float_framebuffer", "false")
+.Param("mipmap_input", "false")
+.Param("srgb_framebuffer", "false")
+.Param("wrap_mode", "clamp_to_border"));
+	}
+};
+}

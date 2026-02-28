@@ -1,6 +1,6 @@
 /*
 ShaderGlass preset handheld / gameboy-color-dot-matrix-white-bg imported from RetroArch:
-https://github.com/libretro/slang-shaders/blob/f1796f6f744c32da57b9d8c27ea1a20160128696/handheld/gameboy-color-dot-matrix-white-bg.slangp
+https://github.com/libretro/slang-shaders/blob/a4f3aeec04fcb2624ec6df5dd17e38f9b575eab9/handheld/gameboy-color-dot-matrix-white-bg.slangp
 See original file for credits and usage license. 
 This file is auto-generated, do not modify directly.
 */
@@ -51,6 +51,7 @@ public:
 .Param("linear", "true")
 .Param("name", "BACKGROUND"));
             OverrideParam("color_toggle", (float)1.000000);
+            OverrideParam("response_time", (float)0.330000);
             OverrideParam("screen_light", (float)0.850000);
 	}
 };
