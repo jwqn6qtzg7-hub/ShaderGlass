@@ -471,6 +471,7 @@ void ShaderWindow::StartImage(bool autoScale, int pixelSize)
     CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_CHECKED | MF_BYCOMMAND);
     TryUpdateInput();
     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
+    EnableMenuItem(m_inputMenu, ID_WINDOW_CROP, MF_BYCOMMAND | MF_ENABLED);
 
     // if we are *switching* to file mode, default pixel size and freescale
     if(autoScale && !ScaleLocked())
@@ -929,6 +930,7 @@ void ShaderWindow::BuildInputMenu()
 
     m_displayMenu = GetSubMenu(m_inputMenu, 0);
     m_windowMenu  = GetSubMenu(m_inputMenu, 1);
+    RemoveMenu(m_windowMenu, 0, MF_BYPOSITION);
     m_deviceMenu  = GetSubMenu(m_inputMenu, 2);
 }
 
@@ -1153,8 +1155,8 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
             {
                 RECT captureRect;
                 GetClientRect(m_captureOptions.captureWindow, &captureRect);
-                inputWidth  = captureRect.right - (m_captureOptions.croppedArea.left + m_captureOptions.croppedArea.right);
-                inputHeight = captureRect.bottom - (m_captureOptions.croppedArea.top + m_captureOptions.croppedArea.bottom);
+                inputWidth  = captureRect.right;
+                inputHeight = captureRect.bottom;
             }
         }
         else
@@ -1162,6 +1164,8 @@ void ShaderWindow::AdjustWindowSize(HWND hWnd)
             inputWidth  = m_captureOptions.imageWidth;
             inputHeight = m_captureOptions.imageHeight;
         }
+        inputWidth -= (m_captureOptions.croppedArea.left + m_captureOptions.croppedArea.right);
+        inputHeight -= (m_captureOptions.croppedArea.top + m_captureOptions.croppedArea.bottom);
 
         RECT r;
         GetClientRect(hWnd, &r);
@@ -1871,6 +1875,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_CHECKED | MF_BYCOMMAND);
                     CheckMenuItem(m_inputMenu, ID_INPUT_FILE, MF_UNCHECKED | MF_BYCOMMAND);
                     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_ENABLED);
+                    EnableMenuItem(m_inputMenu, ID_WINDOW_CROP, MF_BYCOMMAND | MF_ENABLED);
                     m_captureOptions.imageFile.clear();
                     m_captureOptions.deviceFormatNo = 0;
                     if(m_captureManager.IsActive())
@@ -1916,6 +1921,7 @@ LRESULT CALLBACK ShaderWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, L
                     CheckMenuItem(m_outputWindowMenu, IDM_WINDOW_SOLID, MF_UNCHECKED | MF_BYCOMMAND);
                     CheckMenuItem(m_inputMenu, ID_INPUT_FILE, MF_UNCHECKED | MF_BYCOMMAND);
                     EnableMenuItem(m_outputScaleMenu, IDM_OUTPUT_FREESCALE, MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
+                    EnableMenuItem(m_inputMenu, ID_WINDOW_CROP, MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
                     m_captureOptions.imageFile.clear();
                     m_captureOptions.deviceFormatNo = 0;
                     if(m_captureManager.IsActive())

@@ -485,7 +485,7 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     D3D11_TEXTURE2D_DESC capturedTextureDesc = {};
     texture->GetDesc(&capturedTextureDesc);
 
-    auto inputResized    = m_captureWindow && m_croppedAreaUpdated;
+    auto inputResized    = (m_captureWindow || m_image) && m_croppedAreaUpdated;
     m_croppedAreaUpdated = false;
 
     // properties of the window being captured
@@ -537,11 +537,15 @@ void ShaderGlass::Process(winrt::com_ptr<ID3D11Texture2D> texture, ULONGLONG fra
     }
     else if(m_image)
     {
+        captureTopLeft.x += m_croppedArea.left;
+        captureTopLeft.y += m_croppedArea.top;
         captureRect.left   = 0;
         captureRect.top    = 0;
         captureRect.right  = capturedTextureDesc.Width;
         captureRect.bottom = capturedTextureDesc.Height;
         captureClient      = captureRect;
+        captureClient.right -= (m_croppedArea.left + m_croppedArea.right);
+        captureClient.bottom -= (m_croppedArea.top + m_croppedArea.bottom);
     }
 
     RECT textureRect;
