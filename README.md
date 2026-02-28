@@ -29,16 +29,22 @@ Check out [Online Manual](https://mausimus.github.io/ShaderGlass/MANUAL.html) fo
 
 ### Download
 
-Latest stable release (v1.2.x, 12 Dec 2025):
+Latest stable release (v1.2.3, 12 Dec 2025):
 * device capture input (webcam/capture card)
 * hide original mouse cursor when "Capture Cursor" is enabled
 * ability to edit global hotkeys + more of them
 * added Sonkun's presets
-* (1.2.1) improved Device Capture performance & fixes
-* (1.2.2) fix for browser video blanking out when inactive
-* (1.2.3) minor fixes
 
 https://github.com/mausimus/ShaderGlass/releases/download/v1.2.3/ShaderGlass-1.2.3.1-win-x64.zip
+
+<br/>
+
+Latest beta release (v1.2.5, 28 Feb 2026):
+* capture support when running under Wine on Linux
+* shader search function
+* shader library update
+
+https://github.com/mausimus/ShaderGlass/releases/download/v1.2.5/ShaderGlass-1.2.5-beta-win-x64.zip
 
 <br/>
 
@@ -65,6 +71,7 @@ into a new app [ShaderBeam](https://github.com/mausimus/ShaderBeam).
   * will work on version 1903 but in limited capacity (no Desktop Glass mode)
   * Windows 11 allows the __removal of yellow border__ (see [FAQ](FAQ.md#windows-10) for tips on avoiding it on Windows 10)
 * DirectX 11-capable GPU
+* Linux: running under Wine is supported in latest beta, using ScreenCast/PipeWire for capture (clone mode only)
 
 <br/>
 
