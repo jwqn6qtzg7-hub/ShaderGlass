@@ -218,6 +218,7 @@ void ParamsWindow::RebuildControls(bool doResize)
     {
         Resize();
     }
+    SendMessage(m_mainWindow, WM_SETREDRAW, FALSE, 0);
 
     char        title[200];
     const auto& shader = m_captureManager.Presets().at(m_captureOptions.presetNo);
@@ -271,6 +272,9 @@ void ParamsWindow::RebuildControls(bool doResize)
 
     if(doResize)
         Resize();
+
+    SendMessage(m_mainWindow, WM_SETREDRAW, TRUE, 0);
+    RedrawWindow(m_mainWindow, NULL, NULL, RDW_ERASE | RDW_FRAME | RDW_INVALIDATE | RDW_ALLCHILDREN);
 }
 
 LRESULT CALLBACK ParamsWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

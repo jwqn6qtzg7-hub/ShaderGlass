@@ -10,8 +10,8 @@ GNU General Public License v3.0
 #include "resource.h"
 #include "BrowserWindow.h"
 
-constexpr int WINDOW_WIDTH  = 450;
-constexpr int WINDOW_HEIGHT = 700;
+constexpr int WINDOW_WIDTH  = 550;
+constexpr int WINDOW_HEIGHT = 723;
 constexpr int CX_BITMAP     = 24;
 constexpr int CY_BITMAP     = 24;
 constexpr int NUM_BITMAPS   = 3;
@@ -19,6 +19,8 @@ constexpr int BUTTON_WIDTH  = 140;
 constexpr int PANEL_HEIGHT  = 40;
 constexpr int STATIC_WIDTH  = 80;
 constexpr int STATIC_HEIGHT = 30;
+constexpr int SEARCH_WIDTH  = 60;
+constexpr int SEARCH_HEIGHT = 25;
 constexpr int TRACK_WIDTH   = 150;
 constexpr int TRACK_HEIGHT  = 30;
 constexpr int MAX_NAME      = 20;
@@ -136,13 +138,17 @@ void BrowserWindow::Resize()
         SendMessage(m_addFavButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
         SendMessage(m_delFavButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
         SendMessage(m_paramsButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_searchLabel, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_searchBox, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
+        SendMessage(m_clearButton, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
         SendMessage(m_pixelSizeLabel, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
         SendMessage(m_pixelSizeValue, WM_SETFONT, (WPARAM)m_font, MAKELPARAM(TRUE, 0));
     }
 
     RECT rcClient;
     GetClientRect(m_mainWindow, &rcClient);
-    SetWindowPos(m_treeControl, NULL, 0, 0, rcClient.right, rcClient.bottom - (LONG)(PANEL_HEIGHT * 2 * m_dpiScale), 0);
+    SetWindowPos(m_treeControl, NULL, 0, (LONG)(SEARCH_HEIGHT * 1 * m_dpiScale), rcClient.right, rcClient.bottom - (LONG)((PANEL_HEIGHT * 2 + SEARCH_HEIGHT) * m_dpiScale), 0);
+    SetWindowPos(m_resultsControl, NULL, 0, (LONG)(SEARCH_HEIGHT * 1 * m_dpiScale), rcClient.right, rcClient.bottom - (LONG)((PANEL_HEIGHT * 2 + SEARCH_HEIGHT) * m_dpiScale), 0);
     SetWindowPos(m_pixelSizeTrackBar,
                  NULL,
                  (LONG)(m_dpiScale * STATIC_WIDTH),
@@ -150,6 +156,9 @@ void BrowserWindow::Resize()
                  (LONG)(m_dpiScale * TRACK_WIDTH),
                  (LONG)(m_dpiScale * TRACK_HEIGHT),
                  0);
+    SetWindowPos(m_searchLabel, NULL, 0, (LONG)(m_dpiScale * 2), (LONG)(m_dpiScale * SEARCH_WIDTH), (LONG)(m_dpiScale * (SEARCH_HEIGHT - 2)), 0);
+    SetWindowPos(m_searchBox, NULL, (LONG)(m_dpiScale * SEARCH_WIDTH), 0, (LONG)(rcClient.right - m_dpiScale * 2 * SEARCH_WIDTH), (LONG)(m_dpiScale * SEARCH_HEIGHT), 0);
+    SetWindowPos(m_clearButton, NULL, (LONG)(rcClient.right - m_dpiScale * SEARCH_WIDTH), 0, (LONG)(m_dpiScale * SEARCH_WIDTH), (LONG)(m_dpiScale * SEARCH_HEIGHT), 0);
     SetWindowPos(
         m_pixelSizeLabel, NULL, 2, (LONG)(rcClient.bottom - (PANEL_HEIGHT * 1.75f * m_dpiScale)), (LONG)(m_dpiScale * STATIC_WIDTH - 2), (LONG)(m_dpiScale * STATIC_HEIGHT), 0);
     SetWindowPos(m_pixelSizeValue,
@@ -178,30 +187,27 @@ void BrowserWindow::Resize()
                  0);
 }
 
-BOOL BrowserWindow::CreateImageList(HWND hwndTV)
+BOOL BrowserWindow::CreateImageList()
 {
-    HIMAGELIST himl;
-    HBITMAP    hbmp;
+    HBITMAP hbmp;
 
-    if((himl = ImageList_Create(CX_BITMAP, CY_BITMAP, ILC_COLOR32, NUM_BITMAPS, 0)) == NULL)
+    if((m_imageList = ImageList_Create(CX_BITMAP, CY_BITMAP, ILC_COLOR32, NUM_BITMAPS, 0)) == NULL)
         return FALSE;
 
     hbmp    = LoadBitmap(m_instance, MAKEINTRESOURCE(IDB_FOLDER));
-    g_nOpen = ImageList_Add(himl, hbmp, (HBITMAP)NULL);
+    g_nOpen = ImageList_Add(m_imageList, hbmp, (HBITMAP)NULL);
     DeleteObject(hbmp);
 
     hbmp      = LoadBitmap(m_instance, MAKEINTRESOURCE(IDB_FOLDER));
-    g_nClosed = ImageList_Add(himl, hbmp, (HBITMAP)NULL);
+    g_nClosed = ImageList_Add(m_imageList, hbmp, (HBITMAP)NULL);
     DeleteObject(hbmp);
 
     hbmp        = LoadBitmap(m_instance, MAKEINTRESOURCE(IDB_SHADER));
-    g_nDocument = ImageList_Add(himl, hbmp, (HBITMAP)NULL);
+    g_nDocument = ImageList_Add(m_imageList, hbmp, (HBITMAP)NULL);
     DeleteObject(hbmp);
 
-    if(ImageList_GetImageCount(himl) < 3)
+    if(ImageList_GetImageCount(m_imageList) < 3)
         return FALSE;
-
-    TreeView_SetImageList(hwndTV, himl, TVSIL_NORMAL);
 
     return TRUE;
 }
@@ -262,15 +268,20 @@ void BrowserWindow::CreatePixelSizeSlider(const RECT& rcClient)
     SendMessage(m_pixelSizeValue, WM_SETFONT, (LPARAM)m_font, true);
 }
 
-HTREEITEM BrowserWindow::AddItemToTree(HWND hwndTV, LPTSTR lpszItem, LPARAM lParam, int nLevel)
+void BrowserWindow::BeginTree()
 {
-    TVITEM           tvi;
-    TVINSERTSTRUCT   tvins;
-    static HTREEITEM hPrev         = (HTREEITEM)TVI_FIRST;
-    static HTREEITEM hPrevRootItem = NULL;
-    static HTREEITEM hPrevLev2Item = NULL;
-    static HTREEITEM hPrevLev3Item = NULL;
-    HTREEITEM        hti;
+    hPrev         = (HTREEITEM)TVI_FIRST;
+    hPrevRootItem = NULL;
+    hPrevLev2Item = NULL;
+    hPrevLev3Item = NULL;
+}
+
+HTREEITEM BrowserWindow::AddItemToTree(HWND hwndTV, const char* text, LPARAM lParam, int nLevel)
+{
+    TVITEM         tvi;
+    TVINSERTSTRUCT tvins;
+    HTREEITEM      hti;
+    LPTSTR         lpszItem = convertCharArrayToLPCWSTR(text);
 
     tvi.mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_PARAM;
 
@@ -332,7 +343,7 @@ HTREEITEM BrowserWindow::AddItemToTree(HWND hwndTV, LPTSTR lpszItem, LPARAM lPar
         tvi.iSelectedImage = g_nClosed;
         TreeView_SetItem(hwndTV, &tvi);
     }
-
+    free(lpszItem);
     return hPrev;
 }
 
@@ -340,119 +351,99 @@ void BrowserWindow::Build()
 {
     RECT rcClient; // dimensions of client area
     GetClientRect(m_mainWindow, &rcClient);
-    m_treeControl = CreateWindowEx(0,
+    m_treeControl = CreateWindowEx(WS_EX_STATICEDGE,
                                    WC_TREEVIEW,
                                    TEXT("Shader Tree"),
-                                   WS_VISIBLE | WS_CHILD | WS_BORDER | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | TVS_SHOWSELALWAYS /* | TVS_FULLROWSELECT*/,
+                                   WS_VISIBLE | WS_CHILD | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | TVS_SHOWSELALWAYS /* | TVS_FULLROWSELECT*/,
                                    0,
-                                   0,
+                                   (LONG)(SEARCH_HEIGHT * 1 * m_dpiScale),
                                    rcClient.right,
-                                   rcClient.bottom - (LONG)(PANEL_HEIGHT * 2 * m_dpiScale),
+                                   rcClient.bottom - (LONG)((PANEL_HEIGHT * 2 + SEARCH_HEIGHT) * m_dpiScale),
                                    m_mainWindow,
                                    NULL,
                                    m_instance,
                                    NULL);
 
-    CreateImageList(m_treeControl);
+    m_resultsControl = CreateWindowEx(WS_EX_STATICEDGE,
+                                      WC_TREEVIEW,
+                                      TEXT("Search Results"),
+                                      WS_CHILD | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | TVS_SHOWSELALWAYS /* | TVS_FULLROWSELECT*/,
+                                      0,
+                                      (LONG)(SEARCH_HEIGHT * 1 * m_dpiScale),
+                                      rcClient.right,
+                                      rcClient.bottom - (LONG)((PANEL_HEIGHT * 2 + SEARCH_HEIGHT) * m_dpiScale),
+                                      m_mainWindow,
+                                      NULL,
+                                      m_instance,
+                                      NULL);
 
-    auto categoryComp = [](const std::string& c1, const std::string& c2) {
-        if(c1 == c2)
-            return false;
-        if(c1.starts_with(c2))
-            return true;
-        if(c2.starts_with(c1))
-            return false;
-        return c1 < c2;
-    };
-    auto shaderComp = [](const std::string& c1, const std::string& c2) {
-        std::string s1(c1.length(), ' ');
-        std::string s2(c2.length(), ' ');
-        auto        lower = [](char c) { return tolower(c); };
-        std::transform(c1.begin(), c1.end(), s1.begin(), lower);
-        std::transform(c2.begin(), c2.end(), s2.begin(), lower);
-        return s1 < s2;
-    };
-    std::map<std::string, std::map<std::string, UINT, decltype(shaderComp)>, decltype(categoryComp)> categoryMenus;
+    CreateImageList();
+    TreeView_SetImageList(m_treeControl, m_imageList, TVSIL_NORMAL);
+    TreeView_SetImageList(m_resultsControl, m_imageList, TVSIL_NORMAL);
 
-    HTREEITEM noneItem = nullptr;
+    m_searchLabel = CreateWindowEx(0,
+                                   L"STATIC",
+                                   L"Search: ",
+                                   SS_RIGHT | SS_NOTIFY | WS_CHILD | WS_VISIBLE,
+                                   0,
+                                   0,
+                                   (LONG)(m_dpiScale * SEARCH_WIDTH),
+                                   (LONG)(m_dpiScale * SEARCH_HEIGHT),
+                                   m_mainWindow,
+                                   NULL,
+                                   m_instance,
+                                   NULL);
+    SendMessage(m_searchLabel, WM_SETFONT, (LPARAM)m_font, true);
 
-    int i = 0;
-    for(const auto& sp : m_captureManager.Presets())
-    {
-        if(sp->Category == "general")
-        {
-            auto id     = WM_SHADER(i++);
-            noneItem    = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(sp->Name.c_str()), id, 1);
-            m_items[id] = noneItem;
-            continue;
-        }
-        if(categoryMenus.find(sp->Category) == categoryMenus.end())
-        {
-            categoryMenus.insert(std::make_pair(sp->Category, std::map<std::string, UINT, decltype(shaderComp)>()));
-        }
-        auto& menu = categoryMenus.find(sp->Category)->second;
-        menu.insert(std::make_pair(sp->Name, WM_SHADER(i++)));
-    }
+    m_searchBox = CreateWindowEx(WS_EX_STATICEDGE,
+                                 TEXT("EDIT"),
+                                 TEXT(""),
+                                 WS_CHILD | WS_VISIBLE,
+                                 0,
+                                 (LONG)(m_dpiScale * SEARCH_WIDTH),
+                                 (LONG)(m_dpiScale * SEARCH_WIDTH * 4),
+                                 (LONG)(m_dpiScale * SEARCH_HEIGHT),
+                                 m_mainWindow,
+                                 NULL,
+                                 m_instance,
+                                 NULL);
+    SendMessage(m_searchBox, WM_SETFONT, (LPARAM)m_font, true);
 
-    m_personalItems = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Personal Favorites"), -1, 1);
+    m_clearButton = CreateWindow(L"BUTTON",
+                                 L"Clear",
+                                 WS_TABSTOP | WS_VISIBLE | WS_CHILD,
+                                 rcClient.right - (LONG)(m_dpiScale * SEARCH_WIDTH * 5),
+                                 0,
+                                 (LONG)(SEARCH_WIDTH * m_dpiScale),
+                                 (LONG)(SEARCH_HEIGHT * m_dpiScale),
+                                 m_mainWindow,
+                                 NULL,
+                                 (HINSTANCE)GetWindowLongPtr(m_mainWindow, GWLP_HINSTANCE),
+                                 NULL);
+    SendMessage(m_clearButton, WM_SETFONT, (LPARAM)m_font, true);
+
+    BeginTree();
+
+    auto noneItem = AddNoneItem(m_treeControl, m_items);
+
+    m_personalItems = AddItemToTree(m_treeControl, "Personal Favorites", -1, 1);
 
     LoadPersonal();
 
-    m_imported = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Imported"), -1, 1);
+    m_imported = AddItemToTree(m_treeControl, "Imported", -1, 1);
 
-    AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("Community Favorites"), -1, 1);
+    AddItemToTree(m_treeControl, "Community Favorites", -1, 1);
 
     for(int fp = 0; fp < sizeof(favoritePresets) / sizeof(const char*); fp++)
     {
         auto p = m_captureManager.FindByName(favoritePresets[fp]);
         if(p != -1)
         {
-            m_favorites[WM_SHADER(p)] = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(favoritePresets[fp]), WM_SHADER(p), 2);
+            m_favorites[WM_SHADER(p)] = AddItemToTree(m_treeControl, favoritePresets[fp], WM_SHADER(p), 2);
         }
     }
 
-    auto raItem = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR("RetroArch Library"), -1, 1);
-
-    std::string parentCategory("");
-    int         level = 2;
-    for(auto m : categoryMenus)
-    {
-        auto slash = m.first.find('/');
-        if(slash != std::string::npos)
-        {
-            // has a parent category
-            auto thisParent = m.first.substr(0, slash);
-            if(thisParent != parentCategory)
-            {
-                // add new parent
-                parentCategory = thisParent;
-                AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(parentCategory.c_str()), -1, 2);
-            }
-            level = 3;
-            AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(m.first.substr(slash + 1).c_str()), -1, level);
-        }
-        else if(m.first == parentCategory)
-        {
-            // loose presents in this category
-            level = 2;
-        }
-        else
-        {
-            // back to root
-            if(parentCategory.size())
-            {
-                parentCategory = "";
-            }
-            level = 2;
-            AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(m.first.c_str()), -1, level);
-        }
-        for(auto p : m.second)
-        {
-            auto item         = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(p.first.c_str()), p.second, level + 1);
-            m_items[p.second] = item;
-        }
-    }
-
+    auto raItem = BuildTree(m_treeControl, m_items, "");
     TreeView_Expand(m_treeControl, raItem, TVE_EXPAND);
 
     if(m_captureOptions.presetNo)
@@ -519,6 +510,123 @@ void BrowserWindow::Build()
     Resize();
 }
 
+static bool contains_ic(const std::string& search_in, const std::string& search_for)
+{
+    auto it = std::search(
+        search_in.begin(), search_in.end(), search_for.begin(), search_for.end(), [](unsigned char ch1, unsigned char ch2) { return std::toupper(ch1) == std::toupper(ch2); });
+    return (it != search_in.end());
+}
+
+HTREEITEM BrowserWindow::AddNoneItem(HWND ctrl, std::map<UINT, HTREEITEM>& items)
+{
+    int i = 0;
+    for(const auto& sp : m_captureManager.Presets())
+    {
+        if(sp->Category == "general")
+        {
+            auto id       = WM_SHADER(i);
+            auto noneItem = AddItemToTree(m_treeControl, sp->Name.c_str(), id, 1);
+            items[id]     = noneItem;
+            return noneItem;
+        }
+        i++;
+    }
+    return nullptr;
+}
+
+HTREEITEM BrowserWindow::BuildTree(HWND ctrl, std::map<UINT, HTREEITEM>& items, const std::string& filter)
+{
+    auto categoryComp = [](const std::string& c1, const std::string& c2) {
+        if(c1 == c2)
+            return false;
+        if(c1.starts_with(c2))
+            return true;
+        if(c2.starts_with(c1))
+            return false;
+        return c1 < c2;
+    };
+    auto shaderComp = [](const std::string& c1, const std::string& c2) {
+        std::string s1(c1.length(), ' ');
+        std::string s2(c2.length(), ' ');
+        auto        lower = [](char c) { return tolower(c); };
+        std::transform(c1.begin(), c1.end(), s1.begin(), lower);
+        std::transform(c2.begin(), c2.end(), s2.begin(), lower);
+        return s1 < s2;
+    };
+    std::map<std::string, std::map<std::string, UINT, decltype(shaderComp)>, decltype(categoryComp)> categoryMenus;
+
+    int i = 0;
+    for(const auto& sp : m_captureManager.Presets())
+    {
+        if(sp->Category == "general")
+        {
+            i++;
+            continue;
+        }
+        if(categoryMenus.find(sp->Category) == categoryMenus.end())
+        {
+            categoryMenus.insert(std::make_pair(sp->Category, std::map<std::string, UINT, decltype(shaderComp)>()));
+        }
+        auto& menu = categoryMenus.find(sp->Category)->second;
+        if(filter.empty() || contains_ic(sp->Name, filter) || contains_ic(sp->Category, filter))
+        {
+            menu.insert(std::make_pair(sp->Name, WM_SHADER(i)));
+        }
+        i++;
+    }
+
+    auto raItem = AddItemToTree(ctrl, "RetroArch Library", -1, 1);
+
+    std::string parentCategory("");
+    int         level = 2;
+    for(auto m : categoryMenus)
+    {
+        if(!m.second.size())
+            continue;
+        auto slash = m.first.find('/');
+        if(slash != std::string::npos)
+        {
+            // has a parent category
+            auto thisParent = m.first.substr(0, slash);
+            if(thisParent != parentCategory)
+            {
+                // add new parent
+                parentCategory = thisParent;
+                AddItemToTree(ctrl, parentCategory.c_str(), -1, 2);
+            }
+            level = 3;
+            AddItemToTree(ctrl, m.first.substr(slash + 1).c_str(), -1, level);
+        }
+        else if(m.first == parentCategory)
+        {
+            // loose presents in this category
+            level = 2;
+        }
+        else
+        {
+            // back to root
+            if(parentCategory.size())
+            {
+                parentCategory = "";
+            }
+            level = 2;
+            AddItemToTree(ctrl, m.first.c_str(), -1, level);
+        }
+        for(auto p : m.second)
+        {
+            auto item       = AddItemToTree(ctrl, p.first.c_str(), p.second, level + 1);
+            items[p.second] = item;
+        }
+    }
+
+    if(filter.size())
+    {
+        ExpandAll(ctrl, raItem);
+    }
+
+    return raItem;
+}
+
 void BrowserWindow::LoadPersonal()
 {
     HKEY  hkey;
@@ -564,7 +672,7 @@ void BrowserWindow::LoadPersonal()
                             auto id = WM_SHADER(p);
                             if(m_personal.find(id) == m_personal.end())
                             {
-                                m_personal[id] = AddItemToTree(m_treeControl, convertCharArrayToLPCWSTR(profileName), id, 2);
+                                m_personal[id] = AddItemToTree(m_treeControl, profileName, id, 2);
                             }
                             continue;
                         }
@@ -582,6 +690,41 @@ void BrowserWindow::LoadPersonal()
     }
     TreeView_SortChildren(m_treeControl, m_personalItems, false);
     TreeView_Expand(m_treeControl, m_personalItems, TVE_EXPAND);
+}
+
+void BrowserWindow::Search(const std::string& filter)
+{
+    SendMessage(m_resultsControl, WM_SETREDRAW, FALSE, 0);
+    TreeView_DeleteAllItems(m_resultsControl);
+    if(filter.size())
+    {
+        std::map<UINT, HTREEITEM> items;
+        BeginTree();
+        BuildTree(m_resultsControl, items, filter);
+        if(TreeView_GetCount(m_resultsControl) == 1)
+            TreeView_DeleteAllItems(m_resultsControl);
+        else
+        {
+            auto root = TreeView_GetRoot(m_resultsControl);
+            if(root != NULL)
+            {
+                TreeView_EnsureVisible(m_resultsControl, root);
+            }
+        }
+    }
+    SendMessage(m_resultsControl, WM_SETREDRAW, TRUE, 0);
+    RedrawWindow(m_resultsControl, NULL, NULL, RDW_ERASE | RDW_FRAME | RDW_INVALIDATE | RDW_ALLCHILDREN);
+}
+
+void BrowserWindow::ExpandAll(HWND ctrl, HTREEITEM item)
+{
+    TreeView_Expand(ctrl, item, TVE_EXPAND);
+    auto child = TreeView_GetChild(ctrl, item);
+    while(child)
+    {
+        ExpandAll(ctrl, child);
+        child = TreeView_GetNextSibling(ctrl, child);
+    }
 }
 
 void BrowserWindow::SavePersonal()
@@ -696,6 +839,45 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         return 0;
     }
     case WM_COMMAND: {
+        UINT cmdCode = HIWORD(wParam);
+        switch(cmdCode)
+        {
+        case EN_SETFOCUS: {
+            if(lParam == (LPARAM)m_searchBox)
+                m_searching = true;
+            break;
+        }
+        case EN_KILLFOCUS: {
+            if(lParam == (LPARAM)m_searchBox)
+                m_searching = false;
+            break;
+        }
+        case EN_CHANGE:
+            if(lParam == (LPARAM)m_searchBox)
+            {
+                wchar_t input[256];
+                auto    len = GetWindowText(m_searchBox, input, 255);
+                if(len > 0)
+                {
+                    ShowWindow(m_treeControl, SW_HIDE);
+                    ShowWindow(m_resultsControl, SW_SHOWNOACTIVATE);
+                    char utfName[256];
+                    utfName[0] = 0;
+                    if(len > 1)
+                    {
+                        WideCharToMultiByte(CP_UTF8, 0, input, -1, utfName, 255, NULL, NULL);
+                    }
+                    Search(utfName);
+                }
+                else
+                {
+                    ShowWindow(m_resultsControl, SW_HIDE);
+                    ShowWindow(m_treeControl, SW_SHOWNOACTIVATE);
+                    Search("");
+                }
+            }
+            break;
+        }
         UINT wmId = LOWORD(wParam);
         switch(wmId)
         {
@@ -815,6 +997,10 @@ LRESULT CALLBACK BrowserWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
             else if(lParam == (LPARAM)m_paramsButton)
             {
                 PostMessage(m_shaderWindow, WM_COMMAND, IDM_SHADER_PARAMETERS, 0);
+            }
+            else if(lParam == (LPARAM)m_clearButton)
+            {
+                SetWindowText(m_searchBox, L"");
             }
             return 0;
         }
