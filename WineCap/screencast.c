@@ -54,6 +54,7 @@ struct
 	GCancellable *cancellable;
 	char *session_handle;
 	uint32_t pipewire_node;
+	uint32_t capture_types;
 	struct pw_loop *pw_loop;
 	struct pw_context *pw_ctx;
 	int type;
@@ -249,7 +250,7 @@ static void select_source()
 	portal_create_request_path(&request_path, &request_token);
 	portal_signal_subscribe(request_path, sc.cancellable, on_select_source_response_received_cb, NULL);
 	g_variant_builder_init(&builder, G_VARIANT_TYPE_VARDICT);
-	g_variant_builder_add(&builder, "{sv}", "types", g_variant_new_uint32(1 | 2 | 4));
+	g_variant_builder_add(&builder, "{sv}", "types", g_variant_new_uint32(sc.capture_types));
 	g_variant_builder_add(&builder, "{sv}", "multiple", g_variant_new_boolean(FALSE));
 	g_variant_builder_add(&builder, "{sv}", "handle_token", g_variant_new_string(request_token));
 
@@ -356,8 +357,8 @@ int screencast_init()
 		}
 	}
 
-	uint32_t available_capture_types = get_available_capture_types();
-	if (available_capture_types == 0)
+	sc.capture_types = get_available_capture_types();
+	if (sc.capture_types == 0)
 	{
 		warn("No capture sources");
 		sc.error = true;
