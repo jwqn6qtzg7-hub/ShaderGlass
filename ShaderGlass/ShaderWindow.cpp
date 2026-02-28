@@ -1041,6 +1041,19 @@ void ShaderWindow::GetStartingPosition(int& x, int& y, int& w, int& h)
         y = GetRegistryInt(L"Y", 0);
         w = GetRegistryInt(L"W", 0);
         h = GetRegistryInt(L"H", 0);
+
+        POINT tl;
+        tl.x = x + 8;
+        tl.y = y + 8;
+        POINT br;
+        br.x = x + w - 8;
+        br.y = y + h - 8;
+        if(MonitorFromPoint(tl, MONITOR_DEFAULTTONULL) == NULL && MonitorFromPoint(br, MONITOR_DEFAULTTONULL) == NULL)
+        {
+            // off-screen start?
+            w = 0;
+            h = 0;
+        }
     }
     if(w <= 0 || h <= 0)
     {
