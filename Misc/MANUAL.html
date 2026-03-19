@@ -1,16 +1,23 @@
 
 <html>
 <head>
-    <title>ShaderGlass Manual v1.2</title>
+    <title>ShaderGlass Manual v1.3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <style>
+        @media print {
+            .screen-only {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id='content'>
-        <h2 id="shaderglass">ShaderGlass v1.2</h2>
-        <p>Overlay for running GPU shaders on top of Windows desktop</p>
+        <h2 id="shaderglass">ShaderGlass v1.3</h2>
+        <p>Overlay for running GPU shaders on top of Windows and Wine desktop</p>
         <p style="font-size: 12px;">
-            Copyright (c) 2021-2025 mausimus (<a href="https://mausimus.net" target="_blank">mausimus.net</a>)<br />
+            Copyright (c) 2021-2026 mausimus (<a href="https://mausimus.net" target="_blank">mausimus.net</a>)<br />
             Distributed under GNU General Public License v3.0
         </p>
         <p>&nbsp;</p>
@@ -47,11 +54,17 @@
         <h3 id="requirements">Requirements</h3>
         <ul>
             <li><strong>Windows 10, version 2004</strong> (build 19041) or <strong>Windows 11</strong></li>
-            <li>will work on version 1903 but in limited capacity (no Desktop Glass mode)</li>
-            <li>Windows 11 allows the <strong>removal of yellow border</strong> (see FAQ for tips on avoiding it on Win 10)</li>
-            <li>DirectX 11-capable GPU</li>
+            <ul>
+                <li>will work on version 1903 but in limited capacity (no Desktop Glass mode)</li>
+                <li>Windows 11 allows the <strong>removal of yellow border</strong> (see FAQ for tips on avoiding it on W10)</li>
+                <li>DirectX 11-capable GPU</li>
+            </ul>
+            <li><strong>Linux + Wine/Proton</strong> is partially supported</li>
+            <ul>
+                <li>Requires Desktop Environment with ScreenCast support (KDE, GNOME)</li>
+            </ul>
         </ul>
-        <p><br /></p>
+        <p class="screen-only"><br /></p>
         <h2 id="menu-options" style="page-break-before: always;">Menu Options</h2>
         <p>Currently supported options are:</p>
         <h4 id="processing">Processing</h4>
@@ -81,11 +94,9 @@
             <li><p><strong>Desktop</strong> - captures the whole desktop or an individual monitor, defaults to Glass mode</p></li>
             <ul><li><p><strong>Lock Current Area</strong> - always capture current area even if ShaderGlass window is moved</p></li></ul>
             <li><p><strong>Window</strong> - captures the selected window, defaults to Clone mode</p></li>
-            <ul>
-                <li><p><strong>Crop</strong> - remove border around captured window, if your emulator has a toolbar for example</p></li>
-            </ul>
             <li><p><strong>Device</strong> - captures an external/USB device (webcam or capture card)</p></li>
             <li><p><strong>File</strong> - load a .png/.jpg/.gif file as input</p></li>
+            <li><p><strong>Crop</strong> - remove border around captured input, if your emulator has a toolbar for example</p></li>
             <li><p><strong>Pixel Size</strong> - indicates the size of input pixels (pre-scaling), i.e. if you run a game in x3 scaling mode set this to x3 as well so that ShaderGlass can tell the original resolution</p></li>
             <ul>
                 <li>
@@ -138,6 +149,7 @@
         <ul>
             <li><p><strong>Choose from Library</strong> - open Shader Browser to switch the current shader:</p></li>
             <ul>
+                <li><p><strong>Search</strong> - type a search string to filter down shader list</p></li>
                 <li><p><strong>Personal Favorites</strong> - mark shaders as favorites using Add/Remove Favorite buttons</p></li>
                 <li><p><strong>Imported</strong> - custom .slangp/.slang shaders you imported (these are NOT persisted between restarts)</p></li>
                 <li><p><strong>Community Favorites</strong> - selection of popular shaders</p></li>
@@ -163,7 +175,7 @@
             If your profile file name contains spaces please put it in quotes.
         </p>
         <p>In addition -p will launch in paused mode, and -f will launch in fullscreen mode.</p>
-        <p><br /></p>
+        <p class="screen-only"><br /></p>
         <h2 id="tuning">Tuning</h2>
         <p>In order to achieve the best effect it's necessary to tune parameters to match your input:</p>
         <ul>
@@ -309,7 +321,20 @@
                 </li>
             </ul>
         </p>
-        <h3 id="-mouse-cursor">&gt; A different issue...</h3>
+        <h3 id="-linux">&gt; Linux and Wine/Proton</h3>
+        <p>
+            Running under Linux using Wine or Proton is partially supported (Clone mode only, no Glass mode).
+            <ul>
+                <li>Requires Desktop Environment supporting PipeWire/ScreenCast (KDE, GNOME) using shared memory</li>
+                <li>X11 and Wayland are both supported</li>
+                <li>Not currently supported: Niri, Cinnamon, MATE</li>
+                <li>Will work with a default Wine installation (<code>wine ShaderGlass.exe</code>)
+                <li>For better performance consider installing dxvk in Wine using winetricks</li>
+                <li>If menus are tiny, use winetricks to configure DPI scaling</li>
+                <li>ShaderGlass won't auto-capture on startup on Linux. Go to Input menu to select a source.</li>
+            </ul>
+        </p>
+        <h3 id="-different-issue">&gt; A different issue...</h3>
         <p>
             Check <a href="https://github.com/mausimus/ShaderGlass/issues?q=is%3Aissue" target="_blank">Issues section on GitHub</a> for known problems and workarounds.
         <p><br /></p>

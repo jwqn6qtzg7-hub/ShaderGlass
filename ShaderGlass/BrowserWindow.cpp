@@ -10,7 +10,7 @@ GNU General Public License v3.0
 #include "resource.h"
 #include "BrowserWindow.h"
 
-constexpr int WINDOW_WIDTH  = 550;
+constexpr int WINDOW_WIDTH  = 450;
 constexpr int WINDOW_HEIGHT = 723;
 constexpr int CX_BITMAP     = 24;
 constexpr int CY_BITMAP     = 24;
