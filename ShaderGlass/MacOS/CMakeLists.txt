@@ -27,6 +27,7 @@ add_executable(${APP_NAME}
     VulkanCore.cpp
     VulkanPass.cpp
     VulkanTexture.cpp
+    ShaderChain.cpp
     UI.cpp
     Capture.mm
     # ImGui core

@@ -32,6 +32,7 @@ public:
     void destroy(VulkanCore& vk);
 
     // Accessors
+    VkImage     image() const { return m_image; }
     VkImageView view() const { return m_view; }
     VkImageView rtView() const { return m_rtView ? m_rtView : m_view; }
     VkFramebuffer framebuffer() const { return m_framebuffer; }
