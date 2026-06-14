@@ -2,6 +2,7 @@
 
 // Portability macros for building ShaderGC on non-MSVC platforms (macOS, Linux)
 
+#include <cstdint>
 #include <sstream>
 #include <map>
 #include <algorithm>
@@ -9,6 +10,8 @@
 #ifdef __APPLE__
 #include <strings.h> // strcasecmp
 #endif
+
+typedef uint8_t BYTE;
 
 #ifndef _MSC_VER
 // Replace MSVC __declspec extensions

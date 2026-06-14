@@ -42,6 +42,17 @@ set(BUILD_EXTERNAL OFF)
 FetchContent_MakeAvailable(glslang)
 
 # -------------------------------------------------------------------
+# Dear ImGui
+# -------------------------------------------------------------------
+FetchContent_Declare(
+    imgui
+    GIT_REPOSITORY https://github.com/ocornut/imgui.git
+    GIT_TAG        v1.91.6
+    GIT_SHALLOW    TRUE
+)
+FetchContent_MakeAvailable(imgui)
+
+# -------------------------------------------------------------------
 # Sub-projects
 # -------------------------------------------------------------------
 add_subdirectory(ShaderGC)

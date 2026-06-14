@@ -3,187 +3,128 @@
  * Copyright (C) 2021-2025 mausimus (mausimus.net)
  * https://github.com/mausimus/ShaderGlass
  * GNU General Public License v3.0
+ *
+ * macOS port using GLFW + Vulkan (MoltenVK) + Dear ImGui + ScreenCaptureKit
  */
 
 #include "VulkanCore.h"
+#include "VulkanPass.h"
+#include "VulkanTexture.h"
+#include "Capture.h"
+#include "UI.h"
+
+#include "PreprocessShader.h"
 
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
-#include <array>
-#include <stdexcept>
-
-// Use ShaderGC's GLSL compiler for runtime shader compilation
-#include "GLSL.h"
+#include <cstring>
+#include <mutex>
 
 static const uint32_t WIDTH  = 800;
 static const uint32_t HEIGHT = 600;
-
-static VkShaderModule createShaderModule(VkDevice device, const std::vector<uint32_t>& spirv)
-{
-    VkShaderModuleCreateInfo ci {};
-    ci.sType    = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-    ci.codeSize = spirv.size() * sizeof(uint32_t);
-    ci.pCode    = spirv.data();
-    VkShaderModule module;
-    if(vkCreateShaderModule(device, &ci, nullptr, &module) != VK_SUCCESS)
-        throw std::runtime_error("Failed to create shader module");
-    return module;
-}
-
-static void createPipeline(VkDevice device, VkRenderPass renderPass, VkExtent2D extent,
-                           VkPipelineLayout& layout, VkPipeline& pipeline,
-                           VkShaderModule vertModule, VkShaderModule fragModule)
-{
-    // Pipeline layout (empty for now - no descriptors)
-    VkPipelineLayoutCreateInfo plCI {};
-    plCI.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-    if(vkCreatePipelineLayout(device, &plCI, nullptr, &layout) != VK_SUCCESS)
-        throw std::runtime_error("Failed to create pipeline layout");
-
-    VkPipelineShaderStageCreateInfo vertStage {};
-    vertStage.sType  = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    vertStage.stage  = VK_SHADER_STAGE_VERTEX_BIT;
-    vertStage.module = vertModule;
-    vertStage.pName  = "main";
-
-    VkPipelineShaderStageCreateInfo fragStage {};
-    fragStage.sType  = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    fragStage.stage  = VK_SHADER_STAGE_FRAGMENT_BIT;
-    fragStage.module = fragModule;
-    fragStage.pName  = "main";
-
-    VkPipelineShaderStageCreateInfo stages[] = {vertStage, fragStage};
-
-    // Dynamic state: viewport + scissor
-    VkDynamicState dynamicStates[] = {VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR};
-    VkPipelineDynamicStateCreateInfo dynamicState {};
-    dynamicState.sType             = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-    dynamicState.dynamicStateCount = 2;
-    dynamicState.pDynamicStates    = dynamicStates;
-
-    // Vertex input (no vertex buffer - we use gl_VertexIndex)
-    VkPipelineVertexInputStateCreateInfo vertexInput {};
-    vertexInput.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-
-    VkPipelineInputAssemblyStateCreateInfo inputAssembly {};
-    inputAssembly.sType    = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-    inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
-
-    VkViewport viewport {};
-    viewport.x        = 0.0f;
-    viewport.y        = 0.0f;
-    viewport.width    = (float)extent.width;
-    viewport.height   = (float)extent.height;
-    viewport.minDepth = 0.0f;
-    viewport.maxDepth = 1.0f;
-    VkRect2D scissor {{0, 0}, extent};
-
-    VkPipelineViewportStateCreateInfo viewportState {};
-    viewportState.sType         = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-    viewportState.viewportCount = 1;
-    viewportState.pViewports    = &viewport;
-    viewportState.scissorCount  = 1;
-    viewportState.pScissors     = &scissor;
-
-    VkPipelineRasterizationStateCreateInfo rasterizer {};
-    rasterizer.sType       = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
-    rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
-    rasterizer.cullMode    = VK_CULL_MODE_NONE;
-    rasterizer.frontFace   = VK_FRONT_FACE_CLOCKWISE;
-    rasterizer.lineWidth   = 1.0f;
-
-    VkPipelineMultisampleStateCreateInfo multisampling {};
-    multisampling.sType                = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
-    multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
-
-    VkPipelineColorBlendAttachmentState colorBlend {};
-    colorBlend.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT |
-                                VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
-
-    VkPipelineColorBlendStateCreateInfo colorBlending {};
-    colorBlending.sType           = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
-    colorBlending.attachmentCount = 1;
-    colorBlending.pAttachments    = &colorBlend;
-
-    VkGraphicsPipelineCreateInfo pipelineCI {};
-    pipelineCI.sType               = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-    pipelineCI.stageCount          = 2;
-    pipelineCI.pStages             = stages;
-    pipelineCI.pVertexInputState   = &vertexInput;
-    pipelineCI.pInputAssemblyState = &inputAssembly;
-    pipelineCI.pViewportState      = &viewportState;
-    pipelineCI.pRasterizationState = &rasterizer;
-    pipelineCI.pMultisampleState   = &multisampling;
-    pipelineCI.pColorBlendState    = &colorBlending;
-    pipelineCI.pDynamicState       = &dynamicState;
-    pipelineCI.layout              = layout;
-    pipelineCI.renderPass          = renderPass;
-    pipelineCI.subpass             = 0;
-
-    if(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineCI, nullptr, &pipeline) != VK_SUCCESS)
-        throw std::runtime_error("Failed to create graphics pipeline");
-}
 
 int main()
 {
     try
     {
-        // Initialize GLFW
+        // ---- Init GLFW ----
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "ShaderGlass", nullptr, nullptr);
-        if(!window)
-        {
-            glfwTerminate();
-            return EXIT_FAILURE;
-        }
+        if(!window) { glfwTerminate(); return EXIT_FAILURE; }
 
-        // Initialize Vulkan
+        // ---- Init Vulkan ----
         VulkanCore vk;
         vk.init(window);
 
-        // Compile test shaders using ShaderGC's GLSL compiler
-        const char* vertSource = R"(
-#version 450
-vec2 positions[3] = vec2[](
-    vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0)
-);
-void main() {
-    gl_Position = vec4(positions[gl_VertexIndex], 0.0, 1.0);
-}
-)";
-        const char* fragSource = R"(
-#version 450
-layout(location = 0) out vec4 outColor;
-void main() {
-    outColor = vec4(1.0, 0.0, 0.0, 1.0);
-}
-)";
+        // ---- Init ImGui UI ----
+        ShaderUI ui;
+        ui.init(window, vk, vk.mainRenderPass);
 
-        std::ostringstream log;
-        bool               warn = false;
-        auto vertSPIRV = GLSL::GenerateSPIRV(vertSource, false, log, warn);
-        auto fragSPIRV = GLSL::GenerateSPIRV(fragSource, true, log, warn);
+        // ---- Capture state ----
+        ScreenCapture capture;
+        std::vector<uint8_t> capBuffer;
+        int  capWidth  = 0, capHeight = 0;
+        bool capNewFrame = false;
+        std::mutex capMutex;
 
-        // Create shader modules
-        auto vertModule = createShaderModule(vk.device, vertSPIRV);
-        auto fragModule = createShaderModule(vk.device, fragSPIRV);
+        // ---- Capture texture (GPU image for captured frames) ----
+        VulkanTexture captureTex;
 
-        // Create pipeline
-        VkPipelineLayout pipelineLayout;
-        VkPipeline       pipeline;
-        createPipeline(vk.device, vk.mainRenderPass, vk.swapChainExtent,
-                       pipelineLayout, pipeline, vertModule, fragModule);
+        // ---- Preprocess shader pass ----
+        std::map<std::string, TextureSamplerSettings> texSettings;
+        PreprocessShaderDef preprocessDef;
+        VulkanPass preprocessPass(preprocessDef, texSettings, true);
+        preprocessPass.init(vk, vk.mainRenderPass, 0);
 
-        // Clean up shader modules (pipeline holds the reference)
-        vkDestroyShaderModule(vk.device, vertModule, nullptr);
-        vkDestroyShaderModule(vk.device, fragModule, nullptr);
+        // ---- Offscreen render pass (for preprocess → intermediate texture) ----
+        // For now we render directly to the swapchain via vk.mainRenderPass.
+        // Multi-pass requires a separate VkRenderPass per intermediate texture.
+        VkRenderPass offscreenRP = VK_NULL_HANDLE;
+        {
+            VkAttachmentDescription attach {};
+            attach.format         = VK_FORMAT_B8G8R8A8_UNORM;
+            attach.samples        = VK_SAMPLE_COUNT_1_BIT;
+            attach.loadOp         = VK_ATTACHMENT_LOAD_OP_CLEAR;
+            attach.storeOp        = VK_ATTACHMENT_STORE_OP_STORE;
+            attach.stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+            attach.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+            attach.initialLayout  = VK_IMAGE_LAYOUT_UNDEFINED;
+            attach.finalLayout    = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+
+            VkAttachmentReference ref {};
+            ref.attachment = 0;
+            ref.layout     = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+            VkSubpassDescription sub {};
+            sub.pipelineBindPoint    = VK_PIPELINE_BIND_POINT_GRAPHICS;
+            sub.colorAttachmentCount = 1;
+            sub.pColorAttachments    = &ref;
+
+            VkSubpassDependency dep {};
+            dep.srcSubpass    = VK_SUBPASS_EXTERNAL;
+            dep.dstSubpass    = 0;
+            dep.srcStageMask  = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+            dep.srcAccessMask = 0;
+            dep.dstStageMask  = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+            dep.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+
+            VkRenderPassCreateInfo rpCI {};
+            rpCI.sType           = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+            rpCI.attachmentCount = 1;
+            rpCI.pAttachments    = &attach;
+            rpCI.subpassCount    = 1;
+            rpCI.pSubpasses      = &sub;
+            rpCI.dependencyCount = 1;
+            rpCI.pDependencies   = &dep;
+            vkCreateRenderPass(vk.device, &rpCI, nullptr, &offscreenRP);
+        }
+
+        VulkanTexture preprocessTex;
+        preprocessTex.create(vk, 1920, 1080, VK_FORMAT_B8G8R8A8_UNORM, true, offscreenRP);
+        VulkanPass preprocessOffscreen(preprocessDef, texSettings, true);
+        preprocessOffscreen.init(vk, offscreenRP, 0);
+
+        // Set up a sampler for the capture texture (used as Source)
+        VkSampler capSampler;
+        {
+            VkSamplerCreateInfo si {};
+            si.sType        = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
+            si.magFilter    = VK_FILTER_LINEAR;
+            si.minFilter    = VK_FILTER_LINEAR;
+            si.mipmapMode   = VK_SAMPLER_MIPMAP_MODE_NEAREST;
+            si.addressModeU = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE;
+            si.addressModeV = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE;
+            si.addressModeW = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE;
+            si.minLod       = 0.0f; si.maxLod = 0.0f;
+            vkCreateSampler(vk.device, &si, nullptr, &capSampler);
+        }
 
         std::cout << "[ShaderGlass] Rendering started. Press Escape to quit." << std::endl;
 
-        // Main loop
+        // ---- Main loop ----
         while(!glfwWindowShouldClose(window))
         {
             glfwPollEvents();
@@ -192,52 +133,127 @@ void main() {
 
             vk.beginFrame();
 
-            VkClearValue clearValue = {{{0.0f, 0.0f, 0.0f, 1.0f}}};
-            VkRenderPassBeginInfo rpBI {};
-            rpBI.sType             = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-            rpBI.renderPass        = vk.mainRenderPass;
-            rpBI.framebuffer       = vk.framebuffers[vk.imageIndex];
-            rpBI.renderArea.extent = vk.swapChainExtent;
-            rpBI.clearValueCount   = 1;
-            rpBI.pClearValues      = &clearValue;
+            // --- ImGui ---
+            ui.newFrame();
+            ui.drawMainUI(vk);
 
+            // --- Start capture on UI request ---
+            if(ui.wantsCapture() && !capture.isCapturing())
+            {
+                capture.start([&](const uint8_t* data, int w, int h, int bpr) {
+                    std::lock_guard<std::mutex> lock(capMutex);
+                    size_t sz = (size_t)bpr * h;
+                    if(capBuffer.size() != sz) capBuffer.resize(sz);
+                    memcpy(capBuffer.data(), data, sz);
+                    capWidth = w; capHeight = h;
+                    capNewFrame = true;
+                });
+            }
+            if(!ui.wantsCapture() && capture.isCapturing())
+                capture.stop();
+
+            // --- Upload captured frame to GPU ---
+            {
+                std::lock_guard<std::mutex> lock(capMutex);
+                if(capNewFrame && capWidth > 0 && capHeight > 0)
+                {
+                    if(!captureTex.isValid())
+                    {
+                        captureTex.create(vk, (uint32_t)capWidth, (uint32_t)capHeight,
+                                          VK_FORMAT_B8G8R8A8_UNORM, false, VK_NULL_HANDLE);
+                    }
+                    captureTex.upload(vk, capBuffer.data(), (uint32_t)capWidth,
+                                      (uint32_t)capHeight, (uint32_t)capWidth * 4);
+                    capNewFrame = false;
+                }
+            }
+
+            // ====== RENDERING ======
             auto cmd = vk.commandBuffers[vk.currentFrame];
-            vkCmdBeginRenderPass(cmd, &rpBI, VK_SUBPASS_CONTENTS_INLINE);
-            vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
 
-            VkViewport viewport {};
-            viewport.x        = 0;
-            viewport.y        = 0;
-            viewport.width    = (float)vk.swapChainExtent.width;
-            viewport.height   = (float)vk.swapChainExtent.height;
-            viewport.minDepth = 0.0f;
-            viewport.maxDepth = 1.0f;
-            vkCmdSetViewport(cmd, 0, 1, &viewport);
+            // Step 1: Preprocess pass to offscreen texture
+            if(captureTex.isValid())
+            {
+                VkClearValue clearVal = {{{0.0f, 0.0f, 0.0f, 1.0f}}};
+                VkRenderPassBeginInfo rpBI {};
+                rpBI.sType             = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+                rpBI.renderPass        = offscreenRP;
+                rpBI.framebuffer       = preprocessTex.framebuffer();
+                rpBI.renderArea.extent = {preprocessTex.width(), preprocessTex.height()};
+                rpBI.clearValueCount   = 1;
+                rpBI.pClearValues      = &clearVal;
 
-            VkRect2D scissor {{0, 0}, vk.swapChainExtent};
-            vkCmdSetScissor(cmd, 0, 1, &scissor);
+                vkCmdBeginRenderPass(cmd, &rpBI, VK_SUBPASS_CONTENTS_INLINE);
 
-            vkCmdDraw(cmd, 3, 1, 0, 0);
-            vkCmdEndRenderPass(cmd);
+                preprocessOffscreen.resize(captureTex.width(), captureTex.height(),
+                                           preprocessTex.width(), preprocessTex.height(),
+                                           {}, {});
+
+                std::map<std::string, VkImageView> res;
+                std::map<std::string, VkSampler>   samps;
+                preprocessOffscreen.render(vk, cmd,
+                                           captureTex.view(), capSampler,
+                                           res, samps,
+                                           0, 0, 0,
+                                           preprocessTex.width(), preprocessTex.height());
+                vkCmdEndRenderPass(cmd);
+            }
+
+            // Step 2: Draw preprocess output to swapchain (or just use main render pass)
+            {
+                VkClearValue clearVal = {{{0.0f, 0.0f, 0.0f, 1.0f}}};
+                VkRenderPassBeginInfo rpBI {};
+                rpBI.sType             = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+                rpBI.renderPass        = vk.mainRenderPass;
+                rpBI.framebuffer       = vk.framebuffers[vk.imageIndex];
+                rpBI.renderArea.extent = vk.swapChainExtent;
+                rpBI.clearValueCount   = 1;
+                rpBI.pClearValues      = &clearVal;
+
+                vkCmdBeginRenderPass(cmd, &rpBI, VK_SUBPASS_CONTENTS_INLINE);
+
+                if(captureTex.isValid())
+                {
+                    preprocessPass.resize(preprocessTex.width(), preprocessTex.height(),
+                                          vk.swapChainExtent.width, vk.swapChainExtent.height,
+                                          {}, {});
+
+                    std::map<std::string, VkImageView> res;
+                    std::map<std::string, VkSampler>   samps;
+                    preprocessPass.render(vk, cmd,
+                                          preprocessTex.view(), preprocessTex.sampler(),
+                                          res, samps,
+                                          0, 0, 0,
+                                          vk.swapChainExtent.width, vk.swapChainExtent.height);
+                }
+
+                // ImGui on top
+                ui.render(cmd);
+
+                vkCmdEndRenderPass(cmd);
+            }
 
             vk.endFrame();
         }
 
         vkDeviceWaitIdle(vk.device);
 
-        // Cleanup
-        vkDestroyPipeline(vk.device, pipeline, nullptr);
-        vkDestroyPipelineLayout(vk.device, pipelineLayout, nullptr);
+        // ---- Cleanup ----
+        capture.stop();
+        preprocessTex.destroy(vk);
+        captureTex.destroy(vk);
+        vkDestroySampler(vk.device, capSampler, nullptr);
+        vkDestroyRenderPass(vk.device, offscreenRP, nullptr);
+        ui.shutdown(vk);
         vk.cleanup();
 
         glfwDestroyWindow(window);
         glfwTerminate();
-
         return EXIT_SUCCESS;
     }
     catch(const std::exception& e)
     {
-        std::cerr << "Fatal error: " << e.what() << std::endl;
+        std::cerr << "Fatal: " << e.what() << std::endl;
         return EXIT_FAILURE;
     }
 }
