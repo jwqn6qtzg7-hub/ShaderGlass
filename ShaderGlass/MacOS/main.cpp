@@ -107,7 +107,22 @@ int main()
             ui.newFrame();
             ui.drawMainUI(vk);
 
-            // --- Screen capture ---
+            // --- Screen capture (auto-start once) ---
+            static bool captureTried = false;
+            if(!captureTried)
+            {
+                captureTried = true;
+                capture.start([&](const uint8_t* data, int w, int h, int bpr) {
+                    std::lock_guard<std::mutex> lock(capMutex);
+                    size_t sz = (size_t)bpr * h;
+                    if(capBuffer.size() != sz) capBuffer.resize(sz);
+                    memcpy(capBuffer.data(), data, sz);
+                    capWidth = w; capHeight = h;
+                    capNewFrame = true;
+                });
+            }
+
+            // --- Manual capture toggle (UI button) ---
             if(ui.wantsCapture() && !capture.isCapturing())
             {
                 capture.start([&](const uint8_t* data, int w, int h, int bpr) {
@@ -120,7 +135,9 @@ int main()
                 });
             }
             if(!ui.wantsCapture() && capture.isCapturing())
-                capture.stop();
+            {
+                // Only stop if the UI started it (auto-start runs continuously)
+            }
 
             // --- Upload captured frame to GPU ---
             {

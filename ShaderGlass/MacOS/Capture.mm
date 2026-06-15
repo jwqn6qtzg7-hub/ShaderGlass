@@ -102,36 +102,33 @@ bool ScreenCapture::start(FrameCallback callback)
         return false;
     }
 
-    // Request shareable content on the main thread (required by SCK)
+    // Request shareable content. SCK requires main thread, but we may be
+    // called from GLFW main loop. Use run-loop pumping to avoid deadlock.
     __block bool        success = false;
     __block SCDisplay*  target  = nil;
     dispatch_semaphore_t sem    = dispatch_semaphore_create(0);
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    if([NSThread isMainThread])
+    {
         [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
-            @autoreleasepool {
-                if(error)
-                {
-                    std::cerr << "[Capture] Permission denied or system error: "
-                              << error.localizedDescription.UTF8String << std::endl;
-                    std::cerr << "[Capture] Grant screen recording permission in System Settings > Privacy & Security"
-                              << std::endl;
-                }
-                else if(content.displays.count == 0)
-                {
-                    std::cerr << "[Capture] No displays found" << std::endl;
-                }
-                else
-                {
-                    target  = content.displays.firstObject;
-                    success = true;
-                }
-                dispatch_semaphore_signal(sem);
-            }
+            if(!error && content.displays.count > 0) { target = content.displays.firstObject; success = true; }
+            else { std::cerr << "[Capture] Permission needed: " << (error ? error.localizedDescription.UTF8String : "no displays") << std::endl; }
+            dispatch_semaphore_signal(sem);
         }];
-    });
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+        while(dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW))
+            [[NSRunLoop mainRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantPast]];
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
+                if(!error && content.displays.count > 0) { target = content.displays.firstObject; success = true; }
+                else { std::cerr << "[Capture] Permission needed: " << (error ? error.localizedDescription.UTF8String : "no displays") << std::endl; }
+                dispatch_semaphore_signal(sem);
+            }];
+        });
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    }
 
     if(!success || !target)
     {
