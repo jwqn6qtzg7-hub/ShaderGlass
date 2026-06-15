@@ -37,6 +37,18 @@ public:
     void  setScale(float s)               { m_scale = (s > 0.0f ? s : 1.0f); }
     float scale() const                   { return m_scale; }
 
+    // The "Mask Size" / "Pixel Size" multiplier. The chain's
+    // SourceSize uniform is divided by this factor, so the
+    // shader's emulated-pixel math produces larger (or smaller)
+    // CRT "pixels" relative to the drawable. The actual
+    // captureTex is sized at captureW / maskSize, captureH /
+    // maskSize, and the chain's preprocess pass bilinearly
+    // down- or up-samples it. Values > 1.0 give bigger CRT
+    // pixels; < 1.0 give smaller / sharper ones. Defaults
+    // to 1.0 (no change in behavior).
+    void  setMaskSize(float m)            { m_maskSize = (m > 0.0f ? m : 1.0f); }
+    float maskSize() const                { return m_maskSize; }
+
     // When true, every pass's Source sampler ignores the per-pass
     // filter_linear PresetParam and uses linear filtering.
     void setForceLinear(bool force);
@@ -121,6 +133,7 @@ private:
     int  m_historyWriteIndex {0};
     int  m_frameCount {0};
     float m_scale {1.0f};
+    float m_maskSize {1.0f};
     bool  m_forceLinear {false};
 
     int m_captureW {0}, m_captureH {0};

@@ -306,6 +306,13 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                 // then blits to the drawable with linear filtering.
                 ImGui::SliderFloat("Scale", &m_scale, 0.25f, 4.0f, "%.2f");
 
+                // Mask Size: the chain's input texture is sized at
+                // captureW / maskSize and bilinearly resampled by
+                // the preprocess pass. A larger value means the
+                // shader's SourceSize is smaller, so its emulated
+                // pixel math produces bigger CRT pixels.
+                ImGui::SliderFloat("Mask Size", &m_maskSize, 0.5f, 8.0f, "%.2fx");
+
                 // Filter: 0 = nearest, 1 = linear. Bicubic was
                 // misleading because Metal has no hardware bicubic
                 // sampler; we offer only what's actually available.
@@ -368,6 +375,7 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                 m_captureStarted = false;
                 m_controlsVisible = true;
                 m_scale = 1.0f;
+                m_maskSize = 1.0f;
                 m_filterMode = 1;
                 m_resetRequested = true;
                 m_resetConfirmOpen = false;

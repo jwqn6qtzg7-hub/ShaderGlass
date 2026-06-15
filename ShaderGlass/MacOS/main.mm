@@ -63,6 +63,7 @@ int main()
         bool lastCaptureRunning  = settings.getBool("lastCaptureRunning", false);
         bool lastControlsVisible = settings.getBool("lastControlsVisible", true);
         float lastScale           = settings.getFloat("lastScale", 1.0f);
+        float lastMaskSize        = settings.getFloat("lastMaskSize", 1.0f);
         int   lastFilterMode      = settings.getInt("lastFilterMode", 1);
 
         settings.save();
@@ -79,6 +80,7 @@ int main()
         bool lastSavedCaptureRunning  = lastCaptureRunning;
         bool lastSavedControlsVisible = lastControlsVisible;
         float lastSavedScale           = lastScale;
+        float lastSavedMaskSize        = lastMaskSize;
         int   lastSavedFilterMode      = lastFilterMode;
 
         MetalCore mc;
@@ -98,6 +100,7 @@ int main()
         ui.setCaptureStarted(lastCaptureRunning);
         ui.setControlsVisible(lastControlsVisible);
         ui.setScale(lastScale);
+        ui.setMaskSize(lastMaskSize);
         ui.setFilterMode(lastFilterMode);
 
         ScreenCapture capture;
@@ -120,10 +123,11 @@ int main()
         MetalShaderChain chain(mc);
         chain.setPreset(&testPreset);
 
-        // Push the initial scale/filter into the chain before the
-        // first frame so the first render uses the restored values
-        // (instead of the chain's defaults).
+        // Push the initial scale/filter/maskSize into the chain
+        // before the first frame so the first render uses the
+        // restored values (instead of the chain's defaults).
         chain.setScale(ui.scale());
+        chain.setMaskSize(ui.maskSize());
         chain.setForceLinear(ui.filterMode() == 1);
 
         std::cout << "[ShaderGlass] Rendering started (Metal)." << std::endl;
@@ -244,6 +248,17 @@ int main()
                 // rebuildPasses, so force that.
                 chain.invalidate();
             }
+            float maskSize = ui.maskSize();
+            if(maskSize != lastSavedMaskSize)
+            {
+                lastSavedMaskSize = maskSize;
+                settings.setFloat("lastMaskSize", maskSize);
+                chain.setMaskSize(maskSize);
+                // The chain's SourceSize uniform changes, which
+                // affects per-pass intermediate sizes (e.g. integer
+                // scaling in crt-lottes). Force a rebuild.
+                chain.invalidate();
+            }
             int filterMode = ui.filterMode();
             if(filterMode != lastSavedFilterMode)
             {
@@ -357,14 +372,21 @@ int main()
             if(captureTex.isValid())
             {
                 // In glass mode the chain's input is already window-sized
-                // (we cropped it). Pass captureW=cropped, viewportW=drawable
-                // so the chain resizes the intermediate buffers and final
-                // pass to the drawable. The preprocess pass then samples
-                // the cropped capture 1:1 and the chain's last pass writes
-                // to the drawable at the right size.
+                // (we cropped it). The chain's m_originalW is set to
+                // captureW / maskSize so the chain's intermediate
+                // textures are sized at the down- or up-sampled
+                // resolution; the preprocess pass bilinearly resamples
+                // captureTex (full crop size) into m_preprocessTex at
+                // the smaller size. This is what drives the
+                // Mask Size / "emulated CRT pixel size" effect.
+                float maskSize = std::max(0.01f, ui.maskSize());
+                int chainCaptureW = std::max(1, (int)std::lroundf(
+                    (float)captureTex.width() / maskSize));
+                int chainCaptureH = std::max(1, (int)std::lroundf(
+                    (float)captureTex.height() / maskSize));
+
                 chain.resize(mc,
-                             (int)captureTex.width(),
-                             (int)captureTex.height(),
+                             chainCaptureW, chainCaptureH,
                              (int)mc.drawableWidth,
                              (int)mc.drawableHeight);
                 chain.process(mc,
@@ -400,6 +422,7 @@ int main()
         settings.setBool("lastCaptureRunning",  ui.wantsCapture());
         settings.setBool("lastControlsVisible", ui.controlsVisible());
         settings.setFloat("lastScale",          ui.scale());
+        settings.setFloat("lastMaskSize",       ui.maskSize());
         settings.setInt("lastFilterMode",         ui.filterMode());
         settings.save();
 
