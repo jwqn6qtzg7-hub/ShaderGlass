@@ -22,6 +22,11 @@ public:
     const char* selectedShaderPath() const;
     std::string consumeSelectedShaderPath();
 
+    // Allow external code (e.g. main loop) to reset the capture flag
+    // when ScreenCaptureKit start fails, so the user-visible state stays
+    // in sync with the actual capture state.
+    void setCaptureStarted(bool started);
+
     void drawMainUI(MetalCore& mc);
 
 private:

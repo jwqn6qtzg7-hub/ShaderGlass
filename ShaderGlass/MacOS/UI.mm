@@ -117,6 +117,11 @@ bool ShaderUI::wantsCapture() const
     return m_captureStarted;
 }
 
+void ShaderUI::setCaptureStarted(bool started)
+{
+    m_captureStarted = started;
+}
+
 const char* ShaderUI::selectedShaderPath() const
 {
     return m_selectedShaderPath.empty() ? nullptr : m_selectedShaderPath.c_str();

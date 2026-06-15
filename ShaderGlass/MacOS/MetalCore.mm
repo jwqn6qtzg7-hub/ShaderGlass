@@ -54,7 +54,7 @@ void MetalCore::beginFrame()
         if(fbWidth > 0 && fbHeight > 0)
             metalLayer.drawableSize = CGSizeMake(fbWidth, fbHeight);
 
-        currentDrawable = [metalLayer nextDrawable];
+        currentDrawable = [[metalLayer nextDrawable] retain];
         if(!currentDrawable)
             throw std::runtime_error("[Metal] Failed to acquire drawable");
 
@@ -62,7 +62,7 @@ void MetalCore::beginFrame()
         drawableWidth   = (uint32_t)drawableTexture.width;
         drawableHeight  = (uint32_t)drawableTexture.height;
 
-        currentCommandBuffer = [commandQueue commandBuffer];
+        currentCommandBuffer = [[commandQueue commandBuffer] retain];
     }
 }
 
@@ -80,6 +80,8 @@ void MetalCore::endFrame()
         [currentCommandBuffer commit];
     }
 
+    [currentDrawable release];
+    [currentCommandBuffer release];
     currentDrawable      = nil;
     currentCommandBuffer = nil;
     drawableTexture      = nil;

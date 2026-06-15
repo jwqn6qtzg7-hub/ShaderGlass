@@ -54,3 +54,5 @@ struct MetalCore
     void cleanup();
     void* layer() const;
 };
+
+static_assert(sizeof(MetalCore) > 0, "MetalCore size sanity");

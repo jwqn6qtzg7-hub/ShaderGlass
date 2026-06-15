@@ -11,15 +11,14 @@
 
 namespace ImageIO
 {
-    ImageData load(const std::string& filePath)
+    static ImageData decodeToBGRA(unsigned char* data, int w, int h, const char* context)
     {
         ImageData result;
-        int w, h, c;
-        unsigned char* data = stbi_load(filePath.c_str(), &w, &h, &c, 4);
-        if(!data)
+        if(!data || w <= 0 || h <= 0)
         {
-            std::cerr << "[ImageIO] Failed to load: " << filePath
-                      << " (" << stbi_failure_reason() << ")" << std::endl;
+            stbi_image_free(data);
+            std::cerr << "[ImageIO] Decode failed (" << context << "): "
+                      << stbi_failure_reason() << std::endl;
             return result;
         }
 
@@ -28,15 +27,40 @@ namespace ImageIO
         result.channels = 4;
         result.pixels.assign(data, data + (size_t)w * h * 4);
 
-        // stb_image returns RGBA by default (when requesting 4 channels).
-        // Convert RGBA → BGRA for Vulkan compatibility.
+        // stb_image returns RGBA when forcing 4 channels. Swap R and B for BGRA.
         for(size_t i = 0; i < result.pixels.size(); i += 4)
             std::swap(result.pixels[i], result.pixels[i + 2]);
 
         stbi_image_free(data);
-        std::cout << "[ImageIO] Loaded " << filePath << " ("
-                  << w << "x" << h << ")" << std::endl;
         return result;
+    }
+
+    ImageData load(const std::string& filePath)
+    {
+        int w = 0, h = 0, c = 0;
+        unsigned char* data = stbi_load(filePath.c_str(), &w, &h, &c, 4);
+        if(!data)
+        {
+            std::cerr << "[ImageIO] Failed to load: " << filePath
+                      << " (" << stbi_failure_reason() << ")" << std::endl;
+            return ImageData {};
+        }
+
+        ImageData img = decodeToBGRA(data, w, h, filePath.c_str());
+        if(img.valid())
+            std::cout << "[ImageIO] Loaded " << filePath << " ("
+                      << w << "x" << h << ")" << std::endl;
+        return img;
+    }
+
+    ImageData loadFromMemory(const uint8_t* bytes, int length)
+    {
+        if(!bytes || length <= 0)
+            return ImageData {};
+
+        int w = 0, h = 0, c = 0;
+        unsigned char* data = stbi_load_from_memory(bytes, length, &w, &h, &c, 4);
+        return decodeToBGRA(data, w, h, "memory");
     }
 
     bool savePNG(const std::string& filePath, int width, int height,

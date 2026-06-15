@@ -19,6 +19,7 @@ struct ImageData
 namespace ImageIO
 {
     ImageData load(const std::string& filePath);
+    ImageData loadFromMemory(const uint8_t* data, int length);
 
     bool savePNG(const std::string& filePath, int width, int height,
                  const uint8_t* bgraData);

@@ -1,9 +1,16 @@
+/*
+ShaderGlass macOS port: ScreenCaptureKit capture layer.
+ARC-managed Objective-C++.
+*/
+
 #import <ScreenCaptureKit/ScreenCaptureKit.h>
 #import <CoreMedia/CoreMedia.h>
 #import <CoreVideo/CoreVideo.h>
+#import <AppKit/AppKit.h>
 
 #include "Capture.h"
 
+#include <cmath>
 #include <iostream>
 #include <atomic>
 
@@ -12,6 +19,7 @@
 // ---------------------------------------------------------------------------
 @interface CaptureDelegate : NSObject<SCStreamDelegate, SCStreamOutput>
 {
+@public
     ScreenCapture::FrameCallback _frameCallback;
     std::atomic<bool>            _active;
 }
@@ -69,9 +77,24 @@ struct CaptureImpl
 {
     SCStream*           stream   {nil};
     CaptureDelegate*    delegate {nil};
-    dispatch_queue_t    queue     {nullptr};
+    dispatch_queue_t    queue    {nullptr};
     bool                active   {false};
 };
+
+// Helper: pump the main runloop while waiting on a background signal.
+// Mirrors the behavior used in ScreenCapture::start() so callers on the
+// main thread don't block SCK's completion-handler dispatch.
+static void waitOnMainLoop(dispatch_semaphore_t sem)
+{
+    while(dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW))
+    {
+        @autoreleasepool
+        {
+            [[NSRunLoop mainRunLoop] runMode:NSDefaultRunLoopMode
+                                  beforeDate:[NSDate distantPast]];
+        }
+    }
+}
 
 // ---------------------------------------------------------------------------
 // ScreenCapture public API
@@ -88,70 +111,126 @@ ScreenCapture::~ScreenCapture()
     m_impl = nullptr;
 }
 
-bool ScreenCapture::start(FrameCallback callback)
+bool ScreenCapture::start(FrameCallback callback, void* excludeWindow)
 {
     if(!callback) return false;
 
     CaptureImpl* impl = static_cast<CaptureImpl*>(m_impl);
     if(impl->active) stop();
 
-    dispatch_queue_t queue = dispatch_queue_create("net.mausimus.ShaderGlass.capture", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue = dispatch_queue_create("net.mausimus.ShaderGlass.capture",
+                                                    DISPATCH_QUEUE_SERIAL);
     if(!queue)
     {
         std::cerr << "[Capture] Failed to create dispatch queue" << std::endl;
         return false;
     }
 
-    // Request shareable content. SCK requires main thread, but we may be
-    // called from GLFW main loop. Use run-loop pumping to avoid deadlock.
-    __block bool        success = false;
-    __block SCDisplay*  target  = nil;
+    __block bool            success = false;
+    __block SCDisplay*      target  = nil;
+    __block SCShareableContent* content = nil;
     dispatch_semaphore_t sem    = dispatch_semaphore_create(0);
+
+    void (^handler)(SCShareableContent*, NSError*) = ^(SCShareableContent* c, NSError* error) {
+        @autoreleasepool {
+            if(!error && c.displays.count > 0)
+            {
+                content = c;
+                target  = c.displays.firstObject;
+                success = true;
+            }
+            else
+            {
+                std::cerr << "[Capture] Permission needed: "
+                          << (error ? error.localizedDescription.UTF8String
+                                    : "no displays") << std::endl;
+            }
+            dispatch_semaphore_signal(sem);
+        }
+    };
 
     if([NSThread isMainThread])
     {
-        [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
-            if(!error && content.displays.count > 0) { target = [content.displays.firstObject retain]; success = true; }
-            else { std::cerr << "[Capture] Permission needed: " << (error ? error.localizedDescription.UTF8String : "no displays") << std::endl; }
-            dispatch_semaphore_signal(sem);
-        }];
-        while(dispatch_semaphore_wait(sem, DISPATCH_TIME_NOW))
-            [[NSRunLoop mainRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantPast]];
+        [SCShareableContent getShareableContentWithCompletionHandler:handler];
+        waitOnMainLoop(sem);
     }
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
-                if(!error && content.displays.count > 0) { target = [content.displays.firstObject retain]; success = true; }
-                else { std::cerr << "[Capture] Permission needed: " << (error ? error.localizedDescription.UTF8String : "no displays") << std::endl; }
-                dispatch_semaphore_signal(sem);
-            }];
+            [SCShareableContent getShareableContentWithCompletionHandler:handler];
         });
         dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     }
 
     if(!success || !target)
     {
-        dispatch_release(queue);
         return false;
     }
 
     // Build filter and configuration
-    SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target excludingWindows:@[]];
+    NSArray* excluded = @[];
+    if(excludeWindow != nullptr)
+    {
+        NSWindow* w = (__bridge NSWindow*)excludeWindow;
+        if([w isKindOfClass:[NSWindow class]])
+        {
+            // Use the shareable content we already fetched (synchronously,
+            // via the runloop pump above) to find the SCWindow matching
+            // our NSWindow.
+            SCWindow* match = nil;
+            for(SCWindow* sw in content.windows)
+            {
+                if(sw.windowID == (uint32_t)w.windowNumber)
+                {
+                    match = sw;
+                    break;
+                }
+            }
+            if(match)
+            {
+                excluded = @[match];
+                std::cerr << "[Capture] Excluding ShaderGlass window (id="
+                          << match.windowID << ") from capture" << std::endl;
+            }
+            else
+            {
+                std::cerr << "[Capture] Could not find SCWindow for "
+                             "NSWindow (windowNumber=" << w.windowNumber
+                          << "); capture will include ShaderGlass window"
+                          << std::endl;
+            }
+        }
+    }
+    SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target
+                                                       excludingWindows:excluded];
     uint32_t displayID = target.displayID;
-    NSInteger tw = target.width;
-    NSInteger th = target.height;
-    [target release];
+
+    // SCDisplay.width/height are in points. SCStreamConfiguration
+    // expects pixels, so multiply by the display's backing scale.
+    CGFloat scale = 1.0;
+    for(NSScreen* screen in NSScreen.screens)
+    {
+        if(screen.deviceDescription[@"NSScreenNumber"] != nil &&
+           [screen.deviceDescription[@"NSScreenNumber"] unsignedIntValue] == displayID)
+        {
+            scale = screen.backingScaleFactor;
+            break;
+        }
+    }
+    NSInteger pointW = target.width;
+    NSInteger pointH = target.height;
+    NSInteger pixelW = (NSInteger)std::lround((double)pointW * (double)scale);
+    NSInteger pixelH = (NSInteger)std::lround((double)pointH * (double)scale);
 
     SCStreamConfiguration* config = [[SCStreamConfiguration alloc] init];
     config.pixelFormat           = kCVPixelFormatType_32BGRA;
-    config.width                 = tw;
-    config.height                = th;
+    config.width                 = pixelW;
+    config.height                = pixelH;
     config.minimumFrameInterval  = CMTimeMake(1, 60);
     config.queueDepth            = 3;
     config.showsCursor           = YES;
 
-    // Delegate lifetime tied to the stream; stream retains it
+    // Delegate lifetime tied to the stream; stream retains it.
     CaptureDelegate* delegate = [[CaptureDelegate alloc] initWithCallback:callback];
 
     SCStream* stream = [[SCStream alloc] initWithFilter:filter
@@ -161,7 +240,6 @@ bool ScreenCapture::start(FrameCallback callback)
     if(!stream)
     {
         std::cerr << "[Capture] Failed to create SCStream" << std::endl;
-        dispatch_release(queue);
         return false;
     }
 
@@ -172,11 +250,8 @@ bool ScreenCapture::start(FrameCallback callback)
                           error:&outputError])
     {
         std::cerr << "[Capture] Failed to add stream output: "
-                  << (outputError ? outputError.localizedDescription.UTF8String : "unknown")
-                  << std::endl;
-        stream = nil;
-        delegate = nil;
-        dispatch_release(queue);
+                  << (outputError ? outputError.localizedDescription.UTF8String
+                                   : "unknown") << std::endl;
         return false;
     }
 
@@ -185,29 +260,28 @@ bool ScreenCapture::start(FrameCallback callback)
     dispatch_semaphore_t startSem = dispatch_semaphore_create(0);
 
     [stream startCaptureWithCompletionHandler:^(NSError* error) {
-        if(error)
-        {
-            std::cerr << "[Capture] SCStream start failed: "
-                      << error.localizedDescription.UTF8String
-                      << " (code " << error.code << ")" << std::endl;
+        @autoreleasepool {
+            if(error)
+            {
+                std::cerr << "[Capture] SCStream start failed: "
+                          << error.localizedDescription.UTF8String
+                          << " (code " << error.code << ")" << std::endl;
+            }
+            else
+            {
+                started = true;
+                std::cout << "[Capture] Capturing display "
+                          << displayID << " ("
+                          << pixelW << "x" << pixelH << ")" << std::endl;
+            }
+            dispatch_semaphore_signal(startSem);
         }
-        else
-        {
-            started = true;
-            std::cout << "[Capture] Capturing display "
-                      << displayID << " ("
-                      << tw << "x" << th << ")" << std::endl;
-        }
-        dispatch_semaphore_signal(startSem);
     }];
 
-    dispatch_semaphore_wait(startSem, DISPATCH_TIME_FOREVER);
+    waitOnMainLoop(startSem);
 
     if(!started)
     {
-        stream  = nil;
-        delegate = nil;
-        dispatch_release(queue);
         return false;
     }
 
@@ -218,65 +292,121 @@ bool ScreenCapture::start(FrameCallback callback)
     return true;
 }
 
-bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
+bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback,
+                                     void* excludeWindow)
 {
     if(!callback) return false;
 
     CaptureImpl* impl = static_cast<CaptureImpl*>(m_impl);
     if(impl->active) stop();
 
-    dispatch_queue_t queue = dispatch_queue_create("net.mausimus.ShaderGlass.capture", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue = dispatch_queue_create("net.mausimus.ShaderGlass.capture",
+                                                    DISPATCH_QUEUE_SERIAL);
     if(!queue)
     {
         std::cerr << "[Capture] Failed to create dispatch queue" << std::endl;
         return false;
     }
 
-    __block bool        success = false;
-    __block SCDisplay*  target  = nil;
+    __block bool            success = false;
+    __block SCDisplay*      target  = nil;
+    __block SCShareableContent* content = nil;
     dispatch_semaphore_t sem    = dispatch_semaphore_create(0);
 
+    // SCK's getShareableContent must run on the main thread. Whether we
+    // are already on the main thread or not, schedule the call there and
+    // pump the main run loop while waiting (mirroring start() above).
     dispatch_async(dispatch_get_main_queue(), ^{
-        [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
+        [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* c, NSError* error) {
             @autoreleasepool {
                 if(error)
                 {
                     std::cerr << "[Capture] Permission denied or system error: "
                               << error.localizedDescription.UTF8String << std::endl;
-                    std::cerr << "[Capture] Grant screen recording permission in System Settings > Privacy & Security"
-                              << std::endl;
+                    std::cerr << "[Capture] Grant screen recording permission in "
+                                 "System Settings > Privacy & Security" << std::endl;
                 }
                 else
                 {
-                    for(SCDisplay* d in content.displays)
+                    content = c;
+                    for(SCDisplay* d in c.displays)
                     {
                         if(d.displayID == displayID)
                         {
-                            target  = [d retain];
+                            target  = d;
                             success = true;
                             break;
                         }
                     }
                     if(!target)
-                        std::cerr << "[Capture] Display " << displayID << " not found" << std::endl;
+                        std::cerr << "[Capture] Display " << displayID
+                                  << " not found" << std::endl;
                 }
                 dispatch_semaphore_signal(sem);
             }
         }];
     });
 
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    if([NSThread isMainThread])
+        waitOnMainLoop(sem);
+    else
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     if(!success || !target)
     {
-        dispatch_release(queue);
         return false;
     }
 
-    SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target excludingWindows:@[]];
+    NSArray* excluded = @[];
+    if(excludeWindow != nullptr)
+    {
+        NSWindow* w = (__bridge NSWindow*)excludeWindow;
+        if([w isKindOfClass:[NSWindow class]])
+        {
+            SCWindow* match = nil;
+            for(SCWindow* sw in content.windows)
+            {
+                if(sw.windowID == (uint32_t)w.windowNumber)
+                {
+                    match = sw;
+                    break;
+                }
+            }
+            if(match)
+            {
+                excluded = @[match];
+                std::cerr << "[Capture] Excluding ShaderGlass window (id="
+                          << match.windowID << ") from capture" << std::endl;
+            }
+            else
+            {
+                std::cerr << "[Capture] Could not find SCWindow for "
+                             "NSWindow (windowNumber=" << w.windowNumber
+                          << "); capture will include ShaderGlass window"
+                          << std::endl;
+            }
+        }
+    }
+    SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target
+                                                       excludingWindows:excluded];
     uint32_t targetDisplayID = target.displayID;
-    NSInteger targetWidth = target.width;
-    NSInteger targetHeight = target.height;
+
+    // Use NSScreen to get the matching display's backing scale; multiply
+    // point size by scale to get the pixel size SCK expects.
+    CGFloat scale = 1.0;
+    for(NSScreen* screen in NSScreen.screens)
+    {
+        if(screen.deviceDescription[@"NSScreenNumber"] != nil &&
+           [screen.deviceDescription[@"NSScreenNumber"] unsignedIntValue] == targetDisplayID)
+        {
+            scale = screen.backingScaleFactor;
+            break;
+        }
+    }
+    NSInteger pointW = target.width;
+    NSInteger pointH = target.height;
+    NSInteger targetWidth  = (NSInteger)std::lround((double)pointW * (double)scale);
+    NSInteger targetHeight = (NSInteger)std::lround((double)pointH * (double)scale);
 
     SCStreamConfiguration* config = [[SCStreamConfiguration alloc] init];
     config.pixelFormat           = kCVPixelFormatType_32BGRA;
@@ -285,7 +415,6 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
     config.minimumFrameInterval  = CMTimeMake(1, 60);
     config.queueDepth            = 3;
     config.showsCursor           = YES;
-    [target release];
 
     CaptureDelegate* delegate = [[CaptureDelegate alloc] initWithCallback:callback];
 
@@ -296,7 +425,6 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
     if(!stream)
     {
         std::cerr << "[Capture] Failed to create SCStream" << std::endl;
-        dispatch_release(queue);
         return false;
     }
 
@@ -307,11 +435,8 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
                           error:&outputError])
     {
         std::cerr << "[Capture] Failed to add stream output: "
-                  << (outputError ? outputError.localizedDescription.UTF8String : "unknown")
-                  << std::endl;
-        stream = nil;
-        delegate = nil;
-        dispatch_release(queue);
+                  << (outputError ? outputError.localizedDescription.UTF8String
+                                   : "unknown") << std::endl;
         return false;
     }
 
@@ -319,29 +444,31 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
     dispatch_semaphore_t startSem = dispatch_semaphore_create(0);
 
     [stream startCaptureWithCompletionHandler:^(NSError* error) {
-        if(error)
-        {
-            std::cerr << "[Capture] SCStream start failed: "
-                      << error.localizedDescription.UTF8String
-                      << " (code " << error.code << ")" << std::endl;
+        @autoreleasepool {
+            if(error)
+            {
+                std::cerr << "[Capture] SCStream start failed: "
+                          << error.localizedDescription.UTF8String
+                          << " (code " << error.code << ")" << std::endl;
+            }
+            else
+            {
+                started = true;
+                std::cout << "[Capture] Capturing display "
+                          << targetDisplayID << " ("
+                          << targetWidth << "x" << targetHeight << ")" << std::endl;
+            }
+            dispatch_semaphore_signal(startSem);
         }
-        else
-        {
-            started = true;
-            std::cout << "[Capture] Capturing display "
-                      << targetDisplayID << " ("
-                      << targetWidth << "x" << targetHeight << ")" << std::endl;
-        }
-        dispatch_semaphore_signal(startSem);
     }];
 
-    dispatch_semaphore_wait(startSem, DISPATCH_TIME_FOREVER);
+    if([NSThread isMainThread])
+        waitOnMainLoop(startSem);
+    else
+        dispatch_semaphore_wait(startSem, DISPATCH_TIME_FOREVER);
 
     if(!started)
     {
-        stream   = nil;
-        delegate  = nil;
-        dispatch_release(queue);
         return false;
     }
 
@@ -367,21 +494,17 @@ void ScreenCapture::stop()
     {
         dispatch_semaphore_t sem = dispatch_semaphore_create(0);
         [impl->stream stopCaptureWithCompletionHandler:^(NSError* error) {
-            if(error)
-                std::cerr << "[Capture] Stop capture error: "
-                          << error.localizedDescription.UTF8String << std::endl;
+            (void)error;
             dispatch_semaphore_signal(sem);
         }];
+        // 5s timeout is plenty for SCK; do not pump the main runloop
+        // during stop, since this is called from the main loop.
         dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC));
-        impl->stream = nil;
     }
 
+    impl->stream   = nil;
     impl->delegate = nil;
-    if(impl->queue)
-    {
-        dispatch_release(impl->queue);
-        impl->queue = nullptr;
-    }
+    impl->queue    = nullptr;
 
     std::cout << "[Capture] Stopped" << std::endl;
 }

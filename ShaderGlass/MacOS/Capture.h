@@ -16,8 +16,13 @@ public:
     ScreenCapture(ScreenCapture&&)                 = delete;
     ScreenCapture& operator=(ScreenCapture&&)      = delete;
 
-    bool start(FrameCallback callback);
-    bool startDisplay(uint32_t displayID, FrameCallback callback);
+    // Start capturing the primary display. If `excludeWindow` is non-null
+    // it must be a Cocoa NSWindow*; that window will be excluded from
+    // the capture so the chain never sees its own output (prevents
+    // any chance of feedback even if the crop is wrong).
+    bool start(FrameCallback callback, void* excludeWindow = nullptr);
+    bool startDisplay(uint32_t displayID, FrameCallback callback,
+                      void* excludeWindow = nullptr);
     void stop();
 
     bool isCapturing() const;

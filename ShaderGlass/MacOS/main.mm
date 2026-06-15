@@ -8,6 +8,13 @@
 #include "PassthroughShader.h"
 #include "ShaderGC.h"
 
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#define GLFW_EXPOSE_NATIVE_COCOA
+#include <GLFW/glfw3native.h>
+#import <AppKit/AppKit.h>
+
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
@@ -19,6 +26,14 @@
 
 static const uint32_t WIDTH  = 800;
 static const uint32_t HEIGHT = 600;
+
+// Window position/size callback: invalidate chain when the window
+// moves or resizes so the glass-mode capture crop stays in sync.
+static void onWindowPosOrSizeChanged(GLFWwindow* w, int, int)
+{
+    auto* flag = static_cast<bool*>(glfwGetWindowUserPointer(w));
+    if(flag) *flag = true;
+}
 
 int main()
 {
@@ -44,6 +59,11 @@ int main()
         settings.setInt("window_h", wh);
         settings.save();
 
+        bool windowChanged = true;
+        glfwSetWindowUserPointer(window, &windowChanged);
+        glfwSetWindowPosCallback(window, onWindowPosOrSizeChanged);
+        glfwSetWindowSizeCallback(window, onWindowPosOrSizeChanged);
+
         MetalCore mc;
         mc.init(window);
 
@@ -52,6 +72,7 @@ int main()
 
         ScreenCapture capture;
         std::vector<uint8_t> capBuffer;
+        std::vector<uint8_t> cropBuffer;
         int  capWidth  = 0, capHeight = 0;
         int  capBytesPerRow = 0;
         bool capNewFrame = false;
@@ -125,35 +146,116 @@ int main()
 
             if(ui.wantsCapture() && !capture.isCapturing())
             {
-                capture.start([&](const uint8_t* data, int w, int h, int bpr) {
+                NSWindow* excludeWin = glfwGetCocoaWindow(window);
+                bool ok = capture.start([&](const uint8_t* data, int w, int h, int bpr) {
                     std::lock_guard<std::mutex> lock(capMutex);
                     size_t sz = (size_t)bpr * h;
                     if(capBuffer.size() != sz) capBuffer.resize(sz);
                     memcpy(capBuffer.data(), data, sz);
                     capWidth = w; capHeight = h; capBytesPerRow = bpr;
                     capNewFrame = true;
-                });
+                }, (__bridge void*)excludeWin);
+                if(!ok)
+                {
+                    static bool loggedStartFail = false;
+                    if(!loggedStartFail)
+                    {
+                        std::cerr << "[ShaderGlass] Capture start failed; "
+                                     "check Screen Recording permission and try again."
+                                  << std::endl;
+                        loggedStartFail = true;
+                    }
+                    ui.setCaptureStarted(false);
+                }
             }
             else if(!ui.wantsCapture() && capture.isCapturing())
             {
                 capture.stop();
             }
 
+            // The window is acting as a glass overlay: sample only the
+            // region behind the window from the captured full-display
+            // frame. This avoids self-reference (the window seeing
+            // itself) and presents the chain with an input that is
+            // already 1:1 with the drawable.
+            int winPxX = 0, winPxY = 0, winPxW = 0, winPxH = 0;
+            {
+                int posX = 0, posY = 0, sizeW = 0, sizeH = 0;
+                glfwGetWindowPos(window, &posX, &posY);
+                glfwGetWindowSize(window, &sizeW, &sizeH);
+                float sx = 1.0f, sy = 1.0f;
+                glfwGetWindowContentScale(window, &sx, &sy);
+                int fbW = 0, fbH = 0;
+                glfwGetFramebufferSize(window, &fbW, &fbH);
+                // glfwGetWindowPos returns the upper-left corner of the
+                // content area in screen coordinates with Y growing
+                // downward (top-down, matching ScreenCaptureKit's BGRA
+                // frame layout). No Y flip needed.
+                winPxX = (int)std::lroundf((float)posX * sx);
+                winPxY = (int)std::lroundf((float)posY * sy);
+                winPxW = fbW;
+                winPxH = fbH;
+            }
+
             {
                 std::lock_guard<std::mutex> lock(capMutex);
                 if(capNewFrame && capWidth > 0 && capHeight > 0)
                 {
+                    int cropX = std::max(0, winPxX);
+                    int cropY = std::max(0, winPxY);
+                    int cropW = std::min(winPxW, capWidth  - cropX);
+                    int cropH = std::min(winPxH, capHeight - cropY);
+                    if(cropW < 1) cropW = 1;
+                    if(cropH < 1) cropH = 1;
+
+                    // One-time log so we can see the numbers when
+                    // diagnosing orientation/scaling. Goes to stderr
+                    // and NSLog only; for diagnostic purposes when
+                    // launched from Finder, see SKILL.md.
+                    static bool loggedOnce = false;
+                    if(!loggedOnce)
+                    {
+                        std::ostringstream ss;
+                        ss << "[ShaderGlass] capture="
+                           << capWidth << "x" << capHeight
+                           << " bpr=" << capBytesPerRow
+                           << " window_pos_px=(" << winPxX
+                           << "," << winPxY
+                           << ") window_size_px=" << winPxW
+                           << "x" << winPxH
+                           << " crop=(" << cropX << "," << cropY
+                           << " " << cropW << "x" << cropH << ")";
+                        std::string line = ss.str();
+                        std::cerr << line << std::endl;
+                        NSLog(@"[ShaderGlass] %s", line.c_str());
+                        loggedOnce = true;
+                    }
+
+                    // Copy the cropped BGRA rows into a tightly-packed
+                    // buffer. Each row of the capture is capBytesPerRow
+                    // wide; we want cropW * 4 bytes per row.
+                    size_t rowBytes = (size_t)cropW * 4;
+                    cropBuffer.resize(rowBytes * cropH);
+                    for(int row = 0; row < cropH; row++)
+                    {
+                        const uint8_t* src = capBuffer.data()
+                            + (size_t)(cropY + row) * capBytesPerRow
+                            + (size_t)cropX * 4;
+                        uint8_t* dst = cropBuffer.data() + (size_t)row * rowBytes;
+                        memcpy(dst, src, rowBytes);
+                    }
+
                     if(!captureTex.isValid() ||
-                       captureTex.width() != (uint32_t)capWidth ||
-                       captureTex.height() != (uint32_t)capHeight)
+                       captureTex.width()  != (uint32_t)cropW ||
+                       captureTex.height() != (uint32_t)cropH)
                     {
                         captureTex.destroy();
-                        captureTex.create(mc, (uint32_t)capWidth,
-                                          (uint32_t)capHeight, false);
+                        captureTex.create(mc, (uint32_t)cropW,
+                                          (uint32_t)cropH, false);
                     }
-                    captureTex.upload(mc, capBuffer.data(),
-                                      (uint32_t)capWidth, (uint32_t)capHeight,
-                                      (uint32_t)capBytesPerRow);
+                    captureTex.upload(mc, cropBuffer.data(),
+                                      (uint32_t)cropW, (uint32_t)cropH,
+                                      (uint32_t)rowBytes);
 
                     capNewFrame = false;
                 }
@@ -161,6 +263,12 @@ int main()
 
             if(captureTex.isValid())
             {
+                // In glass mode the chain's input is already window-sized
+                // (we cropped it). Pass captureW=cropped, viewportW=drawable
+                // so the chain resizes the intermediate buffers and final
+                // pass to the drawable. The preprocess pass then samples
+                // the cropped capture 1:1 and the chain's last pass writes
+                // to the drawable at the right size.
                 chain.resize(mc,
                              (int)captureTex.width(),
                              (int)captureTex.height(),
@@ -171,6 +279,14 @@ int main()
                               captureTex.sampler(),
                               frameNo, frameNo);
                 frameNo++;
+            }
+
+            if(windowChanged)
+            {
+                // Force a full resize on the next frame so the chain
+                // recomputes sizes for the new drawable / window rect.
+                chain.invalidate();
+                windowChanged = false;
             }
 
             ui.render(mc);

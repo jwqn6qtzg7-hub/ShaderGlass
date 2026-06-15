@@ -10,6 +10,8 @@
 #include <string>
 #include <array>
 #include <memory>
+#include <unordered_map>
+#include <unordered_set>
 
 class MetalShaderChain
 {
@@ -21,6 +23,9 @@ public:
     void rebuild(MetalCore& mc);
     void resize(MetalCore& mc, int captureW, int captureH,
                 int viewportW, int viewportH);
+    // Mark the chain dirty so the next process() rebuilds. Use after
+    // the window moves, resizes, or capture dimensions change.
+    void invalidate() { m_rebuildNeeded = true; }
     void updateMVP(float sx, float sy, float tx, float ty);
 
     void process(MetalCore& mc,
@@ -31,10 +36,45 @@ public:
     bool hasPreset() const { return m_preset != nullptr; }
 
 private:
+    // Per-pass metadata derived from ShaderDef::PresetParams.
+    struct PassMeta
+    {
+        std::string alias;     // empty if not aliased
+        bool        scaleAbsoluteX = false;
+        bool        scaleAbsoluteY = false;
+        bool        scaleViewportX = false;
+        bool        scaleViewportY = false;
+        float       scaleX = 1.0f;
+        float       scaleY = 1.0f;
+        int         frameCountMod = 0;
+    };
+
     void destroyPasses(MetalCore& mc);
     void destroyTargets(MetalCore& mc);
+    void destroyExternalTextures();
     void rebuildPasses(MetalCore& mc);
     void calculatePassSizes();
+
+    // Read a numeric PresetParam with the suffix (e.g. "scale_x0"); returns
+    // fallback if not set.
+    static float presetFloat(const std::map<std::string, std::string>& pp,
+                             const char* key, float fallback);
+
+    // Look up a per-pass preset param by its canonical key.
+    static std::string passPresetParam(const ShaderDef& sd, const char* base);
+
+    // Build PassMeta from a ShaderDef's PresetParams.
+    static PassMeta buildPassMeta(const ShaderDef& sd);
+
+    // Find the TextureDef entry whose preset 'name' (or fallback
+    // TextureDef::Name) matches the given key.
+    static const TextureDef* findExternalTexture(const PresetDef& preset,
+                                                 const std::string& name);
+
+    // Decode a TextureDef into a MetalTexture (BGRA8, no mip).
+    bool uploadExternalTexture(MetalCore& mc,
+                               const TextureDef& td,
+                               MetalTexture& outTex) const;
 
     MetalCore& m_mc;
 
@@ -45,9 +85,16 @@ private:
     MetalTexture               m_preprocessTex;
 
     std::vector<std::unique_ptr<MetalPass>> m_passes;
+    std::vector<PassMeta>                   m_passMeta;
     std::vector<MetalTexture>               m_passTexs;
     std::vector<MetalTexture>               m_feedbackTexs;
     std::vector<MetalTexture>               m_historyTexs;
+
+    // External textures from PresetDef::TextureDefs, keyed by preset name.
+    std::unordered_map<std::string, MetalTexture> m_externalTexs;
+
+    // 1x1 transparent black fallback for any unresolved sampler.
+    MetalTexture m_fallbackTex;
 
     std::map<std::string, void*> m_resources;
     std::map<std::string, void*> m_samplers;
@@ -58,6 +105,7 @@ private:
     bool m_requiresFeedback {false};
     int  m_requiresHistory {0};
     int  m_historyWriteIndex {0};
+    int  m_frameCount {0};
 
     int m_captureW {0}, m_captureH {0};
     int m_viewportW {0}, m_viewportH {0};
@@ -67,4 +115,11 @@ private:
     float m_mvpTX {-1.0f}, m_mvpTY {-1.0f};
 
     bool m_rebuildNeeded {true};
+    std::unordered_set<std::string> m_loggedMissing;
+    std::unordered_set<std::string> m_loggedUnsupported;
+
+    // One-time log of unsupported features.
+    void logUnsupportedOnce(const std::string& key, const std::string& msg);
+    // One-time log of missing resource.
+    void logMissingOnce(const std::string& name);
 };

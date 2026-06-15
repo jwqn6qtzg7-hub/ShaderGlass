@@ -78,10 +78,44 @@ set_target_properties(${APP_NAME} PROPERTIES
     XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ""
 )
 
+# -------------------------------------------------------------------
+# Smoke-test binary: loads preset files, runs them through the chain.
+# Hidden GLFW window + offscreen drawable. Not a GUI app.
+# -------------------------------------------------------------------
+add_executable(ShaderGlassSmoke
+    SmokeTest.cpp
+    MetalCore.mm
+    MetalPass.mm
+    MetalTexture.mm
+    MetalShaderChain.mm
+    ImageIO.cpp
+)
+target_include_directories(ShaderGlassSmoke PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/ShaderGC
+    ${stb_SOURCE_DIR}
+    ${spirv-cross_SOURCE_DIR}
+)
+target_link_libraries(ShaderGlassSmoke PRIVATE
+    glfw
+    ShaderGC
+    "-framework Metal"
+    "-framework QuartzCore"
+    "-framework AppKit"
+    "-framework Foundation"
+)
+target_compile_features(ShaderGlassSmoke PRIVATE cxx_std_20)
+set_source_files_properties(MetalCore.mm MetalPass.mm MetalTexture.mm MetalShaderChain.mm
+    PROPERTIES COMPILE_FLAGS "-fno-objc-arc")
+target_compile_options(ShaderGlassSmoke PRIVATE
+    "-include" "${CMAKE_SOURCE_DIR}/ShaderGC/MacCompat.h")
+
 # Mac compatibility header
 target_compile_options(${APP_NAME} PRIVATE
     "-include" "${CMAKE_SOURCE_DIR}/ShaderGC/MacCompat.h"
 )
-# Enable ARC for Metal port files
-set_source_files_properties(main.mm MetalCore.mm MetalPass.mm MetalTexture.mm MetalShaderChain.mm UI.mm
+# Enable ARC for files that don't use manual __bridge_retained ownership.
+# MetalCore/Pass/Texture/ShaderChain use the __bridge_retained / __bridge_transfer
+# idiom to keep ownership in void* storage; that pattern requires non-ARC.
+set_source_files_properties(main.mm UI.mm Capture.mm
     PROPERTIES COMPILE_FLAGS "-fobjc-arc")

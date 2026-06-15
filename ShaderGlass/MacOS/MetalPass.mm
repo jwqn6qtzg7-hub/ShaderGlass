@@ -99,11 +99,15 @@ static std::string spirvToMSL(const std::vector<uint32_t>& spirv,
     return msl;
 }
 
-MetalPass::MetalPass(MetalCore& mc, ShaderDef& shaderDef,
-                     const std::map<std::string, TextureSamplerSettings>& texSettings,
-                     bool preprocess)
+std::string MetalPass::presetParam(const char* key) const
+{
+    auto it = m_shaderDef.PresetParams.find(key);
+    if(it == m_shaderDef.PresetParams.end()) return {};
+    return it->second;
+}
+
+MetalPass::MetalPass(MetalCore& mc, ShaderDef& shaderDef, bool preprocess)
     : m_shaderDef(shaderDef)
-    , m_texSettings(texSettings)
     , m_preprocess(preprocess)
 {
     size_t cs = m_shaderDef.ParamsSize(0), ps = m_shaderDef.ParamsSize(-1);
@@ -127,6 +131,7 @@ MetalPass::MetalPass(MetalCore& mc, ShaderDef& shaderDef,
 
     compileShaders(mc);
     createBuffers(mc);
+    buildSourceSampler(mc);
 }
 
 MetalPass::~MetalPass()
@@ -135,6 +140,82 @@ MetalPass::~MetalPass()
     releaseMetalObject(m_constBuf);
     releaseMetalObject(m_pushBuf);
     releaseMetalObject(m_vertBuf);
+    releaseMetalObject(m_sourceSampler);
+}
+
+void MetalPass::buildSourceSampler(MetalCore& mc)
+{
+    releaseMetalObject(m_sourceSampler);
+
+    TextureSamplerSettings settings;
+    if(presetParam("filter_linear") == "true" || presetParam("filter_linear") == "1")
+        settings.linear = true;
+    if(presetParam("mipmap_input") == "true" || presetParam("mipmap_input") == "1")
+        settings.mipmap = true;
+
+    auto wrap = presetParam("wrap_mode");
+    if(wrap == "repeat") settings.repeat = true;
+    else if(wrap == "mirrored_repeat") settings.mirror = true;
+    else if(wrap == "clamp_to_edge" || wrap == "clamp") settings.clamp = true;
+    else if(wrap == "clamp_to_border")
+    {
+        // Metal has no clamp_to_border; fall back to clamp and log once.
+        static bool logged = false;
+        if(!logged)
+        {
+            std::cerr << "[MetalPass] wrap_mode=clamp_to_border not supported; "
+                         "using clamp_to_edge" << std::endl;
+            logged = true;
+        }
+        settings.clamp = true;
+    }
+
+    MTLSamplerDescriptor* sd = [MTLSamplerDescriptor new];
+    MTLSamplerMinMagFilter filter = settings.linear
+        ? MTLSamplerMinMagFilterLinear
+        : MTLSamplerMinMagFilterNearest;
+    sd.minFilter = filter;
+    sd.magFilter = filter;
+    if(settings.mipmap)
+        sd.mipFilter = MTLSamplerMipFilterLinear;
+    else
+        sd.mipFilter = MTLSamplerMipFilterNotMipmapped;
+
+    MTLSamplerAddressMode mode = MTLSamplerAddressModeClampToEdge;
+    if(settings.repeat) mode = MTLSamplerAddressModeRepeat;
+    else if(settings.mirror) mode = MTLSamplerAddressModeMirrorRepeat;
+    sd.sAddressMode = mode;
+    sd.tAddressMode = mode;
+
+    id<MTLSamplerState> samp = [mc.device newSamplerStateWithDescriptor:sd];
+    m_sourceSampler = (__bridge_retained void*)samp;
+}
+
+TextureSamplerSettings MetalPass::samplerSettingsFor(const std::string& name) const
+{
+    TextureSamplerSettings settings;
+
+    // The "Source" sampler is the per-pass source; settings are derived
+    // directly from the pass's PresetParams (filter_linear / wrap_mode).
+    if(name == "Source")
+    {
+        if(presetParam("filter_linear") == "true" || presetParam("filter_linear") == "1")
+            settings.linear = true;
+        if(presetParam("mipmap_input") == "true" || presetParam("mipmap_input") == "1")
+            settings.mipmap = true;
+        auto wrap = presetParam("wrap_mode");
+        if(wrap == "repeat") settings.repeat = true;
+        else if(wrap == "mirrored_repeat") settings.mirror = true;
+        else if(wrap == "clamp_to_edge" || wrap == "clamp") settings.clamp = true;
+        else if(wrap == "clamp_to_border") settings.clamp = true;
+        return settings;
+    }
+
+    // For other samplers the chain may have populated an entry keyed by
+    // a TextureDef name. That map is held by the chain and the chain code
+    // passes the appropriate sampler into the pass; this function is here
+    // as a hook for future per-slot sampler overrides.
+    return settings;
 }
 
 void MetalPass::compileShaders(MetalCore& mc)
@@ -329,6 +410,7 @@ void MetalPass::render(MetalCore& mc,
         [enc setFragmentBuffer:pushBuf offset:0 atIndex:1];
     }
 
+    // Source binding: chain passes a per-pass source sampler.
     if(sourceTexture && m_srcBinding >= 0)
         [enc setFragmentTexture:(__bridge id<MTLTexture>)sourceTexture
                         atIndex:m_srcBinding];
@@ -420,8 +502,13 @@ void MetalPass::fillParams(int buffer, void* data)
 bool MetalPass::requiresFeedback() const
 {
     for(auto& s : m_shaderDef.Samplers)
+    {
         if(s.name.find("PassFeedback") == 0)
             return true;
+        if(s.name.size() >= 8 &&
+           s.name.compare(s.name.size() - 8, 8, "Feedback") == 0)
+            return true;
+    }
     return false;
 }
 
@@ -432,6 +519,7 @@ int MetalPass::requiresHistory() const
     {
         if(s.name.find("OriginalHistory") == 0)
         {
+            // OriginalHistory0 maps to Original; never allocate.
             int h = atoi(s.name.c_str() + 15);
             if(h > maxH) maxH = h;
         }

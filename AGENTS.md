@@ -3,8 +3,13 @@
 ## Current Status
 
 - Native Metal (`macos-metal`) is the active macOS port in this checkout.
-- As of June 15, 2026, the Metal build has been manually verified working: the app launches, screen capture starts, and `slang-shaders/crt/crt-lottes.slangp` renders through the native Metal pipeline.
+- The port runs in **glass-overlay mode**: the captured desktop is cropped to the window's screen rect, the chain renders just that region, and the host window is excluded from the SCK capture to break the self-reference feedback loop. See `SKILL.md` for the full capture/glass-overlay lifecycle.
+- As of June 15, 2026, the Metal build has been manually verified working: the app launches, screen capture starts, and `slang-shaders/crt/crt-lottes.slangp` renders through the native Metal pipeline with the glass-overlay crop.
 - Last known-good implementation checkpoint before this note: `ad92a5f4` (`Fix native Metal macOS port rendering`).
+
+## Detailed Subsystem Documentation
+
+- **`SKILL.md`** — capture / glass-overlay lifecycle, SCK conventions, recursion-trap mitigations, lifetime rules, and a manual verification checklist. Read this before touching `Capture.mm`, the capture-crop math in `main.mm`, or `MetalCore.mm`'s frame-scope retention.
 
 ## Build Commands
 
@@ -88,6 +93,8 @@ ShaderGlass/MacOS/   — macOS port source
 - Resize the Metal shader chain against the current CAMetalLayer drawable dimensions whenever a capture texture is valid. Do not tie pass resizing only to new ScreenCaptureKit frames, because window resizes can happen between capture frames.
 - ScreenCaptureKit streams must register a screen output with `addStreamOutput:type:sampleHandlerQueue:error:` before `startCaptureWithCompletionHandler:`. Starting an `SCStream` without an output reports capture as active but never delivers frames.
 - If experimenting with manual app signing in `build-metal`, delete the generated `ShaderGlass.app` bundle before retesting. Stale `_CodeSignature` artifacts in the build output can make LaunchServices behavior misleading.
+- `MetalCore.mm` is non-ARC and uses `__bridge_retained` / `__bridge_transfer` for `void*` storage of Metal resources; the SCK/CAMetalLayer objects (`currentDrawable`, `currentCommandBuffer`) are autoreleased and must be explicitly `retain`ed in `beginFrame()` and `release`d in `endFrame()`. Without explicit retention, the `@autoreleasepool` block in `beginFrame()` drains and the pointers become dangling references. **Files that use the `__bridge_retained` storage pattern must stay non-ARC**; converting them to ARC causes double-release crashes. `main.mm`, `UI.mm`, and `Capture.mm` use ARC; `MetalCore.mm`, `MetalPass.mm`, `MetalTexture.mm`, and `MetalShaderChain.mm` do not. See `CMakeLists.txt` for the exact split.
+- The glass-overlay mode requires SCK capture to exclude the host window AND for `main.mm` to crop the captured frame to the window's screen rect. Both mitigations are necessary: the exclude prevents the chain from seeing its own output at the SCK level, and the crop is defense-in-depth. See `SKILL.md` §4.
 
 ## Key Differences: D3D11 → Vulkan
 
