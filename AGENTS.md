@@ -16,7 +16,7 @@ cmake --build build --config Debug
 ## Dependencies
 
 - **System** (Homebrew): `glfw`, `molten-vk`, `vulkan-headers`, `vulkan-loader`
-- **Fetched** (CMake FetchContent): `glslang` (vulkan-sdk-1.4.309.0), `SPIRV-Cross` (vulkan-sdk-1.4.309.0)
+- **Fetched** (CMake FetchContent): `glslang` (vulkan-sdk-1.4.309.0), `SPIRV-Cross` (vulkan-sdk-1.4.309.0), `imgui` (v1.91.6)
 
 ## Project Structure
 
@@ -32,9 +32,15 @@ AGENTS.md            — This file
 ShaderGC/MacCompat.h — MSVC compatibility shims for non-Windows builds
 ShaderGlass/MacOS/   — macOS port source
   ├── CMakeLists.txt
-  ├── main.cpp           — Entry point, GLFW + Vulkan init
-  ├── VulkanCore.h/cpp   — Device, swapchain, command buffers, sync
-  └── VulkanPass.h/cpp   — Shader pass (Vulkan equivalent of ShaderPass+Shader)
+  ├── main.cpp              — Entry point, wires all systems together
+  ├── VulkanCore.h/cpp      — Device, swapchain, command buffers, sync
+  ├── VulkanPass.h/cpp      — Single shader pass (Vulkan ShaderPass+Shader)
+  ├── VulkanTexture.h/cpp   — VkImage wrapper (render target + shader input)
+  ├── ShaderChain.h/cpp     — Multi-pass pipeline (preprocess→passes→swapchain)
+  ├── Capture.h/mm          — ScreenCaptureKit layer (PIMPL, BGRA8 frames)
+  ├── UI.h/cpp              — Dear ImGui UI (GLFW+Vulkan backend)
+  ├── PreprocessShader.h    — GLSL preprocess shader for Vulkan
+  └── PassthroughShader.h   — GLSL passthrough shader for testing
 ```
 
 ## Branches
@@ -63,5 +69,8 @@ ShaderGlass/MacOS/   — macOS port source
 | ID3D11VertexShader/PixelShader | VkShaderModule (SPIR-V) |
 | ID3D11Buffer (constant) | VkBuffer (UNIFORM_BUFFER) + VkDescriptorSet |
 | ShaderPass | VulkanPass |
-| Win32 HWND/menus | GLFW + Dear ImGui (TBD) |
-| Windows.Graphics.Capture | ScreenCaptureKit (TBD) |
+| D3D11 multi-pass chain | ShaderChain |
+| Win32 HWND/menus | GLFW + Dear ImGui |
+| Windows.Graphics.Capture | ScreenCaptureKit |
+| WIC image I/O | stb_image (TBD) |
+| Registry settings | NSUserDefaults (TBD) |
