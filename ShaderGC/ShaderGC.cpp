@@ -38,6 +38,41 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
     auto vertexSPIRV   = GLSL::GenerateSPIRV(def.vertexSource.c_str(), false, log, warn);
     auto fragmentSPIRV = GLSL::GenerateSPIRV(def.fragmentSource.c_str(), true, log, warn);
 
+#ifdef VULKAN_PORT
+    // On Vulkan: skip HLSL/DXBC, store GLSL source + SPIR-V directly
+    std::string fragmentMetadata;
+    {
+        using namespace SPIRV_CROSS_NAMESPACE;
+        CompilerReflection refl(fragmentSPIRV);
+        fragmentMetadata = refl.compile();
+    }
+
+    std::vector<SourceShaderSampler> textures;
+    def.params = LookupParams(def.params, textures, fragmentMetadata);
+
+    ShaderDef sd;
+    sd.Format     = CopyString(def.format);
+    sd.Dynamic    = true;
+    sd.Name       = def.input.filename().string();
+    // Store GLSL source (VulkanPass compiles to SPIR-V at init)
+    sd.VertexSource   = CopyString(def.vertexSource);
+    sd.VertexLength   = 0;
+    sd.FragmentSource = CopyString(def.fragmentSource);
+    sd.FragmentLength = 0;
+    // Store SPIR-V as bytecode
+    {
+        size_t vsz = vertexSPIRV.size() * sizeof(uint32_t);
+        size_t fsz = fragmentSPIRV.size() * sizeof(uint32_t);
+        auto vbuf = new uint8_t[vsz];
+        auto fbuf = new uint8_t[fsz];
+        memcpy(vbuf, vertexSPIRV.data(), vsz);
+        memcpy(fbuf, fragmentSPIRV.data(), fsz);
+        sd.VertexByteCode   = vbuf;
+        sd.VertexLength     = vsz;
+        sd.FragmentByteCode = fbuf;
+        sd.FragmentLength   = fsz;
+    }
+#else
     // convert SPIRV to HLSL and reflect
     auto vertexHLSL   = SPIRV::GenerateHLSL(vertexSPIRV, false, log, warn);
     auto fragmentHLSL = SPIRV::GenerateHLSL(fragmentSPIRV, true, log, warn);
@@ -90,6 +125,7 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
     }
 
     return sd;
+#endif
 }
 
 PresetDef* ShaderGC::CompileShader(std::filesystem::path source, ostream& log, bool& warn, const ShaderCache& cache)
