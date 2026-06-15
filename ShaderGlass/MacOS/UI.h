@@ -59,13 +59,6 @@ public:
     float scale() const { return m_scale; }
     void  setScale(float s) { m_scale = s; }
 
-    // The current "Mask Size" slider value. 1.0 = the chain sees
-    // the capture at native size (no change in behavior). > 1.0
-    // makes the shader's emulated CRT pixels larger relative to
-    // the drawable. < 1.0 makes them smaller / sharper.
-    float maskSize() const { return m_maskSize; }
-    void  setMaskSize(float m) { m_maskSize = m; }
-
     // The current "Filter" combobox value. 0 = nearest (per-pass
     // filter_linear wins), 1 = linear (force every pass's Source
     // sampler to linear). Read by the main loop to push to the
@@ -87,6 +80,5 @@ private:
     bool        m_resetConfirmOpen {false};
     bool        m_resetRequested {false};
     float       m_scale {1.0f};
-    float       m_maskSize {1.0f};
     int         m_filterMode {1}; // default to Linear
 };
