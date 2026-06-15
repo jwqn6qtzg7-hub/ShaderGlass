@@ -4,7 +4,8 @@
 
 - Native Metal (`macos-metal`) is the active macOS port in this checkout.
 - The port runs in **glass-overlay mode**: the captured desktop is cropped to the window's screen rect, the chain renders just that region, and the host window is excluded from the SCK capture to break the self-reference feedback loop. See `SKILL.md` for the full capture/glass-overlay lifecycle.
-- As of June 15, 2026, the Metal build has been manually verified working: the app launches, screen capture starts, and `slang-shaders/crt/crt-lottes.slangp` renders through the native Metal pipeline with the glass-overlay crop.
+- As of June 15, 2026, the macOS Metal build has a working UI: file menu (Open Shader), hideable Controls panel (Tab or status-bar button), capture start/stop, and the Scale + Filter parameters in the Parameters panel. The shader, capture state, panel visibility, and parameter values all persist across launches via `Settings` (`~/Library/Application Support/ShaderGlass/settings.json`). A "Reset Settings" button in the Controls panel wipes the JSON file after a confirmation modal.
+- The `ShaderGlassSmoke` test binary loads 7 representative presets (crt-lottes, feedback, history, pragma-name, average_fill, effect-border-iq, grade) and runs them through the chain for a few frames each. All 7 must report `[smoke] OK` and exit 0.
 - Last known-good implementation checkpoint before this note: `ad92a5f4` (`Fix native Metal macOS port rendering`).
 
 ## Detailed Subsystem Documentation
@@ -31,6 +32,9 @@ cmake --build build-metal --config Debug
 
 # Run native Metal branch
 ./build-metal/ShaderGlass/MacOS/ShaderGlass.app/Contents/MacOS/ShaderGlass
+
+# Run the smoke test (loads 7 presets, runs the chain)
+./build-metal/ShaderGlass/MacOS/ShaderGlassSmoke
 ```
 
 > Use `build-moltenvk` for the `macos-moltenvk` branch and `build-metal` for `macos-metal` to avoid build artifact conflicts.
@@ -51,10 +55,13 @@ lib/                 — Windows prebuilt static libs (unused on macOS)
 External/            — Prebuilt Windows tools (unused on macOS)
 CMakeLists.txt       — Top-level CMake, deps via FetchContent
 AGENTS.md            — This file
+SKILL.md             — Capture / glass-overlay subsystem reference
 ShaderGC/MacCompat.h — MSVC compatibility shims for non-Windows builds
 ShaderGlass/MacOS/   — macOS port source
   ├── CMakeLists.txt
-  ├── main.mm               — Metal entry point, wires all systems together
+  ├── main.mm               — Metal entry point, wires all systems together;
+  │                          capture crop, window-edge-case handling, and
+  │                          the persisted-settings bootstrap.
   ├── MetalCore.h/mm        — Device, CAMetalLayer, command buffers, frame sync
   ├── MetalPass.h/mm        — Single shader pass (SPIR-V→MSL→Metal pipeline)
   ├── MetalTexture.h/mm     — MTLTexture wrapper (render target + shader input)
@@ -68,7 +75,11 @@ ShaderGlass/MacOS/   — macOS port source
   ├── ImageIO.h/cpp         — Image load/save via stb_image (WIC replacement)
   ├── Settings.h/cpp        — Cross-platform settings via JSON file (Registry replacement)
   ├── PreprocessShader.h    — GLSL preprocess shader for Vulkan
-  └── PassthroughShader.h   — GLSL passthrough shader for testing
+  ├── PassthroughShader.h   — GLSL passthrough shader for testing
+  └── SmokeTest.cpp         — Standalone harness that loads presets through
+                             the chain; built as the `ShaderGlassSmoke`
+                             target. Used in the verification checklist
+                             below.
 ```
 
 ## Branches
@@ -95,6 +106,41 @@ ShaderGlass/MacOS/   — macOS port source
 - If experimenting with manual app signing in `build-metal`, delete the generated `ShaderGlass.app` bundle before retesting. Stale `_CodeSignature` artifacts in the build output can make LaunchServices behavior misleading.
 - `MetalCore.mm` is non-ARC and uses `__bridge_retained` / `__bridge_transfer` for `void*` storage of Metal resources; the SCK/CAMetalLayer objects (`currentDrawable`, `currentCommandBuffer`) are autoreleased and must be explicitly `retain`ed in `beginFrame()` and `release`d in `endFrame()`. Without explicit retention, the `@autoreleasepool` block in `beginFrame()` drains and the pointers become dangling references. **Files that use the `__bridge_retained` storage pattern must stay non-ARC**; converting them to ARC causes double-release crashes. `main.mm`, `UI.mm`, and `Capture.mm` use ARC; `MetalCore.mm`, `MetalPass.mm`, `MetalTexture.mm`, and `MetalShaderChain.mm` do not. See `CMakeLists.txt` for the exact split.
 - The glass-overlay mode requires SCK capture to exclude the host window AND for `main.mm` to crop the captured frame to the window's screen rect. Both mitigations are necessary: the exclude prevents the chain from seeing its own output at the SCK level, and the crop is defense-in-depth. See `SKILL.md` §4.
+
+### Chain Rendering Pipeline
+
+The chain renders one frame in this order (`MetalShaderChain::process`):
+
+1. **Preprocess pass** — samples `captureTex` (the cropped BGRA capture) into `m_preprocessTex` at the chain's `m_originalW × m_originalH` resolution. This pass is reused for the blit at the end with `setForceLinear(true)` so the upscale is smooth.
+2. **User passes** — render per-pass into `m_passTexs[p]` (intermediate) or, for the last pass, into `m_finalTex` (post-scale target). Per-pass metadata is parsed from `ShaderDef::PresetParams` (alias, scale_type_*, scale_*, filter_linear, wrap_mode, mipmap_input, framecount_mod).
+3. **Blit** — `m_finalTex` is bilinearly upscaled onto the drawable by reusing the preprocess pass. When `m_scale == 1.0` the blit is effectively a 1:1 copy.
+4. **Feedback / history** — a blit encoder copies current pass outputs into `m_feedbackTexs[p]` (named `PassFeedbackN` / `<alias>Feedback`) and the preprocessed capture into the history ring (`OriginalHistory1` is most recent).
+
+Chain state that can be changed at runtime:
+
+- `chain.setScale(s)` — multiplier on the output blit target. Triggers a rebuild.
+- `chain.setForceLinear(b)` — overrides the per-pass `filter_linear` PresetParam so every pass's Source sampler is bilinear (or not). Triggers a rebuild.
+
+### UI / Keyboard Shortcuts
+
+- `Tab` — toggles the left-hand "ShaderGlass (Metal)" Controls panel. Suppressed while an ImGui text field is focused so Tab still inserts a tab character.
+- `Esc` — quits the application.
+- The status bar at the bottom of the window always shows FPS, GPU, current shader path, capture state, and a "Hide/Show Controls" toggle button. (The macOS native menu bar is currently always visible; an earlier attempt to hide it was reverted because it was confused with the ImGui Controls panel.)
+
+### Persisted Settings
+
+`Settings` is the JSON-backed key/value store at `~/Library/Application Support/ShaderGlass/settings.json`. Used keys:
+
+| Key                     | Type   | Default     | Notes                                          |
+|-------------------------|--------|-------------|------------------------------------------------|
+| `window_x/y/w/h`        | int    | 100/100/800/600 | Window geometry                              |
+| `lastShaderPath`        | string | empty       | Auto-loaded at next startup if file exists    |
+| `lastCaptureRunning`    | bool   | false       | Whether capture was active at shutdown        |
+| `lastControlsVisible`   | bool   | true        | Whether the Controls panel was visible        |
+| `lastScale`             | float  | 1.0         | `chain.setScale` value                         |
+| `lastFilterMode`        | int    | 1 (Linear)  | 0 = Nearest, 1 = Linear (chain.setForceLinear) |
+
+The "Reset Settings" button in the Controls panel calls `Settings::reset()`, which clears the in-memory map and persists the empty JSON. The UI's local state (selected shader, capture flag, panel visibility, parameter sliders) is reset to defaults; the main loop is signaled to stop capture and revert the chain to the default passthrough preset.
 
 ## Key Differences: D3D11 → Vulkan
 
