@@ -13,6 +13,7 @@
 #include "ShaderChain.h"
 #include "Capture.h"
 #include "UI.h"
+#include "Settings.h"
 #include "PassthroughShader.h"
 
 #include <cstdio>
@@ -34,6 +35,20 @@ int main()
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "ShaderGlass", nullptr, nullptr);
         if(!window) { glfwTerminate(); return EXIT_FAILURE; }
+
+        // Restore window position
+        auto& settings = Settings::instance();
+        int wx = settings.getInt("window_x", 100);
+        int wy = settings.getInt("window_y", 100);
+        int ww = settings.getInt("window_w", (int)WIDTH);
+        int wh = settings.getInt("window_h", (int)HEIGHT);
+        glfwSetWindowPos(window, wx, wy);
+        glfwSetWindowSize(window, ww, wh);
+        settings.setInt("window_x", wx);
+        settings.setInt("window_y", wy);
+        settings.setInt("window_w", ww);
+        settings.setInt("window_h", wh);
+        settings.save();
 
         // ---- Init Vulkan ----
         VulkanCore vk;
@@ -158,6 +173,16 @@ int main()
 
         // ---- Cleanup ----
         capture.stop();
+        {
+            int x, y, w, h;
+            glfwGetWindowPos(window, &x, &y);
+            glfwGetWindowSize(window, &w, &h);
+            settings.setInt("window_x", x);
+            settings.setInt("window_y", y);
+            settings.setInt("window_w", w);
+            settings.setInt("window_h", h);
+        }
+        settings.save(); // explicit save on exit
         captureTex.destroy(vk);
         vkDestroySampler(vk.device, capSampler, nullptr);
         ui.shutdown(vk);
