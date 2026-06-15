@@ -244,69 +244,74 @@ void ShaderUI::drawMainUI(MetalCore& mc)
     ImGui::SetNextWindowPos(ImVec2(vp->WorkPos.x + 8, vp->WorkPos.y + 32), ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2(260, vp->WorkSize.y - 68), ImGuiCond_Once);
 
-    if(m_controlsVisible && ImGui::Begin("Controls", nullptr, flags))
+    // Begin/End must be paired. Only call Begin when the panel is
+    // visible; otherwise skip the whole block.
+    if(m_controlsVisible)
     {
-        ImGui::Text("ShaderGlass (Metal)");
-        ImGui::Separator();
-
-        if(ImGui::CollapsingHeader("Shader", ImGuiTreeNodeFlags_DefaultOpen))
+        if(ImGui::Begin("Controls", nullptr, flags))
         {
-            if(m_selectedShaderPath.empty())
-                ImGui::TextDisabled("No shader loaded");
-            else
-                ImGui::TextWrapped("%s", m_selectedShaderPath.c_str());
-            if(ImGui::Button("Open..."))
+            ImGui::Text("ShaderGlass (Metal)");
+            ImGui::Separator();
+
+            if(ImGui::CollapsingHeader("Shader", ImGuiTreeNodeFlags_DefaultOpen))
             {
-                std::string path = openShaderPresetDialog();
-                if(!path.empty())
+                if(m_selectedShaderPath.empty())
+                    ImGui::TextDisabled("No shader loaded");
+                else
+                    ImGui::TextWrapped("%s", m_selectedShaderPath.c_str());
+                if(ImGui::Button("Open..."))
                 {
-                    m_selectedShaderPath = path;
-                    m_pendingShaderPath = path;
+                    std::string path = openShaderPresetDialog();
+                    if(!path.empty())
+                    {
+                        m_selectedShaderPath = path;
+                        m_pendingShaderPath = path;
+                    }
                 }
             }
-        }
 
-        if(ImGui::CollapsingHeader("Capture", ImGuiTreeNodeFlags_DefaultOpen))
-        {
-            if(!m_captureStarted)
+            if(ImGui::CollapsingHeader("Capture", ImGuiTreeNodeFlags_DefaultOpen))
             {
-                if(ImGui::Button("Start Capture", ImVec2(-1, 0)))
-                    m_captureStarted = true;
+                if(!m_captureStarted)
+                {
+                    if(ImGui::Button("Start Capture", ImVec2(-1, 0)))
+                        m_captureStarted = true;
+                }
+                else
+                {
+                    if(ImGui::Button("Stop Capture", ImVec2(-1, 0)))
+                        m_captureStarted = false;
+                }
             }
-            else
+
+            if(ImGui::CollapsingHeader("Parameters"))
             {
-                if(ImGui::Button("Stop Capture", ImVec2(-1, 0)))
-                    m_captureStarted = false;
+                static float dummyScale  = 1.0f;
+                static int   dummyOption = 1;
+                ImGui::SliderFloat("Scale", &dummyScale, 0.25f, 4.0f, "%.2f");
+                ImGui::Combo("Filter", &dummyOption, "Nearest\0Bilinear\0Bicubic\0");
+            }
+
+            ImGui::Separator();
+
+            {
+                char label[32];
+                snprintf(label, sizeof(label), "%.1f FPS", ImGui::GetIO().Framerate);
+                float maxFps = 120.0f;
+                float avgFps = 0.0f;
+                int   count  = std::min(m_fpsHistoryIndex, 120);
+                for(int i = 0; i < count; ++i)
+                    avgFps += m_fpsHistory[i];
+                if(count > 0) avgFps /= static_cast<float>(count);
+
+                ImGui::PlotLines("##fpsplot", m_fpsHistory, count,
+                                 m_fpsHistoryIndex % 120, label, 0.0f, maxFps,
+                                 ImVec2(-1, 40));
+                ImGui::Text("Avg: %.1f  Max: %d", avgFps, count > 0
+                            ? static_cast<int>(*std::max_element(m_fpsHistory, m_fpsHistory + count))
+                            : 0);
             }
         }
-
-        if(ImGui::CollapsingHeader("Parameters"))
-        {
-            static float dummyScale  = 1.0f;
-            static int   dummyOption = 1;
-            ImGui::SliderFloat("Scale", &dummyScale, 0.25f, 4.0f, "%.2f");
-            ImGui::Combo("Filter", &dummyOption, "Nearest\0Bilinear\0Bicubic\0");
-        }
-
-        ImGui::Separator();
-
-        {
-            char label[32];
-            snprintf(label, sizeof(label), "%.1f FPS", ImGui::GetIO().Framerate);
-            float maxFps = 120.0f;
-            float avgFps = 0.0f;
-            int   count  = std::min(m_fpsHistoryIndex, 120);
-            for(int i = 0; i < count; ++i)
-                avgFps += m_fpsHistory[i];
-            if(count > 0) avgFps /= static_cast<float>(count);
-
-            ImGui::PlotLines("##fpsplot", m_fpsHistory, count,
-                             m_fpsHistoryIndex % 120, label, 0.0f, maxFps,
-                             ImVec2(-1, 40));
-            ImGui::Text("Avg: %.1f  Max: %d", avgFps, count > 0
-                        ? static_cast<int>(*std::max_element(m_fpsHistory, m_fpsHistory + count))
-                        : 0);
-        }
+        ImGui::End();
     }
-    ImGui::End();
 }
