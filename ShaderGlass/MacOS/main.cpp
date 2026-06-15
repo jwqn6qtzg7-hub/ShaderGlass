@@ -15,6 +15,7 @@
 #include "UI.h"
 #include "Settings.h"
 #include "PassthroughShader.h"
+#include "ShaderGC.h"
 
 #include <cstdio>
 #include <cstdlib>
