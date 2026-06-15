@@ -98,6 +98,11 @@ int main()
             if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
                 glfwSetWindowShouldClose(window, GLFW_TRUE);
 
+            // Poll for the Tab hotkey that toggles the left-hand
+            // Controls panel. Done before mc.beginFrame() so the
+            // visibility state is up to date for the ImGui draw.
+            ui.pollControlsHotkey(window);
+
             mc.beginFrame();
 
             if(mc.drawableWidth == 0 || mc.drawableHeight == 0)

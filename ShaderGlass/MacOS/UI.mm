@@ -122,6 +122,34 @@ void ShaderUI::setCaptureStarted(bool started)
     m_captureStarted = started;
 }
 
+bool ShaderUI::pollControlsHotkey(GLFWwindow* window)
+{
+    if(!window) return false;
+
+    const bool tabDown = glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS;
+
+    // Don't intercept Tab while the user is typing into an ImGui
+    // input — Tab there should insert a tab character / move focus
+    // as ImGui normally does.
+    if(ImGui::IsAnyItemActive())
+    {
+        m_controlsHotkeyLatched = false;
+        return false;
+    }
+
+    if(tabDown && !m_controlsHotkeyLatched)
+    {
+        m_controlsHotkeyLatched = true;
+        toggleControls();
+        return true;
+    }
+    if(!tabDown)
+    {
+        m_controlsHotkeyLatched = false;
+    }
+    return false;
+}
+
 const char* ShaderUI::selectedShaderPath() const
 {
     return m_selectedShaderPath.empty() ? nullptr : m_selectedShaderPath.c_str();
@@ -191,13 +219,32 @@ void ShaderUI::drawMainUI(MetalCore& mc)
             ImGui::SameLine(ImGui::GetWindowWidth() - 130);
             ImGui::TextColored(ImVec4(1, 1, 0, 1), "Capturing...");
         }
+        if(m_controlsVisible)
+        {
+            ImGui::SameLine(ImGui::GetWindowWidth() - 105);
+            if(ImGui::Button("Hide Controls"))
+            {
+                toggleControls();
+            }
+        }
+        else
+        {
+            ImGui::SameLine(ImGui::GetWindowWidth() - 220);
+            ImGui::TextColored(ImVec4(0.7f, 0.7f, 0.7f, 1.0f),
+                               "Press Tab to show controls");
+            ImGui::SameLine(ImGui::GetWindowWidth() - 105);
+            if(ImGui::Button("Show Controls"))
+            {
+                toggleControls();
+            }
+        }
     }
     ImGui::End();
 
     ImGui::SetNextWindowPos(ImVec2(vp->WorkPos.x + 8, vp->WorkPos.y + 32), ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2(260, vp->WorkSize.y - 68), ImGuiCond_Once);
 
-    if(ImGui::Begin("Controls", nullptr, flags))
+    if(m_controlsVisible && ImGui::Begin("Controls", nullptr, flags))
     {
         ImGui::Text("ShaderGlass (Metal)");
         ImGui::Separator();
