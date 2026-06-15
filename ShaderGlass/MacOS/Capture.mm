@@ -111,7 +111,7 @@ bool ScreenCapture::start(FrameCallback callback)
     if([NSThread isMainThread])
     {
         [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
-            if(!error && content.displays.count > 0) { target = content.displays.firstObject; success = true; }
+            if(!error && content.displays.count > 0) { target = [content.displays.firstObject retain]; success = true; }
             else { std::cerr << "[Capture] Permission needed: " << (error ? error.localizedDescription.UTF8String : "no displays") << std::endl; }
             dispatch_semaphore_signal(sem);
         }];
@@ -122,7 +122,7 @@ bool ScreenCapture::start(FrameCallback callback)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             [SCShareableContent getShareableContentWithCompletionHandler:^(SCShareableContent* content, NSError* error) {
-                if(!error && content.displays.count > 0) { target = content.displays.firstObject; success = true; }
+                if(!error && content.displays.count > 0) { target = [content.displays.firstObject retain]; success = true; }
                 else { std::cerr << "[Capture] Permission needed: " << (error ? error.localizedDescription.UTF8String : "no displays") << std::endl; }
                 dispatch_semaphore_signal(sem);
             }];
@@ -138,11 +138,14 @@ bool ScreenCapture::start(FrameCallback callback)
 
     // Build filter and configuration
     SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target excludingWindows:@[]];
+    NSInteger tw = target.width;
+    NSInteger th = target.height;
+    [target release];
 
     SCStreamConfiguration* config = [[SCStreamConfiguration alloc] init];
     config.pixelFormat           = kCVPixelFormatType_32BGRA;
-    config.width                 = target.width;
-    config.height                = target.height;
+    config.width                 = tw;
+    config.height                = th;
     config.minimumFrameInterval  = CMTimeMake(1, 60);
     config.queueDepth            = 3;
     config.showsCursor           = YES;

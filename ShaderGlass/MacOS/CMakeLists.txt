@@ -1,36 +1,37 @@
-# ShaderGlass macOS port using GLFW + Vulkan (MoltenVK)
+# ShaderGlass macOS port using GLFW + Metal
 
 set(APP_NAME "ShaderGlass")
 
-# Find required packages
 find_package(glfw3 REQUIRED)
-find_package(Vulkan REQUIRED)
 
 # -------------------------------------------------------------------
 # ImGui backends (compiled once as an object library)
 # -------------------------------------------------------------------
 add_library(imgui-backends OBJECT
     ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
-    ${imgui_SOURCE_DIR}/backends/imgui_impl_vulkan.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_metal.mm
 )
 target_include_directories(imgui-backends PUBLIC
     ${imgui_SOURCE_DIR}
     ${imgui_SOURCE_DIR}/backends
 )
-target_link_libraries(imgui-backends PUBLIC glfw Vulkan::Vulkan)
+target_link_libraries(imgui-backends PUBLIC glfw
+    "-framework Metal"
+    "-framework QuartzCore"
+)
 
 # -------------------------------------------------------------------
 # Main executable
 # -------------------------------------------------------------------
 add_executable(${APP_NAME}
-    main.cpp
-    VulkanCore.cpp
-    VulkanPass.cpp
-    VulkanTexture.cpp
-    ShaderChain.cpp
+    main.mm
+    MetalCore.mm
+    MetalPass.mm
+    MetalTexture.mm
+    MetalShaderChain.mm
     ImageIO.cpp
     Settings.cpp
-    UI.cpp
+    UI.mm
     Capture.mm
     # ImGui core
     ${imgui_SOURCE_DIR}/imgui.cpp
@@ -47,17 +48,20 @@ target_include_directories(${APP_NAME} PRIVATE
     ${stb_SOURCE_DIR}
     ${imgui_SOURCE_DIR}
     ${imgui_SOURCE_DIR}/backends
+    ${spirv-cross_SOURCE_DIR}
 )
 
 target_link_libraries(${APP_NAME} PRIVATE
     glfw
-    Vulkan::Vulkan
     ShaderGC
+    "-framework Metal"
+    "-framework MetalKit"
+    "-framework QuartzCore"
     "-framework ScreenCaptureKit"
     "-framework CoreMedia"
     "-framework CoreVideo"
-    "-lobjc"
     "-framework Foundation"
+    "-lobjc"
 )
 
 target_compile_features(${APP_NAME} PRIVATE cxx_std_20)
@@ -76,3 +80,6 @@ set_target_properties(${APP_NAME} PROPERTIES
 target_compile_options(${APP_NAME} PRIVATE
     "-include" "${CMAKE_SOURCE_DIR}/ShaderGC/MacCompat.h"
 )
+# Enable ARC for Metal port files
+set_source_files_properties(main.mm MetalCore.mm MetalPass.mm MetalTexture.mm MetalShaderChain.mm UI.mm
+    PROPERTIES COMPILE_FLAGS "-fobjc-arc")

@@ -36,8 +36,10 @@ target_link_libraries(ShaderGC PUBLIC
     glslang
     glslang-default-resource-limits
     spirv-cross-core
+    spirv-cross-c
     spirv-cross-hlsl
     spirv-cross-glsl
+    spirv-cross-msl
     spirv-cross-reflect
 )
 

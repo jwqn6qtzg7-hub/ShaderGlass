@@ -364,3 +364,4 @@ FodyWeavers.xsd
 Scripts/slang-shaders
 Scripts/temp
 build/
+build-metal/

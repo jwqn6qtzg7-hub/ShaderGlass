@@ -59,37 +59,4 @@ namespace ImageIO
         return true;
     }
 
-    ImageData readPixels(VulkanCore& vk, VkImage image, int width, int height)
-    {
-        ImageData result;
-        result.width  = width;
-        result.height = height;
-        result.channels = 4;
-
-        VkDeviceSize size = (VkDeviceSize)width * height * 4;
-        VkBuffer stagingBuf;
-        VkDeviceMemory stagingMem;
-        vk.createBuffer(size, VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-                        VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
-                        stagingBuf, stagingMem);
-
-        VkCommandBuffer cmd = vk.beginSingleTimeCommands();
-        VkBufferImageCopy region {};
-        region.imageSubresource.aspectMask     = VK_IMAGE_ASPECT_COLOR_BIT;
-        region.imageSubresource.layerCount     = 1;
-        region.imageExtent                    = {(uint32_t)width, (uint32_t)height, 1};
-        vkCmdCopyImageToBuffer(cmd, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-                               stagingBuf, 1, &region);
-        vk.endSingleTimeCommands(cmd);
-
-        result.pixels.resize(size);
-        void* p;
-        vkMapMemory(vk.device, stagingMem, 0, size, 0, &p);
-        memcpy(result.pixels.data(), p, size);
-        vkUnmapMemory(vk.device, stagingMem);
-
-        vkDestroyBuffer(vk.device, stagingBuf, nullptr);
-        vkFreeMemory(vk.device, stagingMem, nullptr);
-        return result;
-    }
 }
