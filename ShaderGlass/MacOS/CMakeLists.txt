@@ -28,6 +28,7 @@ add_executable(${APP_NAME}
     VulkanPass.cpp
     VulkanTexture.cpp
     ShaderChain.cpp
+    ImageIO.cpp
     UI.cpp
     Capture.mm
     # ImGui core
@@ -42,6 +43,7 @@ target_include_directories(${APP_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/ShaderGlass
     ${CMAKE_SOURCE_DIR}/ShaderGC
+    ${stb_SOURCE_DIR}
     ${imgui_SOURCE_DIR}
     ${imgui_SOURCE_DIR}/backends
 )

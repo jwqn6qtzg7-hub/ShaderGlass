@@ -53,6 +53,20 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(imgui)
 
 # -------------------------------------------------------------------
+# stb_image (header-only image loading)
+# -------------------------------------------------------------------
+FetchContent_Declare(
+    stb
+    GIT_REPOSITORY https://github.com/nothings/stb.git
+    GIT_TAG        master
+    GIT_SHALLOW    TRUE
+)
+FetchContent_GetProperties(stb)
+if(NOT stb_POPULATED)
+    FetchContent_Populate(stb)
+endif()
+
+# -------------------------------------------------------------------
 # Sub-projects
 # -------------------------------------------------------------------
 add_subdirectory(ShaderGC)
