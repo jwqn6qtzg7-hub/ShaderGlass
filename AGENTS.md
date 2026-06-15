@@ -3,15 +3,17 @@
 ## Build Commands
 
 ```bash
-# Configure (from repo root)
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+# Configure (from repo root) — use separate build dirs per branch
+cmake -S . -B build-moltenvk -DCMAKE_BUILD_TYPE=Debug
 
 # Build
-cmake --build build --config Debug
+cmake --build build-moltenvk --config Debug
 
 # Run
-./build/ShaderGlass/MacOS/ShaderGlass.app/Contents/MacOS/ShaderGlass
+./build-moltenvk/ShaderGlass/MacOS/ShaderGlass.app/Contents/MacOS/ShaderGlass
 ```
+
+> Use `build-moltenvk` for the `macos-moltenvk` branch and `build-metal` for `macos-metal` to avoid build artifact conflicts.
 
 ## Dependencies
 
