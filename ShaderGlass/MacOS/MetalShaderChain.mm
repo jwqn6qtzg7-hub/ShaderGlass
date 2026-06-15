@@ -7,6 +7,7 @@
 #import <Metal/Metal.h>
 
 #include <algorithm>
+#include <cmath>
 #include <cstring>
 #include <iostream>
 #include <sstream>
@@ -160,6 +161,10 @@ void MetalShaderChain::rebuild(MetalCore& mc)
 
     PreprocessShaderDef preDef;
     m_preprocessPass = std::make_unique<MetalPass>(mc, preDef, true);
+    // The preprocess pass doubles as the final blit (sampling the
+    // post-scale m_finalTex onto the drawable). Always force linear
+    // filtering so the upscale looks smooth.
+    m_preprocessPass->setForceLinear(true);
 
     m_passes.clear();
     m_passMeta.clear();
@@ -174,6 +179,10 @@ void MetalShaderChain::rebuild(MetalCore& mc)
             m_passes.push_back(std::move(pass));
             m_passMeta.push_back(buildPassMeta(sd));
         }
+
+        // Apply the global filter override to all user passes.
+        for(auto& p : m_passes)
+            p->setForceLinear(m_forceLinear);
 
         // Surface unsupported features once per preset.
         for(const auto& sd : m_preset->ShaderDefs)
@@ -221,6 +230,7 @@ void MetalShaderChain::destroyTargets(MetalCore& mc)
 {
     (void)mc;
     m_preprocessTex.destroy();
+    m_finalTex.destroy();
 }
 
 void MetalShaderChain::destroyExternalTextures()
@@ -252,6 +262,17 @@ void MetalShaderChain::updateMVP(float sx, float sy, float tx, float ty)
     m_mvpTX = tx; m_mvpTY = ty;
     if(m_preprocessPass)
         m_preprocessPass->updateMVP(sx, sy, tx, ty);
+}
+
+void MetalShaderChain::setForceLinear(bool force)
+{
+    if(m_forceLinear == force) return;
+    m_forceLinear = force;
+    // Apply to all current passes and force a rebuild so the per-pass
+    // source samplers get rebuilt with the new filter setting.
+    for(auto& p : m_passes)
+        p->setForceLinear(force);
+    m_rebuildNeeded = true;
 }
 
 void MetalShaderChain::calculatePassSizes()
@@ -397,6 +418,17 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
     m_resources["OriginalHistory0"] = m_preprocessTex.texture();
     m_samplers["OriginalHistory0"]  = m_preprocessTex.sampler();
 
+    // Final target for the chain's last pass: sized by the global
+    // scale multiplier. The chain's blit step copies m_finalTex
+    // onto the drawable with linear filtering.
+    {
+        uint32_t finalW = std::max(1u, (uint32_t)std::lroundf(
+            (float)m_viewportW * m_scale));
+        uint32_t finalH = std::max(1u, (uint32_t)std::lroundf(
+            (float)m_viewportH * m_scale));
+        m_finalTex.create(mc, finalW, finalH, true);
+    }
+
     for(auto& t : m_passTexs) t.destroy();
     m_passTexs.clear();
     for(auto& t : m_feedbackTexs) t.destroy();
@@ -528,7 +560,12 @@ void MetalShaderChain::process(MetalCore& mc,
 
         if(isLast)
         {
-            pd.colorAttachments[0].texture = mc.drawableTexture;
+            // The chain's last pass renders to m_finalTex (post-scale),
+            // which is then blitted to the drawable below. This lets
+            // the user get a higher-resolution CRT effect (clipped to
+            // the drawable) without changing the window's pixel size.
+            pd.colorAttachments[0].texture =
+                (__bridge id<MTLTexture>)m_finalTex.texture();
         }
         else
         {
@@ -565,6 +602,27 @@ void MetalShaderChain::process(MetalCore& mc,
         }
     }
 
+    // Blit m_finalTex onto the drawable with linear filtering. We
+    // reuse the preprocess MetalPass (which is a passthrough) for
+    // this — it always has setForceLinear(true) so the upscale
+    // looks smooth. When scale == 1.0 the two textures are the
+    // same size and the blit is effectively a 1:1 copy.
+    if(m_finalTex.isValid() && m_preprocessPass)
+    {
+        MTLRenderPassDescriptor* blitDesc = [MTLRenderPassDescriptor renderPassDescriptor];
+        blitDesc.colorAttachments[0].texture     = mc.drawableTexture;
+        blitDesc.colorAttachments[0].loadAction  = MTLLoadActionLoad;
+        blitDesc.colorAttachments[0].storeAction = MTLStoreActionStore;
+
+        m_preprocessPass->render(mc,
+            m_finalTex.texture(), m_preprocessPass->sourceSampler(),
+            std::map<std::string, void*>{},
+            std::map<std::string, void*>{},
+            logicalFrameNo, 0, 0,
+            (int)mc.drawableWidth, (int)mc.drawableHeight,
+            (__bridge void*)blitDesc);
+    }
+
     // Feedback / history copy.
     if((m_requiresFeedback && !m_feedbackTexs.empty()) ||
        (m_requiresHistory > 0 && !m_historyTexs.empty()))
@@ -577,7 +635,9 @@ void MetalShaderChain::process(MetalCore& mc,
             {
                 id<MTLTexture> src = nil;
                 if(p == numPasses - 1)
-                    src = mc.drawableTexture;
+                    // The chain's last pass wrote to m_finalTex, not
+                    // the drawable.
+                    src = (__bridge id<MTLTexture>)m_finalTex.texture();
                 else
                     src = (__bridge id<MTLTexture>)m_passTexs[p].texture();
 

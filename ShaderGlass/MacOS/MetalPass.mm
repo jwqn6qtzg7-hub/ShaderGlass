@@ -148,7 +148,10 @@ void MetalPass::buildSourceSampler(MetalCore& mc)
     releaseMetalObject(m_sourceSampler);
 
     TextureSamplerSettings settings;
-    if(presetParam("filter_linear") == "true" || presetParam("filter_linear") == "1")
+    // m_forceLinear overrides the per-pass filter_linear so the UI's
+    // global Filter dropdown can force bilinear on every pass.
+    if(m_forceLinear ||
+       presetParam("filter_linear") == "true" || presetParam("filter_linear") == "1")
         settings.linear = true;
     if(presetParam("mipmap_input") == "true" || presetParam("mipmap_input") == "1")
         settings.mipmap = true;

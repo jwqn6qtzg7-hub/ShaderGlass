@@ -55,8 +55,8 @@ public:
     int destH() const { return m_destH; }
     int sourceBinding() const { return m_srcBinding; }
 
-    // The sampler to bind to this pass's "Source" slot, derived from the
-    // pass's PresetParams (filter_linear / wrap_mode / mipmap_input).
+    // The sampler to bind to this pass's "Source" slot, derived from
+    // the pass's PresetParams (filter_linear / wrap_mode / mipmap_input).
     void* sourceSampler() const { return m_sourceSampler; }
 
     // Per-slot sampler settings for any sampler in this pass whose name
@@ -68,6 +68,13 @@ public:
     // resource names.
     const ShaderDef& shaderDef() const { return m_shaderDef; }
     ShaderDef&       shaderDef()       { return m_shaderDef; }
+
+    // Global filter override. When set, the source sampler ignores
+    // the per-pass filter_linear PresetParam and uses linear
+    // filtering. false (the default) preserves the per-pass
+    // behavior the shader author requested.
+    void setForceLinear(bool force) { m_forceLinear = force; }
+    bool forceLinear() const       { return m_forceLinear; }
 
 private:
     void compileShaders(MetalCore& mc);
@@ -95,6 +102,7 @@ private:
 
     int  m_srcBinding {-1};
     bool m_hasConst {false}, m_hasPush {false};
+    bool m_forceLinear {false};
     float4x4 m_mvp {};
     float4x4 m_cursorMVP {};
     int m_destW {0}, m_destH {0};

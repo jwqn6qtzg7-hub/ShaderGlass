@@ -54,6 +54,18 @@ public:
     // capture and revert the chain to the default passthrough.
     bool consumeResetRequested();
 
+    // The current "Scale" slider value. Read by the main loop to
+    // push to the chain via setScale().
+    float scale() const { return m_scale; }
+    void  setScale(float s) { m_scale = s; }
+
+    // The current "Filter" combobox value. 0 = nearest (per-pass
+    // filter_linear wins), 1 = linear (force every pass's Source
+    // sampler to linear). Read by the main loop to push to the
+    // chain via setForceLinear().
+    int  filterMode() const { return m_filterMode; }
+    void setFilterMode(int m) { m_filterMode = m; }
+
     void drawMainUI(MetalCore& mc);
 
 private:
@@ -67,4 +79,6 @@ private:
     bool        m_controlsHotkeyLatched {false};
     bool        m_resetConfirmOpen {false};
     bool        m_resetRequested {false};
+    float       m_scale {1.0f};
+    int         m_filterMode {1}; // default to Linear
 };

@@ -28,6 +28,19 @@ public:
     void invalidate() { m_rebuildNeeded = true; }
     void updateMVP(float sx, float sy, float tx, float ty);
 
+    // Output scale multiplier. The chain's last user-defined pass
+    // renders to an offscreen texture sized
+    //     viewportW * scale x viewportH * scale
+    // which is then blitted (with linear filtering) onto the
+    // drawable. Values > 1.0 give a higher-resolution shader
+    // effect (clipped to the drawable); < 1.0 give a softer look.
+    void  setScale(float s)               { m_scale = (s > 0.0f ? s : 1.0f); }
+    float scale() const                   { return m_scale; }
+
+    // When true, every pass's Source sampler ignores the per-pass
+    // filter_linear PresetParam and uses linear filtering.
+    void setForceLinear(bool force);
+
     void process(MetalCore& mc,
                  void* inputTexture, void* inputSampler,
                  int frameNo, int logicalFrameNo);
@@ -83,6 +96,7 @@ private:
 
     std::unique_ptr<MetalPass> m_preprocessPass;
     MetalTexture               m_preprocessTex;
+    MetalTexture               m_finalTex;  // post-scale target
 
     std::vector<std::unique_ptr<MetalPass>> m_passes;
     std::vector<PassMeta>                   m_passMeta;
@@ -106,6 +120,8 @@ private:
     int  m_requiresHistory {0};
     int  m_historyWriteIndex {0};
     int  m_frameCount {0};
+    float m_scale {1.0f};
+    bool  m_forceLinear {false};
 
     int m_captureW {0}, m_captureH {0};
     int m_viewportW {0}, m_viewportH {0};

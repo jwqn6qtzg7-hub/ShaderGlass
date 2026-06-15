@@ -301,10 +301,15 @@ void ShaderUI::drawMainUI(MetalCore& mc)
 
             if(ImGui::CollapsingHeader("Parameters"))
             {
-                static float dummyScale  = 1.0f;
-                static int   dummyOption = 1;
-                ImGui::SliderFloat("Scale", &dummyScale, 0.25f, 4.0f, "%.2f");
-                ImGui::Combo("Filter", &dummyOption, "Nearest\0Bilinear\0Bicubic\0");
+                // Scale: chain output multiplier. The chain's last
+                // pass renders to m_finalTex at viewportW * scale,
+                // then blits to the drawable with linear filtering.
+                ImGui::SliderFloat("Scale", &m_scale, 0.25f, 4.0f, "%.2f");
+
+                // Filter: 0 = nearest, 1 = linear. Bicubic was
+                // misleading because Metal has no hardware bicubic
+                // sampler; we offer only what's actually available.
+                ImGui::Combo("Filter", &m_filterMode, "Nearest\0Linear\0");
             }
 
             ImGui::Separator();
@@ -362,6 +367,8 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                 m_pendingShaderPath.clear();
                 m_captureStarted = false;
                 m_controlsVisible = true;
+                m_scale = 1.0f;
+                m_filterMode = 1;
                 m_resetRequested = true;
                 m_resetConfirmOpen = false;
                 ImGui::CloseCurrentPopup();

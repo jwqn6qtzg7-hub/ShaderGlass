@@ -62,6 +62,8 @@ int main()
         std::string lastShaderPath = settings.getString("lastShaderPath", "");
         bool lastCaptureRunning  = settings.getBool("lastCaptureRunning", false);
         bool lastControlsVisible = settings.getBool("lastControlsVisible", true);
+        float lastScale           = settings.getFloat("lastScale", 1.0f);
+        int   lastFilterMode      = settings.getInt("lastFilterMode", 1);
 
         settings.save();
 
@@ -76,6 +78,8 @@ int main()
         // every frame.
         bool lastSavedCaptureRunning  = lastCaptureRunning;
         bool lastSavedControlsVisible = lastControlsVisible;
+        float lastSavedScale           = lastScale;
+        int   lastSavedFilterMode      = lastFilterMode;
 
         MetalCore mc;
         mc.init(window);
@@ -93,6 +97,8 @@ int main()
         }
         ui.setCaptureStarted(lastCaptureRunning);
         ui.setControlsVisible(lastControlsVisible);
+        ui.setScale(lastScale);
+        ui.setFilterMode(lastFilterMode);
 
         ScreenCapture capture;
         std::vector<uint8_t> capBuffer;
@@ -113,6 +119,12 @@ int main()
 
         MetalShaderChain chain(mc);
         chain.setPreset(&testPreset);
+
+        // Push the initial scale/filter into the chain before the
+        // first frame so the first render uses the restored values
+        // (instead of the chain's defaults).
+        chain.setScale(ui.scale());
+        chain.setForceLinear(ui.filterMode() == 1);
 
         std::cout << "[ShaderGlass] Rendering started (Metal)." << std::endl;
 
@@ -218,6 +230,26 @@ int main()
             {
                 lastSavedControlsVisible = controlsVisible;
                 settings.setBool("lastControlsVisible", controlsVisible);
+            }
+
+            // Scale and Filter: push to the chain (which early-exits
+            // on no-change), and persist only on transition.
+            float scale = ui.scale();
+            if(scale != lastSavedScale)
+            {
+                lastSavedScale = scale;
+                settings.setFloat("lastScale", scale);
+                chain.setScale(scale);
+                // setScale's m_finalTex size is rebuilt on the next
+                // rebuildPasses, so force that.
+                chain.invalidate();
+            }
+            int filterMode = ui.filterMode();
+            if(filterMode != lastSavedFilterMode)
+            {
+                lastSavedFilterMode = filterMode;
+                settings.setInt("lastFilterMode", filterMode);
+                chain.setForceLinear(filterMode == 1);
             }
 
             // Reset Settings confirmation: stop capture, drop the
@@ -367,6 +399,8 @@ int main()
         // Persist the final UI state so the next launch restores it.
         settings.setBool("lastCaptureRunning",  ui.wantsCapture());
         settings.setBool("lastControlsVisible", ui.controlsVisible());
+        settings.setFloat("lastScale",          ui.scale());
+        settings.setInt("lastFilterMode",         ui.filterMode());
         settings.save();
 
         captureTex.destroy();
