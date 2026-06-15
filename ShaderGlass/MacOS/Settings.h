@@ -28,6 +28,13 @@ public:
     void remove(const std::string& key);
     void save();
 
+    // Clear all in-memory settings and persist the empty state to
+    // disk. After reset(), subsequent get*() calls return defaults
+    // (e.g. getInt(key, 42) returns 42 for any missing key) until
+    // new values are written and saved. The on-disk JSON file is
+    // rewritten as `{}`.
+    void reset();
+
 private:
     Settings();
     void load();

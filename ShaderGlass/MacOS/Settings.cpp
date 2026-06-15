@@ -135,6 +135,16 @@ void Settings::remove(const std::string& key)
     m_dirty = true;
 }
 
+void Settings::reset()
+{
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_data.clear();
+        m_dirty = true;
+    }
+    save();
+}
+
 void Settings::save()
 {
     std::lock_guard<std::mutex> lock(m_mutex);

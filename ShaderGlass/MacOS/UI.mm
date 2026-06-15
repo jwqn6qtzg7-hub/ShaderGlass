@@ -1,5 +1,7 @@
 #include "UI.h"
 
+#include "Settings.h"
+
 #import <AppKit/AppKit.h>
 #import <Metal/Metal.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
@@ -120,6 +122,19 @@ bool ShaderUI::wantsCapture() const
 void ShaderUI::setCaptureStarted(bool started)
 {
     m_captureStarted = started;
+}
+
+void ShaderUI::setShaderPath(const std::string& path)
+{
+    m_selectedShaderPath = path;
+    m_pendingShaderPath = path;
+}
+
+bool ShaderUI::consumeResetRequested()
+{
+    bool r = m_resetRequested;
+    m_resetRequested = false;
+    return r;
 }
 
 bool ShaderUI::pollControlsHotkey(GLFWwindow* window)
@@ -294,6 +309,16 @@ void ShaderUI::drawMainUI(MetalCore& mc)
 
             ImGui::Separator();
 
+            if(ImGui::CollapsingHeader("Settings"))
+            {
+                if(ImGui::Button("Reset Settings..."))
+                {
+                    m_resetConfirmOpen = true;
+                }
+            }
+
+            ImGui::Separator();
+
             {
                 char label[32];
                 snprintf(label, sizeof(label), "%.1f FPS", ImGui::GetIO().Framerate);
@@ -313,5 +338,41 @@ void ShaderUI::drawMainUI(MetalCore& mc)
             }
         }
         ImGui::End();
+    }
+
+    // Reset Settings confirmation modal. The user has to confirm
+    // before the JSON file is wiped. Modal is drawn outside the
+    // m_controlsVisible block so it remains interactive even if
+    // the panel were hidden while the modal was open.
+    if(m_resetConfirmOpen)
+    {
+        ImGui::OpenPopup("Reset Settings");
+        if(ImGui::BeginPopupModal("Reset Settings", &m_resetConfirmOpen,
+                                  ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::Text("Reset all settings to defaults?");
+            ImGui::Text("This will forget your last shader, capture state,");
+            ImGui::Text("and window position. The settings file will be");
+            ImGui::Text("rewritten as an empty JSON object.");
+            ImGui::Separator();
+            if(ImGui::Button("Reset", ImVec2(120, 0)))
+            {
+                Settings::instance().reset();
+                m_selectedShaderPath.clear();
+                m_pendingShaderPath.clear();
+                m_captureStarted = false;
+                m_controlsVisible = true;
+                m_resetRequested = true;
+                m_resetConfirmOpen = false;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Cancel", ImVec2(120, 0)))
+            {
+                m_resetConfirmOpen = false;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
+        }
     }
 }

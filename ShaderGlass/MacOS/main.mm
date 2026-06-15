@@ -57,6 +57,12 @@ int main()
         settings.setInt("window_y", wy);
         settings.setInt("window_w", ww);
         settings.setInt("window_h", wh);
+
+        // Restore UI state from last session.
+        std::string lastShaderPath = settings.getString("lastShaderPath", "");
+        bool lastCaptureRunning  = settings.getBool("lastCaptureRunning", false);
+        bool lastControlsVisible = settings.getBool("lastControlsVisible", true);
+
         settings.save();
 
         bool windowChanged = true;
@@ -64,11 +70,29 @@ int main()
         glfwSetWindowPosCallback(window, onWindowPosOrSizeChanged);
         glfwSetWindowSizeCallback(window, onWindowPosOrSizeChanged);
 
+        // Tracked copies of the last-saved UI state. We compare each
+        // frame and only call settings.setBool/setString when the
+        // value actually changes, so the JSON file isn't dirtied
+        // every frame.
+        bool lastSavedCaptureRunning  = lastCaptureRunning;
+        bool lastSavedControlsVisible = lastControlsVisible;
+
         MetalCore mc;
         mc.init(window);
 
         ShaderUI ui;
         ui.init(window, mc);
+
+        // Apply restored state. setShaderPath queues a compile on the
+        // next main-loop iteration. setCaptureStarted/setControlsVisible
+        // take effect immediately (the main loop drives capture from
+        // wantsCapture() and the panel is gated by controlsVisible()).
+        if(!lastShaderPath.empty() && std::filesystem::exists(lastShaderPath))
+        {
+            ui.setShaderPath(lastShaderPath);
+        }
+        ui.setCaptureStarted(lastCaptureRunning);
+        ui.setControlsVisible(lastControlsVisible);
 
         ScreenCapture capture;
         std::vector<uint8_t> capBuffer;
@@ -134,6 +158,7 @@ int main()
                                   << preset->Name << std::endl;
                         chain.setPreset(preset.get());
                         loadedPreset = std::move(preset);
+                        settings.setString("lastShaderPath", selectedShaderPath);
                     }
                     else
                     {
@@ -176,6 +201,37 @@ int main()
             else if(!ui.wantsCapture() && capture.isCapturing())
             {
                 capture.stop();
+            }
+
+            // Persist UI state changes. We only write to the
+            // settings map when a tracked value actually changes
+            // (vs. last save), so this isn't dirtying the JSON
+            // file every frame.
+            bool wantCapture = ui.wantsCapture();
+            if(wantCapture != lastSavedCaptureRunning)
+            {
+                lastSavedCaptureRunning = wantCapture;
+                settings.setBool("lastCaptureRunning", wantCapture);
+            }
+            bool controlsVisible = ui.controlsVisible();
+            if(controlsVisible != lastSavedControlsVisible)
+            {
+                lastSavedControlsVisible = controlsVisible;
+                settings.setBool("lastControlsVisible", controlsVisible);
+            }
+
+            // Reset Settings confirmation: stop capture, drop the
+            // loaded preset, and revert the chain to the default
+            // passthrough. The UI already cleared its own state.
+            if(ui.consumeResetRequested())
+            {
+                if(capture.isCapturing())
+                    capture.stop();
+                loadedPreset.reset();
+                chain.setPreset(&testPreset);
+                // Revert the testPreset's internal state by forcing
+                // a rebuild on the next process() call.
+                chain.invalidate();
             }
 
             // The window is acting as a glass overlay: sample only the
@@ -308,6 +364,9 @@ int main()
             settings.setInt("window_w", w);
             settings.setInt("window_h", h);
         }
+        // Persist the final UI state so the next launch restores it.
+        settings.setBool("lastCaptureRunning",  ui.wantsCapture());
+        settings.setBool("lastControlsVisible", ui.controlsVisible());
         settings.save();
 
         captureTex.destroy();

@@ -41,6 +41,19 @@ public:
     void setControlsVisible(bool visible) { m_controlsVisible = visible; }
     void toggleControls() { m_controlsVisible = !m_controlsVisible; }
 
+    // Set the shader path without opening a file dialog. Used by
+    // main.mm at startup to auto-load the last shader that was
+    // picked (loaded from settings). Does not load the shader
+    // itself; main.mm must call compile-and-set-preset on the
+    // chain. Triggers consumeSelectedShaderPath() to be picked up
+    // by the main loop on the next frame.
+    void setShaderPath(const std::string& path);
+
+    // Returns true once if the user just confirmed a Reset Settings
+    // action, then clears the flag. Main loop uses this to stop
+    // capture and revert the chain to the default passthrough.
+    bool consumeResetRequested();
+
     void drawMainUI(MetalCore& mc);
 
 private:
@@ -52,4 +65,6 @@ private:
     bool        m_showDemoWindow {false};
     bool        m_controlsVisible {true};
     bool        m_controlsHotkeyLatched {false};
+    bool        m_resetConfirmOpen {false};
+    bool        m_resetRequested {false};
 };
