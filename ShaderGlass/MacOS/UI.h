@@ -59,6 +59,13 @@ public:
     float scale() const { return m_scale; }
     void  setScale(float s) { m_scale = s; }
 
+    // Debug: when true, main.mm draws the cropped capture directly
+    // to the drawable and skips the chain. Used to disambiguate
+    // "is the chain broken" vs "is the capture broken" by
+    // comparing the two paths visually.
+    bool rawCaptureBypass() const        { return m_rawCaptureBypass; }
+    void setRawCaptureBypass(bool b)    { m_rawCaptureBypass = b; }
+
     // The current "Filter" combobox value. 0 = nearest (per-pass
     // filter_linear wins), 1 = linear (force every pass's Source
     // sampler to linear). Read by the main loop to push to the
@@ -81,4 +88,5 @@ private:
     bool        m_resetRequested {false};
     float       m_scale {1.0f};
     int         m_filterMode {1}; // default to Linear
+    bool        m_rawCaptureBypass {false};
 };

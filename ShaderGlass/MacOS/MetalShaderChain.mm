@@ -702,3 +702,27 @@ std::vector<ShaderParam*> MetalShaderChain::params()
             p.push_back(pp);
     return p;
 }
+
+void MetalShaderChain::renderCaptureToDrawable(MetalCore& mc,
+                                                void* inputTexture,
+                                                void* inputSampler)
+{
+    if(m_rebuildNeeded)
+        rebuild(mc);
+    if(!m_preprocessPass || mc.drawableWidth == 0 || mc.drawableHeight == 0)
+        return;
+
+    MTLRenderPassDescriptor* blitDesc = [MTLRenderPassDescriptor renderPassDescriptor];
+    blitDesc.colorAttachments[0].texture     = mc.drawableTexture;
+    blitDesc.colorAttachments[0].loadAction  = MTLLoadActionClear;
+    blitDesc.colorAttachments[0].clearColor  = MTLClearColorMake(0, 0, 0, 1);
+    blitDesc.colorAttachments[0].storeAction = MTLStoreActionStore;
+
+    m_preprocessPass->render(mc,
+        inputTexture, inputSampler,
+        std::map<std::string, void*>{},
+        std::map<std::string, void*>{},
+        0, 0, 0,
+        (int)mc.drawableWidth, (int)mc.drawableHeight,
+        (__bridge void*)blitDesc);
+}

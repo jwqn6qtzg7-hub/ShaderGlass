@@ -322,6 +322,16 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                 }
             }
 
+            if(ImGui::CollapsingHeader("Debug"))
+            {
+                ImGui::Checkbox("Show raw capture (bypass chain)",
+                                &m_rawCaptureBypass);
+                ImGui::TextWrapped(
+                    "When on, the cropped capture is drawn directly to "
+                    "the window and the shader chain is skipped. Useful "
+                    "for telling capture problems from chain problems.");
+            }
+
             ImGui::Separator();
 
             {

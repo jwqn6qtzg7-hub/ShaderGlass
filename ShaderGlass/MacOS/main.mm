@@ -356,22 +356,36 @@ int main()
 
             if(captureTex.isValid())
             {
-                // In glass mode the chain's input is already window-sized
-                // (we cropped it). Pass captureW=cropped, viewportW=drawable
-                // so the chain resizes the intermediate buffers and final
-                // pass to the drawable. The preprocess pass then samples
-                // the cropped capture 1:1 and the chain's last pass writes
-                // to the drawable at the right size.
-                chain.resize(mc,
-                             (int)captureTex.width(),
-                             (int)captureTex.height(),
-                             (int)mc.drawableWidth,
-                             (int)mc.drawableHeight);
-                chain.process(mc,
-                              captureTex.texture(),
-                              captureTex.sampler(),
-                              frameNo, frameNo);
-                frameNo++;
+                if(ui.rawCaptureBypass())
+                {
+                    // Debug: skip the chain entirely. Useful for
+                    // distinguishing "is the capture wrong" from
+                    // "is the chain wrong" by visual comparison.
+                    chain.renderCaptureToDrawable(mc,
+                        captureTex.texture(), captureTex.sampler());
+                }
+                else
+                {
+                    // In glass mode the chain's input is already
+                    // window-sized (we cropped it). Pass
+                    // captureW=cropped, viewportW=drawable so the
+                    // chain resizes the intermediate buffers and
+                    // final pass to the drawable. The preprocess
+                    // pass then samples the cropped capture 1:1 and
+                    // the chain's last pass writes to m_finalTex
+                    // (post-scale), which the blit step copies onto
+                    // the drawable.
+                    chain.resize(mc,
+                                 (int)captureTex.width(),
+                                 (int)captureTex.height(),
+                                 (int)mc.drawableWidth,
+                                 (int)mc.drawableHeight);
+                    chain.process(mc,
+                                  captureTex.texture(),
+                                  captureTex.sampler(),
+                                  frameNo, frameNo);
+                    frameNo++;
+                }
             }
 
             if(windowChanged)

@@ -45,6 +45,15 @@ public:
                  void* inputTexture, void* inputSampler,
                  int frameNo, int logicalFrameNo);
 
+    // Debug: skip the chain and draw `inputTexture` (the cropped
+    // BGRA capture, sampled with `inputSampler`) directly to the
+    // drawable, sized at the drawable's current dimensions. Uses
+    // the same preprocess MetalPass as the chain's internal blit
+    // (force-linear). Lets main.mm visually verify that the
+    // capture path is working without confounding the chain.
+    void renderCaptureToDrawable(MetalCore& mc,
+                                 void* inputTexture, void* inputSampler);
+
     std::vector<ShaderParam*> params();
     bool hasPreset() const { return m_preset != nullptr; }
 
