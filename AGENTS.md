@@ -1,5 +1,11 @@
 # ShaderGlass macOS Port — AGENTS.md
 
+## Current Status
+
+- Native Metal (`macos-metal`) is the active macOS port in this checkout.
+- As of June 15, 2026, the Metal build has been manually verified working: the app launches, screen capture starts, and `slang-shaders/crt/crt-lottes.slangp` renders through the native Metal pipeline.
+- Last known-good implementation checkpoint before this note: `ad92a5f4` (`Fix native Metal macOS port rendering`).
+
 ## Build Commands
 
 ```bash
