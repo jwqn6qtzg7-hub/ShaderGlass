@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 project(ShaderGlass LANGUAGES C CXX)
 
+if(POLICY CMP0077)
+    cmake_policy(SET CMP0077 NEW)
+endif()
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 17)
@@ -17,12 +21,12 @@ FetchContent_Declare(
     GIT_TAG        vulkan-sdk-1.4.309.0
     GIT_SHALLOW    TRUE
 )
-set(SPIRV_CROSS_ENABLE_CPP OFF)
-set(SPIRV_CROSS_ENABLE_HLSL ON)
-set(SPIRV_CROSS_ENABLE_GLSL ON)
-set(SPIRV_CROSS_ENABLE_MSL ON)
-set(SPIRV_CROSS_ENABLE_REFLECT ON)
-set(SPIRV_CROSS_CLI OFF)
+set(SPIRV_CROSS_ENABLE_CPP OFF CACHE BOOL "" FORCE)
+set(SPIRV_CROSS_ENABLE_HLSL ON CACHE BOOL "" FORCE)
+set(SPIRV_CROSS_ENABLE_GLSL ON CACHE BOOL "" FORCE)
+set(SPIRV_CROSS_ENABLE_MSL ON CACHE BOOL "" FORCE)
+set(SPIRV_CROSS_ENABLE_REFLECT ON CACHE BOOL "" FORCE)
+set(SPIRV_CROSS_CLI OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(spirv-cross)
 
 # -------------------------------------------------------------------
@@ -34,12 +38,12 @@ FetchContent_Declare(
     GIT_TAG        vulkan-sdk-1.4.309.0
     GIT_SHALLOW    TRUE
 )
-set(ENABLE_GLSLANG_INSTALL OFF)
-set(ENABLE_SPVREMAPPER OFF)
-set(ENABLE_GLSLANG_BINARIES OFF)
-set(ENABLE_OPT OFF)
-set(BUILD_TESTING OFF)
-set(BUILD_EXTERNAL OFF)
+set(ENABLE_GLSLANG_INSTALL OFF CACHE BOOL "" FORCE)
+set(ENABLE_SPVREMAPPER OFF CACHE BOOL "" FORCE)
+set(ENABLE_GLSLANG_BINARIES OFF CACHE BOOL "" FORCE)
+set(ENABLE_OPT OFF CACHE BOOL "" FORCE)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+set(BUILD_EXTERNAL OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(glslang)
 
 # -------------------------------------------------------------------
@@ -62,10 +66,7 @@ FetchContent_Declare(
     GIT_TAG        master
     GIT_SHALLOW    TRUE
 )
-FetchContent_GetProperties(stb)
-if(NOT stb_POPULATED)
-    FetchContent_Populate(stb)
-endif()
+FetchContent_MakeAvailable(stb)
 
 # -------------------------------------------------------------------
 # Sub-projects

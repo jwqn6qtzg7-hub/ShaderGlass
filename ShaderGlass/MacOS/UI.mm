@@ -1,6 +1,8 @@
 #include "UI.h"
 
+#import <AppKit/AppKit.h>
 #import <Metal/Metal.h>
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -8,6 +10,36 @@
 
 #include <cstdio>
 #include <algorithm>
+
+namespace
+{
+    std::string openShaderPresetDialog()
+    {
+        __block NSString* selectedPath = nil;
+
+        void (^showPanel)(void) = ^{
+            NSOpenPanel* panel = [NSOpenPanel openPanel];
+            panel.canChooseFiles = YES;
+            panel.canChooseDirectories = NO;
+            panel.allowsMultipleSelection = NO;
+            panel.allowedContentTypes = @[
+                [UTType typeWithFilenameExtension:@"slangp"],
+                [UTType typeWithFilenameExtension:@"slang"]
+            ];
+            panel.title = @"Open Shader Preset";
+
+            if([panel runModal] == NSModalResponseOK)
+                selectedPath = panel.URL.path;
+        };
+
+        if([NSThread isMainThread])
+            showPanel();
+        else
+            dispatch_sync(dispatch_get_main_queue(), showPanel);
+
+        return selectedPath ? std::string(selectedPath.UTF8String) : std::string();
+    }
+}
 
 ShaderUI::ShaderUI()  = default;
 ShaderUI::~ShaderUI() = default;
@@ -82,13 +114,19 @@ void ShaderUI::shutdown(MetalCore& mc)
 
 bool ShaderUI::wantsCapture() const
 {
-    const ImGuiIO& io = ImGui::GetIO();
-    return io.WantCaptureMouse || io.WantCaptureKeyboard;
+    return m_captureStarted;
 }
 
 const char* ShaderUI::selectedShaderPath() const
 {
     return m_selectedShaderPath.empty() ? nullptr : m_selectedShaderPath.c_str();
+}
+
+std::string ShaderUI::consumeSelectedShaderPath()
+{
+    std::string path = m_pendingShaderPath;
+    m_pendingShaderPath.clear();
+    return path;
 }
 
 void ShaderUI::drawMainUI(MetalCore& mc)
@@ -103,7 +141,14 @@ void ShaderUI::drawMainUI(MetalCore& mc)
         if(ImGui::BeginMenu("File"))
         {
             if(ImGui::MenuItem("Open Shader...", "Cmd+O"))
-                m_selectedShaderPath = "placeholder.glsl";
+            {
+                std::string path = openShaderPresetDialog();
+                if(!path.empty())
+                {
+                    m_selectedShaderPath = path;
+                    m_pendingShaderPath = path;
+                }
+            }
             ImGui::Separator();
             if(ImGui::MenuItem("Quit", "Cmd+Q")) {}
             ImGui::EndMenu();
@@ -159,7 +204,14 @@ void ShaderUI::drawMainUI(MetalCore& mc)
             else
                 ImGui::TextWrapped("%s", m_selectedShaderPath.c_str());
             if(ImGui::Button("Open..."))
-                m_selectedShaderPath = "placeholder.glsl";
+            {
+                std::string path = openShaderPresetDialog();
+                if(!path.empty())
+                {
+                    m_selectedShaderPath = path;
+                    m_pendingShaderPath = path;
+                }
+            }
         }
 
         if(ImGui::CollapsingHeader("Capture", ImGuiTreeNodeFlags_DefaultOpen))

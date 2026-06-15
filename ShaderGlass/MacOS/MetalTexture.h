@@ -17,6 +17,12 @@ public:
     MetalTexture() = default;
     ~MetalTexture();
 
+    MetalTexture(const MetalTexture&) = delete;
+    MetalTexture& operator=(const MetalTexture&) = delete;
+
+    MetalTexture(MetalTexture&& other) noexcept;
+    MetalTexture& operator=(MetalTexture&& other) noexcept;
+
     void create(MetalCore& mc, uint32_t width, uint32_t height,
                 bool renderTarget);
     void upload(MetalCore& mc, const uint8_t* data, uint32_t width,

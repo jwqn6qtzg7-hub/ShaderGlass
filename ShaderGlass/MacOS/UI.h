@@ -20,11 +20,13 @@ public:
 
     bool wantsCapture() const;
     const char* selectedShaderPath() const;
+    std::string consumeSelectedShaderPath();
 
     void drawMainUI(MetalCore& mc);
 
 private:
     std::string m_selectedShaderPath;
+    std::string m_pendingShaderPath;
     bool        m_captureStarted {false};
     float       m_fpsHistory[120] {};
     int         m_fpsHistoryIndex {0};

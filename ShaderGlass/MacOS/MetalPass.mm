@@ -1,19 +1,36 @@
 #include "MetalPass.h"
 
+#include "GLSL.h"
+
+#import <Foundation/Foundation.h>
 #import <Metal/Metal.h>
 
 #include <spirv_cross_c.h>
 
+#include <algorithm>
 #include <cstring>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 
+static constexpr NSUInteger kVertexBufferIndex = 30;
+
+static void releaseMetalObject(void*& obj)
+{
+    if(obj)
+    {
+        id released = (__bridge_transfer id)obj;
+        (void)released;
+        obj = nullptr;
+    }
+}
+
 static std::string spirvToMSL(const std::vector<uint32_t>& spirv,
                                bool fragment)
 {
     spvc_context ctx = nullptr;
-    spvc_context_create(&ctx);
+    if(spvc_context_create(&ctx) != SPVC_SUCCESS)
+        throw std::runtime_error("SPIRV-Cross context creation failed");
 
     spvc_parsed_ir ir = nullptr;
     spvc_result result = spvc_context_parse_spirv(
@@ -28,8 +45,15 @@ static std::string spirvToMSL(const std::vector<uint32_t>& spirv,
     }
 
     spvc_compiler compiler = nullptr;
-    spvc_context_create_compiler(ctx, SPVC_BACKEND_MSL, ir,
-                                  SPVC_CAPTURE_MODE_TAKE_OWNERSHIP, &compiler);
+    result = spvc_context_create_compiler(ctx, SPVC_BACKEND_MSL, ir,
+                                          SPVC_CAPTURE_MODE_TAKE_OWNERSHIP, &compiler);
+    if(result != SPVC_SUCCESS)
+    {
+        const char* err = spvc_context_get_last_error_string(ctx);
+        spvc_context_destroy(ctx);
+        throw std::runtime_error(
+            std::string("SPIRV-Cross compiler creation failed: ") + err);
+    }
 
     spvc_compiler_options opts = nullptr;
     spvc_compiler_create_compiler_options(compiler, &opts);
@@ -41,6 +65,18 @@ static std::string spirvToMSL(const std::vector<uint32_t>& spirv,
     spvc_compiler_options_set_bool(opts,
         SPVC_COMPILER_OPTION_MSL_ENABLE_DECORATION_BINDING, SPVC_TRUE);
 
+    spvc_msl_resource_binding_2 pushBinding;
+    spvc_msl_resource_binding_init_2(&pushBinding);
+    pushBinding.stage = fragment ? SpvExecutionModelFragment
+                                 : SpvExecutionModelVertex;
+    pushBinding.desc_set = SPVC_MSL_PUSH_CONSTANT_DESC_SET;
+    pushBinding.binding = SPVC_MSL_PUSH_CONSTANT_BINDING;
+    pushBinding.count = 1;
+    pushBinding.msl_buffer = 1;
+    pushBinding.msl_texture = 0;
+    pushBinding.msl_sampler = 0;
+    spvc_compiler_msl_add_resource_binding_2(compiler, &pushBinding);
+
     if(fragment)
         spvc_compiler_options_set_bool(opts,
             SPVC_COMPILER_OPTION_MSL_CAPTURE_OUTPUT_TO_BUFFER, SPVC_FALSE);
@@ -48,7 +84,14 @@ static std::string spirvToMSL(const std::vector<uint32_t>& spirv,
     spvc_compiler_install_compiler_options(compiler, opts);
 
     const char* source = nullptr;
-    spvc_compiler_compile(compiler, &source);
+    result = spvc_compiler_compile(compiler, &source);
+    if(result != SPVC_SUCCESS)
+    {
+        const char* err = spvc_context_get_last_error_string(ctx);
+        spvc_context_destroy(ctx);
+        throw std::runtime_error(
+            std::string("SPIRV-Cross MSL compile failed: ") + err);
+    }
 
     std::string msl(source ? source : "");
 
@@ -74,18 +117,25 @@ MetalPass::MetalPass(MetalCore& mc, ShaderDef& shaderDef,
     m_mvp.m[2][2] = 1.0f;
     m_mvp.m[3][0] = -1.0f; m_mvp.m[3][1] = -1.0f; m_mvp.m[3][3] = 1.0f;
 
+    for(auto& s : m_shaderDef.Samplers)
+        if(s.name == "Source") { m_srcBinding = s.binding; break; }
+
     if(m_preprocess)
     {
         memcpy(&m_cursorMVP, &m_mvp, sizeof(m_cursorMVP));
-        for(auto& s : m_shaderDef.Samplers)
-            if(s.name == "Source") { m_srcBinding = s.binding; break; }
     }
 
     compileShaders(mc);
     createBuffers(mc);
 }
 
-MetalPass::~MetalPass() = default;
+MetalPass::~MetalPass()
+{
+    releaseMetalObject(m_pipelineState);
+    releaseMetalObject(m_constBuf);
+    releaseMetalObject(m_pushBuf);
+    releaseMetalObject(m_vertBuf);
+}
 
 void MetalPass::compileShaders(MetalCore& mc)
 {
@@ -108,6 +158,24 @@ void MetalPass::compileShaders(MetalCore& mc)
         vSPIRV.assign(
             reinterpret_cast<const uint32_t*>(sd.VertexByteCode),
             reinterpret_cast<const uint32_t*>(sd.VertexByteCode) + words);
+    }
+
+    if(vSPIRV.empty() && sd.VertexSource)
+    {
+        std::ostringstream log;
+        bool warn = false;
+        vSPIRV = GLSL::GenerateSPIRV(sd.VertexSource, false, log, warn);
+        if(warn)
+            std::cerr << "[MetalPass] Vertex GLSL warnings:\n" << log.str() << std::endl;
+    }
+
+    if(fSPIRV.empty() && sd.FragmentSource)
+    {
+        std::ostringstream log;
+        bool warn = false;
+        fSPIRV = GLSL::GenerateSPIRV(sd.FragmentSource, true, log, warn);
+        if(warn)
+            std::cerr << "[MetalPass] Fragment GLSL warnings:\n" << log.str() << std::endl;
     }
 
     if(vSPIRV.empty() || fSPIRV.empty())
@@ -142,9 +210,13 @@ void MetalPass::compileShaders(MetalCore& mc)
 
     id<MTLFunction> vFunc = [vLib newFunctionWithName:@"main0"];
     id<MTLFunction> fFunc = [fLib newFunctionWithName:@"main0"];
+    if(!vFunc)
+        vFunc = [vLib newFunctionWithName:@"main"];
+    if(!fFunc)
+        fFunc = [fLib newFunctionWithName:@"main"];
 
     if(!vFunc || !fFunc)
-        throw std::runtime_error("[MetalPass] Missing main0 entry point");
+        throw std::runtime_error("[MetalPass] Missing Metal shader entry point");
 
     MTLRenderPipelineDescriptor* pd = [MTLRenderPipelineDescriptor new];
     pd.vertexFunction   = vFunc;
@@ -155,12 +227,12 @@ void MetalPass::compileShaders(MetalCore& mc)
     MTLVertexDescriptor* vd = [MTLVertexDescriptor vertexDescriptor];
     vd.attributes[0].format      = MTLVertexFormatFloat4;
     vd.attributes[0].offset      = 0;
-    vd.attributes[0].bufferIndex = 0;
+    vd.attributes[0].bufferIndex = kVertexBufferIndex;
     vd.attributes[1].format      = MTLVertexFormatFloat2;
     vd.attributes[1].offset      = 16;
-    vd.attributes[1].bufferIndex = 0;
-    vd.layouts[0].stride         = 24;
-    vd.layouts[0].stepFunction   = MTLVertexStepFunctionPerVertex;
+    vd.attributes[1].bufferIndex = kVertexBufferIndex;
+    vd.layouts[kVertexBufferIndex].stride       = 24;
+    vd.layouts[kVertexBufferIndex].stepFunction = MTLVertexStepFunctionPerVertex;
     pd.vertexDescriptor = vd;
 
     id<MTLRenderPipelineState> ps =
@@ -170,7 +242,7 @@ void MetalPass::compileShaders(MetalCore& mc)
             std::string("Pipeline state failed: ") +
             (err ? err.localizedDescription.UTF8String : "unknown"));
 
-    m_pipelineState = (__bridge void*)ps;
+    m_pipelineState = (__bridge_retained void*)ps;
 }
 
 void MetalPass::createBuffers(MetalCore& mc)
@@ -180,14 +252,14 @@ void MetalPass::createBuffers(MetalCore& mc)
     const size_t vertSize = sizeof(VD);
     id<MTLBuffer> vb = [device newBufferWithBytes:VD length:vertSize
                                            options:MTLResourceStorageModeManaged];
-    m_vertBuf = (__bridge void*)vb;
+    m_vertBuf = (__bridge_retained void*)vb;
 
     if(m_hasConst)
     {
         size_t sz = m_shaderDef.ParamsSize(0);
         id<MTLBuffer> cb = [device newBufferWithLength:sz
                                                 options:MTLResourceStorageModeManaged];
-        m_constBuf = (__bridge void*)cb;
+        m_constBuf = (__bridge_retained void*)cb;
     }
 
     if(m_hasPush)
@@ -195,12 +267,8 @@ void MetalPass::createBuffers(MetalCore& mc)
         size_t sz = m_shaderDef.ParamsSize(-1);
         id<MTLBuffer> pb = [device newBufferWithLength:sz
                                                 options:MTLResourceStorageModeManaged];
-        m_pushBuf = (__bridge void*)pb;
+        m_pushBuf = (__bridge_retained void*)pb;
     }
-
-    id<MTLBuffer> mb = [device newBufferWithLength:sizeof(float4x4)
-                                            options:MTLResourceStorageModeManaged];
-    m_mvpBuf = (__bridge void*)mb;
 }
 
 void MetalPass::render(MetalCore& mc,
@@ -210,13 +278,10 @@ void MetalPass::render(MetalCore& mc,
                         int frameCount, int boxX, int boxY, int destW, int destH,
                         void* rpDesc)
 {
-    (void)frameCount; (void)boxX; (void)boxY; (void)destW; (void)destH;
-
     id<MTLCommandBuffer> cmdBuf = mc.currentCommandBuffer;
     MTLRenderPassDescriptor* passDesc = (__bridge MTLRenderPassDescriptor*)rpDesc;
     id<MTLRenderPipelineState> ps = (__bridge id<MTLRenderPipelineState>)m_pipelineState;
     id<MTLBuffer> vertBuf = (__bridge id<MTLBuffer>)m_vertBuf;
-    id<MTLBuffer> mvpBuf  = (__bridge id<MTLBuffer>)m_mvpBuf;
     id<MTLBuffer> constBuf = (__bridge id<MTLBuffer>)m_constBuf;
     id<MTLBuffer> pushBuf  = (__bridge id<MTLBuffer>)m_pushBuf;
 
@@ -225,42 +290,50 @@ void MetalPass::render(MetalCore& mc,
 
     [enc setRenderPipelineState:ps];
 
-    MTLViewport vp = { 0, 0,
-        (double)passDesc.colorAttachments[0].texture.width,
-        (double)passDesc.colorAttachments[0].texture.height,
-        0.0, 1.0 };
+    id<MTLTexture> target = passDesc.colorAttachments[0].texture;
+    if(destW <= 0) destW = (int)target.width;
+    if(destH <= 0) destH = (int)target.height;
+
+    MTLViewport vp = { (double)boxX, (double)boxY,
+        (double)destW, (double)destH, 0.0, 1.0 };
     [enc setViewport:vp];
 
-    [enc setVertexBuffer:vertBuf offset:0 atIndex:0];
+    MTLScissorRect scissor = {
+        (NSUInteger)std::max(0, boxX),
+        (NSUInteger)std::max(0, boxY),
+        (NSUInteger)std::max(0, destW),
+        (NSUInteger)std::max(0, destH)
+    };
+    [enc setScissorRect:scissor];
 
-    float* dst = (float*)[mvpBuf contents];
-    memcpy(dst, &m_mvp, sizeof(float4x4));
-    [mvpBuf didModifyRange:NSMakeRange(0, sizeof(float4x4))];
-    [enc setVertexBuffer:mvpBuf offset:0 atIndex:1];
+    [enc setVertexBuffer:vertBuf offset:0 atIndex:kVertexBufferIndex];
+
+    setParam("MVP", &m_mvp);
+    setParam("FrameCount", &frameCount);
 
     if(m_hasConst)
     {
-        fillParams(0, m_uboData.data());
         float* cbuf = (float*)[constBuf contents];
         memcpy(cbuf, m_uboData.data(), m_uboData.size());
         [constBuf didModifyRange:NSMakeRange(0, m_uboData.size())];
+        [enc setVertexBuffer:constBuf offset:0 atIndex:0];
         [enc setFragmentBuffer:constBuf offset:0 atIndex:0];
     }
 
     if(m_hasPush)
     {
-        fillParams(-1, m_uboData.data());
         float* pbuf = (float*)[pushBuf contents];
-        memcpy(pbuf, m_uboData.data(), m_uboData.size());
-        [pushBuf didModifyRange:NSMakeRange(0, m_uboData.size())];
+        memcpy(pbuf, m_pushData.data(), m_pushData.size());
+        [pushBuf didModifyRange:NSMakeRange(0, m_pushData.size())];
+        [enc setVertexBuffer:pushBuf offset:0 atIndex:1];
         [enc setFragmentBuffer:pushBuf offset:0 atIndex:1];
     }
 
-    if(sourceTexture)
+    if(sourceTexture && m_srcBinding >= 0)
         [enc setFragmentTexture:(__bridge id<MTLTexture>)sourceTexture
                         atIndex:m_srcBinding];
 
-    if(sourceSampler)
+    if(sourceSampler && m_srcBinding >= 0)
         [enc setFragmentSamplerState:(__bridge id<MTLSamplerState>)sourceSampler
                              atIndex:m_srcBinding];
 
@@ -284,7 +357,7 @@ void MetalPass::render(MetalCore& mc,
     }
 
     [enc drawPrimitives:MTLPrimitiveTypeTriangleStrip
-            vertexStart:0 vertexCount:4];
+            vertexStart:4 vertexCount:4];
     [enc endEncoding];
 }
 

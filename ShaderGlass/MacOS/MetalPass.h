@@ -59,7 +59,7 @@ private:
     void compileShaders(MetalCore& mc);
     void createBuffers(MetalCore& mc);
 
-    ShaderDef& m_shaderDef;
+    ShaderDef m_shaderDef;
     std::map<std::string, TextureSamplerSettings> m_texSettings;
     bool m_preprocess;
 
@@ -71,7 +71,6 @@ private:
     void* m_constBuf {nullptr};
     void* m_pushBuf {nullptr};
     void* m_vertBuf {nullptr};
-    void* m_mvpBuf {nullptr};
     std::vector<void*> m_samplers;
 
     int  m_srcBinding {-1};

@@ -11,6 +11,7 @@
 
 void MetalCore::init(GLFWwindow* window)
 {
+    this->window = window;
     device = MTLCreateSystemDefaultDevice();
     if(!device)
         throw std::runtime_error("[Metal] No Metal-capable GPU found");
@@ -26,6 +27,10 @@ void MetalCore::init(GLFWwindow* window)
     metalLayer.device      = device;
     metalLayer.pixelFormat = MTLPixelFormatBGRA8Unorm;
     metalLayer.framebufferOnly = NO;
+    metalLayer.contentsScale = nsWindow.backingScaleFactor;
+    metalLayer.frame = contentView.bounds;
+    metalLayer.drawableSize = CGSizeMake(contentView.bounds.size.width * metalLayer.contentsScale,
+                                         contentView.bounds.size.height * metalLayer.contentsScale);
 
     contentView.layer = metalLayer;
 
@@ -38,6 +43,17 @@ void MetalCore::beginFrame()
 
     @autoreleasepool
     {
+        NSWindow* nsWindow = glfwGetCocoaWindow(window);
+        NSView* contentView = nsWindow.contentView;
+        CGFloat scale = nsWindow.backingScaleFactor;
+        int fbWidth = 0, fbHeight = 0;
+        glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
+
+        metalLayer.contentsScale = scale;
+        metalLayer.frame = contentView.bounds;
+        if(fbWidth > 0 && fbHeight > 0)
+            metalLayer.drawableSize = CGSizeMake(fbWidth, fbHeight);
+
         currentDrawable = [metalLayer nextDrawable];
         if(!currentDrawable)
             throw std::runtime_error("[Metal] Failed to acquire drawable");

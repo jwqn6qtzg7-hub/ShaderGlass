@@ -7,6 +7,11 @@ GNU General Public License v3.0
 
 #pragma once
 
+#include <cstdlib>
+#include <cstdint>
+#include <cstring>
+#include <utility>
+
 struct ShaderParam
 {
     ShaderParam(const char* name, int buffer, int offset, int size, float minValue, float maxValue, float defaultValue, float stepValue = 0.0f, const char* description = "") :
@@ -48,6 +53,110 @@ public:
         Params {}, Samplers {}, Name {}, VertexSource {}, FragmentSource {}, VertexByteCode {}, FragmentByteCode {}, VertexHash {}, FragmentHash {}, VertexLength {},
         FragmentLength {}, Format {}, Dynamic {false}
     { }
+
+    ShaderDef(const ShaderDef& other) :
+        Params {other.Params}, Samplers {other.Samplers}, PresetParams {other.PresetParams}, Name {other.Name},
+        VertexSource {other.VertexSource}, FragmentSource {other.FragmentSource}, VertexByteCode {other.VertexByteCode},
+        FragmentByteCode {other.FragmentByteCode}, VertexHash {other.VertexHash}, FragmentHash {other.FragmentHash},
+        VertexLength {other.VertexLength}, FragmentLength {other.FragmentLength}, Format {other.Format}, Dynamic {other.Dynamic}
+    {
+        if(Dynamic)
+        {
+            Format           = DuplicateString(other.Format);
+            VertexSource     = DuplicateString(other.VertexSource);
+            FragmentSource   = DuplicateString(other.FragmentSource);
+            VertexByteCode   = DuplicateBytes(other.VertexByteCode, other.VertexLength);
+            FragmentByteCode = DuplicateBytes(other.FragmentByteCode, other.FragmentLength);
+        }
+    }
+
+    ShaderDef(ShaderDef&& other) noexcept :
+        Params {std::move(other.Params)}, Samplers {std::move(other.Samplers)}, PresetParams {std::move(other.PresetParams)}, Name {std::move(other.Name)},
+        VertexSource {other.VertexSource}, FragmentSource {other.FragmentSource}, VertexByteCode {other.VertexByteCode},
+        FragmentByteCode {other.FragmentByteCode}, VertexHash {other.VertexHash}, FragmentHash {other.FragmentHash},
+        VertexLength {other.VertexLength}, FragmentLength {other.FragmentLength}, Format {other.Format}, Dynamic {other.Dynamic}
+    {
+        other.VertexSource     = nullptr;
+        other.FragmentSource   = nullptr;
+        other.VertexByteCode   = nullptr;
+        other.FragmentByteCode = nullptr;
+        other.VertexHash       = nullptr;
+        other.FragmentHash     = nullptr;
+        other.Format           = nullptr;
+        other.VertexLength     = 0;
+        other.FragmentLength   = 0;
+        other.Dynamic          = false;
+    }
+
+    ShaderDef& operator=(const ShaderDef& other)
+    {
+        if(this == &other)
+            return *this;
+
+        ReleaseDynamic();
+
+        Params         = other.Params;
+        Samplers       = other.Samplers;
+        PresetParams   = other.PresetParams;
+        Name           = other.Name;
+        VertexSource   = other.VertexSource;
+        FragmentSource = other.FragmentSource;
+        VertexByteCode = other.VertexByteCode;
+        FragmentByteCode = other.FragmentByteCode;
+        VertexHash     = other.VertexHash;
+        FragmentHash   = other.FragmentHash;
+        VertexLength   = other.VertexLength;
+        FragmentLength = other.FragmentLength;
+        Format         = other.Format;
+        Dynamic        = other.Dynamic;
+
+        if(Dynamic)
+        {
+            Format           = DuplicateString(other.Format);
+            VertexSource     = DuplicateString(other.VertexSource);
+            FragmentSource   = DuplicateString(other.FragmentSource);
+            VertexByteCode   = DuplicateBytes(other.VertexByteCode, other.VertexLength);
+            FragmentByteCode = DuplicateBytes(other.FragmentByteCode, other.FragmentLength);
+        }
+
+        return *this;
+    }
+
+    ShaderDef& operator=(ShaderDef&& other) noexcept
+    {
+        if(this == &other)
+            return *this;
+
+        ReleaseDynamic();
+
+        Params         = std::move(other.Params);
+        Samplers       = std::move(other.Samplers);
+        PresetParams   = std::move(other.PresetParams);
+        Name           = std::move(other.Name);
+        VertexSource   = other.VertexSource;
+        FragmentSource = other.FragmentSource;
+        VertexByteCode = other.VertexByteCode;
+        FragmentByteCode = other.FragmentByteCode;
+        VertexHash     = other.VertexHash;
+        FragmentHash   = other.FragmentHash;
+        VertexLength   = other.VertexLength;
+        FragmentLength = other.FragmentLength;
+        Format         = other.Format;
+        Dynamic        = other.Dynamic;
+
+        other.VertexSource     = nullptr;
+        other.FragmentSource   = nullptr;
+        other.VertexByteCode   = nullptr;
+        other.FragmentByteCode = nullptr;
+        other.VertexHash       = nullptr;
+        other.FragmentHash     = nullptr;
+        other.Format           = nullptr;
+        other.VertexLength     = 0;
+        other.FragmentLength   = 0;
+        other.Dynamic          = false;
+
+        return *this;
+    }
 
     std::vector<ShaderParam>           Params;
     std::vector<ShaderSampler>         Samplers;
@@ -98,12 +207,49 @@ public:
 
     virtual ~ShaderDef()
     {
-        if(Dynamic)
-        {
-            if(VertexByteCode)
-                free((void*)VertexByteCode);
-            if(FragmentByteCode)
-                free((void*)FragmentByteCode);
-        }
+        ReleaseDynamic();
+    }
+
+private:
+    static char* DuplicateString(const char* source)
+    {
+        if(!source)
+            return nullptr;
+
+        size_t len = std::strlen(source) + 1;
+        char*  copy = static_cast<char*>(std::malloc(len));
+        if(copy)
+            std::memcpy(copy, source, len);
+        return copy;
+    }
+
+    static uint8_t* DuplicateBytes(const uint8_t* source, size_t len)
+    {
+        if(!source || len == 0)
+            return nullptr;
+
+        uint8_t* copy = static_cast<uint8_t*>(std::malloc(len));
+        if(copy)
+            std::memcpy(copy, source, len);
+        return copy;
+    }
+
+    void ReleaseDynamic()
+    {
+        if(!Dynamic)
+            return;
+
+        std::free((void*)Format);
+        std::free((void*)VertexSource);
+        std::free((void*)FragmentSource);
+        std::free((void*)VertexByteCode);
+        std::free((void*)FragmentByteCode);
+
+        Format           = nullptr;
+        VertexSource     = nullptr;
+        FragmentSource   = nullptr;
+        VertexByteCode   = nullptr;
+        FragmentByteCode = nullptr;
+        Dynamic          = false;
     }
 };

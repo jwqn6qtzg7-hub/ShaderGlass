@@ -10,7 +10,7 @@
 // ---------------------------------------------------------------------------
 // Objective-C delegate that conforms to SCStreamOutput / SCStreamDelegate
 // ---------------------------------------------------------------------------
-@interface CaptureDelegate : NSObject<SCStreamDelegate>
+@interface CaptureDelegate : NSObject<SCStreamDelegate, SCStreamOutput>
 {
     ScreenCapture::FrameCallback _frameCallback;
     std::atomic<bool>            _active;
@@ -138,6 +138,7 @@ bool ScreenCapture::start(FrameCallback callback)
 
     // Build filter and configuration
     SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target excludingWindows:@[]];
+    uint32_t displayID = target.displayID;
     NSInteger tw = target.width;
     NSInteger th = target.height;
     [target release];
@@ -164,6 +165,21 @@ bool ScreenCapture::start(FrameCallback callback)
         return false;
     }
 
+    NSError* outputError = nil;
+    if(![stream addStreamOutput:delegate
+                           type:SCStreamOutputTypeScreen
+             sampleHandlerQueue:queue
+                          error:&outputError])
+    {
+        std::cerr << "[Capture] Failed to add stream output: "
+                  << (outputError ? outputError.localizedDescription.UTF8String : "unknown")
+                  << std::endl;
+        stream = nil;
+        delegate = nil;
+        dispatch_release(queue);
+        return false;
+    }
+
     // Begin capture
     __block bool started = false;
     dispatch_semaphore_t startSem = dispatch_semaphore_create(0);
@@ -179,8 +195,8 @@ bool ScreenCapture::start(FrameCallback callback)
         {
             started = true;
             std::cout << "[Capture] Capturing display "
-                      << target.displayID << " ("
-                      << target.width << "x" << target.height << ")" << std::endl;
+                      << displayID << " ("
+                      << tw << "x" << th << ")" << std::endl;
         }
         dispatch_semaphore_signal(startSem);
     }];
@@ -236,7 +252,7 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
                     {
                         if(d.displayID == displayID)
                         {
-                            target  = d;
+                            target  = [d retain];
                             success = true;
                             break;
                         }
@@ -258,14 +274,18 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
     }
 
     SCContentFilter* filter = [[SCContentFilter alloc] initWithDisplay:target excludingWindows:@[]];
+    uint32_t targetDisplayID = target.displayID;
+    NSInteger targetWidth = target.width;
+    NSInteger targetHeight = target.height;
 
     SCStreamConfiguration* config = [[SCStreamConfiguration alloc] init];
     config.pixelFormat           = kCVPixelFormatType_32BGRA;
-    config.width                 = target.width;
-    config.height                = target.height;
+    config.width                 = targetWidth;
+    config.height                = targetHeight;
     config.minimumFrameInterval  = CMTimeMake(1, 60);
     config.queueDepth            = 3;
     config.showsCursor           = YES;
+    [target release];
 
     CaptureDelegate* delegate = [[CaptureDelegate alloc] initWithCallback:callback];
 
@@ -276,6 +296,21 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
     if(!stream)
     {
         std::cerr << "[Capture] Failed to create SCStream" << std::endl;
+        dispatch_release(queue);
+        return false;
+    }
+
+    NSError* outputError = nil;
+    if(![stream addStreamOutput:delegate
+                           type:SCStreamOutputTypeScreen
+             sampleHandlerQueue:queue
+                          error:&outputError])
+    {
+        std::cerr << "[Capture] Failed to add stream output: "
+                  << (outputError ? outputError.localizedDescription.UTF8String : "unknown")
+                  << std::endl;
+        stream = nil;
+        delegate = nil;
         dispatch_release(queue);
         return false;
     }
@@ -294,8 +329,8 @@ bool ScreenCapture::startDisplay(uint32_t displayID, FrameCallback callback)
         {
             started = true;
             std::cout << "[Capture] Capturing display "
-                      << target.displayID << " ("
-                      << target.width << "x" << target.height << ")" << std::endl;
+                      << targetDisplayID << " ("
+                      << targetWidth << "x" << targetHeight << ")" << std::endl;
         }
         dispatch_semaphore_signal(startSem);
     }];

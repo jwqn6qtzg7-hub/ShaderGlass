@@ -43,6 +43,7 @@ struct MetalCore
 
     dispatch_semaphore_t frameSemaphore;
     int                  maxFramesInFlight {2};
+    GLFWwindow*          window {nullptr};
 
     uint32_t drawableWidth  {0};
     uint32_t drawableHeight {0};

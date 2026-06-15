@@ -24,14 +24,17 @@ using namespace nlohmann;
 
 static char* CopyString(const std::string& s)
 {
-    auto copy = new char[s.size() + 1];
+    auto copy = static_cast<char*>(malloc(s.size() + 1));
     strcpy_s(copy, s.size() + 1, s.c_str());
     return copy;
 }
 
 static uint8_t* CopyVector(const std::vector<uint8_t>& d)
 {
-    auto copy = new uint8_t[d.size()];
+    if(d.empty())
+        return nullptr;
+
+    auto copy = static_cast<uint8_t*>(malloc(d.size()));
     memcpy(copy, d.data(), d.size());
     return copy;
 }
@@ -67,8 +70,8 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
     {
         size_t vsz = vertexSPIRV.size() * sizeof(uint32_t);
         size_t fsz = fragmentSPIRV.size() * sizeof(uint32_t);
-        auto vbuf = new uint8_t[vsz];
-        auto fbuf = new uint8_t[fsz];
+        auto vbuf = static_cast<uint8_t*>(malloc(vsz));
+        auto fbuf = static_cast<uint8_t*>(malloc(fsz));
         memcpy(vbuf, vertexSPIRV.data(), vsz);
         memcpy(fbuf, fragmentSPIRV.data(), fsz);
         sd.VertexByteCode   = vbuf;
@@ -76,6 +79,18 @@ ShaderDef ShaderGC::CompileSourceShader(SourceShaderDef& def, ostream& log, bool
         sd.FragmentByteCode = fbuf;
         sd.FragmentLength   = fsz;
     }
+
+    for(const auto& p : def.params)
+    {
+        sd.Params.push_back(ShaderParam(CopyString(p.name), p.buffer, p.offset, p.size, p.min, p.max, p.def, p.step, CopyString(p.desc)));
+    }
+
+    for(const auto& t : textures)
+    {
+        sd.Samplers.push_back(ShaderSampler(CopyString(t.name), t.binding));
+    }
+
+    return sd;
 #else
     // convert SPIRV to HLSL and reflect
     auto vertexHLSL   = SPIRV::GenerateHLSL(vertexSPIRV, false, log, warn);

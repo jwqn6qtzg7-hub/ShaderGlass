@@ -6,12 +6,16 @@
 #include "UI.h"
 #include "Settings.h"
 #include "PassthroughShader.h"
+#include "ShaderGC.h"
 
 #include <cstdio>
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 #include <cstring>
 #include <mutex>
+#include <memory>
+#include <sstream>
 
 static const uint32_t WIDTH  = 800;
 static const uint32_t HEIGHT = 600;
@@ -49,8 +53,10 @@ int main()
         ScreenCapture capture;
         std::vector<uint8_t> capBuffer;
         int  capWidth  = 0, capHeight = 0;
+        int  capBytesPerRow = 0;
         bool capNewFrame = false;
         std::mutex capMutex;
+        int frameNo = 0;
 
         MetalTexture captureTex;
 
@@ -58,6 +64,7 @@ int main()
         PresetDef testPreset;
         testPreset.Name = "Test";
         testPreset.ShaderDefs.push_back(passthroughDef);
+        std::unique_ptr<PresetDef> loadedPreset;
 
         MetalShaderChain chain(mc);
         chain.setPreset(&testPreset);
@@ -81,18 +88,39 @@ int main()
             ui.newFrame(mc);
             ui.drawMainUI(mc);
 
-            static bool captureTried = false;
-            if(!captureTried)
+            std::string selectedShaderPath = ui.consumeSelectedShaderPath();
+            if(!selectedShaderPath.empty())
             {
-                captureTried = true;
-                capture.start([&](const uint8_t* data, int w, int h, int bpr) {
-                    std::lock_guard<std::mutex> lock(capMutex);
-                    size_t sz = (size_t)bpr * h;
-                    if(capBuffer.size() != sz) capBuffer.resize(sz);
-                    memcpy(capBuffer.data(), data, sz);
-                    capWidth = w; capHeight = h;
-                    capNewFrame = true;
-                });
+                try
+                {
+                    std::ostringstream log;
+                    bool warn = false;
+                    ShaderCache cache;
+                    std::unique_ptr<PresetDef> preset(
+                        ShaderGC::CompilePreset(std::filesystem::path(selectedShaderPath),
+                                                log, warn, cache));
+                    if(warn)
+                        std::cerr << "[ShaderGlass] Shader warnings:\n"
+                                  << log.str() << std::endl;
+                    if(preset && !preset->ShaderDefs.empty())
+                    {
+                        std::cout << "[ShaderGlass] Loaded preset: "
+                                  << preset->Name << std::endl;
+                        chain.setPreset(preset.get());
+                        loadedPreset = std::move(preset);
+                    }
+                    else
+                    {
+                        std::cerr << "[ShaderGlass] Preset has no shader passes: "
+                                  << selectedShaderPath << std::endl;
+                    }
+                }
+                catch(const std::exception& e)
+                {
+                    std::cerr << "[ShaderGlass] Failed to load preset "
+                              << selectedShaderPath << ": "
+                              << e.what() << std::endl;
+                }
             }
 
             if(ui.wantsCapture() && !capture.isCapturing())
@@ -102,9 +130,13 @@ int main()
                     size_t sz = (size_t)bpr * h;
                     if(capBuffer.size() != sz) capBuffer.resize(sz);
                     memcpy(capBuffer.data(), data, sz);
-                    capWidth = w; capHeight = h;
+                    capWidth = w; capHeight = h; capBytesPerRow = bpr;
                     capNewFrame = true;
                 });
+            }
+            else if(!ui.wantsCapture() && capture.isCapturing())
+            {
+                capture.stop();
             }
 
             {
@@ -121,20 +153,25 @@ int main()
                     }
                     captureTex.upload(mc, capBuffer.data(),
                                       (uint32_t)capWidth, (uint32_t)capHeight,
-                                      (uint32_t)capWidth * 4);
+                                      (uint32_t)capBytesPerRow);
 
-                    chain.resize(mc, capWidth, capHeight,
-                                 (int)mc.drawableWidth,
-                                 (int)mc.drawableHeight);
                     capNewFrame = false;
                 }
             }
 
             if(captureTex.isValid())
+            {
+                chain.resize(mc,
+                             (int)captureTex.width(),
+                             (int)captureTex.height(),
+                             (int)mc.drawableWidth,
+                             (int)mc.drawableHeight);
                 chain.process(mc,
                               captureTex.texture(),
                               captureTex.sampler(),
-                              0, 0);
+                              frameNo, frameNo);
+                frameNo++;
+            }
 
             ui.render(mc);
             mc.endFrame();

@@ -365,3 +365,5 @@ Scripts/slang-shaders
 Scripts/temp
 build/
 build-metal/
+build-moltenvk/
+.DS_Store

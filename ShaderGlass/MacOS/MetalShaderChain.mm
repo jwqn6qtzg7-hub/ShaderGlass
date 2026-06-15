@@ -80,6 +80,12 @@ void MetalShaderChain::resize(MetalCore& mc, int captureW, int captureH,
                                int viewportW, int viewportH)
 {
     (void)mc;
+    if(m_captureW == captureW && m_captureH == captureH &&
+       m_viewportW == viewportW && m_viewportH == viewportH)
+    {
+        return;
+    }
+
     m_captureW  = captureW;
     m_captureH  = captureH;
     m_viewportW = viewportW;
@@ -239,7 +245,6 @@ void MetalShaderChain::process(MetalCore& mc,
         return;
 
     id<MTLCommandBuffer> cmdBuf = mc.currentCommandBuffer;
-    id<MTLDevice> device = mc.device;
 
     // Preprocess pass: render to intermediate texture
     MTLRenderPassDescriptor* rpDesc = [MTLRenderPassDescriptor renderPassDescriptor];
@@ -255,6 +260,18 @@ void MetalShaderChain::process(MetalCore& mc,
                               (__bridge void*)rpDesc);
 
     int numPasses = (int)m_passes.size();
+
+    if(m_requiresHistory > 0 && !m_historyTexs.empty())
+    {
+        int historyCount = (int)m_historyTexs.size();
+        for(int h = 1; h <= m_requiresHistory; h++)
+        {
+            int idx = (m_historyWriteIndex - h + historyCount) % historyCount;
+            std::string hName = "OriginalHistory" + std::to_string(h);
+            m_resources[hName] = m_historyTexs[idx].texture();
+            m_samplers[hName]  = m_historyTexs[idx].sampler();
+        }
+    }
 
     void* curSrcTex  = m_preprocessTex.texture();
     void* curSrcSamp = m_preprocessTex.sampler();
@@ -292,7 +309,67 @@ void MetalShaderChain::process(MetalCore& mc,
         }
     }
 
-    // TODO: Feedback copy and history rotation
+    if((m_requiresFeedback && !m_feedbackTexs.empty()) ||
+       (m_requiresHistory > 0 && !m_historyTexs.empty()))
+    {
+        id<MTLBlitCommandEncoder> blit = [cmdBuf blitCommandEncoder];
+
+        if(m_requiresFeedback && !m_feedbackTexs.empty())
+        {
+            for(int p = 0; p < numPasses && p < (int)m_feedbackTexs.size(); p++)
+            {
+                id<MTLTexture> src = nil;
+                if(p == numPasses - 1)
+                    src = mc.drawableTexture;
+                else
+                    src = (__bridge id<MTLTexture>)m_passTexs[p].texture();
+
+                id<MTLTexture> dst =
+                    (__bridge id<MTLTexture>)m_feedbackTexs[p].texture();
+                if(!src || !dst)
+                    continue;
+
+                NSUInteger w = std::min(src.width, dst.width);
+                NSUInteger h = std::min(src.height, dst.height);
+                [blit copyFromTexture:src
+                           sourceSlice:0
+                           sourceLevel:0
+                          sourceOrigin:MTLOriginMake(0, 0, 0)
+                            sourceSize:MTLSizeMake(w, h, 1)
+                             toTexture:dst
+                      destinationSlice:0
+                      destinationLevel:0
+                     destinationOrigin:MTLOriginMake(0, 0, 0)];
+            }
+        }
+
+        if(m_requiresHistory > 0 && !m_historyTexs.empty())
+        {
+            id<MTLTexture> src =
+                (__bridge id<MTLTexture>)m_preprocessTex.texture();
+            id<MTLTexture> dst =
+                (__bridge id<MTLTexture>)m_historyTexs[m_historyWriteIndex].texture();
+            if(src && dst)
+            {
+                NSUInteger w = std::min(src.width, dst.width);
+                NSUInteger h = std::min(src.height, dst.height);
+                [blit copyFromTexture:src
+                           sourceSlice:0
+                           sourceLevel:0
+                          sourceOrigin:MTLOriginMake(0, 0, 0)
+                            sourceSize:MTLSizeMake(w, h, 1)
+                             toTexture:dst
+                      destinationSlice:0
+                      destinationLevel:0
+                     destinationOrigin:MTLOriginMake(0, 0, 0)];
+                m_historyWriteIndex =
+                    (m_historyWriteIndex + 1) % (int)m_historyTexs.size();
+            }
+        }
+
+        [blit endEncoding];
+    }
+
     (void)frameNo;
 }
 

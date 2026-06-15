@@ -60,6 +60,8 @@ target_link_libraries(${APP_NAME} PRIVATE
     "-framework ScreenCaptureKit"
     "-framework CoreMedia"
     "-framework CoreVideo"
+    "-framework AppKit"
+    "-framework UniformTypeIdentifiers"
     "-framework Foundation"
     "-lobjc"
 )
