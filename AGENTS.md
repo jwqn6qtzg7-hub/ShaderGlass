@@ -16,7 +16,7 @@ cmake --build build --config Debug
 ## Dependencies
 
 - **System** (Homebrew): `glfw`, `molten-vk`, `vulkan-headers`, `vulkan-loader`
-- **Fetched** (CMake FetchContent): `glslang` (vulkan-sdk-1.4.309.0), `SPIRV-Cross` (vulkan-sdk-1.4.309.0), `imgui` (v1.91.6)
+- **Fetched** (CMake FetchContent): `glslang` (vulkan-sdk-1.4.309.0), `SPIRV-Cross` (vulkan-sdk-1.4.309.0), `imgui` (v1.91.6), `stb` (master)
 
 ## Project Structure
 
@@ -39,6 +39,8 @@ ShaderGlass/MacOS/   — macOS port source
   ├── ShaderChain.h/cpp     — Multi-pass pipeline (preprocess→passes→swapchain)
   ├── Capture.h/mm          — ScreenCaptureKit layer (PIMPL, BGRA8 frames)
   ├── UI.h/cpp              — Dear ImGui UI (GLFW+Vulkan backend)
+  ├── ImageIO.h/cpp         — Image load/save via stb_image (WIC replacement)
+  ├── Settings.h/cpp        — Cross-platform settings via JSON file (Registry replacement)
   ├── PreprocessShader.h    — GLSL preprocess shader for Vulkan
   └── PassthroughShader.h   — GLSL passthrough shader for testing
 ```
@@ -72,5 +74,5 @@ ShaderGlass/MacOS/   — macOS port source
 | D3D11 multi-pass chain | ShaderChain |
 | Win32 HWND/menus | GLFW + Dear ImGui |
 | Windows.Graphics.Capture | ScreenCaptureKit |
-| WIC image I/O | stb_image (TBD) |
-| Registry settings | NSUserDefaults (TBD) |
+| WIC image I/O | ImageIO (stb_image) |
+| Registry settings | Settings (JSON file) |
