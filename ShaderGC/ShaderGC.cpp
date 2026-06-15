@@ -13,6 +13,10 @@ GNU General Public License v3.0
 #include "HLSL.h"
 #include "SPIRV.h"
 
+#ifdef VULKAN_PORT
+#include "include/spirv_reflect.hpp"
+#endif
+
 #include "json.hpp"
 
 using namespace std;
