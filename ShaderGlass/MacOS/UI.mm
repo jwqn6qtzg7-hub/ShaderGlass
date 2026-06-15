@@ -4,9 +4,6 @@
 #import <Metal/Metal.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_metal.h"
@@ -125,32 +122,6 @@ void ShaderUI::setCaptureStarted(bool started)
     m_captureStarted = started;
 }
 
-bool ShaderUI::pollMenuBarHotkey(GLFWwindow* window)
-{
-    if(!window) return false;
-
-    const bool cmd     = (glfwGetKey(window, GLFW_KEY_LEFT_SUPER)    == GLFW_PRESS)
-                      || (glfwGetKey(window, GLFW_KEY_RIGHT_SUPER)   == GLFW_PRESS);
-    const bool shift   = (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)   == GLFW_PRESS)
-                      || (glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT)  == GLFW_PRESS);
-    const bool mDown   = glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS;
-    const bool chord   = cmd && shift && mDown;
-
-    // Edge-trigger: only toggle on the press transition, otherwise
-    // holding the chord would re-toggle every frame.
-    if(chord && !m_menuBarHotkeyLatched)
-    {
-        m_menuBarHotkeyLatched = true;
-        toggleMenuBar();
-        return true;
-    }
-    if(!chord)
-    {
-        m_menuBarHotkeyLatched = false;
-    }
-    return false;
-}
-
 const char* ShaderUI::selectedShaderPath() const
 {
     return m_selectedShaderPath.empty() ? nullptr : m_selectedShaderPath.c_str();
@@ -190,12 +161,6 @@ void ShaderUI::drawMainUI(MetalCore& mc)
         if(ImGui::BeginMenu("View"))
         {
             ImGui::MenuItem("Demo Window", nullptr, &m_showDemoWindow);
-            if(ImGui::MenuItem(m_menuBarVisible ? "Hide Menu Bar"
-                                                 : "Show Menu Bar",
-                               "Cmd+Shift+M"))
-            {
-                toggleMenuBar();
-            }
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -225,12 +190,6 @@ void ShaderUI::drawMainUI(MetalCore& mc)
         {
             ImGui::SameLine(ImGui::GetWindowWidth() - 130);
             ImGui::TextColored(ImVec4(1, 1, 0, 1), "Capturing...");
-        }
-        if(!m_menuBarVisible)
-        {
-            ImGui::SameLine(ImGui::GetWindowWidth() - 290);
-            ImGui::TextColored(ImVec4(0.7f, 0.7f, 0.7f, 1.0f),
-                               "Press Cmd+Shift+M to show menu bar");
         }
     }
     ImGui::End();

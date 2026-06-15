@@ -92,51 +92,11 @@ int main()
 
         std::cout << "[ShaderGlass] Rendering started (Metal)." << std::endl;
 
-        // Cache the default main menu on first frame so we can restore
-        // it after the user hides the menu bar. Without this, the
-        // standard "ShaderGlass > About/Quit/Window" menu would be
-        // gone forever after the first hide.
-        static __strong NSMenu* defaultMainMenu = nil;
-        static bool defaultCaptured = false;
-
         while(!glfwWindowShouldClose(window))
         {
             glfwPollEvents();
             if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
                 glfwSetWindowShouldClose(window, GLFW_TRUE);
-
-            // Poll for the menu-bar show/hide hotkey. The hotkey must
-            // work even when the menu bar itself is hidden, which is
-            // why we read it from GLFW directly rather than relying
-            // on the ImGui menu item.
-            ui.pollMenuBarHotkey(window);
-            static bool lastMenuBarVisible = true;
-            bool nowVisible = ui.menuBarVisible();
-            if(nowVisible != lastMenuBarVisible)
-            {
-                lastMenuBarVisible = nowVisible;
-                NSMenu* current = [NSApp mainMenu];
-                if(!defaultCaptured && current != nil)
-                {
-                    defaultMainMenu = current;
-                    defaultCaptured = true;
-                }
-                if(nowVisible)
-                {
-                    if(defaultMainMenu != nil)
-                    {
-                        [NSApp setMainMenu:defaultMainMenu];
-                    }
-                }
-                else
-                {
-                    // Replace the main menu with an empty one. We
-                    // don't mutate the cached one in place because
-                    // that would lose the default app/Window items.
-                    NSMenu* empty = [[NSMenu alloc] init];
-                    [NSApp setMainMenu:empty];
-                }
-            }
 
             mc.beginFrame();
 
