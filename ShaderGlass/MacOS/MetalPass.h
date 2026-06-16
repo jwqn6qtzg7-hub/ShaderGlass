@@ -19,7 +19,13 @@ union float4x4 {
 class MetalPass
 {
 public:
-    MetalPass(MetalCore& mc, ShaderDef& shaderDef, bool preprocess);
+    // floatBuffer selects MTLPixelFormatRGBA16Float for the pipeline
+    // state's color attachment 0 (vs. MTLPixelFormatBGRA8Unorm). Set
+    // true when the destination texture is a 16-bit float framebuffer
+    // (RetroArch `float_framebuffer=true`). The pipeline's pixel
+    // format MUST match the destination texture's pixel format.
+    MetalPass(MetalCore& mc, ShaderDef& shaderDef, bool preprocess,
+              bool floatBuffer = false);
     ~MetalPass();
 
     // Source texture/sampler is bound to the sampler named "Source" (or
@@ -72,9 +78,14 @@ public:
     // Global filter override. When set, the source sampler ignores
     // the per-pass filter_linear PresetParam and uses linear
     // filtering. false (the default) preserves the per-pass
-    // behavior the shader author requested.
-    void setForceLinear(bool force) { m_forceLinear = force; }
+    // behavior the shader author requested. Triggers a rebuild of
+    // the source sampler (m_device must be set via setDevice()).
+    void setForceLinear(bool force);
     bool forceLinear() const       { return m_forceLinear; }
+
+    // The chain calls this right after construction so the pass can
+    // later rebuild its source sampler when setForceLinear is called.
+    void setDevice(MetalCore* mc) { m_device = mc; }
 
 private:
     void compileShaders(MetalCore& mc);
@@ -87,6 +98,7 @@ private:
 
     ShaderDef m_shaderDef;
     bool m_preprocess;
+    bool m_floatBuffer;
 
     std::vector<uint8_t> m_uboData;
     std::vector<uint8_t> m_pushData;
@@ -95,6 +107,7 @@ private:
     void* m_constBuf {nullptr};
     void* m_pushBuf {nullptr};
     void* m_vertBuf {nullptr};
+    MetalCore* m_device {nullptr};
 
     // Sampler used for this pass's "Source" slot. Owned by the pass;
     // rebuilt from PresetParams when buildSourceSampler() is called.

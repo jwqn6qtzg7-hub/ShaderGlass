@@ -69,6 +69,11 @@ private:
         float       scaleX = 1.0f;
         float       scaleY = 1.0f;
         int         frameCountMod = 0;
+        // float_framebuffer: pass writes to / reads from a 16-bit float
+        // framebuffer. When true, the destination texture for this pass
+        // is allocated as RGBA16F and the pipeline state's color
+        // attachment pixel format must match.
+        bool        floatFrameBuffer = false;
     };
 
     void destroyPasses(MetalCore& mc);
@@ -104,6 +109,7 @@ private:
     std::map<std::string, TextureSamplerSettings> m_texSettings;
 
     std::unique_ptr<MetalPass> m_preprocessPass;
+    std::unique_ptr<MetalPass> m_blitPass;     // drawable blit, always BGRA8
     MetalTexture               m_preprocessTex;
     MetalTexture               m_finalTex;  // post-scale target
 

@@ -106,9 +106,12 @@ std::string MetalPass::presetParam(const char* key) const
     return it->second;
 }
 
-MetalPass::MetalPass(MetalCore& mc, ShaderDef& shaderDef, bool preprocess)
+MetalPass::MetalPass(MetalCore& mc, ShaderDef& shaderDef, bool preprocess,
+                     bool floatBuffer)
     : m_shaderDef(shaderDef)
     , m_preprocess(preprocess)
+    , m_floatBuffer(floatBuffer)
+    , m_device(&mc)
 {
     size_t cs = m_shaderDef.ParamsSize(0), ps = m_shaderDef.ParamsSize(-1);
     m_hasConst = (cs > 0); m_hasPush = (ps > 0);
@@ -141,6 +144,16 @@ MetalPass::~MetalPass()
     releaseMetalObject(m_pushBuf);
     releaseMetalObject(m_vertBuf);
     releaseMetalObject(m_sourceSampler);
+}
+
+void MetalPass::setForceLinear(bool force)
+{
+    if(m_forceLinear == force) return;
+    m_forceLinear = force;
+    // The source sampler is built once in the constructor. Rebuild it
+    // here so the new filter setting actually takes effect.
+    if(m_device)
+        buildSourceSampler(*m_device);
 }
 
 void MetalPass::buildSourceSampler(MetalCore& mc)
@@ -305,7 +318,9 @@ void MetalPass::compileShaders(MetalCore& mc)
     MTLRenderPipelineDescriptor* pd = [MTLRenderPipelineDescriptor new];
     pd.vertexFunction   = vFunc;
     pd.fragmentFunction = fFunc;
-    pd.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;
+    pd.colorAttachments[0].pixelFormat = m_floatBuffer
+        ? MTLPixelFormatRGBA16Float
+        : MTLPixelFormatBGRA8Unorm;
     pd.colorAttachments[0].blendingEnabled = NO;
 
     MTLVertexDescriptor* vd = [MTLVertexDescriptor vertexDescriptor];

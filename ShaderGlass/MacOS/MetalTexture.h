@@ -20,6 +20,7 @@ struct TextureSamplerSettings
     bool mirror   = false;   // true -> MTLSamplerAddressModeMirrorRepeat
     bool clamp    = false;   // true -> MTLSamplerAddressModeClampToEdge
     bool mipmap   = false;   // true -> allocate mipmapped texture & enable mip filter
+    bool float_buffer = false; // true -> allocate as MTLPixelFormatRGBA16Float
 
     // Parse preset key/values (e.g. "linear", "wrap_mode", "mipmap").
     // Recognized: linear=true/false; wrap_mode=repeat|mirrored_repeat|clamp_to_edge|clamp|clamp_to_border;
@@ -62,12 +63,14 @@ public:
     uint32_t width()   const { return m_width; }
     uint32_t height()  const { return m_height; }
     bool     isMipmapped() const { return m_mipmapped; }
+    bool     isFloat() const    { return m_floatBuffer; }
     bool     isValid() const { return m_texture != nullptr; }
 
 private:
     uint32_t m_width  {0};
     uint32_t m_height {0};
-    bool     m_mipmapped {false};
+    bool     m_mipmapped   {false};
+    bool     m_floatBuffer {false};
 
     void* m_texture {nullptr};
     void* m_sampler {nullptr};

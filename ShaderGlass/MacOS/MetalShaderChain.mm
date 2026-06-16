@@ -87,6 +87,14 @@ MetalShaderChain::PassMeta MetalShaderChain::buildPassMeta(const ShaderDef& sd)
         catch(...) { m.frameCountMod = 0; }
     }
 
+    // float_framebuffer selects a 16-bit float (RGBA16F) destination
+    // texture + matching pipeline pixel format. When the chain's
+    // intermediates hold HDR (bloom, scanline glow, etc.) we need
+    // precision beyond 0..1 BGRA8 unorm to avoid saturating the
+    // downstream passes to white/yellow.
+    auto fbf = passPresetParam(sd, "float_framebuffer");
+    m.floatFrameBuffer = (fbf == "true" || fbf == "1");
+
     return m;
 }
 
@@ -160,11 +168,22 @@ void MetalShaderChain::rebuild(MetalCore& mc)
     m_passMeta.clear();
 
     PreprocessShaderDef preDef;
-    m_preprocessPass = std::make_unique<MetalPass>(mc, preDef, true);
-    // The preprocess pass doubles as the final blit (sampling the
-    // post-scale m_finalTex onto the drawable). Always force linear
+    // The preprocess pass (chain's preprocess step) writes to
+    // m_preprocessTex. If pass 0 has float_framebuffer=true, the
+    // destination is RGBA16F and the pipeline must match.
+    bool preDestFloat = !m_passMeta.empty()
+        ? m_passMeta.front().floatFrameBuffer
+        : false;
+    m_preprocessPass = std::make_unique<MetalPass>(mc, preDef, true, preDestFloat);
+
+    // The blit pass (chain's final blit / bypass) always writes to the
+    // drawable, which is BGRA8. Keep it as a separate pass so the
+    // pipeline pixel format doesn't depend on the float flag of pass 0.
+    m_blitPass = std::make_unique<MetalPass>(mc, preDef, true, false);
+    // The blit pass samples the post-scale m_finalTex (which can be
+    // float) and writes to the drawable (BGRA8). Force linear
     // filtering so the upscale looks smooth.
-    m_preprocessPass->setForceLinear(true);
+    m_blitPass->setForceLinear(true);
 
     m_passes.clear();
     m_passMeta.clear();
@@ -172,12 +191,20 @@ void MetalShaderChain::rebuild(MetalCore& mc)
     {
         for(auto& sd : m_preset->ShaderDefs)
         {
+            // Build the per-pass metadata first so we can plumb the
+            // float-framebuffer flag into the MetalPass constructor
+            // (the pipeline's pixel format must match the destination
+            // texture's pixel format, so this is decided at pipeline
+            // build time, not at render time).
+            PassMeta meta = buildPassMeta(sd);
+
             // MetalPass copies its ShaderDef internally; the defs live
             // in the PresetDef (which is owned by the app and outlives
             // us), so passing a reference is safe.
-            auto pass = std::make_unique<MetalPass>(mc, sd, false);
+            auto pass = std::make_unique<MetalPass>(mc, sd, false,
+                                                   meta.floatFrameBuffer);
             m_passes.push_back(std::move(pass));
-            m_passMeta.push_back(buildPassMeta(sd));
+            m_passMeta.push_back(std::move(meta));
         }
 
         // Apply the global filter override to all user passes.
@@ -189,10 +216,7 @@ void MetalShaderChain::rebuild(MetalCore& mc)
         {
             for(const auto& kv : sd.PresetParams)
             {
-                if(kv.first == "float_framebuffer" && (kv.second == "true" || kv.second == "1"))
-                    logUnsupportedOnce("float_framebuffer",
-                        "float_framebuffer is not supported; using BGRA8 intermediate textures");
-                else if(kv.first == "srgb_framebuffer" && (kv.second == "true" || kv.second == "1"))
+                if(kv.first == "srgb_framebuffer" && (kv.second == "true" || kv.second == "1"))
                     logUnsupportedOnce("srgb_framebuffer",
                         "srgb_framebuffer is not supported; intermediate textures are sRGB-unorm");
             }
@@ -207,6 +231,7 @@ void MetalShaderChain::destroyPasses(MetalCore& mc)
 {
     (void)mc;
     m_preprocessPass.reset();
+    m_blitPass.reset();
     m_passes.clear();
     m_passMeta.clear();
 
@@ -411,7 +436,16 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
     }
 
     destroyTargets(mc);
-    m_preprocessTex.create(mc, (uint32_t)m_originalW, (uint32_t)m_originalH, true);
+    // m_preprocessTex holds the captured frame as the input to pass 0.
+    // If pass 0 has float_framebuffer=true we must store it as float
+    // so pass 0 reads HDR values from its source.
+    {
+        TextureSamplerSettings s;
+        if(!m_passMeta.empty() && m_passMeta.front().floatFrameBuffer)
+            s.float_buffer = true;
+        m_preprocessTex.create(mc, (uint32_t)m_originalW, (uint32_t)m_originalH,
+                               true, s);
+    }
     m_resources["Original"] = m_preprocessTex.texture();
     m_samplers["Original"]  = m_preprocessTex.sampler();
     // OriginalHistory0 is an alias of Original (per plan).
@@ -420,13 +454,19 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
 
     // Final target for the chain's last pass: sized by the global
     // scale multiplier. The chain's blit step copies m_finalTex
-    // onto the drawable with linear filtering.
+    // onto the drawable with linear filtering. If the last pass has
+    // float_framebuffer=true the destination is RGBA16F; the blit
+    // pass (always BGRA8) can still read from it — Metal's color
+    // attachment output clamps/quantizes to BGRA8 automatically.
     {
         uint32_t finalW = std::max(1u, (uint32_t)std::lroundf(
             (float)m_viewportW * m_scale));
         uint32_t finalH = std::max(1u, (uint32_t)std::lroundf(
             (float)m_viewportH * m_scale));
-        m_finalTex.create(mc, finalW, finalH, true);
+        TextureSamplerSettings s;
+        if(!m_passMeta.empty() && m_passMeta.back().floatFrameBuffer)
+            s.float_buffer = true;
+        m_finalTex.create(mc, finalW, finalH, true, s);
     }
 
     for(auto& t : m_passTexs) t.destroy();
@@ -445,8 +485,20 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
 
         if(!isLast)
         {
+            // m_passTexs[p] is the destination of pass p and the
+            // source of pass p+1. Format must match the writer (pass
+            // p); the reader (pass p+1) is fine sampling from float
+            // or unorm.
+            TextureSamplerSettings s;
+            if(meta.floatFrameBuffer)
+                s.float_buffer = true;
+            // mipmap_input on the consumer (pass p+1) requires
+            // mipmaps on this intermediate. Generating them after
+            // each render is deferred to a follow-up patch; for now
+            // the chain leaves intermediate textures non-mipmapped.
+
             MetalTexture tex;
-            tex.create(mc, dstW, dstH, true);
+            tex.create(mc, dstW, dstH, true, s);
             m_passTexs.push_back(std::move(tex));
 
             std::string name = "PassOutput" + std::to_string(p);
@@ -461,8 +513,13 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
 
         if(m_requiresFeedback)
         {
+            // Feedback texture must match the pass output's format
+            // (blit copies require source/dest pixel format match).
+            TextureSamplerSettings s;
+            if(meta.floatFrameBuffer)
+                s.float_buffer = true;
             MetalTexture fb;
-            fb.create(mc, dstW, dstH, false);
+            fb.create(mc, dstW, dstH, false, s);
             m_feedbackTexs.push_back(std::move(fb));
 
             std::string fbName = "PassFeedback" + std::to_string(p);
@@ -603,19 +660,21 @@ void MetalShaderChain::process(MetalCore& mc,
     }
 
     // Blit m_finalTex onto the drawable with linear filtering. We
-    // reuse the preprocess MetalPass (which is a passthrough) for
-    // this — it always has setForceLinear(true) so the upscale
-    // looks smooth. When scale == 1.0 the two textures are the
-    // same size and the blit is effectively a 1:1 copy.
-    if(m_finalTex.isValid() && m_preprocessPass)
+    // use the dedicated blit pass (always BGRA8) for this so the
+    // pipeline's pixel format matches the drawable regardless of
+    // whether pass 0 is float. m_blitPass is a passthrough with
+    // setForceLinear(true) so the upscale looks smooth. When
+    // scale == 1.0 the two textures are the same size and the blit
+    // is effectively a 1:1 copy.
+    if(m_finalTex.isValid() && m_blitPass)
     {
         MTLRenderPassDescriptor* blitDesc = [MTLRenderPassDescriptor renderPassDescriptor];
         blitDesc.colorAttachments[0].texture     = mc.drawableTexture;
         blitDesc.colorAttachments[0].loadAction  = MTLLoadActionLoad;
         blitDesc.colorAttachments[0].storeAction = MTLStoreActionStore;
 
-        m_preprocessPass->render(mc,
-            m_finalTex.texture(), m_preprocessPass->sourceSampler(),
+        m_blitPass->render(mc,
+            m_finalTex.texture(), m_blitPass->sourceSampler(),
             std::map<std::string, void*>{},
             std::map<std::string, void*>{},
             logicalFrameNo, 0, 0,
@@ -709,7 +768,7 @@ void MetalShaderChain::renderCaptureToDrawable(MetalCore& mc,
 {
     if(m_rebuildNeeded)
         rebuild(mc);
-    if(!m_preprocessPass || mc.drawableWidth == 0 || mc.drawableHeight == 0)
+    if(!m_blitPass || mc.drawableWidth == 0 || mc.drawableHeight == 0)
         return;
 
     MTLRenderPassDescriptor* blitDesc = [MTLRenderPassDescriptor renderPassDescriptor];
@@ -718,7 +777,7 @@ void MetalShaderChain::renderCaptureToDrawable(MetalCore& mc,
     blitDesc.colorAttachments[0].clearColor  = MTLClearColorMake(0, 0, 0, 1);
     blitDesc.colorAttachments[0].storeAction = MTLStoreActionStore;
 
-    m_preprocessPass->render(mc,
+    m_blitPass->render(mc,
         inputTexture, inputSampler,
         std::map<std::string, void*>{},
         std::map<std::string, void*>{},

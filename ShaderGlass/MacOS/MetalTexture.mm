@@ -58,17 +58,19 @@ MetalTexture::~MetalTexture()
 
 MetalTexture::MetalTexture(MetalTexture&& other) noexcept
 {
-    m_width     = other.m_width;
-    m_height    = other.m_height;
-    m_mipmapped = other.m_mipmapped;
-    m_texture   = other.m_texture;
-    m_sampler   = other.m_sampler;
+    m_width       = other.m_width;
+    m_height      = other.m_height;
+    m_mipmapped   = other.m_mipmapped;
+    m_floatBuffer = other.m_floatBuffer;
+    m_texture     = other.m_texture;
+    m_sampler     = other.m_sampler;
 
-    other.m_width     = 0;
-    other.m_height    = 0;
-    other.m_mipmapped = false;
-    other.m_texture   = nullptr;
-    other.m_sampler   = nullptr;
+    other.m_width       = 0;
+    other.m_height      = 0;
+    other.m_mipmapped   = false;
+    other.m_floatBuffer = false;
+    other.m_texture     = nullptr;
+    other.m_sampler     = nullptr;
 }
 
 MetalTexture& MetalTexture::operator=(MetalTexture&& other) noexcept
@@ -78,17 +80,19 @@ MetalTexture& MetalTexture::operator=(MetalTexture&& other) noexcept
 
     destroy();
 
-    m_width     = other.m_width;
-    m_height    = other.m_height;
-    m_mipmapped = other.m_mipmapped;
-    m_texture   = other.m_texture;
-    m_sampler   = other.m_sampler;
+    m_width       = other.m_width;
+    m_height      = other.m_height;
+    m_mipmapped   = other.m_mipmapped;
+    m_floatBuffer = other.m_floatBuffer;
+    m_texture     = other.m_texture;
+    m_sampler     = other.m_sampler;
 
-    other.m_width     = 0;
-    other.m_height    = 0;
-    other.m_mipmapped = false;
-    other.m_texture   = nullptr;
-    other.m_sampler   = nullptr;
+    other.m_width       = 0;
+    other.m_height      = 0;
+    other.m_mipmapped   = false;
+    other.m_floatBuffer = false;
+    other.m_texture     = nullptr;
+    other.m_sampler     = nullptr;
 
     return *this;
 }
@@ -105,9 +109,10 @@ void MetalTexture::create(MetalCore& mc, uint32_t width, uint32_t height,
 {
     destroy();
 
-    m_width     = width;
-    m_height    = height;
-    m_mipmapped = settings.mipmap;
+    m_width       = width;
+    m_height      = height;
+    m_mipmapped   = settings.mipmap;
+    m_floatBuffer = settings.float_buffer;
 
     if(width == 0 || height == 0)
     {
@@ -118,8 +123,12 @@ void MetalTexture::create(MetalCore& mc, uint32_t width, uint32_t height,
 
     id<MTLDevice> device = mc.device;
 
+    MTLPixelFormat pixelFormat = settings.float_buffer
+        ? MTLPixelFormatRGBA16Float
+        : MTLPixelFormatBGRA8Unorm;
+
     MTLTextureDescriptor* desc = [MTLTextureDescriptor
-        texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm
+        texture2DDescriptorWithPixelFormat:pixelFormat
         width:width height:height mipmapped:settings.mipmap ? YES : NO];
 
     desc.usage = MTLTextureUsageShaderRead;
@@ -198,7 +207,8 @@ void MetalTexture::upload(MetalCore& mc, const uint8_t* data, uint32_t width,
 void MetalTexture::resize(MetalCore& mc, uint32_t width, uint32_t height)
 {
     TextureSamplerSettings settings;
-    settings.mipmap = m_mipmapped;
+    settings.mipmap      = m_mipmapped;
+    settings.float_buffer = m_floatBuffer;
     create(mc, width, height, true, settings);
 }
 
@@ -206,7 +216,8 @@ void MetalTexture::destroy()
 {
     releaseMetalObject(m_texture);
     releaseMetalObject(m_sampler);
-    m_width     = 0;
-    m_height    = 0;
-    m_mipmapped = false;
+    m_width       = 0;
+    m_height      = 0;
+    m_mipmapped   = false;
+    m_floatBuffer = false;
 }
