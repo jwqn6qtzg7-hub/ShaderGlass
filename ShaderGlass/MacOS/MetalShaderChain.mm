@@ -95,6 +95,11 @@ MetalShaderChain::PassMeta MetalShaderChain::buildPassMeta(const ShaderDef& sd)
     auto fbf = passPresetParam(sd, "float_framebuffer");
     m.floatFrameBuffer = (fbf == "true" || fbf == "1");
 
+    // mipmap_input means this pass samples its Source with mipmap
+    // filtering, so the producer texture must have mipmaps.
+    auto mmi = passPresetParam(sd, "mipmap_input");
+    m.mipmapInput = (mmi == "true" || mmi == "1");
+
     return m;
 }
 
@@ -438,11 +443,14 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
     destroyTargets(mc);
     // m_preprocessTex holds the captured frame as the input to pass 0.
     // If pass 0 has float_framebuffer=true we must store it as float
-    // so pass 0 reads HDR values from its source.
+    // so pass 0 reads HDR values from its source. If pass 0 has
+    // mipmap_input=true the texture also needs mipmaps.
     {
         TextureSamplerSettings s;
         if(!m_passMeta.empty() && m_passMeta.front().floatFrameBuffer)
             s.float_buffer = true;
+        if(!m_passMeta.empty() && m_passMeta.front().mipmapInput)
+            s.mipmap = true;
         m_preprocessTex.create(mc, (uint32_t)m_originalW, (uint32_t)m_originalH,
                                true, s);
     }
@@ -488,14 +496,14 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
             // m_passTexs[p] is the destination of pass p and the
             // source of pass p+1. Format must match the writer (pass
             // p); the reader (pass p+1) is fine sampling from float
-            // or unorm.
+            // or unorm. mipmap_input on the consumer (pass p+1)
+            // requires mipmaps on this intermediate; we generate them
+            // after pass p renders in process().
             TextureSamplerSettings s;
             if(meta.floatFrameBuffer)
                 s.float_buffer = true;
-            // mipmap_input on the consumer (pass p+1) requires
-            // mipmaps on this intermediate. Generating them after
-            // each render is deferred to a follow-up patch; for now
-            // the chain leaves intermediate textures non-mipmapped.
+            if(p + 1 < numPasses && m_passMeta[p + 1].mipmapInput)
+                s.mipmap = true;
 
             MetalTexture tex;
             tex.create(mc, dstW, dstH, true, s);
@@ -654,6 +662,11 @@ void MetalShaderChain::process(MetalCore& mc,
 
         if(!isLast)
         {
+            // If the next pass samples this output with mipmaps,
+            // regenerate them now while the level-0 render is fresh.
+            if(m_passTexs[p].isMipmapped())
+                m_passTexs[p].generateMipmaps(mc);
+
             curSrcTex  = m_passTexs[p].texture();
             curSrcSamp = m_passTexs[p].sampler();
         }

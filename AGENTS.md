@@ -106,14 +106,16 @@ ShaderGlass/MacOS/   — macOS port source
 - If experimenting with manual app signing in `build-metal`, delete the generated `ShaderGlass.app` bundle before retesting. Stale `_CodeSignature` artifacts in the build output can make LaunchServices behavior misleading.
 - `MetalCore.mm` is non-ARC and uses `__bridge_retained` / `__bridge_transfer` for `void*` storage of Metal resources; the SCK/CAMetalLayer objects (`currentDrawable`, `currentCommandBuffer`) are autoreleased and must be explicitly `retain`ed in `beginFrame()` and `release`d in `endFrame()`. Without explicit retention, the `@autoreleasepool` block in `beginFrame()` drains and the pointers become dangling references. **Files that use the `__bridge_retained` storage pattern must stay non-ARC**; converting them to ARC causes double-release crashes. `main.mm`, `UI.mm`, and `Capture.mm` use ARC; `MetalCore.mm`, `MetalPass.mm`, `MetalTexture.mm`, and `MetalShaderChain.mm` do not. See `CMakeLists.txt` for the exact split.
 - The glass-overlay mode requires SCK capture to exclude the host window AND for `main.mm` to crop the captured frame to the window's screen rect. Both mitigations are necessary: the exclude prevents the chain from seeing its own output at the SCK level, and the crop is defense-in-depth. See `SKILL.md` §4.
+- `float_framebuffer=true` is supported: the chain allocates RGBA16F intermediate textures and builds matching RGBA16F pipeline states for those passes. This fixes the yellow/white saturation that previously happened on HDR-heavy presets (Mega Bezel POTATO, NTSC composite, etc.) when they were forced onto BGRA8.
+- `mipmap_input=true` is supported: the producer texture for that pass is allocated with mipmaps and `generateMipmaps` is called after each render so the consumer can sample lower LODs correctly.
 
 ### Chain Rendering Pipeline
 
 The chain renders one frame in this order (`MetalShaderChain::process`):
 
-1. **Preprocess pass** — samples `captureTex` (the cropped BGRA capture) into `m_preprocessTex` at the chain's `m_originalW × m_originalH` resolution. This pass is reused for the blit at the end with `setForceLinear(true)` so the upscale is smooth.
-2. **User passes** — render per-pass into `m_passTexs[p]` (intermediate) or, for the last pass, into `m_finalTex` (post-scale target). Per-pass metadata is parsed from `ShaderDef::PresetParams` (alias, scale_type_*, scale_*, filter_linear, wrap_mode, mipmap_input, framecount_mod).
-3. **Blit** — `m_finalTex` is bilinearly upscaled onto the drawable by reusing the preprocess pass. When `m_scale == 1.0` the blit is effectively a 1:1 copy.
+1. **Preprocess pass** — samples `captureTex` (the cropped BGRA capture) into `m_preprocessTex` at the chain's `m_originalW × m_originalH` resolution. `m_preprocessTex` is RGBA16F when pass 0 has `float_framebuffer=true`.
+2. **User passes** — render per-pass into `m_passTexs[p]` (intermediate) or, for the last pass, into `m_finalTex` (post-scale target). Per-pass metadata is parsed from `ShaderDef::PresetParams` (alias, scale_type_*, scale_*, filter_linear, wrap_mode, mipmap_input, framecount_mod). Pass outputs are RGBA16F when the pass has `float_framebuffer=true`, and mipmapped when the next pass has `mipmap_input=true`.
+3. **Blit** — `m_finalTex` is bilinearly upscaled onto the drawable by a dedicated `m_blitPass` (always BGRA8). When `m_scale == 1.0` the blit is effectively a 1:1 copy.
 4. **Feedback / history** — a blit encoder copies current pass outputs into `m_feedbackTexs[p]` (named `PassFeedbackN` / `<alias>Feedback`) and the preprocessed capture into the history ring (`OriginalHistory1` is most recent).
 
 Chain state that can be changed at runtime:

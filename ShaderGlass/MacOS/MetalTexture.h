@@ -53,6 +53,12 @@ public:
     void upload(MetalCore& mc, const uint8_t* data, uint32_t width,
                 uint32_t height, uint32_t bytesPerRow);
 
+    // Generate mipmaps for a mipmapped render-target texture. Call
+    // after rendering to level 0 so the lower levels are valid for
+    // mipmap_input sampling by the next pass. No-op if the texture
+    // is not mipmapped or has no valid command buffer.
+    void generateMipmaps(MetalCore& mc);
+
     // Recreate the texture at the new size, keeping the current settings.
     void resize(MetalCore& mc, uint32_t width, uint32_t height);
     void destroy();

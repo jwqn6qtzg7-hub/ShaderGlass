@@ -187,19 +187,25 @@ void MetalTexture::upload(MetalCore& mc, const uint8_t* data, uint32_t width,
              withBytes:data bytesPerRow:bytesPerRow];
 
     if(m_mipmapped)
+        generateMipmaps(mc);
+}
+
+void MetalTexture::generateMipmaps(MetalCore& mc)
+{
+    if(!m_mipmapped || !m_texture) return;
+
+    // Best-effort mip generation; ignores failures (driver-side
+    // generation requires BLITLOAEnabled and macOS 10.15+).
+    id<MTLTexture> tex = (__bridge id<MTLTexture>)m_texture;
+    id<MTLBlitCommandEncoder> blit = nil;
+    id<MTLCommandBuffer> buf = mc.currentCommandBuffer;
+    if(buf)
     {
-        // Best-effort mip generation; ignores failures (driver-side
-        // generation requires BLITLOAEnabled and macOS 10.15+).
-        id<MTLBlitCommandEncoder> blit = nil;
-        id<MTLCommandBuffer> buf = mc.currentCommandBuffer;
-        if(buf)
+        blit = [buf blitCommandEncoder];
+        if(blit)
         {
-            blit = [buf blitCommandEncoder];
-            if(blit)
-            {
-                [blit generateMipmapsForTexture:tex];
-                [blit endEncoding];
-            }
+            [blit generateMipmapsForTexture:tex];
+            [blit endEncoding];
         }
     }
 }

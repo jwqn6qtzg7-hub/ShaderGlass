@@ -74,6 +74,10 @@ private:
         // is allocated as RGBA16F and the pipeline state's color
         // attachment pixel format must match.
         bool        floatFrameBuffer = false;
+        // mipmap_input: pass samples its Source with mipmap filtering.
+        // The chain allocates the producer's output texture with
+        // mipmaps and regenerates them after each render.
+        bool        mipmapInput = false;
     };
 
     void destroyPasses(MetalCore& mc);
