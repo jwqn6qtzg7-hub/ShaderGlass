@@ -309,7 +309,7 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                 // Scale: chain output multiplier. The chain's last
                 // pass renders to m_finalTex at viewportW * scale,
                 // then blits to the drawable with linear filtering.
-                ImGui::SliderFloat("Scale", &m_scale, 0.0f, 2.0f, "%.2f");
+                ImGui::SliderFloat("Scale", &m_scale, 0.0f, 4.0f, "%.2f");
 
                 // Filter: 0 = nearest, 1 = linear. Bicubic was
                 // misleading because Metal has no hardware bicubic
