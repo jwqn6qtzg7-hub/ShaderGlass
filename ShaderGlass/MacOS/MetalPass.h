@@ -45,6 +45,7 @@ public:
     void updateMVP(float sx, float sy, float tx, float ty);
     void setParam(const std::string& name, const void* v);
     void fillParams(int buffer, void* data);
+    void syncParams();
     size_t bufferSize(int buffer) { return (size_t)m_shaderDef.ParamsSize(buffer); }
 
     // True if the pass references any feedback texture: PassFeedbackN

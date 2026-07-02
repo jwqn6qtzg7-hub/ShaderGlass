@@ -4,8 +4,10 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 struct GLFWwindow;
+struct ShaderParam;
 
 class ShaderUI
 {
@@ -81,6 +83,10 @@ public:
 
     void drawMainUI(MetalCore& mc);
 
+    // Called each frame by main.mm to pass live shader parameters
+    // for rendering sliders in the Parameters panel.
+    void setShaderParams(const std::vector<ShaderParam*>& params);
+
 private:
     std::string m_selectedShaderPath;
     std::string m_pendingShaderPath;
@@ -96,4 +102,5 @@ private:
     int         m_filterMode {1}; // default to Linear
     bool        m_rawCaptureBypass {false};
     bool        m_overlayLocked {true};
+    std::vector<ShaderParam*> m_shaderParams;
 };

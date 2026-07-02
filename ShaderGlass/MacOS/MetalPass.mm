@@ -517,6 +517,18 @@ void MetalPass::fillParams(int buffer, void* data)
     if(!src.empty()) memcpy(data, src.data(), src.size());
 }
 
+void MetalPass::syncParams()
+{
+    for(auto& p : m_shaderDef.Params)
+    {
+        if(p.size != 4) continue;
+        uint8_t* buf = (p.buffer == -1) ? m_pushData.data() : m_uboData.data();
+        size_t   sz  = (p.buffer == -1) ? m_pushData.size() : m_uboData.size();
+        if(buf && (size_t)(p.offset + p.size) <= sz)
+            memcpy(buf + p.offset, &p.currentValue, p.size);
+    }
+}
+
 bool MetalPass::requiresFeedback() const
 {
     for(auto& s : m_shaderDef.Samplers)

@@ -586,6 +586,7 @@ void MetalShaderChain::process(MetalCore& mc,
     rpDesc.colorAttachments[0].clearColor  = MTLClearColorMake(0, 0, 0, 1);
     rpDesc.colorAttachments[0].storeAction = MTLStoreActionStore;
 
+    m_preprocessPass->syncParams();
     m_preprocessPass->render(mc, inputTexture, m_preprocessPass->sourceSampler(),
                               m_resources, m_samplers,
                               logicalFrameNo, 0, 0,
@@ -654,6 +655,7 @@ void MetalShaderChain::process(MetalCore& mc,
             }
         }
 
+        m_passes[p]->syncParams();
         m_passes[p]->render(mc, curSrcTex, m_passes[p]->sourceSampler(),
                             resources, samplers,
                             logicalFrameNo, 0, 0, dstW, dstH,

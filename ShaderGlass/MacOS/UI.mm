@@ -1,6 +1,7 @@
 #include "UI.h"
 
 #include "Settings.h"
+#include "ShaderDef.h"
 
 #import <AppKit/AppKit.h>
 #import <Metal/Metal.h>
@@ -306,15 +307,32 @@ void ShaderUI::drawMainUI(MetalCore& mc)
 
             if(ImGui::CollapsingHeader("Parameters"))
             {
-                // Scale: chain output multiplier. The chain's last
-                // pass renders to m_finalTex at viewportW * scale,
-                // then blits to the drawable with linear filtering.
                 ImGui::SliderFloat("Scale", &m_scale, 0.0f, 4.0f, "%.2f");
 
-                // Filter: 0 = nearest, 1 = linear. Bicubic was
-                // misleading because Metal has no hardware bicubic
-                // sampler; we offer only what's actually available.
                 ImGui::Combo("Filter", &m_filterMode, "Nearest\0Linear\0");
+
+                if(!m_shaderParams.empty())
+                {
+                    ImGui::Separator();
+                    for(auto* p : m_shaderParams)
+                    {
+                        // Filter: float params with a non-degenerate
+                        // range, excluding the system FrameCount param
+                        // that is auto-filled every frame.
+                        if(p->size != 4) continue;
+                        if(p->name == "FrameCount") continue;
+                        if(p->maxValue <= p->minValue) continue;
+
+                        const char* label = p->description.empty()
+                            ? p->name.c_str() : p->description.c_str();
+                        float speed = (p->stepValue > 0.0f)
+                            ? p->stepValue
+                            : (p->maxValue - p->minValue) / 100.0f;
+                        ImGui::DragFloat(p->name.c_str(), &p->currentValue,
+                                         speed, p->minValue, p->maxValue,
+                                         "%.4f");
+                    }
+                }
             }
 
             ImGui::Separator();
@@ -398,3 +416,8 @@ void ShaderUI::drawMainUI(MetalCore& mc)
         }
     }
 }
+
+void ShaderUI::setShaderParams(const std::vector<ShaderParam*>& params)
+    {
+        m_shaderParams = params;
+    }

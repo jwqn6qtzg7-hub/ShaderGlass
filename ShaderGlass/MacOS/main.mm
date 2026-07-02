@@ -171,6 +171,7 @@ int main()
             if(controlsMc.drawableWidth > 0 && controlsMc.drawableHeight > 0)
             {
                 ui.newFrame(controlsMc);
+                ui.setShaderParams(chain.params());
                 ui.drawMainUI(controlsMc);
 
                 // --- Shader loading (from UI) ---
