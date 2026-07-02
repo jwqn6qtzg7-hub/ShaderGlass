@@ -309,8 +309,10 @@ void MetalShaderChain::calculatePassSizes()
 {
     m_passSizes.clear();
 
-    m_originalW = m_captureW;
-    m_originalH = m_captureH;
+    m_originalW = (int)std::lroundf((float)m_captureW * m_scale);
+    m_originalH = (int)std::lroundf((float)m_captureH * m_scale);
+    m_originalW = std::max(1, m_originalW);
+    m_originalH = std::max(1, m_originalH);
 
     m_texSizes["Original"] = {(float)m_originalW, (float)m_originalH,
                                1.0f/m_originalW, 1.0f/m_originalH};
@@ -335,10 +337,10 @@ void MetalShaderChain::calculatePassSizes()
         {
             // Last pass: scale against viewport.
             const auto& meta = m_passMeta[p];
-            if(meta.scaleViewportX) dstW = (uint32_t)(m_viewportW * meta.scaleX);
+            if(meta.scaleViewportX) dstW = (uint32_t)(m_viewportW * meta.scaleX * m_scale);
             else if(meta.scaleAbsoluteX) dstW = (uint32_t)meta.scaleX;
             else dstW = (uint32_t)(srcW * meta.scaleX);
-            if(meta.scaleViewportY) dstH = (uint32_t)(m_viewportH * meta.scaleY);
+            if(meta.scaleViewportY) dstH = (uint32_t)(m_viewportH * meta.scaleY * m_scale);
             else if(meta.scaleAbsoluteY) dstH = (uint32_t)meta.scaleY;
             else dstH = (uint32_t)(srcH * meta.scaleY);
 
@@ -348,10 +350,10 @@ void MetalShaderChain::calculatePassSizes()
         else
         {
             const auto& meta = m_passMeta[p];
-            if(meta.scaleViewportX) dstW = (uint32_t)(m_viewportW * meta.scaleX);
+            if(meta.scaleViewportX) dstW = (uint32_t)(m_viewportW * meta.scaleX * m_scale);
             else if(meta.scaleAbsoluteX) dstW = (uint32_t)meta.scaleX;
             else dstW = (uint32_t)(srcW * meta.scaleX);
-            if(meta.scaleViewportY) dstH = (uint32_t)(m_viewportH * meta.scaleY);
+            if(meta.scaleViewportY) dstH = (uint32_t)(m_viewportH * meta.scaleY * m_scale);
             else if(meta.scaleAbsoluteY) dstH = (uint32_t)meta.scaleY;
             else dstH = (uint32_t)(srcH * meta.scaleY);
 
@@ -460,17 +462,14 @@ void MetalShaderChain::rebuildPasses(MetalCore& mc)
     m_resources["OriginalHistory0"] = m_preprocessTex.texture();
     m_samplers["OriginalHistory0"]  = m_preprocessTex.sampler();
 
-    // Final target for the chain's last pass: sized by the global
-    // scale multiplier. The chain's blit step copies m_finalTex
-    // onto the drawable with linear filtering. If the last pass has
-    // float_framebuffer=true the destination is RGBA16F; the blit
-    // pass (always BGRA8) can still read from it — Metal's color
-    // attachment output clamps/quantizes to BGRA8 automatically.
+    // Final target for the chain's last pass: sized from the pass
+    // calculation (which already incorporates m_scale via
+    // m_original* and viewport-relative scaling). If the last pass
+    // has float_framebuffer=true the destination is RGBA16F; the
+    // blit pass (always BGRA8) can still read from it.
     {
-        uint32_t finalW = std::max(1u, (uint32_t)std::lroundf(
-            (float)m_viewportW * m_scale));
-        uint32_t finalH = std::max(1u, (uint32_t)std::lroundf(
-            (float)m_viewportH * m_scale));
+        uint32_t finalW = m_passSizes.back()[2];
+        uint32_t finalH = m_passSizes.back()[3];
         TextureSamplerSettings s;
         if(!m_passMeta.empty() && m_passMeta.back().floatFrameBuffer)
             s.float_buffer = true;

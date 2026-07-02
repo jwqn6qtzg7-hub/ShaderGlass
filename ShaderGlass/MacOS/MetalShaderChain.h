@@ -28,12 +28,11 @@ public:
     void invalidate() { m_rebuildNeeded = true; }
     void updateMVP(float sx, float sy, float tx, float ty);
 
-    // Output scale multiplier. The chain's last user-defined pass
-    // renders to an offscreen texture sized
-    //     viewportW * scale x viewportH * scale
-    // which is then blitted (with linear filtering) onto the
-    // drawable. Values > 1.0 give a higher-resolution shader
-    // effect (clipped to the drawable); < 1.0 give a softer look.
+    // Output scale multiplier. The chain's internal resolution is
+    // multiplied by this factor: the preprocess pass upscales the
+    // capture, and all passes' source/viewport-relative dimensions
+    // are scaled accordingly. Values > 1.0 give higher-resolution
+    // shader effects (better CRT mask rendering); < 1.0 save perf.
     void  setScale(float s)               { m_scale = (s > 0.0f ? s : 1.0f); }
     float scale() const                   { return m_scale; }
 

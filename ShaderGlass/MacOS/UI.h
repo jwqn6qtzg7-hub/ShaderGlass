@@ -66,6 +66,12 @@ public:
     bool rawCaptureBypass() const        { return m_rawCaptureBypass; }
     void setRawCaptureBypass(bool b)    { m_rawCaptureBypass = b; }
 
+    // When true, the overlay window ignores mouse events so clicks
+    // pass through to the desktop. Uncheck to move or resize the
+    // overlay via its title bar, then re-check to lock it in place.
+    bool overlayLocked() const            { return m_overlayLocked; }
+    void setOverlayLocked(bool v)        { m_overlayLocked = v; }
+
     // The current "Filter" combobox value. 0 = nearest (per-pass
     // filter_linear wins), 1 = linear (force every pass's Source
     // sampler to linear). Read by the main loop to push to the
@@ -89,4 +95,5 @@ private:
     float       m_scale {1.0f};
     int         m_filterMode {1}; // default to Linear
     bool        m_rawCaptureBypass {false};
+    bool        m_overlayLocked {true};
 };

@@ -297,6 +297,11 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                     if(ImGui::Button("Stop Capture", ImVec2(-1, 0)))
                         m_captureStarted = false;
                 }
+                ImGui::Checkbox("Lock Overlay", &m_overlayLocked);
+                ImGui::TextWrapped(
+                    "When locked, clicks pass through the glass overlay "
+                    "to the desktop. Unlock to move or resize the overlay "
+                    "window via its title bar.");
             }
 
             if(ImGui::CollapsingHeader("Parameters"))
@@ -304,7 +309,7 @@ void ShaderUI::drawMainUI(MetalCore& mc)
                 // Scale: chain output multiplier. The chain's last
                 // pass renders to m_finalTex at viewportW * scale,
                 // then blits to the drawable with linear filtering.
-                ImGui::SliderFloat("Scale", &m_scale, 0.25f, 4.0f, "%.2f");
+                ImGui::SliderFloat("Scale", &m_scale, 0.0f, 2.0f, "%.2f");
 
                 // Filter: 0 = nearest, 1 = linear. Bicubic was
                 // misleading because Metal has no hardware bicubic

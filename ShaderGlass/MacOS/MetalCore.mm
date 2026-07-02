@@ -23,6 +23,11 @@ void MetalCore::init(GLFWwindow* window)
     NSView*   contentView = nsWindow.contentView;
     contentView.wantsLayer = YES;
 
+    nsWindow.level = NSFloatingWindowLevel;
+    nsWindow.collectionBehavior = NSWindowCollectionBehaviorCanJoinAllSpaces
+                                | NSWindowCollectionBehaviorStationary
+                                | NSWindowCollectionBehaviorIgnoresCycle;
+
     metalLayer = [CAMetalLayer layer];
     metalLayer.device      = device;
     metalLayer.pixelFormat = MTLPixelFormatBGRA8Unorm;
